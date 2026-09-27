@@ -18,3 +18,6 @@ android/.kotlin/
 captures/
 .externalNativeBuild/
 .cxx/
+
+# Tesseract models for the Thai OCR spike (fetch with android/app/src/androidTest/fetch_tessdata.sh)
+android/app/src/androidTest/assets/tess_*/

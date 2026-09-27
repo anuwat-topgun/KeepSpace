@@ -169,7 +169,10 @@ cd android && JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Content
 ### 3.7 คุณภาพและการเตรียมปล่อยแอป
 - [ ] **ทดสอบบนเครื่องจริง** iPhone + iPad + Android phone + tablet ด้วยคลังรูปใหญ่ (10k+ รูป): เวลาสแกน, หน่วยความจำ, แบตเตอรี่, ความแม่นของ similar/blurry/receipt/events
 - [ ] ยืนยัน threshold ของ SimilarityGrouper บน iPhone จริง (simulator ให้ feature print เสื่อม)
-- [ ] **Android OCR ภาษาไทย**: ML Kit ไม่มี Thai → พิจารณา Tesseract (tha) แบบ on-device หรือโมเดลอื่น แล้ววัดขนาดแอป/ความเร็ว
+- [ ] **Android OCR ภาษาไทย**: ✅ ขั้นที่ 1 (spike) เสร็จ — ดู `android/app/src/androidTest/THAI_OCR_SPIKE.md` (Tesseract fast tha+eng + fixes: 21/25 เทียบ ML Kit 13/25)
+  - [ ] ขั้นที่ 2: ใส่ Tesseract ในแอป เรียกเฉพาะใบเสร็จ/รูปที่ ML Kit อ่านไทยเพี้ยน, ย้าย ThaiFix เข้า main code + unit test
+  - [ ] จับคู่คีย์เวิร์ดแบบไม่สนวรรณยุกต์ (ทั้งสองแพลตฟอร์ม) + ปรับ classifier สำหรับแชท/ช้อปปิ้งภาษาไทย
+  - [ ] ทดสอบกับใบเสร็จ/สลิปจริง (รูปทดสอบตอนนี้เป็นภาพสังเคราะห์)
 - [ ] **ความเสี่ยง App Review**: iOS อ่านขนาดไฟล์ด้วย `PHAssetResource.value(forKey: "fileSize")` (KVC ที่ไม่ใช่ public API) → หาทางเลือก (เช่น ประมาณจาก resource/อ่านผ่าน `PHAssetResourceManager` เฉพาะเมื่อจำเป็น) หรือยอมรับความเสี่ยงอย่างรู้ตัว
 - [ ] App icon (ตอนนี้เป็นไอคอนว่าง) + launch screen ทั้งสองแพลตฟอร์ม
 - [ ] `PrivacyInfo.xcprivacy` (Required Reason APIs เช่น UserDefaults, file timestamps, disk space)
