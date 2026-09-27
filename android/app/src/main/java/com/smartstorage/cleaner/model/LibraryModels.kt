@@ -109,9 +109,13 @@ data class ReceiptEntry(
     val capturedAt: Long,
     val bytes: Long,
     val fileName: String? = null,
+    val source: Source = Source.Screenshot,
     /** Demo entries have no asset to show or upload. */
     val isDemo: Boolean = false,
 ) {
+    /** [Photo] = a camera photo of a paper receipt. */
+    enum class Source { Screenshot, Photo }
+
     val fileExtension: String get() = fileName?.substringAfterLast('.', "")?.ifEmpty { null } ?: "jpg"
 
     fun filingPlan(rules: List<com.smartstorage.cleaner.media.StorageRule>): FilingPlan? =
@@ -275,7 +279,7 @@ object LibraryMockData {
             val day = java.time.LocalDate.of(2026, 9, 27).atTime(12, 0).toInstant(java.time.ZoneOffset.UTC).toEpochMilli()
             return listOf(
                 ReceiptEntry("demo-central", ReceiptDetails("Central Department Store", day, java.math.BigDecimal(3450), "THB", ReceiptCategory.Shopping),
-                    day, 2_400_000, "IMG_0412.JPG", isDemo = true),
+                    day, 2_400_000, "IMG_0412.JPG", ReceiptEntry.Source.Photo, isDemo = true),
                 ReceiptEntry("demo-coffee", ReceiptDetails("Blue Bottle Coffee", day - 15 * 86_400_000L, java.math.BigDecimal("6.00"), "USD", ReceiptCategory.FoodAndDrink),
                     day - 15 * 86_400_000L, 1_100_000, "IMG_0398.PNG", isDemo = true),
             )

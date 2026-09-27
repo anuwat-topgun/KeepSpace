@@ -37,6 +37,10 @@ struct ImageFeatures: Sendable, Equatable {
     let faceCount: Int
     /// Top scene label from Vision's on-device classifier ("beach", "food"…), nil when unsure.
     var sceneLabel: String? = nil
+    /// Lines of text found (text rectangles, not the text itself); flags documents and receipts.
+    var textLines: Int = 0
+    /// Classifier confidence 0...1 that the photo shows a receipt or document.
+    var documentScore: Double = 0
 
     /// Distance between two feature prints (Euclidean). `.infinity` when either is missing.
     func distance(to other: ImageFeatures) -> Float {

@@ -159,7 +159,8 @@ tickets whose date has passed become **Expired Tickets**.
 
 ### Receipt Filing (v1.3, extraction + rules)
 
-Receipts found in screenshots get their details read on the device and a filing destination from the rules engine:
+Receipts found in screenshots and in camera photos of paper receipts get their details read on the device and a
+filing destination from the rules engine:
 
 - `ReceiptExtractor`: merchant (header line, or recipient on transfer slips), date (incl. Thai "27 ก.ย. 69"),
   total (labelled total beats subtotal; else the largest amount), currency, spending category.
@@ -169,7 +170,21 @@ Receipts found in screenshots get their details read on the device and a filing 
 - Receipt Filing uses the first enabled Receipts rule from Storage Rules (below).
 - Extracted details are stored on the device only. **Uploading needs v1.1 cloud accounts**; until then the
   Receipt Filing screen says so and offers to connect.
-- Paper receipts photographed with the camera aren't read yet (screenshots only).
+
+#### Paper receipts (camera photos)
+
+Reading every photo would be slow, so it happens in two steps:
+
+1. The regular photo analysis also counts lines of text (fast recogniser, text discarded) and, on iOS, the
+   classifier's "receipt/document" confidence. Photos with no faces and ≥ 5 lines, or confidence ≥ 0.15, are
+   candidates (`PaperReceiptDetector`). A false candidate costs one extra read and is ignored unless it reads as a receipt.
+2. Candidates are read at 2048 px, upright per EXIF (Android decodes the full image; MediaStore thumbnails are
+   too small for receipt print). `TextLayout` rebuilds printed rows from where each line sits, correcting the
+   page tilt, because OCR returns "TOTAL" and "456.00" as separate columns.
+
+Receipt photos show as "Paper receipt photo" in Receipt Filing and are never suggested as Blurry Photos.
+Limits: Android reads Latin script only (Thai receipts are found, but the merchant shows as "Unknown"); the iOS
+Simulator's image classifier is degenerate, so Thai receipts that rely on it can only be checked on a device.
 
 ### Storage Rules and Rule Builder (v1.2)
 

@@ -67,7 +67,11 @@ enum ReceiptExtractor {
             let lower = line.lowercased()
             guard line.count >= 3, line.rangeOfCharacter(from: .letters) != nil,
                   !notMerchant.contains(where: { lower.contains($0) }),
-                  amounts(in: line).isEmpty, DateExtractor.dates(in: line).isEmpty
+                  amounts(in: line).isEmpty, DateExtractor.dates(in: line).isEmpty,
+                  // A year means a date line the parser couldn't read (e.g. Thai misread as Latin).
+                  line.range(of: #"(?<!\d)(19|20|25)\d{2}(?!\d)"#, options: .regularExpression) == nil,
+                  // Mostly digits: a misread amount ("120.0O"), not a name.
+                  line.filter(\.isLetter).count > line.filter(\.isNumber).count
             else { continue }
             return line
         }

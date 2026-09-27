@@ -53,6 +53,8 @@ object ReceiptExtractor {
     /** Honorifics on transfer recipients ("นาย สมชาย ใจดี") don't belong in folder names. */
     private val honorifics = listOf("นางสาว", "นาย", "นาง", "น.ส.", "mr.", "mrs.", "ms.", "miss", "mr", "mrs", "ms")
 
+    private val yearLike = Regex("""(?<!\d)(19|20|25)\d{2}(?!\d)""")
+
     fun merchant(lines: List<String>): String? {
         // Transfer slips name the recipient: "ไปยัง นาย สมชาย ใจดี" / "To: Somchai".
         for (line in lines) {
@@ -66,7 +68,11 @@ object ReceiptExtractor {
         return lines.take(6).firstOrNull { line ->
             val lower = line.lowercase()
             line.length >= 3 && line.any { it.isLetter() } && notMerchant.none { it in lower } &&
-                amounts(line).isEmpty() && DateExtractor.dates(line).isEmpty()
+                amounts(line).isEmpty() && DateExtractor.dates(line).isEmpty() &&
+                // A year means a date line the parser couldn't read (e.g. Thai misread as Latin).
+                !yearLike.containsMatchIn(line) &&
+                // Mostly digits: a misread amount ("120.0O"), not a name.
+                line.count { it.isLetter() } > line.count { it.isDigit() }
         }
     }
 

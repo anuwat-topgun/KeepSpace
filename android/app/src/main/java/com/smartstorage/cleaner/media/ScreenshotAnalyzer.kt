@@ -13,7 +13,7 @@ import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import java.io.Closeable
 
 /**
- * Reads a screenshot on device (text + QR/boarding-pass codes) and classifies it. Mirrors
+ * Reads a screenshot (or a photo of a paper receipt) on device (text + QR/boarding-pass codes) and classifies it. Mirrors
  * `ScreenshotAnalyzer.swift`. The recognised text is used only for classification and is never
  * stored. ML Kit's bundled recogniser reads Latin script only, so Thai text isn't recognised here.
  * Call from a background thread: results are awaited synchronously.
@@ -26,12 +26,26 @@ class ScreenshotAnalyzer(private val resolver: ContentResolver) : Closeable {
             .build(),
     )
 
-    fun analyze(uri: Uri): ScreenshotInfo? {
-        val bitmap = resolver.thumbnail(uri, READ_SIDE) ?: return null
+    /**
+     * For camera photos ([isPhoto]) only receipts matter, so barcodes are skipped, and printed rows
+     * are rebuilt from the text's position (labels and amounts come back as separate columns).
+     */
+    fun analyze(uri: Uri, side: Int = READ_SIDE, isPhoto: Boolean = false): ScreenshotInfo? {
+        // MediaStore thumbnails are capped well below what small receipt print needs, so photos are decoded.
+        val bitmap = (if (isPhoto) resolver.decodeUpright(uri, side) else resolver.thumbnail(uri, side)) ?: return null
         return try {
             val image = InputImage.fromBitmap(bitmap, 0)
-            val text = runCatching { Tasks.await(recognizer.process(image)).text }.getOrDefault("")
-            val hasCode = runCatching { Tasks.await(scanner.process(image)).isNotEmpty() }.getOrDefault(false)
+            val text = runCatching {
+                val result = Tasks.await(recognizer.process(image))
+                if (!isPhoto) return@runCatching result.text
+                TextLayout.rows(result.textBlocks.flatMap { it.lines }.mapNotNull { line ->
+                    val c = line.cornerPoints?.takeIf { it.size == 4 } ?: return@mapNotNull null
+                    fun p(i: Int) = TextLayout.Point(c[i].x.toDouble(), c[i].y.toDouble())
+                    // ML Kit corners run clockwise from top-left.
+                    TextLayout.Fragment(line.text, p(0), p(1), p(2), p(3))
+                }).joinToString("\n")
+            }.getOrDefault("")
+            val hasCode = !isPhoto && runCatching { Tasks.await(scanner.process(image)).isNotEmpty() }.getOrDefault(false)
             ScreenshotClassifier.classify(text, hasCode)
         } finally {
             bitmap.recycle()
@@ -48,3 +62,4 @@ class ScreenshotAnalyzer(private val resolver: ContentResolver) : Closeable {
         const val READ_SIDE = 1600
     }
 }
+

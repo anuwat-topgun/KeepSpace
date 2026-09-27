@@ -10,9 +10,9 @@ struct ImageAnalyzer: Sendable {
     /// large enough that real blur still shows up in the Laplacian.
     static let measureSide = 256
 
-    func analyze(_ image: CGImage) -> ImageFeatures {
+    func analyze(_ image: CGImage, orientation: CGImagePropertyOrientation = .up) -> ImageFeatures {
         let (sharpness, exposure) = Self.sharpnessAndExposure(of: image)
-        let handler = VNImageRequestHandler(cgImage: image, options: [:])
+        let handler = VNImageRequestHandler(cgImage: image, orientation: orientation, options: [:])
 
         let printRequest = VNGenerateImageFeaturePrintRequest()
         let faceRequest = VNDetectFaceCaptureQualityRequest()
@@ -24,18 +24,36 @@ struct ImageAnalyzer: Sendable {
         }
 
         let faces = faceRequest.results ?? []
+        let labels = classifyRequest.results ?? []
+        // Counts lines of text to spot paper receipts; the text itself is discarded. Only photos
+        // without people can be receipts, so the rest skip it. (Text rectangles find almost
+        // nothing at this size; the fast recogniser does.)
+        var textLines = 0
+        if faces.isEmpty {
+            let textRequest = VNRecognizeTextRequest()
+            textRequest.recognitionLevel = .fast
+            textRequest.usesLanguageCorrection = false
+            Self.preferCPUOnSimulator(textRequest)
+            try? handler.perform([textRequest])
+            textLines = textRequest.results?.count ?? 0
+        }
         return ImageFeatures(
             featurePrint: printRequest.results?.first.map(Self.floats) ?? [],
             sharpness: sharpness,
             exposure: exposure,
             faceQuality: faces.compactMap { $0.faceCaptureQuality.map(Double.init) }.max(),
             faceCount: faces.count,
-            sceneLabel: Self.sceneLabel(from: classifyRequest.results ?? [])
+            sceneLabel: Self.sceneLabel(from: labels),
+            textLines: textLines,
+            documentScore: Double(labels.filter { Self.documentLabels.contains($0.identifier) }.map(\.confidence).max() ?? 0)
         )
     }
 
     /// Most confident specific label. Very generic taxonomy nodes are skipped so group titles
     /// read "Beach" rather than "Outdoor".
+    /// Classifier labels that mean "a piece of paper worth reading".
+    private static let documentLabels: Set<String> = ["receipt", "document", "printed_page"]
+
     private static let genericLabels: Set<String> = ["outdoor", "indoor", "structure", "people", "adult", "consumable", "material"]
 
     private static func sceneLabel(from observations: [VNClassificationObservation]) -> String? {

@@ -26,6 +26,8 @@ import androidx.compose.material.icons.rounded.CloudUpload
 import androidx.compose.material.icons.rounded.Description
 import androidx.compose.material.icons.rounded.ErrorOutline
 import androidx.compose.material.icons.rounded.Folder
+import androidx.compose.material.icons.rounded.CropFree
+import androidx.compose.material.icons.rounded.PhotoCamera
 import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material.icons.rounded.Payments
 import androidx.compose.material.icons.rounded.ShoppingBag
@@ -68,7 +70,7 @@ import java.util.TimeZone
 private fun formatDay(ms: Long): String =
     DateFormat.getDateInstance(DateFormat.MEDIUM).apply { timeZone = TimeZone.getTimeZone("UTC") }.format(Date(ms))
 
-/** Receipts found in screenshots, with what was read from each and where it would be filed. */
+/** Receipts found in screenshots and photos of paper receipts, with what was read from each and where it would be filed. */
 @Composable
 fun ReceiptsScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
     val state = libraryState()
@@ -80,7 +82,7 @@ fun ReceiptsScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
         if (receipts.isEmpty()) {
             SmartCard(style = CardStyle.Info) {
                 Text(
-                    if (state.isScanning) "Reading your screenshots…" else "No receipts found in your screenshots yet.",
+                    if (state.isScanning) "Reading your screenshots and receipt photos…" else "No receipts found in your screenshots or photos yet.",
                     style = SmartType.metadata,
                     color = colors.textSecondary,
                 )
@@ -104,6 +106,11 @@ fun ReceiptsScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
                             style = SmartType.metadata,
                             color = colors.textSecondary,
                         )
+                        Row(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically) {
+                            val paper = receipt.source == ReceiptEntry.Source.Photo
+                            Icon(if (paper) Icons.Rounded.PhotoCamera else Icons.Rounded.CropFree, contentDescription = null, tint = colors.textSecondary, modifier = Modifier.size(14.dp))
+                            Text(if (paper) "Paper receipt photo" else "Screenshot", style = TextStyle(fontSize = 12.sp), color = colors.textSecondary)
+                        }
                         receipt.filingPlan(rules)?.let {
                             Row(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically) {
                                 Icon(Icons.Rounded.Folder, contentDescription = null, tint = colors.textSecondary, modifier = Modifier.size(14.dp))
@@ -168,7 +175,7 @@ private fun ExtractedCard(receipt: ReceiptEntry) {
             ReceiptThumbnail(receipt, Modifier.size(width = 124.dp, height = 170.dp))
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Field("Merchant", receipt.details.merchant, Icons.Rounded.Storefront, Tint.Blue)
-                // No printed date: filing falls back to when the screenshot was taken, so say that.
+                // No printed date: filing falls back to when the screenshot or photo was taken, so say that.
                 Field("Date", receipt.details.date?.let(::formatDay) ?: "${formatDay(receipt.capturedAt)} (photo date)", Icons.Rounded.CalendarMonth, Tint.Blue)
                 Field("Amount", receipt.amountText, Icons.Rounded.Payments, Tint.Purple)
                 Field("Category", receipt.details.category.title, Icons.Rounded.ShoppingBag, Tint.Coral)

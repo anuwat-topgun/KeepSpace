@@ -10,6 +10,8 @@ import com.google.android.gms.tasks.Tasks
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.FaceDetection
 import com.google.mlkit.vision.face.FaceDetectorOptions
+import com.google.mlkit.vision.text.TextRecognition
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import java.io.Closeable
 
 /**
@@ -24,6 +26,7 @@ class ImageAnalyzer(private val resolver: ContentResolver) : Closeable {
             .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_ALL)
             .build(),
     )
+    private val textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
 
     fun analyze(uri: Uri): ImageFeatures? {
         val bitmap = resolver.thumbnail(uri, 512) ?: return null
@@ -33,6 +36,8 @@ class ImageAnalyzer(private val resolver: ContentResolver) : Closeable {
             val grid = lumaOf(Bitmap.createScaledBitmap(bitmap, 9, 8, true))
             val (faceQuality, faceCount) = faces(bitmap)
             ImageFeatures(
+                // Only photos without people can be receipts, so skip the text pass for the rest.
+                textLines = if (faceCount == 0) textLines(bitmap) else 0,
                 dHash = ImageMetrics.dHash(grid),
                 sharpness = ImageMetrics.laplacianVariance(measured, side),
                 exposure = ImageMetrics.exposure(measured),
@@ -56,13 +61,23 @@ class ImageAnalyzer(private val resolver: ContentResolver) : Closeable {
         null to 0
     }
 
+    /** How many lines of text the thumbnail holds; the text itself is discarded. */
+    private fun textLines(bitmap: Bitmap): Int = try {
+        Tasks.await(textRecognizer.process(InputImage.fromBitmap(bitmap, 0))).textBlocks.sumOf { it.lines.size }
+    } catch (_: Exception) {
+        0
+    }
+
     private fun lumaOf(bitmap: Bitmap): IntArray {
         val pixels = IntArray(bitmap.width * bitmap.height)
         bitmap.getPixels(pixels, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
         return IntArray(pixels.size) { ImageMetrics.luma(pixels[it]) }
     }
 
-    override fun close() = faceDetector.close()
+    override fun close() {
+        faceDetector.close()
+        textRecognizer.close()
+    }
 }
 
 /** Local, downscaled bitmap for [uri] (≈ [side] px on the long edge), or null if unreadable. */
@@ -76,6 +91,37 @@ fun ContentResolver.thumbnail(uri: Uri, side: Int): Bitmap? = try {
         while (bounds.outWidth / (sample * 2) >= side && bounds.outHeight / (sample * 2) >= side) sample *= 2
         openInputStream(uri)?.use {
             BitmapFactory.decodeStream(it, null, BitmapFactory.Options().apply { inSampleSize = sample })
+        }
+    }
+} catch (_: Exception) {
+    null
+}
+
+/**
+ * Full image decoded to about [side] px on the long edge, turned upright per its EXIF orientation,
+ * or null if unreadable. Slower than [thumbnail]; used where detail matters (reading receipts).
+ */
+fun ContentResolver.decodeUpright(uri: Uri, side: Int): Bitmap? = try {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        // ImageDecoder applies EXIF orientation itself.
+        android.graphics.ImageDecoder.decodeBitmap(android.graphics.ImageDecoder.createSource(this, uri)) { decoder, info, _ ->
+            val scale = minOf(1.0, side.toDouble() / maxOf(info.size.width, info.size.height))
+            decoder.setTargetSize((info.size.width * scale).toInt().coerceAtLeast(1), (info.size.height * scale).toInt().coerceAtLeast(1))
+            decoder.allocator = android.graphics.ImageDecoder.ALLOCATOR_SOFTWARE
+        }
+    } else {
+        val orientation = openInputStream(uri)?.use {
+            android.media.ExifInterface(it).getAttributeInt(android.media.ExifInterface.TAG_ORIENTATION, android.media.ExifInterface.ORIENTATION_NORMAL)
+        }
+        val degrees = when (orientation) {
+            android.media.ExifInterface.ORIENTATION_ROTATE_90 -> 90
+            android.media.ExifInterface.ORIENTATION_ROTATE_180 -> 180
+            android.media.ExifInterface.ORIENTATION_ROTATE_270 -> 270
+            else -> 0
+        }
+        thumbnail(uri, side)?.let { bitmap ->
+            if (degrees == 0) bitmap else Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height,
+                android.graphics.Matrix().apply { postRotate(degrees.toFloat()) }, true).also { bitmap.recycle() }
         }
     }
 } catch (_: Exception) {

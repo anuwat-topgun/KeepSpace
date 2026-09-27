@@ -129,42 +129,56 @@ final class LibraryStore {
         let photos = items.filter { $0.kind == .photo }
         let screenshots = items.filter { $0.kind == .screenshot }
         let photoPlan = CachePlanner.plan(photos: photos, cached: await cache?.loadAll() ?? [:])
-        let shotPlan = CachePlanner.plan(screenshots: screenshots, cached: await cache?.loadScreenshots() ?? [:])
+        let cachedReads = await cache?.loadScreenshots() ?? [:]
+        // Text is read from screenshots and from photos that look like paper receipts.
+        func toRead(_ analyzed: [AnalyzedPhoto]) -> [MediaItem] {
+            screenshots + analyzed.filter(PaperReceiptDetector.isCandidate).map(\.item)
+        }
+        let earlyReads = CachePlanner.plan(screenshots: toRead(photoPlan.hits), cached: cachedReads)
         await cache?.delete(ids: photoPlan.staleIDs)
-        await cache?.deleteScreenshots(ids: shotPlan.staleIDs)
         // Counts only — never filenames or other personal data.
-        Self.log.info("scan: \(items.count) items, \(photoPlan.hits.count) cached, \(photoPlan.toAnalyze.count) to analyze, \(photoPlan.staleIDs.count) stale; screenshots \(shotPlan.hits.count) cached, \(shotPlan.toAnalyze.count) to read")
+        Self.log.info("scan: \(items.count) items, \(photoPlan.hits.count) cached, \(photoPlan.toAnalyze.count) to analyze, \(photoPlan.staleIDs.count) stale; text reads \(earlyReads.hits.count) cached, \(earlyReads.toAnalyze.count) to read")
 
         // Publish straight away: sizes plus everything the cache already knows.
         lastItems = items
         lastAnalyzed = photoPlan.hits
-        lastScreenshotInfo = shotPlan.hits
+        lastScreenshotInfo = earlyReads.hits
         rebuild(storage: storage)
 
-        let total = photoPlan.toAnalyze.count + shotPlan.toAnalyze.count
-        guard total > 0 else {
+        let cache = self.cache
+        var total = photoPlan.toAnalyze.count + earlyReads.toAnalyze.count
+        if !photoPlan.toAnalyze.isEmpty {
+            phase = .analyzing(done: 0, total: total)
+            let fresh = await engine.analyze(
+                photoPlan.toAnalyze,
+                progress: { done, _ in await MainActor.run { self.phase = .analyzing(done: done, total: total) } },
+                onBatch: { batch in
+                    // Persist as we go so an interrupted scan keeps its progress.
+                    await cache?.save(batch.map {
+                        CachedAnalysis(assetID: $0.id, modifiedAt: $0.item.modifiedAt, version: analyzerVersion, features: $0.features)
+                    })
+                }
+            )
+            lastAnalyzed = photoPlan.hits + fresh
+            rebuild(storage: storage)
+        }
+
+        // Newly analyzed photos may have added receipt candidates.
+        let reads = CachePlanner.plan(screenshots: toRead(lastAnalyzed), cached: cachedReads)
+        await cache?.deleteScreenshots(ids: reads.staleIDs)
+        reads.staleIDs.forEach { lastScreenshotInfo[$0] = nil }
+        total = photoPlan.toAnalyze.count + reads.toAnalyze.count
+        let candidates = lastAnalyzed.filter(PaperReceiptDetector.isCandidate).count
+        Self.log.info("scan: \(candidates) receipt-like photos; text reads \(reads.hits.count) cached, \(reads.toAnalyze.count) to read")
+        guard !reads.toAnalyze.isEmpty else {
+            if !reads.staleIDs.isEmpty { rebuild(storage: storage) }
             phase = .ready
             return
         }
-        phase = .analyzing(done: 0, total: total)
-        let cache = self.cache
-
-        let fresh = await engine.analyze(
-            photoPlan.toAnalyze,
-            progress: { done, _ in await MainActor.run { self.phase = .analyzing(done: done, total: total) } },
-            onBatch: { batch in
-                // Persist as we go so an interrupted scan keeps its progress.
-                await cache?.save(batch.map {
-                    CachedAnalysis(assetID: $0.id, modifiedAt: $0.item.modifiedAt, version: analyzerVersion, features: $0.features)
-                })
-            }
-        )
-        lastAnalyzed = photoPlan.hits + fresh
-        rebuild(storage: storage)
-
         let offset = photoPlan.toAnalyze.count
+        phase = .analyzing(done: offset, total: total)
         let read = await engine.analyzeScreenshots(
-            shotPlan.toAnalyze,
+            reads.toAnalyze,
             progress: { done, _ in await MainActor.run { self.phase = .analyzing(done: offset + done, total: total) } },
             onBatch: { batch in
                 await cache?.saveScreenshots(batch.map {

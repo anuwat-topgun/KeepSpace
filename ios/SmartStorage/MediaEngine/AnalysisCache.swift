@@ -3,12 +3,13 @@ import SwiftData
 
 /// Bump whenever `ImageAnalyzer` output changes meaning (new model, new metric), so stale
 /// cached results are re-analyzed instead of silently mixed with new ones.
-let analyzerVersion = 1
+/// 2: text lines + document score (paper receipts); images read upright.
+let analyzerVersion = 2
 
 /// Same idea for screenshot classification (OCR rules, keywords). Separate so tuning the
 /// classifier re-reads screenshots without re-analyzing every photo.
-/// 2: receipts recognised from amounts alone. 3: receipt details extracted.
-let screenshotReaderVersion = 3
+/// 2: receipts recognised from amounts alone. 3: receipt details extracted. 4: stricter merchant names.
+let screenshotReaderVersion = 4
 
 /// One cached analysis, as a value type that can cross actors.
 struct CachedAnalysis: Sendable, Equatable {
@@ -43,7 +44,8 @@ enum CachePlanner {
     }
 }
 
-/// Cached screenshot classification. Only the category and a few fields — never the text.
+/// Cached screenshot classification (also used for photos read as paper receipts). Only the
+/// category and a few fields — never the text.
 struct CachedScreenshot: Sendable, Equatable {
     let assetID: String
     let modifiedAt: Date
@@ -87,6 +89,9 @@ final class AnalysisRecord {
     var faceQuality: Double?
     var faceCount: Int
     var sceneLabel: String?
+    // Defaults keep SwiftData's lightweight migration happy for stores written before v2.
+    var textLines: Int = 0
+    var documentScore: Double = 0
 
     init(_ entry: CachedAnalysis) {
         assetID = entry.assetID
@@ -98,6 +103,8 @@ final class AnalysisRecord {
         faceQuality = entry.features.faceQuality
         faceCount = entry.features.faceCount
         sceneLabel = entry.features.sceneLabel
+        textLines = entry.features.textLines
+        documentScore = entry.features.documentScore
     }
 
     func update(from entry: CachedAnalysis) {
@@ -109,6 +116,8 @@ final class AnalysisRecord {
         faceQuality = entry.features.faceQuality
         faceCount = entry.features.faceCount
         sceneLabel = entry.features.sceneLabel
+        textLines = entry.features.textLines
+        documentScore = entry.features.documentScore
     }
 
     var value: CachedAnalysis {
@@ -123,7 +132,9 @@ final class AnalysisRecord {
                 exposure: exposure,
                 faceQuality: faceQuality,
                 faceCount: faceCount,
-                sceneLabel: sceneLabel
+                sceneLabel: sceneLabel,
+                textLines: textLines,
+                documentScore: documentScore
             )
         )
     }

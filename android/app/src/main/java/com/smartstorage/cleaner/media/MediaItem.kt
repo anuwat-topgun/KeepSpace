@@ -34,6 +34,10 @@ data class ImageFeatures(
     /** Best face score 0..1 (eyes open), null when no faces were found. */
     val faceQuality: Double?,
     val faceCount: Int,
+    /** Lines of text found (not the text itself); flags documents and receipts. */
+    val textLines: Int = 0,
+    /** Classifier confidence 0..1 that the photo shows a receipt or document (iOS only; 0 here). */
+    val documentScore: Double = 0.0,
 ) {
     /** Hamming distance between hashes, 0..64. */
     fun distanceTo(other: ImageFeatures): Int = java.lang.Long.bitCount(dHash xor other.dHash)

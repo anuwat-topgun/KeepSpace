@@ -123,12 +123,19 @@ struct ExpiredScreenshot: Identifiable, Sendable {
 // MARK: - Receipt filing (16)
 
 struct ReceiptEntry: Identifiable, Hashable, Sendable {
+    enum Source: Sendable {
+        case screenshot
+        /// A camera photo of a paper receipt.
+        case photo
+    }
+
     /// Asset ID for real receipts; a stable demo ID otherwise.
     let id: String
     let details: ReceiptDetails
     let capturedAt: Date
     let bytes: Int64
     var fileName: String? = nil
+    var source: Source = .screenshot
     /// Demo entries have no asset to show or upload.
     var isDemo = false
 
@@ -324,7 +331,7 @@ extension MockData {
         return [
             ReceiptEntry(id: "demo-central",
                          details: ReceiptDetails(merchant: "Central Department Store", date: day, amount: 3450, currency: "THB", category: .shopping),
-                         capturedAt: day, bytes: 2_400_000, fileName: "IMG_0412.JPG", isDemo: true),
+                         capturedAt: day, bytes: 2_400_000, fileName: "IMG_0412.JPG", source: .photo, isDemo: true),
             ReceiptEntry(id: "demo-coffee",
                          details: ReceiptDetails(merchant: "Blue Bottle Coffee", date: day.addingTimeInterval(-15 * 86_400),
                                                  amount: Decimal(string: "6.00"), currency: "USD", category: .foodAndDrink),

@@ -16,14 +16,14 @@ import androidx.room.Upsert
  * Bump whenever [ImageAnalyzer] output changes meaning (new metric, new model), so stale cached
  * results are re-analyzed instead of silently mixed with new ones.
  */
-const val ANALYZER_VERSION = 1
+const val ANALYZER_VERSION = 2 // 2: text lines (paper receipts)
 
 /**
  * Same idea for screenshot classification (OCR rules, keywords). Separate so tuning the classifier
  * re-reads screenshots without re-analyzing every photo. 2: receipts recognised from amounts alone.
- * 3: receipt details extracted.
+ * 3: receipt details extracted. 4: stricter merchant names.
  */
-const val SCREENSHOT_READER_VERSION = 3
+const val SCREENSHOT_READER_VERSION = 4
 
 data class CachedAnalysis(
     val assetId: String,
@@ -58,7 +58,7 @@ object CachePlanner {
     }
 }
 
-/** Cached screenshot classification. Only the category and a few fields — never the text. */
+/** Cached screenshot classification (also used for photos read as paper receipts). Only the category and a few fields — never the text. */
 data class CachedScreenshot(val assetId: String, val modifiedAt: Long, val version: Int, val info: ScreenshotInfo)
 
 data class ScreenshotPlan(val hits: Map<String, ScreenshotInfo>, val toAnalyze: List<MediaItem>, val staleIds: List<String>)
@@ -90,12 +90,14 @@ data class AnalysisEntity(
     val exposure: Double,
     val faceQuality: Double?,
     val faceCount: Int,
+    val textLines: Int = 0,
+    val documentScore: Double = 0.0,
 ) {
-    fun toCached() = CachedAnalysis(assetId, modifiedAt, version, ImageFeatures(dHash, sharpness, exposure, faceQuality, faceCount))
+    fun toCached() = CachedAnalysis(assetId, modifiedAt, version, ImageFeatures(dHash, sharpness, exposure, faceQuality, faceCount, textLines, documentScore))
 
     companion object {
         fun from(entry: CachedAnalysis) = with(entry.features) {
-            AnalysisEntity(entry.assetId, entry.modifiedAt, entry.version, dHash, sharpness, exposure, faceQuality, faceCount)
+            AnalysisEntity(entry.assetId, entry.modifiedAt, entry.version, dHash, sharpness, exposure, faceQuality, faceCount, textLines, documentScore)
         }
     }
 }
@@ -160,7 +162,7 @@ interface AnalysisDao {
     suspend fun count(): Int
 }
 
-@Database(entities = [AnalysisEntity::class, ScreenshotEntity::class], version = 3, exportSchema = false)
+@Database(entities = [AnalysisEntity::class, ScreenshotEntity::class], version = 4, exportSchema = false)
 abstract class AnalysisDatabase : RoomDatabase() {
     abstract fun analysis(): AnalysisDao
     abstract fun screenshots(): ScreenshotDao

@@ -609,3 +609,88 @@ private func photo(_ id: String, at seconds: TimeInterval, print: [Float], sharp
         #expect(RuleStore(defaults: defaults).rules.count == StorageRule.defaults.count)
     }
 }
+
+// MARK: - Paper receipts
+
+struct PaperReceiptTests {
+    private func photo(_ id: String, kind: MediaItem.Kind = .photo, faces: Int = 0, lines: Int = 0, document: Double = 0,
+                       sharpness: Double = 500) -> AnalyzedPhoto {
+        AnalyzedPhoto(
+            item: MediaItem(id: id, kind: kind, creationDate: Date(timeIntervalSince1970: 1_790_000_000), bytes: 2_000_000,
+                            pixelWidth: 3024, pixelHeight: 4032, duration: 0, isFavorite: false, fileName: "\(id).HEIC"),
+            features: ImageFeatures(featurePrint: [], sharpness: sharpness, exposure: 0.5, faceQuality: nil, faceCount: faces,
+                                    textLines: lines, documentScore: document)
+        )
+    }
+
+    @Test func candidatesLookLikeDocuments() {
+        #expect(PaperReceiptDetector.isCandidate(photo("a", document: 0.4)))
+        #expect(PaperReceiptDetector.isCandidate(photo("b", lines: 12)))
+        #expect(!PaperReceiptDetector.isCandidate(photo("c", lines: 2)))
+        // People in front of a menu board aren't receipts.
+        #expect(!PaperReceiptDetector.isCandidate(photo("d", faces: 2, lines: 20, document: 0.5)))
+        #expect(!PaperReceiptDetector.isCandidate(photo("e", kind: .screenshot, lines: 20)))
+    }
+
+    @Test func paperReceiptsJoinReceiptsAndLeaveBlurry() {
+        let paper = photo("paper", lines: 14, sharpness: 10)
+        let blurry = photo("blurry", sharpness: 10)
+        let info = ScreenshotInfo(kind: .receipts, receipt: ReceiptDetails(merchant: "Tops Market", amount: 245))
+        let content = LibraryReportBuilder().build(items: [paper.item, blurry.item], analyzed: [paper, blurry],
+                                                   screenshotInfo: ["paper": info], deviceTotalBytes: 100, deviceFreeBytes: 50)
+        #expect(content.receipts.map(\.id) == ["paper"])
+        #expect(content.receipts.first?.source == .photo)
+        #expect(content.reviewSets[.blurry]?.map(\.id) == ["blurry"])
+        // A photo read as something else (e.g. a chat on a screen) isn't a receipt and changes nothing.
+        let other = LibraryReportBuilder().build(items: [paper.item], analyzed: [paper],
+                                                 screenshotInfo: ["paper": ScreenshotInfo(kind: .chats)], deviceTotalBytes: 100, deviceFreeBytes: 50)
+        #expect(other.receipts.isEmpty)
+        #expect(other.screenshotCategories.isEmpty)
+    }
+}
+
+private extension TextLayout.Fragment {
+    /// The bounding box of this fragment, as OCR engines report short lines.
+    var axisAligned: TextLayout.Fragment {
+        let xs = [topLeft.x, topRight.x, bottomRight.x, bottomLeft.x], ys = [topLeft.y, topRight.y, bottomRight.y, bottomLeft.y]
+        return TextLayout.Fragment(text: text, topLeft: CGPoint(x: xs.min()!, y: ys.min()!), topRight: CGPoint(x: xs.max()!, y: ys.min()!),
+                                   bottomRight: CGPoint(x: xs.max()!, y: ys.max()!), bottomLeft: CGPoint(x: xs.min()!, y: ys.max()!))
+    }
+}
+
+struct TextLayoutTests {
+    /// A fragment of `width`×40 px starting at (x, y), on a page tilted by `tilt` radians.
+    private func fragment(_ text: String, x: CGFloat, y: CGFloat, width: CGFloat = 300, tilt: CGFloat = 0) -> TextLayout.Fragment {
+        func rotate(_ px: CGFloat, _ py: CGFloat) -> CGPoint { CGPoint(x: px * cos(tilt) - py * sin(tilt), y: px * sin(tilt) + py * cos(tilt)) }
+        return TextLayout.Fragment(text: text, topLeft: rotate(x, y), topRight: rotate(x + width, y),
+                                   bottomRight: rotate(x + width, y + 40), bottomLeft: rotate(x, y + 40))
+    }
+
+    @Test func columnsJoinIntoRowsOnATiltedPage() {
+        let tilt = 4 * CGFloat.pi / 180
+        // OCR order: the label column first, then the amount column — as Vision returns a receipt photo.
+        let fragments = [
+            fragment("TOPS MARKET", x: 400, y: 0, tilt: tilt),
+            fragment("SUBTOTAL", x: 0, y: 100, tilt: tilt), fragment("TOTAL", x: 0, y: 170, tilt: tilt),
+            fragment("CASH", x: 0, y: 240, tilt: tilt), fragment("CHANGE", x: 0, y: 310, tilt: tilt),
+            // Short fragments come back as axis-aligned boxes (ML Kit does this), placed along the tilt.
+            fragment("456.00", x: 1800, y: 100, width: 200, tilt: tilt).axisAligned, fragment("456.00", x: 1800, y: 170, width: 200, tilt: tilt).axisAligned,
+            fragment("500.00", x: 1800, y: 240, width: 200, tilt: tilt).axisAligned, fragment("44.00", x: 1800, y: 310, width: 200, tilt: tilt).axisAligned,
+        ]
+        let rows = TextLayout.rows(fragments)
+        #expect(rows == ["TOPS MARKET", "SUBTOTAL  456.00", "TOTAL  456.00", "CASH  500.00", "CHANGE  44.00"])
+        #expect(ReceiptExtractor.total(in: rows) == 456)
+    }
+
+    @Test func emptyInputHasNoRows() {
+        #expect(TextLayout.rows([]).isEmpty)
+    }
+}
+
+struct MerchantGuardTests {
+    @Test func unreadableDateLineIsNotAMerchant() {
+        // What a Latin-only reader makes of "วันที่ 21 ก.ย. 2569".
+        #expect(ReceiptExtractor.merchant(in: ["iun 21 n.g. 2569", "anaou  65.00", "120.0O un"]) == nil)
+        #expect(ReceiptExtractor.merchant(in: ["7-Eleven", "Central Rama 9"]) == "7-Eleven")
+    }
+}

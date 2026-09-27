@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Receipts found in screenshots, with what was read from each and where it would be filed.
+/// Receipts found in screenshots and photos of paper receipts, with what was read from each and where it would be filed.
 struct ReceiptsView: View {
     @Environment(LibraryStore.self) private var library
     @Environment(RuleStore.self) private var rules
@@ -14,7 +14,7 @@ struct ReceiptsView: View {
 
             if receipts.isEmpty {
                 Card(style: .info) {
-                    Label(library.isScanning ? "Reading your screenshots…" : "No receipts found in your screenshots yet.",
+                    Label(library.isScanning ? "Reading your screenshots and receipt photos…" : "No receipts found in your screenshots or photos yet.",
                           systemImage: "doc.text.magnifyingglass")
                         .font(Typography.metadata)
                         .foregroundStyle(Palette.textSecondary)
@@ -48,6 +48,10 @@ private struct ReceiptRow: View {
                     Text([receipt.amountText, (receipt.details.date ?? receipt.capturedAt).formatted(date: .abbreviated, time: .omitted)]
                         .compactMap { $0 }.joined(separator: " · "))
                         .font(Typography.metadata)
+                        .foregroundStyle(Palette.textSecondary)
+                    Label(receipt.source == .photo ? "Paper receipt photo" : "Screenshot",
+                          systemImage: receipt.source == .photo ? "camera" : "viewfinder")
+                        .font(.caption)
                         .foregroundStyle(Palette.textSecondary)
                     if let plan = receipt.filingPlan(rules: rules.rules) {
                         Label(plan.folder, systemImage: "folder")
@@ -124,7 +128,7 @@ struct ReceiptFilingView: View {
                     .frame(width: 124, height: 170)
                 VStack(alignment: .leading, spacing: 12) {
                     field("Merchant", receipt.details.merchant, icon: "storefront.fill", tint: .blue)
-                    // No printed date: filing falls back to when the screenshot was taken, so say that.
+                    // No printed date: filing falls back to when the screenshot or photo was taken, so say that.
                     field("Date", receipt.details.date?.formatted(date: .abbreviated, time: .omitted)
                           ?? receipt.capturedAt.formatted(date: .abbreviated, time: .omitted) + " (photo date)",
                           icon: "calendar", tint: .blue)

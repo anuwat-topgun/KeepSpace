@@ -464,4 +464,68 @@ class FilingTemplateTest {
         val disabled = StorageRule.defaults.map { if (it.trigger == RuleTrigger.Receipt) it.copy(isEnabled = false) else it }
         assertNull(RuleMatcher.plan(receipt, 0, "a.jpg", "jpg", disabled))
     }
+
+    // Paper receipts
+
+    private fun paperPhoto(id: String, kind: MediaItem.Kind = MediaItem.Kind.Photo, faces: Int = 0, lines: Int = 0, sharpness: Double = 500.0) =
+        AnalyzedPhoto(
+            MediaItem(id, kind, 1_790_000_000_000, 2_000_000, 3024, 4032, 0, false, fileName = "$id.jpg"),
+            // Distinct hashes so test photos never group as similar.
+            ImageFeatures(if (id == "blurry") -1L else 0L, sharpness, 0.5, null, faces, textLines = lines),
+        )
+
+    @Test fun paperReceiptCandidatesLookLikeDocuments() {
+        assertTrue(PaperReceiptDetector.isCandidate(paperPhoto("a", lines = 12)))
+        assertTrue(PaperReceiptDetector.isCandidate(paperPhoto("a").let { it.copy(features = it.features.copy(documentScore = 0.4)) }))
+        assertTrue(!PaperReceiptDetector.isCandidate(paperPhoto("b", lines = 2)))
+        assertTrue(!PaperReceiptDetector.isCandidate(paperPhoto("c", faces = 2, lines = 20)))
+        assertTrue(!PaperReceiptDetector.isCandidate(paperPhoto("d", kind = MediaItem.Kind.Screenshot, lines = 20)))
+    }
+
+    @Test fun paperReceiptsJoinReceiptsAndLeaveBlurry() {
+        val paper = paperPhoto("paper", lines = 14, sharpness = 10.0)
+        val blurry = paperPhoto("blurry", sharpness = 10.0)
+        val info = ScreenshotInfo(ScreenshotKind.Receipts, receipt = ReceiptDetails(merchant = "Tops Market", amount = java.math.BigDecimal(245)))
+        val content = LibraryReportBuilder().build(listOf(paper.item, blurry.item), listOf(paper, blurry), 100, 50, screenshotInfo = mapOf("paper" to info))
+        assertEquals(listOf("paper"), content.receipts.map { it.id })
+        assertEquals(com.smartstorage.cleaner.model.ReceiptEntry.Source.Photo, content.receipts.single().source)
+        assertEquals(listOf("blurry"), content.reviewSets[ReviewKind.Blurry]?.map { it.id })
+        val other = LibraryReportBuilder().build(listOf(paper.item), listOf(paper), 100, 50,
+            screenshotInfo = mapOf("paper" to ScreenshotInfo(ScreenshotKind.Chats)))
+        assertTrue(other.receipts.isEmpty())
+        assertTrue(other.screenshotCategories.isEmpty())
+    }
+
+    @Test fun analysisEntityKeepsTextLines() {
+        val entry = CachedAnalysis("x", 1, ANALYZER_VERSION, ImageFeatures(7, 1.0, 0.5, null, 0, textLines = 9))
+        assertEquals(entry, AnalysisEntity.from(entry).toCached())
+    }
+
+    @Test fun textLayoutJoinsColumnsOnATiltedPage() {
+        val tilt = Math.toRadians(4.0)
+        fun rot(x: Double, y: Double) = TextLayout.Point(x * kotlin.math.cos(tilt) - y * kotlin.math.sin(tilt), x * kotlin.math.sin(tilt) + y * kotlin.math.cos(tilt))
+        fun frag(text: String, x: Double, y: Double, w: Double = 300.0) = TextLayout.Fragment(text, rot(x, y), rot(x + w, y), rot(x + w, y + 40), rot(x, y + 40))
+        fun box(f: TextLayout.Fragment): TextLayout.Fragment {
+            val pts = listOf(f.topLeft, f.topRight, f.bottomRight, f.bottomLeft)
+            val (x0, x1, y0, y1) = listOf(pts.minOf { it.x }, pts.maxOf { it.x }, pts.minOf { it.y }, pts.maxOf { it.y })
+            return TextLayout.Fragment(f.text, TextLayout.Point(x0, y0), TextLayout.Point(x1, y0), TextLayout.Point(x1, y1), TextLayout.Point(x0, y1))
+        }
+        // OCR order: the label column first, then the amount column.
+        val rows = TextLayout.rows(listOf(
+            frag("TOPS MARKET", 400.0, 0.0),
+            frag("SUBTOTAL", 0.0, 100.0), frag("TOTAL", 0.0, 170.0), frag("CASH", 0.0, 240.0), frag("CHANGE", 0.0, 310.0),
+            // Short fragments come back as axis-aligned boxes (as ML Kit reports them), placed along the tilt.
+            box(frag("456.00", 1800.0, 100.0, 200.0)), box(frag("456.00", 1800.0, 170.0, 200.0)),
+            box(frag("500.00", 1800.0, 240.0, 200.0)), box(frag("44.00", 1800.0, 310.0, 200.0)),
+        ))
+        assertEquals(listOf("TOPS MARKET", "SUBTOTAL  456.00", "TOTAL  456.00", "CASH  500.00", "CHANGE  44.00"), rows)
+        assertEquals(java.math.BigDecimal("456.00"), ReceiptExtractor.total(rows))
+        assertTrue(TextLayout.rows(emptyList()).isEmpty())
+    }
+
+    @Test fun unreadableDateLineIsNotAMerchant() {
+        // What a Latin-only reader makes of "วันที่ 21 ก.ย. 2569".
+        assertNull(ReceiptExtractor.merchant(listOf("iun 21 n.g. 2569", "anaou  65.00", "120.0O un")))
+        assertEquals("7-Eleven", ReceiptExtractor.merchant(listOf("7-Eleven", "Central Rama 9")))
+    }
 }

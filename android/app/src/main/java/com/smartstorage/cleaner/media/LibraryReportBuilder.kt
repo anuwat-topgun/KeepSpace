@@ -58,8 +58,12 @@ data class LibraryReportBuilder(
         val similarBytes = groups.sumOf { it.reclaimableBytes }
         val similarCount = groups.sumOf { it.photoCount - 1 }
 
-        // Blurry photos not already covered by a similar group; favourites are never suggested.
-        val blurry = analyzed.filter { it.features.sharpness < blurThreshold && it.id !in inGroup && !it.item.isFavorite }
+        // Photos of paper receipts: read on device like receipt screenshots.
+        val paperReceipts = analyzed.map { it.item }.filter { it.kind == MediaItem.Kind.Photo && screenshotInfo[it.id]?.kind == ScreenshotKind.Receipts }
+        val paperIds = paperReceipts.mapTo(HashSet()) { it.id }
+
+        // Blurry photos not already covered by a similar group; favourites and receipts are never suggested.
+        val blurry = analyzed.filter { it.features.sharpness < blurThreshold && it.id !in inGroup && !it.item.isFavorite && it.id !in paperIds }
         val blurryBytes = blurry.sumOf { it.item.bytes }
 
         // Screenshots: categorised by content; unread ones count as "Other" until the OCR pass reaches them.
@@ -132,8 +136,11 @@ data class LibraryReportBuilder(
                 // Browsing a category: nothing is selected until the user chooses.
                 ReviewKind.Screenshots(kind) to members.sortedByDescending { it.createdAt }.map { review(it, false) }
             },
-            receipts = byKind[ScreenshotKind.Receipts].orEmpty().map { item ->
-                ReceiptEntry(item.id, info(item).receipt ?: ReceiptDetails(), item.createdAt, item.bytes, item.fileName)
+            receipts = (byKind[ScreenshotKind.Receipts].orEmpty() + paperReceipts).map { item ->
+                ReceiptEntry(
+                    item.id, info(item).receipt ?: ReceiptDetails(), item.createdAt, item.bytes, item.fileName,
+                    source = if (item.kind == MediaItem.Kind.Photo) ReceiptEntry.Source.Photo else ReceiptEntry.Source.Screenshot,
+                )
             }.sortedByDescending { it.details.date ?: it.capturedAt },
         )
     }

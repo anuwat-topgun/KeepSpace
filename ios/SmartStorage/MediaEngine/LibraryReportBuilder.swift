@@ -40,9 +40,13 @@ struct LibraryReportBuilder: Sendable {
         let similarBytes = groups.reduce(0) { $0 + $1.reclaimableBytes }
         let similarCount = groups.reduce(0) { $0 + $1.photoCount - 1 }
 
-        // Blurry photos that aren't already covered by a similar group; favourites are never suggested.
+        // Photos of paper receipts: read on device like receipt screenshots.
+        let paperReceipts = analyzed.map(\.item).filter { $0.kind == .photo && screenshotInfo[$0.id]?.kind == .receipts }
+        let paperIDs = Set(paperReceipts.map(\.id))
+
+        // Blurry photos that aren't already covered by a similar group; favourites and receipts are never suggested.
         let blurry = analyzed.filter {
-            $0.features.sharpness < blurThreshold && !inGroup.contains($0.id) && !$0.item.isFavorite
+            $0.features.sharpness < blurThreshold && !inGroup.contains($0.id) && !$0.item.isFavorite && !paperIDs.contains($0.id)
         }
         let blurryBytes = blurry.reduce(0) { $0 + $1.item.bytes }
 
@@ -132,9 +136,9 @@ struct LibraryReportBuilder: Sendable {
                 // Browsing a category: nothing is selected until the user chooses.
                 (ReviewKind.screenshots(kind), members.sorted { $0.creationDate > $1.creationDate }.map { Self.review($0, preselected: false) })
             }, uniquingKeysWith: { first, _ in first }),
-            receipts: (byKind[.receipts] ?? []).map { item in
+            receipts: ((byKind[.receipts] ?? []) + paperReceipts).map { item in
                 ReceiptEntry(id: item.id, details: info(item).receipt ?? ReceiptDetails(), capturedAt: item.creationDate,
-                             bytes: item.bytes, fileName: item.fileName)
+                             bytes: item.bytes, fileName: item.fileName, source: item.kind == .photo ? .photo : .screenshot)
             }.sorted { ($0.details.date ?? $0.capturedAt) > ($1.details.date ?? $1.capturedAt) }
         )
     }

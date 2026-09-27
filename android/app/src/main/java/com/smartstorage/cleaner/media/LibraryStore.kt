@@ -172,28 +172,39 @@ class LibraryStore(context: Context, demo: Boolean) {
         // Reuse cached analysis; only new or edited items go through the AI again.
         val photos = items.filter { it.kind == MediaItem.Kind.Photo }
         val screenshots = items.filter { it.kind == MediaItem.Kind.Screenshot }
-        val (plan, shotPlan) = withContext(Dispatchers.IO) {
-            val p = CachePlanner.plan(photos, cache.loadAll()).also { cache.delete(it.staleIds) }
-            val s = CachePlanner.planScreenshots(screenshots, cache.loadScreenshots()).also { cache.deleteScreenshots(it.staleIds) }
-            p to s
+        // Text is read from screenshots and from photos that look like paper receipts.
+        fun toRead(analyzed: List<AnalyzedPhoto>) = screenshots + analyzed.filter(PaperReceiptDetector::isCandidate).map { it.item }
+        val (plan, cachedReads) = withContext(Dispatchers.IO) {
+            CachePlanner.plan(photos, cache.loadAll()).also { cache.delete(it.staleIds) } to cache.loadScreenshots()
         }
+        val earlyReads = CachePlanner.planScreenshots(toRead(plan.hits), cachedReads)
         // Counts only — never filenames or other personal data.
-        Log.i(TAG, "scan: ${items.size} items, ${plan.hits.size} cached, ${plan.toAnalyze.size} to analyze, ${plan.staleIds.size} stale; screenshots ${shotPlan.hits.size} cached, ${shotPlan.toAnalyze.size} to read")
+        Log.i(TAG, "scan: ${items.size} items, ${plan.hits.size} cached, ${plan.toAnalyze.size} to analyze, ${plan.staleIds.size} stale; text reads ${earlyReads.hits.size} cached, ${earlyReads.toAnalyze.size} to read")
 
         // Publish straight away: sizes plus everything the cache already knows.
         lastItems = items
         lastAnalyzed = plan.hits
-        lastScreenshotInfo = shotPlan.hits
-        val total = plan.toAnalyze.size + shotPlan.toAnalyze.size
-        rebuild(if (total == 0) ScanPhase.Ready else ScanPhase.Analyzing(0, total))
-        if (total == 0) return
+        lastScreenshotInfo = earlyReads.hits
+        val estimate = plan.toAnalyze.size + earlyReads.toAnalyze.size
+        rebuild(if (estimate == 0) ScanPhase.Ready else ScanPhase.Analyzing(0, estimate))
 
-        val fresh = withContext(Dispatchers.Default) { analyze(plan.toAnalyze, total) }
-        lastAnalyzed = plan.hits + fresh
+        if (plan.toAnalyze.isNotEmpty()) {
+            val fresh = withContext(Dispatchers.Default) { analyze(plan.toAnalyze, estimate) }
+            lastAnalyzed = plan.hits + fresh
+        }
+
+        // Newly analyzed photos may have added receipt candidates.
+        val reads = CachePlanner.planScreenshots(toRead(lastAnalyzed), cachedReads)
+        withContext(Dispatchers.IO) { cache.deleteScreenshots(reads.staleIds) }
+        lastScreenshotInfo = lastScreenshotInfo - reads.staleIds.toSet()
+        val total = plan.toAnalyze.size + reads.toAnalyze.size
+        if (reads.toAnalyze.isEmpty()) {
+            rebuild(ScanPhase.Ready)
+            return
+        }
         rebuild(ScanPhase.Analyzing(plan.toAnalyze.size, total))
-
-        val read = withContext(Dispatchers.Default) { readScreenshots(shotPlan.toAnalyze, offset = plan.toAnalyze.size, total = total) }
-        lastScreenshotInfo = shotPlan.hits + read
+        val read = withContext(Dispatchers.Default) { readScreenshots(reads.toAnalyze, offset = plan.toAnalyze.size, total = total) }
+        lastScreenshotInfo = lastScreenshotInfo + read
         rebuild(ScanPhase.Ready)
     }
 
@@ -220,7 +231,13 @@ class LibraryStore(context: Context, demo: Boolean) {
             val results = shots.map { item ->
                 async {
                     permits.withPermit {
-                        val info = reader.analyze(Uri.parse(item.id))
+                        // Photos here are paper-receipt candidates: read larger, text only.
+                        val photo = item.kind == MediaItem.Kind.Photo
+                        val info = reader.analyze(
+                            Uri.parse(item.id),
+                            side = if (photo) PaperReceiptDetector.READ_SIDE else ScreenshotAnalyzer.READ_SIDE,
+                            isPhoto = photo,
+                        )
                         val n = done.incrementAndGet()
                         if (n % 5 == 0 || n == shots.size) _state.update { it.copy(phase = ScanPhase.Analyzing(offset + n, total)) }
                         if (info != null) {

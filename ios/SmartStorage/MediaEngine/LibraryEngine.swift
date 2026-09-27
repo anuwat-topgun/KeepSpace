@@ -96,6 +96,7 @@ actor LibraryEngine {
     }
 
     /// Reads screenshots (OCR + barcodes) with the same batching/progress contract as `analyze`.
+    /// Photos passed here are paper-receipt candidates: read larger, text only.
     func analyzeScreenshots(
         _ screenshots: [MediaItem],
         concurrency: Int = 2,
@@ -132,22 +133,27 @@ actor LibraryEngine {
     }
 
     private func readScreenshot(_ item: MediaItem) async -> (MediaItem, ScreenshotInfo)? {
-        guard let asset = assets[item.id], let image = await cgImage(for: asset, side: ScreenshotAnalyzer.readSide) else { return nil }
+        let isPhoto = item.kind == .photo
+        let side = isPhoto ? PaperReceiptDetector.readSide : ScreenshotAnalyzer.readSide
+        guard let asset = assets[item.id], let (image, orientation) = await cgImage(for: asset, side: side) else { return nil }
         let reader = screenshotAnalyzer
-        let info = await Task.detached(priority: .utility) { reader.analyze(image) }.value
+        let info = await Task.detached(priority: .utility) {
+            reader.analyze(image, orientation: orientation, isPhoto: isPhoto)
+        }.value
         return (item, info)
     }
 
     private func analyzeOne(_ item: MediaItem) async -> AnalyzedPhoto? {
-        guard let asset = assets[item.id], let image = await cgImage(for: asset, side: 512) else { return nil }
+        guard let asset = assets[item.id], let (image, orientation) = await cgImage(for: asset, side: 512) else { return nil }
         // Vision work is synchronous and CPU/ANE bound; run it off the actor so analyses overlap.
         let analyzer = self.analyzer
-        let features = await Task.detached(priority: .utility) { analyzer.analyze(image) }.value
+        let features = await Task.detached(priority: .utility) { analyzer.analyze(image, orientation: orientation) }.value
         return AnalyzedPhoto(item: item, features: features)
     }
 
-    /// Local-only thumbnail; iCloud-only originals are skipped rather than downloaded.
-    private func cgImage(for asset: PHAsset, side: CGFloat) async -> CGImage? {
+    /// Local-only thumbnail plus how to turn it upright (camera photos are often stored sideways);
+    /// iCloud-only originals are skipped rather than downloaded.
+    private func cgImage(for asset: PHAsset, side: CGFloat) async -> (CGImage, CGImagePropertyOrientation)? {
         let options = PHImageRequestOptions()
         options.deliveryMode = .highQualityFormat
         options.resizeMode = .fast
@@ -160,7 +166,9 @@ actor LibraryEngine {
                 contentMode: .aspectFit,
                 options: options
             ) { image, _ in
-                continuation.resume(returning: image?.cgImage)
+                continuation.resume(returning: image.flatMap { image in
+                    image.cgImage.map { ($0, CGImagePropertyOrientation(image.imageOrientation)) }
+                })
             }
         }
     }
@@ -197,5 +205,21 @@ actor LibraryEngine {
         if let size = primary?.value(forKey: "fileSize") as? Int { return Int64(size) }
         let pixels = Int64(asset.pixelWidth * asset.pixelHeight)
         return asset.mediaType == .video ? Int64(asset.duration * 1_000_000) : pixels / 4
+    }
+}
+
+extension CGImagePropertyOrientation {
+    init(_ orientation: UIImage.Orientation) {
+        switch orientation {
+        case .up: self = .up
+        case .upMirrored: self = .upMirrored
+        case .down: self = .down
+        case .downMirrored: self = .downMirrored
+        case .left: self = .left
+        case .leftMirrored: self = .leftMirrored
+        case .right: self = .right
+        case .rightMirrored: self = .rightMirrored
+        @unknown default: self = .up
+        }
     }
 }
