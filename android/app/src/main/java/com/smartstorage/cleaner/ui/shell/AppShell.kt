@@ -18,7 +18,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.navigation
 import androidx.window.core.layout.WindowHeightSizeClass
 import androidx.window.core.layout.WindowWidthSizeClass
-import com.smartstorage.cleaner.model.LibraryMockData
+import com.smartstorage.cleaner.media.libraryState
 import com.smartstorage.cleaner.ui.feature.clean.CleanScreen
 import com.smartstorage.cleaner.ui.feature.clean.CleanupPlanScreen
 import com.smartstorage.cleaner.ui.feature.home.HomeScreen
@@ -119,7 +119,7 @@ private fun AppNavHost(navController: NavHostController) {
                 }
                 composable(tab.bestShotPattern) { entry ->
                     val id = entry.arguments?.getString(AppTab.GROUP_ARG)
-                    val group = LibraryMockData.photoGroups.firstOrNull { it.id == id }
+                    val group = libraryState().content.photoGroups.firstOrNull { it.id == id }
                     if (group != null) {
                         BestShotScreen(group, onBack = back)
                     } else {

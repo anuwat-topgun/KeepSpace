@@ -1,5 +1,7 @@
 package com.smartstorage.cleaner.ui.feature.clean
 
+import com.smartstorage.cleaner.media.libraryState
+import com.smartstorage.cleaner.media.LocalLibraryStore
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -49,12 +51,23 @@ enum class CleanupTarget(val title: String, val subtitle: String, val icon: Imag
         "Frees up as much space as possible without deleting important data.",
         Icons.Rounded.VerifiedUser,
         Tint.Mint,
-    ),
+    );
+
+    /** null = everything that is safe to suggest. */
+    val bytes: Long?
+        get() = when (this) {
+            FiveGB -> 5_000_000_000
+            TenGB -> 10_000_000_000
+            TwentyGB -> 20_000_000_000
+            MaximumSafe -> null
+        }
 }
 
 /** 03 — Clean target selection. */
 @Composable
 fun CleanScreen(onOpen: (Screen) -> Unit) {
+    val library = LocalLibraryStore.current
+    val state = libraryState()
     var target by rememberSaveable { mutableStateOf(CleanupTarget.TenGB) }
     val colors = SmartTheme.colors
 
@@ -65,7 +78,10 @@ fun CleanScreen(onOpen: (Screen) -> Unit) {
             val selected = option == target
             SmartCard(
                 style = if (selected) CardStyle.Selected else CardStyle.Plain,
-                modifier = Modifier.selectable(selected = selected, role = Role.RadioButton) { target = option },
+                modifier = Modifier.selectable(selected = selected, role = Role.RadioButton) {
+                    target = option
+                    library.setCleanupTarget(option.bytes)
+                },
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                     IconTile(option.icon, option.tint)
@@ -88,14 +104,17 @@ fun CleanScreen(onOpen: (Screen) -> Unit) {
                 IconTile(Icons.Rounded.Schedule, Tint.Blue)
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     SectionLabel("Estimated review time")
-                    Text("2 min 40 sec", style = SmartType.metric, color = colors.textPrimary)
+                    Text(state.cleanupPlan.reviewTime, style = SmartType.metric, color = colors.textPrimary)
                 }
             }
         }
 
         PrimaryButton(
             "Build Cleanup Plan",
-            onClick = { onOpen(Screen.CleanupPlan) },
+            onClick = {
+                library.setCleanupTarget(target.bytes)
+                onOpen(Screen.CleanupPlan)
+            },
             modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
         )
     }

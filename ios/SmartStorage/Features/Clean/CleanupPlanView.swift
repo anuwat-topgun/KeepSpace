@@ -3,14 +3,25 @@ import SwiftUI
 /// 04 — Cleanup plan: how the chosen target will be reached, with protected memories excluded.
 struct CleanupPlanView: View {
     @Environment(AppRouter.self) private var router
-    private let plan = MockData.cleanupPlan
+    @Environment(LibraryStore.self) private var library
 
     var body: some View {
+        let plan = library.cleanupPlan
         ScreenScaffold {
             ScreenHeader(title: "Cleanup Plan", subtitle: "\(plan.estimatedBytes.formattedBytes) recommended")
                 .padding(.bottom, 8)
 
             PlanSummaryCard(plan: plan)
+
+            if plan.items.isEmpty {
+                Card(style: .info) {
+                    Text(library.isScanning
+                         ? "Still analyzing your library. Suggestions appear here as soon as the scan finishes."
+                         : "Nothing to clean up right now. Your library is in good shape.")
+                        .font(Typography.metadata)
+                        .foregroundStyle(Palette.textSecondary)
+                }
+            }
 
             ForEach(plan.items) { item in
                 Button {
@@ -27,10 +38,12 @@ struct CleanupPlanView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.top, 4)
 
-            Button("Review Items") {
-                router.push(.similarPhotos)
+            if let first = plan.items.first {
+                Button("Review Items") {
+                    router.push(first.route)
+                }
+                .buttonStyle(.primary)
             }
-            .buttonStyle(.primary)
         }
     }
 }
@@ -85,5 +98,5 @@ private struct PlanSummaryCard: View {
 
 #Preview {
     NavigationStack { CleanupPlanView() }
-        .environment(AppRouter())
+        .previewEnvironment()
 }

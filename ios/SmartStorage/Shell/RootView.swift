@@ -5,7 +5,10 @@ import SwiftUI
 /// - regular width (iPad full screen / wide split) → sidebar + detail stack
 struct RootView: View {
     @Environment(\.horizontalSizeClass) private var sizeClass
+    @Environment(\.scenePhase) private var scenePhase
     @State private var router = AppRouter()
+    /// `-demoData YES` shows the mockup data set (screenshots, demos, simulators without photos).
+    @State private var library = LibraryStore(demo: UserDefaults.standard.bool(forKey: "demoData"))
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
 
     var body: some View {
@@ -17,14 +20,21 @@ struct RootView: View {
             }
         }
         .environment(router)
+        .environment(library)
         .tint(Palette.accent)
         #if DEBUG
         .task { router.applyDebugLaunchArguments() }
         #endif
+        .onChange(of: scenePhase, initial: true) { _, phase in
+            // Also covers returning from Settings after changing photo access.
+            if phase == .active, hasCompletedOnboarding { library.refreshAccess() }
+        }
         .fullScreenCover(isPresented: showsOnboarding) {
             OnboardingView {
                 hasCompletedOnboarding = true
+                Task { await library.requestAccessAndScan() }
             }
+            .environment(library)
         }
     }
 
@@ -120,13 +130,14 @@ struct TabStack: View {
 /// Maps routes to screens. Screens not built yet show a styled placeholder.
 struct RouteDestination: View {
     let route: Route
+    @Environment(LibraryStore.self) private var library
 
     var body: some View {
         switch route {
         case .cleanupPlan: CleanupPlanView()
         case .similarPhotos: SimilarPhotosView()
         case .bestShot(let groupID):
-            if let group = MockData.photoGroups.first(where: { $0.id == groupID }) {
+            if let group = library.content.photoGroups.first(where: { $0.id == groupID }) ?? debugFirstGroup(groupID) {
                 BestShotView(group: group)
             } else {
                 ContentUnavailableView("Group not found", systemImage: "photo.on.rectangle.angled")
@@ -136,6 +147,15 @@ struct RouteDestination: View {
         case .memories: MemoriesView()
         default: PlaceholderScreen(title: route.title)
         }
+    }
+
+    /// Debug launch args can't know real group IDs; `bestShot:first` opens the top group.
+    private func debugFirstGroup(_ id: String) -> PhotoGroup? {
+        #if DEBUG
+        id == "first" ? library.content.photoGroups.first : nil
+        #else
+        nil
+        #endif
     }
 }
 

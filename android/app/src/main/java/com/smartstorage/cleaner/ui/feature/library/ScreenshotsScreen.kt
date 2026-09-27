@@ -40,7 +40,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.smartstorage.cleaner.model.ExpiredScreenshot
-import com.smartstorage.cleaner.model.LibraryMockData
+import com.smartstorage.cleaner.media.libraryState
+import androidx.compose.material.icons.rounded.History
+import androidx.compose.material.icons.rounded.CropFree
 import com.smartstorage.cleaner.model.ScreenshotKind
 import com.smartstorage.cleaner.model.formattedBytes
 import com.smartstorage.cleaner.ui.components.AdaptiveGrid
@@ -59,11 +61,21 @@ import com.smartstorage.cleaner.ui.theme.Tint
 @Composable
 fun ScreenshotsScreen(onBack: () -> Unit) {
     ScreenScaffold(maxWidth = SmartMetrics.wideContentWidth, onBack = onBack) {
-        ScreenHeader("Screenshots", "${LibraryMockData.SCREENSHOTS_RECOVERABLE.formattedBytes()} recoverable", Modifier.padding(bottom = 8.dp))
-        AdaptiveGrid(LibraryMockData.screenshotCategories) { category ->
+        val state = libraryState()
+        ScreenHeader("Screenshots", "${state.content.screenshotsBytes.formattedBytes()} recoverable", Modifier.padding(bottom = 8.dp))
+        if (state.content.screenshotCategories.isEmpty()) {
+            SmartCard(style = CardStyle.Info) {
+                Text(
+                    if (state.isScanning) "Reading your library…" else "No screenshots found.",
+                    style = SmartType.metadata,
+                    color = SmartTheme.colors.textSecondary,
+                )
+            }
+        }
+        AdaptiveGrid(state.content.screenshotCategories) { category ->
             CardRow(category.kind.icon, category.title, tint = category.kind.tint, subtitle = category.bytes.formattedBytes())
         }
-        ExpiredContentCard(LibraryMockData.expiredScreenshots)
+        if (state.content.expiredScreenshots.isNotEmpty()) ExpiredContentCard(state.content.expiredScreenshots)
     }
 }
 
@@ -151,6 +163,8 @@ private val ScreenshotKind.icon: ImageVector
         ScreenshotKind.Chats -> Icons.Rounded.Forum
         ScreenshotKind.QrCodes -> Icons.Rounded.QrCodeScanner
         ScreenshotKind.Tickets -> Icons.Rounded.ConfirmationNumber
+        ScreenshotKind.Old -> Icons.Rounded.History
+        ScreenshotKind.Recent -> Icons.Rounded.CropFree
     }
 
 private val ScreenshotKind.tint: Tint
@@ -160,4 +174,6 @@ private val ScreenshotKind.tint: Tint
         ScreenshotKind.Chats -> Tint.Mint
         ScreenshotKind.QrCodes -> Tint.Blue
         ScreenshotKind.Tickets -> Tint.Purple
+        ScreenshotKind.Old -> Tint.Amber
+        ScreenshotKind.Recent -> Tint.Blue
     }

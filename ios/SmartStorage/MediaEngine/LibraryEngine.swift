@@ -1,0 +1,151 @@
+import Photos
+import UIKit
+
+enum LibraryAccess: Sendable, Equatable {
+    case notDetermined, authorized, limited, denied
+
+    var canRead: Bool { self == .authorized || self == .limited }
+
+    init(_ status: PHAuthorizationStatus) {
+        switch status {
+        case .authorized: self = .authorized
+        case .limited: self = .limited
+        case .notDetermined: self = .notDetermined
+        default: self = .denied
+        }
+    }
+}
+
+/// Owns PhotoKit access. Holds `PHAsset` references internally and only hands out value types,
+/// so callers on any actor can use the results safely.
+actor LibraryEngine {
+    struct PixelSize: Hashable, Sendable {
+        let width: Int
+        let height: Int
+    }
+
+    private let analyzer = ImageAnalyzer()
+    private var assets: [String: PHAsset] = [:]
+    /// In-memory cache keyed by id + modification date, so a rescan only analyzes new or edited photos.
+    /// Phase 2 persists this to disk.
+    private var featureCache: [String: ImageFeatures] = [:]
+    private let imageManager = PHImageManager.default()
+
+    static func currentAccess() -> LibraryAccess {
+        LibraryAccess(PHPhotoLibrary.authorizationStatus(for: .readWrite))
+    }
+
+    static func requestAccess() async -> LibraryAccess {
+        LibraryAccess(await PHPhotoLibrary.requestAuthorization(for: .readWrite))
+    }
+
+    /// Enumerates the whole library. `screenSizes` are the device's native pixel sizes, used to
+    /// recognise screen recordings (PhotoKit has no subtype for them).
+    func loadItems(screenSizes: Set<PixelSize>) -> [MediaItem] {
+        let options = PHFetchOptions()
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        let result = PHAsset.fetchAssets(with: options)
+
+        var items: [MediaItem] = []
+        var map: [String: PHAsset] = [:]
+        items.reserveCapacity(result.count)
+        result.enumerateObjects { asset, _, _ in
+            guard asset.mediaType == .image || asset.mediaType == .video else { return }
+            map[asset.localIdentifier] = asset
+            items.append(Self.item(for: asset, screenSizes: screenSizes))
+        }
+        assets = map
+        return items
+    }
+
+    /// Analyzes still photos (not screenshots), `concurrency` at a time, reporting progress.
+    func analyze(
+        _ items: [MediaItem],
+        concurrency: Int = 4,
+        progress: @escaping @Sendable (Int, Int) async -> Void
+    ) async -> [AnalyzedPhoto] {
+        let photos = items.filter { $0.kind == .photo }
+        var results: [AnalyzedPhoto] = []
+        results.reserveCapacity(photos.count)
+        var done = 0
+
+        await withTaskGroup(of: AnalyzedPhoto?.self) { group in
+            var iterator = photos.makeIterator()
+            func enqueue() {
+                guard let item = iterator.next() else { return }
+                group.addTask { await self.analyzeOne(item) }
+            }
+            for _ in 0..<concurrency { enqueue() }
+            while let next = await group.next() {
+                if let next { results.append(next) }
+                done += 1
+                if done % 10 == 0 || done == photos.count { await progress(done, photos.count) }
+                enqueue()
+            }
+        }
+        return results
+    }
+
+    private func analyzeOne(_ item: MediaItem) async -> AnalyzedPhoto? {
+        guard let asset = assets[item.id] else { return nil }
+        let key = "\(item.id)|\(asset.modificationDate?.timeIntervalSince1970 ?? 0)"
+        if let cached = featureCache[key] { return AnalyzedPhoto(item: item, features: cached) }
+        guard let image = await cgImage(for: asset, side: 512) else { return nil }
+        // Vision work is synchronous and CPU/ANE bound; run it off the actor so analyses overlap.
+        let analyzer = self.analyzer
+        let features = await Task.detached(priority: .utility) { analyzer.analyze(image) }.value
+        featureCache[key] = features
+        return AnalyzedPhoto(item: item, features: features)
+    }
+
+    /// Local-only thumbnail; iCloud-only originals are skipped rather than downloaded.
+    private func cgImage(for asset: PHAsset, side: CGFloat) async -> CGImage? {
+        let options = PHImageRequestOptions()
+        options.deliveryMode = .highQualityFormat
+        options.resizeMode = .fast
+        options.isNetworkAccessAllowed = false
+        options.isSynchronous = false
+        return await withCheckedContinuation { continuation in
+            imageManager.requestImage(
+                for: asset,
+                targetSize: CGSize(width: side, height: side),
+                contentMode: .aspectFit,
+                options: options
+            ) { image, _ in
+                continuation.resume(returning: image?.cgImage)
+            }
+        }
+    }
+
+    private static func item(for asset: PHAsset, screenSizes: Set<PixelSize>) -> MediaItem {
+        let kind: MediaItem.Kind
+        if asset.mediaType == .video {
+            let size = PixelSize(width: asset.pixelWidth, height: asset.pixelHeight)
+            kind = screenSizes.contains(size) && asset.location == nil ? .screenRecording : .video
+        } else {
+            kind = asset.mediaSubtypes.contains(.photoScreenshot) ? .screenshot : .photo
+        }
+        return MediaItem(
+            id: asset.localIdentifier,
+            kind: kind,
+            creationDate: asset.creationDate ?? .distantPast,
+            bytes: fileSize(of: asset),
+            pixelWidth: asset.pixelWidth,
+            pixelHeight: asset.pixelHeight,
+            duration: asset.duration,
+            isFavorite: asset.isFavorite
+        )
+    }
+
+    /// PhotoKit doesn't expose asset size publicly; `fileSize` on the primary resource is the
+    /// long-standing way to read it. Falls back to an estimate from pixel count.
+    private static func fileSize(of asset: PHAsset) -> Int64 {
+        let resources = PHAssetResource.assetResources(for: asset)
+        let primary = resources.first { $0.type == .photo || $0.type == .video || $0.type == .fullSizePhoto || $0.type == .fullSizeVideo }
+            ?? resources.first
+        if let size = primary?.value(forKey: "fileSize") as? Int64 { return size }
+        if let size = primary?.value(forKey: "fileSize") as? Int { return Int64(size) }
+        let pixels = Int64(asset.pixelWidth * asset.pixelHeight)
+        return asset.mediaType == .video ? Int64(asset.duration * 1_000_000) : pixels / 4
+    }
+}

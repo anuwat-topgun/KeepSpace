@@ -1,5 +1,7 @@
 package com.smartstorage.cleaner.ui.feature.settings
 
+import com.smartstorage.cleaner.media.LibraryAccess
+import com.smartstorage.cleaner.media.libraryState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -56,7 +58,13 @@ fun SettingsScreen(onOpen: (Screen) -> Unit) {
         CardRow(Icons.Rounded.AccountTree, Screen.StorageRules.title, tint = Tint.Teal, subtitle = "Automatic filing") {
             onOpen(Screen.StorageRules)
         }
-        CardRow(Icons.Rounded.Photo, "Photo Access", tint = Tint.Coral, subtitle = "Full Access")
+        val accessText = when (libraryState().access) {
+            LibraryAccess.Authorized -> "Full Access"
+            LibraryAccess.Limited -> "Limited Access"
+            LibraryAccess.Denied -> "Off"
+            LibraryAccess.NotDetermined -> "Not set"
+        }
+        CardRow(Icons.Rounded.Photo, "Photo Access", tint = Tint.Coral, subtitle = accessText)
         CardRow(Icons.Rounded.Notifications, "Notifications", tint = Tint.Purple, subtitle = "Weekly Smart Clean")
         CardRow(Icons.Rounded.WorkspacePremium, "Subscription", tint = Tint.Mint, subtitle = "KeepSpace Pro")
         CardRow(Icons.Rounded.VerifiedUser, "Privacy & Security", tint = Tint.Blue)

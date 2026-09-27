@@ -28,7 +28,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.smartstorage.cleaner.model.CleanupPlan
-import com.smartstorage.cleaner.model.LibraryMockData
+import com.smartstorage.cleaner.media.libraryState
 import com.smartstorage.cleaner.model.PlanTarget
 import com.smartstorage.cleaner.model.formattedBytes
 import com.smartstorage.cleaner.ui.components.CardRow
@@ -47,12 +47,24 @@ import com.smartstorage.cleaner.ui.theme.Tint
 /** 04 — Cleanup plan: how the chosen target will be reached, with protected memories excluded. */
 @Composable
 fun CleanupPlanScreen(onOpen: (Screen) -> Unit, onBack: () -> Unit) {
-    val plan = LibraryMockData.cleanupPlan
+    val state = libraryState()
+    val plan = state.cleanupPlan
     val colors = SmartTheme.colors
 
     ScreenScaffold(onBack = onBack) {
         ScreenHeader("Cleanup Plan", "${plan.estimatedBytes.formattedBytes()} recommended", Modifier.padding(bottom = 8.dp))
         PlanSummaryCard(plan)
+
+        if (plan.items.isEmpty()) {
+            SmartCard(style = CardStyle.Info) {
+                Text(
+                    if (state.isScanning) "Still analyzing your library. Suggestions appear here as soon as the scan finishes."
+                    else "Nothing to clean up right now. Your library is in good shape.",
+                    style = SmartType.metadata,
+                    color = colors.textSecondary,
+                )
+            }
+        }
 
         plan.items.forEach { item ->
             CardRow(
@@ -73,7 +85,9 @@ fun CleanupPlanScreen(onOpen: (Screen) -> Unit, onBack: () -> Unit) {
             Text("Estimated review time ${plan.reviewTime}", style = SmartType.metadata, color = colors.textSecondary)
         }
 
-        PrimaryButton("Review Items", onClick = { onOpen(Screen.SimilarPhotos) }, modifier = Modifier.fillMaxWidth())
+        plan.items.firstOrNull()?.let { first ->
+            PrimaryButton("Review Items", onClick = { onOpen(first.target.screen) }, modifier = Modifier.fillMaxWidth())
+        }
     }
 }
 

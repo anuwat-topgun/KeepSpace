@@ -20,7 +20,7 @@ enum class AppTab(val route: String, val title: String, val icon: ImageVector) {
     val screenPattern: String get() = "$route/screen/{$SCREEN_ARG}"
     fun screenRoute(screen: Screen): String = "$route/screen/${screen.name}"
     val bestShotPattern: String get() = "$route/bestshot/{$GROUP_ARG}"
-    fun bestShotRoute(groupId: String): String = "$route/bestshot/$groupId"
+    fun bestShotRoute(groupId: String): String = "$route/bestshot/${android.net.Uri.encode(groupId)}"
 
     companion object {
         const val SCREEN_ARG = "screen"

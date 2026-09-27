@@ -8,6 +8,8 @@ struct PlanItem: Identifiable, Sendable {
     let tint: Tint
     let bytes: Int64
     let route: Route
+    /// Number of files in this item; drives the review-time estimate.
+    var itemCount: Int = 0
 
     var id: String { title }
 }
@@ -73,13 +75,19 @@ struct PhotoGroup: Identifiable, Hashable, Sendable {
     let style: ThumbnailStyle
     /// Index of the AI-recommended keeper within the group.
     let recommendedIndex: Int
+    /// Real library assets in capture order; empty for mock/demo groups.
+    var assetIDs: [String] = []
+    /// Why the recommended photo was picked; empty means "use the generic explanation".
+    var reasons: [BestShotReason] = []
+    /// Space recovered by keeping only the recommended photo.
+    var reclaimableBytes: Int64 = 0
 }
 
 enum PhotoGroupFilter: String, CaseIterable, Sendable {
     case all = "All", recent = "Recent", reviewed = "Reviewed"
 }
 
-struct BestShotReason: Identifiable, Sendable {
+struct BestShotReason: Identifiable, Hashable, Sendable {
     let title: String
     let detail: String
     let systemImage: String
@@ -134,6 +142,7 @@ struct VideoItem: Identifiable, Sendable {
     let style: ThumbnailStyle
     /// Personal / meaningful footage is offered for review, never compression by default.
     let isMeaningful: Bool
+    var assetID: String? = nil
 
     var metadata: String {
         [quality, duration].compactMap { $0 }.joined(separator: " · ")
@@ -142,7 +151,7 @@ struct VideoItem: Identifiable, Sendable {
 
 // MARK: - Insights (07)
 
-struct ForecastPoint: Identifiable, Sendable {
+struct ForecastPoint: Identifiable, Equatable, Sendable {
     /// Weeks relative to today (negative = history).
     let week: Double
     let usedGB: Double
@@ -154,7 +163,8 @@ struct ForecastPoint: Identifiable, Sendable {
 struct StorageForecast: Sendable {
     let capacityGB: Double
     let remainingBytes: Int64
-    let daysUntilFull: Int
+    /// nil when storage isn't growing enough to project a date.
+    let daysUntilFull: Int?
     let points: [ForecastPoint]
     let photosAddedThisWeek: Int
     let videosAddedThisWeek: Int
@@ -187,11 +197,11 @@ extension MockData {
         estimatedBytes: 10_400_000_000,
         reviewTime: "2 min 40 sec",
         items: [
-            PlanItem(title: "Old Screen Recordings", systemImage: "record.circle", tint: .coral, bytes: 4_800 * mb, route: .videos),
-            PlanItem(title: "Similar Photos", systemImage: "photo.on.rectangle.angled", tint: .coral, bytes: 2_700 * mb, route: .similarPhotos),
-            PlanItem(title: "Screenshots", systemImage: "viewfinder", tint: .blue, bytes: 1_400 * mb, route: .screenshots),
-            PlanItem(title: "Blurry Photos", systemImage: "camera.filters", tint: .mint, bytes: 900 * mb, route: .similarPhotos),
-            PlanItem(title: "Duplicate Videos", systemImage: "video.fill", tint: .purple, bytes: 600 * mb, route: .videos),
+            PlanItem(title: "Old Screen Recordings", systemImage: "record.circle", tint: .coral, bytes: 4_800 * mb, route: .videos, itemCount: 12),
+            PlanItem(title: "Similar Photos", systemImage: "photo.on.rectangle.angled", tint: .coral, bytes: 2_700 * mb, route: .similarPhotos, itemCount: 60),
+            PlanItem(title: "Screenshots", systemImage: "viewfinder", tint: .blue, bytes: 1_400 * mb, route: .screenshots, itemCount: 25),
+            PlanItem(title: "Blurry Photos", systemImage: "camera.filters", tint: .mint, bytes: 900 * mb, route: .similarPhotos, itemCount: 7),
+            PlanItem(title: "Duplicate Videos", systemImage: "video.fill", tint: .purple, bytes: 600 * mb, route: .videos, itemCount: 3),
         ]
     )
 

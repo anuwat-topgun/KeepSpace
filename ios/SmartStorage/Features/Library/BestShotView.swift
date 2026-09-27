@@ -7,12 +7,31 @@ struct BestShotView: View {
     @State private var selectedIndex: Int
     @State private var kept = false
 
-    private let reasons = MockData.bestShotReasons
-    private let stripCount = 4
+    private let maxStrip = 4
 
     init(group: PhotoGroup) {
         self.group = group
-        _selectedIndex = State(initialValue: min(group.recommendedIndex, 3))
+        _selectedIndex = State(initialValue: group.recommendedIndex)
+    }
+
+    private var reasons: [BestShotReason] {
+        group.reasons.isEmpty ? MockData.bestShotReasons : group.reasons
+    }
+
+    private var photoCount: Int {
+        group.assetIDs.isEmpty ? maxStrip : group.assetIDs.count
+    }
+
+    /// Up to four photos, always including the recommended one.
+    private var stripIndices: [Int] {
+        let count = photoCount
+        guard count > maxStrip else { return Array(0..<count) }
+        let start = min(max(0, group.recommendedIndex - 1), count - maxStrip)
+        return Array(start..<(start + maxStrip))
+    }
+
+    private func assetID(_ index: Int) -> String? {
+        group.assetIDs.indices.contains(index) ? group.assetIDs[index] : nil
     }
 
     var body: some View {
@@ -40,13 +59,13 @@ struct BestShotView: View {
 
     private var strip: some View {
         HStack(spacing: 10) {
-            ForEach(0..<stripCount, id: \.self) { index in
-                let isRecommended = index == min(group.recommendedIndex, stripCount - 1)
+            ForEach(stripIndices, id: \.self) { index in
+                let isRecommended = index == group.recommendedIndex
                 let isSelected = index == selectedIndex
                 Button {
                     withAnimation(.spring(duration: 0.3)) { selectedIndex = index }
                 } label: {
-                    MediaThumbnail(style: group.style, variant: index, cornerRadius: 14)
+                    AssetImage(assetID: assetID(index), fallback: group.style, variant: index, cornerRadius: 14)
                         .aspectRatio(0.72, contentMode: .fit)
                         .overlay(alignment: .top) {
                             if isRecommended {
@@ -84,7 +103,7 @@ struct BestShotView: View {
     }
 
     private var hero: some View {
-        MediaThumbnail(style: group.style, variant: selectedIndex, cornerRadius: Metrics.cardRadius, symbolScale: 0.22)
+        AssetImage(assetID: assetID(selectedIndex), fallback: group.style, variant: selectedIndex, cornerRadius: Metrics.cardRadius, symbolScale: 0.22)
             .aspectRatio(4 / 3, contentMode: .fit)
             .id(selectedIndex)
             .transition(.opacity)

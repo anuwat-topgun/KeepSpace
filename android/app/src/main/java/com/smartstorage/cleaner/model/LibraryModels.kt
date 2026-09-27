@@ -8,7 +8,14 @@ import androidx.compose.ui.graphics.Color
 
 enum class PlanTarget { Videos, SimilarPhotos, Screenshots }
 
-data class PlanItem(val title: String, val kind: CleanupCategory, val bytes: Long, val target: PlanTarget)
+data class PlanItem(
+    val title: String,
+    val kind: CleanupCategory,
+    val bytes: Long,
+    val target: PlanTarget,
+    /** Number of files; drives the review-time estimate. */
+    val itemCount: Int = 0,
+)
 
 data class CleanupPlan(val targetBytes: Long, val estimatedBytes: Long, val reviewTime: String, val items: List<PlanItem>)
 
@@ -40,7 +47,7 @@ enum class ThumbnailStyle(private val light: Pair<Long, Long>, private val dark:
 
 // region Similar photos (05) / Best shot (06)
 
-enum class GroupIcon { Beach, Dinner, Person, Family }
+enum class GroupIcon { Beach, Dinner, Person, Family, Photos }
 
 data class PhotoGroup(
     val id: String,
@@ -51,11 +58,17 @@ data class PhotoGroup(
     val style: ThumbnailStyle,
     /** Index of the AI-recommended keeper within the group. */
     val recommendedIndex: Int,
+    /** Real library assets (content URIs) in capture order; empty for demo groups. */
+    val assetUris: List<String> = emptyList(),
+    /** Why the recommended photo was picked; empty = use the generic explanation. */
+    val reasons: List<BestShotReason> = emptyList(),
+    /** Space recovered by keeping only the recommended photo. */
+    val reclaimableBytes: Long = 0,
 )
 
 enum class PhotoGroupFilter(val label: String) { All("All"), Recent("Recent"), Reviewed("Reviewed") }
 
-enum class ReasonKind { Sharp, EyesOpen, Exposure, NoBlur }
+enum class ReasonKind { Sharp, EyesOpen, Exposure, NoBlur, Faces, Favorite }
 
 data class BestShotReason(val title: String, val detail: String, val kind: ReasonKind)
 
@@ -63,7 +76,7 @@ data class BestShotReason(val title: String, val detail: String, val kind: Reaso
 
 // region Screenshots (11)
 
-enum class ScreenshotKind { Shopping, Receipts, Chats, QrCodes, Tickets }
+enum class ScreenshotKind { Shopping, Receipts, Chats, QrCodes, Tickets, Old, Recent }
 
 data class ScreenshotCategory(val title: String, val kind: ScreenshotKind, val bytes: Long)
 
@@ -95,6 +108,7 @@ data class VideoItem(
     val style: ThumbnailStyle,
     /** Personal / meaningful footage is offered for review, never compression by default. */
     val isMeaningful: Boolean,
+    val assetUri: String? = null,
 ) {
     val metadata: String get() = listOfNotNull(quality, duration).joinToString(" · ")
 }
@@ -108,7 +122,8 @@ data class ForecastPoint(val week: Float, val usedGB: Float)
 data class StorageForecast(
     val capacityGB: Float,
     val remainingBytes: Long,
-    val daysUntilFull: Int,
+    /** null when storage isn't growing enough to project a date. */
+    val daysUntilFull: Int?,
     /** Weeks relative to today; negative = history. */
     val history: List<ForecastPoint>,
     val projection: List<ForecastPoint>,
@@ -139,11 +154,11 @@ object LibraryMockData {
         estimatedBytes = 10_400 * MB,
         reviewTime = "2 min 40 sec",
         items = listOf(
-            PlanItem("Old Screen Recordings", CleanupCategory.ScreenRecordings, 4_800 * MB, PlanTarget.Videos),
-            PlanItem("Similar Photos", CleanupCategory.SimilarPhotos, 2_700 * MB, PlanTarget.SimilarPhotos),
-            PlanItem("Screenshots", CleanupCategory.Screenshots, 1_400 * MB, PlanTarget.Screenshots),
-            PlanItem("Blurry Photos", CleanupCategory.BlurryPhotos, 900 * MB, PlanTarget.SimilarPhotos),
-            PlanItem("Duplicate Videos", CleanupCategory.LargeVideos, 600 * MB, PlanTarget.Videos),
+            PlanItem("Old Screen Recordings", CleanupCategory.ScreenRecordings, 4_800 * MB, PlanTarget.Videos, 12),
+            PlanItem("Similar Photos", CleanupCategory.SimilarPhotos, 2_700 * MB, PlanTarget.SimilarPhotos, 60),
+            PlanItem("Screenshots", CleanupCategory.Screenshots, 1_400 * MB, PlanTarget.Screenshots, 25),
+            PlanItem("Blurry Photos", CleanupCategory.BlurryPhotos, 900 * MB, PlanTarget.SimilarPhotos, 7),
+            PlanItem("Duplicate Videos", CleanupCategory.LargeVideos, 600 * MB, PlanTarget.Videos, 3),
         ),
     )
 

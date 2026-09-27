@@ -32,7 +32,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import com.smartstorage.cleaner.model.GroupIcon
-import com.smartstorage.cleaner.model.LibraryMockData
+import com.smartstorage.cleaner.media.LibraryState
+import com.smartstorage.cleaner.media.libraryState
+import androidx.compose.material.icons.rounded.Collections
 import com.smartstorage.cleaner.model.PhotoGroup
 import com.smartstorage.cleaner.model.PhotoGroupFilter
 import com.smartstorage.cleaner.model.formattedBytes
@@ -57,34 +59,46 @@ private val TwoPaneMinWidth = 820.dp
  */
 @Composable
 fun SimilarPhotosScreen(onOpenGroup: (String) -> Unit, onBack: () -> Unit) {
-    val groups = LibraryMockData.photoGroups
-    var selectedId by rememberSaveable { mutableStateOf(groups.first().id) }
+    val state = libraryState()
+    val groups = state.content.photoGroups
+    var selectedId by rememberSaveable { mutableStateOf<String?>(null) }
+    val effectiveId = selectedId ?: groups.firstOrNull()?.id
 
     BoxWithConstraints(Modifier.fillMaxSize()) {
         if (maxWidth >= TwoPaneMinWidth) {
             Row(Modifier.fillMaxSize()) {
                 Box(Modifier.width(420.dp)) {
-                    GroupList(groups, selectedId = selectedId, onBack = onBack, onSelect = { selectedId = it })
+                    GroupList(state, selectedId = effectiveId, onBack = onBack, onSelect = { selectedId = it })
                 }
                 VerticalDivider(color = SmartTheme.colors.separator)
-                Crossfade(targetState = selectedId, label = "bestShot", modifier = Modifier.weight(1f)) { id ->
+                Crossfade(targetState = effectiveId, label = "bestShot", modifier = Modifier.weight(1f)) { id ->
                     groups.firstOrNull { it.id == id }?.let { BestShotScreen(it, onBack = null) }
                 }
             }
         } else {
-            GroupList(groups, selectedId = null, onBack = onBack, onSelect = onOpenGroup)
+            GroupList(state, selectedId = null, onBack = onBack, onSelect = onOpenGroup)
         }
     }
 }
 
 @Composable
-private fun GroupList(groups: List<PhotoGroup>, selectedId: String?, onBack: () -> Unit, onSelect: (String) -> Unit) {
+private fun GroupList(state: LibraryState, selectedId: String?, onBack: () -> Unit, onSelect: (String) -> Unit) {
+    val groups = state.content.photoGroups
     var filter by rememberSaveable { mutableStateOf(PhotoGroupFilter.All) }
     ScreenScaffold(onBack = onBack) {
         ScreenHeader(
             "Similar Photos",
-            "${LibraryMockData.SIMILAR_BYTES.formattedBytes()} recoverable · ${LibraryMockData.SIMILAR_GROUPS} groups",
+            "${state.content.similarBytes.formattedBytes()} recoverable · ${groups.size} groups",
         )
+        if (groups.isEmpty()) {
+            SmartCard(style = CardStyle.Info) {
+                Text(
+                    if (state.isScanning) "Looking for similar photos on this device…" else "No similar photos found.",
+                    style = SmartType.metadata,
+                    color = SmartTheme.colors.textSecondary,
+                )
+            }
+        }
         ChipPicker(
             options = PhotoGroupFilter.entries,
             selected = filter,
@@ -111,7 +125,12 @@ private fun PhotoGroupCard(group: PhotoGroup, isSelected: Boolean, onClick: () -
                 IconTile(group.icon.vector, group.icon.tint)
                 Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                     Text(group.title, style = SmartType.cardHeadline, color = colors.textPrimary)
-                    Text("${group.photoCount} photos · ${group.bytes.formattedBytes()}", style = SmartType.metadata, color = colors.textSecondary)
+                    val recoverable = group.reclaimableBytes > 0
+                    Text(
+                        "${group.photoCount} photos · ${(if (recoverable) group.reclaimableBytes else group.bytes).formattedBytes()}${if (recoverable) " recoverable" else ""}",
+                        style = SmartType.metadata,
+                        color = colors.textSecondary,
+                    )
                     StatusBadge("Recommended keep selected", Icons.Rounded.AutoAwesome, Tint.Teal, compact = true)
                 }
                 Icon(
@@ -121,7 +140,7 @@ private fun PhotoGroupCard(group: PhotoGroup, isSelected: Boolean, onClick: () -
                     modifier = Modifier.align(Alignment.CenterVertically),
                 )
             }
-            ThumbnailStrip(group.style, group.photoCount)
+            ThumbnailStrip(group.style, group.photoCount, assetUris = group.assetUris)
         }
     }
 }
@@ -132,6 +151,7 @@ private val GroupIcon.vector: ImageVector
         GroupIcon.Dinner -> Icons.Rounded.Restaurant
         GroupIcon.Person -> Icons.Rounded.Person
         GroupIcon.Family -> Icons.Rounded.Groups
+        GroupIcon.Photos -> Icons.Rounded.Collections
     }
 
 private val GroupIcon.tint: Tint
@@ -140,4 +160,5 @@ private val GroupIcon.tint: Tint
         GroupIcon.Dinner -> Tint.Purple
         GroupIcon.Person -> Tint.Blue
         GroupIcon.Family -> Tint.Mint
+        GroupIcon.Photos -> Tint.Teal
     }

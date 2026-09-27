@@ -4,6 +4,16 @@ import SwiftUI
 /// Cloud (v1.1) and Storage Rules (v1.2) are pushed from here.
 struct SettingsView: View {
     @Environment(AppRouter.self) private var router
+    @Environment(LibraryStore.self) private var library
+
+    private var accessText: String {
+        switch library.access {
+        case .authorized: "Full Access"
+        case .limited: "Limited Access"
+        case .denied: "Off"
+        case .notDetermined: "Not set"
+        }
+    }
 
     var body: some View {
         ScreenScaffold {
@@ -16,7 +26,7 @@ struct SettingsView: View {
             row(.cloudOverview, icon: "cloud.fill", tint: .blue, subtitle: "Google Drive · OneDrive")
             row(.storageRules, icon: "arrow.triangle.branch", tint: .teal, subtitle: "Automatic filing")
 
-            CardRow(systemImage: "photo.fill", tint: .coral, title: "Photo Access", subtitle: "Full Access")
+            CardRow(systemImage: "photo.fill", tint: .coral, title: "Photo Access", subtitle: accessText)
             CardRow(systemImage: "bell.fill", tint: .purple, title: "Notifications", subtitle: "Weekly Smart Clean")
             CardRow(systemImage: "crown.fill", tint: .mint, title: "Subscription", subtitle: "KeepSpace Pro")
             CardRow(systemImage: "checkmark.shield.fill", tint: .blue, title: "Privacy & Security")
@@ -82,5 +92,5 @@ private struct ShieldArt: View {
 
 #Preview {
     NavigationStack { SettingsView() }
-        .environment(AppRouter())
+        .previewEnvironment()
 }

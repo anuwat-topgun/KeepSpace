@@ -3,6 +3,7 @@ import SwiftUI
 /// 03 — Clean target selection.
 struct CleanView: View {
     @Environment(AppRouter.self) private var router
+    @Environment(LibraryStore.self) private var library
     @State private var target: CleanupTarget = .tenGB
 
     var body: some View {
@@ -14,6 +15,7 @@ struct CleanView: View {
                 TargetOptionCard(option: option, isSelected: option == target)
                     .onTapGesture {
                         withAnimation(.spring(duration: 0.3)) { target = option }
+                        library.cleanupTarget = option.bytes
                     }
                     .accessibilityElement(children: .combine)
                     .accessibilityAddTraits(option == target ? [.isButton, .isSelected] : .isButton)
@@ -24,7 +26,7 @@ struct CleanView: View {
                     IconTile(systemName: "clock", tint: .blue)
                     VStack(alignment: .leading, spacing: 4) {
                         SectionLabel("Estimated review time")
-                        Text("2 min 40 sec")
+                        Text(library.cleanupPlan.reviewTime)
                             .font(Typography.metric)
                             .foregroundStyle(Palette.textPrimary)
                     }
@@ -32,6 +34,7 @@ struct CleanView: View {
             }
 
             Button("Build Cleanup Plan") {
+                library.cleanupTarget = target.bytes
                 router.push(.cleanupPlan)
             }
             .buttonStyle(.primary)
@@ -44,6 +47,16 @@ enum CleanupTarget: CaseIterable, Identifiable {
     case fiveGB, tenGB, twentyGB, maximumSafe
 
     var id: Self { self }
+
+    /// nil = everything that is safe to suggest.
+    var bytes: Int64? {
+        switch self {
+        case .fiveGB: 5_000_000_000
+        case .tenGB: 10_000_000_000
+        case .twentyGB: 20_000_000_000
+        case .maximumSafe: nil
+        }
+    }
 
     var title: String {
         switch self {
@@ -108,5 +121,5 @@ private struct TargetOptionCard: View {
 
 #Preview {
     TabStack(tab: .clean)
-        .environment(AppRouter())
+        .previewEnvironment()
 }

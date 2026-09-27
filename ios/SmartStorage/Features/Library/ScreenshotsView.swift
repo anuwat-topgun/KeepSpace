@@ -2,21 +2,30 @@ import SwiftUI
 
 /// 11 — Screenshots grouped by what they contain, plus time-sensitive content that has expired.
 struct ScreenshotsView: View {
-    private let categories = MockData.screenshotCategories
-    private let expired = MockData.expiredScreenshots
+    @Environment(LibraryStore.self) private var library
 
     var body: some View {
         ScreenScaffold(maxWidth: Metrics.wideContentWidth) {
-            ScreenHeader(title: "Screenshots", subtitle: "\(MockData.screenshotsRecoverableBytes.formattedBytes) recoverable")
+            ScreenHeader(title: "Screenshots", subtitle: "\(library.content.screenshotsBytes.formattedBytes) recoverable")
                 .padding(.bottom, 8)
 
             AdaptiveGrid {
-                ForEach(categories) { category in
+                ForEach(library.content.screenshotCategories) { category in
                     CardRow(systemImage: category.systemImage, tint: category.tint, title: category.title, subtitle: category.bytes.formattedBytes)
                 }
             }
 
-            ExpiredContentCard(items: expired)
+            if library.content.screenshotCategories.isEmpty {
+                Card(style: .info) {
+                    Label(library.isScanning ? "Reading your library…" : "No screenshots found.", systemImage: "viewfinder")
+                        .font(Typography.metadata)
+                        .foregroundStyle(Palette.textSecondary)
+                }
+            }
+
+            if !library.content.expiredScreenshots.isEmpty {
+                ExpiredContentCard(items: library.content.expiredScreenshots)
+            }
         }
     }
 }
@@ -111,4 +120,5 @@ private struct BoardingPassArt: View {
 
 #Preview {
     NavigationStack { ScreenshotsView() }
+        .previewEnvironment()
 }

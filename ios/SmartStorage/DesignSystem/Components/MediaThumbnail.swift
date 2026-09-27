@@ -54,6 +54,8 @@ struct OverflowTile: View {
 struct ThumbnailStrip: View {
     let style: ThumbnailStyle
     let totalCount: Int
+    /// Real assets to show; empty = gradient placeholders.
+    var assetIDs: [String] = []
     var visibleCount: Int = 5
     var aspectRatio: CGFloat = 0.78
 
@@ -62,7 +64,7 @@ struct ThumbnailStrip: View {
         let overflow = totalCount - shown
         HStack(spacing: 6) {
             ForEach(0..<shown, id: \.self) { index in
-                MediaThumbnail(style: style, variant: index)
+                AssetImage(assetID: assetIDs.indices.contains(index) ? assetIDs[index] : nil, fallback: style, variant: index)
                     .aspectRatio(aspectRatio, contentMode: .fit)
             }
             if overflow > 0 {

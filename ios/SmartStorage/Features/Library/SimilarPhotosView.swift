@@ -4,11 +4,11 @@ import SwiftUI
 /// Phone: list → push Best Shot. Wide tablet: list on the left, Best Shot for the selected group on the right.
 struct SimilarPhotosView: View {
     @Environment(AppRouter.self) private var router
+    @Environment(LibraryStore.self) private var library
     @State private var filter: PhotoGroupFilter = .all
-    @State private var selectedGroupID: String? = MockData.photoGroups.first?.id
+    @State private var selectedGroupID: String?
 
-    private let groups = MockData.photoGroups
-    private let summary = MockData.similarPhotosSummary
+    private var groups: [PhotoGroup] { library.content.photoGroups }
     /// Below this width the two-pane layout would cramp both panes.
     private let twoPaneMinWidth: CGFloat = 820
 
@@ -28,7 +28,7 @@ struct SimilarPhotosView: View {
             list(selectable: true)
                 .frame(width: 420)
             Divider()
-            if let group = groups.first(where: { $0.id == selectedGroupID }) {
+            if let group = groups.first(where: { $0.id == selectedGroupID }) ?? groups.first {
                 BestShotView(group: group)
                     .id(group.id)
                     .transition(.opacity)
@@ -43,8 +43,19 @@ struct SimilarPhotosView: View {
         ScreenScaffold {
             ScreenHeader(
                 title: "Similar Photos",
-                subtitle: "\(summary.bytes.formattedBytes) recoverable · \(summary.groups) groups"
+                subtitle: "\(library.content.similarBytes.formattedBytes) recoverable · \(groups.count) groups"
             )
+
+            if groups.isEmpty {
+                Card(style: .info) {
+                    Label(
+                        library.isScanning ? "Looking for similar photos on this device…" : "No similar photos found.",
+                        systemImage: library.isScanning ? "sparkles" : "checkmark.circle"
+                    )
+                    .font(Typography.metadata)
+                    .foregroundStyle(Palette.textSecondary)
+                }
+            }
 
             ChipPicker(options: PhotoGroupFilter.allCases, selection: $filter) { $0.rawValue }
                 .padding(.vertical, 4)
@@ -57,7 +68,7 @@ struct SimilarPhotosView: View {
                         router.push(.bestShot(groupID: group.id))
                     }
                 } label: {
-                    PhotoGroupCard(group: group, isSelected: selectable && group.id == selectedGroupID)
+                    PhotoGroupCard(group: group, isSelected: selectable && group.id == (selectedGroupID ?? groups.first?.id))
                 }
                 .buttonStyle(.plain)
             }
@@ -78,7 +89,7 @@ private struct PhotoGroupCard: View {
                         Text(group.title)
                             .font(Typography.cardHeadline)
                             .foregroundStyle(Palette.textPrimary)
-                        Text("\(group.photoCount) photos · \(group.bytes.formattedBytes)")
+                        Text("\(group.photoCount) photos · \((group.reclaimableBytes > 0 ? group.reclaimableBytes : group.bytes).formattedBytes)\(group.reclaimableBytes > 0 ? " recoverable" : "")")
                             .font(Typography.metadata)
                             .foregroundStyle(Palette.textSecondary)
                         StatusBadge(text: "Recommended keep selected", systemImage: "sparkles", tint: .teal, compact: true)
@@ -90,7 +101,7 @@ private struct PhotoGroupCard: View {
                         .foregroundStyle(Palette.textSecondary)
                         .padding(.top, 14)
                 }
-                ThumbnailStrip(style: group.style, totalCount: group.photoCount)
+                ThumbnailStrip(style: group.style, totalCount: group.photoCount, assetIDs: group.assetIDs)
             }
         }
     }
@@ -98,5 +109,5 @@ private struct PhotoGroupCard: View {
 
 #Preview {
     NavigationStack { SimilarPhotosView() }
-        .environment(AppRouter())
+        .previewEnvironment()
 }

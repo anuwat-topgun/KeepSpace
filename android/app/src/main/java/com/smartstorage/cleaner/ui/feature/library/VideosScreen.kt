@@ -26,7 +26,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import com.smartstorage.cleaner.model.LibraryMockData
+import com.smartstorage.cleaner.media.libraryState
+import com.smartstorage.cleaner.ui.components.AssetImage
 import com.smartstorage.cleaner.model.VideoFilter
 import com.smartstorage.cleaner.model.VideoItem
 import com.smartstorage.cleaner.model.formattedBytes
@@ -51,7 +52,8 @@ import com.smartstorage.cleaner.ui.theme.Tint
 fun VideosScreen(onBack: () -> Unit) {
     var filter by rememberSaveable { mutableStateOf(VideoFilter.All) }
     val colors = SmartTheme.colors
-    val videos = LibraryMockData.videos.filter { filter.includes(it.kind) }
+    val state = libraryState()
+    val videos = state.content.videos.filter { filter.includes(it.kind) }
 
     ScreenScaffold(maxWidth = SmartMetrics.wideContentWidth, onBack = onBack) {
         ScreenHeader("Videos", "Large files and recordings.", Modifier.padding(bottom = 8.dp))
@@ -60,9 +62,9 @@ fun VideosScreen(onBack: () -> Unit) {
             Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 SectionLabel("Video storage")
                 Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min)) {
-                    Metric(Icons.Rounded.Videocam, Tint.Purple, "Large Videos", LibraryMockData.LARGE_VIDEO_BYTES.formattedBytes(), Modifier.weight(1f))
+                    Metric(Icons.Rounded.Videocam, Tint.Purple, "Large Videos", state.content.largeVideoBytes.formattedBytes(), Modifier.weight(1f))
                     VerticalDivider(color = colors.separator)
-                    Metric(Icons.Rounded.RadioButtonChecked, Tint.Coral, "Screen Recordings", LibraryMockData.RECORDING_BYTES.formattedBytes(), Modifier.weight(1f))
+                    Metric(Icons.Rounded.RadioButtonChecked, Tint.Coral, "Screen Recordings", state.content.recordingBytes.formattedBytes(), Modifier.weight(1f))
                 }
             }
         }
@@ -74,6 +76,12 @@ fun VideosScreen(onBack: () -> Unit) {
             label = { it.label },
             modifier = Modifier.padding(vertical = 4.dp),
         )
+
+        if (videos.isEmpty()) {
+            SmartCard(style = CardStyle.Info) {
+                Text(if (state.isScanning) "Reading your library…" else "No videos here.", style = SmartType.metadata, color = colors.textSecondary)
+            }
+        }
 
         Box(Modifier.animateContentSize()) {
             AdaptiveGrid(videos, minColumnWidth = 400.dp) { video -> VideoRow(video) }
@@ -98,7 +106,7 @@ private fun VideoRow(video: VideoItem) {
     SmartCard(contentPadding = PaddingValues(12.dp)) {
         Row(horizontalArrangement = Arrangement.spacedBy(14.dp), verticalAlignment = Alignment.CenterVertically) {
             Box(Modifier.size(width = 96.dp, height = 64.dp)) {
-                MediaThumbnail(video.style, Modifier.fillMaxWidth().fillMaxHeight())
+                AssetImage(video.assetUri, video.style, Modifier.fillMaxWidth().fillMaxHeight())
                 DurationBadge(video.duration, Modifier.align(Alignment.BottomEnd).padding(6.dp))
             }
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {

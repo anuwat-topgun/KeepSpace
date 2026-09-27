@@ -50,7 +50,8 @@ import com.smartstorage.cleaner.model.LibraryMockData
 import com.smartstorage.cleaner.model.PhotoGroup
 import com.smartstorage.cleaner.model.ReasonKind
 import com.smartstorage.cleaner.ui.components.IconTile
-import com.smartstorage.cleaner.ui.components.MediaThumbnail
+import com.smartstorage.cleaner.ui.components.AssetImage
+import androidx.compose.material.icons.rounded.Favorite
 import com.smartstorage.cleaner.ui.components.PrimaryButton
 import com.smartstorage.cleaner.ui.components.ScreenHeader
 import com.smartstorage.cleaner.ui.components.ScreenScaffold
@@ -70,8 +71,15 @@ private const val STRIP_COUNT = 4
  */
 @Composable
 fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?) {
-    val recommended = minOf(group.recommendedIndex, STRIP_COUNT - 1)
+    val recommended = group.recommendedIndex
     var selected by rememberSaveable(group.id) { mutableIntStateOf(recommended) }
+    val reasons = group.reasons.ifEmpty { LibraryMockData.bestShotReasons }
+    // Up to four photos, always including the recommended one.
+    val count = if (group.assetUris.isEmpty()) STRIP_COUNT else group.assetUris.size
+    val stripIndices = if (count <= STRIP_COUNT) (0 until count).toList() else {
+        val start = (recommended - 1).coerceIn(0, count - STRIP_COUNT)
+        (start until start + STRIP_COUNT).toList()
+    }
     var kept by rememberSaveable(group.id) { mutableStateOf(false) }
     val haptics = LocalHapticFeedback.current
 
@@ -79,7 +87,7 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?) {
         ScreenHeader("Best Shot", "AI selected the best photo in this group.", Modifier.padding(bottom = 4.dp))
 
         Row(Modifier.fillMaxWidth().padding(vertical = 6.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            repeat(STRIP_COUNT) { index ->
+            stripIndices.forEach { index ->
                 StripItem(
                     group = group,
                     index = index,
@@ -95,12 +103,12 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?) {
             if (maxWidth >= 740.dp) {
                 Row(horizontalArrangement = Arrangement.spacedBy(SmartMetrics.stackSpacing)) {
                     Hero(group, selected, Modifier.weight(1f))
-                    Box(Modifier.width(340.dp)) { ReasonsCard(LibraryMockData.bestShotReasons) }
+                    Box(Modifier.width(340.dp)) { ReasonsCard(reasons) }
                 }
             } else {
                 Column(verticalArrangement = Arrangement.spacedBy(SmartMetrics.stackSpacing)) {
                     Hero(group, selected, Modifier.fillMaxWidth())
-                    ReasonsCard(LibraryMockData.bestShotReasons)
+                    ReasonsCard(reasons)
                 }
             }
         }
@@ -140,7 +148,7 @@ private fun StripItem(
             .padding(4.dp)
             .selectable(selected = isSelected, role = Role.Tab, onClick = onClick),
     ) {
-        MediaThumbnail(group.style, Modifier.fillMaxWidth().aspectRatio(0.72f), variant = index, cornerRadius = 12.dp)
+        AssetImage(group.assetUris.getOrNull(index), group.style, Modifier.fillMaxWidth().aspectRatio(0.72f), variant = index, cornerRadius = 12.dp)
         if (isRecommended) {
             BoxWithConstraints(Modifier.align(Alignment.TopCenter).padding(6.dp)) {
                 val showsWord = maxWidth >= 110.dp
@@ -163,7 +171,8 @@ private fun StripItem(
 @Composable
 private fun Hero(group: PhotoGroup, selected: Int, modifier: Modifier) {
     Crossfade(targetState = selected, label = "hero", modifier = modifier) { index ->
-        MediaThumbnail(
+        AssetImage(
+            group.assetUris.getOrNull(index),
             group.style,
             Modifier.fillMaxWidth().aspectRatio(4f / 3f),
             variant = index,
@@ -199,6 +208,8 @@ private val ReasonKind.icon: ImageVector
         ReasonKind.EyesOpen -> Icons.Rounded.People
         ReasonKind.Exposure -> Icons.Rounded.WbSunny
         ReasonKind.NoBlur -> Icons.AutoMirrored.Rounded.DirectionsRun
+        ReasonKind.Faces -> Icons.Rounded.People
+        ReasonKind.Favorite -> Icons.Rounded.Favorite
     }
 
 private val ReasonKind.tint: Tint
@@ -207,4 +218,6 @@ private val ReasonKind.tint: Tint
         ReasonKind.EyesOpen -> Tint.Mint
         ReasonKind.Exposure -> Tint.Purple
         ReasonKind.NoBlur -> Tint.Coral
+        ReasonKind.Faces -> Tint.Mint
+        ReasonKind.Favorite -> Tint.Coral
     }

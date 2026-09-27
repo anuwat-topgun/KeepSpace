@@ -101,3 +101,32 @@ Android: open the `android/` folder in Android Studio, or build from the termina
 cd android && echo "sdk.dir=$ANDROID_HOME" > local.properties
 JAVA_HOME=/opt/homebrew/opt/openjdk@17 ./gradlew assembleDebug
 ```
+
+### Media engine (on-device AI)
+
+Everything runs on the device; nothing is uploaded.
+
+| | iOS | Android |
+|---|---|---|
+| Library | PhotoKit (`LibraryEngine`) | MediaStore (`MediaStoreSource`) |
+| Similar photos | Vision feature prints, Euclidean distance ≤ 0.55 | 64-bit dHash, Hamming distance ≤ 12 |
+| Blur | Laplacian variance on a 256 px grayscale thumbnail (< 60 = blurry) | same |
+| Best shot | sharpness + exposure + Vision face-capture quality | sharpness + exposure + ML Kit eyes-open (bundled model) |
+| Scene titles | Vision `VNClassifyImageRequest` | — (date titles) |
+
+Photos are grouped only when taken within 2 minutes of each other *and* they look alike.
+The pure logic (grouping, scoring, report/plan/forecast) is unit-tested on both platforms:
+
+```bash
+cd ios && xcodebuild test -scheme SmartStorage -destination 'platform=iOS Simulator,name=iPhone 17'
+```
+
+```bash
+cd android && ./gradlew testDebugUnitTest
+```
+
+Notes:
+- **iOS Simulator:** Vision models can't use the GPU/Neural Engine there and return near-identical
+  feature prints, so similarity grouping is disabled automatically (blur, sizes and forecast still work).
+  Calibrate the similarity threshold on a real iPhone.
+- **Demo data:** launch with `-demoData YES` (iOS) or `--ez demoData true` (Android) to show the mockup data set.

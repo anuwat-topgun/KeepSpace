@@ -118,12 +118,19 @@ fun OverflowTile(count: Int, modifier: Modifier = Modifier, cornerRadius: Dp = 1
 
 /** Row of thumbnails that fills the available width, ending in an overflow tile. */
 @Composable
-fun ThumbnailStrip(style: ThumbnailStyle, totalCount: Int, visibleCount: Int = 5, aspectRatio: Float = 0.78f) {
+fun ThumbnailStrip(
+    style: ThumbnailStyle,
+    totalCount: Int,
+    visibleCount: Int = 5,
+    aspectRatio: Float = 0.78f,
+    /** Real assets to show; empty = gradient placeholders. */
+    assetUris: List<String> = emptyList(),
+) {
     val shown = minOf(visibleCount, totalCount)
     val overflow = totalCount - shown
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
         repeat(shown) { index ->
-            MediaThumbnail(style, Modifier.weight(1f).aspectRatio(aspectRatio), variant = index)
+            AssetImage(assetUris.getOrNull(index), style, Modifier.weight(1f).aspectRatio(aspectRatio), variant = index)
         }
         if (overflow > 0) {
             OverflowTile(overflow, Modifier.weight(1f).aspectRatio(aspectRatio))

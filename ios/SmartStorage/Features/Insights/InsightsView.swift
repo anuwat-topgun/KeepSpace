@@ -4,7 +4,9 @@ import SwiftUI
 /// 07 — Insights: storage forecast and this week's changes.
 struct InsightsView: View {
     @Environment(AppRouter.self) private var router
-    private let forecast = MockData.forecast
+    @Environment(LibraryStore.self) private var library
+
+    private var forecast: StorageForecast { library.content.forecast }
 
     var body: some View {
         ScreenScaffold(maxWidth: Metrics.wideContentWidth) {
@@ -122,7 +124,7 @@ private struct ForecastCard: View {
                         .font(.system(.title2))
                         .foregroundStyle(Palette.textPrimary.opacity(0.8))
                 }
-                Text("Estimated full in \(forecast.daysUntilFull) days")
+                Text(fullText)
                     .font(Typography.body)
                     .foregroundStyle(Palette.textSecondary)
 
@@ -140,10 +142,37 @@ private struct ForecastCard: View {
         }
     }
 
+    private var fullText: String {
+        guard let days = forecast.daysUntilFull else { return "Storage use is steady — no full date in sight." }
+        return days > 365 ? "More than a year until full at the current pace." : "Estimated full in \(days) days"
+    }
+
+    // Axis ranges follow the data: history minimum up to capacity, today-4w to the projection end.
+    private var yDomain: ClosedRange<Double> {
+        let lowest = forecast.points.map(\.usedGB).min() ?? 0
+        let span = max(forecast.capacityGB - lowest, 8)
+        return max(0, lowest - span * 0.15)...(forecast.capacityGB + span * 0.1)
+    }
+
+    private var xDomain: ClosedRange<Double> {
+        let end = forecast.points.map(\.week).max() ?? 0
+        return -4...max(end, 2)
+    }
+
+    private var yTicks: [Double] {
+        let lo = yDomain.lowerBound, hi = forecast.capacityGB
+        let step = max(((hi - lo) / 4).rounded(), 1)
+        return stride(from: hi, through: lo, by: -step).map { $0 }
+    }
+
+    private var xTicks: [Double] {
+        stride(from: -4.0, through: xDomain.upperBound, by: 2).map { $0 }
+    }
+
     private var chart: some View {
         Chart {
             ForEach(forecast.points.filter { !$0.isProjection }) { point in
-                AreaMark(x: .value("Week", point.week), yStart: .value("Base", 220), yEnd: .value("Used", point.usedGB))
+                AreaMark(x: .value("Week", point.week), yStart: .value("Base", yDomain.lowerBound), yEnd: .value("Used", point.usedGB))
                     .foregroundStyle(
                         LinearGradient(colors: [Palette.accent.opacity(0.25), Palette.accent.opacity(0.02)], startPoint: .top, endPoint: .bottom)
                     )
@@ -169,21 +198,21 @@ private struct ForecastCard: View {
                         .foregroundStyle(Tint.coral.foreground)
                 }
         }
-        .chartYScale(domain: 220...262)
-        .chartXScale(domain: -4...7)
+        .chartYScale(domain: yDomain)
+        .chartXScale(domain: xDomain)
         .chartYAxis {
-            AxisMarks(position: .leading, values: [224, 232, 240, 248, 256]) { value in
+            AxisMarks(position: .leading, values: yTicks) { value in
                 AxisGridLine().foregroundStyle(Palette.separator)
-                AxisValueLabel { Text("\(value.as(Int.self) ?? 0) GB") }
+                AxisValueLabel { Text("\(Int((value.as(Double.self) ?? 0).rounded())) GB") }
             }
         }
         .chartXAxis {
-            AxisMarks(values: [-4, -2, 0, 2, 4, 6]) { value in
+            AxisMarks(values: xTicks) { value in
                 AxisValueLabel { Text(weekLabel(value.as(Double.self) ?? 0)) }
             }
         }
         .accessibilityLabel("Storage forecast")
-        .accessibilityValue("\(forecast.remainingBytes.formattedBytes) remaining, full in about \(forecast.daysUntilFull) days")
+        .accessibilityValue("\(forecast.remainingBytes.formattedBytes) remaining. \(fullText)")
     }
 
     private func weekLabel(_ week: Double) -> String {
@@ -209,5 +238,5 @@ private struct ForecastCard: View {
 
 #Preview {
     NavigationStack { InsightsView() }
-        .environment(AppRouter())
+        .previewEnvironment()
 }

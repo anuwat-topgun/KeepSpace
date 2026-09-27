@@ -28,7 +28,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.smartstorage.cleaner.model.LibraryMockData
+import com.smartstorage.cleaner.media.libraryState
 import com.smartstorage.cleaner.model.MemoryEvent
 import com.smartstorage.cleaner.ui.components.AdaptiveGrid
 import com.smartstorage.cleaner.ui.components.CardStyle
@@ -49,9 +49,19 @@ fun MemoriesScreen(onOpenSimilar: () -> Unit, onBack: () -> Unit) {
     ScreenScaffold(maxWidth = SmartMetrics.wideContentWidth, onBack = onBack) {
         ScreenHeader("Memories", "Important moments are protected by default.", Modifier.padding(bottom = 8.dp))
 
-        AdaptiveGrid(LibraryMockData.memories, minColumnWidth = 400.dp) { MemoryCard(it) }
+        val content = libraryState().content
+        if (content.memories.isEmpty()) {
+            SmartCard(style = CardStyle.Info) {
+                Text(
+                    "Trip and event detection is coming soon. Photos are never removed without your review.",
+                    style = SmartType.metadata,
+                    color = colors.textSecondary,
+                )
+            }
+        }
+        AdaptiveGrid(content.memories, minColumnWidth = 400.dp) { MemoryCard(it) }
 
-        SmartCard(style = CardStyle.Info, modifier = Modifier.clickable(role = Role.Button, onClick = onOpenSimilar)) {
+        if (content.tripSimilarPhotos + content.tripBlurryShots > 0) SmartCard(style = CardStyle.Info, modifier = Modifier.clickable(role = Role.Button, onClick = onOpenSimilar)) {
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 Box(
                     Modifier.size(56.dp).clip(CircleShape).background(Tint.Teal.background(colors.isDark)),
@@ -60,9 +70,13 @@ fun MemoriesScreen(onOpenSimilar: () -> Unit, onBack: () -> Unit) {
                     Icon(Icons.Rounded.AutoAwesome, contentDescription = null, tint = colors.accent)
                 }
                 Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                    Text("Potential cleanup inside trips", style = SmartType.cardHeadline, color = colors.textPrimary)
-                    StatLine(Icons.Rounded.Collections, "${LibraryMockData.TRIP_SIMILAR_PHOTOS} similar photos")
-                    StatLine(Icons.Rounded.BlurOn, "${LibraryMockData.TRIP_BLURRY_SHOTS} blurry shots")
+                    Text(
+                        if (content.memories.isEmpty()) "Potential cleanup in your photos" else "Potential cleanup inside trips",
+                        style = SmartType.cardHeadline,
+                        color = colors.textPrimary,
+                    )
+                    StatLine(Icons.Rounded.Collections, "${content.tripSimilarPhotos} similar photos")
+                    StatLine(Icons.Rounded.BlurOn, "${content.tripBlurryShots} blurry shots")
                 }
                 Icon(
                     Icons.AutoMirrored.Rounded.KeyboardArrowRight,

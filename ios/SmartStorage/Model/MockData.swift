@@ -74,8 +74,18 @@ enum MockData {
 }
 
 extension Int64 {
-    /// "9.8 GB" / "890 MB" — decimal units to match the mockups and the system Storage screen.
+    /// "9.8 GB" / "18 GB" / "238 GB" / "890 MB" / "68 KB" — decimal units, one decimal only when it carries
+    /// information. Mirrors `formattedBytes()` on Android so both apps show identical numbers.
     var formattedBytes: String {
-        ByteCountFormatter.string(fromByteCount: self, countStyle: .decimal)
+        let gb = Double(self) / 1e9
+        switch gb {
+        case 100...: return "\(Int(gb.rounded())) GB"
+        case 1...:
+            let rounded = (gb * 10).rounded() / 10
+            return rounded == rounded.rounded() ? "\(Int(rounded)) GB" : rounded.formatted(.number.precision(.fractionLength(1))) + " GB"
+        case 0.001...: return "\(Int((Double(self) / 1e6).rounded())) MB"
+        case _ where self > 0: return "\(Swift.max(1, Int((Double(self) / 1e3).rounded()))) KB"
+        default: return "0 MB"
+        }
     }
 }

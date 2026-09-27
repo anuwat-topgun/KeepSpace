@@ -48,7 +48,8 @@ import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.smartstorage.cleaner.model.ForecastPoint
-import com.smartstorage.cleaner.model.LibraryMockData
+import com.smartstorage.cleaner.media.libraryState
+import kotlin.math.roundToInt
 import com.smartstorage.cleaner.model.StorageForecast
 import com.smartstorage.cleaner.model.formattedBytes
 import com.smartstorage.cleaner.ui.components.CardStyle
@@ -67,7 +68,7 @@ import com.smartstorage.cleaner.ui.theme.Tint
 /** 07 — Insights: storage forecast and this week's changes. */
 @Composable
 fun InsightsScreen(onOpenPhotos: () -> Unit, onOpenVideos: () -> Unit, onSmartClean: () -> Unit) {
-    val forecast = LibraryMockData.forecast
+    val forecast = libraryState().content.forecast
     ScreenScaffold(maxWidth = SmartMetrics.wideContentWidth) {
         ScreenHeader("Insights", "Understand how your storage changes over time.", Modifier.padding(bottom = 8.dp))
         BoxWithConstraints {
@@ -100,7 +101,7 @@ private fun ForecastCard(forecast: StorageForecast) {
                 Text(forecast.remainingBytes.formattedBytes(), style = SmartType.metricLarge, color = colors.textPrimary)
                 Text("remaining", style = TextStyle(fontSize = 22.sp), color = colors.textPrimary.copy(alpha = 0.8f), modifier = Modifier.padding(bottom = 4.dp))
             }
-            Text("Estimated full in ${forecast.daysUntilFull} days", style = SmartType.body, color = colors.textSecondary)
+            Text(fullText(forecast), style = SmartType.body, color = colors.textSecondary)
             ForecastChart(
                 forecast,
                 Modifier
@@ -108,7 +109,7 @@ private fun ForecastCard(forecast: StorageForecast) {
                     .height(220.dp)
                     .padding(top = 8.dp)
                     .semantics {
-                        contentDescription = "Storage forecast: ${forecast.remainingBytes.formattedBytes()} remaining, full in about ${forecast.daysUntilFull} days"
+                        contentDescription = "Storage forecast: ${forecast.remainingBytes.formattedBytes()} remaining. ${fullText(forecast)}"
                     },
             )
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
@@ -119,12 +120,25 @@ private fun ForecastCard(forecast: StorageForecast) {
     }
 }
 
-private const val MIN_WEEK = -4f
-private const val MAX_WEEK = 7f
-private const val MIN_GB = 220f
-private const val MAX_GB = 262f
-private val yTicks = listOf(224, 232, 240, 248, 256)
-private val xTicks = listOf(-4, -2, 0, 2, 4, 6)
+private fun fullText(forecast: StorageForecast): String {
+    val days = forecast.daysUntilFull ?: return "Storage use is steady — no full date in sight."
+    return if (days > 365) "More than a year until full at the current pace." else "Estimated full in $days days"
+}
+
+/** Axis ranges follow the data: history minimum up to capacity, today-4w to the projection end. */
+private class ChartScale(forecast: StorageForecast) {
+    val minWeek = -4f
+    val maxWeek = maxOf(forecast.projection.maxOfOrNull { it.week } ?: 0f, 2f)
+    private val lowest = (forecast.history + forecast.projection).minOfOrNull { it.usedGB } ?: 0f
+    private val span = maxOf(forecast.capacityGB - lowest, 8f)
+    val minGB = maxOf(0f, lowest - span * 0.15f)
+    val maxGB = forecast.capacityGB + span * 0.1f
+    val yTicks: List<Float> = run {
+        val step = maxOf(((forecast.capacityGB - minGB) / 4).roundToInt().toFloat(), 1f)
+        generateSequence(forecast.capacityGB) { it - step }.takeWhile { it >= minGB }.toList()
+    }
+    val xTicks: List<Int> = (-4..maxWeek.toInt() step 2).toList()
+}
 
 /** Hand-drawn line chart (no chart dependency): history solid with area fill, projection dashed, capacity rule. */
 @Composable
@@ -134,22 +148,23 @@ private fun ForecastChart(forecast: StorageForecast, modifier: Modifier) {
     val measurer = rememberTextMeasurer()
     val labelStyle = TextStyle(fontSize = 11.sp, color = colors.textSecondary)
 
+    val scale = ChartScale(forecast)
     Canvas(modifier) {
         val leftAxis = 52.dp.toPx()
         val bottomAxis = 22.dp.toPx()
         val plotW = size.width - leftAxis
         val plotH = size.height - bottomAxis
-        fun x(week: Float) = leftAxis + (week - MIN_WEEK) / (MAX_WEEK - MIN_WEEK) * plotW
-        fun y(gb: Float) = plotH - (gb - MIN_GB) / (MAX_GB - MIN_GB) * plotH
+        fun x(week: Float) = leftAxis + (week - scale.minWeek) / (scale.maxWeek - scale.minWeek) * plotW
+        fun y(gb: Float) = plotH - (gb - scale.minGB) / (scale.maxGB - scale.minGB) * plotH
         fun path(points: List<ForecastPoint>) = Path().apply {
             points.forEachIndexed { i, p -> if (i == 0) moveTo(x(p.week), y(p.usedGB)) else lineTo(x(p.week), y(p.usedGB)) }
         }
 
-        yTicks.forEach { gb ->
-            drawLine(colors.separator, Offset(leftAxis, y(gb.toFloat())), Offset(size.width, y(gb.toFloat())), strokeWidth = 1f)
-            drawLabel(measurer, "$gb GB", labelStyle, Offset(0f, y(gb.toFloat()) - 8.dp.toPx()))
+        scale.yTicks.forEach { gb ->
+            drawLine(colors.separator, Offset(leftAxis, y(gb)), Offset(size.width, y(gb)), strokeWidth = 1f)
+            drawLabel(measurer, "${gb.roundToInt()} GB", labelStyle, Offset(0f, y(gb) - 8.dp.toPx()))
         }
-        xTicks.forEach { week ->
+        scale.xTicks.forEach { week ->
             val label = when {
                 week == 0 -> "Today"
                 week < 0 -> "${-week}w ago"
@@ -159,8 +174,9 @@ private fun ForecastChart(forecast: StorageForecast, modifier: Modifier) {
             drawText(layout, topLeft = Offset(x(week.toFloat()) - layout.size.width / 2f, plotH + 6.dp.toPx()))
         }
 
-        // Area under history.
         val history = forecast.history
+        if (history.isEmpty()) return@Canvas
+        // Area under history.
         val area = path(history).apply {
             lineTo(x(history.last().week), plotH)
             lineTo(x(history.first().week), plotH)

@@ -2,11 +2,11 @@ import SwiftUI
 
 /// 08 — Large videos and screen recordings, with compression offered as an alternative to deletion.
 struct VideosView: View {
+    @Environment(LibraryStore.self) private var library
     @State private var filter: VideoFilter = .all
-    private let summary = MockData.videoSummary
 
     private var videos: [VideoItem] {
-        MockData.videos.filter { filter.includes($0.kind) }
+        library.content.videos.filter { filter.includes($0.kind) }
     }
 
     var body: some View {
@@ -18,15 +18,23 @@ struct VideosView: View {
                 VStack(alignment: .leading, spacing: 16) {
                     SectionLabel("Video storage")
                     HStack(spacing: 0) {
-                        metric(icon: "video.fill", tint: .purple, title: "Large Videos", bytes: summary.largeBytes)
+                        metric(icon: "video.fill", tint: .purple, title: "Large Videos", bytes: library.content.largeVideoBytes)
                         Divider().frame(height: 120)
-                        metric(icon: "record.circle", tint: .coral, title: "Screen Recordings", bytes: summary.recordingBytes)
+                        metric(icon: "record.circle", tint: .coral, title: "Screen Recordings", bytes: library.content.recordingBytes)
                     }
                 }
             }
 
             ChipPicker(options: VideoFilter.allCases, selection: $filter) { $0.rawValue }
                 .padding(.vertical, 4)
+
+            if videos.isEmpty {
+                Card(style: .info) {
+                    Label(library.isScanning ? "Reading your library…" : "No videos here.", systemImage: "video")
+                        .font(Typography.metadata)
+                        .foregroundStyle(Palette.textSecondary)
+                }
+            }
 
             AdaptiveGrid(minColumnWidth: 400) {
                 ForEach(videos) { video in
@@ -61,7 +69,7 @@ private struct VideoRow: View {
     var body: some View {
         Card(padding: 12) {
             HStack(spacing: 14) {
-                MediaThumbnail(style: video.style, cornerRadius: 12)
+                AssetImage(assetID: video.assetID, fallback: video.style, cornerRadius: 12)
                     .frame(width: 96, height: 64)
                     .overlay(alignment: .bottomTrailing) {
                         DurationBadge(text: video.duration).padding(6)
@@ -94,4 +102,5 @@ private struct VideoRow: View {
 
 #Preview {
     NavigationStack { VideosView() }
+        .previewEnvironment()
 }

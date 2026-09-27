@@ -47,5 +47,8 @@ dependencies {
     implementation(libs.androidx.material3.adaptive)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.navigation.compose)
+    // Bundled model: face detection runs fully on device, nothing is downloaded at runtime.
+    implementation(libs.mlkit.face.detection)
     debugImplementation(libs.androidx.ui.tooling)
+    testImplementation(libs.junit)
 }
