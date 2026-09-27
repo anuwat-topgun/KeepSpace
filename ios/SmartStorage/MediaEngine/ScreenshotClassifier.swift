@@ -66,17 +66,20 @@ enum ScreenshotClassifier {
                     "payment", "transaction", "transfer successful", "ใบเสร็จ", "รวมทั้งสิ้น", "ยอดรวม", "ภาษี", "ชำระเงิน",
                     "โอนเงินสำเร็จ", "จำนวนเงิน"],
         .shopping: ["add to cart", "add to bag", "buy now", "checkout", "free shipping", "in stock", "sold", "reviews",
-                    "wishlist", "shopee", "lazada", "amazon", "discount", "sale", "ตะกร้า", "ซื้อเลย", "ส่งฟรี", "ลดราคา", "ขายแล้ว"],
+                    "wishlist", "shopee", "lazada", "amazon", "discount", "sale", "ตะกร้า", "ซื้อเลย", "ส่งฟรี", "ลดราคา", "ขายแล้ว",
+                    "สั่งซื้อ"],
         .chats: ["typing", "delivered", "seen", "message", "reply", "online", "last seen", "whatsapp", "messenger", "line",
-                 "imessage", "ส่งข้อความ", "อ่านแล้ว", "พิมพ์ข้อความ", "ตอบกลับ"],
+                 "imessage", "ส่งข้อความ", "อ่านแล้ว", "พิมพ์ข้อความ", "ตอบกลับ", "ออนไลน์", "กำลังพิมพ์"],
     ]
     /// Words that strongly identify a category count double.
     /// Thai bank-transfer slips ("โอนเงินสำเร็จ") are receipts even though they always carry a QR code.
     private static let strong: Set<String> = ["boarding pass", "e-ticket", "receipt", "invoice", "add to cart", "buy now",
                                               "transfer successful", "บัตรโดยสาร", "ใบเสร็จ", "ตะกร้า", "โอนเงินสำเร็จ"]
 
-    static func classify(text: String, hasQRCode: Bool, now: Date = .now) -> ScreenshotInfo {
-        let lower = text.lowercased()
+    static func classify(text rawText: String, hasQRCode: Bool, now: Date = .now) -> ScreenshotInfo {
+        let text = ThaiText.normalize(rawText)
+        // Tone-mark-insensitive: OCR often drops Thai tone marks.
+        let lower = ThaiText.fold(text)
         var scores: [ScreenshotKind: Double] = [:]
         for (kind, words) in keywords {
             for word in words where contains(lower, word) {
@@ -107,9 +110,9 @@ enum ScreenshotClassifier {
         [.tickets, .receipts, .qrCodes, .shopping, .chats, .other].firstIndex(of: kind) ?? 99
     }
 
-    /// Whole-word match for Latin keywords (so "line" doesn't match "online"); substring for Thai.
+    /// Whole-word match for Latin keywords (so "line" doesn't match "online"); substring for Thai. `text` is folded.
     private static func contains(_ text: String, _ word: String) -> Bool {
-        guard word.unicodeScalars.allSatisfy({ $0.isASCII }) else { return text.contains(word) }
+        guard word.unicodeScalars.allSatisfy({ $0.isASCII }) else { return text.contains(ThaiText.fold(word)) }
         let pattern = #"(?<![a-z])"# + NSRegularExpression.escapedPattern(for: word) + #"(?![a-z])"#
         return text.range(of: pattern, options: .regularExpression) != nil
     }

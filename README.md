@@ -144,7 +144,7 @@ tickets whose date has passed become **Expired Tickets**.
 
 | | iOS | Android |
 |---|---|---|
-| Text | Vision `VNRecognizeTextRequest` (Thai + English) | ML Kit Text Recognition (bundled, **Latin only**) |
+| Text | Vision `VNRecognizeTextRequest` (Thai + English) | ML Kit Text Recognition (bundled, Latin) + Tesseract `tha+eng` for Thai |
 | Codes | Vision barcodes (QR, Aztec, PDF417) | ML Kit Barcode Scanning (same formats) |
 
 - The recognised text is used only to classify and is **never stored or uploaded**; the cache keeps the category,
@@ -154,8 +154,14 @@ tickets whose date has passed become **Expired Tickets**.
 - Receipts and upcoming tickets are never part of "Old Screenshots"; category browsing starts with nothing selected.
 - Bump `screenshotReaderVersion` / `SCREENSHOT_READER_VERSION` when classification changes: screenshots are re-read,
   photos keep their cached analysis.
-- Known limits: the iOS Simulator can't run Vision's barcode model (works on devices and on macOS); Android can't
-  read Thai words, so Thai receipts are recognised from their amounts and Thai transfer slips fall back to QR Codes.
+- **Thai on Android**: ML Kit reads first (fast, Latin). Receipt photos, receipts, QR screenshots (Thai payment slips)
+  and text that looks like misread Thai (`ThaiText.looksLikeMisreadThai`) get a second read by Tesseract (`ThaiOcr`,
+  full-resolution decode, confident lines only). The better reading wins (`combine`). Tesseract models (tessdata_fast
+  4.1.0, ~5 MB) are downloaded by the `fetchTessdata` Gradle task and checked by SHA-256 — the first build needs network.
+- `ThaiText.normalize` repairs common OCR slips (ำ written as ํ+า, "กุย." for "ก.ย.") and keywords are matched
+  without tone marks (`ThaiText.fold`), since OCR often drops them. Spike results: `android/app/src/androidTest/THAI_OCR_SPIKE.md`.
+- Known limits: the iOS Simulator can't run Vision's barcode model (works on devices and on macOS); Thai names read
+  by Tesseract may lose tone marks ("รานกาแฟ"); accuracy on real (non-synthetic) receipts still to be measured.
 
 ### Receipt Filing (v1.3, extraction + rules)
 
@@ -183,8 +189,8 @@ Reading every photo would be slow, so it happens in two steps:
    page tilt, because OCR returns "TOTAL" and "456.00" as separate columns.
 
 Receipt photos show as "Paper receipt photo" in Receipt Filing and are never suggested as Blurry Photos.
-Limits: Android reads Latin script only (Thai receipts are found, but the merchant shows as "Unknown"); the iOS
-Simulator's image classifier is degenerate, so Thai receipts that rely on it can only be checked on a device.
+Limits: the iOS Simulator's image classifier is degenerate, so Thai receipts that rely on it can only be checked on
+a device.
 
 ### Memories: trips and events (protected by default)
 

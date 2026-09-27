@@ -33,9 +33,10 @@ struct ReceiptDetails: Sendable, Equatable, Hashable {
 
 /// Pulls merchant, date, total and category out of recognised receipt text. Pure, for tests.
 enum ReceiptExtractor {
-    static func extract(from text: String, now: Date = .now) -> ReceiptDetails {
+    static func extract(from rawText: String, now: Date = .now) -> ReceiptDetails {
+        let text = ThaiText.normalize(rawText)
         let lines = text.split(whereSeparator: \.isNewline).map { $0.trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
-        let lower = text.lowercased()
+        let lower = ThaiText.fold(text)
         return ReceiptDetails(
             merchant: merchant(in: lines),
             date: DateExtractor.dates(in: text, now: now).filter { $0 <= now.addingTimeInterval(24 * 3600) }.max(),
@@ -64,14 +65,16 @@ enum ReceiptExtractor {
             }
         }
         for line in lines.prefix(6) {
-            let lower = line.lowercased()
+            let lower = ThaiText.fold(line)
             guard line.count >= 3, line.rangeOfCharacter(from: .letters) != nil,
-                  !notMerchant.contains(where: { lower.contains($0) }),
+                  !notMerchant.contains(where: { lower.contains(ThaiText.fold($0)) }),
                   amounts(in: line).isEmpty, DateExtractor.dates(in: line).isEmpty,
                   // A year means a date line the parser couldn't read (e.g. Thai misread as Latin).
                   line.range(of: #"(?<!\d)(19|20|25)\d{2}(?!\d)"#, options: .regularExpression) == nil,
                   // Mostly digits: a misread amount ("120.0O"), not a name.
-                  line.filter(\.isLetter).count > line.filter(\.isNumber).count
+                  line.filter(\.isLetter).count > line.filter(\.isNumber).count,
+                  // OCR noise from blank areas ("๕ va"): too few letters, or Thai digits (never in shop names).
+                  line.filter(\.isLetter).count >= 3, !line.unicodeScalars.contains(where: { (0x0E50...0x0E59).contains($0.value) })
             else { continue }
             return line
         }
@@ -111,8 +114,8 @@ enum ReceiptExtractor {
         for keyword in totalKeywords {
             // The last matching line is usually the final total (after tax/discounts).
             for line in lines.reversed() {
-                let lower = line.lowercased()
-                guard lower.contains(keyword), !lower.contains("subtotal"), !lower.contains("sub total") else { continue }
+                let lower = ThaiText.fold(line)
+                guard lower.contains(ThaiText.fold(keyword)), !lower.contains("subtotal"), !lower.contains("sub total") else { continue }
                 if let amount = amounts(in: line).last { return amount }
             }
         }
@@ -148,7 +151,8 @@ enum ReceiptExtractor {
         (.transport, ["grab", "bolt", "taxi", "bts", "mrt", "airport rail", "ptt", "shell", "esso", "bangchak", "fuel", "parking", "ค่าโดยสาร"]),
         (.bills, ["electricity", "water supply", "internet", "ais", "true move", "dtac", "3bb", "mea", "pea", "ค่าไฟ", "ค่าน้ำ"]),
         (.health, ["pharmacy", "hospital", "clinic", "boots", "watsons", "ร้านยา", "โรงพยาบาล"]),
-        (.groceries, ["7-eleven", "7 eleven", "lotus", "big c", "makro", "tops", "villa market", "gourmet market", "supermarket", "family mart"]),
+        (.groceries, ["7-eleven", "7 eleven", "lotus", "big c", "makro", "tops", "villa market", "gourmet market", "supermarket", "family mart",
+                       "เซเว่น", "โลตัส"]),
         (.foodAndDrink, ["coffee", "cafe", "café", "restaurant", "starbucks", "latte", "americano", "bar ", "food", "grabfood", "lineman",
                          "kitchen", "กาแฟ", "ร้านอาหาร"]),
         (.shopping, ["department store", "central", "the mall", "siam paragon", "emporium", "uniqlo", "ikea", "shopee", "lazada",
@@ -156,6 +160,6 @@ enum ReceiptExtractor {
     ]
 
     static func category(of lower: String) -> ReceiptCategory {
-        categoryKeywords.first { _, words in words.contains { lower.contains($0) } }?.0 ?? .other
+        categoryKeywords.first { _, words in words.contains { lower.contains(ThaiText.fold($0)) } }?.0 ?? .other
     }
 }

@@ -8,8 +8,8 @@ let analyzerVersion = 2
 
 /// Same idea for screenshot classification (OCR rules, keywords). Separate so tuning the
 /// classifier re-reads screenshots without re-analyzing every photo.
-/// 2: receipts recognised from amounts alone. 3: receipt details extracted. 4: stricter merchant names.
-let screenshotReaderVersion = 4
+/// 2: receipts recognised from amounts alone. 3: receipt details extracted. 4: stricter merchant names. 5: Thai OCR repairs, tone-insensitive keywords.
+let screenshotReaderVersion = 5
 
 /// One cached analysis, as a value type that can cross actors.
 struct CachedAnalysis: Sendable, Equatable {

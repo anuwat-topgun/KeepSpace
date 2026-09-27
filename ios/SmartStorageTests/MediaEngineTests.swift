@@ -782,3 +782,47 @@ struct EventGrouperTests {
         #expect(content.reviewSets[.blurry]?.map(\.preselected) == [false])
     }
 }
+
+// MARK: - Thai OCR text (real Tesseract / ML Kit output from the Android spike)
+
+struct ThaiTextTests {
+    private let now = Calendar.utcGregorian.date(from: DateComponents(year: 2026, month: 9, day: 28, hour: 12))!
+
+    @Test func normalizeRepairsSaraAmAndMonths() {
+        #expect(ThaiText.normalize("โอนเงินส\u{0E4D}\u{0E32}เร็จ") == "โอนเงินสำเร็จ")
+        #expect(ThaiText.normalize("27 กุย. 69 09:32") == "27 ก.ย. 69 09:32")
+        #expect(ThaiText.normalize("กุย. ของฉัน") == "กุย. ของฉัน")
+    }
+
+    @Test func foldIgnoresToneMarks() {
+        #expect(ThaiText.fold("ตะกร้าสินค้า") == ThaiText.fold("ตะกราสินคา"))
+    }
+
+    @Test func tesseractSlipReadsAsReceipt() {
+        let info = ScreenshotClassifier.classify(text: "โอนเงินส\u{0E4D}\u{0E32}เร็จ\n27 กุย. 69 09:32\nจ\u{0E4D}\u{0E32}นวนเงิน 500.00 บาท\nไปยัง นาย สมชาย ใจดี",
+                                                 hasQRCode: false, now: now)
+        #expect(info.kind == .receipts)
+        #expect(info.receipt?.merchant == "นาย สมชาย ใจดี")
+        #expect(info.receipt?.amount == 500)
+        #expect(info.receipt?.date == Calendar.utcGregorian.date(from: DateComponents(year: 2026, month: 9, day: 27, hour: 12)))
+    }
+
+    @Test func droppedToneMarksStillMatchKeywords() {
+        let shopping = "ตะกราสินคา\nเสื้อยืดคอกลม ผ้าผ้าย 100%\n8299\nส่งฟรีเมื่อสั่งซื้อครบ @500\nสั่งซื้อสินค้า"
+        #expect(ScreenshotClassifier.classify(text: shopping, hasQRCode: false, now: now).kind == .shopping)
+        let chat = "แม\nออนไลน์\nเย็นนีกลับบานกิโมงจะ\n18:02\nอ่านแล้ว\nไดจะ ขับรถดี ๆ นะลูก\n18:06"
+        #expect(ScreenshotClassifier.classify(text: chat, hasQRCode: false, now: now).kind == .chats)
+        #expect(ReceiptExtractor.total(in: ["ลาเตเย็น 65.00", "รวมทังสิน 120.00 บาท"]) == 120)
+    }
+
+    @Test func spotsThaiReadAsLatin() {
+        #expect(ThaiText.looksLikeMisreadThai("SNuNNuWUNuau\nluLaSaSUuEU\n21 n.g. 2569"))
+        #expect(ThaiText.looksLikeMisreadThai("LắDBRADnau wndng 100%"))
+        #expect(!ThaiText.looksLikeMisreadThai("Mom\nonline\nSee you at 7?\nOk! I'll bring dessert\nDelivered\nGreat"))
+        #expect(!ThaiText.looksLikeMisreadThai("TOPS MARKET\nCentral Rama 9\nTAX INVOICE (ABB)\nTOTAL 456.00"))
+    }
+
+    @Test func ocrNoiseIsNotAMerchant() {
+        #expect(ReceiptExtractor.merchant(in: ["๕ va", "ใบเสร็จรับเงิน", "Central Department Store"]) == "Central Department Store")
+    }
+}

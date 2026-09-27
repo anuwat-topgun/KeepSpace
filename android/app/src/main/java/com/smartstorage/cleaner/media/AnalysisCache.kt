@@ -21,9 +21,9 @@ const val ANALYZER_VERSION = 3 // 2: text lines (paper receipts). 3: photo locat
 /**
  * Same idea for screenshot classification (OCR rules, keywords). Separate so tuning the classifier
  * re-reads screenshots without re-analyzing every photo. 2: receipts recognised from amounts alone.
- * 3: receipt details extracted. 4: stricter merchant names.
+ * 3: receipt details extracted. 4: stricter merchant names. 5: Thai OCR (Tesseract), tone-insensitive keywords.
  */
-const val SCREENSHOT_READER_VERSION = 4
+const val SCREENSHOT_READER_VERSION = 5
 
 data class CachedAnalysis(
     val assetId: String,

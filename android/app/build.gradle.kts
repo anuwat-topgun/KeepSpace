@@ -1,3 +1,6 @@
+import java.net.URI
+import java.security.MessageDigest
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -34,7 +37,35 @@ android {
     buildFeatures {
         compose = true
     }
+    // Tesseract models for Thai OCR (see fetchTessdata below).
+    sourceSets["main"].assets.srcDir(layout.buildDirectory.dir("generated/tessdata"))
 }
+
+/**
+ * Tesseract "fast" models (Apache-2.0, ~5 MB) for reading Thai on device. Downloaded at build time
+ * from a pinned tag and checked by SHA-256 rather than committed to the repository.
+ */
+val fetchTessdata by tasks.registering {
+    val models = mapOf(
+        "tha" to "294227cc2d1292b0acb28d61d4115c88252b96d466ca90b417cf4cf0c67bf07c",
+        "eng" to "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2",
+    )
+    val outDir = layout.buildDirectory.dir("generated/tessdata/tessdata")
+    inputs.property("models", models)
+    outputs.dir(outDir)
+    doLast {
+        fun sha256(file: File) = MessageDigest.getInstance("SHA-256").digest(file.readBytes()).joinToString("") { "%02x".format(it) }
+        val dir = outDir.get().asFile.apply { mkdirs() }
+        for ((lang, checksum) in models) {
+            val file = File(dir, "$lang.traineddata")
+            if (file.exists() && sha256(file) == checksum) continue
+            URI("https://github.com/tesseract-ocr/tessdata_fast/raw/4.1.0/$lang.traineddata").toURL().openStream()
+                .use { input -> file.outputStream().use { input.copyTo(it) } }
+            check(sha256(file) == checksum) { "Checksum mismatch for $lang.traineddata" }
+        }
+    }
+}
+tasks.named("preBuild") { dependsOn(fetchTessdata) }
 
 dependencies {
     implementation(libs.androidx.core.ktx)
@@ -65,8 +96,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     testImplementation(libs.junit)
     testImplementation(libs.json)
-    // Thai OCR spike (instrumented, not shipped): compares Tesseract with ML Kit on Thai receipts.
-    androidTestImplementation(libs.tesseract4android)
+    // On-device Thai OCR (ML Kit reads Latin only); used for receipts and Thai-looking screenshots.
+    implementation(libs.tesseract4android)
+    // Thai OCR spike (instrumented): compares Tesseract with ML Kit.
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.androidx.test.ext.junit)
 }

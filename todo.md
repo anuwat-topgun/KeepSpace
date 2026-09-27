@@ -11,8 +11,8 @@
 
 | แพลตฟอร์ม | Unit tests | สถานะ | ทดสอบบนอุปกรณ์ |
 |---|---|---|---|
-| iOS (SwiftUI, iOS 17+) | 53 tests / 19 suites (Swift Testing) | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator |
-| Android (Compose, API 26+) | 53 tests (JUnit, JVM) | ✅ ผ่านทั้งหมด | `keepspace_tablet` emulator (Pixel Tablet, API 36) |
+| iOS (SwiftUI, iOS 17+) | 59 tests / 20 suites (Swift Testing) | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator |
+| Android (Compose, API 26+) | 59 tests (JUnit, JVM) + Thai OCR spike (instrumented) | ✅ ผ่านทั้งหมด | `keepspace_tablet` emulator (Pixel Tablet, API 36) |
 
 คำสั่งรันเทส:
 ```bash
@@ -47,7 +47,7 @@ cd android && JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Content
 | Similar Photo Groups | ✅ | ✅ | iOS: Vision feature print · Android: dHash — iOS ต้องยืนยันความแม่นบนเครื่องจริง |
 | AI Best Shot + เหตุผล | ✅ | ✅ | คะแนนความคมชัด, ใบหน้า/ตาเปิด, แสง |
 | Clean X GB (เลือกเป้าหมาย + Cleanup Plan) | ✅ | ✅ | |
-| Screenshot semantic grouping (OCR) | ✅ | ✅ | Shopping/Receipts/Chats/QR/Tickets/Other, ตั๋วหมดอายุ — **Android อ่านภาษาไทยไม่ได้** (ML Kit Latin เท่านั้น) |
+| Screenshot semantic grouping (OCR) | ✅ | ✅ | Shopping/Receipts/Chats/QR/Tickets/Other, ตั๋วหมดอายุ — Android อ่านไทยด้วย Tesseract เมื่อจำเป็น |
 | Large Videos / Screen Recordings | ✅ | ✅ | |
 | Blurry / Bad Shot Detection | ✅ | ✅ | Laplacian variance |
 | Protected Memories + Event/Trip Grouping | ✅ | ✅ | ใหม่ล่าสุด — ทริป/อีเวนต์, ระยะห่างจากบ้าน, หน้า detail, รูปเบลอในความทรงจำไม่ถูกเลือกไว้ล่วงหน้า |
@@ -67,7 +67,7 @@ cd android && JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Content
 ### v1.3 — Semantic filing (ส่วนที่ไม่ต้องใช้ cloud)
 | Feature | iOS | Android | หมายเหตุ |
 |---|---|---|---|
-| Receipt extraction (merchant, date, amount, currency, category) | ✅ | 🟡 | Android อ่านชื่อร้านภาษาไทยไม่ได้ (แสดง "Unknown merchant") |
+| Receipt extraction (merchant, date, amount, currency, category) | ✅ | ✅ | Android: Tesseract tha+eng — ชื่อไทยอาจขาดวรรณยุกต์บางตัว |
 | ใบเสร็จจาก screenshot | ✅ | ✅ | รองรับวันที่ไทย/พ.ศ., สลิปโอนเงิน |
 | ใบเสร็จกระดาษจากรูปกล้อง | ✅ | ✅ | คัด candidate → OCR 2048px + แก้เอียง/EXIF, สร้างแถวใหม่ (TextLayout) |
 | Receipt Filing screen (mockup 16) | ✅ | ✅ | แสดงข้อมูลที่อ่านได้ + กฎที่ match + path ปลายทาง |
@@ -170,8 +170,10 @@ cd android && JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Content
 - [ ] **ทดสอบบนเครื่องจริง** iPhone + iPad + Android phone + tablet ด้วยคลังรูปใหญ่ (10k+ รูป): เวลาสแกน, หน่วยความจำ, แบตเตอรี่, ความแม่นของ similar/blurry/receipt/events
 - [ ] ยืนยัน threshold ของ SimilarityGrouper บน iPhone จริง (simulator ให้ feature print เสื่อม)
 - [ ] **Android OCR ภาษาไทย**: ✅ ขั้นที่ 1 (spike) เสร็จ — ดู `android/app/src/androidTest/THAI_OCR_SPIKE.md` (Tesseract fast tha+eng + fixes: 21/25 เทียบ ML Kit 13/25)
-  - [ ] ขั้นที่ 2: ใส่ Tesseract ในแอป เรียกเฉพาะใบเสร็จ/รูปที่ ML Kit อ่านไทยเพี้ยน, ย้าย ThaiFix เข้า main code + unit test
-  - [ ] จับคู่คีย์เวิร์ดแบบไม่สนวรรณยุกต์ (ทั้งสองแพลตฟอร์ม) + ปรับ classifier สำหรับแชท/ช้อปปิ้งภาษาไทย
+  - [x] ขั้นที่ 2: Tesseract อยู่ในแอปแล้ว (`ThaiOcr`) เรียกเฉพาะรูปใบเสร็จ/ใบเสร็จ/QR/ข้อความที่ดูเป็นไทยอ่านเพี้ยน, `ThaiText` + unit tests — ทดสอบบน emulator: ใบเสร็จไทย 7/7, แชท/ช้อปปิ้งไทยจัดหมวดถูก
+  - [x] จับคู่คีย์เวิร์ดแบบไม่สนวรรณยุกต์ (ทั้งสองแพลตฟอร์ม) + คีย์เวิร์ดแชท/ช้อปปิ้งไทยเพิ่ม
+  - [ ] วัดเวลาสแกนครั้งแรกบนมือถือจริงที่มี screenshot ไทยจำนวนมาก (Tesseract ~0.2 วินาทีต่อรูปบน emulator)
+  - [ ] ขนาดแอป: ปล่อยเป็น App Bundle (แยก ABI) — Tesseract +7.5 MB native + 5.2 MB models ต่อเครื่อง
   - [ ] ทดสอบกับใบเสร็จ/สลิปจริง (รูปทดสอบตอนนี้เป็นภาพสังเคราะห์)
 - [ ] **ความเสี่ยง App Review**: iOS อ่านขนาดไฟล์ด้วย `PHAssetResource.value(forKey: "fileSize")` (KVC ที่ไม่ใช่ public API) → หาทางเลือก (เช่น ประมาณจาก resource/อ่านผ่าน `PHAssetResourceManager` เฉพาะเมื่อจำเป็น) หรือยอมรับความเสี่ยงอย่างรู้ตัว
 - [ ] App icon (ตอนนี้เป็นไอคอนว่าง) + launch screen ทั้งสองแพลตฟอร์ม

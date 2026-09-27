@@ -28,9 +28,10 @@ data class ReceiptDetails(
 object ReceiptExtractor {
     private const val DAY_MS = 24L * 3600 * 1000
 
-    fun extract(text: String, now: Long = System.currentTimeMillis()): ReceiptDetails {
+    fun extract(rawText: String, now: Long = System.currentTimeMillis()): ReceiptDetails {
+        val text = ThaiText.normalize(rawText)
         val lines = text.lines().map { it.trim() }.filter { it.isNotEmpty() }
-        val lower = text.lowercase()
+        val lower = ThaiText.fold(text)
         return ReceiptDetails(
             merchant = merchant(lines),
             date = DateExtractor.dates(text).filter { it <= now + DAY_MS }.maxOrNull(),
@@ -66,13 +67,15 @@ object ReceiptExtractor {
             }
         }
         return lines.take(6).firstOrNull { line ->
-            val lower = line.lowercase()
-            line.length >= 3 && line.any { it.isLetter() } && notMerchant.none { it in lower } &&
+            val lower = ThaiText.fold(line)
+            line.length >= 3 && line.any { it.isLetter() } && notMerchant.none { ThaiText.fold(it) in lower } &&
                 amounts(line).isEmpty() && DateExtractor.dates(line).isEmpty() &&
                 // A year means a date line the parser couldn't read (e.g. Thai misread as Latin).
                 !yearLike.containsMatchIn(line) &&
                 // Mostly digits: a misread amount ("120.0O"), not a name.
-                line.count { it.isLetter() } > line.count { it.isDigit() }
+                line.count { it.isLetter() } > line.count { it.isDigit() } &&
+                // OCR noise from blank areas ("๕ va"): too few letters, or Thai digits (never in shop names).
+                line.count { it.isLetter() } >= 3 && line.none { it in '\u0E50'..'\u0E59' }
         }
     }
 
@@ -112,8 +115,8 @@ object ReceiptExtractor {
         for (keyword in totalKeywords) {
             // The last matching line is usually the final total (after tax/discounts).
             for (line in lines.asReversed()) {
-                val lower = line.lowercase()
-                if (keyword !in lower || "subtotal" in lower || "sub total" in lower) continue
+                val lower = ThaiText.fold(line)
+                if (ThaiText.fold(keyword) !in lower || "subtotal" in lower || "sub total" in lower) continue
                 amounts(line).lastOrNull()?.let { return it }
             }
         }
@@ -147,7 +150,7 @@ object ReceiptExtractor {
         ReceiptCategory.Transport to listOf("grab", "bolt", "taxi", "bts", "mrt", "airport rail", "ptt", "shell", "esso", "bangchak", "fuel", "parking", "ค่าโดยสาร"),
         ReceiptCategory.Bills to listOf("electricity", "water supply", "internet", "ais", "true move", "dtac", "3bb", "mea", "pea", "ค่าไฟ", "ค่าน้ำ"),
         ReceiptCategory.Health to listOf("pharmacy", "hospital", "clinic", "boots", "watsons", "ร้านยา", "โรงพยาบาล"),
-        ReceiptCategory.Groceries to listOf("7-eleven", "7 eleven", "lotus", "big c", "makro", "tops", "villa market", "gourmet market", "supermarket", "family mart"),
+        ReceiptCategory.Groceries to listOf("7-eleven", "7 eleven", "lotus", "big c", "makro", "tops", "villa market", "gourmet market", "supermarket", "family mart", "เซเว่น", "โลตัส"),
         ReceiptCategory.FoodAndDrink to listOf(
             "coffee", "cafe", "café", "restaurant", "starbucks", "latte", "americano", "bar ", "food", "grabfood", "lineman", "kitchen", "กาแฟ", "ร้านอาหาร",
         ),
@@ -155,5 +158,5 @@ object ReceiptExtractor {
     )
 
     fun category(lower: String): ReceiptCategory =
-        categoryKeywords.firstOrNull { (_, words) -> words.any { it in lower } }?.first ?: ReceiptCategory.Other
+        categoryKeywords.firstOrNull { (_, words) -> words.any { ThaiText.fold(it) in lower } }?.first ?: ReceiptCategory.Other
 }

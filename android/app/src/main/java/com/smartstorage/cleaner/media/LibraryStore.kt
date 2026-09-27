@@ -227,7 +227,7 @@ class LibraryStore(context: Context, demo: Boolean) {
             }
             withContext(Dispatchers.IO) { cache.saveScreenshots(batch) }
         }
-        ScreenshotAnalyzer(app.contentResolver).use { reader ->
+        ScreenshotAnalyzer(app.contentResolver, ThaiOcr(app)).use { reader ->
             val results = shots.map { item ->
                 async {
                     permits.withPermit {

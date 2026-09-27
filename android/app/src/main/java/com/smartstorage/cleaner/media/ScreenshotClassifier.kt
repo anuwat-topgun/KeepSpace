@@ -45,10 +45,11 @@ object ScreenshotClassifier {
         ScreenshotKind.Shopping to listOf(
             "add to cart", "add to bag", "buy now", "checkout", "free shipping", "in stock", "sold", "reviews",
             "wishlist", "shopee", "lazada", "amazon", "discount", "sale", "ตะกร้า", "ซื้อเลย", "ส่งฟรี", "ลดราคา", "ขายแล้ว",
+            "สั่งซื้อ",
         ),
         ScreenshotKind.Chats to listOf(
             "typing", "delivered", "seen", "message", "reply", "online", "last seen", "whatsapp", "messenger", "line",
-            "imessage", "ส่งข้อความ", "อ่านแล้ว", "พิมพ์ข้อความ", "ตอบกลับ",
+            "imessage", "ส่งข้อความ", "อ่านแล้ว", "พิมพ์ข้อความ", "ตอบกลับ", "ออนไลน์", "กำลังพิมพ์",
         ),
     )
 
@@ -69,8 +70,10 @@ object ScreenshotClassifier {
     private val amountRegex = Regex("""\b\d[\d,]*\.\d{2}\b""")
     private val routeRegex = Regex("""\b([A-Z]{3})\s*(?:→|->|–|-|to|✈)\s*([A-Z]{3})\b""")
 
-    fun classify(text: String, hasQrCode: Boolean, now: Long = System.currentTimeMillis()): ScreenshotInfo {
-        val lower = text.lowercase()
+    fun classify(rawText: String, hasQrCode: Boolean, now: Long = System.currentTimeMillis()): ScreenshotInfo {
+        val text = ThaiText.normalize(rawText)
+        // Tone-mark-insensitive: OCR often drops Thai tone marks.
+        val lower = ThaiText.fold(text)
         val scores = mutableMapOf<ScreenshotKind, Double>()
         for ((kind, words) in keywords) {
             for (word in words) if (contains(lower, word)) scores.merge(kind, if (word in strong) 2.0 else 1.0, Double::plus)
@@ -94,9 +97,9 @@ object ScreenshotClassifier {
         return ScreenshotInfo(ScreenshotKind.Tickets, DateExtractor.dates(text).maxOrNull(), route(text))
     }
 
-    /** Whole-word match for Latin keywords (so "line" doesn't match "online"); substring for Thai. */
+    /** Whole-word match for Latin keywords (so "line" doesn't match "online"); substring for Thai. [text] is folded. */
     private fun contains(text: String, word: String): Boolean {
-        if (word.any { it.code > 127 }) return word in text
+        if (word.any { it.code > 127 }) return ThaiText.fold(word) in text
         return Regex("(?<![a-z])" + Regex.escape(word) + "(?![a-z])").containsMatchIn(text)
     }
 
