@@ -18,7 +18,9 @@ import com.smartstorage.cleaner.media.LibraryViewModel
 import com.smartstorage.cleaner.media.LocalLibraryStore
 import com.smartstorage.cleaner.media.LocalMediaActions
 import com.smartstorage.cleaner.media.LocalRequestLibraryAccess
+import com.smartstorage.cleaner.media.LocalRuleStore
 import com.smartstorage.cleaner.media.MediaActions
+import com.smartstorage.cleaner.media.RuleStore
 import com.smartstorage.cleaner.ui.feature.onboarding.OnboardingScreen
 import com.smartstorage.cleaner.ui.shell.AppShell
 import com.smartstorage.cleaner.ui.theme.SmartStorageTheme
@@ -27,6 +29,7 @@ class MainActivity : ComponentActivity() {
     private val libraryViewModel: LibraryViewModel by viewModels()
     /** Registered at construction so the trash-request launcher exists before the activity starts. */
     private val mediaActions = MediaActions(this)
+    private val ruleStore by lazy { RuleStore(applicationContext) }
     private val prefs by lazy { getSharedPreferences(PREFS, MODE_PRIVATE) }
 
     /** `adb shell am start ... --ez demoData true` shows the mockup data set. */
@@ -49,6 +52,7 @@ class MainActivity : ComponentActivity() {
                     LocalLibraryStore provides store,
                     LocalRequestLibraryAccess provides { permissionLauncher.launch(LibraryStore.permissions) },
                     LocalMediaActions provides mediaActions,
+                    LocalRuleStore provides ruleStore,
                 ) {
                     if (onboarded) AppShell() else OnboardingScreen(onContinue = { permissionLauncher.launch(LibraryStore.permissions) })
                 }

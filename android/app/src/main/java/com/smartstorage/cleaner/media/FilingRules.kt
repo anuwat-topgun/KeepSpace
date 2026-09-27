@@ -8,13 +8,31 @@ import java.time.ZoneOffset
 
 enum class CloudProvider(val title: String) { GoogleDrive("Google Drive"), OneDrive("OneDrive") }
 
-/** What happens to the original after a verified upload (spec §7.8). */
-enum class AfterUploadAction { KeepOnDevice, SuggestDeletion, DeleteAfter30Days }
+/**
+ * What happens to the original after a verified upload (spec §7.8). Nothing is ever deleted without
+ * the system confirmation; "after 30 days" only changes *when* the suggestion appears.
+ */
+enum class AfterUploadAction(val title: String, val detail: String) {
+    SuggestDeletion("Suggest deletion", "Show a smart suggestion once the upload is verified."),
+    KeepOnDevice("Keep on device", "Keep the original file on your device."),
+    DeleteAfter30Days(
+        "Suggest deletion after 30 days",
+        "Suggest removing the original 30 days after a verified upload. You still confirm every deletion.",
+    ),
+}
 
-enum class RuleTrigger { Photo, Screenshot, Receipt, LargeVideo, ScreenRecording, Favorite }
+enum class RuleTrigger(val title: String, val suggestedFolder: String, val suggestedFileName: String) {
+    Photo("Photos", "/Photos/{YEAR}/{MONTH}/", "{ORIGINAL_NAME}"),
+    Screenshot("Screenshots", "/Pictures/Screenshots/{YEAR}/{MONTH}/", "{ORIGINAL_NAME}"),
+    Receipt("Receipts", "/Receipts/{YEAR}/{MONTH}/{MERCHANT}/", "{DATE}_{MERCHANT}_{AMOUNT}"),
+    LargeVideo("Large Videos", "/Videos/Compressed/", "{ORIGINAL_NAME}"),
+    ScreenRecording("Screen Recordings", "/Videos/Screen Recordings/{YEAR}/", "{ORIGINAL_NAME}"),
+    Favorite("Favorites", "/Favorites/{YEAR}/", "{ORIGINAL_NAME}"),
+}
 
 /** "When X, save to provider at folder template, named by file-name template" (spec §7.4). */
 data class StorageRule(
+    val id: String = java.util.UUID.randomUUID().toString(),
     val name: String,
     val trigger: RuleTrigger,
     val provider: CloudProvider,
@@ -26,16 +44,43 @@ data class StorageRule(
     companion object {
         /** The spec's example rules (§7.3), used until the rule builder (v1.2 UI) lets people edit them. */
         val defaults = listOf(
-            StorageRule("Receipts", RuleTrigger.Receipt, CloudProvider.GoogleDrive,
+            StorageRule("default-receipts", "Receipts", RuleTrigger.Receipt, CloudProvider.GoogleDrive,
                 "/Receipts/{YEAR}/{MONTH}/{MERCHANT}/", "{DATE}_{MERCHANT}_{AMOUNT}", AfterUploadAction.SuggestDeletion),
-            StorageRule("Screenshots", RuleTrigger.Screenshot, CloudProvider.OneDrive,
+            StorageRule("default-screenshots", "Screenshots", RuleTrigger.Screenshot, CloudProvider.OneDrive,
                 "/Pictures/Screenshots/{YEAR}/{MONTH}/", "{ORIGINAL_NAME}", AfterUploadAction.KeepOnDevice),
-            StorageRule("Photos", RuleTrigger.Photo, CloudProvider.GoogleDrive,
+            StorageRule("default-photos", "Photos", RuleTrigger.Photo, CloudProvider.GoogleDrive,
                 "/Photos/{YEAR}/{MONTH}/", "{ORIGINAL_NAME}", AfterUploadAction.KeepOnDevice),
-            StorageRule("Large Videos", RuleTrigger.LargeVideo, CloudProvider.OneDrive,
+            StorageRule("default-large-videos", "Large Videos", RuleTrigger.LargeVideo, CloudProvider.OneDrive,
                 "/Videos/Compressed/", "{ORIGINAL_NAME}", AfterUploadAction.KeepOnDevice),
         )
     }
+}
+
+sealed interface RuleProblem {
+    data object EmptyFolder : RuleProblem
+    data object EmptyFileName : RuleProblem
+    data class UnknownVariables(val names: List<String>) : RuleProblem
+}
+
+/** Everything that would stop the rule from resolving cleanly, for the builder's inline hints. */
+val StorageRule.problems: List<RuleProblem>
+    get() = buildList {
+        if (TemplateResolver.sanitize(folderTemplate.replace("/", "")).isEmpty()) add(RuleProblem.EmptyFolder)
+        if (TemplateResolver.sanitize(fileNameTemplate).isEmpty()) add(RuleProblem.EmptyFileName)
+        val unknown = TemplateResolver.unknownVariables(folderTemplate + fileNameTemplate)
+        if (unknown.isNotEmpty()) add(RuleProblem.UnknownVariables(unknown))
+    }
+
+/** Example of where a file would land, using sample values (receipt-style for receipts). */
+fun StorageRule.preview(now: Long = System.currentTimeMillis()): FilingPlan {
+    val receipt = trigger == RuleTrigger.Receipt
+    val values = TemplateValues(
+        date = now, merchant = if (receipt) "Central Department Store" else null, amount = if (receipt) BigDecimal(3450) else null,
+        category = if (receipt) "Shopping" else trigger.title, mediaType = trigger.title,
+        originalName = if (receipt) "IMG_0412.JPG" else "IMG_2048.HEIC",
+    )
+    return FilingPlan(this, TemplateResolver.folder(folderTemplate, values),
+        TemplateResolver.fileName(fileNameTemplate, values, if (receipt) "jpg" else "heic"))
 }
 
 /** Values a template can use (spec §7.6–7.7). Missing values fall back to readable placeholders. */
@@ -53,6 +98,15 @@ data class TemplateValues(
 
 /** Resolves folder and file-name templates into safe cloud paths. Pure, for tests. */
 object TemplateResolver {
+    /** Variables the resolver understands, in the order the builder offers them. */
+    val folderVariables = listOf("{YEAR}", "{MONTH}", "{DAY}", "{DATE}", "{CATEGORY}", "{MERCHANT}", "{EVENT}", "{MEDIA_TYPE}", "{AMOUNT}")
+    val fileNameVariables = listOf("{DATE}", "{MERCHANT}", "{AMOUNT}", "{ORIGINAL_NAME}", "{CATEGORY}", "{INDEX}", "{YEAR}", "{MONTH}", "{DAY}")
+    private val known = (folderVariables + fileNameVariables).toSet()
+
+    /** "{YAER}" and friends. Case-sensitive on purpose: "{year}" isn't substituted, so it must be flagged. */
+    fun unknownVariables(template: String): List<String> =
+        Regex("""\{[^{}]*\}""").findAll(template).map { it.value }.filter { it !in known }.distinct().toList()
+
     /** "/Receipts/{YEAR}/{MONTH}/{MERCHANT}/" → "/Receipts/2026/09/Central/". */
     fun folder(template: String, values: TemplateValues): String {
         val segments = template.split("/").filter { it.isNotEmpty() }.map { sanitize(substitute(it, values)) }.filter { it.isNotEmpty() }

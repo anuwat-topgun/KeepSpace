@@ -166,10 +166,23 @@ Receipts found in screenshots get their details read on the device and a filing 
 - `TemplateResolver` (spec §7.6–7.7): `{YEAR} {MONTH} {DAY} {DATE} {MERCHANT} {AMOUNT} {CATEGORY} {EVENT}
   {MEDIA_TYPE} {ORIGINAL_NAME} {INDEX}`, with characters Drive/OneDrive reject removed and short merchant names
   ("Central Department Store" → `Central`, honorifics dropped).
-- `StorageRule.defaults` are the spec's example rules until the rule builder (v1.2 UI) exists.
+- Receipt Filing uses the first enabled Receipts rule from Storage Rules (below).
 - Extracted details are stored on the device only. **Uploading needs v1.1 cloud accounts**; until then the
   Receipt Filing screen says so and offers to connect.
 - Paper receipts photographed with the camera aren't read yet (screenshots only).
+
+### Storage Rules and Rule Builder (v1.2)
+
+Settings → Storage Rules (mockups 14–15). Rules live on the device (`RuleStore`: UserDefaults / SharedPreferences
+`storageRules.v1`, JSON) and start from the spec's example rules.
+
+- List: active-rule count, per-rule on/off switch, tap to edit, Add Rule. On iOS, long-press a rule to delete it.
+- Builder: When (trigger) and Save to (Google Drive / OneDrive), folder and file-name templates with tappable
+  variable chips, a live preview path, and inline problems (empty folder/name, unknown or mis-cased variables).
+  Save is disabled while any problem remains.
+- Changing the trigger only replaces templates and the name if they were still the old trigger's suggestions.
+- "Suggest deletion after 30 days" requires an explicit acknowledgement, and every deletion is still confirmed.
+- The hero honestly says no cloud account is connected yet; rules start uploading once v1.1 lands.
 
 ### Deleting and compressing (safety model)
 

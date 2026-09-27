@@ -5,5 +5,6 @@ extension View {
     func previewEnvironment() -> some View {
         environment(AppRouter())
             .environment(LibraryStore(demo: true))
+            .environment(RuleStore(defaults: UserDefaults(suiteName: "preview") ?? .standard))
     }
 }

@@ -44,6 +44,7 @@ enum Route: Hashable, Sendable {
     // v1.2
     case storageRules
     case newRule
+    case editRule(id: UUID)
     // v1.3
     case receipts
     case receiptFiling(id: String)
@@ -63,6 +64,7 @@ enum Route: Hashable, Sendable {
         case .manualBackup: "Back Up Now"
         case .storageRules: "Storage Rules"
         case .newRule: "New Rule"
+        case .editRule: "Edit Rule"
         case .receipts, .receiptFiling: "Receipt Filing"
         case .backupVerification: "Backed Up"
         }

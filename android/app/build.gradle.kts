@@ -63,4 +63,5 @@ dependencies {
     implementation(libs.androidx.media3.muxer)
     debugImplementation(libs.androidx.ui.tooling)
     testImplementation(libs.junit)
+    testImplementation(libs.json)
 }

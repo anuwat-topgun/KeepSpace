@@ -564,3 +564,48 @@ private func photo(_ id: String, at seconds: TimeInterval, print: [Float], sharp
         #expect(loaded?.info.kind == .receipts)
     }
 }
+
+// MARK: - Storage rules
+
+@Suite struct StorageRuleTests {
+    @Test func unknownVariablesAreCaseSensitiveAndDeduplicated() {
+        #expect(TemplateResolver.unknownVariables(in: "/Receipts/{YEAR}/{MONTH}/") == [])
+        #expect(TemplateResolver.unknownVariables(in: "/R/{YAER}/{year}/{YAER}/") == ["{YAER}", "{year}"])
+    }
+
+    @Test func problemsAndPreview() {
+        var rule = StorageRule.defaults[0]
+        #expect(rule.problems.isEmpty)
+        #expect(rule.preview().folder.hasPrefix("/Receipts/"))
+        #expect(rule.preview().fileName.hasSuffix("_Central_3450.jpg"))
+        rule.folderTemplate = "///"
+        rule.fileNameTemplate = "  "
+        #expect(rule.problems == [.emptyFolder, .emptyFileName])
+        rule.folderTemplate = "/X/{NOPE}/"
+        rule.fileNameTemplate = "{DATE}"
+        #expect(rule.problems == [.unknownVariables(["{NOPE}"])])
+    }
+
+    @MainActor @Test func storePersistsEditsAndMatchesFirstEnabledRule() {
+        let defaults = UserDefaults(suiteName: "rules-test-\(UUID())")!
+        let store = RuleStore(defaults: defaults)
+        #expect(store.rules == StorageRule.defaults)
+
+        var custom = StorageRule(name: "Receipts to OneDrive", trigger: .receipt, provider: .oneDrive,
+                                 folderTemplate: "/Finance/{YEAR}/", fileNameTemplate: "{DATE}_{AMOUNT}", afterUpload: .keepOnDevice)
+        store.save(custom)
+        #expect(store.rule(for: .receipt)?.provider == .googleDrive) // default still first
+        store.setEnabled(false, for: StorageRule.defaults[0].id)
+        #expect(store.rule(for: .receipt)?.id == custom.id)
+
+        custom.folderTemplate = "/Finance/{YEAR}/{MONTH}/"
+        store.save(custom) // update in place, no duplicate
+        #expect(store.rules.filter { $0.id == custom.id }.count == 1)
+
+        // A fresh store reads the same rules back.
+        let reloaded = RuleStore(defaults: defaults)
+        #expect(reloaded.rules == store.rules)
+        reloaded.delete(custom.id)
+        #expect(RuleStore(defaults: defaults).rules.count == StorageRule.defaults.count)
+    }
+}

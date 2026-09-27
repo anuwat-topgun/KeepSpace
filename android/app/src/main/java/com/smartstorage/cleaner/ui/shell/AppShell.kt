@@ -5,6 +5,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.Box
 import com.smartstorage.cleaner.ui.feature.review.ReviewSource
 import com.smartstorage.cleaner.ui.feature.review.ReviewScreen
+import com.smartstorage.cleaner.ui.feature.rules.RuleEditorScreen
+import com.smartstorage.cleaner.ui.feature.rules.StorageRulesScreen
 import com.smartstorage.cleaner.ui.feature.receipts.ReceiptFilingScreen
 import com.smartstorage.cleaner.ui.feature.receipts.ReceiptsScreen
 import com.smartstorage.cleaner.media.ReviewKind
@@ -125,6 +127,12 @@ private fun AppNavHost(navController: NavHostController) {
                         Screen.CleanupPlan -> CleanupPlanScreen(onOpen = push, onReview = review, onBack = back)
                         Screen.SimilarPhotos -> SimilarPhotosScreen(onOpenGroup = openGroup, onReviewGroup = reviewGroup, onBack = back)
                         Screen.Screenshots -> ScreenshotsScreen(onReview = review, onOpenReceipts = { push(Screen.Receipts) }, onBack = back)
+                        Screen.StorageRules -> StorageRulesScreen(
+                            onAdd = { push(Screen.NewRule) },
+                            onEdit = { navController.navigate(tab.ruleRoute(it)) },
+                            onBack = back,
+                        )
+                        Screen.NewRule -> RuleEditorScreen(ruleId = null, onDone = back)
                         Screen.Receipts -> ReceiptsScreen(onOpen = { navController.navigate(tab.receiptRoute(it)) }, onBack = back)
                         Screen.Videos -> VideosScreen(onReview = review, onBack = back)
                         Screen.Memories -> MemoriesScreen(onOpenSimilar = { push(Screen.SimilarPhotos) }, onBack = back)
@@ -137,6 +145,9 @@ private fun AppNavHost(navController: NavHostController) {
                 }
                 composable(tab.reviewGroupPattern) { entry ->
                     ReviewScreen(ReviewSource.Group(entry.arguments?.getString(AppTab.GROUP_ARG).orEmpty()), onBack = back)
+                }
+                composable(tab.rulePattern) { entry ->
+                    RuleEditorScreen(ruleId = entry.arguments?.getString(AppTab.RULE_ARG), onDone = back)
                 }
                 composable(tab.receiptPattern) { entry ->
                     ReceiptFilingScreen(

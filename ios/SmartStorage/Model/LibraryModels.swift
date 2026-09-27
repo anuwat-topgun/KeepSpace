@@ -134,8 +134,8 @@ struct ReceiptEntry: Identifiable, Hashable, Sendable {
 
     var fileExtension: String { fileName.map { ($0 as NSString).pathExtension }.flatMap { $0.isEmpty ? nil : $0 } ?? "jpg" }
 
-    var filingPlan: FilingPlan? {
-        RuleMatcher.plan(for: details, capturedAt: capturedAt, originalName: fileName, fileExtension: fileExtension)
+    func filingPlan(rules: [StorageRule]) -> FilingPlan? {
+        RuleMatcher.plan(for: details, capturedAt: capturedAt, originalName: fileName, fileExtension: fileExtension, rules: rules)
     }
 
     var amountText: String? {

@@ -1,5 +1,8 @@
 package com.smartstorage.cleaner.ui.feature.receipts
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.collectAsState
+import com.smartstorage.cleaner.media.LocalRuleStore
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -69,6 +72,7 @@ private fun formatDay(ms: Long): String =
 @Composable
 fun ReceiptsScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
     val state = libraryState()
+    val rules by LocalRuleStore.current.rules.collectAsState()
     val receipts = state.content.receipts
     val colors = SmartTheme.colors
     ScreenScaffold(maxWidth = SmartMetrics.wideContentWidth, onBack = onBack) {
@@ -100,7 +104,7 @@ fun ReceiptsScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
                             style = SmartType.metadata,
                             color = colors.textSecondary,
                         )
-                        receipt.filingPlan?.let {
+                        receipt.filingPlan(rules)?.let {
                             Row(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically) {
                                 Icon(Icons.Rounded.Folder, contentDescription = null, tint = colors.textSecondary, modifier = Modifier.size(14.dp))
                                 Text(it.folder, style = TextStyle(fontSize = 12.sp), color = colors.textSecondary, maxLines = 1, overflow = TextOverflow.Ellipsis)
@@ -118,6 +122,7 @@ fun ReceiptsScreen(onOpen: (String) -> Unit, onBack: () -> Unit) {
 @Composable
 fun ReceiptFilingScreen(receiptId: String, onConnectCloud: () -> Unit, onReviewRule: () -> Unit, onBack: () -> Unit) {
     val receipt = libraryState().content.receipts.firstOrNull { it.id == receiptId }
+    val rules by LocalRuleStore.current.rules.collectAsState()
     val colors = SmartTheme.colors
     ScreenScaffold(maxWidth = SmartMetrics.wideContentWidth, onBack = onBack) {
         ScreenHeader("Receipt Filing", "AI extracted details and matched a storage rule.", Modifier.padding(bottom = 8.dp))
@@ -145,7 +150,7 @@ fun ReceiptFilingScreen(receiptId: String, onConnectCloud: () -> Unit, onReviewR
         }
         Notice(
             Icons.Rounded.CloudOff, Tint.Blue, "Connect a cloud account to upload",
-            "The file is prepared and matched with the rule. Uploads go straight from this device to your ${receipt.filingPlan?.rule?.provider?.title ?: "cloud"}.",
+            "The file is prepared and matched with the rule. Uploads go straight from this device to your ${receipt.filingPlan(rules)?.rule?.provider?.title ?: "cloud"}.",
         )
         PrimaryButton("Connect Google Drive", onClick = onConnectCloud, modifier = Modifier.fillMaxWidth())
         SecondaryButton("Review Rule", onClick = onReviewRule, modifier = Modifier.fillMaxWidth())
@@ -192,6 +197,7 @@ private fun Field(label: String, value: String?, icon: ImageVector, tint: Tint) 
 @Composable
 private fun RuleCard(receipt: ReceiptEntry) {
     val colors = SmartTheme.colors
+    val rules by LocalRuleStore.current.rules.collectAsState()
     SmartCard(style = CardStyle.Info) {
         Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
             Row(horizontalArrangement = Arrangement.spacedBy(14.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -201,7 +207,7 @@ private fun RuleCard(receipt: ReceiptEntry) {
                     Text("This receipt will be saved to:", style = SmartType.metadata, color = colors.textSecondary)
                 }
             }
-            val plan = receipt.filingPlan
+            val plan = receipt.filingPlan(rules)
             if (plan == null) {
                 Text("No enabled rule files receipts yet.", style = SmartType.metadata, color = colors.textSecondary)
             } else {

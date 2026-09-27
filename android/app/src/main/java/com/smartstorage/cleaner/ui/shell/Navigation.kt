@@ -26,6 +26,8 @@ enum class AppTab(val route: String, val title: String, val icon: ImageVector) {
     val reviewGroupPattern: String get() = "$route/reviewgroup/{$GROUP_ARG}"
     fun reviewGroupRoute(groupId: String): String = "$route/reviewgroup/${android.net.Uri.encode(groupId)}"
     val receiptPattern: String get() = "$route/receipt/{$RECEIPT_ARG}"
+    val rulePattern: String get() = "$route/rule/{$RULE_ARG}"
+    fun ruleRoute(id: String): String = "$route/rule/${android.net.Uri.encode(id)}"
     fun receiptRoute(id: String): String = "$route/receipt/${android.net.Uri.encode(id)}"
 
     companion object {
@@ -33,6 +35,7 @@ enum class AppTab(val route: String, val title: String, val icon: ImageVector) {
         const val GROUP_ARG = "groupId"
         const val REVIEW_ARG = "kind"
         const val RECEIPT_ARG = "receiptId"
+        const val RULE_ARG = "ruleId"
     }
 }
 

@@ -6,13 +6,77 @@ enum CloudProvider: String, CaseIterable, Hashable, Sendable, Codable {
     var title: String { self == .googleDrive ? "Google Drive" : "OneDrive" }
 }
 
-/// What happens to the original after a verified upload (spec §7.8).
-enum AfterUploadAction: String, Hashable, Sendable, Codable {
-    case keepOnDevice, suggestDeletion, deleteAfter30Days
+/// What happens to the original after a verified upload (spec §7.8). Nothing is ever deleted
+/// without the system confirmation; "after 30 days" only changes *when* the suggestion appears.
+enum AfterUploadAction: String, CaseIterable, Hashable, Sendable, Codable {
+    case suggestDeletion, keepOnDevice, deleteAfter30Days
+
+    var title: String {
+        switch self {
+        case .suggestDeletion: "Suggest deletion"
+        case .keepOnDevice: "Keep on device"
+        case .deleteAfter30Days: "Suggest deletion after 30 days"
+        }
+    }
+
+    var detail: String {
+        switch self {
+        case .suggestDeletion: "Show a smart suggestion once the upload is verified."
+        case .keepOnDevice: "Keep the original file on your device."
+        case .deleteAfter30Days: "Suggest removing the original 30 days after a verified upload. You still confirm every deletion."
+        }
+    }
 }
 
 enum RuleTrigger: String, CaseIterable, Hashable, Sendable, Codable {
     case photo, screenshot, receipt, largeVideo, screenRecording, favorite
+
+    var title: String {
+        switch self {
+        case .photo: "Photos"
+        case .screenshot: "Screenshots"
+        case .receipt: "Receipts"
+        case .largeVideo: "Large Videos"
+        case .screenRecording: "Screen Recordings"
+        case .favorite: "Favorites"
+        }
+    }
+
+    var systemImage: String {
+        switch self {
+        case .photo: "photo.on.rectangle.angled"
+        case .screenshot: "viewfinder"
+        case .receipt: "doc.text.fill"
+        case .largeVideo: "video.fill"
+        case .screenRecording: "record.circle"
+        case .favorite: "heart.fill"
+        }
+    }
+
+    var tint: Tint {
+        switch self {
+        case .photo: .coral
+        case .screenshot: .blue
+        case .receipt: .mint
+        case .largeVideo: .purple
+        case .screenRecording: .coral
+        case .favorite: .coral
+        }
+    }
+
+    /// Sensible starting templates when this trigger is picked in the builder.
+    var suggestedFolder: String {
+        switch self {
+        case .photo: "/Photos/{YEAR}/{MONTH}/"
+        case .screenshot: "/Pictures/Screenshots/{YEAR}/{MONTH}/"
+        case .receipt: "/Receipts/{YEAR}/{MONTH}/{MERCHANT}/"
+        case .largeVideo: "/Videos/Compressed/"
+        case .screenRecording: "/Videos/Screen Recordings/{YEAR}/"
+        case .favorite: "/Favorites/{YEAR}/"
+        }
+    }
+
+    var suggestedFileName: String { self == .receipt ? "{DATE}_{MERCHANT}_{AMOUNT}" : "{ORIGINAL_NAME}" }
 }
 
 /// "When X, save to provider at folder template, named by file-name template" (spec §7.4).
@@ -41,6 +105,31 @@ struct StorageRule: Identifiable, Hashable, Sendable, Codable {
     ]
 }
 
+extension StorageRule {
+    enum Problem: Equatable, Sendable {
+        case emptyFolder, emptyFileName, unknownVariables([String])
+    }
+
+    /// Everything that would stop the rule from resolving cleanly, for the builder's inline hints.
+    var problems: [Problem] {
+        var found: [Problem] = []
+        if TemplateResolver.sanitize(folderTemplate.replacingOccurrences(of: "/", with: "")).isEmpty { found.append(.emptyFolder) }
+        if TemplateResolver.sanitize(fileNameTemplate).isEmpty { found.append(.emptyFileName) }
+        let unknown = TemplateResolver.unknownVariables(in: folderTemplate + fileNameTemplate)
+        if !unknown.isEmpty { found.append(.unknownVariables(unknown)) }
+        return found
+    }
+
+    /// Example of where a file would land, using sample values (receipt-style for receipts).
+    func preview(now: Date = .now) -> FilingPlan {
+        let values = TemplateValues(date: now, merchant: trigger == .receipt ? "Central Department Store" : nil,
+                                    amount: trigger == .receipt ? 3450 : nil, category: trigger == .receipt ? "Shopping" : trigger.title,
+                                    mediaType: trigger.title, originalName: trigger == .receipt ? "IMG_0412.JPG" : "IMG_2048.HEIC")
+        return FilingPlan(rule: self, folder: TemplateResolver.folder(folderTemplate, values),
+                          fileName: TemplateResolver.fileName(fileNameTemplate, values, extension: trigger == .receipt ? "jpg" : "heic"))
+    }
+}
+
 /// Values a template can use (spec §7.6–7.7). Missing values fall back to readable placeholders.
 struct TemplateValues: Sendable {
     var date: Date
@@ -55,6 +144,21 @@ struct TemplateValues: Sendable {
 
 /// Resolves folder and file-name templates into safe cloud paths. Pure, for tests.
 enum TemplateResolver {
+    /// Variables the resolver understands, in the order the builder offers them.
+    static let folderVariables = ["{YEAR}", "{MONTH}", "{DAY}", "{DATE}", "{CATEGORY}", "{MERCHANT}", "{EVENT}", "{MEDIA_TYPE}", "{AMOUNT}"]
+    static let fileNameVariables = ["{DATE}", "{MERCHANT}", "{AMOUNT}", "{ORIGINAL_NAME}", "{CATEGORY}", "{INDEX}", "{YEAR}", "{MONTH}", "{DAY}"]
+    private static var known: Set<String> { Set(folderVariables + fileNameVariables) }
+
+    /// "{YAER}" and friends: tokens in braces the resolver would leave as literal text.
+    static func unknownVariables(in template: String) -> [String] {
+        let tokens = (try? NSRegularExpression(pattern: #"\{[^{}]*\}"#))?
+            .matches(in: template, range: NSRange(template.startIndex..., in: template))
+            .compactMap { Range($0.range, in: template).map { String(template[$0]) } } ?? []
+        var seen = Set<String>()
+        // Case-sensitive on purpose: "{year}" isn't substituted, so it must be flagged.
+        return tokens.filter { !known.contains($0) && seen.insert($0).inserted }
+    }
+
     /// Resolves e.g. "/Receipts/{YEAR}/{MONTH}/{MERCHANT}/" → "/Receipts/2026/09/Central/".
     static func folder(_ template: String, _ values: TemplateValues, calendar: Calendar = .utcGregorian) -> String {
         let segments = template.split(separator: "/", omittingEmptySubsequences: true).map {

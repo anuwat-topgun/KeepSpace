@@ -114,7 +114,8 @@ data class ReceiptEntry(
 ) {
     val fileExtension: String get() = fileName?.substringAfterLast('.', "")?.ifEmpty { null } ?: "jpg"
 
-    val filingPlan: FilingPlan? get() = RuleMatcher.plan(details, capturedAt, fileName, fileExtension)
+    fun filingPlan(rules: List<com.smartstorage.cleaner.media.StorageRule>): FilingPlan? =
+        RuleMatcher.plan(details, capturedAt, fileName, fileExtension, rules)
 
     val amountText: String?
         get() = details.amount?.let { amount ->

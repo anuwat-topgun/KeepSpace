@@ -9,6 +9,7 @@ struct RootView: View {
     @State private var router = AppRouter()
     /// `-demoData YES` shows the mockup data set (screenshots, demos, simulators without photos).
     @State private var library = LibraryStore(demo: UserDefaults.standard.bool(forKey: "demoData"))
+    @State private var rules = RuleStore()
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
 
     var body: some View {
@@ -26,6 +27,7 @@ struct RootView: View {
         }
         .environment(router)
         .environment(library)
+        .environment(rules)
         .tint(Palette.accent)
         #if DEBUG
         .task { router.applyDebugLaunchArguments() }
@@ -136,6 +138,7 @@ struct TabStack: View {
 struct RouteDestination: View {
     let route: Route
     @Environment(LibraryStore.self) private var library
+    @Environment(RuleStore.self) private var rules
 
     var body: some View {
         switch route {
@@ -152,6 +155,9 @@ struct RouteDestination: View {
         case .memories: MemoriesView()
         case .review(let kind): ReviewView(source: .kind(kind))
         case .receipts: ReceiptsView()
+        case .storageRules: StorageRulesView()
+        case .newRule: RuleEditorView(ruleID: nil, existing: nil)
+        case .editRule(let id): RuleEditorView(ruleID: id, existing: rules.rules.first { $0.id == id })
         case .receiptFiling(let id): ReceiptFilingView(receiptID: id)
         case .reviewGroup(let id): ReviewView(source: .group(id))
         default: PlaceholderScreen(title: route.title)

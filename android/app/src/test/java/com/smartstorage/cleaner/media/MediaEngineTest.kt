@@ -429,4 +429,39 @@ class FilingTemplateTest {
         val entity = ScreenshotEntity.from(CachedScreenshot("r", 1, SCREENSHOT_READER_VERSION, info))
         assertEquals(info.receipt, entity.toCached().info.receipt)
     }
+
+    // Storage rules
+
+    @Test fun unknownVariablesAreCaseSensitive() {
+        assertEquals(listOf("{year}", "{YAER}"), TemplateResolver.unknownVariables("/R/{year}/{YAER}/{MONTH}/{year}"))
+        assertTrue(TemplateResolver.unknownVariables(RuleTrigger.Receipt.suggestedFolder).isEmpty())
+    }
+
+    @Test fun ruleProblemsFlagEmptyAndUnknown() {
+        val base = StorageRule.defaults.first()
+        assertTrue(base.problems.isEmpty())
+        val bad = base.copy(folderTemplate = "///", fileNameTemplate = " ", afterUpload = AfterUploadAction.KeepOnDevice)
+        assertEquals(listOf(RuleProblem.EmptyFolder, RuleProblem.EmptyFileName), bad.problems)
+        assertEquals(listOf(RuleProblem.UnknownVariables(listOf("{FOO}"))), base.copy(fileNameTemplate = "{FOO}").problems)
+    }
+
+    @Test fun receiptRulePreviewUsesSampleReceipt() {
+        val millis = java.time.LocalDate.of(2026, 9, 27).atStartOfDay(java.time.ZoneOffset.UTC).toInstant().toEpochMilli()
+        val plan = StorageRule.defaults.first().preview(millis)
+        assertEquals("/Receipts/2026/09/Central/2026-09-27_Central_3450.jpg", plan.fullPath)
+    }
+
+    @Test fun ruleCodecRoundTrips() {
+        val rules = StorageRule.defaults + StorageRule(name = "Old recordings", trigger = RuleTrigger.ScreenRecording,
+            provider = CloudProvider.OneDrive, folderTemplate = "/Rec/{YEAR}/", fileNameTemplate = "{ORIGINAL_NAME}",
+            afterUpload = AfterUploadAction.DeleteAfter30Days, isEnabled = false)
+        assertEquals(rules, RuleCodec.decode(RuleCodec.encode(rules)))
+        assertNull(RuleCodec.decode("not json"))
+    }
+
+    @Test fun matcherSkipsDisabledReceiptRule() {
+        val receipt = ReceiptExtractor.extract("Central\nTotal 100.00")
+        val disabled = StorageRule.defaults.map { if (it.trigger == RuleTrigger.Receipt) it.copy(isEnabled = false) else it }
+        assertNull(RuleMatcher.plan(receipt, 0, "a.jpg", "jpg", disabled))
+    }
 }

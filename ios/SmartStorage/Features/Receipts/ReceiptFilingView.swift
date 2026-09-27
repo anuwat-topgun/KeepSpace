@@ -3,6 +3,7 @@ import SwiftUI
 /// Receipts found in screenshots, with what was read from each and where it would be filed.
 struct ReceiptsView: View {
     @Environment(LibraryStore.self) private var library
+    @Environment(RuleStore.self) private var rules
     @Environment(AppRouter.self) private var router
 
     var body: some View {
@@ -32,6 +33,7 @@ struct ReceiptsView: View {
 
 private struct ReceiptRow: View {
     let receipt: ReceiptEntry
+    @Environment(RuleStore.self) private var rules
 
     var body: some View {
         Card(padding: 12) {
@@ -47,7 +49,7 @@ private struct ReceiptRow: View {
                         .compactMap { $0 }.joined(separator: " · "))
                         .font(Typography.metadata)
                         .foregroundStyle(Palette.textSecondary)
-                    if let plan = receipt.filingPlan {
+                    if let plan = receipt.filingPlan(rules: rules.rules) {
                         Label(plan.folder, systemImage: "folder")
                             .font(.caption)
                             .foregroundStyle(Palette.textSecondary)
@@ -84,6 +86,7 @@ struct ReceiptFilingView: View {
     let receiptID: String
 
     @Environment(LibraryStore.self) private var library
+    @Environment(RuleStore.self) private var rules
     @Environment(AppRouter.self) private var router
 
     var body: some View {
@@ -157,7 +160,7 @@ struct ReceiptFilingView: View {
                         Text("This receipt will be saved to:").font(Typography.metadata).foregroundStyle(Palette.textSecondary)
                     }
                 }
-                if let plan = receipt.filingPlan {
+                if let plan = receipt.filingPlan(rules: rules.rules) {
                     ruleRow("Destination", plan.rule.provider.title, icon: "externaldrive.fill.badge.icloud")
                     Divider()
                     ruleRow("Target Folder", plan.folder, icon: "folder.fill")
@@ -189,7 +192,7 @@ struct ReceiptFilingView: View {
                    detail: "Some details couldn't be read. Missing values use placeholders in the file name.")
         }
         notice(icon: "icloud.slash", tint: .blue, title: "Connect a cloud account to upload",
-               detail: "The file is prepared and matched with the rule. Uploads go straight from this device to your \(receipt.filingPlan?.rule.provider.title ?? "cloud").")
+               detail: "The file is prepared and matched with the rule. Uploads go straight from this device to your \(receipt.filingPlan(rules: rules.rules)?.rule.provider.title ?? "cloud").")
     }
 
     private func notice(icon: String, tint: Tint, title: String, detail: String) -> some View {
