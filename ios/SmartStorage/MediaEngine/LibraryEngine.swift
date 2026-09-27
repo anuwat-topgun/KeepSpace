@@ -191,7 +191,9 @@ actor LibraryEngine {
             pixelHeight: asset.pixelHeight,
             duration: asset.duration,
             isFavorite: asset.isFavorite,
-            fileName: PHAssetResource.assetResources(for: asset).first?.originalFilename
+            fileName: PHAssetResource.assetResources(for: asset).first?.originalFilename,
+            latitude: asset.location?.coordinate.latitude,
+            longitude: asset.location?.coordinate.longitude
         )
     }
 

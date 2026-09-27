@@ -36,6 +36,7 @@ import com.smartstorage.cleaner.ui.feature.insights.InsightsScreen
 import com.smartstorage.cleaner.ui.feature.library.BestShotScreen
 import com.smartstorage.cleaner.ui.feature.library.LibraryScreen
 import com.smartstorage.cleaner.ui.feature.library.MemoriesScreen
+import com.smartstorage.cleaner.ui.feature.library.MemoryDetailScreen
 import com.smartstorage.cleaner.ui.feature.library.ScreenshotsScreen
 import com.smartstorage.cleaner.ui.feature.library.SimilarPhotosScreen
 import com.smartstorage.cleaner.ui.feature.library.VideosScreen
@@ -135,7 +136,11 @@ private fun AppNavHost(navController: NavHostController) {
                         Screen.NewRule -> RuleEditorScreen(ruleId = null, onDone = back)
                         Screen.Receipts -> ReceiptsScreen(onOpen = { navController.navigate(tab.receiptRoute(it)) }, onBack = back)
                         Screen.Videos -> VideosScreen(onReview = review, onBack = back)
-                        Screen.Memories -> MemoriesScreen(onOpenSimilar = { push(Screen.SimilarPhotos) }, onBack = back)
+                        Screen.Memories -> MemoriesScreen(
+                            onOpen = { navController.navigate(tab.memoryRoute(it)) },
+                            onOpenSimilar = { push(Screen.SimilarPhotos) },
+                            onBack = back,
+                        )
                         else -> PlaceholderScreen(title = screen.title, onBack = back)
                     }
                 }
@@ -148,6 +153,14 @@ private fun AppNavHost(navController: NavHostController) {
                 }
                 composable(tab.rulePattern) { entry ->
                     RuleEditorScreen(ruleId = entry.arguments?.getString(AppTab.RULE_ARG), onDone = back)
+                }
+                composable(tab.memoryPattern) { entry ->
+                    MemoryDetailScreen(
+                        memoryId = entry.arguments?.getString(AppTab.MEMORY_ARG).orEmpty(),
+                        onOpenSimilar = { push(Screen.SimilarPhotos) },
+                        onReviewBlurry = { review(ReviewKind.Blurry) },
+                        onBack = back,
+                    )
                 }
                 composable(tab.receiptPattern) { entry ->
                     ReceiptFilingScreen(

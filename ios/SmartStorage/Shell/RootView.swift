@@ -153,6 +153,7 @@ struct RouteDestination: View {
         case .screenshots: ScreenshotsView()
         case .videos: VideosView()
         case .memories: MemoriesView()
+        case .memory(let id): MemoryDetailView(memoryID: id)
         case .review(let kind): ReviewView(source: .kind(kind))
         case .receipts: ReceiptsView()
         case .storageRules: StorageRulesView()

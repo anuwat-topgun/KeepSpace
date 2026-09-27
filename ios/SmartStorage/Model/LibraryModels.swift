@@ -228,17 +228,48 @@ struct StorageForecast: Sendable {
 
 // MARK: - Memories (10)
 
-struct MemoryEvent: Identifiable, Sendable {
+struct MemoryEvent: Identifiable, Hashable, Sendable {
+    enum Kind: Sendable { case trip, event }
+
+    let id: String
     let title: String
     let photoCount: Int
     let videoCount: Int
+    /// Placeholder art for demo memories (and while a real cover loads).
     let style: ThumbnailStyle
+    var kind: Kind = .event
+    var start: Date? = nil
+    var end: Date? = nil
+    var distanceKm: Int? = nil
+    /// The best photo of the memory; nil for demo memories.
+    var coverAssetID: String? = nil
+    /// Every photo and video, in capture order.
+    var assetIDs: [String] = []
+    var bytes: Int64 = 0
+    /// Cleanup candidates inside the memory: extra shots from similar groups, and blurry photos.
+    var similarCount = 0
+    var blurryCount = 0
 
-    var id: String { title }
+    init(id: String? = nil, title: String, photoCount: Int, videoCount: Int, style: ThumbnailStyle) {
+        self.id = id ?? title
+        self.title = title
+        self.photoCount = photoCount
+        self.videoCount = videoCount
+        self.style = style
+    }
 
     var summary: String {
-        let photos = "\(photoCount.formatted()) photos"
-        return videoCount > 0 ? "\(photos) · \(videoCount.formatted()) videos" : photos
+        let photos = "\(photoCount.formatted()) \(photoCount == 1 ? "photo" : "photos")"
+        return videoCount > 0 ? "\(photos) · \(videoCount.formatted()) \(videoCount == 1 ? "video" : "videos")" : photos
+    }
+
+    /// "12–15 Sep 2026 · 540 km from home".
+    var detail: String? {
+        guard let start, let end else { return nil }
+        let dates = Calendar.current.isDate(start, inSameDayAs: end)
+            ? start.formatted(date: .abbreviated, time: .omitted)
+            : (start..<max(end, start.addingTimeInterval(1))).formatted(.interval.day().month(.abbreviated).year())
+        return [dates, distanceKm.map { "\($0.formatted()) km from home" }].compactMap { $0 }.joined(separator: " · ")
     }
 }
 
@@ -318,12 +349,20 @@ extension MockData {
         )
     }()
 
-    static let memories: [MemoryEvent] = [
-        MemoryEvent(title: "Tokyo Trip", photoCount: 1_284, videoCount: 94, style: .tokyo),
-        MemoryEvent(title: "Birthday Party", photoCount: 342, videoCount: 0, style: .cake),
-        MemoryEvent(title: "Concert Night", photoCount: 184, videoCount: 0, style: .concert),
-    ]
-
+    static let memories: [MemoryEvent] = {
+        func day(_ month: Int, _ day: Int) -> Date { Calendar.utcGregorian.date(from: DateComponents(year: 2026, month: month, day: day, hour: 12))! }
+        var tokyo = MemoryEvent(title: "Tokyo Trip", photoCount: 1_284, videoCount: 94, style: .tokyo)
+        tokyo.kind = .trip
+        (tokyo.start, tokyo.end, tokyo.distanceKm) = (day(4, 3), day(4, 9), 4_600)
+        (tokyo.bytes, tokyo.similarCount, tokyo.blurryCount) = (9_800_000_000, 280, 45)
+        var birthday = MemoryEvent(title: "Birthday Party", photoCount: 342, videoCount: 0, style: .cake)
+        (birthday.start, birthday.end) = (day(6, 14), day(6, 14))
+        (birthday.bytes, birthday.similarCount, birthday.blurryCount) = (1_900_000_000, 70, 14)
+        var concert = MemoryEvent(title: "Concert Night", photoCount: 184, videoCount: 0, style: .concert)
+        (concert.start, concert.end) = (day(8, 22), day(8, 22))
+        (concert.bytes, concert.similarCount, concert.blurryCount) = (820_000_000, 32, 8)
+        return [tokyo, birthday, concert]
+    }()
     static let memoriesCleanup = (similarPhotos: 382, blurryShots: 67)
 
     static let receipts: [ReceiptEntry] = {

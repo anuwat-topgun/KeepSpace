@@ -694,3 +694,91 @@ struct MerchantGuardTests {
         #expect(ReceiptExtractor.merchant(in: ["7-Eleven", "Central Rama 9"]) == "7-Eleven")
     }
 }
+
+// MARK: - Memories
+
+struct EventGrouperTests {
+    private var calendar: Calendar {
+        var c = Calendar(identifier: .gregorian)
+        c.timeZone = TimeZone(identifier: "Asia/Bangkok")!
+        return c
+    }
+    private let bangkok = (13.75, 100.5)
+    private let chiangMai = (18.79, 98.98) // ~583 km away
+
+    private func date(_ month: Int, _ day: Int, _ hour: Int, _ minute: Int = 0) -> Date {
+        calendar.date(from: DateComponents(year: 2026, month: month, day: day, hour: hour, minute: minute))!
+    }
+
+    /// `count` shots a few minutes apart starting at `start`.
+    private func burst(_ prefix: String, _ count: Int, from start: Date, at place: (Double, Double)?, label: String? = nil,
+                       every minutes: Double = 3) -> [EventCandidate] {
+        (0..<count).map { i in
+            EventCandidate(id: "\(prefix)\(i)", date: start.addingTimeInterval(Double(i) * minutes * 60),
+                           latitude: place?.0, longitude: place?.1, sceneLabel: label)
+        }
+    }
+
+    /// Everyday shots at home spread over the month, so a home can be inferred.
+    private var dailyLife: [EventCandidate] {
+        // Not on 12–14 Sep: that's the trip.
+        (Array(1...11) + Array(15...25)).map { day in
+            EventCandidate(id: "home\(day)", date: date(9, day, 18), latitude: bangkok.0, longitude: bangkok.1)
+        }
+    }
+
+    @Test func daysAwayBecomeOneTrip() throws {
+        let trip = burst("a", 15, from: date(9, 12, 9), at: chiangMai) + burst("b", 15, from: date(9, 13, 10), at: chiangMai)
+            + burst("c", 5, from: date(9, 14, 11), at: chiangMai, label: nil)
+        let events = EventGrouper().events(from: dailyLife + trip, calendar: calendar)
+        #expect(events.count == 1)
+        let event = try #require(events.first)
+        #expect(event.kind == .trip)
+        #expect(event.photoCount == 35)
+        #expect(event.title == "Weekend Trip") // 12–14 Sep 2026 is Sat–Mon
+        #expect(event.distanceKm == 580)
+    }
+
+    @Test func themedBurstAtHomeIsAnEvent() {
+        let party = burst("p", 14, from: date(9, 27, 19), at: bangkok, label: "birthday_cake")
+            + burst("q", 6, from: date(9, 27, 20), at: bangkok)
+        let events = EventGrouper().events(from: dailyLife + party, calendar: calendar)
+        #expect(events.map(\.title) == ["Birthday Party"])
+        #expect(events.first?.kind == .event)
+    }
+
+    @Test func ordinaryDaysAreNotEvents() {
+        // A few shots every day and a small unthemed burst: nothing to call a memory.
+        let small = burst("s", 12, from: date(9, 21, 12), at: bangkok)
+        #expect(EventGrouper().events(from: dailyLife + small, calendar: calendar).isEmpty)
+        // A long unthemed session is, named by its date.
+        let busy = burst("b", 40, from: date(9, 26, 10), at: bangkok, every: 5)
+        #expect(EventGrouper().events(from: busy, calendar: calendar).first?.kind == .event)
+    }
+
+    @Test func noLocationsMeansNoTrips() {
+        let away = burst("x", 30, from: date(9, 12, 9), at: nil)
+        let events = EventGrouper().events(from: away, calendar: calendar)
+        #expect(events.map(\.kind) == [.event])
+    }
+
+    @Test func memoriesProtectBlurryPhotos() {
+        let items = (0..<20).map { i in
+            MediaItem(id: "m\(i)", kind: .photo, creationDate: date(9, 27, 19).addingTimeInterval(Double(i) * 120), bytes: 1_000_000,
+                      pixelWidth: 4032, pixelHeight: 3024, duration: 0, isFavorite: false)
+        }
+        // Distinct prints so nothing groups as similar; one blurry shot.
+        let analyzed = items.enumerated().map { i, item in
+            AnalyzedPhoto(item: item, features: ImageFeatures(featurePrint: [Float(i * 10), 0], sharpness: i == 3 ? 10 : 500,
+                                                              exposure: 0.5, faceQuality: nil, faceCount: 0, sceneLabel: "birthday_cake"))
+        }
+        var builder = LibraryReportBuilder()
+        builder.calendar = calendar
+        let content = builder.build(items: items, analyzed: analyzed, deviceTotalBytes: 100, deviceFreeBytes: 50)
+        #expect(content.memories.map(\.title) == ["Birthday Party"])
+        #expect(content.memories.first?.blurryCount == 1)
+        #expect(content.memoriesCleanup.blurryShots == 1)
+        // Listed for review, but not preselected.
+        #expect(content.reviewSets[.blurry]?.map(\.preselected) == [false])
+    }
+}

@@ -320,21 +320,25 @@ class LibraryStore(context: Context, demo: Boolean) {
         /** Permissions to request for library access on this OS version. */
         val permissions: Array<String>
             get() = when {
+                // ACCESS_MEDIA_LOCATION (10+) lets trips be told from home; photos work without it.
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE -> arrayOf(
                     Manifest.permission.READ_MEDIA_IMAGES,
                     Manifest.permission.READ_MEDIA_VIDEO,
                     Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED,
+                    Manifest.permission.ACCESS_MEDIA_LOCATION,
                 )
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> arrayOf(
                     Manifest.permission.READ_MEDIA_IMAGES,
                     Manifest.permission.READ_MEDIA_VIDEO,
+                    Manifest.permission.ACCESS_MEDIA_LOCATION,
                 )
                 // Android 8–10: deleting other apps' media needs write access too.
                 Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q -> arrayOf(
                     Manifest.permission.READ_EXTERNAL_STORAGE,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.ACCESS_MEDIA_LOCATION, // 10 only; ignored on 8–9
                 )
-                else -> arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+                else -> arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.ACCESS_MEDIA_LOCATION)
             }
     }
 }

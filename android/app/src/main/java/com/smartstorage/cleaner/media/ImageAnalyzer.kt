@@ -35,7 +35,10 @@ class ImageAnalyzer(private val resolver: ContentResolver) : Closeable {
             val measured = lumaOf(Bitmap.createScaledBitmap(bitmap, side, side, true))
             val grid = lumaOf(Bitmap.createScaledBitmap(bitmap, 9, 8, true))
             val (faceQuality, faceCount) = faces(bitmap)
+            val location = location(uri)
             ImageFeatures(
+                latitude = location?.get(0),
+                longitude = location?.get(1),
                 // Only photos without people can be receipts, so skip the text pass for the rest.
                 textLines = if (faceCount == 0) textLines(bitmap) else 0,
                 dHash = ImageMetrics.dHash(grid),
@@ -59,6 +62,23 @@ class ImageAnalyzer(private val resolver: ContentResolver) : Closeable {
         quality to faces.size
     } catch (_: Exception) {
         null to 0
+    }
+
+    /**
+     * EXIF GPS as [lat, lon]. Android redacts it unless the original is requested, which needs
+     * ACCESS_MEDIA_LOCATION; without that permission photos simply have no location.
+     */
+    private fun location(uri: Uri): DoubleArray? = try {
+        val source = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) android.provider.MediaStore.setRequireOriginal(uri) else uri
+        resolver.openInputStream(source)?.use { stream ->
+            // The framework ExifInterface reports floats (~1 m precision: plenty for trips).
+            val latLong = FloatArray(2)
+            if (android.media.ExifInterface(stream).getLatLong(latLong) && !(latLong[0] == 0f && latLong[1] == 0f)) {
+                doubleArrayOf(latLong[0].toDouble(), latLong[1].toDouble())
+            } else null
+        }
+    } catch (_: Exception) {
+        null // SecurityException without the permission, or unreadable EXIF
     }
 
     /** How many lines of text the thumbnail holds; the text itself is discarded. */

@@ -16,7 +16,7 @@ import androidx.room.Upsert
  * Bump whenever [ImageAnalyzer] output changes meaning (new metric, new model), so stale cached
  * results are re-analyzed instead of silently mixed with new ones.
  */
-const val ANALYZER_VERSION = 2 // 2: text lines (paper receipts)
+const val ANALYZER_VERSION = 3 // 2: text lines (paper receipts). 3: photo location (trips).
 
 /**
  * Same idea for screenshot classification (OCR rules, keywords). Separate so tuning the classifier
@@ -92,12 +92,15 @@ data class AnalysisEntity(
     val faceCount: Int,
     val textLines: Int = 0,
     val documentScore: Double = 0.0,
+    val latitude: Double? = null,
+    val longitude: Double? = null,
 ) {
-    fun toCached() = CachedAnalysis(assetId, modifiedAt, version, ImageFeatures(dHash, sharpness, exposure, faceQuality, faceCount, textLines, documentScore))
+    fun toCached() = CachedAnalysis(assetId, modifiedAt, version,
+        ImageFeatures(dHash, sharpness, exposure, faceQuality, faceCount, textLines, documentScore, latitude, longitude))
 
     companion object {
         fun from(entry: CachedAnalysis) = with(entry.features) {
-            AnalysisEntity(entry.assetId, entry.modifiedAt, entry.version, dHash, sharpness, exposure, faceQuality, faceCount, textLines, documentScore)
+            AnalysisEntity(entry.assetId, entry.modifiedAt, entry.version, dHash, sharpness, exposure, faceQuality, faceCount, textLines, documentScore, latitude, longitude)
         }
     }
 }
@@ -162,7 +165,7 @@ interface AnalysisDao {
     suspend fun count(): Int
 }
 
-@Database(entities = [AnalysisEntity::class, ScreenshotEntity::class], version = 4, exportSchema = false)
+@Database(entities = [AnalysisEntity::class, ScreenshotEntity::class], version = 5, exportSchema = false)
 abstract class AnalysisDatabase : RoomDatabase() {
     abstract fun analysis(): AnalysisDao
     abstract fun screenshots(): ScreenshotDao

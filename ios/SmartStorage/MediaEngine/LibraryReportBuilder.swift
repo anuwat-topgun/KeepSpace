@@ -12,6 +12,8 @@ struct LibraryReportBuilder: Sendable {
     var maxVideosShown = 50
     var grouper = SimilarityGrouper()
     var scorer = BestShotScorer()
+    var eventGrouper = EventGrouper()
+    var calendar = Calendar.current
 
     func build(
         items: [MediaItem],
@@ -49,6 +51,10 @@ struct LibraryReportBuilder: Sendable {
             $0.features.sharpness < blurThreshold && !inGroup.contains($0.id) && !$0.item.isFavorite && !paperIDs.contains($0.id)
         }
         let blurryBytes = blurry.reduce(0) { $0 + $1.item.bytes }
+
+        // Trips and events. Their photos are protected: blurry ones there are only listed, never preselected.
+        let memories = self.memories(items: items, analyzed: analyzed, groups: groups, blurryIDs: Set(blurry.map(\.id)))
+        let protectedIDs = Set(memories.flatMap(\.assetIDs))
 
         // Screenshots: categorised by content; unread ones count as "Other" until the OCR pass reaches them.
         func info(_ item: MediaItem) -> ScreenshotInfo { screenshotInfo[item.id] ?? ScreenshotInfo(kind: .other) }
@@ -116,8 +122,10 @@ struct LibraryReportBuilder: Sendable {
                 .prefix(maxVideosShown)
                 .map(videoItem),
             forecast: forecast(items: items, total: deviceTotalBytes, free: deviceFreeBytes, potential: potential, now: now),
-            memories: [],
-            memoriesCleanup: (similarCount, blurry.count),
+            memories: memories,
+            memoriesCleanup: memories.isEmpty
+                ? (similarCount, blurry.count)
+                : (memories.reduce(0) { $0 + $1.similarCount }, memories.reduce(0) { $0 + $1.blurryCount }),
             cleanupCandidates: candidates,
             reviewSets: [
                 // Non-keepers from every similar group, biggest groups first.
@@ -126,7 +134,7 @@ struct LibraryReportBuilder: Sendable {
                         index == group.recommendedIndex ? nil : byID[id].map { Self.review($0, preselected: true) }
                     }
                 },
-                .blurry: blurry.map { Self.review($0.item, preselected: true) },
+                .blurry: blurry.map { Self.review($0.item, preselected: !protectedIDs.contains($0.id)) },
                 .oldScreenshots: staleScreenshots.map { Self.review($0, preselected: true) },
                 .expired: expired.map { Self.review($0, preselected: true) },
                 .oldRecordings: staleRecordings.map { Self.review($0, preselected: true) },
@@ -144,6 +152,38 @@ struct LibraryReportBuilder: Sendable {
     }
 
     // MARK: - Pieces
+
+    private func memories(items: [MediaItem], analyzed: [AnalyzedPhoto], groups: [PhotoGroup], blurryIDs: Set<String>) -> [MemoryEvent] {
+        let features = Dictionary(analyzed.map { ($0.id, $0.features) }, uniquingKeysWith: { first, _ in first })
+        let byID = Dictionary(items.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        let candidates = items.filter { $0.kind == .photo || $0.kind == .video }.map {
+            EventCandidate(id: $0.id, date: $0.creationDate, isVideo: $0.isVideo, latitude: $0.latitude, longitude: $0.longitude,
+                           sceneLabel: features[$0.id]?.sceneLabel)
+        }
+        // Extra shots of similar groups (everything but the keeper).
+        let extras = Set(groups.flatMap { group in
+            group.assetIDs.enumerated().filter { $0.offset != group.recommendedIndex }.map(\.element)
+        })
+        return eventGrouper.events(from: candidates, calendar: calendar).map { event in
+            let ids = Set(event.itemIDs)
+            // Cover: the best-looking photo — faces with eyes open first, then sharpness.
+            let cover = event.itemIDs.compactMap { id in features[id].map { (id, $0) } }.max { a, b in
+                (a.1.faceQuality ?? 0, min(a.1.sharpness, 500)) < (b.1.faceQuality ?? 0, min(b.1.sharpness, 500))
+            }?.0 ?? event.itemIDs.first
+            var memory = MemoryEvent(id: event.id, title: event.title, photoCount: event.photoCount, videoCount: event.videoCount,
+                                     style: event.kind == .trip ? .mountain : .sunset)
+            memory.kind = event.kind == .trip ? .trip : .event
+            memory.start = event.start
+            memory.end = event.end
+            memory.distanceKm = event.distanceKm
+            memory.coverAssetID = cover
+            memory.assetIDs = event.itemIDs
+            memory.bytes = event.itemIDs.reduce(0) { $0 + (byID[$1]?.bytes ?? 0) }
+            memory.similarCount = extras.intersection(ids).count
+            memory.blurryCount = blurryIDs.intersection(ids).count
+            return memory
+        }
+    }
 
     private func photoGroup(_ members: [AnalyzedPhoto], pick: BestShotScorer.Pick) -> PhotoGroup {
         let total = members.reduce(0) { $0 + $1.item.bytes }

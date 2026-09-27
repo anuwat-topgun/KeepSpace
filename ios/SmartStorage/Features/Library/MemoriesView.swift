@@ -16,7 +16,9 @@ struct MemoriesView: View {
             if memories.isEmpty {
                 Card(style: .info) {
                     Label(
-                        "Trip and event detection is coming soon. Photos are never removed without your review.",
+                        library.isScanning
+                            ? "Looking for trips and events in your photos…"
+                            : "No trips or events found yet. They appear as your library grows. Photos are never removed without your review.",
                         systemImage: "lock.shield"
                     )
                     .font(Typography.metadata)
@@ -26,7 +28,8 @@ struct MemoriesView: View {
 
             AdaptiveGrid(minColumnWidth: 400) {
                 ForEach(memories) { memory in
-                    MemoryCard(memory: memory)
+                    Button { router.push(.memory(id: memory.id)) } label: { MemoryCard(memory: memory) }
+                        .buttonStyle(.plain)
                 }
             }
 
@@ -53,8 +56,8 @@ struct MemoriesView: View {
                     Text(memories.isEmpty ? "Potential cleanup in your photos" : "Potential cleanup inside trips")
                         .font(Typography.cardHeadline)
                         .foregroundStyle(Palette.textPrimary)
-                    Label("\(cleanup.similarPhotos) similar photos", systemImage: "photo.on.rectangle")
-                    Label("\(cleanup.blurryShots) blurry shots", systemImage: "circle.dotted")
+                    Label("\(cleanup.similarPhotos) similar \(cleanup.similarPhotos == 1 ? "photo" : "photos")", systemImage: "photo.on.rectangle")
+                    Label("\(cleanup.blurryShots) blurry \(cleanup.blurryShots == 1 ? "shot" : "shots")", systemImage: "circle.dotted")
                 }
                 .font(Typography.body)
                 .foregroundStyle(Palette.textSecondary)
@@ -75,7 +78,7 @@ private struct MemoryCard: View {
     var body: some View {
         Card(padding: 16) {
             HStack(spacing: 16) {
-                MediaThumbnail(style: memory.style, cornerRadius: 16, symbolScale: 0.35)
+                AssetImage(assetID: memory.coverAssetID, fallback: memory.style, cornerRadius: 16, symbolScale: 0.35)
                     .frame(width: sizeClass == .regular ? 150 : 112, height: sizeClass == .regular ? 116 : 96)
                 VStack(alignment: .leading, spacing: 8) {
                     Text(memory.title)
@@ -84,6 +87,11 @@ private struct MemoryCard: View {
                     Text(memory.summary)
                         .font(Typography.metadata)
                         .foregroundStyle(Palette.textSecondary)
+                    if let detail = memory.detail {
+                        Text(detail)
+                            .font(.caption)
+                            .foregroundStyle(Palette.textSecondary)
+                    }
                     StatusBadge.protected()
                 }
                 Spacer(minLength: 0)

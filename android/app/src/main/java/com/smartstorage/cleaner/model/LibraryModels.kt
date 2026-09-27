@@ -190,12 +190,50 @@ data class StorageForecast(
 
 // region Memories (10)
 
-data class MemoryEvent(val title: String, val photoCount: Int, val videoCount: Int, val style: ThumbnailStyle) {
+data class MemoryEvent(
+    val title: String,
+    val photoCount: Int,
+    val videoCount: Int,
+    /** Placeholder art for demo memories (and while a real cover loads). */
+    val style: ThumbnailStyle,
+    val id: String = title,
+    val kind: Kind = Kind.Event,
+    /** Epoch millis. */
+    val start: Long? = null,
+    val end: Long? = null,
+    val distanceKm: Int? = null,
+    /** The best photo of the memory; null for demo memories. */
+    val coverUri: String? = null,
+    /** Every photo and video, in capture order. */
+    val assetUris: List<String> = emptyList(),
+    val bytes: Long = 0,
+    /** Cleanup candidates inside the memory: extra shots from similar groups, and blurry photos. */
+    val similarCount: Int = 0,
+    val blurryCount: Int = 0,
+) {
+    enum class Kind { Trip, Event }
+
     val summary: String
         get() {
-            val photos = "%,d photos".format(photoCount)
-            return if (videoCount > 0) "$photos · %,d videos".format(videoCount) else photos
+            val photos = "%,d %s".format(photoCount, if (photoCount == 1) "photo" else "photos")
+            return if (videoCount > 0) "$photos · %,d %s".format(videoCount, if (videoCount == 1) "video" else "videos") else photos
         }
+
+    /** "12 – 15 Sep 2026 · 540 km from home". */
+    fun detail(zone: java.time.ZoneId = java.time.ZoneId.systemDefault()): String? {
+        val s = start ?: return null
+        val e = end ?: return null
+        val format = java.time.format.DateTimeFormatter.ofPattern("d MMM yyyy", java.util.Locale.ENGLISH)
+        val first = java.time.Instant.ofEpochMilli(s).atZone(zone).toLocalDate()
+        val last = java.time.Instant.ofEpochMilli(e).atZone(zone).toLocalDate()
+        val dates = when {
+            first == last -> first.format(format)
+            first.year == last.year && first.month == last.month -> "${first.dayOfMonth} – ${last.format(format)}"
+            first.year == last.year -> "${first.format(java.time.format.DateTimeFormatter.ofPattern("d MMM", java.util.Locale.ENGLISH))} – ${last.format(format)}"
+            else -> "${first.format(format)} – ${last.format(format)}"
+        }
+        return listOfNotNull(dates, distanceKm?.let { "%,d km from home".format(it) }).joinToString(" · ")
+    }
 }
 
 // endregion
@@ -268,11 +306,18 @@ object LibraryMockData {
         potentialCleanupBytes = 1_400 * MB,
     )
 
-    val memories = listOf(
-        MemoryEvent("Tokyo Trip", 1_284, 94, ThumbnailStyle.Tokyo),
-        MemoryEvent("Birthday Party", 342, 0, ThumbnailStyle.Cake),
-        MemoryEvent("Concert Night", 184, 0, ThumbnailStyle.Concert),
-    )
+    val memories: List<MemoryEvent>
+        get() {
+            fun day(month: Int, day: Int) = java.time.LocalDate.of(2026, month, day).atTime(12, 0).toInstant(java.time.ZoneOffset.UTC).toEpochMilli()
+            return listOf(
+                MemoryEvent("Tokyo Trip", 1_284, 94, ThumbnailStyle.Tokyo, kind = MemoryEvent.Kind.Trip, start = day(4, 3), end = day(4, 9),
+                    distanceKm = 4_600, bytes = 9_800 * MB, similarCount = 280, blurryCount = 45),
+                MemoryEvent("Birthday Party", 342, 0, ThumbnailStyle.Cake, start = day(6, 14), end = day(6, 14),
+                    bytes = 1_900 * MB, similarCount = 70, blurryCount = 14),
+                MemoryEvent("Concert Night", 184, 0, ThumbnailStyle.Concert, start = day(8, 22), end = day(8, 22),
+                    bytes = 820 * MB, similarCount = 32, blurryCount = 8),
+            )
+        }
 
     val receipts: List<ReceiptEntry>
         get() {

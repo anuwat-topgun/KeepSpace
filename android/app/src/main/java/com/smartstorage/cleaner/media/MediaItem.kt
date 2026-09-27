@@ -38,6 +38,9 @@ data class ImageFeatures(
     val textLines: Int = 0,
     /** Classifier confidence 0..1 that the photo shows a receipt or document (iOS only; 0 here). */
     val documentScore: Double = 0.0,
+    /** Where it was taken (EXIF GPS), when known; used on device only (home vs. trips). */
+    val latitude: Double? = null,
+    val longitude: Double? = null,
 ) {
     /** Hamming distance between hashes, 0..64. */
     fun distanceTo(other: ImageFeatures): Int = java.lang.Long.bitCount(dHash xor other.dHash)

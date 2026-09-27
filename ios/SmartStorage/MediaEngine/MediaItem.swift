@@ -19,6 +19,9 @@ struct MediaItem: Identifiable, Hashable, Sendable {
     let isFavorite: Bool
     /// Original file name ("IMG_0412.HEIC"), for {ORIGINAL_NAME} and the extension when filing.
     var fileName: String? = nil
+    /// Where it was taken, when known; used on device only (home vs. trips).
+    var latitude: Double? = nil
+    var longitude: Double? = nil
 
     var isVideo: Bool { kind == .video || kind == .screenRecording }
     var isStill: Bool { !isVideo }

@@ -29,6 +29,8 @@ enum class AppTab(val route: String, val title: String, val icon: ImageVector) {
     val rulePattern: String get() = "$route/rule/{$RULE_ARG}"
     fun ruleRoute(id: String): String = "$route/rule/${android.net.Uri.encode(id)}"
     fun receiptRoute(id: String): String = "$route/receipt/${android.net.Uri.encode(id)}"
+    val memoryPattern: String get() = "$route/memory/{$MEMORY_ARG}"
+    fun memoryRoute(id: String): String = "$route/memory/${android.net.Uri.encode(id)}"
 
     companion object {
         const val SCREEN_ARG = "screen"
@@ -36,6 +38,7 @@ enum class AppTab(val route: String, val title: String, val icon: ImageVector) {
         const val REVIEW_ARG = "kind"
         const val RECEIPT_ARG = "receiptId"
         const val RULE_ARG = "ruleId"
+        const val MEMORY_ARG = "memoryId"
     }
 }
 

@@ -6,6 +6,7 @@ import com.smartstorage.cleaner.model.ExpiredScreenshot
 import com.smartstorage.cleaner.model.ForecastPoint
 import com.smartstorage.cleaner.model.GroupIcon
 import com.smartstorage.cleaner.model.LibraryContent
+import com.smartstorage.cleaner.model.MemoryEvent
 import com.smartstorage.cleaner.model.PhotoGroup
 import com.smartstorage.cleaner.model.ReceiptEntry
 import com.smartstorage.cleaner.model.PlanItem
@@ -34,6 +35,8 @@ data class LibraryReportBuilder(
     val maxVideosShown: Int = 50,
     val grouper: SimilarityGrouper = SimilarityGrouper(),
     val scorer: BestShotScorer = BestShotScorer(),
+    val eventGrouper: EventGrouper = EventGrouper(),
+    val zone: java.time.ZoneId = java.time.ZoneId.systemDefault(),
 ) {
     fun build(
         items: List<MediaItem>,
@@ -65,6 +68,10 @@ data class LibraryReportBuilder(
         // Blurry photos not already covered by a similar group; favourites and receipts are never suggested.
         val blurry = analyzed.filter { it.features.sharpness < blurThreshold && it.id !in inGroup && !it.item.isFavorite && it.id !in paperIds }
         val blurryBytes = blurry.sumOf { it.item.bytes }
+
+        // Trips and events. Their photos are protected: blurry ones there are only listed, never preselected.
+        val memories = memories(items, analyzed, groups, blurry.mapTo(HashSet()) { it.id })
+        val protectedIds = memories.flatMapTo(HashSet()) { it.assetUris }
 
         // Screenshots: categorised by content; unread ones count as "Other" until the OCR pass reaches them.
         fun info(item: MediaItem) = screenshotInfo[item.id] ?: ScreenshotInfo(ScreenshotKind.Other)
@@ -117,16 +124,16 @@ data class LibraryReportBuilder(
             recordingBytes = recordings.totalBytes,
             videos = (videos + recordings).sortedByDescending { it.bytes }.take(maxVideosShown).map(::videoItem),
             forecast = forecast(items, deviceTotalBytes, deviceFreeBytes, potential, now),
-            memories = emptyList(),
-            tripSimilarPhotos = similarCount,
-            tripBlurryShots = blurry.size,
+            memories = memories,
+            tripSimilarPhotos = if (memories.isEmpty()) similarCount else memories.sumOf { it.similarCount },
+            tripBlurryShots = if (memories.isEmpty()) blurry.size else memories.sumOf { it.blurryCount },
             cleanupCandidates = candidates,
             reviewSets = mapOf(
                 // Non-keepers from every similar group, biggest groups first.
                 ReviewKind.Similar to groups.flatMap { group ->
                     group.assetUris.filterIndexed { i, _ -> i != group.recommendedIndex }.mapNotNull { byId[it]?.let { item -> review(item, true) } }
                 },
-                ReviewKind.Blurry to blurry.map { review(it.item, true) },
+                ReviewKind.Blurry to blurry.map { review(it.item, it.id !in protectedIds) },
                 ReviewKind.OldScreenshots to staleScreenshots.map { review(it, true) },
                 ReviewKind.Expired to expired.map { review(it, true) },
                 ReviewKind.OldRecordings to staleRecordings.map { review(it, true) },
@@ -143,6 +150,40 @@ data class LibraryReportBuilder(
                 )
             }.sortedByDescending { it.details.date ?: it.capturedAt },
         )
+    }
+
+    private fun memories(items: List<MediaItem>, analyzed: List<AnalyzedPhoto>, groups: List<PhotoGroup>, blurryIds: Set<String>): List<MemoryEvent> {
+        val features = analyzed.associate { it.id to it.features }
+        val byId = items.associateBy { it.id }
+        val candidates = items.filter { it.kind == MediaItem.Kind.Photo || it.kind == MediaItem.Kind.Video }.map {
+            val f = features[it.id]
+            EventCandidate(it.id, it.createdAt, it.isVideo, f?.latitude, f?.longitude)
+        }
+        // Extra shots of similar groups (everything but the keeper).
+        val extras = groups.flatMapTo(HashSet()) { g -> g.assetUris.filterIndexed { i, _ -> i != g.recommendedIndex } }
+        return eventGrouper.events(candidates, zone).map { event ->
+            val ids = event.itemIds.toSet()
+            // Cover: the best-looking photo — faces with eyes open first, then sharpness.
+            val cover = event.itemIds.mapNotNull { id -> features[id]?.let { id to it } }
+                .maxWithOrNull(compareBy<Pair<String, ImageFeatures>> { it.second.faceQuality ?: 0.0 }.thenBy { min(it.second.sharpness, 500.0) })
+                ?.first ?: event.itemIds.first()
+            MemoryEvent(
+                title = event.title,
+                photoCount = event.photoCount,
+                videoCount = event.videoCount,
+                style = if (event.kind == DetectedEvent.Kind.Trip) ThumbnailStyle.Mountain else ThumbnailStyle.Sunset,
+                id = event.id,
+                kind = if (event.kind == DetectedEvent.Kind.Trip) MemoryEvent.Kind.Trip else MemoryEvent.Kind.Event,
+                start = event.start,
+                end = event.end,
+                distanceKm = event.distanceKm,
+                coverUri = cover,
+                assetUris = event.itemIds,
+                bytes = event.itemIds.sumOf { byId[it]?.bytes ?: 0 },
+                similarCount = ids.count { it in extras },
+                blurryCount = ids.count { it in blurryIds },
+            )
+        }
     }
 
     private fun photoGroup(members: List<AnalyzedPhoto>, pick: BestShotScorer.Pick): PhotoGroup {

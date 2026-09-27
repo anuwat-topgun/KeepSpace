@@ -186,6 +186,25 @@ Receipt photos show as "Paper receipt photo" in Receipt Filing and are never sug
 Limits: Android reads Latin script only (Thai receipts are found, but the merchant shows as "Unknown"); the iOS
 Simulator's image classifier is degenerate, so Thai receipts that rely on it can only be checked on a device.
 
+### Memories: trips and events (protected by default)
+
+`EventGrouper` (both platforms, pure) finds occasions in camera photos and videos:
+
+- **Sessions**: shots without a pause longer than 6 h.
+- **Home**: the ~25 km grid cell with photos on the most different days (a photo-heavy trip has more shots, but
+  home wins on days). Needs ≥ 10 located photos. Locations come from PhotoKit on iOS, and from EXIF on Android
+  (`ACCESS_MEDIA_LOCATION`; without it there are no trips, only events).
+- **Trips**: consecutive sessions (≤ 48 h apart) where most shots are ≥ 80 km from home, with ≥ 20 items.
+  Named from scene labels ("Beach Trip", "Snow Trip") or length ("Day Trip", "Weekend Trip", "5-Day Trip"),
+  plus the distance from home. Places are never looked up online.
+- **Events**: a session with ≥ 12 shots and a clear theme from scene labels (Birthday Party, Wedding, Concert
+  Night, Beach Day…) or ≥ 30 shots without one (named by date). Android has no scene labels yet, so its
+  events are named by date.
+
+Protection: photos in a memory are never suggested on their own. Extra shots in similar groups are still offered
+(the best shot stays), and blurry photos in a memory are listed but never preselected. Memories → a memory opens a
+read-only detail page (cover, counts, size, cleanup inside, photo grid).
+
 ### Storage Rules and Rule Builder (v1.2)
 
 Settings → Storage Rules (mockups 14–15). Rules live on the device (`RuleStore`: UserDefaults / SharedPreferences

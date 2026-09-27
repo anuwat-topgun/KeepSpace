@@ -32,7 +32,7 @@ import com.smartstorage.cleaner.media.libraryState
 import com.smartstorage.cleaner.model.MemoryEvent
 import com.smartstorage.cleaner.ui.components.AdaptiveGrid
 import com.smartstorage.cleaner.ui.components.CardStyle
-import com.smartstorage.cleaner.ui.components.MediaThumbnail
+import com.smartstorage.cleaner.ui.components.AssetImage
 import com.smartstorage.cleaner.ui.components.ProtectedBadge
 import com.smartstorage.cleaner.ui.components.ScreenHeader
 import com.smartstorage.cleaner.ui.components.ScreenScaffold
@@ -44,22 +44,24 @@ import com.smartstorage.cleaner.ui.theme.Tint
 
 /** 10 — Memories: events and trips recognized on device and protected by default. */
 @Composable
-fun MemoriesScreen(onOpenSimilar: () -> Unit, onBack: () -> Unit) {
+fun MemoriesScreen(onOpen: (String) -> Unit, onOpenSimilar: () -> Unit, onBack: () -> Unit) {
     val colors = SmartTheme.colors
     ScreenScaffold(maxWidth = SmartMetrics.wideContentWidth, onBack = onBack) {
         ScreenHeader("Memories", "Important moments are protected by default.", Modifier.padding(bottom = 8.dp))
 
-        val content = libraryState().content
+        val state = libraryState()
+        val content = state.content
         if (content.memories.isEmpty()) {
             SmartCard(style = CardStyle.Info) {
                 Text(
-                    "Trip and event detection is coming soon. Photos are never removed without your review.",
+                    if (state.isScanning) "Looking for trips and events in your photos…"
+                    else "No trips or events found yet. They appear as your library grows. Photos are never removed without your review.",
                     style = SmartType.metadata,
                     color = colors.textSecondary,
                 )
             }
         }
-        AdaptiveGrid(content.memories, minColumnWidth = 400.dp) { MemoryCard(it) }
+        AdaptiveGrid(content.memories, minColumnWidth = 400.dp) { MemoryCard(it, onOpen = { onOpen(it.id) }) }
 
         if (content.tripSimilarPhotos + content.tripBlurryShots > 0) SmartCard(style = CardStyle.Info, modifier = Modifier.clickable(role = Role.Button, onClick = onOpenSimilar)) {
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
@@ -75,8 +77,8 @@ fun MemoriesScreen(onOpenSimilar: () -> Unit, onBack: () -> Unit) {
                         style = SmartType.cardHeadline,
                         color = colors.textPrimary,
                     )
-                    StatLine(Icons.Rounded.Collections, "${content.tripSimilarPhotos} similar photos")
-                    StatLine(Icons.Rounded.BlurOn, "${content.tripBlurryShots} blurry shots")
+                    StatLine(Icons.Rounded.Collections, "${content.tripSimilarPhotos} similar ${if (content.tripSimilarPhotos == 1) "photo" else "photos"}")
+                    StatLine(Icons.Rounded.BlurOn, "${content.tripBlurryShots} blurry ${if (content.tripBlurryShots == 1) "shot" else "shots"}")
                 }
                 Icon(
                     Icons.AutoMirrored.Rounded.KeyboardArrowRight,
@@ -99,14 +101,15 @@ private fun StatLine(icon: ImageVector, text: String) {
 }
 
 @Composable
-private fun MemoryCard(memory: MemoryEvent) {
+private fun MemoryCard(memory: MemoryEvent, onOpen: () -> Unit) {
     val colors = SmartTheme.colors
-    SmartCard(contentPadding = PaddingValues(16.dp)) {
+    SmartCard(contentPadding = PaddingValues(16.dp), modifier = Modifier.clickable(role = Role.Button, onClick = onOpen)) {
         BoxWithConstraints {
             // Smaller artwork on phones so titles like "Birthday Party" stay on one line.
             val wide = maxWidth >= 480.dp
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp), verticalAlignment = Alignment.CenterVertically) {
-                MediaThumbnail(
+                AssetImage(
+                    memory.coverUri,
                     memory.style,
                     Modifier.size(width = if (wide) 150.dp else 112.dp, height = if (wide) 116.dp else 96.dp),
                     cornerRadius = 16.dp,
@@ -115,6 +118,7 @@ private fun MemoryCard(memory: MemoryEvent) {
                 Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(memory.title, style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.SemiBold), color = colors.textPrimary)
                     Text(memory.summary, style = SmartType.metadata, color = colors.textSecondary)
+                    memory.detail()?.let { Text(it, style = TextStyle(fontSize = 12.sp), color = colors.textSecondary) }
                     ProtectedBadge()
                 }
                 Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, contentDescription = null, tint = colors.textSecondary)
