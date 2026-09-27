@@ -58,6 +58,23 @@ object CachePlanner {
     }
 }
 
+/** SHA-256 of an item's file, for exact-duplicate detection. */
+data class CachedHash(val assetId: String, val modifiedAt: Long, val bytes: Long, val hash: String)
+
+data class HashPlan(val hits: Map<String, String>, val toHash: List<MediaItem>, val staleIds: List<String>)
+
+/** Content hashes stay valid until the file is edited. */
+fun CachePlanner.planHashes(candidates: List<MediaItem>, cached: Map<String, CachedHash>): HashPlan {
+    val hits = mutableMapOf<String, String>()
+    val toHash = mutableListOf<MediaItem>()
+    for (item in candidates) {
+        val entry = cached[item.id]
+        if (entry != null && entry.modifiedAt == item.modifiedAt && entry.bytes == item.bytes) hits[item.id] = entry.hash else toHash += item
+    }
+    val live = candidates.mapTo(HashSet()) { it.id }
+    return HashPlan(hits, toHash, cached.keys.filter { it !in live }.sorted())
+}
+
 /** Cached screenshot classification (also used for photos read as paper receipts). Only the category and a few fields — never the text. */
 data class CachedScreenshot(val assetId: String, val modifiedAt: Long, val version: Int, val info: ScreenshotInfo)
 
@@ -138,6 +155,27 @@ data class ScreenshotEntity(
     }
 }
 
+@Entity(tableName = "hashes")
+data class HashEntity(@PrimaryKey val assetId: String, val modifiedAt: Long, val bytes: Long, val sha256: String) {
+    fun toCached() = CachedHash(assetId, modifiedAt, bytes, sha256)
+
+    companion object {
+        fun from(e: CachedHash) = HashEntity(e.assetId, e.modifiedAt, e.bytes, e.hash)
+    }
+}
+
+@Dao
+interface HashDao {
+    @Query("SELECT * FROM hashes")
+    suspend fun all(): List<HashEntity>
+
+    @Upsert
+    suspend fun upsert(entities: List<HashEntity>)
+
+    @Query("DELETE FROM hashes WHERE assetId IN (:ids)")
+    suspend fun delete(ids: List<String>)
+}
+
 @Dao
 interface ScreenshotDao {
     @Query("SELECT * FROM screenshots")
@@ -165,10 +203,11 @@ interface AnalysisDao {
     suspend fun count(): Int
 }
 
-@Database(entities = [AnalysisEntity::class, ScreenshotEntity::class], version = 5, exportSchema = false)
+@Database(entities = [AnalysisEntity::class, ScreenshotEntity::class, HashEntity::class], version = 6, exportSchema = false)
 abstract class AnalysisDatabase : RoomDatabase() {
     abstract fun analysis(): AnalysisDao
     abstract fun screenshots(): ScreenshotDao
+    abstract fun hashes(): HashDao
 }
 
 // endregion
@@ -177,7 +216,7 @@ abstract class AnalysisDatabase : RoomDatabase() {
  * On-device cache of analysis results. Stored in the no-backup directory: it is derived,
  * regenerable data, and image fingerprints must never leave the device.
  */
-class AnalysisStore private constructor(private val dao: AnalysisDao, private val shots: ScreenshotDao) {
+class AnalysisStore private constructor(private val dao: AnalysisDao, private val shots: ScreenshotDao, private val hashes: HashDao) {
 
     suspend fun loadAll(): Map<String, CachedAnalysis> = dao.all().associate { it.assetId to it.toCached() }
 
@@ -198,6 +237,14 @@ class AnalysisStore private constructor(private val dao: AnalysisDao, private va
 
     suspend fun deleteScreenshots(ids: List<String>) = ids.chunked(500).forEach { shots.delete(it) }
 
+    suspend fun loadHashes(): Map<String, CachedHash> = hashes.all().associate { it.assetId to it.toCached() }
+
+    suspend fun saveHashes(entries: List<CachedHash>) {
+        if (entries.isNotEmpty()) hashes.upsert(entries.map(HashEntity::from))
+    }
+
+    suspend fun deleteHashes(ids: List<String>) = ids.chunked(500).forEach { hashes.delete(it) }
+
     companion object {
         fun open(context: Context): AnalysisStore {
             val file = context.noBackupFilesDir.resolve("analysis.db")
@@ -205,7 +252,7 @@ class AnalysisStore private constructor(private val dao: AnalysisDao, private va
                 // Cache only: a schema change can safely start over.
                 .fallbackToDestructiveMigration()
                 .build()
-            return AnalysisStore(db.analysis(), db.screenshots())
+            return AnalysisStore(db.analysis(), db.screenshots(), db.hashes())
         }
     }
 }

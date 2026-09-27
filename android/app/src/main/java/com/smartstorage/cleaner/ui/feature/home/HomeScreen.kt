@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material.icons.rounded.BlurOn
+import androidx.compose.material.icons.rounded.FileCopy
 import androidx.compose.material.icons.rounded.Collections
 import androidx.compose.material.icons.rounded.CropFree
 import androidx.compose.material.icons.rounded.Lock
@@ -69,7 +70,7 @@ fun HomeScreen(onOpen: (Screen) -> Unit, onFreeUp: () -> Unit) {
         StorageHeroCard(storage, showsCleanup = state.access.canRead, onFreeUp)
         LibraryStatusCard(state)
         if (state.access.canRead) {
-            AdaptiveGrid(CleanupCategory.entries) { category ->
+            AdaptiveGrid(CleanupCategory.entries - CleanupCategory.Duplicates) { category ->
                 CardRow(
                     icon = category.icon,
                     title = category.title,
@@ -217,6 +218,7 @@ internal val CleanupCategory.icon: ImageVector
         CleanupCategory.LargeVideos -> Icons.Rounded.Videocam
         CleanupCategory.ScreenRecordings -> Icons.Rounded.RadioButtonChecked
         CleanupCategory.BlurryPhotos -> Icons.Rounded.BlurOn
+        CleanupCategory.Duplicates -> Icons.Rounded.FileCopy
     }
 
 internal val CleanupCategory.tint: Tint
@@ -225,6 +227,7 @@ internal val CleanupCategory.tint: Tint
         CleanupCategory.Screenshots -> Tint.Blue
         CleanupCategory.LargeVideos -> Tint.Purple
         CleanupCategory.BlurryPhotos -> Tint.Mint
+        CleanupCategory.Duplicates -> Tint.Blue
     }
 
 private val CleanupCategory.screen: Screen
@@ -232,4 +235,5 @@ private val CleanupCategory.screen: Screen
         CleanupCategory.SimilarPhotos, CleanupCategory.BlurryPhotos -> Screen.SimilarPhotos
         CleanupCategory.Screenshots -> Screen.Screenshots
         CleanupCategory.LargeVideos, CleanupCategory.ScreenRecordings -> Screen.Videos
+        CleanupCategory.Duplicates -> Screen.CleanupPlan
     }

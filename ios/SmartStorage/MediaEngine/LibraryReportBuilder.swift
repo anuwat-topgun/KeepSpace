@@ -16,13 +16,22 @@ struct LibraryReportBuilder: Sendable {
     var calendar = Calendar.current
 
     func build(
-        items: [MediaItem],
-        analyzed: [AnalyzedPhoto],
+        items allItems: [MediaItem],
+        analyzed allAnalyzed: [AnalyzedPhoto],
         screenshotInfo: [String: ScreenshotInfo] = [:],
+        fileHashes: [String: String] = [:],
         deviceTotalBytes: Int64,
         deviceFreeBytes: Int64,
         now: Date = .now
     ) -> LibraryContent {
+        // Exact duplicates: identical files, one copy kept per group. The extra copies are left out of
+        // every other suggestion below so their space is never counted twice.
+        let duplicateGroups = DuplicateFinder.groups(allItems, hashes: fileHashes)
+        let copies = duplicateGroups.flatMap(\.copies)
+        let copyIDs = Set(copies.map(\.id))
+        let items = copyIDs.isEmpty ? allItems : allItems.filter { !copyIDs.contains($0.id) }
+        let analyzed = copyIDs.isEmpty ? allAnalyzed : allAnalyzed.filter { !copyIDs.contains($0.id) }
+
         let byID = Dictionary(items.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         let screenshots = items.filter { $0.kind == .screenshot }
         let recordings = items.filter { $0.kind == .screenRecording }
@@ -68,6 +77,9 @@ struct LibraryReportBuilder: Sendable {
         let staleRecordings = recordings.filter { now.timeIntervalSince($0.creationDate) > staleAge }
 
         let candidates = [
+            // First: byte-for-byte copies are the safest thing to remove.
+            PlanItem(title: "Exact Duplicates", systemImage: "doc.on.doc.fill", tint: .blue,
+                     bytes: copies.totalBytes, route: .review(.duplicates), itemCount: copies.count),
             PlanItem(title: "Old Screen Recordings", systemImage: "record.circle", tint: .coral,
                      bytes: staleRecordings.totalBytes, route: .review(.oldRecordings), itemCount: staleRecordings.count),
             PlanItem(title: "Similar Photos", systemImage: "photo.on.rectangle.angled", tint: .coral,
@@ -121,13 +133,15 @@ struct LibraryReportBuilder: Sendable {
                 .sorted { $0.bytes > $1.bytes }
                 .prefix(maxVideosShown)
                 .map(videoItem),
-            forecast: forecast(items: items, total: deviceTotalBytes, free: deviceFreeBytes, potential: potential, now: now),
+            forecast: forecast(items: allItems, total: deviceTotalBytes, free: deviceFreeBytes, potential: potential, now: now),
             memories: memories,
             memoriesCleanup: memories.isEmpty
                 ? (similarCount, blurry.count)
                 : (memories.reduce(0) { $0 + $1.similarCount }, memories.reduce(0) { $0 + $1.blurryCount }),
             cleanupCandidates: candidates,
             reviewSets: [
+                // Copies from the biggest groups first; favourites are never preselected.
+                .duplicates: copies.map { Self.review($0, preselected: true) },
                 // Non-keepers from every similar group, biggest groups first.
                 .similar: groups.flatMap { group in
                     group.assetIDs.enumerated().compactMap { index, id in

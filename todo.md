@@ -11,8 +11,8 @@
 
 | แพลตฟอร์ม | Unit tests | สถานะ | ทดสอบบนอุปกรณ์ |
 |---|---|---|---|
-| iOS (SwiftUI, iOS 17+) | 59 tests / 20 suites (Swift Testing) | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator |
-| Android (Compose, API 26+) | 59 tests (JUnit, JVM) + Thai OCR spike (instrumented) | ✅ ผ่านทั้งหมด | `keepspace_tablet` emulator (Pixel Tablet, API 36) |
+| iOS (SwiftUI, iOS 17+) | 63 tests / 21 suites (Swift Testing) | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator |
+| Android (Compose, API 26+) | 63 tests (JUnit, JVM) + Thai OCR spike (instrumented) | ✅ ผ่านทั้งหมด | `keepspace_tablet` emulator (Pixel Tablet, API 36) |
 
 คำสั่งรันเทส:
 ```bash
@@ -78,13 +78,20 @@ cd android && JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Content
 
 ### 3.1 v1.0 — ส่วนที่ยังขาด
 
-#### ⬜ Exact Duplicate Detection (สเปก §5.2)
+#### ✅ Exact Duplicate Detection (สเปก §5.2) — เสร็จแล้ว
+- hash เฉพาะไฟล์ที่ขนาดเท่ากันและชนิดเดียวกัน (SHA-256, cache จนกว่าไฟล์ถูกแก้), เก็บรายการโปรด/เก่าสุด, ที่เหลือเลือกไว้ล่วงหน้า, อยู่อันดับแรกใน Cleanup Plan, ไม่นับซ้ำกับหมวดอื่น
+- ทดสอบ: unit tests ทั้งสองแพลตฟอร์ม + emulator (เจอ 3 สำเนา) + iOS simulator (เจอ 1 สำเนา)
+
+<details><summary>แผนเดิม</summary>
+
 ตอนนี้มีแค่ "Similar" (ภาพคล้าย) ยังไม่มีการหาไฟล์ซ้ำเป๊ะ
 - [ ] คำนวณ hash ของไฟล์ (SHA-256 ของ original, หรือ size + hash ของ 64KB แรก/สุดท้ายเพื่อความเร็ว) เก็บใน cache
 - [ ] iOS: อ่าน data ผ่าน `PHAssetResourceManager` (ข้ามไฟล์ iCloud-only) · Android: `ContentResolver.openInputStream`
 - [ ] จัดกลุ่มตาม hash; เก็บตัวที่เก่าที่สุด/favorite, ที่เหลือ preselected (ปลอดภัยที่สุดเพราะเหมือนกันทุก byte)
 - [ ] เพิ่มหมวด "Exact Duplicates" ใน Cleanup Plan + Review
 - [ ] Unit tests ทั้งสองแพลตฟอร์ม
+
+</details>
 
 #### ⬜ Safety Score (สเปก §5.2)
 - [ ] นิยามคะแนนต่อรายการ/ต่อแผน เช่น exact duplicate = สูงสุด, extra shot ในกลุ่ม similar = สูง, blurry = กลาง, วิดีโอส่วนตัว = ต่ำ, อยู่ในความทรงจำ/favorite = ห้าม

@@ -826,3 +826,53 @@ struct ThaiTextTests {
         #expect(ReceiptExtractor.merchant(in: ["๕ va", "ใบเสร็จรับเงิน", "Central Department Store"]) == "Central Department Store")
     }
 }
+
+// MARK: - Exact duplicates
+
+struct DuplicateFinderTests {
+    private func item(_ id: String, kind: MediaItem.Kind = .photo, bytes: Int64 = 2_000_000, day: Int = 1, favorite: Bool = false) -> MediaItem {
+        MediaItem(id: id, kind: kind, creationDate: Date(timeIntervalSince1970: Double(day) * 86_400), bytes: bytes,
+                  pixelWidth: 4032, pixelHeight: 3024, duration: kind == .video ? 10 : 0, isFavorite: favorite)
+    }
+
+    @Test func onlySameSizeSameKindFilesAreHashed() {
+        let items = [item("a"), item("b"), item("c", bytes: 3_000_000), item("v", kind: .video), item("z", bytes: 0), item("y", bytes: 0)]
+        #expect(Set(DuplicateFinder.candidates(items).map(\.id)) == ["a", "b"])
+    }
+
+    @Test func keepsFavouriteElseOldest() {
+        let items = [item("new", day: 5), item("old", day: 1), item("fav", day: 9, favorite: true), item("other", day: 2)]
+        let hashes = ["new": "h1", "old": "h1", "fav": "h1", "other": "h2"]
+        let groups = DuplicateFinder.groups(items, hashes: hashes)
+        #expect(groups.count == 1)
+        #expect(groups.first?.keeper.id == "fav")
+        #expect(groups.first?.copies.map(\.id) == ["old", "new"])
+        let noFavourite = DuplicateFinder.groups([item("new", day: 5), item("old", day: 1)], hashes: ["new": "h", "old": "h"])
+        #expect(noFavourite.first?.keeper.id == "old")
+    }
+
+    @Test func hashPlanReusesUntilEdited() {
+        let a = item("a"), b = item("b")
+        var edited = b
+        edited.modifiedAt = Date(timeIntervalSince1970: 99)
+        let cached = ["a": CachedHash(assetID: "a", modifiedAt: a.modifiedAt, bytes: a.bytes, hash: "h"),
+                      "b": CachedHash(assetID: "b", modifiedAt: b.modifiedAt, bytes: b.bytes, hash: "h"),
+                      "gone": CachedHash(assetID: "gone", modifiedAt: .distantPast, bytes: 1, hash: "x")]
+        let plan = CachePlanner.plan(hashing: [a, edited], cached: cached)
+        #expect(plan.hits == ["a": "h"])
+        #expect(plan.toHash.map(\.id) == ["b"])
+        #expect(plan.staleIDs == ["gone"])
+    }
+
+    @Test func copiesComeFirstAndAreNotCountedTwice() {
+        let original = item("orig", kind: .screenshot, day: 1), copy = item("copy", kind: .screenshot, day: 2)
+        let content = LibraryReportBuilder().build(items: [original, copy], analyzed: [], fileHashes: ["orig": "h", "copy": "h"],
+                                                   deviceTotalBytes: 100, deviceFreeBytes: 50, now: Date(timeIntervalSince1970: 400 * 86_400))
+        #expect(content.cleanupCandidates.first?.title == "Exact Duplicates")
+        #expect(content.cleanupCandidates.first?.bytes == 2_000_000)
+        #expect(content.reviewSets[.duplicates]?.map(\.id) == ["copy"])
+        #expect(content.reviewSets[.duplicates]?.first?.preselected == true)
+        // The kept original is still an old screenshot; the copy isn't offered there again.
+        #expect(content.reviewSets[.oldScreenshots]?.map(\.id) == ["orig"])
+    }
+}

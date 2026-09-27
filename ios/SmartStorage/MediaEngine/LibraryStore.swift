@@ -27,6 +27,8 @@ final class LibraryStore {
     private var lastItems: [MediaItem] = []
     private var lastAnalyzed: [AnalyzedPhoto] = []
     private var lastScreenshotInfo: [String: ScreenshotInfo] = [:]
+    /// Content hashes of files that share a size with another file (exact-duplicate check).
+    private var lastHashes: [String: String] = [:]
 
     private static let log = Logger(subsystem: "com.keepspace.app", category: "scan")
     private let engine = LibraryEngine()
@@ -107,11 +109,12 @@ final class LibraryStore {
     private func removeFromResults(_ ids: Set<String>) {
         lastItems.removeAll { ids.contains($0.id) }
         lastAnalyzed.removeAll { ids.contains($0.id) }
-        ids.forEach { lastScreenshotInfo[$0] = nil }
+        ids.forEach { lastScreenshotInfo[$0] = nil; lastHashes[$0] = nil }
         rebuild()
         Task { [cache] in
             await cache?.delete(ids: Array(ids))
             await cache?.deleteScreenshots(ids: Array(ids))
+            await cache?.deleteHashes(ids: Array(ids))
         }
     }
 
@@ -135,23 +138,37 @@ final class LibraryStore {
             screenshots + analyzed.filter(PaperReceiptDetector.isCandidate).map(\.item)
         }
         let earlyReads = CachePlanner.plan(screenshots: toRead(photoPlan.hits), cached: cachedReads)
+        let hashPlan = CachePlanner.plan(hashing: DuplicateFinder.candidates(items), cached: await cache?.loadHashes() ?? [:])
         await cache?.delete(ids: photoPlan.staleIDs)
+        await cache?.deleteHashes(ids: hashPlan.staleIDs)
         // Counts only — never filenames or other personal data.
-        Self.log.info("scan: \(items.count) items, \(photoPlan.hits.count) cached, \(photoPlan.toAnalyze.count) to analyze, \(photoPlan.staleIDs.count) stale; text reads \(earlyReads.hits.count) cached, \(earlyReads.toAnalyze.count) to read")
+        Self.log.info("scan: \(items.count) items, \(photoPlan.hits.count) cached, \(photoPlan.toAnalyze.count) to analyze, \(photoPlan.staleIDs.count) stale; hashes \(hashPlan.hits.count) cached, \(hashPlan.toHash.count) to hash; text reads \(earlyReads.hits.count) cached, \(earlyReads.toAnalyze.count) to read")
 
         // Publish straight away: sizes plus everything the cache already knows.
         lastItems = items
         lastAnalyzed = photoPlan.hits
         lastScreenshotInfo = earlyReads.hits
+        lastHashes = hashPlan.hits
         rebuild(storage: storage)
 
         let cache = self.cache
-        var total = photoPlan.toAnalyze.count + earlyReads.toAnalyze.count
-        if !photoPlan.toAnalyze.isEmpty {
+        let hashed = hashPlan.toHash.count
+        var total = hashed + photoPlan.toAnalyze.count + earlyReads.toAnalyze.count
+        // Exact duplicates first: quick (only same-size files are read) and the safest cleanup.
+        if hashed > 0 {
             phase = .analyzing(done: 0, total: total)
+            let fresh = await engine.hashFiles(hashPlan.toHash) { done, _ in
+                await MainActor.run { self.phase = .analyzing(done: done, total: total) }
+            }
+            await cache?.saveHashes(fresh)
+            fresh.forEach { lastHashes[$0.assetID] = $0.hash }
+            rebuild(storage: storage)
+        }
+        if !photoPlan.toAnalyze.isEmpty {
+            phase = .analyzing(done: hashed, total: total)
             let fresh = await engine.analyze(
                 photoPlan.toAnalyze,
-                progress: { done, _ in await MainActor.run { self.phase = .analyzing(done: done, total: total) } },
+                progress: { done, _ in await MainActor.run { self.phase = .analyzing(done: hashed + done, total: total) } },
                 onBatch: { batch in
                     // Persist as we go so an interrupted scan keeps its progress.
                     await cache?.save(batch.map {
@@ -167,7 +184,7 @@ final class LibraryStore {
         let reads = CachePlanner.plan(screenshots: toRead(lastAnalyzed), cached: cachedReads)
         await cache?.deleteScreenshots(ids: reads.staleIDs)
         reads.staleIDs.forEach { lastScreenshotInfo[$0] = nil }
-        total = photoPlan.toAnalyze.count + reads.toAnalyze.count
+        total = hashed + photoPlan.toAnalyze.count + reads.toAnalyze.count
         let candidates = lastAnalyzed.filter(PaperReceiptDetector.isCandidate).count
         Self.log.info("scan: \(candidates) receipt-like photos; text reads \(reads.hits.count) cached, \(reads.toAnalyze.count) to read")
         guard !reads.toAnalyze.isEmpty else {
@@ -175,7 +192,7 @@ final class LibraryStore {
             phase = .ready
             return
         }
-        let offset = photoPlan.toAnalyze.count
+        let offset = hashed + photoPlan.toAnalyze.count
         phase = .analyzing(done: offset, total: total)
         let read = await engine.analyzeScreenshots(
             reads.toAnalyze,
@@ -192,7 +209,7 @@ final class LibraryStore {
     }
 
     private func rebuild(storage: StorageSummary = LibraryStore.deviceStorage()) {
-        content = builder.build(items: lastItems, analyzed: lastAnalyzed, screenshotInfo: lastScreenshotInfo,
+        content = builder.build(items: lastItems, analyzed: lastAnalyzed, screenshotInfo: lastScreenshotInfo, fileHashes: lastHashes,
                                 deviceTotalBytes: storage.totalBytes, deviceFreeBytes: storage.freeBytes)
     }
 

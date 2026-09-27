@@ -9,6 +9,8 @@ enum class CleanupCategory(val title: String) {
     LargeVideos("Large Videos"),
     ScreenRecordings("Screen Recordings"),
     BlurryPhotos("Blurry Photos"),
+    /** Plan/review only; not a Home tile (Home mirrors the mockup's five categories). */
+    Duplicates("Exact Duplicates"),
 }
 
 data class StorageSummary(

@@ -4,6 +4,9 @@ package com.smartstorage.cleaner.media
 
 /** A set of cleanup candidates the user reviews before anything is deleted. */
 sealed class ReviewKind(val title: String, val explanation: String, val key: String) {
+    data object Duplicates : ReviewKind(
+        "Exact Duplicates", "Identical copies of the same file. One copy of each is kept — your favourite, or else the oldest.", "duplicates",
+    )
     data object Similar : ReviewKind("Similar Photos", "Extra shots from bursts. The best photo of each group is kept.", "similar")
     data object Blurry : ReviewKind("Blurry Photos", "Photos that came out blurry or shaky.", "blurry")
     data object OldScreenshots : ReviewKind(
@@ -20,7 +23,7 @@ sealed class ReviewKind(val title: String, val explanation: String, val key: Str
     companion object {
         /** Inverse of [key], for navigation arguments. */
         fun fromKey(key: String): ReviewKind? =
-            listOf(Similar, Blurry, OldScreenshots, OldRecordings, LargeVideos, Expired).firstOrNull { it.key == key }
+            listOf(Duplicates, Similar, Blurry, OldScreenshots, OldRecordings, LargeVideos, Expired).firstOrNull { it.key == key }
                 ?: key.removePrefix("screenshots.").takeIf { key.startsWith("screenshots.") }
                     ?.let { name -> ScreenshotKind.entries.firstOrNull { it.name == name } }?.let(::Screenshots)
     }

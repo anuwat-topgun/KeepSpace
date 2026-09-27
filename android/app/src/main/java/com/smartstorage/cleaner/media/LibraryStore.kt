@@ -79,6 +79,8 @@ class LibraryStore(context: Context, demo: Boolean) {
     private var lastItems: List<MediaItem> = emptyList()
     private var lastAnalyzed: List<AnalyzedPhoto> = emptyList()
     private var lastScreenshotInfo: Map<String, ScreenshotInfo> = emptyMap()
+    /** Content hashes of files that share a size with another file (exact-duplicate check). */
+    private var lastHashes: Map<String, String> = emptyMap()
 
     private val _state = MutableStateFlow(
         if (demo) LibraryState(LibraryAccess.Authorized, ScanPhase.Ready, LibraryContent.demo, isDemo = true)
@@ -139,10 +141,12 @@ class LibraryStore(context: Context, demo: Boolean) {
         lastItems = lastItems.filterNot { it.id in ids }
         lastAnalyzed = lastAnalyzed.filterNot { it.id in ids }
         lastScreenshotInfo = lastScreenshotInfo - ids
+        lastHashes = lastHashes - ids
         rebuild()
         scope.launch(Dispatchers.IO) {
             cache.delete(ids.toList())
             cache.deleteScreenshots(ids.toList())
+            cache.deleteHashes(ids.toList())
         }
     }
 
@@ -177,19 +181,31 @@ class LibraryStore(context: Context, demo: Boolean) {
         val (plan, cachedReads) = withContext(Dispatchers.IO) {
             CachePlanner.plan(photos, cache.loadAll()).also { cache.delete(it.staleIds) } to cache.loadScreenshots()
         }
+        val hashPlan = withContext(Dispatchers.IO) {
+            CachePlanner.planHashes(DuplicateFinder.candidates(items), cache.loadHashes()).also { cache.deleteHashes(it.staleIds) }
+        }
         val earlyReads = CachePlanner.planScreenshots(toRead(plan.hits), cachedReads)
         // Counts only — never filenames or other personal data.
-        Log.i(TAG, "scan: ${items.size} items, ${plan.hits.size} cached, ${plan.toAnalyze.size} to analyze, ${plan.staleIds.size} stale; text reads ${earlyReads.hits.size} cached, ${earlyReads.toAnalyze.size} to read")
+        Log.i(TAG, "scan: ${items.size} items, ${plan.hits.size} cached, ${plan.toAnalyze.size} to analyze, ${plan.staleIds.size} stale; hashes ${hashPlan.hits.size} cached, ${hashPlan.toHash.size} to hash; text reads ${earlyReads.hits.size} cached, ${earlyReads.toAnalyze.size} to read")
 
         // Publish straight away: sizes plus everything the cache already knows.
         lastItems = items
         lastAnalyzed = plan.hits
         lastScreenshotInfo = earlyReads.hits
-        val estimate = plan.toAnalyze.size + earlyReads.toAnalyze.size
+        lastHashes = hashPlan.hits
+        val hashed = hashPlan.toHash.size
+        val estimate = hashed + plan.toAnalyze.size + earlyReads.toAnalyze.size
         rebuild(if (estimate == 0) ScanPhase.Ready else ScanPhase.Analyzing(0, estimate))
 
+        // Exact duplicates first: quick (only same-size files are read) and the safest cleanup.
+        if (hashed > 0) {
+            val fresh = withContext(Dispatchers.IO) { hashFiles(hashPlan.toHash, estimate) }
+            withContext(Dispatchers.IO) { cache.saveHashes(fresh) }
+            lastHashes = lastHashes + fresh.associate { it.assetId to it.hash }
+            rebuild()
+        }
         if (plan.toAnalyze.isNotEmpty()) {
-            val fresh = withContext(Dispatchers.Default) { analyze(plan.toAnalyze, estimate) }
+            val fresh = withContext(Dispatchers.Default) { analyze(plan.toAnalyze, estimate, offset = hashed) }
             lastAnalyzed = plan.hits + fresh
         }
 
@@ -197,20 +213,20 @@ class LibraryStore(context: Context, demo: Boolean) {
         val reads = CachePlanner.planScreenshots(toRead(lastAnalyzed), cachedReads)
         withContext(Dispatchers.IO) { cache.deleteScreenshots(reads.staleIds) }
         lastScreenshotInfo = lastScreenshotInfo - reads.staleIds.toSet()
-        val total = plan.toAnalyze.size + reads.toAnalyze.size
+        val total = hashed + plan.toAnalyze.size + reads.toAnalyze.size
         if (reads.toAnalyze.isEmpty()) {
             rebuild(ScanPhase.Ready)
             return
         }
-        rebuild(ScanPhase.Analyzing(plan.toAnalyze.size, total))
-        val read = withContext(Dispatchers.Default) { readScreenshots(reads.toAnalyze, offset = plan.toAnalyze.size, total = total) }
+        rebuild(ScanPhase.Analyzing(hashed + plan.toAnalyze.size, total))
+        val read = withContext(Dispatchers.Default) { readScreenshots(reads.toAnalyze, offset = hashed + plan.toAnalyze.size, total = total) }
         lastScreenshotInfo = lastScreenshotInfo + read
         rebuild(ScanPhase.Ready)
     }
 
     private fun rebuild(phase: ScanPhase? = null) {
         val storage = deviceStorage()
-        val content = builder.build(lastItems, lastAnalyzed, storage.totalBytes, storage.freeBytes, screenshotInfo = lastScreenshotInfo)
+        val content = builder.build(lastItems, lastAnalyzed, storage.totalBytes, storage.freeBytes, screenshotInfo = lastScreenshotInfo, fileHashes = lastHashes)
         _state.update { if (phase != null) it.copy(content = content, phase = phase) else it.copy(content = content) }
     }
 
@@ -254,7 +270,34 @@ class LibraryStore(context: Context, demo: Boolean) {
     }
 
     /** Analyzes [photos] four at a time, persisting every [BATCH_SIZE] results so interrupted scans keep progress. */
-    private suspend fun analyze(photos: List<MediaItem>, total: Int): List<AnalyzedPhoto> = coroutineScope {
+    /** SHA-256 of each file, two at a time; unreadable files are skipped. */
+    private suspend fun hashFiles(items: List<MediaItem>, total: Int): List<CachedHash> = coroutineScope {
+        val done = AtomicInteger()
+        val permits = Semaphore(2)
+        items.map { item ->
+            async {
+                permits.withPermit {
+                    val hash = runCatching {
+                        app.contentResolver.openInputStream(Uri.parse(item.id))?.use { input ->
+                            val digest = java.security.MessageDigest.getInstance("SHA-256")
+                            val buffer = ByteArray(256 * 1024)
+                            while (true) {
+                                val n = input.read(buffer)
+                                if (n < 0) break
+                                digest.update(buffer, 0, n)
+                            }
+                            digest.digest().joinToString("") { "%02x".format(it) }
+                        }
+                    }.getOrNull()
+                    val n = done.incrementAndGet()
+                    if (n % 10 == 0 || n == items.size) _state.update { it.copy(phase = ScanPhase.Analyzing(n, total)) }
+                    hash?.let { CachedHash(item.id, item.modifiedAt, item.bytes, it) }
+                }
+            }
+        }.awaitAll().filterNotNull()
+    }
+
+    private suspend fun analyze(photos: List<MediaItem>, total: Int, offset: Int = 0): List<AnalyzedPhoto> = coroutineScope {
         val done = AtomicInteger()
         val permits = Semaphore(4)
         val pending = mutableListOf<AnalyzedPhoto>()
@@ -275,7 +318,7 @@ class LibraryStore(context: Context, demo: Boolean) {
                     permits.withPermit {
                         val result = analyzer.analyze(Uri.parse(item.id))?.let { AnalyzedPhoto(item, it) }
                         val n = done.incrementAndGet()
-                        if (n % 10 == 0 || n == photos.size) _state.update { it.copy(phase = ScanPhase.Analyzing(n, total)) }
+                        if (n % 10 == 0 || n == photos.size) _state.update { it.copy(phase = ScanPhase.Analyzing(offset + n, total)) }
                         if (result != null) {
                             pendingLock.withLock { pending += result }
                             flush(force = false)

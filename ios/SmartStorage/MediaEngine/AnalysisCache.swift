@@ -54,6 +54,37 @@ struct CachedScreenshot: Sendable, Equatable {
 }
 
 extension CachePlanner {
+    struct HashPlan: Sendable {
+        let hits: [String: String]
+        let toHash: [MediaItem]
+        let staleIDs: [String]
+    }
+
+    /// Content hashes stay valid until the asset is edited.
+    static func plan(hashing candidates: [MediaItem], cached: [String: CachedHash]) -> HashPlan {
+        var hits: [String: String] = [:]
+        var toHash: [MediaItem] = []
+        for item in candidates {
+            if let entry = cached[item.id], entry.modifiedAt == item.modifiedAt, entry.bytes == item.bytes {
+                hits[item.id] = entry.hash
+            } else {
+                toHash.append(item)
+            }
+        }
+        let live = Set(candidates.map(\.id))
+        return HashPlan(hits: hits, toHash: toHash, staleIDs: cached.keys.filter { !live.contains($0) }.sorted())
+    }
+}
+
+/// SHA-256 of an asset's original file, for exact-duplicate detection.
+struct CachedHash: Sendable, Equatable {
+    let assetID: String
+    let modifiedAt: Date
+    let bytes: Int64
+    let hash: String
+}
+
+extension CachePlanner {
     struct ScreenshotPlan: Sendable {
         let hits: [String: ScreenshotInfo]
         let toAnalyze: [MediaItem]
@@ -203,6 +234,23 @@ final class ScreenshotRecord {
     }
 }
 
+@Model
+final class HashRecord {
+    @Attribute(.unique) var assetID: String
+    var modifiedAt: Date
+    var bytes: Int64
+    var sha256: String
+
+    init(_ entry: CachedHash) {
+        assetID = entry.assetID
+        modifiedAt = entry.modifiedAt
+        bytes = entry.bytes
+        sha256 = entry.hash
+    }
+
+    var value: CachedHash { CachedHash(assetID: assetID, modifiedAt: modifiedAt, bytes: bytes, hash: sha256) }
+}
+
 /// On-device cache of analysis results. Lives in Caches: it is derived, regenerable data, so it is
 /// excluded from backups (image fingerprints never leave the device) and the OS may purge it.
 @ModelActor
@@ -215,7 +263,7 @@ actor AnalysisStore {
             let url = URL.cachesDirectory.appending(path: "analysis.store")
             configuration = ModelConfiguration(url: url)
         }
-        let container = try ModelContainer(for: AnalysisRecord.self, ScreenshotRecord.self, configurations: configuration)
+        let container = try ModelContainer(for: AnalysisRecord.self, ScreenshotRecord.self, HashRecord.self, configurations: configuration)
         return AnalysisStore(modelContainer: container)
     }
 
@@ -266,6 +314,27 @@ actor AnalysisStore {
     func deleteScreenshots(ids: [String]) {
         guard !ids.isEmpty else { return }
         try? modelContext.delete(model: ScreenshotRecord.self, where: #Predicate { ids.contains($0.assetID) })
+        try? modelContext.save()
+    }
+
+    // MARK: Hashes
+
+    func loadHashes() -> [String: CachedHash] {
+        let records = (try? modelContext.fetch(FetchDescriptor<HashRecord>())) ?? []
+        return Dictionary(records.map { ($0.assetID, $0.value) }, uniquingKeysWith: { _, latest in latest })
+    }
+
+    func saveHashes(_ entries: [CachedHash]) {
+        guard !entries.isEmpty else { return }
+        let ids = entries.map(\.assetID)
+        try? modelContext.delete(model: HashRecord.self, where: #Predicate { ids.contains($0.assetID) })
+        entries.forEach { modelContext.insert(HashRecord($0)) }
+        try? modelContext.save()
+    }
+
+    func deleteHashes(ids: [String]) {
+        guard !ids.isEmpty else { return }
+        try? modelContext.delete(model: HashRecord.self, where: #Predicate { ids.contains($0.assetID) })
         try? modelContext.save()
     }
 

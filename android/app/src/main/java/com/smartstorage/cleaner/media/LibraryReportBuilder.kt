@@ -39,13 +39,21 @@ data class LibraryReportBuilder(
     val zone: java.time.ZoneId = java.time.ZoneId.systemDefault(),
 ) {
     fun build(
-        items: List<MediaItem>,
-        analyzed: List<AnalyzedPhoto>,
+        allItems: List<MediaItem>,
+        allAnalyzed: List<AnalyzedPhoto>,
         deviceTotalBytes: Long,
         deviceFreeBytes: Long,
         now: Long = System.currentTimeMillis(),
         screenshotInfo: Map<String, ScreenshotInfo> = emptyMap(),
+        fileHashes: Map<String, String> = emptyMap(),
     ): LibraryContent {
+        // Exact duplicates: identical files, one copy kept per group. The extra copies are left out of
+        // every other suggestion below so their space is never counted twice.
+        val copies = DuplicateFinder.groups(allItems, fileHashes).flatMap { it.copies }
+        val copyIds = copies.mapTo(HashSet()) { it.id }
+        val items = if (copyIds.isEmpty()) allItems else allItems.filter { it.id !in copyIds }
+        val analyzed = if (copyIds.isEmpty()) allAnalyzed else allAnalyzed.filter { it.id !in copyIds }
+
         val byId = items.associateBy { it.id }
         val screenshots = items.filter { it.kind == MediaItem.Kind.Screenshot }
         val recordings = items.filter { it.kind == MediaItem.Kind.ScreenRecording }
@@ -83,6 +91,8 @@ data class LibraryReportBuilder(
         val staleRecordings = recordings.filter { now - it.createdAt > staleAgeMs }
 
         val candidates = listOf(
+            // First: byte-for-byte copies are the safest thing to remove.
+            PlanItem("Exact Duplicates", CleanupCategory.Duplicates, copies.totalBytes, PlanTarget.SimilarPhotos, copies.size, ReviewKind.Duplicates),
             PlanItem("Old Screen Recordings", CleanupCategory.ScreenRecordings, staleRecordings.totalBytes, PlanTarget.Videos, staleRecordings.size, ReviewKind.OldRecordings),
             PlanItem("Similar Photos", CleanupCategory.SimilarPhotos, similarBytes, PlanTarget.SimilarPhotos, similarCount, ReviewKind.Similar),
             PlanItem("Expired Tickets", CleanupCategory.Screenshots, expired.totalBytes, PlanTarget.Screenshots, expired.size, ReviewKind.Expired),
@@ -123,12 +133,14 @@ data class LibraryReportBuilder(
             largeVideoBytes = largeVideos.totalBytes,
             recordingBytes = recordings.totalBytes,
             videos = (videos + recordings).sortedByDescending { it.bytes }.take(maxVideosShown).map(::videoItem),
-            forecast = forecast(items, deviceTotalBytes, deviceFreeBytes, potential, now),
+            forecast = forecast(allItems, deviceTotalBytes, deviceFreeBytes, potential, now),
             memories = memories,
             tripSimilarPhotos = if (memories.isEmpty()) similarCount else memories.sumOf { it.similarCount },
             tripBlurryShots = if (memories.isEmpty()) blurry.size else memories.sumOf { it.blurryCount },
             cleanupCandidates = candidates,
             reviewSets = mapOf(
+                // Copies from the biggest groups first; favourites are never preselected.
+                ReviewKind.Duplicates to copies.map { review(it, true) },
                 // Non-keepers from every similar group, biggest groups first.
                 ReviewKind.Similar to groups.flatMap { group ->
                     group.assetUris.filterIndexed { i, _ -> i != group.recommendedIndex }.mapNotNull { byId[it]?.let { item -> review(item, true) } }

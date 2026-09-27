@@ -2,13 +2,14 @@ import Foundation
 
 /// A set of cleanup candidates the user reviews before anything is deleted.
 enum ReviewKind: Hashable, Sendable {
-    case similar, blurry, oldScreenshots, oldRecordings, largeVideos
+    case duplicates, similar, blurry, oldScreenshots, oldRecordings, largeVideos
     /// Tickets and passes whose date has passed.
     case expired
     case screenshots(ScreenshotKind)
 
     var title: String {
         switch self {
+        case .duplicates: "Exact Duplicates"
         case .similar: "Similar Photos"
         case .blurry: "Blurry Photos"
         case .oldScreenshots: "Old Screenshots"
@@ -21,6 +22,7 @@ enum ReviewKind: Hashable, Sendable {
 
     var explanation: String {
         switch self {
+        case .duplicates: "Identical copies of the same file. One copy of each is kept — your favourite, or else the oldest."
         case .similar: "Extra shots from bursts. The best photo of each group is kept."
         case .blurry: "Photos that came out blurry or shaky."
         case .oldScreenshots: "Screenshots older than 30 days. Receipts and upcoming tickets are left out."
@@ -33,7 +35,7 @@ enum ReviewKind: Hashable, Sendable {
 
     /// Stable name for debug launch arguments ("review:screenshots.receipts").
     init?(debugName: String) {
-        let map: [String: ReviewKind] = ["similar": .similar, "blurry": .blurry, "oldScreenshots": .oldScreenshots,
+        let map: [String: ReviewKind] = ["duplicates": .duplicates, "similar": .similar, "blurry": .blurry, "oldScreenshots": .oldScreenshots,
                                          "oldRecordings": .oldRecordings, "largeVideos": .largeVideos, "expired": .expired]
         if let kind = map[debugName] {
             self = kind

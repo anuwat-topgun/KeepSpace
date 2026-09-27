@@ -137,6 +137,18 @@ Notes:
   Calibrate the similarity threshold on a real iPhone.
 - **Demo data:** launch with `-demoData YES` (iOS) or `--ez demoData true` (Android) to show the mockup data set.
 
+### Exact duplicates
+
+`DuplicateFinder` (both platforms, pure) finds byte-for-byte identical files without reading the whole library:
+only files that share an exact size with another file of the same kind (still vs. video) are hashed (SHA-256,
+cached until the file is edited). iOS hashes the original resource via `PHAssetResourceManager` and skips edited
+assets and iCloud-only originals; Android streams the MediaStore file.
+
+- One copy per group is kept: a favourite, else the oldest. The others are preselected (the safest cleanup there
+  is) and appear first in the Cleanup Plan as "Exact Duplicates".
+- Extra copies are removed from Similar, Blurry, Old Screenshots, Expired, recordings and memories so their space
+  is never counted twice.
+
 ### Screenshot categories (on-device OCR)
 
 Screenshots are read on the device and sorted into Shopping, Receipts, Chats, QR Codes, Tickets and Other;

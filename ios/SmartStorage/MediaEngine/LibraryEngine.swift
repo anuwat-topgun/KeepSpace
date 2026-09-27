@@ -1,3 +1,4 @@
+import CryptoKit
 import Photos
 import UIKit
 
@@ -132,6 +133,55 @@ actor LibraryEngine {
         return results
     }
 
+    /// SHA-256 of each item's original file, two at a time. Edited assets are skipped (what you see
+    /// isn't the original file) and so are iCloud-only originals (nothing is downloaded).
+    func hashFiles(
+        _ items: [MediaItem],
+        progress: @escaping @Sendable (Int, Int) async -> Void
+    ) async -> [CachedHash] {
+        var results: [CachedHash] = []
+        var done = 0
+        await withTaskGroup(of: CachedHash?.self) { group in
+            var iterator = items.makeIterator()
+            func enqueue() {
+                guard let item = iterator.next() else { return }
+                group.addTask { await self.hashFile(item) }
+            }
+            for _ in 0..<2 { enqueue() }
+            while let next = await group.next() {
+                if let next { results.append(next) }
+                done += 1
+                if done % 10 == 0 || done == items.count { await progress(done, items.count) }
+                enqueue()
+            }
+        }
+        return results
+    }
+
+    private func hashFile(_ item: MediaItem) async -> CachedHash? {
+        guard let asset = assets[item.id] else { return nil }
+        let resources = PHAssetResource.assetResources(for: asset)
+        guard !resources.contains(where: { $0.type == .adjustmentData }), let resource = Self.primaryResource(in: resources) else { return nil }
+        let options = PHAssetResourceRequestOptions()
+        options.isNetworkAccessAllowed = false
+        let digest = await withCheckedContinuation { (continuation: CheckedContinuation<String?, Never>) in
+            let hasher = HashBox()
+            PHAssetResourceManager.default().requestData(for: resource, options: options) { chunk in
+                hasher.update(chunk)
+            } completionHandler: { error in
+                continuation.resume(returning: error == nil ? hasher.finalize() : nil)
+            }
+        }
+        return digest.map { CachedHash(assetID: item.id, modifiedAt: item.modifiedAt, bytes: item.bytes, hash: $0) }
+    }
+
+    /// Streams chunks into SHA-256; PhotoKit delivers them serially on its own queue.
+    private final class HashBox: @unchecked Sendable {
+        private var hasher = SHA256()
+        func update(_ data: Data) { hasher.update(data: data) }
+        func finalize() -> String { hasher.finalize().map { String(format: "%02x", $0) }.joined() }
+    }
+
     private func readScreenshot(_ item: MediaItem) async -> (MediaItem, ScreenshotInfo)? {
         let isPhoto = item.kind == .photo
         let side = isPhoto ? PaperReceiptDetector.readSide : ScreenshotAnalyzer.readSide
@@ -197,12 +247,16 @@ actor LibraryEngine {
         )
     }
 
+    /// The original photo or video file.
+    private static func primaryResource(in resources: [PHAssetResource]) -> PHAssetResource? {
+        resources.first { $0.type == .photo || $0.type == .video || $0.type == .fullSizePhoto || $0.type == .fullSizeVideo }
+            ?? resources.first
+    }
+
     /// PhotoKit doesn't expose asset size publicly; `fileSize` on the primary resource is the
     /// long-standing way to read it. Falls back to an estimate from pixel count.
     private static func fileSize(of asset: PHAsset) -> Int64 {
-        let resources = PHAssetResource.assetResources(for: asset)
-        let primary = resources.first { $0.type == .photo || $0.type == .video || $0.type == .fullSizePhoto || $0.type == .fullSizeVideo }
-            ?? resources.first
+        let primary = primaryResource(in: PHAssetResource.assetResources(for: asset))
         if let size = primary?.value(forKey: "fileSize") as? Int64 { return size }
         if let size = primary?.value(forKey: "fileSize") as? Int { return Int64(size) }
         let pixels = Int64(asset.pixelWidth * asset.pixelHeight)
