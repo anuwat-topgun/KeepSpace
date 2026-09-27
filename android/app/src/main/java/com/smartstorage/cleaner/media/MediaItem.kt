@@ -13,6 +13,8 @@ data class MediaItem(
     val height: Int,
     val durationMs: Long,
     val isFavorite: Boolean,
+    /** Last edit time, epoch millis; a change invalidates cached analysis. */
+    val modifiedAt: Long = 0,
 ) {
     enum class Kind { Photo, Screenshot, Video, ScreenRecording }
 

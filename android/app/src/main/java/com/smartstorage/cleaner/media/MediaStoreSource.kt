@@ -20,6 +20,7 @@ class MediaStoreSource(private val resolver: ContentResolver) {
             add(MediaStore.MediaColumns._ID)
             add(MediaStore.MediaColumns.DATE_TAKEN)
             add(MediaStore.MediaColumns.DATE_ADDED)
+            add(MediaStore.MediaColumns.DATE_MODIFIED)
             add(MediaStore.MediaColumns.SIZE)
             add(MediaStore.MediaColumns.WIDTH)
             add(MediaStore.MediaColumns.HEIGHT)
@@ -33,6 +34,7 @@ class MediaStoreSource(private val resolver: ContentResolver) {
             val id = c.getColumnIndexOrThrow(MediaStore.MediaColumns._ID)
             val taken = c.getColumnIndexOrThrow(MediaStore.MediaColumns.DATE_TAKEN)
             val added = c.getColumnIndexOrThrow(MediaStore.MediaColumns.DATE_ADDED)
+            val modified = c.getColumnIndexOrThrow(MediaStore.MediaColumns.DATE_MODIFIED)
             val size = c.getColumnIndexOrThrow(MediaStore.MediaColumns.SIZE)
             val width = c.getColumnIndexOrThrow(MediaStore.MediaColumns.WIDTH)
             val height = c.getColumnIndexOrThrow(MediaStore.MediaColumns.HEIGHT)
@@ -59,6 +61,7 @@ class MediaStoreSource(private val resolver: ContentResolver) {
                     height = c.getInt(height),
                     durationMs = if (duration >= 0) c.getLong(duration) else 0,
                     isFavorite = favorite >= 0 && c.getInt(favorite) == 1,
+                    modifiedAt = c.getLong(modified) * 1000,
                 )
             }
         }

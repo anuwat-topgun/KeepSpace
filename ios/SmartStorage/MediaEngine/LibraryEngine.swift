@@ -26,9 +26,6 @@ actor LibraryEngine {
 
     private let analyzer = ImageAnalyzer()
     private var assets: [String: PHAsset] = [:]
-    /// In-memory cache keyed by id + modification date, so a rescan only analyzes new or edited photos.
-    /// Phase 2 persists this to disk.
-    private var featureCache: [String: ImageFeatures] = [:]
     private let imageManager = PHImageManager.default()
 
     static func currentAccess() -> LibraryAccess {
@@ -58,15 +55,18 @@ actor LibraryEngine {
         return items
     }
 
-    /// Analyzes still photos (not screenshots), `concurrency` at a time, reporting progress.
+    /// Analyzes the given photos, `concurrency` at a time. Reports progress, and hands completed
+    /// results to `onBatch` every `batchSize` photos so callers can persist as they go.
     func analyze(
-        _ items: [MediaItem],
+        _ photos: [MediaItem],
         concurrency: Int = 4,
-        progress: @escaping @Sendable (Int, Int) async -> Void
+        batchSize: Int = 25,
+        progress: @escaping @Sendable (Int, Int) async -> Void,
+        onBatch: @escaping @Sendable ([AnalyzedPhoto]) async -> Void
     ) async -> [AnalyzedPhoto] {
-        let photos = items.filter { $0.kind == .photo }
         var results: [AnalyzedPhoto] = []
         results.reserveCapacity(photos.count)
+        var pending: [AnalyzedPhoto] = []
         var done = 0
 
         await withTaskGroup(of: AnalyzedPhoto?.self) { group in
@@ -77,24 +77,28 @@ actor LibraryEngine {
             }
             for _ in 0..<concurrency { enqueue() }
             while let next = await group.next() {
-                if let next { results.append(next) }
+                if let next {
+                    results.append(next)
+                    pending.append(next)
+                }
                 done += 1
                 if done % 10 == 0 || done == photos.count { await progress(done, photos.count) }
+                if pending.count >= batchSize {
+                    await onBatch(pending)
+                    pending.removeAll()
+                }
                 enqueue()
             }
         }
+        if !pending.isEmpty { await onBatch(pending) }
         return results
     }
 
     private func analyzeOne(_ item: MediaItem) async -> AnalyzedPhoto? {
-        guard let asset = assets[item.id] else { return nil }
-        let key = "\(item.id)|\(asset.modificationDate?.timeIntervalSince1970 ?? 0)"
-        if let cached = featureCache[key] { return AnalyzedPhoto(item: item, features: cached) }
-        guard let image = await cgImage(for: asset, side: 512) else { return nil }
+        guard let asset = assets[item.id], let image = await cgImage(for: asset, side: 512) else { return nil }
         // Vision work is synchronous and CPU/ANE bound; run it off the actor so analyses overlap.
         let analyzer = self.analyzer
         let features = await Task.detached(priority: .utility) { analyzer.analyze(image) }.value
-        featureCache[key] = features
         return AnalyzedPhoto(item: item, features: features)
     }
 
@@ -129,6 +133,7 @@ actor LibraryEngine {
             id: asset.localIdentifier,
             kind: kind,
             creationDate: asset.creationDate ?? .distantPast,
+            modifiedAt: asset.modificationDate ?? asset.creationDate ?? .distantPast,
             bytes: fileSize(of: asset),
             pixelWidth: asset.pixelWidth,
             pixelHeight: asset.pixelHeight,

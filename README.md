@@ -115,6 +115,12 @@ Everything runs on the device; nothing is uploaded.
 | Scene titles | Vision `VNClassifyImageRequest` | — (date titles) |
 
 Photos are grouped only when taken within 2 minutes of each other *and* they look alike.
+
+**Incremental scanning.** Analysis results are cached per asset (SwiftData on iOS, Room on Android),
+keyed by asset ID + modification time + `analyzerVersion`. A scan shows cached results immediately,
+analyzes only new or edited photos (saving every 25), and drops entries for deleted photos.
+The cache lives in `Caches/` (iOS) and `no_backup/` (Android): it is regenerable and is never backed up.
+Bump `analyzerVersion` / `ANALYZER_VERSION` whenever analyzer output changes. Scan logs contain counts only.
 The pure logic (grouping, scoring, report/plan/forecast) is unit-tested on both platforms:
 
 ```bash

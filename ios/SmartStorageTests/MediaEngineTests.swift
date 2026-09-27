@@ -226,3 +226,48 @@ private func photo(_ id: String, at seconds: TimeInterval, print: [Float], sharp
         #expect(bytes.formattedBytes == expected)
     }
 }
+
+// MARK: - Analysis cache
+
+@Suite struct AnalysisCacheTests {
+    private func entry(_ id: String, modified: Date, version: Int = analyzerVersion, sharpness: Double = 50) -> CachedAnalysis {
+        CachedAnalysis(assetID: id, modifiedAt: modified, version: version,
+                       features: ImageFeatures(featurePrint: [0.25, -1.5, 3], sharpness: sharpness, exposure: 0.4,
+                                               faceQuality: 0.8, faceCount: 2, sceneLabel: "beach"))
+    }
+
+    @Test func plannerReusesOnlyUnchangedCurrentVersionEntries() {
+        var edited = item("edited"); edited.modifiedAt = t0.addingTimeInterval(60)
+        var same = item("same"); same.modifiedAt = t0
+        var old = item("oldVersion"); old.modifiedAt = t0
+        let fresh = item("new")
+        let cached = [
+            "same": entry("same", modified: t0),
+            "edited": entry("edited", modified: t0),
+            "oldVersion": entry("oldVersion", modified: t0, version: analyzerVersion - 1),
+            "gone": entry("gone", modified: t0),
+        ]
+        let plan = CachePlanner.plan(photos: [same, edited, old, fresh], cached: cached)
+        #expect(plan.hits.map(\.id) == ["same"])
+        #expect(Set(plan.toAnalyze.map(\.id)) == ["edited", "oldVersion", "new"])
+        #expect(plan.staleIDs == ["gone"])
+    }
+
+    @Test func storeRoundTripsUpsertsAndDeletes() async throws {
+        let store = try AnalysisStore.make(inMemory: true)
+        await store.save([entry("a", modified: t0), entry("b", modified: t0)])
+        #expect(await store.count() == 2)
+
+        // Upsert: same id overwrites instead of duplicating.
+        await store.save([entry("a", modified: t0.addingTimeInterval(5), sharpness: 999)])
+        let all = await store.loadAll()
+        #expect(all.count == 2)
+        #expect(all["a"]?.features.sharpness == 999)
+        #expect(all["a"]?.modifiedAt == t0.addingTimeInterval(5))
+        // Every field survives the trip, including the packed feature print.
+        #expect(all["b"] == entry("b", modified: t0))
+
+        await store.delete(ids: ["a"])
+        #expect(await store.loadAll().keys.sorted() == ["b"])
+    }
+}

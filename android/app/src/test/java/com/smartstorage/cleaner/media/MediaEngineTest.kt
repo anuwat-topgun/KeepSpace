@@ -167,3 +167,32 @@ class ByteFormattingTest {
         ).forEach { (bytes, expected) -> assertEquals(expected, bytes.formattedBytes(java.util.Locale.US)) }
     }
 }
+
+class CachePlannerTest {
+    private fun entry(id: String, modified: Long, version: Int = ANALYZER_VERSION) =
+        CachedAnalysis(id, modified, version, ImageFeatures(7, 50.0, 0.4, 0.8, 2))
+
+    @Test fun reusesOnlyUnchangedCurrentVersionEntries() {
+        val photos = listOf(
+            item("same").copy(modifiedAt = 1_000),
+            item("edited").copy(modifiedAt = 2_000),
+            item("oldVersion").copy(modifiedAt = 1_000),
+            item("new"),
+        )
+        val cached = mapOf(
+            "same" to entry("same", 1_000),
+            "edited" to entry("edited", 1_000),
+            "oldVersion" to entry("oldVersion", 1_000, ANALYZER_VERSION - 1),
+            "gone" to entry("gone", 1_000),
+        )
+        val plan = CachePlanner.plan(photos, cached)
+        assertEquals(listOf("same"), plan.hits.map { it.id })
+        assertEquals(setOf("edited", "oldVersion", "new"), plan.toAnalyze.map { it.id }.toSet())
+        assertEquals(listOf("gone"), plan.staleIds)
+    }
+
+    @Test fun entityRoundTripKeepsEveryField() {
+        val original = CachedAnalysis("content://media/1", 42, ANALYZER_VERSION, ImageFeatures(-123456789L, 12.5, 0.33, null, 0))
+        assertEquals(original, AnalysisEntity.from(original).toCached())
+    }
+}

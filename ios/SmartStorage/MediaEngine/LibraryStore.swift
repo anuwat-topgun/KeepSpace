@@ -1,3 +1,4 @@
+import OSLog
 import Photos
 import SwiftUI
 
@@ -20,8 +21,11 @@ final class LibraryStore {
     var cleanupTarget: Int64? = 10_000_000_000
     let isDemo: Bool
 
+    private static let log = Logger(subsystem: "com.keepspace.app", category: "scan")
     private let engine = LibraryEngine()
     private let builder = LibraryReportBuilder()
+    /// nil only if the on-disk cache can't be opened; scans then work uncached.
+    private let cache = try? AnalysisStore.make()
     private var scanTask: Task<Void, Never>?
 
     init(demo: Bool = false) {
@@ -68,14 +72,35 @@ final class LibraryStore {
         let screenSizes = Self.screenPixelSizes()
         let items = await engine.loadItems(screenSizes: screenSizes)
 
-        // Publish sizes straight away so Home is useful while photos are still being analyzed.
-        content = builder.build(items: items, analyzed: [], deviceTotalBytes: storage.totalBytes, deviceFreeBytes: storage.freeBytes)
-        phase = .analyzing(done: 0, total: items.filter { $0.kind == .photo }.count)
+        // Reuse cached analysis; only new or edited photos go through the AI again.
+        let photos = items.filter { $0.kind == .photo }
+        let plan = CachePlanner.plan(photos: photos, cached: await cache?.loadAll() ?? [:])
+        await cache?.delete(ids: plan.staleIDs)
+        // Counts only — never filenames or other personal data.
+        Self.log.info("scan: \(items.count) items, \(plan.hits.count) cached, \(plan.toAnalyze.count) to analyze, \(plan.staleIDs.count) stale")
 
-        let analyzed = await engine.analyze(items) { done, total in
-            await MainActor.run { self.phase = .analyzing(done: done, total: total) }
+        // Publish straight away: sizes plus everything the cache already knows.
+        content = builder.build(items: items, analyzed: plan.hits, deviceTotalBytes: storage.totalBytes, deviceFreeBytes: storage.freeBytes)
+        guard !plan.toAnalyze.isEmpty else {
+            phase = .ready
+            return
         }
-        content = builder.build(items: items, analyzed: analyzed, deviceTotalBytes: storage.totalBytes, deviceFreeBytes: storage.freeBytes)
+        phase = .analyzing(done: 0, total: plan.toAnalyze.count)
+
+        let cache = self.cache
+        let fresh = await engine.analyze(
+            plan.toAnalyze,
+            progress: { done, total in
+                await MainActor.run { self.phase = .analyzing(done: done, total: total) }
+            },
+            onBatch: { batch in
+                // Persist as we go so an interrupted scan keeps its progress.
+                await cache?.save(batch.map {
+                    CachedAnalysis(assetID: $0.id, modifiedAt: $0.item.modifiedAt, version: analyzerVersion, features: $0.features)
+                })
+            }
+        )
+        content = builder.build(items: items, analyzed: plan.hits + fresh, deviceTotalBytes: storage.totalBytes, deviceFreeBytes: storage.freeBytes)
         phase = .ready
     }
 

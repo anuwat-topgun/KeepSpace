@@ -10,6 +10,8 @@ struct MediaItem: Identifiable, Hashable, Sendable {
     let id: String
     let kind: Kind
     let creationDate: Date
+    /// Last edit time; a change invalidates cached analysis.
+    var modifiedAt: Date = .distantPast
     let bytes: Int64
     let pixelWidth: Int
     let pixelHeight: Int

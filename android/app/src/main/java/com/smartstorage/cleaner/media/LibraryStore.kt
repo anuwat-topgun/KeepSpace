@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
+import android.util.Log
 import android.os.storage.StorageManager
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.core.content.ContextCompat
@@ -22,6 +23,9 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -30,7 +34,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Semaphore
 import kotlinx.coroutines.sync.withPermit
 import kotlinx.coroutines.withContext
-import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 
 enum class LibraryAccess { NotDetermined, Authorized, Limited, Denied;
@@ -65,7 +68,7 @@ class LibraryStore(context: Context, demo: Boolean) {
     private val app = context.applicationContext
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private val builder = LibraryReportBuilder()
-    private val featureCache = ConcurrentHashMap<String, ImageFeatures>()
+    private val cache by lazy { AnalysisStore.open(app) }
     private val prefs = app.getSharedPreferences("keepspace", Context.MODE_PRIVATE)
     private var scanJob: Job? = null
 
@@ -101,33 +104,63 @@ class LibraryStore(context: Context, demo: Boolean) {
         val storage = deviceStorage()
         val items = withContext(Dispatchers.IO) { MediaStoreSource(app.contentResolver).load() }
 
-        // Publish sizes straight away so Home is useful while photos are still being analyzed.
+        // Reuse cached analysis; only new or edited photos go through the AI again.
         val photos = items.filter { it.kind == MediaItem.Kind.Photo }
-        _state.update {
-            it.copy(
-                content = builder.build(items, emptyList(), storage.totalBytes, storage.freeBytes),
-                phase = ScanPhase.Analyzing(0, photos.size),
-            )
+        val plan = withContext(Dispatchers.IO) {
+            CachePlanner.plan(photos, cache.loadAll()).also { cache.delete(it.staleIds) }
         }
 
-        val analyzed = withContext(Dispatchers.Default) {
-            ImageAnalyzer(app.contentResolver).use { analyzer ->
-                val done = AtomicInteger()
-                val permits = Semaphore(4)
-                photos.map { item ->
-                    async {
-                        permits.withPermit {
-                            val features = featureCache[item.id] ?: analyzer.analyze(Uri.parse(item.id))?.also { featureCache[item.id] = it }
-                            val n = done.incrementAndGet()
-                            if (n % 10 == 0 || n == photos.size) _state.update { it.copy(phase = ScanPhase.Analyzing(n, photos.size)) }
-                            features?.let { AnalyzedPhoto(item, it) }
-                        }
-                    }
-                }.awaitAll().filterNotNull()
+        // Counts only — never filenames or other personal data.
+        Log.i(TAG, "scan: ${items.size} items, ${plan.hits.size} cached, ${plan.toAnalyze.size} to analyze, ${plan.staleIds.size} stale")
+
+        // Publish straight away: sizes plus everything the cache already knows.
+        _state.update {
+            it.copy(
+                content = builder.build(items, plan.hits, storage.totalBytes, storage.freeBytes),
+                phase = if (plan.toAnalyze.isEmpty()) ScanPhase.Ready else ScanPhase.Analyzing(0, plan.toAnalyze.size),
+            )
+        }
+        if (plan.toAnalyze.isEmpty()) return
+
+        val fresh = withContext(Dispatchers.Default) { analyze(plan.toAnalyze) }
+        _state.update {
+            it.copy(content = builder.build(items, plan.hits + fresh, storage.totalBytes, storage.freeBytes), phase = ScanPhase.Ready)
+        }
+    }
+
+    /** Analyzes [photos] four at a time, persisting every [BATCH_SIZE] results so interrupted scans keep progress. */
+    private suspend fun analyze(photos: List<MediaItem>): List<AnalyzedPhoto> = coroutineScope {
+        val done = AtomicInteger()
+        val permits = Semaphore(4)
+        val pending = mutableListOf<AnalyzedPhoto>()
+        val pendingLock = Mutex()
+        suspend fun flush(force: Boolean) {
+            val batch = pendingLock.withLock {
+                if (!force && pending.size < BATCH_SIZE) return
+                pending.toList().also { pending.clear() }
+            }
+            withContext(Dispatchers.IO) {
+                cache.save(batch.map { CachedAnalysis(it.id, it.item.modifiedAt, ANALYZER_VERSION, it.features) })
             }
         }
-        _state.update {
-            it.copy(content = builder.build(items, analyzed, storage.totalBytes, storage.freeBytes), phase = ScanPhase.Ready)
+
+        ImageAnalyzer(app.contentResolver).use { analyzer ->
+            val results = photos.map { item ->
+                async {
+                    permits.withPermit {
+                        val result = analyzer.analyze(Uri.parse(item.id))?.let { AnalyzedPhoto(item, it) }
+                        val n = done.incrementAndGet()
+                        if (n % 10 == 0 || n == photos.size) _state.update { it.copy(phase = ScanPhase.Analyzing(n, photos.size)) }
+                        if (result != null) {
+                            pendingLock.withLock { pending += result }
+                            flush(force = false)
+                        }
+                        result
+                    }
+                }
+            }.awaitAll().filterNotNull()
+            flush(force = true)
+            results
         }
     }
 
@@ -156,6 +189,8 @@ class LibraryStore(context: Context, demo: Boolean) {
 
     companion object {
         private const val KEY_ASKED = "askedPhotoPermission"
+        private const val BATCH_SIZE = 25
+        private const val TAG = "KeepSpaceScan"
 
         /** Permissions to request for library access on this OS version. */
         val permissions: Array<String>
