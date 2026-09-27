@@ -25,11 +25,14 @@ enum class AppTab(val route: String, val title: String, val icon: ImageVector) {
     fun reviewRoute(kind: com.smartstorage.cleaner.media.ReviewKind): String = "$route/review/${kind.key}"
     val reviewGroupPattern: String get() = "$route/reviewgroup/{$GROUP_ARG}"
     fun reviewGroupRoute(groupId: String): String = "$route/reviewgroup/${android.net.Uri.encode(groupId)}"
+    val receiptPattern: String get() = "$route/receipt/{$RECEIPT_ARG}"
+    fun receiptRoute(id: String): String = "$route/receipt/${android.net.Uri.encode(id)}"
 
     companion object {
         const val SCREEN_ARG = "screen"
         const val GROUP_ARG = "groupId"
         const val REVIEW_ARG = "kind"
+        const val RECEIPT_ARG = "receiptId"
     }
 }
 
@@ -48,6 +51,6 @@ enum class Screen(val title: String) {
     StorageRules("Storage Rules"),
     NewRule("New Rule"),
     // v1.3
-    ReceiptFiling("Receipt Filing"),
+    Receipts("Receipt Filing"),
     BackupVerification("Backed Up"),
 }

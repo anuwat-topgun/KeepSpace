@@ -131,7 +131,11 @@ struct LibraryReportBuilder: Sendable {
             ].merging(byKind.map { kind, members in
                 // Browsing a category: nothing is selected until the user chooses.
                 (ReviewKind.screenshots(kind), members.sorted { $0.creationDate > $1.creationDate }.map { Self.review($0, preselected: false) })
-            }, uniquingKeysWith: { first, _ in first })
+            }, uniquingKeysWith: { first, _ in first }),
+            receipts: (byKind[.receipts] ?? []).map { item in
+                ReceiptEntry(id: item.id, details: info(item).receipt ?? ReceiptDetails(), capturedAt: item.creationDate,
+                             bytes: item.bytes, fileName: item.fileName)
+            }.sorted { ($0.details.date ?? $0.capturedAt) > ($1.details.date ?? $1.capturedAt) }
         )
     }
 

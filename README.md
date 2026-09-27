@@ -157,6 +157,20 @@ tickets whose date has passed become **Expired Tickets**.
 - Known limits: the iOS Simulator can't run Vision's barcode model (works on devices and on macOS); Android can't
   read Thai words, so Thai receipts are recognised from their amounts and Thai transfer slips fall back to QR Codes.
 
+### Receipt Filing (v1.3, extraction + rules)
+
+Receipts found in screenshots get their details read on the device and a filing destination from the rules engine:
+
+- `ReceiptExtractor`: merchant (header line, or recipient on transfer slips), date (incl. Thai "27 ก.ย. 69"),
+  total (labelled total beats subtotal; else the largest amount), currency, spending category.
+- `TemplateResolver` (spec §7.6–7.7): `{YEAR} {MONTH} {DAY} {DATE} {MERCHANT} {AMOUNT} {CATEGORY} {EVENT}
+  {MEDIA_TYPE} {ORIGINAL_NAME} {INDEX}`, with characters Drive/OneDrive reject removed and short merchant names
+  ("Central Department Store" → `Central`, honorifics dropped).
+- `StorageRule.defaults` are the spec's example rules until the rule builder (v1.2 UI) exists.
+- Extracted details are stored on the device only. **Uploading needs v1.1 cloud accounts**; until then the
+  Receipt Filing screen says so and offers to connect.
+- Paper receipts photographed with the camera aren't read yet (screenshots only).
+
 ### Deleting and compressing (safety model)
 
 - Nothing is removed without the **system confirmation**: PhotoKit's prompt on iOS (→ Recently Deleted, 30 days),

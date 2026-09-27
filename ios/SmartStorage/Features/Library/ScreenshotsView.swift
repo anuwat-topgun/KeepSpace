@@ -10,6 +10,16 @@ struct ScreenshotsView: View {
             ScreenHeader(title: "Screenshots", subtitle: "\(library.content.screenshotsBytes.formattedBytes) recoverable")
                 .padding(.bottom, 8)
 
+            if !library.content.receipts.isEmpty {
+                Button { router.push(.receipts) } label: {
+                    Card(style: .hero, padding: 16) {
+                        ListTile(systemImage: "tray.and.arrow.up.fill", tint: .teal, title: "Receipt Filing",
+                                 subtitle: "\(library.content.receipts.count) \(library.content.receipts.count == 1 ? "receipt" : "receipts") ready to file")
+                    }
+                }
+                .buttonStyle(.plain)
+            }
+
             AdaptiveGrid {
                 ForEach(library.content.screenshotCategories) { category in
                     Button {

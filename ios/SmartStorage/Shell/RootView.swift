@@ -151,6 +151,8 @@ struct RouteDestination: View {
         case .videos: VideosView()
         case .memories: MemoriesView()
         case .review(let kind): ReviewView(source: .kind(kind))
+        case .receipts: ReceiptsView()
+        case .receiptFiling(let id): ReceiptFilingView(receiptID: id)
         case .reviewGroup(let id): ReviewView(source: .group(id))
         default: PlaceholderScreen(title: route.title)
         }

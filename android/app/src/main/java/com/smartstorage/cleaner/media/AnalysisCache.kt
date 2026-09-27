@@ -21,8 +21,9 @@ const val ANALYZER_VERSION = 1
 /**
  * Same idea for screenshot classification (OCR rules, keywords). Separate so tuning the classifier
  * re-reads screenshots without re-analyzing every photo. 2: receipts recognised from amounts alone.
+ * 3: receipt details extracted.
  */
-const val SCREENSHOT_READER_VERSION = 2
+const val SCREENSHOT_READER_VERSION = 3
 
 data class CachedAnalysis(
     val assetId: String,
@@ -107,14 +108,28 @@ data class ScreenshotEntity(
     val kind: String,
     val eventDate: Long?,
     val route: String?,
+    val merchant: String? = null,
+    val receiptDate: Long? = null,
+    /** BigDecimal as text so amounts round-trip exactly. */
+    val amount: String? = null,
+    val currency: String? = null,
+    val receiptCategory: String? = null,
 ) {
-    fun toCached() = CachedScreenshot(
-        assetId, modifiedAt, version,
-        ScreenshotInfo(ScreenshotKind.entries.firstOrNull { it.name == kind } ?: ScreenshotKind.Other, eventDate, route),
-    )
+    fun toCached(): CachedScreenshot {
+        val kind = ScreenshotKind.entries.firstOrNull { it.name == kind } ?: ScreenshotKind.Other
+        val receipt = if (kind != ScreenshotKind.Receipts) null else ReceiptDetails(
+            merchant, receiptDate, amount?.toBigDecimalOrNull(), currency,
+            ReceiptCategory.entries.firstOrNull { it.name == receiptCategory } ?: ReceiptCategory.Other,
+        )
+        return CachedScreenshot(assetId, modifiedAt, version, ScreenshotInfo(kind, eventDate, route, receipt))
+    }
 
     companion object {
-        fun from(e: CachedScreenshot) = ScreenshotEntity(e.assetId, e.modifiedAt, e.version, e.info.kind.name, e.info.eventDate, e.info.route)
+        fun from(e: CachedScreenshot) = ScreenshotEntity(
+            e.assetId, e.modifiedAt, e.version, e.info.kind.name, e.info.eventDate, e.info.route,
+            e.info.receipt?.merchant, e.info.receipt?.date, e.info.receipt?.amount?.toPlainString(),
+            e.info.receipt?.currency, e.info.receipt?.category?.name,
+        )
     }
 }
 
@@ -145,7 +160,7 @@ interface AnalysisDao {
     suspend fun count(): Int
 }
 
-@Database(entities = [AnalysisEntity::class, ScreenshotEntity::class], version = 2, exportSchema = false)
+@Database(entities = [AnalysisEntity::class, ScreenshotEntity::class], version = 3, exportSchema = false)
 abstract class AnalysisDatabase : RoomDatabase() {
     abstract fun analysis(): AnalysisDao
     abstract fun screenshots(): ScreenshotDao

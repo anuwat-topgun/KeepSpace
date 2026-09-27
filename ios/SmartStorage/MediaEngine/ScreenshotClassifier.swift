@@ -48,6 +48,8 @@ struct ScreenshotInfo: Sendable, Equatable {
     var eventDate: Date? = nil
     /// For travel tickets: "BKK → TYO".
     var route: String? = nil
+    /// For receipts: merchant, date, total… (kept on device only).
+    var receipt: ReceiptDetails? = nil
 
     func isExpired(now: Date) -> Bool {
         guard kind == .tickets, let eventDate else { return false }
@@ -95,6 +97,7 @@ enum ScreenshotClassifier {
               score >= 2 else {
             return ScreenshotInfo(kind: hasQRCode ? .qrCodes : .other)
         }
+        if kind == .receipts { return ScreenshotInfo(kind: .receipts, receipt: ReceiptExtractor.extract(from: text, now: now)) }
         guard kind == .tickets else { return ScreenshotInfo(kind: kind) }
         return ScreenshotInfo(kind: .tickets, eventDate: DateExtractor.dates(in: text, now: now).max(), route: route(in: text))
     }
@@ -156,7 +159,29 @@ enum DateExtractor {
         for m in textCaptures(#"\b("# + monthAlternation + #")[a-z]*\.?\s(\d{1,2}),?\s(\d{4})\b"#, lower) {
             if let day = Int(m[1]), let year = Int(m[2]), let month = months.firstIndex(of: m[0]) { add(day: day, month: month + 1, year: year) }
         }
+        // Thai: "27 ก.ย. 69", "27 ก.ย. 2569", "27 กันยายน 2569". Two-digit years are Buddhist era.
+        for m in textCaptures(#"(\d{1,2})\s?("# + thaiMonthPattern + #")\s?(\d{2}|\d{4})(?!\d)"#, text) {
+            guard let day = Int(m[0]), var year = Int(m[2]), let month = thaiMonth(m[1]) else { continue }
+            if year < 100 { year += 2500 }
+            add(day: day, month: month, year: year)
+        }
         return found
+    }
+
+    /// Abbreviations with or without dots, and full names. Longer forms first so "มี.ค." isn't read as "ม.ค.".
+    private static let thaiMonths: [(Int, [String])] = [
+        (1, ["มกราคม", "ม.ค.", "มค"]), (2, ["กุมภาพันธ์", "ก.พ.", "กพ"]), (3, ["มีนาคม", "มี.ค.", "มีค"]),
+        (4, ["เมษายน", "เม.ย.", "เมย"]), (5, ["พฤษภาคม", "พ.ค.", "พค"]), (6, ["มิถุนายน", "มิ.ย.", "มิย"]),
+        (7, ["กรกฎาคม", "ก.ค.", "กค"]), (8, ["สิงหาคม", "ส.ค.", "สค"]), (9, ["กันยายน", "ก.ย.", "กย"]),
+        (10, ["ตุลาคม", "ต.ค.", "ตค"]), (11, ["พฤศจิกายน", "พ.ย.", "พย"]), (12, ["ธันวาคม", "ธ.ค.", "ธค"]),
+    ]
+
+    private static var thaiMonthPattern: String {
+        thaiMonths.flatMap(\.1).sorted { $0.count > $1.count }.map(NSRegularExpression.escapedPattern).joined(separator: "|")
+    }
+
+    private static func thaiMonth(_ token: String) -> Int? {
+        thaiMonths.first { $0.1.contains(token) }?.0
     }
 
     private static func captures(_ pattern: String, _ text: String) -> [[Int]] {

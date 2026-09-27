@@ -20,6 +20,8 @@ data class ScreenshotInfo(
     val eventDate: Long? = null,
     /** For travel tickets: "BKK → TYO". */
     val route: String? = null,
+    /** For receipts: merchant, date, total… (kept on device only). */
+    val receipt: ReceiptDetails? = null,
 ) {
     fun isExpired(now: Long): Boolean = kind == ScreenshotKind.Tickets && eventDate != null && eventDate < now - DAY_MS
 
@@ -87,6 +89,7 @@ object ScreenshotClassifier {
         // Tickets and receipts often carry a QR code too; they win when their own evidence is clear.
         val best = scores.entries.maxWithOrNull(compareBy<Map.Entry<ScreenshotKind, Double>> { it.value }.thenByDescending { priority.indexOf(it.key) })
         if (best == null || best.value < 2) return ScreenshotInfo(if (hasQrCode) ScreenshotKind.QrCodes else ScreenshotKind.Other)
+        if (best.key == ScreenshotKind.Receipts) return ScreenshotInfo(ScreenshotKind.Receipts, receipt = ReceiptExtractor.extract(text, now))
         if (best.key != ScreenshotKind.Tickets) return ScreenshotInfo(best.key)
         return ScreenshotInfo(ScreenshotKind.Tickets, DateExtractor.dates(text).maxOrNull(), route(text))
     }
@@ -108,6 +111,16 @@ object DateExtractor {
     private val iso = Regex("""\b(\d{4})-(\d{1,2})-(\d{1,2})\b""")
     private val numeric = Regex("""\b(\d{1,2})[/.](\d{1,2})[/.](\d{2,4})\b""")
     private val dayMonthYear = Regex("""\b(\d{1,2})\s?($monthAlternation)[a-z]*\.?,?\s?(\d{2,4})\b""")
+    /** Abbreviations with or without dots, and full names. Longer forms first so "มี.ค." isn't read as "ม.ค.". */
+    private val thaiMonths = mapOf(
+        1 to listOf("มกราคม", "ม.ค.", "มค"), 2 to listOf("กุมภาพันธ์", "ก.พ.", "กพ"), 3 to listOf("มีนาคม", "มี.ค.", "มีค"),
+        4 to listOf("เมษายน", "เม.ย.", "เมย"), 5 to listOf("พฤษภาคม", "พ.ค.", "พค"), 6 to listOf("มิถุนายน", "มิ.ย.", "มิย"),
+        7 to listOf("กรกฎาคม", "ก.ค.", "กค"), 8 to listOf("สิงหาคม", "ส.ค.", "สค"), 9 to listOf("กันยายน", "ก.ย.", "กย"),
+        10 to listOf("ตุลาคม", "ต.ค.", "ตค"), 11 to listOf("พฤศจิกายน", "พ.ย.", "พย"), 12 to listOf("ธันวาคม", "ธ.ค.", "ธค"),
+    )
+    private val thaiDate = Regex(
+        """(\d{1,2})\s?(""" + thaiMonths.values.flatten().sortedByDescending { it.length }.joinToString("|") { Regex.escape(it) } + """)\s?(\d{2}|\d{4})(?!\d)""",
+    )
     private val monthDayYear = Regex("""\b($monthAlternation)[a-z]*\.?\s(\d{1,2}),?\s(\d{4})\b""")
 
     /** Epoch millis at 12:00 UTC on each date found. */
@@ -128,6 +141,13 @@ object DateExtractor {
         }
         dayMonthYear.findAll(lower).forEach { m -> val (d, mo, y) = m.destructured; add(d.toInt(), months.indexOf(mo) + 1, y.toInt()) }
         monthDayYear.findAll(lower).forEach { m -> val (mo, d, y) = m.destructured; add(d.toInt(), months.indexOf(mo) + 1, y.toInt()) }
+        // Thai: "27 ก.ย. 69", "27 ก.ย. 2569", "27 กันยายน 2569". Two-digit years are Buddhist era.
+        thaiDate.findAll(text).forEach { m ->
+            val (d, token, y) = m.destructured
+            val month = thaiMonths.entries.firstOrNull { token in it.value }?.key ?: return@forEach
+            val year = y.toInt().let { if (it < 100) it + 2500 else it }
+            add(d.toInt(), month, year)
+        }
         return found
     }
 }

@@ -9,6 +9,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ImageBitmap
@@ -32,6 +33,8 @@ fun AssetImage(
     variant: Int = 0,
     cornerRadius: Dp = 12.dp,
     iconScale: Float = 0.3f,
+    /** Keep the top when cropping (receipts and screenshots read from the top). */
+    cropTop: Boolean = false,
 ) {
     if (uri == null) {
         MediaThumbnail(fallback, modifier, variant, cornerRadius, iconScale)
@@ -47,7 +50,13 @@ fun AssetImage(
         }
         Crossfade(bitmap, label = "asset") { image ->
             if (image != null) {
-                Image(image, contentDescription = null, contentScale = ContentScale.Crop, modifier = Modifier.fillMaxSize())
+                Image(
+                    image,
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    alignment = if (cropTop) Alignment.TopCenter else Alignment.Center,
+                    modifier = Modifier.fillMaxSize(),
+                )
             } else {
                 MediaThumbnail(fallback, Modifier.fillMaxSize(), variant, 0.dp, iconScale)
             }

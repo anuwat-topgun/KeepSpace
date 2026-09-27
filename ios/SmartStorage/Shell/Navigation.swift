@@ -45,7 +45,8 @@ enum Route: Hashable, Sendable {
     case storageRules
     case newRule
     // v1.3
-    case receiptFiling
+    case receipts
+    case receiptFiling(id: String)
     case backupVerification
 
     var title: String {
@@ -62,7 +63,7 @@ enum Route: Hashable, Sendable {
         case .manualBackup: "Back Up Now"
         case .storageRules: "Storage Rules"
         case .newRule: "New Rule"
-        case .receiptFiling: "Receipt Filing"
+        case .receipts, .receiptFiling: "Receipt Filing"
         case .backupVerification: "Backed Up"
         }
     }

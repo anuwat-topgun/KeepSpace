@@ -120,6 +120,43 @@ struct ExpiredScreenshot: Identifiable, Sendable {
     var id: String { assetID ?? title }
 }
 
+// MARK: - Receipt filing (16)
+
+struct ReceiptEntry: Identifiable, Hashable, Sendable {
+    /// Asset ID for real receipts; a stable demo ID otherwise.
+    let id: String
+    let details: ReceiptDetails
+    let capturedAt: Date
+    let bytes: Int64
+    var fileName: String? = nil
+    /// Demo entries have no asset to show or upload.
+    var isDemo = false
+
+    var fileExtension: String { fileName.map { ($0 as NSString).pathExtension }.flatMap { $0.isEmpty ? nil : $0 } ?? "jpg" }
+
+    var filingPlan: FilingPlan? {
+        RuleMatcher.plan(for: details, capturedAt: capturedAt, originalName: fileName, fileExtension: fileExtension)
+    }
+
+    var amountText: String? {
+        details.amount.map { amount in
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            formatter.currencyCode = details.currency ?? Locale.current.currency?.identifier ?? "THB"
+            formatter.maximumFractionDigits = amount == amount.rounded() ? 0 : 2
+            return formatter.string(from: NSDecimalNumber(decimal: amount)) ?? "\(amount)"
+        }
+    }
+}
+
+private extension Decimal {
+    func rounded() -> Decimal {
+        var result = Decimal(), value = self
+        NSDecimalRound(&result, &value, 0, .plain)
+        return result
+    }
+}
+
 // MARK: - Videos (08)
 
 enum VideoKind: Sendable { case large, recording }
@@ -281,4 +318,17 @@ extension MockData {
     ]
 
     static let memoriesCleanup = (similarPhotos: 382, blurryShots: 67)
+
+    static let receipts: [ReceiptEntry] = {
+        let day = Calendar.utcGregorian.date(from: DateComponents(year: 2026, month: 9, day: 27, hour: 12))!
+        return [
+            ReceiptEntry(id: "demo-central",
+                         details: ReceiptDetails(merchant: "Central Department Store", date: day, amount: 3450, currency: "THB", category: .shopping),
+                         capturedAt: day, bytes: 2_400_000, fileName: "IMG_0412.JPG", isDemo: true),
+            ReceiptEntry(id: "demo-coffee",
+                         details: ReceiptDetails(merchant: "Blue Bottle Coffee", date: day.addingTimeInterval(-15 * 86_400),
+                                                 amount: Decimal(string: "6.00"), currency: "USD", category: .foodAndDrink),
+                         capturedAt: day.addingTimeInterval(-15 * 86_400), bytes: 1_100_000, fileName: "IMG_0398.PNG", isDemo: true),
+        ]
+    }()
 }

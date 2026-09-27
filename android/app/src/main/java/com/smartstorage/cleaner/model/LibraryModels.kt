@@ -2,6 +2,10 @@ package com.smartstorage.cleaner.model
 
 import androidx.compose.ui.graphics.Color
 import com.smartstorage.cleaner.media.CompressionEstimator
+import com.smartstorage.cleaner.media.FilingPlan
+import com.smartstorage.cleaner.media.ReceiptCategory
+import com.smartstorage.cleaner.media.ReceiptDetails
+import com.smartstorage.cleaner.media.RuleMatcher
 import com.smartstorage.cleaner.media.CompressionPreset
 import com.smartstorage.cleaner.media.ReviewKind
 import com.smartstorage.cleaner.media.ScreenshotKind
@@ -93,6 +97,33 @@ data class ScreenshotCategory(
 )
 
 data class ExpiredScreenshot(val title: String, val detail: String, val status: String, val assetUri: String? = null)
+
+// endregion
+
+// region Receipt filing (16)
+
+data class ReceiptEntry(
+    /** Content URI for real receipts; a stable demo ID otherwise. */
+    val id: String,
+    val details: ReceiptDetails,
+    val capturedAt: Long,
+    val bytes: Long,
+    val fileName: String? = null,
+    /** Demo entries have no asset to show or upload. */
+    val isDemo: Boolean = false,
+) {
+    val fileExtension: String get() = fileName?.substringAfterLast('.', "")?.ifEmpty { null } ?: "jpg"
+
+    val filingPlan: FilingPlan? get() = RuleMatcher.plan(details, capturedAt, fileName, fileExtension)
+
+    val amountText: String?
+        get() = details.amount?.let { amount ->
+            val format = java.text.NumberFormat.getCurrencyInstance()
+            runCatching { format.currency = java.util.Currency.getInstance(details.currency ?: "THB") }
+            format.maximumFractionDigits = if (amount.stripTrailingZeros().scale() <= 0) 0 else 2
+            format.format(amount)
+        }
+}
 
 // endregion
 
@@ -237,6 +268,17 @@ object LibraryMockData {
         MemoryEvent("Birthday Party", 342, 0, ThumbnailStyle.Cake),
         MemoryEvent("Concert Night", 184, 0, ThumbnailStyle.Concert),
     )
+
+    val receipts: List<ReceiptEntry>
+        get() {
+            val day = java.time.LocalDate.of(2026, 9, 27).atTime(12, 0).toInstant(java.time.ZoneOffset.UTC).toEpochMilli()
+            return listOf(
+                ReceiptEntry("demo-central", ReceiptDetails("Central Department Store", day, java.math.BigDecimal(3450), "THB", ReceiptCategory.Shopping),
+                    day, 2_400_000, "IMG_0412.JPG", isDemo = true),
+                ReceiptEntry("demo-coffee", ReceiptDetails("Blue Bottle Coffee", day - 15 * 86_400_000L, java.math.BigDecimal("6.00"), "USD", ReceiptCategory.FoodAndDrink),
+                    day - 15 * 86_400_000L, 1_100_000, "IMG_0398.PNG", isDemo = true),
+            )
+        }
 
     const val TRIP_SIMILAR_PHOTOS = 382
     const val TRIP_BLURRY_SHOTS = 67

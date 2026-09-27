@@ -7,6 +7,7 @@ import com.smartstorage.cleaner.model.ForecastPoint
 import com.smartstorage.cleaner.model.GroupIcon
 import com.smartstorage.cleaner.model.LibraryContent
 import com.smartstorage.cleaner.model.PhotoGroup
+import com.smartstorage.cleaner.model.ReceiptEntry
 import com.smartstorage.cleaner.model.PlanItem
 import com.smartstorage.cleaner.model.PlanTarget
 import com.smartstorage.cleaner.model.ReasonKind
@@ -131,6 +132,9 @@ data class LibraryReportBuilder(
                 // Browsing a category: nothing is selected until the user chooses.
                 ReviewKind.Screenshots(kind) to members.sortedByDescending { it.createdAt }.map { review(it, false) }
             },
+            receipts = byKind[ScreenshotKind.Receipts].orEmpty().map { item ->
+                ReceiptEntry(item.id, info(item).receipt ?: ReceiptDetails(), item.createdAt, item.bytes, item.fileName)
+            }.sortedByDescending { it.details.date ?: it.capturedAt },
         )
     }
 

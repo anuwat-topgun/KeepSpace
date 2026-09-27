@@ -356,3 +356,77 @@ class ScreenshotReportTest {
         assertEquals(ScreenshotInfo(ScreenshotKind.Tickets, 42, "BKK → HND"), entity.toCached().info)
     }
 }
+
+class ReceiptExtractorTest {
+    private val now = 1_790_490_000_000L // 2026-09-27
+    private fun ymd(ms: Long?) = ms?.let { java.time.Instant.ofEpochMilli(it).atZone(java.time.ZoneOffset.UTC).toLocalDate().toString() }
+
+    @Test fun thaiDepartmentStoreReceiptLikeMockup16() {
+        val text = "CENTRAL\nCentral Department Store\nSiam Paragon, Bangkok\nTAX INVOICE (ABB)\n1 Fashion Item      2,990.00\n" +
+            "1 Home Collection     350.00\n1 Gift Package        110.00\nTotal               3,450.00\nVAT Included\n20260927 1234567890\n27/09/2026"
+        val r = ReceiptExtractor.extract(text, now)
+        assertEquals("CENTRAL", r.merchant)
+        assertEquals(0, java.math.BigDecimal(3450).compareTo(r.amount))
+        assertEquals("2026-09-27", ymd(r.date))
+        assertEquals(ReceiptCategory.Shopping, r.category)
+    }
+
+    @Test fun englishCafeReceipt() {
+        val r = ReceiptExtractor.extract("BLUE BOTTLE COFFEE\nLatte  \$5.50\nSubtotal \$5.50\nTax  \$0.50\nTOTAL  \$6.00\nSep 12, 2026  9:14 AM", now)
+        assertEquals("BLUE BOTTLE COFFEE", r.merchant)
+        assertEquals(java.math.BigDecimal("6.00"), r.amount)
+        assertEquals("USD", r.currency)
+        assertEquals(ReceiptCategory.FoodAndDrink, r.category)
+        assertEquals("2026-09-12", ymd(r.date))
+    }
+
+    @Test fun thaiTransferSlip() {
+        val r = ReceiptExtractor.extract("โอนเงินสำเร็จ\n27 ก.ย. 69  09:32\nจำนวนเงิน 500.00 บาท\nไปยัง นาย สมชาย ใจดี", now)
+        assertEquals("นาย สมชาย ใจดี", r.merchant)
+        assertEquals(0, java.math.BigDecimal(500).compareTo(r.amount))
+        assertEquals("THB", r.currency)
+        assertEquals(ReceiptCategory.Transfer, r.category)
+        assertEquals("2026-09-27", ymd(r.date))
+    }
+
+    @Test fun amountsDatesAndNames() {
+        assertTrue(ReceiptExtractor.amounts("12.09.2026").isEmpty())
+        assertEquals(listOf(java.math.BigDecimal(1290), java.math.BigDecimal("3450.00")), ReceiptExtractor.amounts("฿1,290  and 3,450.00 บาท"))
+        assertEquals(listOf("2026-03-01"), DateExtractor.dates("1 มี.ค. 2569").map { ymd(it) })
+        assertEquals(listOf("2027-01-05"), DateExtractor.dates("5 ม.ค. 70").map { ymd(it) })
+        assertEquals("Central", ReceiptExtractor.shortName("Central Department Store"))
+        assertEquals("Storehouse Cafe", ReceiptExtractor.shortName("Storehouse Cafe"))
+        assertEquals("สมชาย ใจดี", ReceiptExtractor.shortName("นาย สมชาย ใจดี"))
+        assertEquals("John Smith", ReceiptExtractor.shortName("Mr. John Smith"))
+        assertEquals("Nail Studio", ReceiptExtractor.shortName("Nail Studio"))
+    }
+}
+
+class FilingTemplateTest {
+    private val date = java.time.LocalDate.of(2026, 9, 27).atTime(12, 0).toInstant(java.time.ZoneOffset.UTC).toEpochMilli()
+
+    @Test fun matchesMockup16() {
+        val receipt = ReceiptDetails("Central Department Store", date, java.math.BigDecimal(3450), "THB", ReceiptCategory.Shopping)
+        val plan = RuleMatcher.plan(receipt, date, "IMG_0412.JPG", "JPG")!!
+        assertEquals(CloudProvider.GoogleDrive, plan.rule.provider)
+        assertEquals("/Receipts/2026/09/Central/", plan.folder)
+        assertEquals("2026-09-27_Central_3450.jpg", plan.fileName)
+    }
+
+    @Test fun sanitizesAndFallsBack() {
+        val values = TemplateValues(date, merchant = "A/B: Café*", amount = java.math.BigDecimal("12.5"))
+        assertEquals("/Receipts/A B Café/Other/", TemplateResolver.folder("/Receipts/{MERCHANT}/{CATEGORY}", values))
+        assertEquals("2026-09-27_A-B-Café_12.50.png", TemplateResolver.fileName("{DATE}_{MERCHANT}_{AMOUNT}", values, "png"))
+        assertEquals("Unknown_0.heic", TemplateResolver.fileName("{MERCHANT}_{AMOUNT}", TemplateValues(date), "heic"))
+    }
+
+    @Test fun disabledRulesAreSkippedAndCacheKeepsReceipts() {
+        val rules = StorageRule.defaults.mapIndexed { i, r -> if (i == 0) r.copy(isEnabled = false) else r }
+        assertNull(RuleMatcher.plan(ReceiptDetails(), date, null, "jpg", rules))
+
+        val info = ScreenshotClassifier.classify("BLUE BOTTLE COFFEE\nLatte \$5.50\nTax \$0.50\nTOTAL \$6.00\nPAID", false)
+        assertEquals(ScreenshotKind.Receipts, info.kind)
+        val entity = ScreenshotEntity.from(CachedScreenshot("r", 1, SCREENSHOT_READER_VERSION, info))
+        assertEquals(info.receipt, entity.toCached().info.receipt)
+    }
+}

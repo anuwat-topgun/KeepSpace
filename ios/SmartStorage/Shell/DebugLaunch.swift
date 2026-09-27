@@ -29,7 +29,8 @@ private extension Route {
         case "manualBackup": self = .manualBackup
         case "storageRules": self = .storageRules
         case "newRule": self = .newRule
-        case "receiptFiling": self = .receiptFiling
+        case "receipts": self = .receipts
+        case "receiptFiling": self = .receiptFiling(id: parts.count > 1 ? parts[1] : "demo-central")
         case "backupVerification": self = .backupVerification
         default: return nil
         }

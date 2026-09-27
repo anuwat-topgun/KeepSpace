@@ -456,3 +456,111 @@ private func photo(_ id: String, at seconds: TimeInterval, print: [Float], sharp
         #expect(await store.loadScreenshots().isEmpty)
     }
 }
+
+// MARK: - Receipt filing
+
+@Suite struct ReceiptExtractorTests {
+    let now = Date(timeIntervalSince1970: 1_790_490_000) // 2026-09-27
+
+    private func ymd(_ d: Date?) -> String? {
+        d.map { Calendar.utcGregorian.dateComponents([.year, .month, .day], from: $0) }.map { String(format: "%04d-%02d-%02d", $0.year!, $0.month!, $0.day!) }
+    }
+
+    @Test func thaiDepartmentStoreReceiptLikeMockup16() {
+        let text = """
+        CENTRAL
+        Central Department Store
+        Siam Paragon, Bangkok
+        TAX INVOICE (ABB)
+        1 Fashion Item      2,990.00
+        1 Home Collection     350.00
+        1 Gift Package        110.00
+        Total               3,450.00
+        VAT Included
+        20260927 1234567890
+        27/09/2026
+        """
+        let r = ReceiptExtractor.extract(from: text, now: now)
+        #expect(r.merchant == "CENTRAL")
+        #expect(r.amount == Decimal(3450))
+        #expect(ymd(r.date) == "2026-09-27")
+        #expect(r.category == .shopping)
+    }
+
+    @Test func englishCafeReceipt() {
+        let text = "BLUE BOTTLE COFFEE\nLatte  $5.50\nSubtotal $5.50\nTax  $0.50\nTOTAL  $6.00\nSep 12, 2026  9:14 AM"
+        let r = ReceiptExtractor.extract(from: text, now: now)
+        #expect(r.merchant == "BLUE BOTTLE COFFEE")
+        #expect(r.amount == Decimal(string: "6.00"))   // not the subtotal
+        #expect(r.currency == "USD")
+        #expect(r.category == .foodAndDrink)
+        #expect(ymd(r.date) == "2026-09-12")
+    }
+
+    @Test func thaiTransferSlip() {
+        let r = ReceiptExtractor.extract(from: "โอนเงินสำเร็จ\n27 ก.ย. 69  09:32\nจำนวนเงิน 500.00 บาท\nไปยัง นาย สมชาย ใจดี", now: now)
+        #expect(r.merchant == "นาย สมชาย ใจดี")
+        #expect(r.amount == Decimal(500))
+        #expect(r.currency == "THB")
+        #expect(r.category == .transfer)
+        #expect(ymd(r.date) == "2026-09-27")          // Buddhist-era "69"
+    }
+
+    @Test func amountsAndDatesDontMix() {
+        #expect(ReceiptExtractor.amounts(in: "12.09.2026").isEmpty)
+        #expect(ReceiptExtractor.amounts(in: "฿1,290  and 3,450.00 บาท") == [Decimal(1290), Decimal(3450)])
+        #expect(DateExtractor.dates(in: "1 มี.ค. 2569").compactMap(ymd) == ["2026-03-01"])
+        #expect(DateExtractor.dates(in: "5 ม.ค. 70").compactMap(ymd) == ["2027-01-05"])
+    }
+
+    @Test func shortNames() {
+        #expect(ReceiptExtractor.shortName("Central Department Store") == "Central")
+        #expect(ReceiptExtractor.shortName("CP ALL Public Company Limited") == "Cp All")
+        #expect(ReceiptExtractor.shortName("Storehouse Cafe") == "Storehouse Cafe") // whole words only
+        #expect(ReceiptExtractor.shortName("นาย สมชาย ใจดี") == "สมชาย ใจดี")
+        #expect(ReceiptExtractor.shortName("Mr. John Smith") == "John Smith")
+        #expect(ReceiptExtractor.shortName("Mrs Cafe") == "Cafe")
+        #expect(ReceiptExtractor.shortName("Nail Studio") == "Nail Studio") // "นาย"-like prefixes only as whole words
+    }
+}
+
+@Suite struct FilingTemplateTests {
+    let date = Calendar.utcGregorian.date(from: DateComponents(year: 2026, month: 9, day: 27, hour: 12))!
+
+    @Test func matchesMockup16() {
+        let receipt = ReceiptDetails(merchant: "Central Department Store", date: date, amount: 3450, currency: "THB", category: .shopping)
+        let plan = RuleMatcher.plan(for: receipt, capturedAt: date, originalName: "IMG_0412.JPG", fileExtension: "JPG")
+        #expect(plan?.rule.provider == .googleDrive)
+        #expect(plan?.folder == "/Receipts/2026/09/Central/")
+        #expect(plan?.fileName == "2026-09-27_Central_3450.jpg")
+    }
+
+    @Test func sanitizesAndFallsBack() {
+        let values = TemplateValues(date: date, merchant: "A/B: Café*", amount: Decimal(string: "12.5"))
+        #expect(TemplateResolver.folder("/Receipts/{MERCHANT}/{CATEGORY}", values) == "/Receipts/A B Café/Other/")
+        #expect(TemplateResolver.fileName("{DATE}_{MERCHANT}_{AMOUNT}", values, extension: "png") == "2026-09-27_A-B-Café_12.50.png")
+        let empty = TemplateValues(date: date)
+        #expect(TemplateResolver.fileName("{MERCHANT}_{AMOUNT}", empty, extension: "heic") == "Unknown_0.heic")
+    }
+
+    @Test func disabledRulesAreSkipped() {
+        var rules = StorageRule.defaults
+        rules[0].isEnabled = false
+        #expect(RuleMatcher.plan(for: ReceiptDetails(), capturedAt: date, originalName: nil, fileExtension: "jpg", rules: rules) == nil)
+    }
+}
+
+@Suite struct ReceiptCacheTests {
+    @Test func classifierAttachesReceiptDetailsAndCacheKeepsThem() async throws {
+        let info = ScreenshotClassifier.classify(text: "BLUE BOTTLE COFFEE\nLatte $5.50\nTax $0.50\nTOTAL $6.00\nPAID", hasQRCode: false)
+        #expect(info.kind == .receipts)
+        #expect(info.receipt?.amount == Decimal(string: "6.00"))
+
+        let store = try AnalysisStore.make(inMemory: true)
+        let entry = CachedScreenshot(assetID: "r", modifiedAt: t0, version: screenshotReaderVersion, info: info)
+        await store.saveScreenshots([entry])
+        let loaded = await store.loadScreenshots()["r"]
+        #expect(loaded?.info.receipt == info.receipt)   // incl. the exact Decimal amount
+        #expect(loaded?.info.kind == .receipts)
+    }
+}

@@ -23,6 +23,8 @@ data class LibraryContent(
     val cleanupCandidates: List<PlanItem>,
     /** Items behind each candidate, for the review screen. Empty for demo content. */
     val reviewSets: Map<ReviewKind, List<ReviewItem>> = emptyMap(),
+    /** Receipts with their extracted details, newest first. */
+    val receipts: List<ReceiptEntry> = emptyList(),
 ) {
     /**
      * Greedily adds whole candidate categories (safest first) until the target is met.
@@ -60,6 +62,7 @@ data class LibraryContent(
                 tripSimilarPhotos = LibraryMockData.TRIP_SIMILAR_PHOTOS,
                 tripBlurryShots = LibraryMockData.TRIP_BLURRY_SHOTS,
                 cleanupCandidates = LibraryMockData.cleanupPlan.items,
+                receipts = LibraryMockData.receipts,
             )
 
         /** Before a scan finishes: real device storage, nothing else yet. */

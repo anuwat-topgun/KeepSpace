@@ -15,6 +15,8 @@ data class MediaItem(
     val isFavorite: Boolean,
     /** Last edit time, epoch millis; a change invalidates cached analysis. */
     val modifiedAt: Long = 0,
+    /** Original file name ("IMG_0412.jpg"), for {ORIGINAL_NAME} and the extension when filing. */
+    val fileName: String? = null,
 ) {
     enum class Kind { Photo, Screenshot, Video, ScreenRecording }
 

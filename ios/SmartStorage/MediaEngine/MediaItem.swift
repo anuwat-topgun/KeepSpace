@@ -17,6 +17,8 @@ struct MediaItem: Identifiable, Hashable, Sendable {
     let pixelHeight: Int
     let duration: TimeInterval
     let isFavorite: Bool
+    /// Original file name ("IMG_0412.HEIC"), for {ORIGINAL_NAME} and the extension when filing.
+    var fileName: String? = nil
 
     var isVideo: Bool { kind == .video || kind == .screenRecording }
     var isStill: Bool { !isVideo }

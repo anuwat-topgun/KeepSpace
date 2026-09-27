@@ -18,6 +18,8 @@ struct LibraryContent: Sendable {
     var cleanupCandidates: [PlanItem]
     /// Items behind each candidate, for the review screen. Empty for demo content.
     var reviewSets: [ReviewKind: [ReviewItem]] = [:]
+    /// Receipts with their extracted details, newest first.
+    var receipts: [ReceiptEntry] = []
 
     var similarGroupCount: Int { photoGroups.count }
 
@@ -54,7 +56,8 @@ extension LibraryContent {
         forecast: MockData.forecast,
         memories: MockData.memories,
         memoriesCleanup: MockData.memoriesCleanup,
-        cleanupCandidates: MockData.cleanupPlan.items
+        cleanupCandidates: MockData.cleanupPlan.items,
+        receipts: MockData.receipts
     )
 
     /// Before a scan finishes: real device storage, nothing else yet.

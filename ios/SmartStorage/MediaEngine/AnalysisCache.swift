@@ -7,8 +7,8 @@ let analyzerVersion = 1
 
 /// Same idea for screenshot classification (OCR rules, keywords). Separate so tuning the
 /// classifier re-reads screenshots without re-analyzing every photo.
-/// 2: receipts recognised from amounts alone.
-let screenshotReaderVersion = 2
+/// 2: receipts recognised from amounts alone. 3: receipt details extracted.
+let screenshotReaderVersion = 3
 
 /// One cached analysis, as a value type that can cross actors.
 struct CachedAnalysis: Sendable, Equatable {
@@ -137,6 +137,12 @@ final class ScreenshotRecord {
     var kind: String
     var eventDate: Date?
     var route: String?
+    var merchant: String?
+    var receiptDate: Date?
+    /// Decimal as text so amounts round-trip exactly.
+    var amount: String?
+    var currency: String?
+    var receiptCategory: String?
 
     init(_ entry: CachedScreenshot) {
         assetID = entry.assetID
@@ -145,6 +151,11 @@ final class ScreenshotRecord {
         kind = entry.info.kind.rawValue
         eventDate = entry.info.eventDate
         route = entry.info.route
+        merchant = entry.info.receipt?.merchant
+        receiptDate = entry.info.receipt?.date
+        amount = entry.info.receipt?.amount.map { "\($0)" }
+        currency = entry.info.receipt?.currency
+        receiptCategory = entry.info.receipt?.category.rawValue
     }
 
     func update(from entry: CachedScreenshot) {
@@ -153,6 +164,11 @@ final class ScreenshotRecord {
         kind = entry.info.kind.rawValue
         eventDate = entry.info.eventDate
         route = entry.info.route
+        merchant = entry.info.receipt?.merchant
+        receiptDate = entry.info.receipt?.date
+        amount = entry.info.receipt?.amount.map { "\($0)" }
+        currency = entry.info.receipt?.currency
+        receiptCategory = entry.info.receipt?.category.rawValue
     }
 
     var value: CachedScreenshot {
@@ -160,7 +176,18 @@ final class ScreenshotRecord {
             assetID: assetID,
             modifiedAt: modifiedAt,
             version: version,
-            info: ScreenshotInfo(kind: ScreenshotKind(rawValue: kind) ?? .other, eventDate: eventDate, route: route)
+            info: ScreenshotInfo(
+                kind: ScreenshotKind(rawValue: kind) ?? .other,
+                eventDate: eventDate,
+                route: route,
+                receipt: kind == ScreenshotKind.receipts.rawValue ? ReceiptDetails(
+                    merchant: merchant,
+                    date: receiptDate,
+                    amount: amount.flatMap { Decimal(string: $0, locale: Locale(identifier: "en_US_POSIX")) },
+                    currency: currency,
+                    category: receiptCategory.flatMap(ReceiptCategory.init(rawValue:)) ?? .other
+                ) : nil
+            )
         )
     }
 }

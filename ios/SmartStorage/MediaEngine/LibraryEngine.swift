@@ -182,7 +182,8 @@ actor LibraryEngine {
             pixelWidth: asset.pixelWidth,
             pixelHeight: asset.pixelHeight,
             duration: asset.duration,
-            isFavorite: asset.isFavorite
+            isFavorite: asset.isFavorite,
+            fileName: PHAssetResource.assetResources(for: asset).first?.originalFilename
         )
     }
 

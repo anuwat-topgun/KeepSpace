@@ -8,6 +8,8 @@ struct AssetImage: View {
     var variant: Int = 0
     var cornerRadius: CGFloat = 12
     var symbolScale: CGFloat = 0.3
+    /// Which part of the image to keep when cropping (receipts and screenshots read from the top).
+    var cropAlignment: Alignment = .center
 
     @State private var image: UIImage?
     @Environment(\.displayScale) private var displayScale
@@ -19,7 +21,7 @@ struct AssetImage: View {
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFill()
-                        .frame(width: proxy.size.width, height: proxy.size.height)
+                        .frame(width: proxy.size.width, height: proxy.size.height, alignment: cropAlignment)
                         .clipped()
                         .transition(.opacity)
                 } else {
