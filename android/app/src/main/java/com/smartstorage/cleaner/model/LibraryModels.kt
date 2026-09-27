@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 import com.smartstorage.cleaner.media.CompressionEstimator
 import com.smartstorage.cleaner.media.CompressionPreset
 import com.smartstorage.cleaner.media.ReviewKind
+import com.smartstorage.cleaner.media.ScreenshotKind
 
 // Mirrors ios/SmartStorage/Model/LibraryModels.swift — keep the two in sync.
 
@@ -81,11 +82,17 @@ data class BestShotReason(val title: String, val detail: String, val kind: Reaso
 
 // region Screenshots (11)
 
-enum class ScreenshotKind { Shopping, Receipts, Chats, QrCodes, Tickets, Old, Recent }
 
-data class ScreenshotCategory(val title: String, val kind: ScreenshotKind, val bytes: Long)
+data class ScreenshotCategory(
+    val title: String,
+    val kind: ScreenshotKind,
+    val bytes: Long,
+    val count: Int = 0,
+    /** Real categories open their review set; demo ones don't. */
+    val reviewable: Boolean = false,
+)
 
-data class ExpiredScreenshot(val title: String, val detail: String, val status: String)
+data class ExpiredScreenshot(val title: String, val detail: String, val status: String, val assetUri: String? = null)
 
 // endregion
 

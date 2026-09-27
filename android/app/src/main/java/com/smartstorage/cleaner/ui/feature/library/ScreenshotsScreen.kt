@@ -1,5 +1,11 @@
 package com.smartstorage.cleaner.ui.feature.library
 
+import com.smartstorage.cleaner.model.ThumbnailStyle
+import com.smartstorage.cleaner.ui.components.AssetImage
+import androidx.compose.material.icons.rounded.Lock
+import androidx.compose.ui.semantics.Role
+import androidx.compose.foundation.clickable
+import com.smartstorage.cleaner.media.ReviewKind
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -41,9 +47,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.smartstorage.cleaner.model.ExpiredScreenshot
 import com.smartstorage.cleaner.media.libraryState
-import androidx.compose.material.icons.rounded.History
 import androidx.compose.material.icons.rounded.CropFree
-import com.smartstorage.cleaner.model.ScreenshotKind
+import com.smartstorage.cleaner.media.ScreenshotKind
 import com.smartstorage.cleaner.model.formattedBytes
 import com.smartstorage.cleaner.ui.components.AdaptiveGrid
 import com.smartstorage.cleaner.ui.components.CardRow
@@ -59,7 +64,7 @@ import com.smartstorage.cleaner.ui.theme.Tint
 
 /** 11 — Screenshots grouped by what they contain, plus time-sensitive content that has expired. */
 @Composable
-fun ScreenshotsScreen(onBack: () -> Unit) {
+fun ScreenshotsScreen(onReview: (ReviewKind) -> Unit, onBack: () -> Unit) {
     ScreenScaffold(maxWidth = SmartMetrics.wideContentWidth, onBack = onBack) {
         val state = libraryState()
         ScreenHeader("Screenshots", "${state.content.screenshotsBytes.formattedBytes()} recoverable", Modifier.padding(bottom = 8.dp))
@@ -73,9 +78,28 @@ fun ScreenshotsScreen(onBack: () -> Unit) {
             }
         }
         AdaptiveGrid(state.content.screenshotCategories) { category ->
-            CardRow(category.kind.icon, category.title, tint = category.kind.tint, subtitle = category.bytes.formattedBytes())
+            CardRow(
+                category.kind.icon,
+                category.title,
+                tint = category.kind.tint,
+                subtitle = if (category.count > 0) "${category.count} · ${category.bytes.formattedBytes()}" else category.bytes.formattedBytes(),
+                onClick = if (category.reviewable) ({ onReview(ReviewKind.Screenshots(category.kind)) }) else null,
+            )
         }
-        if (state.content.expiredScreenshots.isNotEmpty()) ExpiredContentCard(state.content.expiredScreenshots)
+        if (state.content.expiredScreenshots.isNotEmpty()) {
+            val real = state.content.expiredScreenshots.any { it.assetUri != null } // demo content has nothing to review
+            Box(if (real) Modifier.clickable(role = Role.Button) { onReview(ReviewKind.Expired) } else Modifier) {
+                ExpiredContentCard(state.content.expiredScreenshots.take(3))
+            }
+        }
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
+            Icon(Icons.Rounded.Lock, contentDescription = null, tint = SmartTheme.colors.textSecondary, modifier = Modifier.size(14.dp))
+            Text(
+                "Screenshots are read on this device to sort them. The text is never stored or uploaded.",
+                style = TextStyle(fontSize = 12.sp),
+                color = SmartTheme.colors.textSecondary,
+            )
+        }
     }
 }
 
@@ -103,7 +127,11 @@ private fun ExpiredContentCard(items: List<ExpiredScreenshot>) {
             items.forEach { item ->
                 SmartCard(contentPadding = PaddingValues(14.dp)) {
                     Row(horizontalArrangement = Arrangement.spacedBy(16.dp), verticalAlignment = Alignment.CenterVertically) {
-                        BoardingPassArt()
+                        if (item.assetUri != null) {
+                            AssetImage(item.assetUri, ThumbnailStyle.Screen, Modifier.width(120.dp).height(96.dp), cornerRadius = 10.dp)
+                        } else {
+                            BoardingPassArt()
+                        }
                         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                             Text(item.title, style = SmartType.cardHeadline, color = colors.textPrimary)
                             Text(item.detail, style = SmartType.metadata, color = colors.textSecondary)
@@ -163,8 +191,7 @@ private val ScreenshotKind.icon: ImageVector
         ScreenshotKind.Chats -> Icons.Rounded.Forum
         ScreenshotKind.QrCodes -> Icons.Rounded.QrCodeScanner
         ScreenshotKind.Tickets -> Icons.Rounded.ConfirmationNumber
-        ScreenshotKind.Old -> Icons.Rounded.History
-        ScreenshotKind.Recent -> Icons.Rounded.CropFree
+        ScreenshotKind.Other -> Icons.Rounded.CropFree
     }
 
 private val ScreenshotKind.tint: Tint
@@ -174,6 +201,5 @@ private val ScreenshotKind.tint: Tint
         ScreenshotKind.Chats -> Tint.Mint
         ScreenshotKind.QrCodes -> Tint.Blue
         ScreenshotKind.Tickets -> Tint.Purple
-        ScreenshotKind.Old -> Tint.Amber
-        ScreenshotKind.Recent -> Tint.Blue
+        ScreenshotKind.Other -> Tint.Gray
     }

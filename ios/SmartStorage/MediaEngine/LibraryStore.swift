@@ -26,6 +26,7 @@ final class LibraryStore {
     // Last scan inputs, so deletions update the screens without a full rescan.
     private var lastItems: [MediaItem] = []
     private var lastAnalyzed: [AnalyzedPhoto] = []
+    private var lastScreenshotInfo: [String: ScreenshotInfo] = [:]
 
     private static let log = Logger(subsystem: "com.keepspace.app", category: "scan")
     private let engine = LibraryEngine()
@@ -106,9 +107,12 @@ final class LibraryStore {
     private func removeFromResults(_ ids: Set<String>) {
         lastItems.removeAll { ids.contains($0.id) }
         lastAnalyzed.removeAll { ids.contains($0.id) }
-        let storage = Self.deviceStorage()
-        content = builder.build(items: lastItems, analyzed: lastAnalyzed, deviceTotalBytes: storage.totalBytes, deviceFreeBytes: storage.freeBytes)
-        Task { [cache] in await cache?.delete(ids: Array(ids)) }
+        ids.forEach { lastScreenshotInfo[$0] = nil }
+        rebuild()
+        Task { [cache] in
+            await cache?.delete(ids: Array(ids))
+            await cache?.deleteScreenshots(ids: Array(ids))
+        }
     }
 
     func scan() {
@@ -119,32 +123,35 @@ final class LibraryStore {
     private func runScan() async {
         phase = .loadingLibrary
         let storage = Self.deviceStorage()
-        let screenSizes = Self.screenPixelSizes()
-        let items = await engine.loadItems(screenSizes: screenSizes)
+        let items = await engine.loadItems(screenSizes: Self.screenPixelSizes())
 
-        // Reuse cached analysis; only new or edited photos go through the AI again.
+        // Reuse cached analysis; only new or edited items go through the AI again.
         let photos = items.filter { $0.kind == .photo }
-        let plan = CachePlanner.plan(photos: photos, cached: await cache?.loadAll() ?? [:])
-        await cache?.delete(ids: plan.staleIDs)
+        let screenshots = items.filter { $0.kind == .screenshot }
+        let photoPlan = CachePlanner.plan(photos: photos, cached: await cache?.loadAll() ?? [:])
+        let shotPlan = CachePlanner.plan(screenshots: screenshots, cached: await cache?.loadScreenshots() ?? [:])
+        await cache?.delete(ids: photoPlan.staleIDs)
+        await cache?.deleteScreenshots(ids: shotPlan.staleIDs)
         // Counts only — never filenames or other personal data.
-        Self.log.info("scan: \(items.count) items, \(plan.hits.count) cached, \(plan.toAnalyze.count) to analyze, \(plan.staleIDs.count) stale")
+        Self.log.info("scan: \(items.count) items, \(photoPlan.hits.count) cached, \(photoPlan.toAnalyze.count) to analyze, \(photoPlan.staleIDs.count) stale; screenshots \(shotPlan.hits.count) cached, \(shotPlan.toAnalyze.count) to read")
 
         // Publish straight away: sizes plus everything the cache already knows.
         lastItems = items
-        lastAnalyzed = plan.hits
-        content = builder.build(items: items, analyzed: plan.hits, deviceTotalBytes: storage.totalBytes, deviceFreeBytes: storage.freeBytes)
-        guard !plan.toAnalyze.isEmpty else {
+        lastAnalyzed = photoPlan.hits
+        lastScreenshotInfo = shotPlan.hits
+        rebuild(storage: storage)
+
+        let total = photoPlan.toAnalyze.count + shotPlan.toAnalyze.count
+        guard total > 0 else {
             phase = .ready
             return
         }
-        phase = .analyzing(done: 0, total: plan.toAnalyze.count)
-
+        phase = .analyzing(done: 0, total: total)
         let cache = self.cache
+
         let fresh = await engine.analyze(
-            plan.toAnalyze,
-            progress: { done, total in
-                await MainActor.run { self.phase = .analyzing(done: done, total: total) }
-            },
+            photoPlan.toAnalyze,
+            progress: { done, _ in await MainActor.run { self.phase = .analyzing(done: done, total: total) } },
             onBatch: { batch in
                 // Persist as we go so an interrupted scan keeps its progress.
                 await cache?.save(batch.map {
@@ -152,10 +159,29 @@ final class LibraryStore {
                 })
             }
         )
-        lastAnalyzed = plan.hits + fresh
-        content = builder.build(items: items, analyzed: lastAnalyzed, deviceTotalBytes: storage.totalBytes, deviceFreeBytes: storage.freeBytes)
+        lastAnalyzed = photoPlan.hits + fresh
+        rebuild(storage: storage)
+
+        let offset = photoPlan.toAnalyze.count
+        let read = await engine.analyzeScreenshots(
+            shotPlan.toAnalyze,
+            progress: { done, _ in await MainActor.run { self.phase = .analyzing(done: offset + done, total: total) } },
+            onBatch: { batch in
+                await cache?.saveScreenshots(batch.map {
+                    CachedScreenshot(assetID: $0.0.id, modifiedAt: $0.0.modifiedAt, version: screenshotReaderVersion, info: $0.1)
+                })
+            }
+        )
+        lastScreenshotInfo.merge(read) { _, new in new }
+        rebuild(storage: storage)
         phase = .ready
     }
+
+    private func rebuild(storage: StorageSummary = LibraryStore.deviceStorage()) {
+        content = builder.build(items: lastItems, analyzed: lastAnalyzed, screenshotInfo: lastScreenshotInfo,
+                                deviceTotalBytes: storage.totalBytes, deviceFreeBytes: storage.freeBytes)
+    }
+
 
     // MARK: - Device facts
 

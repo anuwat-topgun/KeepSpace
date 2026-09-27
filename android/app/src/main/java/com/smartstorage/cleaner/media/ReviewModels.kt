@@ -3,12 +3,27 @@ package com.smartstorage.cleaner.media
 // Mirrors ios/SmartStorage/MediaEngine/ReviewModels.swift.
 
 /** A set of cleanup candidates the user reviews before anything is deleted. */
-enum class ReviewKind(val title: String, val explanation: String) {
-    Similar("Similar Photos", "Extra shots from bursts. The best photo of each group is kept."),
-    Blurry("Blurry Photos", "Photos that came out blurry or shaky."),
-    OldScreenshots("Old Screenshots", "Screenshots older than 30 days."),
-    OldRecordings("Old Screen Recordings", "Screen recordings older than 30 days."),
-    LargeVideos("Large Videos", "Your biggest videos. Nothing is selected until you choose."),
+sealed class ReviewKind(val title: String, val explanation: String, val key: String) {
+    data object Similar : ReviewKind("Similar Photos", "Extra shots from bursts. The best photo of each group is kept.", "similar")
+    data object Blurry : ReviewKind("Blurry Photos", "Photos that came out blurry or shaky.", "blurry")
+    data object OldScreenshots : ReviewKind(
+        "Old Screenshots", "Screenshots older than 30 days. Receipts and upcoming tickets are left out.", "oldScreenshots",
+    )
+    data object OldRecordings : ReviewKind("Old Screen Recordings", "Screen recordings older than 30 days.", "oldRecordings")
+    data object LargeVideos : ReviewKind("Large Videos", "Your biggest videos. Nothing is selected until you choose.", "largeVideos")
+    /** Tickets and passes whose date has passed. */
+    data object Expired : ReviewKind("Expired Tickets", "Boarding passes and tickets for dates that have passed.", "expired")
+    data class Screenshots(val kind: ScreenshotKind) : ReviewKind(
+        kind.title, "Sorted by what's in them, read on this device. Nothing is selected until you choose.", "screenshots.${kind.name}",
+    )
+
+    companion object {
+        /** Inverse of [key], for navigation arguments. */
+        fun fromKey(key: String): ReviewKind? =
+            listOf(Similar, Blurry, OldScreenshots, OldRecordings, LargeVideos, Expired).firstOrNull { it.key == key }
+                ?: key.removePrefix("screenshots.").takeIf { key.startsWith("screenshots.") }
+                    ?.let { name -> ScreenshotKind.entries.firstOrNull { it.name == name } }?.let(::Screenshots)
+    }
 }
 
 data class ReviewItem(

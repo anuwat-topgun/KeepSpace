@@ -25,6 +25,7 @@ actor LibraryEngine {
     }
 
     private let analyzer = ImageAnalyzer()
+    private let screenshotAnalyzer = ScreenshotAnalyzer()
     private var assets: [String: PHAsset] = [:]
     private let imageManager = PHImageManager.default()
 
@@ -92,6 +93,49 @@ actor LibraryEngine {
         }
         if !pending.isEmpty { await onBatch(pending) }
         return results
+    }
+
+    /// Reads screenshots (OCR + barcodes) with the same batching/progress contract as `analyze`.
+    func analyzeScreenshots(
+        _ screenshots: [MediaItem],
+        concurrency: Int = 2,
+        batchSize: Int = 25,
+        progress: @escaping @Sendable (Int, Int) async -> Void,
+        onBatch: @escaping @Sendable ([(MediaItem, ScreenshotInfo)]) async -> Void
+    ) async -> [String: ScreenshotInfo] {
+        var results: [String: ScreenshotInfo] = [:]
+        var pending: [(MediaItem, ScreenshotInfo)] = []
+        var done = 0
+        await withTaskGroup(of: (MediaItem, ScreenshotInfo)?.self) { group in
+            var iterator = screenshots.makeIterator()
+            func enqueue() {
+                guard let item = iterator.next() else { return }
+                group.addTask { await self.readScreenshot(item) }
+            }
+            for _ in 0..<concurrency { enqueue() }
+            while let next = await group.next() {
+                if let next {
+                    results[next.0.id] = next.1
+                    pending.append(next)
+                }
+                done += 1
+                if done % 5 == 0 || done == screenshots.count { await progress(done, screenshots.count) }
+                if pending.count >= batchSize {
+                    await onBatch(pending)
+                    pending.removeAll()
+                }
+                enqueue()
+            }
+        }
+        if !pending.isEmpty { await onBatch(pending) }
+        return results
+    }
+
+    private func readScreenshot(_ item: MediaItem) async -> (MediaItem, ScreenshotInfo)? {
+        guard let asset = assets[item.id], let image = await cgImage(for: asset, side: ScreenshotAnalyzer.readSide) else { return nil }
+        let reader = screenshotAnalyzer
+        let info = await Task.detached(priority: .utility) { reader.analyze(image) }.value
+        return (item, info)
     }
 
     private func analyzeOne(_ item: MediaItem) async -> AnalyzedPhoto? {

@@ -2,6 +2,7 @@ package com.smartstorage.cleaner.media
 
 import com.smartstorage.cleaner.model.BestShotReason
 import com.smartstorage.cleaner.model.CleanupCategory
+import com.smartstorage.cleaner.model.ExpiredScreenshot
 import com.smartstorage.cleaner.model.ForecastPoint
 import com.smartstorage.cleaner.model.GroupIcon
 import com.smartstorage.cleaner.model.LibraryContent
@@ -10,7 +11,6 @@ import com.smartstorage.cleaner.model.PlanItem
 import com.smartstorage.cleaner.model.PlanTarget
 import com.smartstorage.cleaner.model.ReasonKind
 import com.smartstorage.cleaner.model.ScreenshotCategory
-import com.smartstorage.cleaner.model.ScreenshotKind
 import com.smartstorage.cleaner.model.StorageForecast
 import com.smartstorage.cleaner.model.StorageSummary
 import com.smartstorage.cleaner.model.ThumbnailStyle
@@ -40,6 +40,7 @@ data class LibraryReportBuilder(
         deviceTotalBytes: Long,
         deviceFreeBytes: Long,
         now: Long = System.currentTimeMillis(),
+        screenshotInfo: Map<String, ScreenshotInfo> = emptyMap(),
     ): LibraryContent {
         val byId = items.associateBy { it.id }
         val screenshots = items.filter { it.kind == MediaItem.Kind.Screenshot }
@@ -60,13 +61,19 @@ data class LibraryReportBuilder(
         val blurry = analyzed.filter { it.features.sharpness < blurThreshold && it.id !in inGroup && !it.item.isFavorite }
         val blurryBytes = blurry.sumOf { it.item.bytes }
 
-        val staleScreenshots = screenshots.filter { now - it.createdAt > staleAgeMs }
-        val recentScreenshots = screenshots.filter { now - it.createdAt <= staleAgeMs }
+        // Screenshots: categorised by content; unread ones count as "Other" until the OCR pass reaches them.
+        fun info(item: MediaItem) = screenshotInfo[item.id] ?: ScreenshotInfo(ScreenshotKind.Other)
+        val expired = screenshots.filter { info(it).isExpired(now) }
+        val expiredIds = expired.mapTo(HashSet()) { it.id }
+        // Old screenshots never include receipts or tickets: people may need those later.
+        val staleScreenshots = screenshots.filter { now - it.createdAt > staleAgeMs && !info(it).kind.isImportant && it.id !in expiredIds }
+        val byKind = screenshots.groupBy { info(it).kind }
         val staleRecordings = recordings.filter { now - it.createdAt > staleAgeMs }
 
         val candidates = listOf(
             PlanItem("Old Screen Recordings", CleanupCategory.ScreenRecordings, staleRecordings.totalBytes, PlanTarget.Videos, staleRecordings.size, ReviewKind.OldRecordings),
             PlanItem("Similar Photos", CleanupCategory.SimilarPhotos, similarBytes, PlanTarget.SimilarPhotos, similarCount, ReviewKind.Similar),
+            PlanItem("Expired Tickets", CleanupCategory.Screenshots, expired.totalBytes, PlanTarget.Screenshots, expired.size, ReviewKind.Expired),
             PlanItem("Old Screenshots", CleanupCategory.Screenshots, staleScreenshots.totalBytes, PlanTarget.Screenshots, staleScreenshots.size, ReviewKind.OldScreenshots),
             PlanItem("Blurry Photos", CleanupCategory.BlurryPhotos, blurryBytes, PlanTarget.SimilarPhotos, blurry.size, ReviewKind.Blurry),
         )
@@ -87,12 +94,20 @@ data class LibraryReportBuilder(
             ),
             similarBytes = similarBytes,
             photoGroups = groups.take(maxGroupsShown),
-            screenshotsBytes = staleScreenshots.totalBytes,
-            screenshotCategories = listOf(
-                ScreenshotCategory("Older than 30 days", ScreenshotKind.Old, staleScreenshots.totalBytes),
-                ScreenshotCategory("Last 30 days", ScreenshotKind.Recent, recentScreenshots.totalBytes),
-            ).filter { it.bytes > 0 },
-            expiredScreenshots = emptyList(),
+            screenshotsBytes = staleScreenshots.totalBytes + expired.totalBytes,
+            screenshotCategories = ScreenshotKind.entries.mapNotNull { kind ->
+                byKind[kind]?.takeIf { it.isNotEmpty() }?.let { ScreenshotCategory(kind.title, kind, it.totalBytes, it.size, reviewable = true) }
+            }.sortedByDescending { it.bytes },
+            expiredScreenshots = expired.map { item ->
+                val details = info(item)
+                val isFlight = details.route != null
+                ExpiredScreenshot(
+                    title = if (isFlight) "Boarding pass" else "Ticket",
+                    detail = details.route ?: details.eventDate?.let { DateFormat.getDateInstance(DateFormat.MEDIUM).format(Date(it)) }.orEmpty(),
+                    status = if (isFlight) "Trip completed" else "Event has passed",
+                    assetUri = item.id,
+                )
+            },
             largeVideoBytes = largeVideos.totalBytes,
             recordingBytes = recordings.totalBytes,
             videos = (videos + recordings).sortedByDescending { it.bytes }.take(maxVideosShown).map(::videoItem),
@@ -108,10 +123,14 @@ data class LibraryReportBuilder(
                 },
                 ReviewKind.Blurry to blurry.map { review(it.item, true) },
                 ReviewKind.OldScreenshots to staleScreenshots.map { review(it, true) },
+                ReviewKind.Expired to expired.map { review(it, true) },
                 ReviewKind.OldRecordings to staleRecordings.map { review(it, true) },
                 // Personal footage: listed biggest first, never preselected.
                 ReviewKind.LargeVideos to largeVideos.sortedByDescending { it.bytes }.map { review(it, false) },
-            ),
+            ) + byKind.map { (kind, members) ->
+                // Browsing a category: nothing is selected until the user chooses.
+                ReviewKind.Screenshots(kind) to members.sortedByDescending { it.createdAt }.map { review(it, false) }
+            },
         )
     }
 

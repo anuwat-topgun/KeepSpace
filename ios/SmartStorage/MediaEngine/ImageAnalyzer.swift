@@ -47,7 +47,7 @@ struct ImageAnalyzer: Sendable {
 
     /// The iOS Simulator can't create GPU/Neural Engine contexts for Vision models
     /// ("Failed to create espresso context"); run on CPU there. Devices keep the fast path.
-    private static func preferCPUOnSimulator(_ request: VNRequest) {
+    static func preferCPUOnSimulator(_ request: VNRequest) {
         #if targetEnvironment(simulator)
         if let devices = try? request.supportedComputeStageDevices {
             for (stage, options) in devices {

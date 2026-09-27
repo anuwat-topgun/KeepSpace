@@ -50,6 +50,9 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     // Bundled model: face detection runs fully on device, nothing is downloaded at runtime.
     implementation(libs.mlkit.face.detection)
+    // Bundled models for reading screenshots on device (Latin script) and finding QR/boarding-pass codes.
+    implementation(libs.mlkit.text.recognition)
+    implementation(libs.mlkit.barcode.scanning)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)

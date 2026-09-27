@@ -78,6 +78,7 @@ class LibraryStore(context: Context, demo: Boolean) {
     // Last scan inputs, so deletions update the screens without a full rescan.
     private var lastItems: List<MediaItem> = emptyList()
     private var lastAnalyzed: List<AnalyzedPhoto> = emptyList()
+    private var lastScreenshotInfo: Map<String, ScreenshotInfo> = emptyMap()
 
     private val _state = MutableStateFlow(
         if (demo) LibraryState(LibraryAccess.Authorized, ScanPhase.Ready, LibraryContent.demo, isDemo = true)
@@ -137,9 +138,12 @@ class LibraryStore(context: Context, demo: Boolean) {
     private fun removeFromResults(ids: Set<String>) {
         lastItems = lastItems.filterNot { it.id in ids }
         lastAnalyzed = lastAnalyzed.filterNot { it.id in ids }
-        val storage = deviceStorage()
-        _state.update { it.copy(content = builder.build(lastItems, lastAnalyzed, storage.totalBytes, storage.freeBytes)) }
-        scope.launch(Dispatchers.IO) { cache.delete(ids.toList()) }
+        lastScreenshotInfo = lastScreenshotInfo - ids
+        rebuild()
+        scope.launch(Dispatchers.IO) {
+            cache.delete(ids.toList())
+            cache.deleteScreenshots(ids.toList())
+        }
     }
 
     /** Stops any running scan; the store is unusable afterwards. */
@@ -163,38 +167,77 @@ class LibraryStore(context: Context, demo: Boolean) {
 
     private suspend fun runScan() {
         _state.update { it.copy(phase = ScanPhase.LoadingLibrary) }
-        val storage = deviceStorage()
         val items = withContext(Dispatchers.IO) { MediaStoreSource(app.contentResolver).load() }
 
-        // Reuse cached analysis; only new or edited photos go through the AI again.
+        // Reuse cached analysis; only new or edited items go through the AI again.
         val photos = items.filter { it.kind == MediaItem.Kind.Photo }
-        val plan = withContext(Dispatchers.IO) {
-            CachePlanner.plan(photos, cache.loadAll()).also { cache.delete(it.staleIds) }
+        val screenshots = items.filter { it.kind == MediaItem.Kind.Screenshot }
+        val (plan, shotPlan) = withContext(Dispatchers.IO) {
+            val p = CachePlanner.plan(photos, cache.loadAll()).also { cache.delete(it.staleIds) }
+            val s = CachePlanner.planScreenshots(screenshots, cache.loadScreenshots()).also { cache.deleteScreenshots(it.staleIds) }
+            p to s
         }
-
         // Counts only — never filenames or other personal data.
-        Log.i(TAG, "scan: ${items.size} items, ${plan.hits.size} cached, ${plan.toAnalyze.size} to analyze, ${plan.staleIds.size} stale")
+        Log.i(TAG, "scan: ${items.size} items, ${plan.hits.size} cached, ${plan.toAnalyze.size} to analyze, ${plan.staleIds.size} stale; screenshots ${shotPlan.hits.size} cached, ${shotPlan.toAnalyze.size} to read")
 
         // Publish straight away: sizes plus everything the cache already knows.
         lastItems = items
         lastAnalyzed = plan.hits
-        _state.update {
-            it.copy(
-                content = builder.build(items, plan.hits, storage.totalBytes, storage.freeBytes),
-                phase = if (plan.toAnalyze.isEmpty()) ScanPhase.Ready else ScanPhase.Analyzing(0, plan.toAnalyze.size),
-            )
-        }
-        if (plan.toAnalyze.isEmpty()) return
+        lastScreenshotInfo = shotPlan.hits
+        val total = plan.toAnalyze.size + shotPlan.toAnalyze.size
+        rebuild(if (total == 0) ScanPhase.Ready else ScanPhase.Analyzing(0, total))
+        if (total == 0) return
 
-        val fresh = withContext(Dispatchers.Default) { analyze(plan.toAnalyze) }
+        val fresh = withContext(Dispatchers.Default) { analyze(plan.toAnalyze, total) }
         lastAnalyzed = plan.hits + fresh
-        _state.update {
-            it.copy(content = builder.build(items, lastAnalyzed, storage.totalBytes, storage.freeBytes), phase = ScanPhase.Ready)
+        rebuild(ScanPhase.Analyzing(plan.toAnalyze.size, total))
+
+        val read = withContext(Dispatchers.Default) { readScreenshots(shotPlan.toAnalyze, offset = plan.toAnalyze.size, total = total) }
+        lastScreenshotInfo = shotPlan.hits + read
+        rebuild(ScanPhase.Ready)
+    }
+
+    private fun rebuild(phase: ScanPhase? = null) {
+        val storage = deviceStorage()
+        val content = builder.build(lastItems, lastAnalyzed, storage.totalBytes, storage.freeBytes, screenshotInfo = lastScreenshotInfo)
+        _state.update { if (phase != null) it.copy(content = content, phase = phase) else it.copy(content = content) }
+    }
+
+    /** OCR + barcode pass over screenshots, two at a time, persisting every [BATCH_SIZE]. */
+    private suspend fun readScreenshots(shots: List<MediaItem>, offset: Int, total: Int): Map<String, ScreenshotInfo> = coroutineScope {
+        val done = AtomicInteger()
+        val permits = Semaphore(2)
+        val pending = mutableListOf<CachedScreenshot>()
+        val lock = Mutex()
+        suspend fun flush(force: Boolean) {
+            val batch = lock.withLock {
+                if (!force && pending.size < BATCH_SIZE) return
+                pending.toList().also { pending.clear() }
+            }
+            withContext(Dispatchers.IO) { cache.saveScreenshots(batch) }
+        }
+        ScreenshotAnalyzer(app.contentResolver).use { reader ->
+            val results = shots.map { item ->
+                async {
+                    permits.withPermit {
+                        val info = reader.analyze(Uri.parse(item.id))
+                        val n = done.incrementAndGet()
+                        if (n % 5 == 0 || n == shots.size) _state.update { it.copy(phase = ScanPhase.Analyzing(offset + n, total)) }
+                        if (info != null) {
+                            lock.withLock { pending += CachedScreenshot(item.id, item.modifiedAt, SCREENSHOT_READER_VERSION, info) }
+                            flush(force = false)
+                        }
+                        info?.let { item.id to it }
+                    }
+                }
+            }.awaitAll().filterNotNull().toMap()
+            flush(force = true)
+            results
         }
     }
 
     /** Analyzes [photos] four at a time, persisting every [BATCH_SIZE] results so interrupted scans keep progress. */
-    private suspend fun analyze(photos: List<MediaItem>): List<AnalyzedPhoto> = coroutineScope {
+    private suspend fun analyze(photos: List<MediaItem>, total: Int): List<AnalyzedPhoto> = coroutineScope {
         val done = AtomicInteger()
         val permits = Semaphore(4)
         val pending = mutableListOf<AnalyzedPhoto>()
@@ -215,7 +258,7 @@ class LibraryStore(context: Context, demo: Boolean) {
                     permits.withPermit {
                         val result = analyzer.analyze(Uri.parse(item.id))?.let { AnalyzedPhoto(item, it) }
                         val n = done.incrementAndGet()
-                        if (n % 10 == 0 || n == photos.size) _state.update { it.copy(phase = ScanPhase.Analyzing(n, photos.size)) }
+                        if (n % 10 == 0 || n == photos.size) _state.update { it.copy(phase = ScanPhase.Analyzing(n, total)) }
                         if (result != null) {
                             pendingLock.withLock { pending += result }
                             flush(force = false)

@@ -5,6 +5,11 @@ import SwiftData
 /// cached results are re-analyzed instead of silently mixed with new ones.
 let analyzerVersion = 1
 
+/// Same idea for screenshot classification (OCR rules, keywords). Separate so tuning the
+/// classifier re-reads screenshots without re-analyzing every photo.
+/// 2: receipts recognised from amounts alone.
+let screenshotReaderVersion = 2
+
 /// One cached analysis, as a value type that can cross actors.
 struct CachedAnalysis: Sendable, Equatable {
     let assetID: String
@@ -35,6 +40,36 @@ enum CachePlanner {
         }
         let live = Set(photos.map(\.id))
         return Plan(hits: hits, toAnalyze: toAnalyze, staleIDs: cached.keys.filter { !live.contains($0) }.sorted())
+    }
+}
+
+/// Cached screenshot classification. Only the category and a few fields — never the text.
+struct CachedScreenshot: Sendable, Equatable {
+    let assetID: String
+    let modifiedAt: Date
+    let version: Int
+    let info: ScreenshotInfo
+}
+
+extension CachePlanner {
+    struct ScreenshotPlan: Sendable {
+        let hits: [String: ScreenshotInfo]
+        let toAnalyze: [MediaItem]
+        let staleIDs: [String]
+    }
+
+    static func plan(screenshots: [MediaItem], cached: [String: CachedScreenshot], version: Int = screenshotReaderVersion) -> ScreenshotPlan {
+        var hits: [String: ScreenshotInfo] = [:]
+        var toAnalyze: [MediaItem] = []
+        for item in screenshots {
+            if let entry = cached[item.id], entry.version == version, entry.modifiedAt == item.modifiedAt {
+                hits[item.id] = entry.info
+            } else {
+                toAnalyze.append(item)
+            }
+        }
+        let live = Set(screenshots.map(\.id))
+        return ScreenshotPlan(hits: hits, toAnalyze: toAnalyze, staleIDs: cached.keys.filter { !live.contains($0) }.sorted())
     }
 }
 
@@ -94,6 +129,42 @@ final class AnalysisRecord {
     }
 }
 
+@Model
+final class ScreenshotRecord {
+    @Attribute(.unique) var assetID: String
+    var modifiedAt: Date
+    var version: Int
+    var kind: String
+    var eventDate: Date?
+    var route: String?
+
+    init(_ entry: CachedScreenshot) {
+        assetID = entry.assetID
+        modifiedAt = entry.modifiedAt
+        version = entry.version
+        kind = entry.info.kind.rawValue
+        eventDate = entry.info.eventDate
+        route = entry.info.route
+    }
+
+    func update(from entry: CachedScreenshot) {
+        modifiedAt = entry.modifiedAt
+        version = entry.version
+        kind = entry.info.kind.rawValue
+        eventDate = entry.info.eventDate
+        route = entry.info.route
+    }
+
+    var value: CachedScreenshot {
+        CachedScreenshot(
+            assetID: assetID,
+            modifiedAt: modifiedAt,
+            version: version,
+            info: ScreenshotInfo(kind: ScreenshotKind(rawValue: kind) ?? .other, eventDate: eventDate, route: route)
+        )
+    }
+}
+
 /// On-device cache of analysis results. Lives in Caches: it is derived, regenerable data, so it is
 /// excluded from backups (image fingerprints never leave the device) and the OS may purge it.
 @ModelActor
@@ -106,7 +177,7 @@ actor AnalysisStore {
             let url = URL.cachesDirectory.appending(path: "analysis.store")
             configuration = ModelConfiguration(url: url)
         }
-        let container = try ModelContainer(for: AnalysisRecord.self, configurations: configuration)
+        let container = try ModelContainer(for: AnalysisRecord.self, ScreenshotRecord.self, configurations: configuration)
         return AnalysisStore(modelContainer: container)
     }
 
@@ -133,6 +204,30 @@ actor AnalysisStore {
     func delete(ids: [String]) {
         guard !ids.isEmpty else { return }
         try? modelContext.delete(model: AnalysisRecord.self, where: #Predicate { ids.contains($0.assetID) })
+        try? modelContext.save()
+    }
+
+    // MARK: Screenshots
+
+    func loadScreenshots() -> [String: CachedScreenshot] {
+        let records = (try? modelContext.fetch(FetchDescriptor<ScreenshotRecord>())) ?? []
+        return Dictionary(records.map { ($0.assetID, $0.value) }, uniquingKeysWith: { _, latest in latest })
+    }
+
+    func saveScreenshots(_ entries: [CachedScreenshot]) {
+        guard !entries.isEmpty else { return }
+        let ids = entries.map(\.assetID)
+        let existing = (try? modelContext.fetch(FetchDescriptor<ScreenshotRecord>(predicate: #Predicate { ids.contains($0.assetID) }))) ?? []
+        let byID = Dictionary(existing.map { ($0.assetID, $0) }, uniquingKeysWith: { first, _ in first })
+        for entry in entries {
+            if let record = byID[entry.assetID] { record.update(from: entry) } else { modelContext.insert(ScreenshotRecord(entry)) }
+        }
+        try? modelContext.save()
+    }
+
+    func deleteScreenshots(ids: [String]) {
+        guard !ids.isEmpty else { return }
+        try? modelContext.delete(model: ScreenshotRecord.self, where: #Predicate { ids.contains($0.assetID) })
         try? modelContext.save()
     }
 

@@ -3,6 +3,7 @@ import SwiftUI
 /// 11 — Screenshots grouped by what they contain, plus time-sensitive content that has expired.
 struct ScreenshotsView: View {
     @Environment(LibraryStore.self) private var library
+    @Environment(AppRouter.self) private var router
 
     var body: some View {
         ScreenScaffold(maxWidth: Metrics.wideContentWidth) {
@@ -11,7 +12,17 @@ struct ScreenshotsView: View {
 
             AdaptiveGrid {
                 ForEach(library.content.screenshotCategories) { category in
-                    CardRow(systemImage: category.systemImage, tint: category.tint, title: category.title, subtitle: category.bytes.formattedBytes)
+                    Button {
+                        if let kind = category.kind { router.push(.review(.screenshots(kind))) }
+                    } label: {
+                        CardRow(
+                            systemImage: category.systemImage,
+                            tint: category.tint,
+                            title: category.title,
+                            subtitle: category.count > 0 ? "\(category.count) · \(category.bytes.formattedBytes)" : category.bytes.formattedBytes
+                        )
+                    }
+                    .buttonStyle(.plain)
                 }
             }
 
@@ -24,8 +35,19 @@ struct ScreenshotsView: View {
             }
 
             if !library.content.expiredScreenshots.isEmpty {
-                ExpiredContentCard(items: library.content.expiredScreenshots)
+                Button {
+                    // Demo content has no assets to review.
+                    if library.content.expiredScreenshots.contains(where: { $0.assetID != nil }) { router.push(.review(.expired)) }
+                } label: {
+                    ExpiredContentCard(items: Array(library.content.expiredScreenshots.prefix(3)))
+                }
+                .buttonStyle(.plain)
             }
+
+            Label("Screenshots are read on this device to sort them. The text is never stored or uploaded.", systemImage: "lock.shield")
+                .font(.caption)
+                .foregroundStyle(Palette.textSecondary)
+                .padding(.top, 4)
         }
     }
 }
@@ -55,8 +77,14 @@ private struct ExpiredContentCard: View {
                 ForEach(items) { item in
                     Card(padding: 14) {
                         HStack(spacing: 16) {
-                            BoardingPassArt()
-                                .frame(width: 120, height: 96)
+                            Group {
+                                if let id = item.assetID {
+                                    AssetImage(assetID: id, fallback: .boardingPass, cornerRadius: 10)
+                                } else {
+                                    BoardingPassArt()
+                                }
+                            }
+                            .frame(width: 120, height: 96)
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(item.title)
                                     .font(Typography.cardHeadline)
@@ -120,5 +148,6 @@ private struct BoardingPassArt: View {
 
 #Preview {
     NavigationStack { ScreenshotsView() }
+        .environment(AppRouter())
         .previewEnvironment()
 }

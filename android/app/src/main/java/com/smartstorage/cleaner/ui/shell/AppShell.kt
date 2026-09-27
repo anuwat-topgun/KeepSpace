@@ -122,15 +122,14 @@ private fun AppNavHost(navController: NavHostController) {
                     when (screen) {
                         Screen.CleanupPlan -> CleanupPlanScreen(onOpen = push, onReview = review, onBack = back)
                         Screen.SimilarPhotos -> SimilarPhotosScreen(onOpenGroup = openGroup, onReviewGroup = reviewGroup, onBack = back)
-                        Screen.Screenshots -> ScreenshotsScreen(onBack = back)
+                        Screen.Screenshots -> ScreenshotsScreen(onReview = review, onBack = back)
                         Screen.Videos -> VideosScreen(onReview = review, onBack = back)
                         Screen.Memories -> MemoriesScreen(onOpenSimilar = { push(Screen.SimilarPhotos) }, onBack = back)
                         else -> PlaceholderScreen(title = screen.title, onBack = back)
                     }
                 }
                 composable(tab.reviewPattern) { entry ->
-                    val kind = entry.arguments?.getString(AppTab.REVIEW_ARG)
-                        ?.let { name -> ReviewKind.entries.firstOrNull { it.name == name } } ?: ReviewKind.Similar
+                    val kind = entry.arguments?.getString(AppTab.REVIEW_ARG)?.let(ReviewKind::fromKey) ?: ReviewKind.Similar
                     ReviewScreen(ReviewSource.Kind(kind), onBack = back)
                 }
                 composable(tab.reviewGroupPattern) { entry ->

@@ -256,3 +256,103 @@ class CompressionTest {
         assertTrue(w % 2 == 0 && h % 2 == 0)
     }
 }
+
+class ScreenshotClassifierTest {
+    private val now = 1_790_490_000_000L // 2026-09-27
+
+    @Test fun boardingPassIsATicketWithRouteAndDate() {
+        val text = "BOARDING PASS\nPASSENGER  SOMCHAI/J MR\nFLIGHT TG 676   SEAT 32A   GATE C4\nBKK → HND\nDEPARTURE 14 SEP 2026 23:55"
+        val info = ScreenshotClassifier.classify(text, hasQrCode = true, now = now)
+        assertEquals(ScreenshotKind.Tickets, info.kind)
+        assertEquals("BKK → HND", info.route)
+        assertTrue(info.isExpired(now))
+    }
+
+    @Test fun upcomingTicketIsNotExpired() {
+        val info = ScreenshotClassifier.classify("E-TICKET  Concert  Admit One  Seat B12  2026-10-30", true, now)
+        assertEquals(ScreenshotKind.Tickets, info.kind)
+        assertTrue(!info.isExpired(now))
+    }
+
+    @Test fun receiptsInEnglishAndThai() {
+        assertEquals(ScreenshotKind.Receipts, ScreenshotClassifier.classify("BLUE BOTTLE COFFEE\nLatte \$5.50\nTax \$0.50\nTOTAL \$6.00\nPAID VISA", false, now).kind)
+        assertEquals(ScreenshotKind.Receipts, ScreenshotClassifier.classify("ใบเสร็จรับเงิน\nกาแฟ 120.00 บาท\nภาษี 8.40\nรวมทั้งสิ้น 128.40 บาท", false, now).kind)
+        assertEquals(ScreenshotKind.Receipts, ScreenshotClassifier.classify("โอนเงินสำเร็จ\n27 ก.ย. 69\nจำนวนเงิน 500.00 บาท", true, now).kind)
+        // What the Latin-only OCR model sees on a Thai receipt: just the amounts.
+        assertEquals(ScreenshotKind.Receipts, ScreenshotClassifier.classify("Central Department Store\n1 2,990.00\n195.61\n3,450.00\nVISA", false, now).kind)
+    }
+
+    @Test fun shoppingChatsQrAndOther() {
+        assertEquals(ScreenshotKind.Shopping, ScreenshotClassifier.classify("Wireless Earbuds  ฿1,290  4.8 ★ 2k sold  Free shipping  Add to cart  Buy now", false, now).kind)
+        assertEquals(ScreenshotKind.Chats, ScreenshotClassifier.classify("Mom  online\nSee you at 7?\n10:41\nOk!\n10:42\nDelivered\n10:43\n10:45", false, now).kind)
+        assertEquals(ScreenshotKind.QrCodes, ScreenshotClassifier.classify("Scan to pay", true, now).kind)
+        assertEquals(ScreenshotKind.Other, ScreenshotClassifier.classify("Settings  Wi-Fi  Bluetooth", false, now).kind)
+        assertEquals(ScreenshotKind.Other, ScreenshotClassifier.classify("deadline online", false, now).kind)
+    }
+
+    @Test fun dateFormats() {
+        fun ymd(ms: Long) = java.time.Instant.ofEpochMilli(ms).atZone(java.time.ZoneOffset.UTC).toLocalDate().toString()
+        assertEquals(listOf("2026-09-12"), DateExtractor.dates("2026-09-12").map(::ymd))
+        assertEquals(listOf("2026-09-12"), DateExtractor.dates("12/09/2026").map(::ymd))
+        assertEquals(listOf("2026-09-25"), DateExtractor.dates("09/25/2026").map(::ymd))
+        assertEquals(listOf("2026-09-12"), DateExtractor.dates("12 SEP 2026").map(::ymd))
+        assertEquals(listOf("2026-09-12"), DateExtractor.dates("Sep 12, 2026").map(::ymd))
+        assertEquals(listOf("2026-09-12"), DateExtractor.dates("12/09/2569").map(::ymd))
+        assertTrue(DateExtractor.dates("Total 12.50 Qty 3").isEmpty())
+    }
+}
+
+class ScreenshotReportTest {
+    private val now = T0 + 90 * DAY
+
+    @Test fun importantScreenshotsStayOutOfOldAndExpiredGetTheirOwnSet() {
+        val items = listOf(
+            item("old-chat", MediaItem.Kind.Screenshot, 0, 1_000),
+            item("old-receipt", MediaItem.Kind.Screenshot, 0, 2_000),
+            item("old-ticket-upcoming", MediaItem.Kind.Screenshot, 0, 3_000),
+            item("old-ticket-past", MediaItem.Kind.Screenshot, 0, 4_000),
+            item("new-shopping", MediaItem.Kind.Screenshot, 89 * DAY, 5_000),
+            item("unread", MediaItem.Kind.Screenshot, 0, 6_000),
+        )
+        val info = mapOf(
+            "old-chat" to ScreenshotInfo(ScreenshotKind.Chats),
+            "old-receipt" to ScreenshotInfo(ScreenshotKind.Receipts),
+            "old-ticket-upcoming" to ScreenshotInfo(ScreenshotKind.Tickets, now + 7 * DAY),
+            "old-ticket-past" to ScreenshotInfo(ScreenshotKind.Tickets, now - 7 * DAY, "BKK → HND"),
+            "new-shopping" to ScreenshotInfo(ScreenshotKind.Shopping),
+        )
+        val content = LibraryReportBuilder().build(items, emptyList(), 100_000_000_000, 50_000_000_000, now, screenshotInfo = info)
+
+        assertEquals(setOf("old-chat", "unread"), content.reviewSets[ReviewKind.OldScreenshots].orEmpty().map { it.id }.toSet())
+        assertEquals(listOf("old-ticket-past"), content.reviewSets[ReviewKind.Expired]?.map { it.id })
+        assertEquals(setOf("old-ticket-past"), content.reviewSets[ReviewKind.Expired].orEmpty().defaultSelection)
+        assertTrue(content.reviewSets[ReviewKind.Screenshots(ScreenshotKind.Receipts)].orEmpty().defaultSelection.isEmpty())
+        assertEquals("BKK → HND", content.expiredScreenshots.first().detail)
+        assertEquals(
+            mapOf(ScreenshotKind.Chats to 1, ScreenshotKind.Receipts to 1, ScreenshotKind.Tickets to 2, ScreenshotKind.Shopping to 1, ScreenshotKind.Other to 1),
+            content.screenshotCategories.associate { it.kind to it.count },
+        )
+        assertTrue(content.cleanupCandidates.any { it.review == ReviewKind.Expired && it.bytes == 4_000L })
+    }
+
+    @Test fun plannerReusesCachedClassifications() {
+        val a = item("a", MediaItem.Kind.Screenshot).copy(modifiedAt = 1_000)
+        val b = item("b", MediaItem.Kind.Screenshot).copy(modifiedAt = 2_000)
+        val cached = mapOf(
+            "a" to CachedScreenshot("a", 1_000, SCREENSHOT_READER_VERSION, ScreenshotInfo(ScreenshotKind.Receipts)),
+            "b" to CachedScreenshot("b", 1_000, SCREENSHOT_READER_VERSION, ScreenshotInfo(ScreenshotKind.Chats)),
+            "gone" to CachedScreenshot("gone", 1_000, SCREENSHOT_READER_VERSION, ScreenshotInfo(ScreenshotKind.Other)),
+        )
+        val plan = CachePlanner.planScreenshots(listOf(a, b), cached)
+        assertEquals(mapOf("a" to ScreenshotInfo(ScreenshotKind.Receipts)), plan.hits)
+        assertEquals(listOf("b"), plan.toAnalyze.map { it.id })
+        assertEquals(listOf("gone"), plan.staleIds)
+    }
+
+    @Test fun reviewKindKeysRoundTrip() {
+        val kinds = listOf(ReviewKind.Similar, ReviewKind.Expired, ReviewKind.Screenshots(ScreenshotKind.Receipts))
+        kinds.forEach { assertEquals(it, ReviewKind.fromKey(it.key)) }
+        val entity = ScreenshotEntity.from(CachedScreenshot("s", 1, SCREENSHOT_READER_VERSION, ScreenshotInfo(ScreenshotKind.Tickets, 42, "BKK → HND")))
+        assertEquals(ScreenshotInfo(ScreenshotKind.Tickets, 42, "BKK → HND"), entity.toCached().info)
+    }
+}

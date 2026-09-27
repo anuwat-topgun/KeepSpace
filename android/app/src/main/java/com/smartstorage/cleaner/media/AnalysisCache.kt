@@ -18,6 +18,12 @@ import androidx.room.Upsert
  */
 const val ANALYZER_VERSION = 1
 
+/**
+ * Same idea for screenshot classification (OCR rules, keywords). Separate so tuning the classifier
+ * re-reads screenshots without re-analyzing every photo. 2: receipts recognised from amounts alone.
+ */
+const val SCREENSHOT_READER_VERSION = 2
+
 data class CachedAnalysis(
     val assetId: String,
     /** Asset modification time when analyzed; an edit invalidates the entry. */
@@ -51,6 +57,26 @@ object CachePlanner {
     }
 }
 
+/** Cached screenshot classification. Only the category and a few fields — never the text. */
+data class CachedScreenshot(val assetId: String, val modifiedAt: Long, val version: Int, val info: ScreenshotInfo)
+
+data class ScreenshotPlan(val hits: Map<String, ScreenshotInfo>, val toAnalyze: List<MediaItem>, val staleIds: List<String>)
+
+fun CachePlanner.planScreenshots(
+    screenshots: List<MediaItem>,
+    cached: Map<String, CachedScreenshot>,
+    version: Int = SCREENSHOT_READER_VERSION,
+): ScreenshotPlan {
+    val hits = mutableMapOf<String, ScreenshotInfo>()
+    val toAnalyze = mutableListOf<MediaItem>()
+    for (item in screenshots) {
+        val entry = cached[item.id]
+        if (entry != null && entry.version == version && entry.modifiedAt == item.modifiedAt) hits[item.id] = entry.info else toAnalyze += item
+    }
+    val live = screenshots.mapTo(HashSet()) { it.id }
+    return ScreenshotPlan(hits, toAnalyze, cached.keys.filter { it !in live }.sorted())
+}
+
 // region Room
 
 @Entity(tableName = "analysis")
@@ -73,6 +99,37 @@ data class AnalysisEntity(
     }
 }
 
+@Entity(tableName = "screenshots")
+data class ScreenshotEntity(
+    @PrimaryKey val assetId: String,
+    val modifiedAt: Long,
+    val version: Int,
+    val kind: String,
+    val eventDate: Long?,
+    val route: String?,
+) {
+    fun toCached() = CachedScreenshot(
+        assetId, modifiedAt, version,
+        ScreenshotInfo(ScreenshotKind.entries.firstOrNull { it.name == kind } ?: ScreenshotKind.Other, eventDate, route),
+    )
+
+    companion object {
+        fun from(e: CachedScreenshot) = ScreenshotEntity(e.assetId, e.modifiedAt, e.version, e.info.kind.name, e.info.eventDate, e.info.route)
+    }
+}
+
+@Dao
+interface ScreenshotDao {
+    @Query("SELECT * FROM screenshots")
+    suspend fun all(): List<ScreenshotEntity>
+
+    @Upsert
+    suspend fun upsert(entities: List<ScreenshotEntity>)
+
+    @Query("DELETE FROM screenshots WHERE assetId IN (:ids)")
+    suspend fun delete(ids: List<String>)
+}
+
 @Dao
 interface AnalysisDao {
     @Query("SELECT * FROM analysis")
@@ -88,9 +145,10 @@ interface AnalysisDao {
     suspend fun count(): Int
 }
 
-@Database(entities = [AnalysisEntity::class], version = 1, exportSchema = false)
+@Database(entities = [AnalysisEntity::class, ScreenshotEntity::class], version = 2, exportSchema = false)
 abstract class AnalysisDatabase : RoomDatabase() {
     abstract fun analysis(): AnalysisDao
+    abstract fun screenshots(): ScreenshotDao
 }
 
 // endregion
@@ -99,7 +157,7 @@ abstract class AnalysisDatabase : RoomDatabase() {
  * On-device cache of analysis results. Stored in the no-backup directory: it is derived,
  * regenerable data, and image fingerprints must never leave the device.
  */
-class AnalysisStore private constructor(private val dao: AnalysisDao) {
+class AnalysisStore private constructor(private val dao: AnalysisDao, private val shots: ScreenshotDao) {
 
     suspend fun loadAll(): Map<String, CachedAnalysis> = dao.all().associate { it.assetId to it.toCached() }
 
@@ -112,6 +170,14 @@ class AnalysisStore private constructor(private val dao: AnalysisDao) {
 
     suspend fun count(): Int = dao.count()
 
+    suspend fun loadScreenshots(): Map<String, CachedScreenshot> = shots.all().associate { it.assetId to it.toCached() }
+
+    suspend fun saveScreenshots(entries: List<CachedScreenshot>) {
+        if (entries.isNotEmpty()) shots.upsert(entries.map(ScreenshotEntity::from))
+    }
+
+    suspend fun deleteScreenshots(ids: List<String>) = ids.chunked(500).forEach { shots.delete(it) }
+
     companion object {
         fun open(context: Context): AnalysisStore {
             val file = context.noBackupFilesDir.resolve("analysis.db")
@@ -119,7 +185,7 @@ class AnalysisStore private constructor(private val dao: AnalysisDao) {
                 // Cache only: a schema change can safely start over.
                 .fallbackToDestructiveMigration()
                 .build()
-            return AnalysisStore(db.analysis())
+            return AnalysisStore(db.analysis(), db.screenshots())
         }
     }
 }

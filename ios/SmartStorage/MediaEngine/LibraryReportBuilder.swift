@@ -16,6 +16,7 @@ struct LibraryReportBuilder: Sendable {
     func build(
         items: [MediaItem],
         analyzed: [AnalyzedPhoto],
+        screenshotInfo: [String: ScreenshotInfo] = [:],
         deviceTotalBytes: Int64,
         deviceFreeBytes: Int64,
         now: Date = .now
@@ -45,7 +46,15 @@ struct LibraryReportBuilder: Sendable {
         }
         let blurryBytes = blurry.reduce(0) { $0 + $1.item.bytes }
 
-        let staleScreenshots = screenshots.filter { now.timeIntervalSince($0.creationDate) > staleAge }
+        // Screenshots: categorised by content; unread ones count as "Other" until the OCR pass reaches them.
+        func info(_ item: MediaItem) -> ScreenshotInfo { screenshotInfo[item.id] ?? ScreenshotInfo(kind: .other) }
+        let expired = screenshots.filter { info($0).isExpired(now: now) }
+        let expiredIDs = Set(expired.map(\.id))
+        // Old screenshots never include receipts or tickets: people may need those later.
+        let staleScreenshots = screenshots.filter {
+            now.timeIntervalSince($0.creationDate) > staleAge && !info($0).kind.isImportant && !expiredIDs.contains($0.id)
+        }
+        let byKind = Dictionary(grouping: screenshots, by: { info($0).kind })
         let staleRecordings = recordings.filter { now.timeIntervalSince($0.creationDate) > staleAge }
 
         let candidates = [
@@ -53,6 +62,8 @@ struct LibraryReportBuilder: Sendable {
                      bytes: staleRecordings.totalBytes, route: .review(.oldRecordings), itemCount: staleRecordings.count),
             PlanItem(title: "Similar Photos", systemImage: "photo.on.rectangle.angled", tint: .coral,
                      bytes: similarBytes, route: .review(.similar), itemCount: similarCount),
+            PlanItem(title: "Expired Tickets", systemImage: "ticket.fill", tint: .purple,
+                     bytes: expired.totalBytes, route: .review(.expired), itemCount: expired.count),
             PlanItem(title: "Old Screenshots", systemImage: "viewfinder", tint: .blue,
                      bytes: staleScreenshots.totalBytes, route: .review(.oldScreenshots), itemCount: staleScreenshots.count),
             PlanItem(title: "Blurry Photos", systemImage: "camera.filters", tint: .mint,
@@ -73,17 +84,27 @@ struct LibraryReportBuilder: Sendable {
             ]
         )
 
-        let recentScreenshots = screenshots.filter { now.timeIntervalSince($0.creationDate) <= staleAge }
         return LibraryContent(
             storage: storage,
             similarBytes: similarBytes,
             photoGroups: Array(groups.prefix(maxGroupsShown)),
-            screenshotsBytes: staleScreenshots.totalBytes,
-            screenshotCategories: [
-                ScreenshotCategory(title: "Older than 30 days", systemImage: "clock.arrow.circlepath", tint: .amber, bytes: staleScreenshots.totalBytes),
-                ScreenshotCategory(title: "Last 30 days", systemImage: "viewfinder", tint: .blue, bytes: recentScreenshots.totalBytes),
-            ].filter { $0.bytes > 0 },
-            expiredScreenshots: [],
+            screenshotsBytes: staleScreenshots.totalBytes + expired.totalBytes,
+            screenshotCategories: ScreenshotKind.allCases.compactMap { kind in
+                guard let members = byKind[kind], !members.isEmpty else { return nil }
+                return ScreenshotCategory(title: kind.title, systemImage: kind.systemImage, tint: kind.tint,
+                                          bytes: members.totalBytes, kind: kind, count: members.count)
+            }.sorted { $0.bytes > $1.bytes },
+            expiredScreenshots: expired.map { item in
+                let details = info(item)
+                let isFlight = details.route != nil
+                return ExpiredScreenshot(
+                    title: isFlight ? "Boarding pass" : "Ticket",
+                    detail: details.route ?? details.eventDate?.formatted(date: .abbreviated, time: .omitted) ?? "",
+                    status: isFlight ? "Trip completed" : "Event has passed",
+                    style: .boardingPass,
+                    assetID: item.id
+                )
+            },
             largeVideoBytes: largeVideos.totalBytes,
             recordingBytes: recordings.totalBytes,
             videos: (videos + recordings)
@@ -103,10 +124,14 @@ struct LibraryReportBuilder: Sendable {
                 },
                 .blurry: blurry.map { Self.review($0.item, preselected: true) },
                 .oldScreenshots: staleScreenshots.map { Self.review($0, preselected: true) },
+                .expired: expired.map { Self.review($0, preselected: true) },
                 .oldRecordings: staleRecordings.map { Self.review($0, preselected: true) },
                 // Personal footage: listed biggest first, never preselected.
                 .largeVideos: largeVideos.sorted { $0.bytes > $1.bytes }.map { Self.review($0, preselected: false) },
-            ]
+            ].merging(byKind.map { kind, members in
+                // Browsing a category: nothing is selected until the user chooses.
+                (ReviewKind.screenshots(kind), members.sorted { $0.creationDate > $1.creationDate }.map { Self.review($0, preselected: false) })
+            }, uniquingKeysWith: { first, _ in first })
         )
     }
 

@@ -117,7 +117,7 @@ private fun LibraryStatusCard(state: LibraryState) {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
                             Icon(Icons.Rounded.AutoAwesome, contentDescription = null, tint = colors.textSecondary, modifier = Modifier.size(18.dp))
-                            Text("Analyzing on device · ${phase.done} of ${phase.total} photos", style = SmartType.metadata, color = colors.textSecondary)
+                            Text("Analyzing on device · ${phase.done} of ${phase.total} items", style = SmartType.metadata, color = colors.textSecondary)
                         }
                         LinearProgressIndicator(
                             progress = { phase.done.toFloat() / phase.total },

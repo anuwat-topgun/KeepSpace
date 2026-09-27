@@ -72,7 +72,7 @@ private struct LibraryStatusCard: View {
             if case .analyzing(let done, let total) = library.phase, total > 0 {
                 Card(style: .info) {
                     VStack(alignment: .leading, spacing: 10) {
-                        Label("Analyzing on device · \(done) of \(total) photos", systemImage: "sparkles")
+                        Label("Analyzing on device · \(done) of \(total) items", systemImage: "sparkles")
                             .font(Typography.metadata)
                             .foregroundStyle(Palette.textSecondary)
                         ProgressView(value: Double(done), total: Double(total))

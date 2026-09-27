@@ -103,6 +103,9 @@ struct ScreenshotCategory: Identifiable, Sendable {
     let systemImage: String
     let tint: Tint
     let bytes: Int64
+    /// Real categories open their review set; demo ones don't.
+    var kind: ScreenshotKind? = nil
+    var count: Int = 0
 
     var id: String { title }
 }
@@ -112,8 +115,9 @@ struct ExpiredScreenshot: Identifiable, Sendable {
     let detail: String
     let status: String
     let style: ThumbnailStyle
+    var assetID: String? = nil
 
-    var id: String { title }
+    var id: String { assetID ?? title }
 }
 
 // MARK: - Videos (08)

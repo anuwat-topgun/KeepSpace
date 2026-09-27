@@ -333,3 +333,126 @@ private func photo(_ id: String, at seconds: TimeInterval, print: [Float], sharp
         #expect(!CompressionEstimator.shouldReplace(originalBytes: 10_000_000, compressedBytes: 7_000_000))   // under 5 MB
     }
 }
+
+// MARK: - Screenshot OCR classification
+
+@Suite struct ScreenshotClassifierTests {
+    let now = Date(timeIntervalSince1970: 1_790_490_000) // 2026-09-27
+
+    @Test func boardingPassIsATicketWithRouteAndDate() {
+        let text = """
+        BOARDING PASS
+        PASSENGER  SOMCHAI/J MR
+        FLIGHT TG 676   SEAT 32A   GATE C4
+        BKK → HND
+        DEPARTURE 14 SEP 2026 23:55
+        """
+        let info = ScreenshotClassifier.classify(text: text, hasQRCode: true, now: now)
+        #expect(info.kind == .tickets)             // beats the QR code
+        #expect(info.route == "BKK → HND")
+        #expect(info.isExpired(now: now))           // trip was two weeks ago
+    }
+
+    @Test func upcomingTicketIsNotExpired() {
+        let info = ScreenshotClassifier.classify(text: "E-TICKET  Concert  Admit One  Seat B12  2026-10-30", hasQRCode: true, now: now)
+        #expect(info.kind == .tickets)
+        #expect(!info.isExpired(now: now))
+    }
+
+    @Test func receiptsInEnglishAndThai() {
+        let english = "BLUE BOTTLE COFFEE\nLatte $5.50\nTax $0.50\nTOTAL $6.00\nPAID VISA"
+        #expect(ScreenshotClassifier.classify(text: english, hasQRCode: false, now: now).kind == .receipts)
+        let thai = "ใบเสร็จรับเงิน\nกาแฟ 120.00 บาท\nภาษี 8.40\nรวมทั้งสิ้น 128.40 บาท"
+        #expect(ScreenshotClassifier.classify(text: thai, hasQRCode: false, now: now).kind == .receipts)
+        // What a Latin-only OCR model sees on a Thai receipt: just the amounts.
+        #expect(ScreenshotClassifier.classify(text: "Central Department Store\n1 2,990.00\n195.61\n3,450.00\nVISA", hasQRCode: false, now: now).kind == .receipts)
+        let transfer = "โอนเงินสำเร็จ\n27 ก.ย. 69\nจำนวนเงิน 500.00 บาท"
+        #expect(ScreenshotClassifier.classify(text: transfer, hasQRCode: true, now: now).kind == .receipts)
+    }
+
+    @Test func shoppingChatsQrAndOther() {
+        #expect(ScreenshotClassifier.classify(text: "Wireless Earbuds  ฿1,290  4.8 ★ 2k sold  Free shipping  Add to cart  Buy now",
+                                              hasQRCode: false, now: now).kind == .shopping)
+        #expect(ScreenshotClassifier.classify(text: "Mom  online\nSee you at 7?\n10:41\nOk!\n10:42\nDelivered\n10:43\n10:45",
+                                              hasQRCode: false, now: now).kind == .chats)
+        #expect(ScreenshotClassifier.classify(text: "Scan to pay", hasQRCode: true, now: now).kind == .qrCodes)
+        #expect(ScreenshotClassifier.classify(text: "Settings  Wi-Fi  Bluetooth", hasQRCode: false, now: now).kind == .other)
+        // "line" must not match inside "online" / "deadline".
+        #expect(ScreenshotClassifier.classify(text: "deadline online", hasQRCode: false, now: now).kind == .other)
+    }
+
+    @Test func dateFormats() {
+        let calendar = Calendar(identifier: .gregorian)
+        func ymd(_ d: Date) -> [Int] {
+            let c = calendar.dateComponents(in: TimeZone(identifier: "UTC")!, from: d)
+            return [c.year!, c.month!, c.day!]
+        }
+        #expect(DateExtractor.dates(in: "2026-09-12").map(ymd) == [[2026, 9, 12]])
+        #expect(DateExtractor.dates(in: "12/09/2026").map(ymd) == [[2026, 9, 12]])  // day first
+        #expect(DateExtractor.dates(in: "09/25/2026").map(ymd) == [[2026, 9, 25]])  // US order when unambiguous
+        #expect(DateExtractor.dates(in: "12 SEP 2026").map(ymd) == [[2026, 9, 12]])
+        #expect(DateExtractor.dates(in: "Sep 12, 2026").map(ymd) == [[2026, 9, 12]])
+        #expect(DateExtractor.dates(in: "12/09/2569").map(ymd) == [[2026, 9, 12]])  // Buddhist era
+        #expect(DateExtractor.dates(in: "Total 12.50 Qty 3").isEmpty)
+    }
+}
+
+@Suite struct ScreenshotReportTests {
+    let now = t0.addingTimeInterval(90 * 24 * 3600)
+
+    @Test func importantScreenshotsStayOutOfOldAndExpiredGetTheirOwnSet() {
+        let items = [
+            item("old-chat", .screenshot, at: 0, bytes: 1_000),
+            item("old-receipt", .screenshot, at: 0, bytes: 2_000),
+            item("old-ticket-upcoming", .screenshot, at: 0, bytes: 3_000),
+            item("old-ticket-past", .screenshot, at: 0, bytes: 4_000),
+            item("new-shopping", .screenshot, at: 89 * 24 * 3600, bytes: 5_000),
+            item("unread", .screenshot, at: 0, bytes: 6_000),
+        ]
+        let info: [String: ScreenshotInfo] = [
+            "old-chat": ScreenshotInfo(kind: .chats),
+            "old-receipt": ScreenshotInfo(kind: .receipts),
+            "old-ticket-upcoming": ScreenshotInfo(kind: .tickets, eventDate: now.addingTimeInterval(7 * 24 * 3600)),
+            "old-ticket-past": ScreenshotInfo(kind: .tickets, eventDate: now.addingTimeInterval(-7 * 24 * 3600), route: "BKK → HND"),
+            "new-shopping": ScreenshotInfo(kind: .shopping),
+        ]
+        let content = LibraryReportBuilder().build(items: items, analyzed: [], screenshotInfo: info,
+                                                   deviceTotalBytes: 100_000_000_000, deviceFreeBytes: 50_000_000_000, now: now)
+
+        // Old = stale and not a receipt/ticket; unread ones count as "other".
+        #expect(Set(content.reviewSets[.oldScreenshots]?.map(\.id) ?? []) == ["old-chat", "unread"])
+        #expect(content.reviewSets[.expired]?.map(\.id) == ["old-ticket-past"])
+        #expect(content.reviewSets[.expired]?.defaultSelection == ["old-ticket-past"])
+        #expect(content.reviewSets[.screenshots(.receipts)]?.defaultSelection.isEmpty == true) // browse only
+        #expect(content.expiredScreenshots.first?.detail == "BKK → HND")
+        #expect(content.expiredScreenshots.first?.title == "Boarding pass")
+
+        let byKind = Dictionary(uniqueKeysWithValues: content.screenshotCategories.compactMap { c in c.kind.map { ($0, c.count) } })
+        #expect(byKind == [.chats: 1, .receipts: 1, .tickets: 2, .shopping: 1, .other: 1])
+        #expect(content.cleanupCandidates.contains { $0.route == .review(.expired) && $0.bytes == 4_000 })
+    }
+
+    @Test func screenshotPlannerReusesCachedClassifications() {
+        var a = item("a", .screenshot); a.modifiedAt = t0
+        var b = item("b", .screenshot); b.modifiedAt = t0.addingTimeInterval(5)
+        let cached = [
+            "a": CachedScreenshot(assetID: "a", modifiedAt: t0, version: screenshotReaderVersion, info: ScreenshotInfo(kind: .receipts)),
+            "b": CachedScreenshot(assetID: "b", modifiedAt: t0, version: screenshotReaderVersion, info: ScreenshotInfo(kind: .chats)),
+            "gone": CachedScreenshot(assetID: "gone", modifiedAt: t0, version: screenshotReaderVersion, info: ScreenshotInfo(kind: .other)),
+        ]
+        let plan = CachePlanner.plan(screenshots: [a, b], cached: cached)
+        #expect(plan.hits == ["a": ScreenshotInfo(kind: .receipts)])
+        #expect(plan.toAnalyze.map(\.id) == ["b"])   // edited since it was read
+        #expect(plan.staleIDs == ["gone"])
+    }
+
+    @Test func screenshotStoreRoundTrip() async throws {
+        let store = try AnalysisStore.make(inMemory: true)
+        let entry = CachedScreenshot(assetID: "s", modifiedAt: t0, version: screenshotReaderVersion,
+                                     info: ScreenshotInfo(kind: .tickets, eventDate: t0, route: "BKK → HND"))
+        await store.saveScreenshots([entry])
+        #expect(await store.loadScreenshots()["s"] == entry)
+        await store.deleteScreenshots(ids: ["s"])
+        #expect(await store.loadScreenshots().isEmpty)
+    }
+}

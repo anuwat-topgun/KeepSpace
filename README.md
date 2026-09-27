@@ -137,6 +137,26 @@ Notes:
   Calibrate the similarity threshold on a real iPhone.
 - **Demo data:** launch with `-demoData YES` (iOS) or `--ez demoData true` (Android) to show the mockup data set.
 
+### Screenshot categories (on-device OCR)
+
+Screenshots are read on the device and sorted into Shopping, Receipts, Chats, QR Codes, Tickets and Other;
+tickets whose date has passed become **Expired Tickets**.
+
+| | iOS | Android |
+|---|---|---|
+| Text | Vision `VNRecognizeTextRequest` (Thai + English) | ML Kit Text Recognition (bundled, **Latin only**) |
+| Codes | Vision barcodes (QR, Aztec, PDF417) | ML Kit Barcode Scanning (same formats) |
+
+- The recognised text is used only to classify and is **never stored or uploaded**; the cache keeps the category,
+  a ticket's date and route (e.g. `BKK → HND`).
+- `ScreenshotClassifier` (keywords in English and Thai, prices, chat timestamps, QR presence) and `DateExtractor`
+  (ISO, day-first numeric, `12 SEP 2026`, `Sep 12, 2026`, Buddhist-era years) are pure and unit-tested.
+- Receipts and upcoming tickets are never part of "Old Screenshots"; category browsing starts with nothing selected.
+- Bump `screenshotReaderVersion` / `SCREENSHOT_READER_VERSION` when classification changes: screenshots are re-read,
+  photos keep their cached analysis.
+- Known limits: the iOS Simulator can't run Vision's barcode model (works on devices and on macOS); Android can't
+  read Thai words, so Thai receipts are recognised from their amounts and Thai transfer slips fall back to QR Codes.
+
 ### Deleting and compressing (safety model)
 
 - Nothing is removed without the **system confirmation**: PhotoKit's prompt on iOS (→ Recently Deleted, 30 days),

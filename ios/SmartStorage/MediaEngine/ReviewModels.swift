@@ -1,8 +1,11 @@
 import Foundation
 
 /// A set of cleanup candidates the user reviews before anything is deleted.
-enum ReviewKind: String, CaseIterable, Hashable, Sendable {
+enum ReviewKind: Hashable, Sendable {
     case similar, blurry, oldScreenshots, oldRecordings, largeVideos
+    /// Tickets and passes whose date has passed.
+    case expired
+    case screenshots(ScreenshotKind)
 
     var title: String {
         switch self {
@@ -11,6 +14,8 @@ enum ReviewKind: String, CaseIterable, Hashable, Sendable {
         case .oldScreenshots: "Old Screenshots"
         case .oldRecordings: "Old Screen Recordings"
         case .largeVideos: "Large Videos"
+        case .expired: "Expired Tickets"
+        case .screenshots(let kind): kind.title
         }
     }
 
@@ -18,9 +23,24 @@ enum ReviewKind: String, CaseIterable, Hashable, Sendable {
         switch self {
         case .similar: "Extra shots from bursts. The best photo of each group is kept."
         case .blurry: "Photos that came out blurry or shaky."
-        case .oldScreenshots: "Screenshots older than 30 days."
+        case .oldScreenshots: "Screenshots older than 30 days. Receipts and upcoming tickets are left out."
         case .oldRecordings: "Screen recordings older than 30 days."
         case .largeVideos: "Your biggest videos. Nothing is selected until you choose."
+        case .expired: "Boarding passes and tickets for dates that have passed."
+        case .screenshots: "Sorted by what's in them, read on this device. Nothing is selected until you choose."
+        }
+    }
+
+    /// Stable name for debug launch arguments ("review:screenshots.receipts").
+    init?(debugName: String) {
+        let map: [String: ReviewKind] = ["similar": .similar, "blurry": .blurry, "oldScreenshots": .oldScreenshots,
+                                         "oldRecordings": .oldRecordings, "largeVideos": .largeVideos, "expired": .expired]
+        if let kind = map[debugName] {
+            self = kind
+        } else if debugName.hasPrefix("screenshots."), let kind = ScreenshotKind(rawValue: String(debugName.dropFirst(12))) {
+            self = .screenshots(kind)
+        } else {
+            return nil
         }
     }
 }
