@@ -19,9 +19,12 @@ enum class AppTab(val route: String, val title: String, val icon: ImageVector) {
     val rootRoute: String get() = "$route/root"
     val screenPattern: String get() = "$route/screen/{$SCREEN_ARG}"
     fun screenRoute(screen: Screen): String = "$route/screen/${screen.name}"
+    val bestShotPattern: String get() = "$route/bestshot/{$GROUP_ARG}"
+    fun bestShotRoute(groupId: String): String = "$route/bestshot/$groupId"
 
     companion object {
         const val SCREEN_ARG = "screen"
+        const val GROUP_ARG = "groupId"
     }
 }
 
@@ -30,7 +33,6 @@ enum class Screen(val title: String) {
     // v1.0
     CleanupPlan("Cleanup Plan"),
     SimilarPhotos("Similar Photos"),
-    BestShot("Best Shot"),
     Screenshots("Screenshots"),
     Videos("Videos"),
     Memories("Memories"),

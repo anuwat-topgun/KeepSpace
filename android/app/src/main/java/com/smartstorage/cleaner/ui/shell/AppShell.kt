@@ -18,10 +18,17 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.navigation
 import androidx.window.core.layout.WindowHeightSizeClass
 import androidx.window.core.layout.WindowWidthSizeClass
+import com.smartstorage.cleaner.model.LibraryMockData
 import com.smartstorage.cleaner.ui.feature.clean.CleanScreen
+import com.smartstorage.cleaner.ui.feature.clean.CleanupPlanScreen
 import com.smartstorage.cleaner.ui.feature.home.HomeScreen
 import com.smartstorage.cleaner.ui.feature.insights.InsightsScreen
+import com.smartstorage.cleaner.ui.feature.library.BestShotScreen
 import com.smartstorage.cleaner.ui.feature.library.LibraryScreen
+import com.smartstorage.cleaner.ui.feature.library.MemoriesScreen
+import com.smartstorage.cleaner.ui.feature.library.ScreenshotsScreen
+import com.smartstorage.cleaner.ui.feature.library.SimilarPhotosScreen
+import com.smartstorage.cleaner.ui.feature.library.VideosScreen
 import com.smartstorage.cleaner.ui.feature.placeholder.PlaceholderScreen
 import com.smartstorage.cleaner.ui.feature.settings.SettingsScreen
 import com.smartstorage.cleaner.ui.theme.SmartTheme
@@ -77,8 +84,11 @@ private fun AppNavHost(navController: NavHostController) {
     NavHost(navController = navController, startDestination = AppTab.Home.route) {
         AppTab.entries.forEach { tab ->
             navigation(startDestination = tab.rootRoute, route = tab.route) {
+                val push: (Screen) -> Unit = { navController.navigate(tab.screenRoute(it)) }
+                val back: () -> Unit = { navController.popBackStack() }
+                val openGroup: (String) -> Unit = { navController.navigate(tab.bestShotRoute(it)) }
+
                 composable(tab.rootRoute) {
-                    val push: (Screen) -> Unit = { navController.navigate(tab.screenRoute(it)) }
                     when (tab) {
                         AppTab.Home -> HomeScreen(
                             onOpen = push,
@@ -86,7 +96,11 @@ private fun AppNavHost(navController: NavHostController) {
                         )
                         AppTab.Clean -> CleanScreen(onOpen = push)
                         AppTab.Library -> LibraryScreen(onOpen = push)
-                        AppTab.Insights -> InsightsScreen()
+                        AppTab.Insights -> InsightsScreen(
+                            onOpenPhotos = { push(Screen.SimilarPhotos) },
+                            onOpenVideos = { push(Screen.Videos) },
+                            onSmartClean = { navController.selectTab(AppTab.Clean, tab) },
+                        )
                         AppTab.Settings -> SettingsScreen(onOpen = push)
                     }
                 }
@@ -94,7 +108,23 @@ private fun AppNavHost(navController: NavHostController) {
                     val screen = entry.arguments?.getString(AppTab.SCREEN_ARG)
                         ?.let { name -> Screen.entries.firstOrNull { it.name == name } }
                         ?: Screen.CleanupPlan
-                    PlaceholderScreen(title = screen.title, onBack = { navController.popBackStack() })
+                    when (screen) {
+                        Screen.CleanupPlan -> CleanupPlanScreen(onOpen = push, onBack = back)
+                        Screen.SimilarPhotos -> SimilarPhotosScreen(onOpenGroup = openGroup, onBack = back)
+                        Screen.Screenshots -> ScreenshotsScreen(onBack = back)
+                        Screen.Videos -> VideosScreen(onBack = back)
+                        Screen.Memories -> MemoriesScreen(onOpenSimilar = { push(Screen.SimilarPhotos) }, onBack = back)
+                        else -> PlaceholderScreen(title = screen.title, onBack = back)
+                    }
+                }
+                composable(tab.bestShotPattern) { entry ->
+                    val id = entry.arguments?.getString(AppTab.GROUP_ARG)
+                    val group = LibraryMockData.photoGroups.firstOrNull { it.id == id }
+                    if (group != null) {
+                        BestShotScreen(group, onBack = back)
+                    } else {
+                        PlaceholderScreen(title = "Group not found", onBack = back)
+                    }
                 }
             }
         }

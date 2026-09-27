@@ -50,7 +50,7 @@ import com.smartstorage.cleaner.ui.theme.Tint
 fun HomeScreen(onOpen: (Screen) -> Unit, onFreeUp: () -> Unit) {
     val storage = MockData.storage
     ScreenScaffold(maxWidth = SmartMetrics.wideContentWidth) {
-        ScreenHeader("Smart Storage", "Your storage, organized intelligently.", Modifier.padding(bottom = 8.dp))
+        ScreenHeader("KeepSpace", "Your storage, organized intelligently.", Modifier.padding(bottom = 8.dp))
         StorageHeroCard(storage, onFreeUp)
         AdaptiveGrid(CleanupCategory.entries) { category ->
             CardRow(

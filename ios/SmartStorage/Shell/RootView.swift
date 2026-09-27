@@ -6,6 +6,7 @@ import SwiftUI
 struct RootView: View {
     @Environment(\.horizontalSizeClass) private var sizeClass
     @State private var router = AppRouter()
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
 
     var body: some View {
         Group {
@@ -17,6 +18,18 @@ struct RootView: View {
         }
         .environment(router)
         .tint(Palette.accent)
+        #if DEBUG
+        .task { router.applyDebugLaunchArguments() }
+        #endif
+        .fullScreenCover(isPresented: showsOnboarding) {
+            OnboardingView {
+                hasCompletedOnboarding = true
+            }
+        }
+    }
+
+    private var showsOnboarding: Binding<Bool> {
+        Binding(get: { !hasCompletedOnboarding }, set: { hasCompletedOnboarding = !$0 })
     }
 }
 
@@ -47,16 +60,16 @@ private struct TabShell: View {
 
 private struct SidebarShell: View {
     @Environment(AppRouter.self) private var router
-    @State private var columnVisibility: NavigationSplitViewVisibility = .all
 
     var body: some View {
-        NavigationSplitView(columnVisibility: $columnVisibility) {
+        @Bindable var router = router
+        NavigationSplitView(columnVisibility: $router.sidebarVisibility) {
             List(AppTab.allCases, selection: sidebarSelection) { tab in
                 Label(tab.title, systemImage: tab.systemImage)
                     .font(.system(.body, weight: .medium))
                     .padding(.vertical, 4)
             }
-            .navigationTitle("Smart Storage")
+            .navigationTitle("KeepSpace")
             .navigationSplitViewColumnWidth(min: 220, ideal: 260, max: 300)
         } detail: {
             // Keep the navigation bar in split view so the sidebar toggle stays reachable.
@@ -109,7 +122,20 @@ struct RouteDestination: View {
     let route: Route
 
     var body: some View {
-        PlaceholderScreen(title: route.title)
+        switch route {
+        case .cleanupPlan: CleanupPlanView()
+        case .similarPhotos: SimilarPhotosView()
+        case .bestShot(let groupID):
+            if let group = MockData.photoGroups.first(where: { $0.id == groupID }) {
+                BestShotView(group: group)
+            } else {
+                ContentUnavailableView("Group not found", systemImage: "photo.on.rectangle.angled")
+            }
+        case .screenshots: ScreenshotsView()
+        case .videos: VideosView()
+        case .memories: MemoriesView()
+        default: PlaceholderScreen(title: route.title)
+        }
     }
 }
 

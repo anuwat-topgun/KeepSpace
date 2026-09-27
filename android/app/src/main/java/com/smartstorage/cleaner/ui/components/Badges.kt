@@ -31,20 +31,31 @@ import com.smartstorage.cleaner.ui.theme.Tint
 
 /** Soft capsule badge: "Protected", "Connected", "Verified in Google Drive". */
 @Composable
-fun StatusBadge(text: String, icon: ImageVector? = null, tint: Tint = Tint.Teal) {
+fun StatusBadge(
+    text: String,
+    icon: ImageVector? = null,
+    tint: Tint = Tint.Teal,
+    /** Smaller single-line variant for dense cards. */
+    compact: Boolean = false,
+) {
     val dark = SmartTheme.colors.isDark
     Row(
         modifier = Modifier
             .clip(CircleShape)
             .background(tint.background(dark))
-            .padding(horizontal = 12.dp, vertical = 6.dp),
-        horizontalArrangement = Arrangement.spacedBy(6.dp),
+            .padding(horizontal = if (compact) 10.dp else 12.dp, vertical = if (compact) 5.dp else 6.dp),
+        horizontalArrangement = Arrangement.spacedBy(if (compact) 4.dp else 6.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         if (icon != null) {
-            Icon(icon, contentDescription = null, tint = tint.foreground(dark), modifier = Modifier.size(16.dp))
+            Icon(icon, contentDescription = null, tint = tint.foreground(dark), modifier = Modifier.size(if (compact) 14.dp else 16.dp))
         }
-        Text(text, style = TextStyle(fontSize = 15.sp, fontWeight = FontWeight.Medium), color = tint.foreground(dark))
+        Text(
+            text,
+            style = TextStyle(fontSize = if (compact) 13.sp else 15.sp, fontWeight = FontWeight.Medium),
+            color = tint.foreground(dark),
+            maxLines = 1,
+        )
     }
 }
 

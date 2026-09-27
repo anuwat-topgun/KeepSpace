@@ -32,7 +32,7 @@ enum Route: Hashable, Sendable {
     // v1.0
     case cleanupPlan
     case similarPhotos
-    case bestShot
+    case bestShot(groupID: String)
     case screenshots
     case videos
     case memories
@@ -70,6 +70,8 @@ enum Route: Hashable, Sendable {
 @Observable
 final class AppRouter {
     var selectedTab: AppTab = .home
+    /// iPad sidebar visibility; lives here so it survives size-class changes like the paths do.
+    var sidebarVisibility: NavigationSplitViewVisibility = .all
     private var paths: [AppTab: NavigationPath] = [:]
 
     func path(for tab: AppTab) -> Binding<NavigationPath> {

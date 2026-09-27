@@ -98,6 +98,8 @@ fun InlinePillButton(text: String, onClick: () -> Unit, tint: Tint = Tint.Teal) 
         text = text,
         style = TextStyle(fontSize = 15.sp, fontWeight = FontWeight.SemiBold),
         color = tint.foreground(dark),
+        maxLines = 1,
+        softWrap = false,
         modifier = Modifier
             .clip(CircleShape)
             .background(tint.background(dark))

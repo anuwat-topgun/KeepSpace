@@ -46,6 +46,8 @@ struct InlinePillButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.system(.subheadline, weight: .semibold))
+            .lineLimit(1)
+            .fixedSize()
             .foregroundStyle(tint.foreground)
             .padding(.horizontal, 16)
             .padding(.vertical, 9)

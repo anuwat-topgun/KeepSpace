@@ -5,18 +5,21 @@ struct StatusBadge: View {
     let text: String
     var systemImage: String?
     var tint: Tint = .teal
+    /// Smaller single-line variant for dense cards.
+    var compact = false
 
     var body: some View {
-        HStack(spacing: 6) {
+        HStack(spacing: compact ? 4 : 6) {
             if let systemImage {
                 Image(systemName: systemImage)
             }
             Text(text)
         }
-        .font(.system(.subheadline, weight: .medium))
+        .font(.system(compact ? .footnote : .subheadline, weight: .medium))
+        .lineLimit(1)
         .foregroundStyle(tint.foreground)
-        .padding(.horizontal, 12)
-        .padding(.vertical, 6)
+        .padding(.horizontal, compact ? 10 : 12)
+        .padding(.vertical, compact ? 5 : 6)
         .background(tint.background, in: Capsule())
     }
 }

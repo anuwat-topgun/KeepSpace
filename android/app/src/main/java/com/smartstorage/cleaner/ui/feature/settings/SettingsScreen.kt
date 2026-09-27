@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccountTree
 import androidx.compose.material.icons.rounded.Cloud
+import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material.icons.rounded.Photo
@@ -39,13 +40,16 @@ fun SettingsScreen(onOpen: (Screen) -> Unit) {
                 IconTile(Icons.Rounded.Security, Tint.Blue)
                 Text("On-device AI only", style = SmartType.optionTitle, color = colors.textPrimary)
                 Text(
-                    "AI processing never leaves your device. Files are uploaded only to the cloud destinations you choose.",
+                    "Your photos never leave your device.",
                     style = SmartType.body,
                     color = colors.textSecondary,
                 )
             }
         }
 
+        CardRow(Icons.Rounded.Favorite, Screen.Memories.title, tint = Tint.Coral, subtitle = "Protected by default") {
+            onOpen(Screen.Memories)
+        }
         CardRow(Icons.Rounded.Cloud, Screen.CloudOverview.title, tint = Tint.Blue, subtitle = "Google Drive · OneDrive") {
             onOpen(Screen.CloudOverview)
         }
@@ -54,7 +58,7 @@ fun SettingsScreen(onOpen: (Screen) -> Unit) {
         }
         CardRow(Icons.Rounded.Photo, "Photo Access", tint = Tint.Coral, subtitle = "Full Access")
         CardRow(Icons.Rounded.Notifications, "Notifications", tint = Tint.Purple, subtitle = "Weekly Smart Clean")
-        CardRow(Icons.Rounded.WorkspacePremium, "Subscription", tint = Tint.Mint, subtitle = "Smart Storage Pro")
+        CardRow(Icons.Rounded.WorkspacePremium, "Subscription", tint = Tint.Mint, subtitle = "KeepSpace Pro")
         CardRow(Icons.Rounded.VerifiedUser, "Privacy & Security", tint = Tint.Blue)
         CardRow(Icons.Rounded.Info, "About", tint = Tint.Gray)
     }

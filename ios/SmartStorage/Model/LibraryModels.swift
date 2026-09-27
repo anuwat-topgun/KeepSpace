@@ -1,0 +1,263 @@
+import SwiftUI
+
+// MARK: - Cleanup plan (04)
+
+struct PlanItem: Identifiable, Sendable {
+    let title: String
+    let systemImage: String
+    let tint: Tint
+    let bytes: Int64
+    let route: Route
+
+    var id: String { title }
+}
+
+struct CleanupPlan: Sendable {
+    let targetBytes: Int64
+    let estimatedBytes: Int64
+    let reviewTime: String
+    let items: [PlanItem]
+}
+
+// MARK: - Media placeholders
+
+/// Stand-in artwork for media until the photo library is wired up. Each style is a soft
+/// gradient + symbol that evokes the mockup photo it replaces.
+enum ThumbnailStyle: String, CaseIterable, Hashable, Sendable {
+    case sunset, dinner, portrait, family, mountain, concert, cake, beach, baby, screen, tokyo, boardingPass
+
+    var colors: [Color] {
+        switch self {
+        case .sunset: [Color(light: 0xF6A96B, dark: 0xB86F3A), Color(light: 0xE0607E, dark: 0x9A3A55)]
+        case .dinner: [Color(light: 0x6B4A3A, dark: 0x4A3226), Color(light: 0xD9A066, dark: 0x9C6D3F)]
+        case .portrait: [Color(light: 0xF2C6A0, dark: 0xA27A58), Color(light: 0xB98B78, dark: 0x7A574A)]
+        case .family: [Color(light: 0x8EC5E8, dark: 0x4B7FA3), Color(light: 0x6FA38A, dark: 0x3F6B55)]
+        case .mountain: [Color(light: 0x7FB8D8, dark: 0x3F7898), Color(light: 0x3E7F6E, dark: 0x264F44)]
+        case .concert: [Color(light: 0x3A2A7A, dark: 0x251A52), Color(light: 0xC04FC9, dark: 0x803488)]
+        case .cake: [Color(light: 0xF5D9A6, dark: 0xA88E5E), Color(light: 0xC99A5B, dark: 0x86663A)]
+        case .beach: [Color(light: 0xF3B179, dark: 0xA8733F), Color(light: 0x5A8FB0, dark: 0x345A73)]
+        case .baby: [Color(light: 0xF6E3D4, dark: 0xA8958A), Color(light: 0xE8C2A8, dark: 0x9C7E6A)]
+        case .screen: [Color(light: 0x9FB5E8, dark: 0x51679A), Color(light: 0x6D7FB8, dark: 0x3F4D7A)]
+        case .tokyo: [Color(light: 0xA8D0F0, dark: 0x5A87A8), Color(light: 0xF4B8C8, dark: 0xA06A7A)]
+        case .boardingPass: [Color(light: 0xE8F0FB, dark: 0x22324A), Color(light: 0xCFE0F7, dark: 0x1A2A40)]
+        }
+    }
+
+    var symbol: String {
+        switch self {
+        case .sunset: "sun.horizon.fill"
+        case .dinner: "fork.knife"
+        case .portrait: "person.fill"
+        case .family: "person.3.fill"
+        case .mountain: "mountain.2.fill"
+        case .concert: "music.mic"
+        case .cake: "birthday.cake.fill"
+        case .beach: "beach.umbrella.fill"
+        case .baby: "figure.and.child.holdinghands"
+        case .screen: "iphone"
+        case .tokyo: "building.columns.fill"
+        case .boardingPass: "airplane"
+        }
+    }
+}
+
+// MARK: - Similar photos (05) / Best shot (06)
+
+struct PhotoGroup: Identifiable, Hashable, Sendable {
+    let id: String
+    let title: String
+    let systemImage: String
+    let tint: Tint
+    let photoCount: Int
+    let bytes: Int64
+    let style: ThumbnailStyle
+    /// Index of the AI-recommended keeper within the group.
+    let recommendedIndex: Int
+}
+
+enum PhotoGroupFilter: String, CaseIterable, Sendable {
+    case all = "All", recent = "Recent", reviewed = "Reviewed"
+}
+
+struct BestShotReason: Identifiable, Sendable {
+    let title: String
+    let detail: String
+    let systemImage: String
+    let tint: Tint
+
+    var id: String { title }
+}
+
+// MARK: - Screenshots (11)
+
+struct ScreenshotCategory: Identifiable, Sendable {
+    let title: String
+    let systemImage: String
+    let tint: Tint
+    let bytes: Int64
+
+    var id: String { title }
+}
+
+struct ExpiredScreenshot: Identifiable, Sendable {
+    let title: String
+    let detail: String
+    let status: String
+    let style: ThumbnailStyle
+
+    var id: String { title }
+}
+
+// MARK: - Videos (08)
+
+enum VideoKind: Sendable { case large, recording }
+
+enum VideoFilter: String, CaseIterable, Sendable {
+    case all = "All", large = "Large", recordings = "Recordings"
+
+    func includes(_ kind: VideoKind) -> Bool {
+        switch self {
+        case .all: true
+        case .large: kind == .large
+        case .recordings: kind == .recording
+        }
+    }
+}
+
+struct VideoItem: Identifiable, Sendable {
+    let id: String
+    let title: String
+    let bytes: Int64
+    let quality: String?
+    let duration: String
+    let kind: VideoKind
+    let style: ThumbnailStyle
+    /// Personal / meaningful footage is offered for review, never compression by default.
+    let isMeaningful: Bool
+
+    var metadata: String {
+        [quality, duration].compactMap { $0 }.joined(separator: " · ")
+    }
+}
+
+// MARK: - Insights (07)
+
+struct ForecastPoint: Identifiable, Sendable {
+    /// Weeks relative to today (negative = history).
+    let week: Double
+    let usedGB: Double
+    let isProjection: Bool
+
+    var id: String { "\(isProjection)-\(week)" }
+}
+
+struct StorageForecast: Sendable {
+    let capacityGB: Double
+    let remainingBytes: Int64
+    let daysUntilFull: Int
+    let points: [ForecastPoint]
+    let photosAddedThisWeek: Int
+    let videosAddedThisWeek: Int
+    let potentialCleanupBytes: Int64
+}
+
+// MARK: - Memories (10)
+
+struct MemoryEvent: Identifiable, Sendable {
+    let title: String
+    let photoCount: Int
+    let videoCount: Int
+    let style: ThumbnailStyle
+
+    var id: String { title }
+
+    var summary: String {
+        let photos = "\(photoCount.formatted()) photos"
+        return videoCount > 0 ? "\(photos) · \(videoCount.formatted()) videos" : photos
+    }
+}
+
+// MARK: - Mock data (matches the mockups)
+
+extension MockData {
+    private static let mb: Int64 = 1_000_000
+
+    static let cleanupPlan = CleanupPlan(
+        targetBytes: 10_000_000_000,
+        estimatedBytes: 10_400_000_000,
+        reviewTime: "2 min 40 sec",
+        items: [
+            PlanItem(title: "Old Screen Recordings", systemImage: "record.circle", tint: .coral, bytes: 4_800 * mb, route: .videos),
+            PlanItem(title: "Similar Photos", systemImage: "photo.on.rectangle.angled", tint: .coral, bytes: 2_700 * mb, route: .similarPhotos),
+            PlanItem(title: "Screenshots", systemImage: "viewfinder", tint: .blue, bytes: 1_400 * mb, route: .screenshots),
+            PlanItem(title: "Blurry Photos", systemImage: "camera.filters", tint: .mint, bytes: 900 * mb, route: .similarPhotos),
+            PlanItem(title: "Duplicate Videos", systemImage: "video.fill", tint: .purple, bytes: 600 * mb, route: .videos),
+        ]
+    )
+
+    static let similarPhotosSummary = (bytes: Int64(9_800) * mb, groups: 328)
+
+    static let photoGroups: [PhotoGroup] = [
+        PhotoGroup(id: "beach", title: "Beach Sunset", systemImage: "beach.umbrella.fill", tint: .coral, photoCount: 12, bytes: 93 * mb, style: .sunset, recommendedIndex: 2),
+        PhotoGroup(id: "dinner", title: "Dinner", systemImage: "fork.knife", tint: .purple, photoCount: 8, bytes: 76 * mb, style: .dinner, recommendedIndex: 0),
+        PhotoGroup(id: "portrait", title: "Portrait Session", systemImage: "person.fill", tint: .blue, photoCount: 14, bytes: 124 * mb, style: .portrait, recommendedIndex: 3),
+        PhotoGroup(id: "family", title: "Family Selfie", systemImage: "person.3.fill", tint: .mint, photoCount: 4, bytes: 38 * mb, style: .family, recommendedIndex: 1),
+    ]
+
+    static let bestShotReasons: [BestShotReason] = [
+        BestShotReason(title: "Sharpest image", detail: "Faces and details are the clearest.", systemImage: "viewfinder", tint: .blue),
+        BestShotReason(title: "Everyone has eyes open", detail: "All faces are clearly visible.", systemImage: "person.2.fill", tint: .mint),
+        BestShotReason(title: "Best exposure", detail: "Well-balanced lighting and natural colors.", systemImage: "sun.max.fill", tint: .purple),
+        BestShotReason(title: "No visible motion blur", detail: "Everything looks sharp and steady.", systemImage: "figure.run", tint: .coral),
+    ]
+
+    static let screenshotsRecoverableBytes: Int64 = 5_100 * mb
+
+    static let screenshotCategories: [ScreenshotCategory] = [
+        ScreenshotCategory(title: "Shopping", systemImage: "bag.fill", tint: .coral, bytes: 1_700 * mb),
+        ScreenshotCategory(title: "Receipts", systemImage: "doc.text.fill", tint: .amber, bytes: 1_100 * mb),
+        ScreenshotCategory(title: "Chats", systemImage: "bubble.left.and.bubble.right.fill", tint: .mint, bytes: 890 * mb),
+        ScreenshotCategory(title: "QR Codes", systemImage: "qrcode.viewfinder", tint: .blue, bytes: 630 * mb),
+        ScreenshotCategory(title: "Tickets", systemImage: "ticket.fill", tint: .purple, bytes: 260 * mb),
+    ]
+
+    static let expiredScreenshots: [ExpiredScreenshot] = [
+        ExpiredScreenshot(title: "Boarding pass", detail: "Bangkok → Tokyo", status: "Trip completed", style: .boardingPass),
+    ]
+
+    static let videoSummary = (largeBytes: Int64(18_200) * mb, recordingBytes: Int64(4_300) * mb)
+
+    static let videos: [VideoItem] = [
+        VideoItem(id: "trip", title: "Trip Recap", bytes: 2_400 * mb, quality: "4K", duration: "08:42", kind: .large, style: .mountain, isMeaningful: false),
+        VideoItem(id: "rec", title: "Screen Recording", bytes: 1_300 * mb, quality: nil, duration: "24:15", kind: .recording, style: .screen, isMeaningful: false),
+        VideoItem(id: "concert", title: "Concert Clip", bytes: 980 * mb, quality: "4K", duration: "03:18", kind: .large, style: .concert, isMeaningful: false),
+        VideoItem(id: "vlog", title: "Beach Vlog", bytes: 718 * mb, quality: "4K", duration: "05:21", kind: .large, style: .beach, isMeaningful: false),
+        VideoItem(id: "family", title: "Family Moments", bytes: 654 * mb, quality: "1080p", duration: "04:12", kind: .large, style: .baby, isMeaningful: true),
+    ]
+
+    /// Four weeks of history plus a projection to capacity. Kept internally consistent:
+    /// 238 GB used today, ~2.7 GB/week growth → full in ~47 days.
+    static let forecast: StorageForecast = {
+        let history: [ForecastPoint] = [(-4, 227.2), (-3, 229.9), (-2, 232.6), (-1, 235.3), (0, 238.0)]
+            .map { ForecastPoint(week: $0.0, usedGB: $0.1, isProjection: false) }
+        let projection: [ForecastPoint] = [(0, 238.0), (2, 243.4), (4, 248.8), (6.7, 256.0)]
+            .map { ForecastPoint(week: $0.0, usedGB: $0.1, isProjection: true) }
+        return StorageForecast(
+            capacityGB: 256,
+            remainingBytes: 18_000_000_000,
+            daysUntilFull: 47,
+            points: history + projection,
+            photosAddedThisWeek: 286,
+            videosAddedThisWeek: 19,
+            potentialCleanupBytes: 1_400 * mb
+        )
+    }()
+
+    static let memories: [MemoryEvent] = [
+        MemoryEvent(title: "Tokyo Trip", photoCount: 1_284, videoCount: 94, style: .tokyo),
+        MemoryEvent(title: "Birthday Party", photoCount: 342, videoCount: 0, style: .cake),
+        MemoryEvent(title: "Concert Night", photoCount: 184, videoCount: 0, style: .concert),
+    ]
+
+    static let memoriesCleanup = (similarPhotos: 382, blurryShots: 67)
+}

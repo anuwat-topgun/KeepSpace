@@ -7,7 +7,7 @@ struct HomeView: View {
 
     var body: some View {
         ScreenScaffold(maxWidth: Metrics.wideContentWidth) {
-            ScreenHeader(title: "Smart Storage", subtitle: "Your storage, organized intelligently.")
+            ScreenHeader(title: "KeepSpace", subtitle: "Your storage, organized intelligently.")
                 .padding(.bottom, 8)
 
             StorageHeroCard(storage: storage) {
