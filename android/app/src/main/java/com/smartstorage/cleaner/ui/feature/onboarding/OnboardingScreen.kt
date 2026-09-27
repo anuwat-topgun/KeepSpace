@@ -40,6 +40,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.BlurredEdgeTreatment
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
@@ -105,7 +106,7 @@ fun OnboardingScreen(onContinue: () -> Unit) {
         }
 
         Column(Modifier.fillMaxWidth().padding(top = 8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-            PrimaryButton("Continue", onClick = onContinue, modifier = Modifier.fillMaxWidth().widthIn(max = SmartMetrics.readableWidth))
+            PrimaryButton("Continue", onClick = onContinue, modifier = Modifier.widthIn(max = SmartMetrics.readableWidth).fillMaxWidth())
             TextButton(onClick = { showsLearnMore = true }) {
                 Text("Learn More", style = SmartType.body.copy(fontWeight = FontWeight.Medium), color = colors.textSecondary)
             }
@@ -170,13 +171,13 @@ private fun StorageIllustration(modifier: Modifier) {
     BoxWithConstraints(modifier) {
         val w = maxWidth
         val h = maxHeight
+        // Unbounded edges so the glow fades out softly instead of being cut into a square.
         Box(
             Modifier
                 .size(h * 0.9f)
                 .align(Alignment.Center)
-                .blur(40.dp)
-                .clip(CircleShape)
-                .background(colors.icyBlue),
+                .blur(40.dp, BlurredEdgeTreatment.Unbounded)
+                .background(colors.icyBlue, CircleShape),
         )
         GlassTile(Icons.Rounded.Image, h * 0.36f, Modifier.offset(x = w * 0.24f - h * 0.18f, y = h * 0.3f - h * 0.18f).rotate(-8f))
         GlassTile(Icons.Rounded.PlayArrow, h * 0.3f, Modifier.offset(x = w * 0.76f - h * 0.15f, y = h * 0.24f - h * 0.15f).rotate(8f))

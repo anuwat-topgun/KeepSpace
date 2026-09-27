@@ -39,12 +39,18 @@ object MockData {
     )
 }
 
-/** "9.8 GB" / "238 GB" / "890 MB" — decimal units to match the mockups and system storage screens. */
+/**
+ * "9.8 GB" / "18 GB" / "238 GB" / "890 MB" — decimal units, one decimal only when it carries
+ * information. Matches iOS `ByteCountFormatter` output so both apps show the same numbers.
+ */
 fun Long.formattedBytes(locale: Locale = Locale.getDefault()): String {
     val gb = this / 1e9
     return when {
         gb >= 100 -> String.format(locale, "%.0f GB", gb)
-        gb >= 1 -> String.format(locale, "%.1f GB", gb)
+        gb >= 1 -> {
+            val rounded = Math.round(gb * 10) / 10.0
+            if (rounded % 1.0 == 0.0) String.format(locale, "%.0f GB", rounded) else String.format(locale, "%.1f GB", rounded)
+        }
         else -> String.format(locale, "%.0f MB", this / 1e6)
     }
 }

@@ -143,6 +143,7 @@ private fun StripItem(
         MediaThumbnail(group.style, Modifier.fillMaxWidth().aspectRatio(0.72f), variant = index, cornerRadius = 12.dp)
         if (isRecommended) {
             BoxWithConstraints(Modifier.align(Alignment.TopCenter).padding(6.dp)) {
+                val showsWord = maxWidth >= 110.dp
                 Row(
                     Modifier.clip(CircleShape).background(colors.accent).padding(horizontal = 8.dp, vertical = 4.dp),
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
@@ -150,7 +151,7 @@ private fun StripItem(
                 ) {
                     Icon(Icons.Rounded.AutoAwesome, contentDescription = "Recommended", tint = Color.White, modifier = Modifier.size(12.dp))
                     // Collapse to the icon alone when the tile is too narrow for the word.
-                    if (maxWidth >= 110.dp) {
+                    if (showsWord) {
                         Text("Recommended", style = TextStyle(fontSize = 11.sp, fontWeight = FontWeight.SemiBold), color = Color.White, maxLines = 1)
                     }
                 }

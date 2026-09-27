@@ -94,4 +94,10 @@ iOS:
 cd ios && xcodegen generate && open SmartStorage.xcodeproj
 ```
 
-Android: open the `android/` folder in Android Studio (it provisions the JDK, SDK and Gradle wrapper).
+Android: open the `android/` folder in Android Studio, or build from the terminal with JDK 17
+(`brew install openjdk@17`) and an SDK containing `platforms;android-35` + `build-tools;35.0.0`:
+
+```bash
+cd android && echo "sdk.dir=$ANDROID_HOME" > local.properties
+JAVA_HOME=/opt/homebrew/opt/openjdk@17 ./gradlew assembleDebug
+```
