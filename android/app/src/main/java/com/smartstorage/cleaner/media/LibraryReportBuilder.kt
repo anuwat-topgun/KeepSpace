@@ -41,6 +41,7 @@ data class LibraryReportBuilder(
         deviceFreeBytes: Long,
         now: Long = System.currentTimeMillis(),
     ): LibraryContent {
+        val byId = items.associateBy { it.id }
         val screenshots = items.filter { it.kind == MediaItem.Kind.Screenshot }
         val recordings = items.filter { it.kind == MediaItem.Kind.ScreenRecording }
         val videos = items.filter { it.kind == MediaItem.Kind.Video }
@@ -64,10 +65,10 @@ data class LibraryReportBuilder(
         val staleRecordings = recordings.filter { now - it.createdAt > staleAgeMs }
 
         val candidates = listOf(
-            PlanItem("Old Screen Recordings", CleanupCategory.ScreenRecordings, staleRecordings.totalBytes, PlanTarget.Videos, staleRecordings.size),
-            PlanItem("Similar Photos", CleanupCategory.SimilarPhotos, similarBytes, PlanTarget.SimilarPhotos, similarCount),
-            PlanItem("Old Screenshots", CleanupCategory.Screenshots, staleScreenshots.totalBytes, PlanTarget.Screenshots, staleScreenshots.size),
-            PlanItem("Blurry Photos", CleanupCategory.BlurryPhotos, blurryBytes, PlanTarget.SimilarPhotos, blurry.size),
+            PlanItem("Old Screen Recordings", CleanupCategory.ScreenRecordings, staleRecordings.totalBytes, PlanTarget.Videos, staleRecordings.size, ReviewKind.OldRecordings),
+            PlanItem("Similar Photos", CleanupCategory.SimilarPhotos, similarBytes, PlanTarget.SimilarPhotos, similarCount, ReviewKind.Similar),
+            PlanItem("Old Screenshots", CleanupCategory.Screenshots, staleScreenshots.totalBytes, PlanTarget.Screenshots, staleScreenshots.size, ReviewKind.OldScreenshots),
+            PlanItem("Blurry Photos", CleanupCategory.BlurryPhotos, blurryBytes, PlanTarget.SimilarPhotos, blurry.size, ReviewKind.Blurry),
         )
         val potential = candidates.sumOf { it.bytes }
 
@@ -100,6 +101,17 @@ data class LibraryReportBuilder(
             tripSimilarPhotos = similarCount,
             tripBlurryShots = blurry.size,
             cleanupCandidates = candidates,
+            reviewSets = mapOf(
+                // Non-keepers from every similar group, biggest groups first.
+                ReviewKind.Similar to groups.flatMap { group ->
+                    group.assetUris.filterIndexed { i, _ -> i != group.recommendedIndex }.mapNotNull { byId[it]?.let { item -> review(item, true) } }
+                },
+                ReviewKind.Blurry to blurry.map { review(it.item, true) },
+                ReviewKind.OldScreenshots to staleScreenshots.map { review(it, true) },
+                ReviewKind.OldRecordings to staleRecordings.map { review(it, true) },
+                // Personal footage: listed biggest first, never preselected.
+                ReviewKind.LargeVideos to largeVideos.sortedByDescending { it.bytes }.map { review(it, false) },
+            ),
         )
     }
 
@@ -120,6 +132,10 @@ data class LibraryReportBuilder(
             reclaimableBytes = total - keeper.item.bytes,
         )
     }
+
+    /** Favourites are protected: never preselected, whatever the set. */
+    private fun review(item: MediaItem, preselected: Boolean) =
+        ReviewItem(item.id, item.bytes, item.isVideo, item.durationMs, item.createdAt, preselected && !item.isFavorite)
 
     private fun reason(reason: BestShotScorer.Reason) = when (reason) {
         BestShotScorer.Reason.Sharpest -> BestShotReason("Sharpest image", "Details are the clearest in this group.", ReasonKind.Sharp)
@@ -149,6 +165,8 @@ data class LibraryReportBuilder(
             style = if (recording) ThumbnailStyle.Screen else ThumbnailStyle.Mountain,
             isMeaningful = item.isFavorite,
             assetUri = item.id,
+            durationSec = item.durationMs / 1000.0,
+            shortSide = shortSide,
         )
     }
 

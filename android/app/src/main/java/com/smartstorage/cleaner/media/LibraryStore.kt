@@ -16,6 +16,7 @@ import androidx.core.content.edit
 import com.smartstorage.cleaner.model.CleanupPlan
 import com.smartstorage.cleaner.model.LibraryContent
 import com.smartstorage.cleaner.model.StorageSummary
+import com.smartstorage.cleaner.model.formattedBytes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -55,6 +56,8 @@ data class LibraryState(
     /** Cleanup target chosen on the Clean tab; null = Maximum Safe Cleanup. */
     val cleanupTarget: Long? = 10_000_000_000,
     val isDemo: Boolean = false,
+    /** Short confirmation shown after a delete/compress; cleared when dismissed. */
+    val notice: String? = null,
 ) {
     val cleanupPlan: CleanupPlan get() = content.plan(cleanupTarget)
     val isScanning: Boolean get() = phase is ScanPhase.LoadingLibrary || phase is ScanPhase.Analyzing
@@ -72,6 +75,10 @@ class LibraryStore(context: Context, demo: Boolean) {
     private val prefs = app.getSharedPreferences("keepspace", Context.MODE_PRIVATE)
     private var scanJob: Job? = null
 
+    // Last scan inputs, so deletions update the screens without a full rescan.
+    private var lastItems: List<MediaItem> = emptyList()
+    private var lastAnalyzed: List<AnalyzedPhoto> = emptyList()
+
     private val _state = MutableStateFlow(
         if (demo) LibraryState(LibraryAccess.Authorized, ScanPhase.Ready, LibraryContent.demo, isDemo = true)
         else LibraryState(currentAccess(), ScanPhase.Idle, LibraryContent.empty(deviceStorage())),
@@ -79,6 +86,61 @@ class LibraryStore(context: Context, demo: Boolean) {
     val state: StateFlow<LibraryState> = _state.asStateFlow()
 
     fun setCleanupTarget(bytes: Long?) = _state.update { it.copy(cleanupTarget = bytes) }
+
+    fun clearNotice() = _state.update { it.copy(notice = null) }
+
+    /** Deletes after confirmation. Items go to the system Trash (30 days) on Android 11+. */
+    suspend fun delete(ids: Set<String>, actions: MediaActions): DeletionOutcome {
+        if (_state.value.isDemo || ids.isEmpty()) return DeletionOutcome.Cancelled
+        val bytes = lastItems.filter { it.id in ids }.sumOf { it.bytes }
+        val outcome = try {
+            if (actions.trash(ids.map(Uri::parse))) DeletionOutcome.Deleted(ids.size, bytes) else DeletionOutcome.Cancelled
+        } catch (e: Exception) {
+            DeletionOutcome.Failed(e.message ?: "Unknown error")
+        }
+        when (outcome) {
+            is DeletionOutcome.Deleted -> {
+                val where = if (actions.needsInAppConfirmation) "deleted" else "moved to Trash. Empty it in your gallery to free the space now"
+                val noun = if (outcome.count == 1) "item" else "items"
+                _state.update { it.copy(notice = "${outcome.count} $noun (${outcome.bytes.formattedBytes()}) $where.") }
+                // Updating results can remove the calling screen (and cancel its scope), so this must
+                // not suspend; cache cleanup runs in the store's own scope.
+                removeFromResults(ids)
+            }
+            is DeletionOutcome.Failed -> _state.update { it.copy(notice = "Couldn't delete: ${outcome.message}") }
+            DeletionOutcome.Cancelled -> Unit
+        }
+        return outcome
+    }
+
+    /** Returns an error message to show, or null on success / cancel. */
+    suspend fun compress(videoId: String, preset: CompressionPreset, actions: MediaActions, onProgress: (Float) -> Unit): String? {
+        val video = lastItems.firstOrNull { it.id == videoId } ?: return "This video is no longer in your library."
+        return try {
+            when (val result = actions.compress(video, preset, onProgress)) {
+                is MediaActions.CompressionOutcome.Replaced -> {
+                    _state.update {
+                        it.copy(notice = "Compressed ${result.originalBytes.formattedBytes()} → ${result.newBytes.formattedBytes()}. The original is in Trash.")
+                    }
+                    scan() // pick up the new copy; everything else comes from the cache
+                    null
+                }
+                is MediaActions.CompressionOutcome.NotWorthIt ->
+                    "Compression would only save ${result.saved.formattedBytes()}, so the original was kept."
+                MediaActions.CompressionOutcome.Cancelled -> null
+            }
+        } catch (e: Exception) {
+            "Compression failed: ${e.message ?: "unknown error"}"
+        }
+    }
+
+    private fun removeFromResults(ids: Set<String>) {
+        lastItems = lastItems.filterNot { it.id in ids }
+        lastAnalyzed = lastAnalyzed.filterNot { it.id in ids }
+        val storage = deviceStorage()
+        _state.update { it.copy(content = builder.build(lastItems, lastAnalyzed, storage.totalBytes, storage.freeBytes)) }
+        scope.launch(Dispatchers.IO) { cache.delete(ids.toList()) }
+    }
 
     /** Stops any running scan; the store is unusable afterwards. */
     fun close() = scope.cancel()
@@ -88,9 +150,9 @@ class LibraryStore(context: Context, demo: Boolean) {
         if (_state.value.isDemo) return
         if (afterRequest) prefs.edit { putBoolean(KEY_ASKED, true) }
         val access = currentAccess()
-        val changed = access != _state.value.access
         _state.update { it.copy(access = access) }
-        if (access.canRead && (changed || _state.value.phase == ScanPhase.Idle)) scan()
+        // Incremental thanks to the cache, so returning to the app always picks up library changes.
+        if (access.canRead) scan()
     }
 
     fun scan() {
@@ -114,6 +176,8 @@ class LibraryStore(context: Context, demo: Boolean) {
         Log.i(TAG, "scan: ${items.size} items, ${plan.hits.size} cached, ${plan.toAnalyze.size} to analyze, ${plan.staleIds.size} stale")
 
         // Publish straight away: sizes plus everything the cache already knows.
+        lastItems = items
+        lastAnalyzed = plan.hits
         _state.update {
             it.copy(
                 content = builder.build(items, plan.hits, storage.totalBytes, storage.freeBytes),
@@ -123,8 +187,9 @@ class LibraryStore(context: Context, demo: Boolean) {
         if (plan.toAnalyze.isEmpty()) return
 
         val fresh = withContext(Dispatchers.Default) { analyze(plan.toAnalyze) }
+        lastAnalyzed = plan.hits + fresh
         _state.update {
-            it.copy(content = builder.build(items, plan.hits + fresh, storage.totalBytes, storage.freeBytes), phase = ScanPhase.Ready)
+            it.copy(content = builder.build(items, lastAnalyzed, storage.totalBytes, storage.freeBytes), phase = ScanPhase.Ready)
         }
     }
 
@@ -203,6 +268,11 @@ class LibraryStore(context: Context, demo: Boolean) {
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> arrayOf(
                     Manifest.permission.READ_MEDIA_IMAGES,
                     Manifest.permission.READ_MEDIA_VIDEO,
+                )
+                // Android 8–10: deleting other apps' media needs write access too.
+                Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q -> arrayOf(
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 )
                 else -> arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
             }

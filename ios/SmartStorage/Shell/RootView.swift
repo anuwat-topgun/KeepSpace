@@ -19,6 +19,11 @@ struct RootView: View {
                 TabShell()
             }
         }
+        .overlay(alignment: .top) {
+            NoticeBanner()
+                .padding(.top, 8)
+                .animation(.spring(duration: 0.35), value: library.notice)
+        }
         .environment(router)
         .environment(library)
         .tint(Palette.accent)
@@ -145,6 +150,8 @@ struct RouteDestination: View {
         case .screenshots: ScreenshotsView()
         case .videos: VideosView()
         case .memories: MemoriesView()
+        case .review(let kind): ReviewView(source: .kind(kind))
+        case .reviewGroup(let id): ReviewView(source: .group(id))
         default: PlaceholderScreen(title: route.title)
         }
     }

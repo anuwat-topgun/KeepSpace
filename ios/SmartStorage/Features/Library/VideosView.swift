@@ -64,7 +64,8 @@ struct VideosView: View {
 
 private struct VideoRow: View {
     let video: VideoItem
-    @State private var isQueued = false
+    @Environment(AppRouter.self) private var router
+    @State private var compressing: VideoItem?
 
     var body: some View {
         Card(padding: 12) {
@@ -87,15 +88,19 @@ private struct VideoRow: View {
                         .foregroundStyle(Palette.textSecondary)
                 }
                 Spacer(minLength: 4)
-                if video.isMeaningful {
-                    Button("Review") {}
+                if video.isMeaningful || CompressionPreset.allCases.allSatisfy({ video.estimatedSavings($0) == nil }) {
+                    // Favourites and videos that wouldn't shrink are offered for review, not compression.
+                    Button("Review") { router.push(.review(.largeVideos)) }
                         .buttonStyle(InlinePillButtonStyle(tint: .mint))
                 } else {
-                    Button(isQueued ? "Queued" : "Compress") { isQueued = true }
+                    Button("Compress") { compressing = video }
                         .buttonStyle(InlinePillButtonStyle(tint: .teal))
-                        .disabled(isQueued)
                 }
             }
+        }
+        .sheet(item: $compressing) { video in
+            CompressSheet(video: video)
+                .presentationDetents([.medium, .large])
         }
     }
 }

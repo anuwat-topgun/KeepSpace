@@ -1,5 +1,8 @@
 package com.smartstorage.cleaner.ui.feature.library
 
+import com.smartstorage.cleaner.media.LocalMediaActions
+import com.smartstorage.cleaner.media.CompressionPreset
+import com.smartstorage.cleaner.media.ReviewKind
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -49,7 +52,7 @@ import com.smartstorage.cleaner.ui.theme.Tint
 
 /** 08 — Large videos and screen recordings, with compression offered as an alternative to deletion. */
 @Composable
-fun VideosScreen(onBack: () -> Unit) {
+fun VideosScreen(onReview: (ReviewKind) -> Unit, onBack: () -> Unit) {
     var filter by rememberSaveable { mutableStateOf(VideoFilter.All) }
     val colors = SmartTheme.colors
     val state = libraryState()
@@ -84,7 +87,7 @@ fun VideosScreen(onBack: () -> Unit) {
         }
 
         Box(Modifier.animateContentSize()) {
-            AdaptiveGrid(videos, minColumnWidth = 400.dp) { video -> VideoRow(video) }
+            AdaptiveGrid(videos, minColumnWidth = 400.dp) { video -> VideoRow(video, onReview) }
         }
     }
 }
@@ -100,9 +103,11 @@ private fun Metric(icon: ImageVector, tint: Tint, title: String, value: String, 
 }
 
 @Composable
-private fun VideoRow(video: VideoItem) {
+private fun VideoRow(video: VideoItem, onReview: (ReviewKind) -> Unit) {
     val colors = SmartTheme.colors
-    var queued by rememberSaveable(video.id) { mutableStateOf(false) }
+    var compressing by rememberSaveable(video.id) { mutableStateOf(false) }
+    val canCompress = LocalMediaActions.current?.canCompress == true &&
+        CompressionPreset.entries.any { video.estimatedSavings(it) != null }
     SmartCard(contentPadding = PaddingValues(12.dp)) {
         Row(horizontalArrangement = Arrangement.spacedBy(14.dp), verticalAlignment = Alignment.CenterVertically) {
             Box(Modifier.size(width = 96.dp, height = 64.dp)) {
@@ -114,11 +119,13 @@ private fun VideoRow(video: VideoItem) {
                 Text(video.bytes.formattedBytes(), style = SmartType.metadata, color = colors.textSecondary)
                 Text(video.metadata, style = SmartType.metadata, color = colors.textSecondary)
             }
-            if (video.isMeaningful) {
-                InlinePillButton("Review", onClick = {}, tint = Tint.Mint)
+            // Favourites and videos that wouldn't shrink are offered for review, not compression.
+            if (video.isMeaningful || !canCompress) {
+                InlinePillButton("Review", onClick = { onReview(ReviewKind.LargeVideos) }, tint = Tint.Mint)
             } else {
-                InlinePillButton(if (queued) "Queued" else "Compress", onClick = { queued = true }, tint = Tint.Teal)
+                InlinePillButton("Compress", onClick = { compressing = true }, tint = Tint.Teal)
             }
         }
     }
+    if (compressing) CompressSheet(video, onDismiss = { compressing = false })
 }

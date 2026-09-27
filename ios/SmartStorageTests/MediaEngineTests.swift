@@ -271,3 +271,65 @@ private func photo(_ id: String, at seconds: TimeInterval, print: [Float], sharp
         #expect(await store.loadAll().keys.sorted() == ["b"])
     }
 }
+
+// MARK: - Review & compression
+
+@Suite struct ReviewSetTests {
+    let now = t0.addingTimeInterval(90 * 24 * 3600)
+
+    @Test func reviewSetsProtectKeepersFavoritesAndPersonalVideos() {
+        let analyzed = [
+            photo("keep", at: 0, print: [1, 0], sharpness: 500),
+            photo("extra", at: 2, print: [1, 0.05], sharpness: 100),
+            photo("fav-blurry", at: 9_000, print: [0, 1], sharpness: 5, favorite: true),
+            photo("blurry", at: 20_000, print: [0.5, 0.5], sharpness: 4),
+        ]
+        let items = analyzed.map(\.item) + [
+            item("big-video", .video, at: 0, bytes: 900_000_000),
+            item("old-shot", .screenshot, at: 0, bytes: 1_000_000),
+        ]
+        let content = LibraryReportBuilder().build(items: items, analyzed: analyzed,
+                                                   deviceTotalBytes: 1_000_000_000_000, deviceFreeBytes: 500_000_000_000, now: now)
+        let sets = content.reviewSets
+
+        #expect(sets[.similar]?.map(\.id) == ["extra"])            // keeper never offered
+        #expect(sets[.blurry]?.map(\.id) == ["blurry"])            // favourite excluded entirely
+        #expect(sets[.oldScreenshots]?.map(\.id) == ["old-shot"])
+        #expect(sets[.largeVideos]?.map(\.id) == ["big-video"])
+        #expect(sets[.largeVideos]?.defaultSelection.isEmpty == true) // personal footage: opt-in only
+        #expect(sets[.similar]?.defaultSelection == ["extra"])
+        #expect(content.cleanupCandidates.first { $0.title == "Similar Photos" }?.route == .review(.similar))
+    }
+
+    @Test func selectionBytesAndKeeperRule() {
+        let items = [
+            ReviewItem(id: "a", bytes: 10, isVideo: false, duration: 0, createdAt: t0, preselected: true),
+            ReviewItem(id: "b", bytes: 20, isVideo: false, duration: 0, createdAt: t0, preselected: false),
+            ReviewItem(id: "k", bytes: 40, isVideo: false, duration: 0, createdAt: t0, preselected: true, isKeeper: true),
+        ]
+        #expect(items.defaultSelection == ["a"])
+        #expect(items.bytes(of: ["a", "b"]) == 30)
+    }
+}
+
+@Suite struct CompressionEstimatorTests {
+    @Test func offersCompressionForBig4KVideos() {
+        // 4K, 5 min, 2.4 GB → 1080p at ~6.5 Mbps ≈ 244 MB.
+        let savings = CompressionEstimator.estimatedSavings(bytes: 2_400_000_000, duration: 300, shortSide: 2160, preset: .hd1080)
+        #expect(savings != nil)
+        #expect((savings ?? 0) > 2_000_000_000)
+    }
+
+    @Test func skipsVideosThatAreAlreadyEfficient() {
+        // 720p at ~2 Mbps: nothing meaningful to gain at 720p.
+        #expect(CompressionEstimator.estimatedSavings(bytes: 75_000_000, duration: 300, shortSide: 720, preset: .hd720) == nil)
+        // Tiny clip: savings under the 5 MB floor.
+        #expect(CompressionEstimator.estimatedSavings(bytes: 5_500_000, duration: 2, shortSide: 2160, preset: .hd720) == nil)
+    }
+
+    @Test func replacesOnlyWhenRealSavingsAreMeaningful() {
+        #expect(CompressionEstimator.shouldReplace(originalBytes: 100_000_000, compressedBytes: 60_000_000))
+        #expect(!CompressionEstimator.shouldReplace(originalBytes: 100_000_000, compressedBytes: 90_000_000)) // only 10%
+        #expect(!CompressionEstimator.shouldReplace(originalBytes: 10_000_000, compressedBytes: 7_000_000))   // under 5 MB
+    }
+}

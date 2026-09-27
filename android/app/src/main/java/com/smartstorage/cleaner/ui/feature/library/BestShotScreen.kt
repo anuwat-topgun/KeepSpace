@@ -1,5 +1,10 @@
 package com.smartstorage.cleaner.ui.feature.library
 
+import kotlinx.coroutines.launch
+import androidx.compose.runtime.rememberCoroutineScope
+import com.smartstorage.cleaner.media.DeletionOutcome
+import com.smartstorage.cleaner.media.LocalMediaActions
+import com.smartstorage.cleaner.media.LocalLibraryStore
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
@@ -70,7 +75,11 @@ private const val STRIP_COUNT = 4
  * [onBack] is null when shown as the detail pane next to the group list.
  */
 @Composable
-fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?) {
+fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?, onReviewGroup: (String) -> Unit) {
+    val store = LocalLibraryStore.current
+    val actions = LocalMediaActions.current
+    val scope = rememberCoroutineScope()
+    var deleting by rememberSaveable(group.id) { mutableStateOf(false) }
     val recommended = group.recommendedIndex
     var selected by rememberSaveable(group.id) { mutableIntStateOf(recommended) }
     val reasons = group.reasons.ifEmpty { LibraryMockData.bestShotReasons }
@@ -117,15 +126,33 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?) {
             PrimaryButton(
                 if (kept) "Recommended Kept" else "Keep Recommended",
                 onClick = {
-                    if (!kept) {
-                        kept = true
-                        haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+                    if (group.assetUris.isEmpty()) { kept = true; return@PrimaryButton } // demo content
+                    val act = actions ?: return@PrimaryButton
+                    // Deletes every photo in the group except the keeper (system confirmation first).
+                    val others = group.assetUris.filterIndexed { i, _ -> i != group.recommendedIndex }.toSet()
+                    scope.launch {
+                        deleting = true
+                        val outcome = store.delete(others, act)
+                        deleting = false
+                        if (outcome is DeletionOutcome.Deleted) {
+                            kept = true
+                            haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+                            onBack?.invoke()
+                        }
                     }
                 },
                 modifier = Modifier.fillMaxWidth(),
                 showsArrow = false,
+                enabled = !kept && !deleting,
             )
-            SecondaryButton("Review All", onClick = {}, modifier = Modifier.fillMaxWidth())
+            SecondaryButton("Review All", onClick = { if (group.assetUris.isNotEmpty()) onReviewGroup(group.id) }, modifier = Modifier.fillMaxWidth())
+            if (group.assetUris.isNotEmpty()) {
+                Text(
+                    "Keeping the recommended photo deletes the other ${group.photoCount - 1} after you confirm. They stay in Trash for 30 days.",
+                    style = TextStyle(fontSize = 12.sp),
+                    color = SmartTheme.colors.textSecondary,
+                )
+            }
         }
     }
 }

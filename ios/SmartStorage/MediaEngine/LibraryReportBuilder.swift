@@ -20,6 +20,7 @@ struct LibraryReportBuilder: Sendable {
         deviceFreeBytes: Int64,
         now: Date = .now
     ) -> LibraryContent {
+        let byID = Dictionary(items.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
         let screenshots = items.filter { $0.kind == .screenshot }
         let recordings = items.filter { $0.kind == .screenRecording }
         let videos = items.filter { $0.kind == .video }
@@ -49,13 +50,13 @@ struct LibraryReportBuilder: Sendable {
 
         let candidates = [
             PlanItem(title: "Old Screen Recordings", systemImage: "record.circle", tint: .coral,
-                     bytes: staleRecordings.totalBytes, route: .videos, itemCount: staleRecordings.count),
+                     bytes: staleRecordings.totalBytes, route: .review(.oldRecordings), itemCount: staleRecordings.count),
             PlanItem(title: "Similar Photos", systemImage: "photo.on.rectangle.angled", tint: .coral,
-                     bytes: similarBytes, route: .similarPhotos, itemCount: similarCount),
+                     bytes: similarBytes, route: .review(.similar), itemCount: similarCount),
             PlanItem(title: "Old Screenshots", systemImage: "viewfinder", tint: .blue,
-                     bytes: staleScreenshots.totalBytes, route: .screenshots, itemCount: staleScreenshots.count),
+                     bytes: staleScreenshots.totalBytes, route: .review(.oldScreenshots), itemCount: staleScreenshots.count),
             PlanItem(title: "Blurry Photos", systemImage: "camera.filters", tint: .mint,
-                     bytes: blurryBytes, route: .similarPhotos, itemCount: blurry.count),
+                     bytes: blurryBytes, route: .review(.blurry), itemCount: blurry.count),
         ]
         let potential = candidates.reduce(0) { $0 + $1.bytes }
 
@@ -92,7 +93,20 @@ struct LibraryReportBuilder: Sendable {
             forecast: forecast(items: items, total: deviceTotalBytes, free: deviceFreeBytes, potential: potential, now: now),
             memories: [],
             memoriesCleanup: (similarCount, blurry.count),
-            cleanupCandidates: candidates
+            cleanupCandidates: candidates,
+            reviewSets: [
+                // Non-keepers from every similar group, biggest groups first.
+                .similar: groups.flatMap { group in
+                    group.assetIDs.enumerated().compactMap { index, id in
+                        index == group.recommendedIndex ? nil : byID[id].map { Self.review($0, preselected: true) }
+                    }
+                },
+                .blurry: blurry.map { Self.review($0.item, preselected: true) },
+                .oldScreenshots: staleScreenshots.map { Self.review($0, preselected: true) },
+                .oldRecordings: staleRecordings.map { Self.review($0, preselected: true) },
+                // Personal footage: listed biggest first, never preselected.
+                .largeVideos: largeVideos.sorted { $0.bytes > $1.bytes }.map { Self.review($0, preselected: false) },
+            ]
         )
     }
 
@@ -129,6 +143,12 @@ struct LibraryReportBuilder: Sendable {
         }
     }
 
+    private static func review(_ item: MediaItem, preselected: Bool) -> ReviewItem {
+        // Favourites are protected: never preselected, whatever the set.
+        ReviewItem(id: item.id, bytes: item.bytes, isVideo: item.isVideo, duration: item.duration,
+                   createdAt: item.creationDate, preselected: preselected && !item.isFavorite)
+    }
+
     private static func reason(_ reason: BestShotScorer.Reason) -> BestShotReason {
         switch reason {
         case .sharpest: BestShotReason(title: "Sharpest image", detail: "Details are the clearest in this group.", systemImage: "viewfinder", tint: .blue)
@@ -152,7 +172,9 @@ struct LibraryReportBuilder: Sendable {
             kind: item.kind == .screenRecording ? .recording : .large,
             style: item.kind == .screenRecording ? .screen : .mountain,
             isMeaningful: item.isFavorite,
-            assetID: item.id
+            assetID: item.id,
+            durationSeconds: item.duration,
+            shortSide: shortSide
         )
     }
 

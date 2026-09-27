@@ -196,3 +196,63 @@ class CachePlannerTest {
         assertEquals(original, AnalysisEntity.from(original).toCached())
     }
 }
+
+class ReviewSetTest {
+    private val now = T0 + 90 * DAY
+
+    @Test fun reviewSetsProtectKeepersFavoritesAndPersonalVideos() {
+        val analyzed = listOf(
+            photo("keep", 0, 1, sharpness = 500.0),
+            photo("extra", 2_000, 1, sharpness = 100.0),
+            photo("fav-blurry", 9_000_000, -1L, sharpness = 5.0, favorite = true),
+            photo("blurry", 20_000_000, 0x0F0F0F0F0F0F0F0FL, sharpness = 4.0),
+        )
+        val items = analyzed.map { it.item } + listOf(
+            item("big-video", MediaItem.Kind.Video, 0, 900_000_000),
+            item("old-shot", MediaItem.Kind.Screenshot, 0, 1_000_000),
+        )
+        val sets = LibraryReportBuilder().build(items, analyzed, 1_000_000_000_000, 500_000_000_000, now).reviewSets
+
+        assertEquals(listOf("extra"), sets[ReviewKind.Similar]?.map { it.id })       // keeper never offered
+        assertEquals(listOf("blurry"), sets[ReviewKind.Blurry]?.map { it.id })       // favourite excluded
+        assertEquals(listOf("old-shot"), sets[ReviewKind.OldScreenshots]?.map { it.id })
+        assertTrue(sets[ReviewKind.LargeVideos].orEmpty().defaultSelection.isEmpty()) // personal footage: opt-in
+        assertEquals(setOf("extra"), sets[ReviewKind.Similar].orEmpty().defaultSelection)
+    }
+
+    @Test fun selectionBytesAndKeeperRule() {
+        val items = listOf(
+            ReviewItem("a", 10, false, 0, 0, preselected = true),
+            ReviewItem("b", 20, false, 0, 0, preselected = false),
+            ReviewItem("k", 40, false, 0, 0, preselected = true, isKeeper = true),
+        )
+        assertEquals(setOf("a"), items.defaultSelection)
+        assertEquals(30L, items.bytesOf(setOf("a", "b")))
+    }
+}
+
+class CompressionTest {
+    @Test fun offersCompressionForBig4KVideos() {
+        val savings = CompressionEstimator.estimatedSavings(2_400_000_000, 300.0, 2160, CompressionPreset.Hd1080)
+        assertTrue(savings != null && savings > 2_000_000_000)
+    }
+
+    @Test fun skipsVideosThatAreAlreadyEfficient() {
+        assertNull(CompressionEstimator.estimatedSavings(75_000_000, 300.0, 720, CompressionPreset.Hd720))
+        assertNull(CompressionEstimator.estimatedSavings(5_500_000, 2.0, 2160, CompressionPreset.Hd720))
+    }
+
+    @Test fun replacesOnlyWhenRealSavingsAreMeaningful() {
+        assertTrue(CompressionEstimator.shouldReplace(100_000_000, 60_000_000))
+        assertTrue(!CompressionEstimator.shouldReplace(100_000_000, 90_000_000))
+        assertTrue(!CompressionEstimator.shouldReplace(10_000_000, 7_000_000))
+    }
+
+    @Test fun targetSizeKeepsAspectNeverUpscalesAndStaysEven() {
+        assertEquals(1280 to 720, MediaActions.targetSize(1920, 1080, 720))   // landscape
+        assertEquals(720 to 1280, MediaActions.targetSize(1080, 1920, 720))   // portrait: short side is width
+        assertEquals(640 to 360, MediaActions.targetSize(640, 360, 720))      // never upscale
+        val (w, h) = MediaActions.targetSize(1918, 1078, 720)
+        assertTrue(w % 2 == 0 && h % 2 == 0)
+    }
+}

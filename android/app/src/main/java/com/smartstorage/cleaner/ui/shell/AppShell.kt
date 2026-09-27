@@ -1,5 +1,11 @@
 package com.smartstorage.cleaner.ui.shell
 
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.Alignment
+import androidx.compose.foundation.layout.Box
+import com.smartstorage.cleaner.ui.feature.review.ReviewSource
+import com.smartstorage.cleaner.ui.feature.review.ReviewScreen
+import com.smartstorage.cleaner.media.ReviewKind
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -75,7 +81,10 @@ fun AppShell() {
         },
         containerColor = colors.background,
     ) {
-        AppNavHost(navController)
+        Box {
+            AppNavHost(navController)
+            NoticeBanner(Modifier.align(Alignment.TopCenter))
+        }
     }
 }
 
@@ -87,6 +96,8 @@ private fun AppNavHost(navController: NavHostController) {
                 val push: (Screen) -> Unit = { navController.navigate(tab.screenRoute(it)) }
                 val back: () -> Unit = { navController.popBackStack() }
                 val openGroup: (String) -> Unit = { navController.navigate(tab.bestShotRoute(it)) }
+                val review: (ReviewKind) -> Unit = { navController.navigate(tab.reviewRoute(it)) }
+                val reviewGroup: (String) -> Unit = { navController.navigate(tab.reviewGroupRoute(it)) }
 
                 composable(tab.rootRoute) {
                     when (tab) {
@@ -109,19 +120,27 @@ private fun AppNavHost(navController: NavHostController) {
                         ?.let { name -> Screen.entries.firstOrNull { it.name == name } }
                         ?: Screen.CleanupPlan
                     when (screen) {
-                        Screen.CleanupPlan -> CleanupPlanScreen(onOpen = push, onBack = back)
-                        Screen.SimilarPhotos -> SimilarPhotosScreen(onOpenGroup = openGroup, onBack = back)
+                        Screen.CleanupPlan -> CleanupPlanScreen(onOpen = push, onReview = review, onBack = back)
+                        Screen.SimilarPhotos -> SimilarPhotosScreen(onOpenGroup = openGroup, onReviewGroup = reviewGroup, onBack = back)
                         Screen.Screenshots -> ScreenshotsScreen(onBack = back)
-                        Screen.Videos -> VideosScreen(onBack = back)
+                        Screen.Videos -> VideosScreen(onReview = review, onBack = back)
                         Screen.Memories -> MemoriesScreen(onOpenSimilar = { push(Screen.SimilarPhotos) }, onBack = back)
                         else -> PlaceholderScreen(title = screen.title, onBack = back)
                     }
+                }
+                composable(tab.reviewPattern) { entry ->
+                    val kind = entry.arguments?.getString(AppTab.REVIEW_ARG)
+                        ?.let { name -> ReviewKind.entries.firstOrNull { it.name == name } } ?: ReviewKind.Similar
+                    ReviewScreen(ReviewSource.Kind(kind), onBack = back)
+                }
+                composable(tab.reviewGroupPattern) { entry ->
+                    ReviewScreen(ReviewSource.Group(entry.arguments?.getString(AppTab.GROUP_ARG).orEmpty()), onBack = back)
                 }
                 composable(tab.bestShotPattern) { entry ->
                     val id = entry.arguments?.getString(AppTab.GROUP_ARG)
                     val group = libraryState().content.photoGroups.firstOrNull { it.id == id }
                     if (group != null) {
-                        BestShotScreen(group, onBack = back)
+                        BestShotScreen(group, onBack = back, onReviewGroup = reviewGroup)
                     } else {
                         PlaceholderScreen(title = "Group not found", onBack = back)
                     }

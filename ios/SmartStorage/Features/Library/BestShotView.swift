@@ -4,13 +4,20 @@ import SwiftUI
 /// On wide layouts the hero image and the "Why this one" card sit side by side.
 struct BestShotView: View {
     let group: PhotoGroup
+    /// True when shown as the detail pane next to the group list (no navigation to pop).
+    var isEmbedded = false
+    @Environment(AppRouter.self) private var router
+    @Environment(LibraryStore.self) private var library
+    @Environment(\.dismiss) private var dismiss
     @State private var selectedIndex: Int
     @State private var kept = false
+    @State private var isDeleting = false
 
     private let maxStrip = 4
 
-    init(group: PhotoGroup) {
+    init(group: PhotoGroup, isEmbedded: Bool = false) {
         self.group = group
+        self.isEmbedded = isEmbedded
         _selectedIndex = State(initialValue: group.recommendedIndex)
     }
 
@@ -136,19 +143,44 @@ struct BestShotView: View {
 
     private var actions: some View {
         VStack(spacing: 12) {
-            Button(kept ? "Recommended Kept" : "Keep Recommended") {
-                kept = true
+            Button {
+                Task { await keepRecommended() }
+            } label: {
+                if isDeleting { ProgressView().tint(.white) } else { Text(kept ? "Recommended Kept" : "Keep Recommended") }
             }
             .buttonStyle(PrimaryButtonStyle(showsArrow: false))
-            .disabled(kept)
+            .disabled(kept || isDeleting)
 
-            Button("Review All") {}
-                .buttonStyle(.secondary)
+            Button("Review All") {
+                if !group.assetIDs.isEmpty { router.push(.reviewGroup(groupID: group.id)) }
+            }
+            .buttonStyle(.secondary)
+
+            if !group.assetIDs.isEmpty {
+                Text("Keeping the recommended photo deletes the other \(group.photoCount - 1) after you confirm. They stay in Recently Deleted for 30 days.")
+                    .font(.caption)
+                    .foregroundStyle(Palette.textSecondary)
+                    .multilineTextAlignment(.center)
+            }
         }
         .padding(.top, 4)
+    }
+
+    /// Deletes every photo in the group except the keeper (system confirmation first).
+    private func keepRecommended() async {
+        guard !group.assetIDs.isEmpty else { kept = true; return } // demo content
+        let others = Set(group.assetIDs.enumerated().filter { $0.offset != group.recommendedIndex }.map(\.element))
+        isDeleting = true
+        let outcome = await library.delete(others)
+        isDeleting = false
+        if case .deleted = outcome {
+            kept = true
+            if !isEmbedded { dismiss() }
+        }
     }
 }
 
 #Preview {
     NavigationStack { BestShotView(group: MockData.photoGroups[0]) }
+        .previewEnvironment()
 }

@@ -21,10 +21,15 @@ enum class AppTab(val route: String, val title: String, val icon: ImageVector) {
     fun screenRoute(screen: Screen): String = "$route/screen/${screen.name}"
     val bestShotPattern: String get() = "$route/bestshot/{$GROUP_ARG}"
     fun bestShotRoute(groupId: String): String = "$route/bestshot/${android.net.Uri.encode(groupId)}"
+    val reviewPattern: String get() = "$route/review/{$REVIEW_ARG}"
+    fun reviewRoute(kind: com.smartstorage.cleaner.media.ReviewKind): String = "$route/review/${kind.name}"
+    val reviewGroupPattern: String get() = "$route/reviewgroup/{$GROUP_ARG}"
+    fun reviewGroupRoute(groupId: String): String = "$route/reviewgroup/${android.net.Uri.encode(groupId)}"
 
     companion object {
         const val SCREEN_ARG = "screen"
         const val GROUP_ARG = "groupId"
+        const val REVIEW_ARG = "kind"
     }
 }
 

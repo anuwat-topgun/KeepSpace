@@ -136,3 +136,15 @@ Notes:
   feature prints, so similarity grouping is disabled automatically (blur, sizes and forecast still work).
   Calibrate the similarity threshold on a real iPhone.
 - **Demo data:** launch with `-demoData YES` (iOS) or `--ez demoData true` (Android) to show the mockup data set.
+
+### Deleting and compressing (safety model)
+
+- Nothing is removed without the **system confirmation**: PhotoKit's prompt on iOS (→ Recently Deleted, 30 days),
+  `MediaStore.createTrashRequest` on Android 11+ (→ Trash, 30 days). Android 8–10 has no system prompt, so the app
+  confirms in-app first.
+- Review sets never offer a group's keeper or favorites, and large personal videos start unselected.
+- Compression replaces a video only if the result is ≥ 20 % and ≥ 5 MB smaller. The new copy keeps the capture date
+  (Android writes it into the MP4 header, since MediaStore reads `DATE_TAKEN` from there); on iOS saving the copy and
+  deleting the original is one PhotoKit change, so cancelling leaves the library untouched. On Android a declined
+  trash request removes the new copy again.
+- Confirmation messages say the space returns only after the trash is emptied.

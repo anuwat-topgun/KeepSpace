@@ -1,5 +1,7 @@
 package com.smartstorage.cleaner.model
 
+import com.smartstorage.cleaner.media.ReviewItem
+import com.smartstorage.cleaner.media.ReviewKind
 import kotlin.math.roundToInt
 
 /** Everything the screens display, from one source: a real scan or the demo data. Mirrors iOS. */
@@ -19,6 +21,8 @@ data class LibraryContent(
     val tripBlurryShots: Int,
     /** Candidate cleanup sources, safest first; plans are assembled from these per target. */
     val cleanupCandidates: List<PlanItem>,
+    /** Items behind each candidate, for the review screen. Empty for demo content. */
+    val reviewSets: Map<ReviewKind, List<ReviewItem>> = emptyMap(),
 ) {
     /**
      * Greedily adds whole candidate categories (safest first) until the target is met.

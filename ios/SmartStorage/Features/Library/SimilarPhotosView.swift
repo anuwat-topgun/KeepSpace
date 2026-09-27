@@ -29,7 +29,7 @@ struct SimilarPhotosView: View {
                 .frame(width: 420)
             Divider()
             if let group = groups.first(where: { $0.id == selectedGroupID }) ?? groups.first {
-                BestShotView(group: group)
+                BestShotView(group: group, isEmbedded: true)
                     .id(group.id)
                     .transition(.opacity)
             } else {
@@ -43,7 +43,7 @@ struct SimilarPhotosView: View {
         ScreenScaffold {
             ScreenHeader(
                 title: "Similar Photos",
-                subtitle: "\(library.content.similarBytes.formattedBytes) recoverable · \(groups.count) groups"
+                subtitle: "\(library.content.similarBytes.formattedBytes) recoverable · \(groups.count) \(groups.count == 1 ? "group" : "groups")"
             )
 
             if groups.isEmpty {

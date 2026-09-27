@@ -1,6 +1,9 @@
 package com.smartstorage.cleaner.model
 
 import androidx.compose.ui.graphics.Color
+import com.smartstorage.cleaner.media.CompressionEstimator
+import com.smartstorage.cleaner.media.CompressionPreset
+import com.smartstorage.cleaner.media.ReviewKind
 
 // Mirrors ios/SmartStorage/Model/LibraryModels.swift — keep the two in sync.
 
@@ -15,6 +18,8 @@ data class PlanItem(
     val target: PlanTarget,
     /** Number of files; drives the review-time estimate. */
     val itemCount: Int = 0,
+    /** Real content opens the review grid; demo content falls back to [target]. */
+    val review: ReviewKind? = null,
 )
 
 data class CleanupPlan(val targetBytes: Long, val estimatedBytes: Long, val reviewTime: String, val items: List<PlanItem>)
@@ -109,8 +114,14 @@ data class VideoItem(
     /** Personal / meaningful footage is offered for review, never compression by default. */
     val isMeaningful: Boolean,
     val assetUri: String? = null,
+    val durationSec: Double = 0.0,
+    /** Shorter pixel side (1080 for 1080p), used to decide whether compression helps. */
+    val shortSide: Int = 0,
 ) {
     val metadata: String get() = listOfNotNull(quality, duration).joinToString(" · ")
+
+    fun estimatedSavings(preset: CompressionPreset): Long? =
+        CompressionEstimator.estimatedSavings(bytes, durationSec, shortSide, preset)
 }
 
 // endregion
@@ -195,11 +206,11 @@ object LibraryMockData {
     const val RECORDING_BYTES = 4_300 * MB
 
     val videos = listOf(
-        VideoItem("trip", "Trip Recap", 2_400 * MB, "4K", "08:42", VideoKind.Large, ThumbnailStyle.Mountain, false),
-        VideoItem("rec", "Screen Recording", 1_300 * MB, null, "24:15", VideoKind.Recording, ThumbnailStyle.Screen, false),
-        VideoItem("concert", "Concert Clip", 980 * MB, "4K", "03:18", VideoKind.Large, ThumbnailStyle.Concert, false),
-        VideoItem("vlog", "Beach Vlog", 718 * MB, "4K", "05:21", VideoKind.Large, ThumbnailStyle.Beach, false),
-        VideoItem("family", "Family Moments", 654 * MB, "1080p", "04:12", VideoKind.Large, ThumbnailStyle.Baby, true),
+        VideoItem("trip", "Trip Recap", 2_400 * MB, "4K", "08:42", VideoKind.Large, ThumbnailStyle.Mountain, false, durationSec = 522.0, shortSide = 2160),
+        VideoItem("rec", "Screen Recording", 1_300 * MB, null, "24:15", VideoKind.Recording, ThumbnailStyle.Screen, false, durationSec = 1455.0, shortSide = 1179),
+        VideoItem("concert", "Concert Clip", 980 * MB, "4K", "03:18", VideoKind.Large, ThumbnailStyle.Concert, false, durationSec = 198.0, shortSide = 2160),
+        VideoItem("vlog", "Beach Vlog", 718 * MB, "4K", "05:21", VideoKind.Large, ThumbnailStyle.Beach, false, durationSec = 321.0, shortSide = 2160),
+        VideoItem("family", "Family Moments", 654 * MB, "1080p", "04:12", VideoKind.Large, ThumbnailStyle.Baby, true, durationSec = 252.0, shortSide = 1080),
     )
 
     /** 238 GB used today, ~2.7 GB/week growth → full in ~47 days. */

@@ -143,6 +143,13 @@ struct VideoItem: Identifiable, Sendable {
     /// Personal / meaningful footage is offered for review, never compression by default.
     let isMeaningful: Bool
     var assetID: String? = nil
+    var durationSeconds: TimeInterval = 0
+    /// Shorter pixel side (1080 for 1080p), used to decide whether compression helps.
+    var shortSide: Int = 0
+
+    func estimatedSavings(_ preset: CompressionPreset) -> Int64? {
+        CompressionEstimator.estimatedSavings(bytes: bytes, duration: durationSeconds, shortSide: shortSide, preset: preset)
+    }
 
     var metadata: String {
         [quality, duration].compactMap { $0 }.joined(separator: " · ")
@@ -238,11 +245,11 @@ extension MockData {
     static let videoSummary = (largeBytes: Int64(18_200) * mb, recordingBytes: Int64(4_300) * mb)
 
     static let videos: [VideoItem] = [
-        VideoItem(id: "trip", title: "Trip Recap", bytes: 2_400 * mb, quality: "4K", duration: "08:42", kind: .large, style: .mountain, isMeaningful: false),
-        VideoItem(id: "rec", title: "Screen Recording", bytes: 1_300 * mb, quality: nil, duration: "24:15", kind: .recording, style: .screen, isMeaningful: false),
-        VideoItem(id: "concert", title: "Concert Clip", bytes: 980 * mb, quality: "4K", duration: "03:18", kind: .large, style: .concert, isMeaningful: false),
-        VideoItem(id: "vlog", title: "Beach Vlog", bytes: 718 * mb, quality: "4K", duration: "05:21", kind: .large, style: .beach, isMeaningful: false),
-        VideoItem(id: "family", title: "Family Moments", bytes: 654 * mb, quality: "1080p", duration: "04:12", kind: .large, style: .baby, isMeaningful: true),
+        VideoItem(id: "trip", title: "Trip Recap", bytes: 2_400 * mb, quality: "4K", duration: "08:42", kind: .large, style: .mountain, isMeaningful: false, durationSeconds: 522, shortSide: 2160),
+        VideoItem(id: "rec", title: "Screen Recording", bytes: 1_300 * mb, quality: nil, duration: "24:15", kind: .recording, style: .screen, isMeaningful: false, durationSeconds: 1455, shortSide: 1179),
+        VideoItem(id: "concert", title: "Concert Clip", bytes: 980 * mb, quality: "4K", duration: "03:18", kind: .large, style: .concert, isMeaningful: false, durationSeconds: 198, shortSide: 2160),
+        VideoItem(id: "vlog", title: "Beach Vlog", bytes: 718 * mb, quality: "4K", duration: "05:21", kind: .large, style: .beach, isMeaningful: false, durationSeconds: 321, shortSide: 2160),
+        VideoItem(id: "family", title: "Family Moments", bytes: 654 * mb, quality: "1080p", duration: "04:12", kind: .large, style: .baby, isMeaningful: true, durationSeconds: 252, shortSide: 1080),
     ]
 
     /// Four weeks of history plus a projection to capacity. Kept internally consistent:

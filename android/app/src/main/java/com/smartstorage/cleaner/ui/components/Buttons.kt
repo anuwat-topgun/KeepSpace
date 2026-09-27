@@ -22,6 +22,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
@@ -42,6 +43,7 @@ fun PrimaryButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     showsArrow: Boolean = true,
+    enabled: Boolean = true,
 ) {
     val colors = SmartTheme.colors
     val interaction = remember { MutableInteractionSource() }
@@ -50,11 +52,12 @@ fun PrimaryButton(
 
     Row(
         modifier = modifier
+            .alpha(if (enabled) 1f else 0.45f)
             .scale(scale)
             .shadow(8.dp, CircleShape, ambientColor = colors.accent.copy(alpha = 0.25f), spotColor = colors.accent.copy(alpha = 0.25f))
             .clip(CircleShape)
             .background(colors.accentGradient)
-            .clickable(interactionSource = interaction, indication = null, role = Role.Button, onClick = onClick)
+            .clickable(interactionSource = interaction, indication = null, enabled = enabled, role = Role.Button, onClick = onClick)
             .defaultMinSize(minHeight = 56.dp)
             .padding(horizontal = 24.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),

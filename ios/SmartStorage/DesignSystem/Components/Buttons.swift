@@ -3,6 +3,7 @@ import SwiftUI
 /// Teal gradient pill — the primary CTA on every screen.
 struct PrimaryButtonStyle: ButtonStyle {
     var showsArrow = true
+    @Environment(\.isEnabled) private var isEnabled
 
     func makeBody(configuration: Configuration) -> some View {
         HStack(spacing: 10) {
@@ -18,6 +19,7 @@ struct PrimaryButtonStyle: ButtonStyle {
         .background(Palette.accentGradient, in: Capsule())
         .shadow(color: Palette.accent.opacity(0.25), radius: 12, y: 6)
         .scaleEffect(configuration.isPressed ? 0.98 : 1)
+        .opacity(isEnabled ? 1 : 0.45)
         .animation(.spring(duration: 0.25), value: configuration.isPressed)
     }
 }

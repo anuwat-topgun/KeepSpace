@@ -1,5 +1,6 @@
 package com.smartstorage.cleaner.ui.feature.clean
 
+import com.smartstorage.cleaner.media.ReviewKind
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -46,7 +47,7 @@ import com.smartstorage.cleaner.ui.theme.Tint
 
 /** 04 — Cleanup plan: how the chosen target will be reached, with protected memories excluded. */
 @Composable
-fun CleanupPlanScreen(onOpen: (Screen) -> Unit, onBack: () -> Unit) {
+fun CleanupPlanScreen(onOpen: (Screen) -> Unit, onReview: (ReviewKind) -> Unit, onBack: () -> Unit) {
     val state = libraryState()
     val plan = state.cleanupPlan
     val colors = SmartTheme.colors
@@ -72,7 +73,7 @@ fun CleanupPlanScreen(onOpen: (Screen) -> Unit, onBack: () -> Unit) {
                 title = item.title,
                 tint = item.kind.tint,
                 subtitle = item.bytes.formattedBytes(),
-                onClick = { onOpen(item.target.screen) },
+                onClick = { item.review?.let(onReview) ?: onOpen(item.target.screen) },
             )
         }
 
@@ -86,7 +87,7 @@ fun CleanupPlanScreen(onOpen: (Screen) -> Unit, onBack: () -> Unit) {
         }
 
         plan.items.firstOrNull()?.let { first ->
-            PrimaryButton("Review Items", onClick = { onOpen(first.target.screen) }, modifier = Modifier.fillMaxWidth())
+            PrimaryButton("Review Items", onClick = { first.review?.let(onReview) ?: onOpen(first.target.screen) }, modifier = Modifier.fillMaxWidth())
         }
     }
 }

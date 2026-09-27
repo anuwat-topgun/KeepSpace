@@ -16,13 +16,17 @@ import androidx.core.content.edit
 import com.smartstorage.cleaner.media.LibraryStore
 import com.smartstorage.cleaner.media.LibraryViewModel
 import com.smartstorage.cleaner.media.LocalLibraryStore
+import com.smartstorage.cleaner.media.LocalMediaActions
 import com.smartstorage.cleaner.media.LocalRequestLibraryAccess
+import com.smartstorage.cleaner.media.MediaActions
 import com.smartstorage.cleaner.ui.feature.onboarding.OnboardingScreen
 import com.smartstorage.cleaner.ui.shell.AppShell
 import com.smartstorage.cleaner.ui.theme.SmartStorageTheme
 
 class MainActivity : ComponentActivity() {
     private val libraryViewModel: LibraryViewModel by viewModels()
+    /** Registered at construction so the trash-request launcher exists before the activity starts. */
+    private val mediaActions = MediaActions(this)
     private val prefs by lazy { getSharedPreferences(PREFS, MODE_PRIVATE) }
 
     /** `adb shell am start ... --ez demoData true` shows the mockup data set. */
@@ -44,6 +48,7 @@ class MainActivity : ComponentActivity() {
                 CompositionLocalProvider(
                     LocalLibraryStore provides store,
                     LocalRequestLibraryAccess provides { permissionLauncher.launch(LibraryStore.permissions) },
+                    LocalMediaActions provides mediaActions,
                 ) {
                     if (onboarded) AppShell() else OnboardingScreen(onContinue = { permissionLauncher.launch(LibraryStore.permissions) })
                 }

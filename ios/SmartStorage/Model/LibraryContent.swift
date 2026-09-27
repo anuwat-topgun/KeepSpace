@@ -16,6 +16,8 @@ struct LibraryContent: Sendable {
     var memoriesCleanup: (similarPhotos: Int, blurryShots: Int)
     /// Candidate cleanup sources, safest first; plans are assembled from these per target.
     var cleanupCandidates: [PlanItem]
+    /// Items behind each candidate, for the review screen. Empty for demo content.
+    var reviewSets: [ReviewKind: [ReviewItem]] = [:]
 
     var similarGroupCount: Int { photoGroups.count }
 

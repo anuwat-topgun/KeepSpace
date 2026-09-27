@@ -19,7 +19,13 @@ final class LibraryStore {
     private(set) var content: LibraryContent
     /// Cleanup target chosen on the Clean tab; nil = Maximum Safe Cleanup.
     var cleanupTarget: Int64? = 10_000_000_000
+    /// Short confirmation shown after a delete/compress; the UI clears it when dismissed.
+    var notice: String?
     let isDemo: Bool
+
+    // Last scan inputs, so deletions update the screens without a full rescan.
+    private var lastItems: [MediaItem] = []
+    private var lastAnalyzed: [AnalyzedPhoto] = []
 
     private static let log = Logger(subsystem: "com.keepspace.app", category: "scan")
     private let engine = LibraryEngine()
@@ -56,9 +62,53 @@ final class LibraryStore {
     func refreshAccess() {
         guard !isDemo else { return }
         let current = LibraryEngine.currentAccess()
-        let changed = current != access
         access = current
-        if current.canRead, changed || phase == .idle { scan() }
+        // Incremental thanks to the cache, so returning to the app always picks up library changes.
+        if current.canRead { scan() }
+    }
+
+    // MARK: - Actions
+
+    /// Deletes after the system confirmation. Items go to Recently Deleted, so the space is only
+    /// reclaimed when that album is emptied (or after 30 days) — the notice says so.
+    @discardableResult
+    func delete(_ ids: Set<String>) async -> DeletionOutcome {
+        guard !isDemo else { return .cancelled }
+        let outcome = await LibraryActions.delete(ids: Array(ids))
+        switch outcome {
+        case .deleted(let count, let bytes):
+            removeFromResults(ids)
+            notice = "\(count) \(count == 1 ? "item" : "items") (\(bytes.formattedBytes)) moved to Recently Deleted. Empty it in Photos to free the space now."
+        case .failed(let message):
+            notice = "Couldn't delete: \(message)"
+        case .cancelled:
+            break
+        }
+        return outcome
+    }
+
+    func compress(videoID: String, preset: CompressionPreset, progress: @escaping @Sendable (Double) -> Void) async -> String? {
+        guard !isDemo else { return nil }
+        do {
+            switch try await LibraryActions.compress(id: videoID, preset: preset, progress: progress) {
+            case .replaced(let original, let new):
+                notice = "Compressed \(original.formattedBytes) → \(new.formattedBytes). The original is in Recently Deleted."
+                scan() // pick up the new asset; everything else comes from the cache
+            case .cancelled:
+                return nil
+            }
+            return nil
+        } catch {
+            return error.localizedDescription
+        }
+    }
+
+    private func removeFromResults(_ ids: Set<String>) {
+        lastItems.removeAll { ids.contains($0.id) }
+        lastAnalyzed.removeAll { ids.contains($0.id) }
+        let storage = Self.deviceStorage()
+        content = builder.build(items: lastItems, analyzed: lastAnalyzed, deviceTotalBytes: storage.totalBytes, deviceFreeBytes: storage.freeBytes)
+        Task { [cache] in await cache?.delete(ids: Array(ids)) }
     }
 
     func scan() {
@@ -80,6 +130,8 @@ final class LibraryStore {
         Self.log.info("scan: \(items.count) items, \(plan.hits.count) cached, \(plan.toAnalyze.count) to analyze, \(plan.staleIDs.count) stale")
 
         // Publish straight away: sizes plus everything the cache already knows.
+        lastItems = items
+        lastAnalyzed = plan.hits
         content = builder.build(items: items, analyzed: plan.hits, deviceTotalBytes: storage.totalBytes, deviceFreeBytes: storage.freeBytes)
         guard !plan.toAnalyze.isEmpty else {
             phase = .ready
@@ -100,7 +152,8 @@ final class LibraryStore {
                 })
             }
         )
-        content = builder.build(items: items, analyzed: plan.hits + fresh, deviceTotalBytes: storage.totalBytes, deviceFreeBytes: storage.freeBytes)
+        lastAnalyzed = plan.hits + fresh
+        content = builder.build(items: items, analyzed: lastAnalyzed, deviceTotalBytes: storage.totalBytes, deviceFreeBytes: storage.freeBytes)
         phase = .ready
     }
 
