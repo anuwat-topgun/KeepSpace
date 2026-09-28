@@ -6,13 +6,16 @@ These answers describe the code in this repository at version 1.1, including opt
 
 ## Apple App Privacy
 
-- **Does this app collect data?** No.
+- **Does this app collect data?** Yes, for the optional Cloud Backup feature.
 - **Data used to track you:** None.
-- **Data linked to you:** None.
+- **Data linked to you:**
+  - **User Content → Photos or Videos** — App Functionality; optional; the selected image is retained in the user's Google Drive or OneDrive account.
+  - **Contact Info → Email Address** — App Functionality; optional; used by the connected provider for OAuth/account display.
+  - **Identifiers → User ID** — App Functionality; optional; used by the connected provider to authorize the user's cloud account.
 - **Data not linked to you:** None.
 - **Privacy Policy URL:** `https://github.com/anuwat-topgun/KeepSpace/blob/main/legal/privacy-policy.md`
 
-Reasoning: KeepSpace does not receive data and has no backend. AI data remains on-device. A file is sent only when the user explicitly starts a backup, directly to the user's own Google Drive or OneDrive account. Reconfirm this answer in App Store Connect against Apple's current definition of “collect”; direct user-requested transfer to a third party is not developer collection.
+Reasoning: KeepSpace does not receive data and has no backend, and AI data remains on-device. However, Apple's privacy-label guidance says to disclose the specific media type when an app enables uploads. These conservative answers cover the optional OAuth connection and user-initiated image upload even though the developer cannot access the provider account. Do not declare precise location, OCR text, face data, analytics, advertising, or tracking because none leaves the device through KeepSpace.
 
 ## Google Play Data safety
 
@@ -21,7 +24,7 @@ Reasoning: KeepSpace does not receive data and has no backend. AI data remains o
 - **Can users request deletion?** No account or server-side collection exists. Users clear the analysis cache in the app, clear app storage, or uninstall the app.
 - **Security practices:** No data is sold or used for advertising, tracking, or analytics.
 
-Cloud Backup is a prominent, user-initiated transfer to the user's own external cloud account; KeepSpace never receives the file. Under the current Google Play user-initiated-action exception this is not declared as developer collection or sharing. Reconfirm in Play Console at submission time.
+Cloud Backup is a prominent, user-initiated transfer to the user's own external cloud account; KeepSpace never receives or later accesses the file. Google Play's current Data safety guidance explicitly says this external-drive case does not need to be declared as collection; the user-initiated-action exception also means it is not declared as sharing. Reconfirm in Play Console at submission time.
 
 ## Permissions reviewers should expect
 

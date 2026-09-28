@@ -1,6 +1,6 @@
 import Foundation
 import Observation
-import UserNotifications
+@preconcurrency import UserNotifications
 
 /// Weekly Smart Clean reminder: opt-in, a repeating local notification whose text comes from the
 /// last completed scan. There's no silent background scan — the number is as fresh as the last time
