@@ -90,15 +90,15 @@ data class LibraryReportBuilder(
         val byKind = screenshots.groupBy { info(it).kind }
         val staleRecordings = recordings.filter { now - it.createdAt > staleAgeMs }
 
+        // Safest first: a Clean X GB target is filled from the top (spec: Safety Score orders the plan).
         val candidates = listOf(
-            // First: byte-for-byte copies are the safest thing to remove.
             PlanItem("Exact Duplicates", CleanupCategory.Duplicates, copies.totalBytes, PlanTarget.SimilarPhotos, copies.size, ReviewKind.Duplicates),
             PlanItem("Old Screen Recordings", CleanupCategory.ScreenRecordings, staleRecordings.totalBytes, PlanTarget.Videos, staleRecordings.size, ReviewKind.OldRecordings),
             PlanItem("Similar Photos", CleanupCategory.SimilarPhotos, similarBytes, PlanTarget.SimilarPhotos, similarCount, ReviewKind.Similar),
             PlanItem("Expired Tickets", CleanupCategory.Screenshots, expired.totalBytes, PlanTarget.Screenshots, expired.size, ReviewKind.Expired),
             PlanItem("Old Screenshots", CleanupCategory.Screenshots, staleScreenshots.totalBytes, PlanTarget.Screenshots, staleScreenshots.size, ReviewKind.OldScreenshots),
             PlanItem("Blurry Photos", CleanupCategory.BlurryPhotos, blurryBytes, PlanTarget.SimilarPhotos, blurry.size, ReviewKind.Blurry),
-        )
+        ).sortedWith(compareByDescending<PlanItem> { it.safety }.thenByDescending { it.bytes })
         val potential = candidates.sumOf { it.bytes }
 
         return LibraryContent(

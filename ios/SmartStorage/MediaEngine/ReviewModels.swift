@@ -1,5 +1,48 @@
 import Foundation
 
+/// How safe a suggestion is to accept without looking closely (spec §5.2 "Safety Score").
+enum SafetyLevel: Int, Comparable, Sendable {
+    /// A blurry shot may be the only one of a moment; a big video may be precious.
+    case reviewFirst = 60
+    /// A copy or the best shot is kept, or the content has expired.
+    case safe = 85
+    /// Byte-for-byte copies: nothing is lost.
+    case verySafe = 100
+
+    static func < (a: SafetyLevel, b: SafetyLevel) -> Bool { a.rawValue < b.rawValue }
+
+    var title: String {
+        switch self {
+        case .verySafe: "Very safe"
+        case .safe: "Safe"
+        case .reviewFirst: "Review first"
+        }
+    }
+
+    var tint: Tint {
+        switch self {
+        case .verySafe, .safe: .mint
+        case .reviewFirst: .amber
+        }
+    }
+
+    var systemImage: String {
+        switch self {
+        case .verySafe: "checkmark.shield.fill"
+        case .safe: "checkmark.shield"
+        case .reviewFirst: "eye"
+        }
+    }
+
+    /// Size-weighted score 0–100 for a set of suggestions; 100 when there's nothing to remove.
+    static func score(_ parts: [(level: SafetyLevel, bytes: Int64)]) -> Int {
+        let total = parts.reduce(Int64(0)) { $0 + max($1.bytes, 0) }
+        guard total > 0 else { return 100 }
+        let weighted = parts.reduce(0.0) { $0 + Double($1.level.rawValue) * Double(max($1.bytes, 0)) }
+        return Int((weighted / Double(total)).rounded())
+    }
+}
+
 /// A set of cleanup candidates the user reviews before anything is deleted.
 enum ReviewKind: Hashable, Sendable {
     case duplicates, similar, blurry, oldScreenshots, oldRecordings, largeVideos
@@ -30,6 +73,14 @@ enum ReviewKind: Hashable, Sendable {
         case .largeVideos: "Your biggest videos. Nothing is selected until you choose."
         case .expired: "Boarding passes and tickets for dates that have passed."
         case .screenshots: "Sorted by what's in them, read on this device. Nothing is selected until you choose."
+        }
+    }
+
+    var safety: SafetyLevel {
+        switch self {
+        case .duplicates: .verySafe
+        case .similar, .oldScreenshots, .oldRecordings, .expired: .safe
+        case .blurry, .largeVideos, .screenshots: .reviewFirst
         }
     }
 

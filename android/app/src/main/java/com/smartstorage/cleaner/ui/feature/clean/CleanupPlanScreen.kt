@@ -38,6 +38,14 @@ import com.smartstorage.cleaner.ui.components.PrimaryButton
 import com.smartstorage.cleaner.ui.components.ScreenHeader
 import com.smartstorage.cleaner.ui.components.ScreenScaffold
 import com.smartstorage.cleaner.ui.components.SmartCard
+import com.smartstorage.cleaner.ui.components.StatusBadge
+import com.smartstorage.cleaner.ui.components.ListTile
+import com.smartstorage.cleaner.media.SafetyLevel
+import androidx.compose.ui.semantics.Role
+import androidx.compose.material.icons.rounded.Visibility
+import androidx.compose.material.icons.rounded.Shield
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.clickable
 import com.smartstorage.cleaner.ui.feature.home.icon
 import com.smartstorage.cleaner.ui.feature.home.tint
 import com.smartstorage.cleaner.ui.shell.Screen
@@ -56,6 +64,15 @@ fun CleanupPlanScreen(onOpen: (Screen) -> Unit, onReview: (ReviewKind) -> Unit, 
         ScreenHeader("Cleanup Plan", "${plan.estimatedBytes.formattedBytes()} recommended", Modifier.padding(bottom = 8.dp))
         PlanSummaryCard(plan)
 
+        if (plan.items.isNotEmpty()) {
+            SmartCard(style = CardStyle.Info) {
+                Row(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Icon(plan.lowestSafety.icon, contentDescription = null, tint = colors.textSecondary, modifier = Modifier.size(20.dp))
+                    Text(safetyExplanation(plan), style = SmartType.metadata, color = colors.textSecondary)
+                }
+            }
+        }
+
         if (plan.items.isEmpty()) {
             SmartCard(style = CardStyle.Info) {
                 Text(
@@ -68,13 +85,14 @@ fun CleanupPlanScreen(onOpen: (Screen) -> Unit, onReview: (ReviewKind) -> Unit, 
         }
 
         plan.items.forEach { item ->
-            CardRow(
-                icon = item.kind.icon,
-                title = item.title,
-                tint = item.kind.tint,
-                subtitle = item.bytes.formattedBytes(),
-                onClick = { item.review?.let(onReview) ?: onOpen(item.target.screen) },
-            )
+            SmartCard(
+                contentPadding = PaddingValues(16.dp),
+                modifier = Modifier.clickable(role = Role.Button) { item.review?.let(onReview) ?: onOpen(item.target.screen) },
+            ) {
+                ListTile(item.kind.icon, item.title, tint = item.kind.tint, subtitle = item.bytes.formattedBytes(), showsChevron = false) {
+                    StatusBadge(item.safety.title, item.safety.icon, item.safety.tint, compact = true)
+                }
+            }
         }
 
         Row(
@@ -91,6 +109,26 @@ fun CleanupPlanScreen(onOpen: (Screen) -> Unit, onReview: (ReviewKind) -> Unit, 
         }
     }
 }
+
+/** Why the plan scores what it does (spec: recommendations must be explainable). */
+private fun safetyExplanation(plan: CleanupPlan): String = when (plan.lowestSafety) {
+    SafetyLevel.VerySafe -> "Safety ${plan.safetyScore}/100 — only identical copies. Nothing is lost."
+    SafetyLevel.Safe -> "Safety ${plan.safetyScore}/100 — the best shot of every group is kept. Safest items come first."
+    SafetyLevel.ReviewFirst -> "Safety ${plan.safetyScore}/100 — safest items come first. Blurry photos and screenshots are worth a quick look before you delete."
+}
+
+internal val SafetyLevel.icon: ImageVector
+    get() = when (this) {
+        SafetyLevel.VerySafe -> Icons.Rounded.VerifiedUser
+        SafetyLevel.Safe -> Icons.Rounded.Shield
+        SafetyLevel.ReviewFirst -> Icons.Rounded.Visibility
+    }
+
+internal val SafetyLevel.tint: Tint
+    get() = when (this) {
+        SafetyLevel.VerySafe, SafetyLevel.Safe -> Tint.Mint
+        SafetyLevel.ReviewFirst -> Tint.Amber
+    }
 
 private val PlanTarget.screen: Screen
     get() = when (this) {

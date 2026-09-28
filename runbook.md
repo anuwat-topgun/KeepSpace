@@ -132,7 +132,7 @@ cd ios && xcodegen && xcodebuild test -project SmartStorage.xcodeproj -scheme Sm
 ```bash
 cd android && ./gradlew testDebugUnitTest
 ```
-- สถานะล่าสุด: iOS 63 tests / Android 63 tests ผ่านทั้งหมด
+- สถานะล่าสุด: iOS 66 tests / Android 66 tests ผ่านทั้งหมด
 - ผล Android: `android/app/build/test-results/testDebugUnitTest/*.xml` · report HTML: `android/app/build/reports/tests/testDebugUnitTest/index.html`
 - ถ้า `xcodebuild test` ค้างนาน (มัก hang ที่ `simctl diagnose` เมื่อ test crash หรือ simulator ยังไม่ boot) ให้แยกเป็น 2 ขั้น:
 ```bash

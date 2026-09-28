@@ -8,6 +8,7 @@ import com.smartstorage.cleaner.media.ReceiptDetails
 import com.smartstorage.cleaner.media.RuleMatcher
 import com.smartstorage.cleaner.media.CompressionPreset
 import com.smartstorage.cleaner.media.ReviewKind
+import com.smartstorage.cleaner.media.SafetyLevel
 import com.smartstorage.cleaner.media.ScreenshotKind
 
 // Mirrors ios/SmartStorage/Model/LibraryModels.swift — keep the two in sync.
@@ -25,9 +26,18 @@ data class PlanItem(
     val itemCount: Int = 0,
     /** Real content opens the review grid; demo content falls back to [target]. */
     val review: ReviewKind? = null,
-)
+) {
+    /** From the review set the item opens; demo items without one count as safe. */
+    val safety: SafetyLevel get() = review?.safety ?: SafetyLevel.Safe
+}
 
-data class CleanupPlan(val targetBytes: Long, val estimatedBytes: Long, val reviewTime: String, val items: List<PlanItem>)
+data class CleanupPlan(val targetBytes: Long, val estimatedBytes: Long, val reviewTime: String, val items: List<PlanItem>) {
+    /** Size-weighted safety of everything in the plan, 0–100. */
+    val safetyScore: Int get() = SafetyLevel.score(items.map { it.safety to it.bytes })
+
+    /** The least safe level in the plan, for the one-line explanation. */
+    val lowestSafety: SafetyLevel get() = items.filter { it.bytes > 0 }.minOfOrNull { it.safety } ?: SafetyLevel.VerySafe
+}
 
 // endregion
 

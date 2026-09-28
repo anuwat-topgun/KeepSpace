@@ -149,6 +149,14 @@ assets and iCloud-only originals; Android streams the MediaStore file.
 - Extra copies are removed from Similar, Blurry, Old Screenshots, Expired, recordings and memories so their space
   is never counted twice.
 
+### Safety Score
+
+Every suggestion has a `SafetyLevel` from its review set: **Very safe** (exact duplicates, 100), **Safe** (extra
+shots of similar groups, old recordings/screenshots, expired tickets, 85), **Review first** (blurry photos, large
+videos, screenshot categories, 60). The Cleanup Plan shows a level badge per row and a size-weighted score
+(0–100) with a one-line explanation, and is ordered safest first, so a "Clean X GB" target is filled from the
+safest items. Favourites and memories are never preselected regardless of level.
+
 ### Screenshot categories (on-device OCR)
 
 Screenshots are read on the device and sorted into Shopping, Receipts, Chats, QR Codes, Tickets and Other;

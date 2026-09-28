@@ -12,8 +12,8 @@
 
 | แพลตฟอร์ม | Unit tests | สถานะ | ทดสอบบนอุปกรณ์ |
 |---|---|---|---|
-| iOS (SwiftUI, iOS 17+) | 63 tests / 21 suites (Swift Testing) | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator |
-| Android (Compose, API 26+) | 63 tests (JUnit, JVM) + Thai OCR spike (instrumented) | ✅ ผ่านทั้งหมด | `keepspace_tablet` emulator (Pixel Tablet, API 36) |
+| iOS (SwiftUI, iOS 17+) | 66 tests / 22 suites (Swift Testing) | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator |
+| Android (Compose, API 26+) | 66 tests (JUnit, JVM) + Thai OCR spike (instrumented) | ✅ ผ่านทั้งหมด | `keepspace_tablet` emulator (Pixel Tablet, API 36) |
 
 คำสั่งรันเทส: ดู `runbook.md` หัวข้อ 4
 
@@ -48,6 +48,7 @@
 | Feature (สเปก §5.2) | iOS | Android | หมายเหตุ |
 |---|---|---|---|
 | Storage Analysis (Home dashboard) | ✅ | ✅ | พื้นที่เครื่องจริง + ขนาดตามหมวด |
+| Safety Score | ✅ | ✅ | ระดับ + คะแนนถ่วงน้ำหนัก, แผนเรียงจากปลอดภัยที่สุดก่อน |
 | Exact Duplicate Detection | ✅ | ✅ | hash เฉพาะไฟล์ขนาดชนกัน, เก็บรายการโปรด/เก่าสุด, อยู่อันดับแรกใน Cleanup Plan |
 | Similar Photo Groups | ✅ | ✅ | iOS: Vision feature print · Android: dHash — iOS ต้องยืนยันความแม่นบนเครื่องจริง |
 | AI Best Shot + เหตุผล | ✅ | ✅ | คะแนนความคมชัด, ใบหน้า/ตาเปิด, แสง |
@@ -85,10 +86,9 @@
 
 #### ✅ Exact Duplicate Detection — เสร็จแล้ว (ดูตารางข้อ 2)
 
-#### ⬜ Safety Score (สเปก §5.2)
-- [ ] นิยามคะแนนต่อรายการ/ต่อแผน เช่น exact duplicate = สูงสุด, extra shot ในกลุ่ม similar = สูง, blurry = กลาง, วิดีโอส่วนตัว = ต่ำ, อยู่ในความทรงจำ/favorite = ห้าม
-- [ ] แสดงใน Cleanup Plan และ Review ("ปลอดภัยมาก / ควรดูก่อน") พร้อมเหตุผลที่อธิบายได้ (กฎข้อ 5 ของสเปก)
-- [ ] ใช้คะแนนเรียงลำดับตอนเลือกให้ถึงเป้า Clean X GB
+#### ✅ Safety Score — เสร็จแล้ว
+- ระดับ Very safe / Safe / Review first ตามชนิดของรายการ, คะแนนถ่วงน้ำหนักตามขนาด (0–100) พร้อมคำอธิบายบรรทัดเดียว, ป้ายในแต่ละแถวของ Cleanup Plan และหน้า Review, แผนเรียงจากปลอดภัยที่สุดก่อน
+- ทดสอบ: unit tests ทั้งสองแพลตฟอร์ม + emulator (คะแนน 89/100)
 
 #### 🟡 Weekly Smart Clean
 มีปุ่ม "Run Weekly Smart Clean" และแถว Notifications ใน Settings แต่ยังไม่มีระบบจริง
@@ -191,7 +191,7 @@
 
 ## 4. ลำดับที่แนะนำ
 
-1. ทดสอบบนเครื่องจริง + ปิดช่องโหว่ v1.0 (Safety Score, Weekly Smart Clean, Settings placeholders, app icon, privacy manifest, ความเสี่ยง `fileSize`) → พร้อมปล่อย v1.0 ตามสเปก §12
+1. ทดสอบบนเครื่องจริง + ปิดช่องโหว่ v1.0 (Weekly Smart Clean, Settings placeholders, app icon, privacy manifest, ความเสี่ยง `fileSize`) → พร้อมปล่อย v1.0 ตามสเปก §12
 2. สร้าง OAuth clients (ข้อ 3.2) → v1.1 manual backup
 3. เชื่อม rules เข้ากับ upload queue → v1.2 ครบ
 4. Verification + safe delete → v1.3 ครบ

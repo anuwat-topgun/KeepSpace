@@ -12,6 +12,12 @@ struct PlanItem: Identifiable, Sendable {
     var itemCount: Int = 0
 
     var id: String { title }
+
+    /// From the review set the item opens; demo items without one count as safe.
+    var safety: SafetyLevel {
+        if case .review(let kind) = route { return kind.safety }
+        return .safe
+    }
 }
 
 struct CleanupPlan: Sendable {
@@ -19,6 +25,11 @@ struct CleanupPlan: Sendable {
     let estimatedBytes: Int64
     let reviewTime: String
     let items: [PlanItem]
+
+    /// Size-weighted safety of everything in the plan, 0–100.
+    var safetyScore: Int { SafetyLevel.score(items.map { ($0.safety, $0.bytes) }) }
+    /// The least safe level in the plan, for the one-line explanation.
+    var lowestSafety: SafetyLevel { items.filter { $0.bytes > 0 }.map(\.safety).min() ?? .verySafe }
 }
 
 // MARK: - Media placeholders

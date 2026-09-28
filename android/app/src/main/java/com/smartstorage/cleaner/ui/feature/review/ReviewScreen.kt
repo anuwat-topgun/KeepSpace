@@ -66,6 +66,9 @@ import com.smartstorage.cleaner.ui.components.CardStyle
 import com.smartstorage.cleaner.ui.components.DurationBadge
 import com.smartstorage.cleaner.ui.components.PrimaryButton
 import com.smartstorage.cleaner.ui.components.ScreenHeader
+import com.smartstorage.cleaner.ui.feature.clean.tint
+import com.smartstorage.cleaner.ui.feature.clean.icon
+import com.smartstorage.cleaner.ui.components.StatusBadge
 import com.smartstorage.cleaner.ui.components.SmartCard
 import com.smartstorage.cleaner.ui.theme.SmartMetrics
 import com.smartstorage.cleaner.ui.theme.SmartTheme
@@ -136,6 +139,9 @@ fun ReviewScreen(source: ReviewSource, onBack: () -> Unit) {
                         Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = "Back", tint = colors.textPrimary)
                     }
                     ScreenHeader(title, explanation)
+                    (source as? ReviewSource.Kind)?.kind?.let { kind ->
+                        StatusBadge(kind.safety.title, kind.safety.icon, kind.safety.tint)
+                    }
                     if (items.isEmpty()) {
                         SmartCard(style = CardStyle.Info) {
                             Text("Nothing left to review here.", style = SmartType.metadata, color = colors.textSecondary)

@@ -76,8 +76,8 @@ struct LibraryReportBuilder: Sendable {
         let byKind = Dictionary(grouping: screenshots, by: { info($0).kind })
         let staleRecordings = recordings.filter { now.timeIntervalSince($0.creationDate) > staleAge }
 
+        // Safest first: a Clean X GB target is filled from the top (spec: Safety Score orders the plan).
         let candidates = [
-            // First: byte-for-byte copies are the safest thing to remove.
             PlanItem(title: "Exact Duplicates", systemImage: "doc.on.doc.fill", tint: .blue,
                      bytes: copies.totalBytes, route: .review(.duplicates), itemCount: copies.count),
             PlanItem(title: "Old Screen Recordings", systemImage: "record.circle", tint: .coral,
@@ -90,7 +90,7 @@ struct LibraryReportBuilder: Sendable {
                      bytes: staleScreenshots.totalBytes, route: .review(.oldScreenshots), itemCount: staleScreenshots.count),
             PlanItem(title: "Blurry Photos", systemImage: "camera.filters", tint: .mint,
                      bytes: blurryBytes, route: .review(.blurry), itemCount: blurry.count),
-        ]
+        ].sorted { $0.safety != $1.safety ? $0.safety > $1.safety : $0.bytes > $1.bytes }
         let potential = candidates.reduce(0) { $0 + $1.bytes }
 
         let storage = StorageSummary(

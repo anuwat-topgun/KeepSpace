@@ -876,3 +876,39 @@ struct DuplicateFinderTests {
         #expect(content.reviewSets[.oldScreenshots]?.map(\.id) == ["orig"])
     }
 }
+
+// MARK: - Safety score
+
+struct SafetyScoreTests {
+    @Test func levelsByReviewKind() {
+        #expect(ReviewKind.duplicates.safety == .verySafe)
+        #expect(ReviewKind.similar.safety == .safe)
+        #expect(ReviewKind.blurry.safety == .reviewFirst)
+        #expect(ReviewKind.largeVideos.safety == .reviewFirst)
+        #expect(ReviewKind.expired.safety == .safe)
+    }
+
+    @Test func scoreIsSizeWeighted() {
+        #expect(SafetyLevel.score([]) == 100)
+        #expect(SafetyLevel.score([(.verySafe, 1_000)]) == 100)
+        // 900 MB very safe + 100 MB review-first = (900*100 + 100*60) / 1000 = 96.
+        #expect(SafetyLevel.score([(.verySafe, 900), (.reviewFirst, 100)]) == 96)
+        #expect(SafetyLevel.score([(.reviewFirst, 500)]) == 60)
+    }
+
+    @Test func planIsOrderedSafestFirstAndScored() {
+        let day: Double = 86_400
+        func shot(_ id: String, _ d: Double) -> MediaItem {
+            MediaItem(id: id, kind: .screenshot, creationDate: Date(timeIntervalSince1970: d * day), bytes: 1_000_000,
+                      pixelWidth: 100, pixelHeight: 100, duration: 0, isFavorite: false)
+        }
+        // A duplicate pair (tiny) and old screenshots (bigger): the duplicate copy leads despite being smaller.
+        let items = [shot("a", 1), shot("a2", 2), shot("b", 3), shot("c", 4), shot("d", 5)]
+        let content = LibraryReportBuilder().build(items: items, analyzed: [], fileHashes: ["a": "h", "a2": "h"],
+                                                   deviceTotalBytes: 100, deviceFreeBytes: 50, now: Date(timeIntervalSince1970: 400 * day))
+        #expect(content.cleanupCandidates.first?.title == "Exact Duplicates")
+        let plan = content.plan(for: nil)
+        #expect(plan.lowestSafety <= .safe)
+        #expect((60...100).contains(plan.safetyScore))
+    }
+}

@@ -52,6 +52,10 @@ struct ReviewView: View {
             ScreenHeader(title: title, subtitle: explanation)
                 .padding(.bottom, 4)
 
+            if case .kind(let kind) = source {
+                StatusBadge(text: kind.safety.title, systemImage: kind.safety.systemImage, tint: kind.safety.tint)
+            }
+
             if items.isEmpty {
                 Card(style: .info) {
                     Label("Nothing left to review here.", systemImage: "checkmark.circle")

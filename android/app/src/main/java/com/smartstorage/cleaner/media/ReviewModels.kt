@@ -3,7 +3,33 @@ package com.smartstorage.cleaner.media
 // Mirrors ios/SmartStorage/MediaEngine/ReviewModels.swift.
 
 /** A set of cleanup candidates the user reviews before anything is deleted. */
+/** How safe a suggestion is to accept without looking closely (spec §5.2 "Safety Score"). Mirrors ReviewModels.swift. */
+enum class SafetyLevel(val score: Int, val title: String) {
+    /** A blurry shot may be the only one of a moment; a big video may be precious. */
+    ReviewFirst(60, "Review first"),
+    /** A copy or the best shot is kept, or the content has expired. */
+    Safe(85, "Safe"),
+    /** Byte-for-byte copies: nothing is lost. */
+    VerySafe(100, "Very safe");
+
+    companion object {
+        /** Size-weighted score 0–100 for a set of suggestions; 100 when there's nothing to remove. */
+        fun score(parts: List<Pair<SafetyLevel, Long>>): Int {
+            val total = parts.sumOf { maxOf(it.second, 0L) }
+            if (total <= 0) return 100
+            return Math.round(parts.sumOf { it.first.score.toDouble() * maxOf(it.second, 0L) } / total).toInt()
+        }
+    }
+}
+
 sealed class ReviewKind(val title: String, val explanation: String, val key: String) {
+    val safety: SafetyLevel
+        get() = when (this) {
+            is Duplicates -> SafetyLevel.VerySafe
+            is Similar, is OldScreenshots, is OldRecordings, is Expired -> SafetyLevel.Safe
+            is Blurry, is LargeVideos, is Screenshots -> SafetyLevel.ReviewFirst
+        }
+
     data object Duplicates : ReviewKind(
         "Exact Duplicates", "Identical copies of the same file. One copy of each is kept — your favourite, or else the oldest.", "duplicates",
     )
