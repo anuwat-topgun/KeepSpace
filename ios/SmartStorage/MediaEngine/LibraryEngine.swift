@@ -1,3 +1,4 @@
+@preconcurrency import AVFoundation
 import CryptoKit
 import Photos
 import UIKit
@@ -133,6 +134,46 @@ actor LibraryEngine {
         return results
     }
 
+    /// Replaces PhotoKit's non-public `fileSize` KVC with public APIs. Still images are streamed
+    /// once so their exact byte count and SHA-256 arrive together. Videos use the public sample
+    /// data lengths and are only streamed later when duplicate candidates need a hash.
+    func measure(
+        _ items: [MediaItem],
+        concurrency: Int = 3,
+        batchSize: Int = 50,
+        progress: @escaping @Sendable (Int, Int) async -> Void,
+        onBatch: @escaping @Sendable ([CachedHash]) async -> Void
+    ) async -> [CachedHash] {
+        var results: [CachedHash] = []
+        results.reserveCapacity(items.count)
+        var pending: [CachedHash] = []
+        var done = 0
+
+        await withTaskGroup(of: CachedHash?.self) { group in
+            var iterator = items.makeIterator()
+            func enqueue() {
+                guard let item = iterator.next() else { return }
+                group.addTask { await self.measureOne(item) }
+            }
+            for _ in 0..<concurrency { enqueue() }
+            while let next = await group.next() {
+                if let next {
+                    results.append(next)
+                    pending.append(next)
+                }
+                done += 1
+                if done % 20 == 0 || done == items.count { await progress(done, items.count) }
+                if pending.count >= batchSize {
+                    await onBatch(pending)
+                    pending.removeAll()
+                }
+                enqueue()
+            }
+        }
+        if !pending.isEmpty { await onBatch(pending) }
+        return results
+    }
+
     /// SHA-256 of each item's original file, two at a time. Edited assets are skipped (what you see
     /// isn't the original file) and so are iCloud-only originals (nothing is downloaded).
     func hashFiles(
@@ -161,25 +202,75 @@ actor LibraryEngine {
     private func hashFile(_ item: MediaItem) async -> CachedHash? {
         guard let asset = assets[item.id] else { return nil }
         let resources = PHAssetResource.assetResources(for: asset)
-        guard !resources.contains(where: { $0.type == .adjustmentData }), let resource = Self.primaryResource(in: resources) else { return nil }
-        let options = PHAssetResourceRequestOptions()
-        options.isNetworkAccessAllowed = false
-        let digest = await withCheckedContinuation { (continuation: CheckedContinuation<String?, Never>) in
-            let hasher = HashBox()
-            PHAssetResourceManager.default().requestData(for: resource, options: options) { chunk in
-                hasher.update(chunk)
-            } completionHandler: { error in
-                continuation.resume(returning: error == nil ? hasher.finalize() : nil)
-            }
-        }
-        return digest.map { CachedHash(assetID: item.id, modifiedAt: item.modifiedAt, bytes: item.bytes, hash: $0) }
+        guard !resources.contains(where: { $0.type == .adjustmentData }),
+              let resource = Self.primaryResource(in: resources),
+              let read = await stream(resource) else { return nil }
+        return CachedHash(assetID: item.id, modifiedAt: item.modifiedAt, bytes: read.bytes, hash: read.sha256)
     }
 
-    /// Streams chunks into SHA-256; PhotoKit delivers them serially on its own queue.
-    private final class HashBox: @unchecked Sendable {
+    private func measureOne(_ item: MediaItem) async -> CachedHash? {
+        guard let asset = assets[item.id] else { return nil }
+        if item.isVideo {
+            guard let bytes = await videoBytes(of: asset) else { return nil }
+            return CachedHash(assetID: item.id, modifiedAt: item.modifiedAt, bytes: bytes, hash: nil)
+        }
+        let resources = PHAssetResource.assetResources(for: asset)
+        guard let resource = Self.primaryResource(in: resources), let read = await stream(resource) else { return nil }
+        let edited = resources.contains { $0.type == .adjustmentData }
+        return CachedHash(assetID: item.id, modifiedAt: item.modifiedAt, bytes: read.bytes, hash: edited ? nil : read.sha256)
+    }
+
+    /// Exact byte count + SHA-256 of a local original, read once. iCloud-only originals return nil.
+    private func stream(_ resource: PHAssetResource) async -> (bytes: Int64, sha256: String)? {
+        let options = PHAssetResourceRequestOptions()
+        options.isNetworkAccessAllowed = false
+        return await withCheckedContinuation { continuation in
+            let box = StreamBox()
+            PHAssetResourceManager.default().requestData(for: resource, options: options) { chunk in
+                box.add(chunk)
+            } completionHandler: { error in
+                continuation.resume(returning: error == nil ? box.result() : nil)
+            }
+        }
+    }
+
+    /// PhotoKit delivers chunks serially on its own queue.
+    private final class StreamBox: @unchecked Sendable {
         private var hasher = SHA256()
-        func update(_ data: Data) { hasher.update(data: data) }
-        func finalize() -> String { hasher.finalize().map { String(format: "%02x", $0) }.joined() }
+        private var count: Int64 = 0
+
+        func add(_ data: Data) {
+            count += Int64(data.count)
+            hasher.update(data: data)
+        }
+
+        func result() -> (bytes: Int64, sha256: String) {
+            (count, hasher.finalize().map { String(format: "%02x", $0) }.joined())
+        }
+    }
+
+    /// A video's media payload size from public AVFoundation track metadata; no file read.
+    private func videoBytes(of asset: PHAsset) async -> Int64? {
+        let options = PHVideoRequestOptions()
+        options.isNetworkAccessAllowed = false
+        options.version = .original
+        options.deliveryMode = .highQualityFormat
+        let box: AVAssetBox = await withCheckedContinuation { continuation in
+            PHImageManager.default().requestAVAsset(forVideo: asset, options: options) { avAsset, _, _ in
+                continuation.resume(returning: AVAssetBox(avAsset))
+            }
+        }
+        guard let avAsset = box.asset, let tracks = try? await avAsset.load(.tracks) else { return nil }
+        var total: Int64 = 0
+        for track in tracks {
+            total += (try? await track.load(.totalSampleDataLength)) ?? 0
+        }
+        return total > 0 ? total : nil
+    }
+
+    private struct AVAssetBox: @unchecked Sendable {
+        let asset: AVAsset?
+        init(_ asset: AVAsset?) { self.asset = asset }
     }
 
     private func readScreenshot(_ item: MediaItem) async -> (MediaItem, ScreenshotInfo)? {
@@ -231,19 +322,27 @@ actor LibraryEngine {
         } else {
             kind = asset.mediaSubtypes.contains(.photoScreenshot) ? .screenshot : .photo
         }
+        let fileName = primaryResource(in: PHAssetResource.assetResources(for: asset))?.originalFilename
         return MediaItem(
             id: asset.localIdentifier,
             kind: kind,
             creationDate: asset.creationDate ?? .distantPast,
             modifiedAt: asset.modificationDate ?? asset.creationDate ?? .distantPast,
-            bytes: fileSize(of: asset),
+            bytes: SizeEstimator.estimate(
+                isVideo: asset.mediaType == .video,
+                pixelWidth: asset.pixelWidth,
+                pixelHeight: asset.pixelHeight,
+                duration: asset.duration,
+                fileName: fileName
+            ),
             pixelWidth: asset.pixelWidth,
             pixelHeight: asset.pixelHeight,
             duration: asset.duration,
             isFavorite: asset.isFavorite,
-            fileName: PHAssetResource.assetResources(for: asset).first?.originalFilename,
+            fileName: fileName,
             latitude: asset.location?.coordinate.latitude,
-            longitude: asset.location?.coordinate.longitude
+            longitude: asset.location?.coordinate.longitude,
+            isSizeEstimated: true
         )
     }
 
@@ -253,15 +352,6 @@ actor LibraryEngine {
             ?? resources.first
     }
 
-    /// PhotoKit doesn't expose asset size publicly; `fileSize` on the primary resource is the
-    /// long-standing way to read it. Falls back to an estimate from pixel count.
-    private static func fileSize(of asset: PHAsset) -> Int64 {
-        let primary = primaryResource(in: PHAssetResource.assetResources(for: asset))
-        if let size = primary?.value(forKey: "fileSize") as? Int64 { return size }
-        if let size = primary?.value(forKey: "fileSize") as? Int { return Int64(size) }
-        let pixels = Int64(asset.pixelWidth * asset.pixelHeight)
-        return asset.mediaType == .video ? Int64(asset.duration * 1_000_000) : pixels / 4
-    }
 }
 
 extension CGImagePropertyOrientation {

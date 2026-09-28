@@ -1,9 +1,9 @@
 # KeepSpace — Runbook
 
 คู่มือปฏิบัติงานสำหรับนักพัฒนา: ตั้งเครื่อง, build, รัน, ทดสอบ, ใส่ข้อมูลทดสอบ, ดู log และแก้ปัญหาที่เจอบ่อย
-สถานะงานและสิ่งที่เหลือ: [`todo.md`](todo.md) · สถาปัตยกรรมและรายละเอียดฟีเจอร์: [`README.md`](README.md)
+สถานะงานและสิ่งที่เหลือ: [`todo.md`](todo.md) · ส่งต่องาน/การตัดสินใจ/กับดัก: [`handoff.md`](handoff.md) · สถาปัตยกรรมและรายละเอียดฟีเจอร์: [`README.md`](README.md)
 
-อัปเดตล่าสุด: 28 ก.ย. 2026
+อัปเดตล่าสุด: 28 ก.ย. 2026 (privacy manifest และ public-API file sizing เสร็จแล้ว)
 
 ---
 
@@ -132,7 +132,7 @@ cd ios && xcodegen && xcodebuild test -project SmartStorage.xcodeproj -scheme Sm
 ```bash
 cd android && ./gradlew testDebugUnitTest
 ```
-- สถานะล่าสุด: iOS 77 tests / Android 74 tests ผ่านทั้งหมด
+- สถานะล่าสุด: iOS 81 tests / Android 74 tests ผ่านทั้งหมด
 - ผล Android: `android/app/build/test-results/testDebugUnitTest/*.xml` · report HTML: `android/app/build/reports/tests/testDebugUnitTest/index.html`
 - ถ้า `xcodebuild test` ค้างนาน (มัก hang ที่ `simctl diagnose` เมื่อ test crash หรือ simulator ยังไม่ boot) ให้แยกเป็น 2 ขั้น:
 ```bash
@@ -234,7 +234,8 @@ adb shell content query --uri content://media/external/images/media --projection
 | schema ของ cache | SwiftData lightweight migration (property ใหม่ต้องมีค่า default) | Room `version` (ตอนนี้ 6) + destructive migration | Android ล้าง cache ทั้งหมด |
 | โมเดล Tesseract | — | `fetchTessdata` checksums + `ThaiOcr.MODELS_VERSION` | copy โมเดลใหม่เข้า `noBackupFilesDir/tesseract` |
 
-- ข้อมูลที่ต้องไม่หาย (กฎ Storage Rules) อยู่นอก cache: iOS `UserDefaults` key `storageRules.v1` · Android SharedPreferences `keepspace` key `storageRules.v1`
+- `HashRecord` (iOS) / `CachedHash`: เก็บ assetID, modifiedAt, bytes, sha256; `sha256` เป็น optional สำหรับวิดีโอที่วัดขนาดแล้วแต่ยังไม่ได้อ่านและรูปที่ถูกแก้ โดย record เดียวกันเก็บผลวัดขนาดและ hash เพื่อลด I/O
+- ข้อมูลที่ต้องไม่หาย อยู่นอก cache: กฎ Storage Rules (`storageRules.v1`), AI Taste (`taste.enabled`, `taste.v1` / `taste.*`), การแจ้งเตือน (`weeklyClean.*`) — iOS `UserDefaults` · Android SharedPreferences `keepspace`
 - ข้อมูล v1.1+ (บัญชี cloud, คิวอัปโหลด) **ห้าม** ใส่ใน cache ที่ล้างได้ — ต้องเป็น store แยก
 - ล้าง cache: iOS ลบแอป (`xcrun simctl uninstall "iPhone 17" com.keepspace.app`) · Android `adb shell pm clear com.keepspace.app`
 
@@ -258,6 +259,8 @@ adb shell content query --uri content://media/external/images/media --projection
 | สแกนไม่เริ่มหลัง `pm clear` | ยังค้างที่ onboarding — กด Continue |
 | `sleep` ยาวใน script ถูกบล็อก (ในเครื่องมือ agent) | ใช้ loop รอเงื่อนไข เช่น `until adb logcat -d -s KeepSpaceScan \| grep -q scan:; do sleep 3; done` |
 | Timing ของ spike แกว่ง | emulator ช้าลงเมื่อรันนาน — ดูตัวเลขจาก run ที่เครื่องว่าง |
+| เครื่องมือ agent ตอบ "auto mode classifier gave no verdict" | ปัญหาฝั่งเซิร์ฟเวอร์ชั่วคราว ไม่เกี่ยวกับคำสั่ง — ลองซ้ำครั้งเดียว แล้วหยุดรอ (ยิงถี่ ๆ ครบ 10 ครั้งติดกันเทิร์นจะถูกตัด); อ่านไฟล์ได้ตามปกติ (อ่าน `.git/logs/HEAD` แทน `git log`) |
+| ไอคอนใหม่ไม่ขึ้นบน simulator / launcher ยังโชว์ไอคอนเก่า | iOS: uninstall → install ใหม่; Android: force-stop launcher แล้วกด Home (ดู หัวข้อ 4.5) |
 
 ---
 
@@ -272,6 +275,36 @@ adb shell content query --uri content://media/external/images/media --projection
 
 ## 10. การปล่อยแอป (ยังไม่พร้อม)
 
-สิ่งที่มีแล้ว: App Store Connect app `6816584493` (bundle `com.keepspace.app`, SKU `keepspace-ios-001`), Android release build ผ่าน R8
-สิ่งที่ต้องทำก่อนปล่อย: ดู `todo.md` ข้อ 3.7 (app icon, privacy manifest, keystore, store listing, privacy policy, ทดสอบเครื่องจริง ฯลฯ)
+สิ่งที่มีแล้ว: App Store Connect app `6816584493` (bundle `com.keepspace.app`, SKU `keepspace-ios-001`), Android release build ผ่าน R8, ไอคอนครบทุกขนาดทั้งสองแพลตฟอร์ม, iOS privacy manifest และระบบวัดขนาดไฟล์ด้วย public API
+สิ่งที่ต้องทำก่อนปล่อย: ดู `todo.md` ข้อ 3.7 (launch screen, keystore, store listing, privacy policy/terms, ทดสอบเครื่องจริง ฯลฯ)
 v1.1 cloud ต้องใช้ OAuth client ของ KeepSpace เอง (Google Cloud Console + Microsoft Entra) — ขั้นตอนอยู่ใน `todo.md` ข้อ 3.2
+
+---
+
+## 11. Privacy manifest (iOS)
+
+ไฟล์: `ios/SmartStorage/Resources/PrivacyInfo.xcprivacy` (xcodegen หยิบให้เอง) — ประกาศ: ไม่เก็บข้อมูล, ไม่ track, และเหตุผลของ required-reason API ที่แอปเรียกเอง:
+
+| Category | Reason | ใช้ที่ไหน |
+|---|---|---|
+| `NSPrivacyAccessedAPICategoryUserDefaults` | `CA92.1` | ตั้งค่าของแอป: onboarding, Storage Rules, AI Taste, Weekly Smart Clean (`@AppStorage`, `UserDefaults`) |
+| `NSPrivacyAccessedAPICategoryDiskSpace` | `85F4.1` | แสดงพื้นที่ว่าง/ทั้งหมดบน Home และ Insights (`LibraryStore.deviceStorage`) |
+
+**ต้องอัปเดตไฟล์นี้เมื่อโค้ดเริ่มเรียก API กลุ่ม required-reason ใหม่** ก่อน commit ให้ audit (คำสั่งละบล็อก):
+```bash
+grep -rn "UserDefaults\|@AppStorage" ios/SmartStorage
+```
+```bash
+grep -rn "volume.*Key\|systemFreeSize\|systemSize\|AvailableCapacity" ios/SmartStorage
+```
+```bash
+grep -rn "creationDateKey\|contentModificationDate\|fileModificationDate\|NSFileCreationDate\|NSFileModificationDate\|stat(\|getattrlist" ios/SmartStorage
+```
+```bash
+grep -rn "systemUptime\|mach_absolute_time\|clock_gettime\|activeInputModes" ios/SmartStorage
+```
+- ผลตอนตรวจ (28 ก.ย.): สองคำสั่งแรกมีผลตรงกับตารางข้างบน · คำสั่งที่สามเจอแค่ฟังก์ชัน helper ชื่อ `stat(...)` ใน `MemoryDetailView` (ไม่ใช่ API ของระบบ — false positive) · คำสั่งที่สี่ว่าง
+- ไฟล์ผลลัพธ์จาก video compression อ่านขนาดด้วย `URLResourceValues.fileSizeKey`; ไม่มีการอ่าน timestamp
+- ถ้าเพิ่มไลบรารีภายนอกบน iOS (ตอนนี้ไม่มี) ต้องตรวจว่ามี manifest ของตัวเองและอัปเดตของเราให้ครอบคลุม
+- ตรวจไฟล์: `plutil -lint ios/SmartStorage/Resources/PrivacyInfo.xcprivacy` และ `plutil -p <SmartStorage.app>/PrivacyInfo.xcprivacy` หลัง build
+- ถ้าแอปเริ่มส่งข้อมูลออกนอกเครื่อง (เช่น analytics, v1.1 cloud) ต้องแก้ `NSPrivacyCollectedDataTypes` และคำตอบ App Privacy ใน App Store Connect ให้ตรงกัน

@@ -1,10 +1,24 @@
 # KeepSpace — สถานะงานและสิ่งที่เหลือ
 
-อัปเดตล่าสุด: 28 ก.ย. 2026 (commit `f537ad3`)
+อัปเดตล่าสุด: 28 ก.ย. 2026 · ปิดความเสี่ยง App Store เรื่อง privacy manifest และ private KVC แล้ว
 อ้างอิงสเปก: `01_Product_Technical_Spec_v1_to_v1_3.md`, `02_Design_Handoff_v1_to_v1_3.md`
-วิธี build / run / test / แก้ปัญหา: ดู [`runbook.md`](runbook.md)
+วิธี build / run / test / แก้ปัญหา: ดู [`runbook.md`](runbook.md) · ส่งต่องาน/การตัดสินใจ/กับดัก: ดู [`handoff.md`](handoff.md)
 
 สัญลักษณ์: ✅ เสร็จและผ่านเทส · 🟡 ทำแล้วบางส่วน / ยังต้องยืนยัน · ⬜ ยังไม่เริ่ม
+
+---
+
+## 0. งาน App Store risk ที่เพิ่งปิด
+
+เป้าหมาย: ปิดความเสี่ยงตอนส่ง App Store 2 ข้อ (รายละเอียดและขั้นตอนต่อ: `handoff.md` หัวข้อ 3)
+
+| งาน | สถานะ | หมายเหตุ |
+|---|---|---|
+| iOS privacy manifest (`PrivacyInfo.xcprivacy`) | ✅ | ประกาศ UserDefaults `CA92.1` + disk space `85F4.1`; ไม่เก็บข้อมูล/ไม่ track; lint ผ่าน + อยู่ใน bundle · commit `834cb18` |
+| iOS เลิกใช้ `value(forKey: "fileSize")` | ✅ | รูปอ่าน byte + SHA-256 รอบเดียวผ่าน `PHAssetResourceManager`; วิดีโอใช้ `totalSampleDataLength`; compression/delete รับขนาดที่วัดแล้วจาก store; `rg value(forKey:)` ว่าง |
+
+การยืนยัน: iOS 81 tests / 26 suites ผ่าน; integration probe บน iPhone 17 simulator เทียบรูปนิ่ง 115 ไฟล์กับ KVC เดิม ตรง 115/115 (0 mismatch); ไม่มี `TMPPROBE` เหลือใน source
+ข้อแลกเปลี่ยนที่ยอมรับ: สแกนครั้งแรกของคลัง 10,000 รูปช้าขึ้นราว 1–2 นาที (อ่านทุกไฟล์หนึ่งรอบ) แต่รอบถัดไปใช้ cache และได้ตัวเลขที่แม่นพร้อม hash ของรูปใน pass เดียว
 
 ---
 
@@ -12,7 +26,7 @@
 
 | แพลตฟอร์ม | Unit tests | สถานะ | ทดสอบบนอุปกรณ์ |
 |---|---|---|---|
-| iOS (SwiftUI, iOS 17+) | 77 tests / 25 suites (Swift Testing) | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator |
+| iOS (SwiftUI, iOS 17+) | 81 tests / 26 suites (Swift Testing) | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator |
 | Android (Compose, API 26+) | 74 tests (JUnit, JVM) + Thai OCR spike (instrumented) | ✅ ผ่านทั้งหมด | `keepspace_tablet` emulator (Pixel Tablet, API 36) |
 
 คำสั่งรันเทส: ดู `runbook.md` หัวข้อ 4
@@ -184,12 +198,14 @@
   - [ ] วัดเวลาสแกนครั้งแรกบนมือถือจริงที่มี screenshot ไทยจำนวนมาก (Tesseract ~0.2 วินาทีต่อรูปบน emulator)
   - [ ] ขนาดแอป: ปล่อยเป็น App Bundle (แยก ABI) — Tesseract +7.5 MB native + 5.2 MB models ต่อเครื่อง
   - [ ] ทดสอบกับใบเสร็จ/สลิปจริง (รูปทดสอบตอนนี้เป็นภาพสังเคราะห์)
-- [ ] **ความเสี่ยง App Review**: iOS อ่านขนาดไฟล์ด้วย `PHAssetResource.value(forKey: "fileSize")` (KVC ที่ไม่ใช่ public API) → หาทางเลือก (เช่น ประมาณจาก resource/อ่านผ่าน `PHAssetResourceManager` เฉพาะเมื่อจำเป็น) หรือยอมรับความเสี่ยงอย่างรู้ตัว
+- [x] **ความเสี่ยง App Review**: เลิกใช้ `PHAssetResource.value(forKey: "fileSize")` แล้ว — ใช้ public API ล้วนและยืนยัน 115/115 ไฟล์บน simulator
 - [x] App icon ครบทุกขนาด ทั้ง iOS (18 ไฟล์) และ Android (legacy + round + adaptive ทุก density + Play Store 512) — สร้างด้วย `icons/build_icons.py`
   - [ ] iOS 18 dark/tinted icon และ Android 13 themed (monochrome) icon — ต้องออกแบบภาพเพิ่ม
   - [ ] ไอคอนแจ้งเตือน Android แบบขาวดำที่ออกแบบจริง (ตอนนี้เป็นประกายชั่วคราว)
 - [ ] Launch screen ทั้งสองแพลตฟอร์ม (ตอนนี้ใช้ค่า default เปล่า)
-- [ ] `PrivacyInfo.xcprivacy` (Required Reason APIs เช่น UserDefaults, file timestamps, disk space)
+- [x] `PrivacyInfo.xcprivacy` (Required Reason APIs: UserDefaults `CA92.1`, disk space `85F4.1`; ไม่เก็บข้อมูล/ไม่ track) — commit `834cb18`
+  - [ ] ตอนส่ง App Store: ตอบแบบสอบถาม App Privacy เป็น "Data Not Collected" ให้ตรงกับ manifest; ถ้าเพิ่ม API กลุ่ม required-reason ใหม่ ต้องอัปเดต manifest (runbook หัวข้อ 11)
+  - [ ] Android: กรอก Data safety form (ไม่เก็บ/ไม่แชร์ข้อมูล; ใช้ READ_MEDIA_*, ACCESS_MEDIA_LOCATION, POST_NOTIFICATIONS)
 - [ ] Info.plist: ข้อความขอสิทธิ์ Photos ให้ครบ/สุภาพ; Android: ข้อความอธิบาย ACCESS_MEDIA_LOCATION
 - [ ] Localization ภาษาไทย (ตอนนี้ UI เป็นภาษาอังกฤษทั้งหมด)
 - [ ] Accessibility: VoiceOver/TalkBack label ครบ, Dynamic Type/font scale ใหญ่, contrast
@@ -204,7 +220,7 @@
 
 ## 4. ลำดับที่แนะนำ
 
-1. ทดสอบบนเครื่องจริง + ปิดช่องโหว่ v1.0 (Subscription, app icon, privacy manifest, ความเสี่ยง `fileSize`) → พร้อมปล่อย v1.0 ตามสเปก §12
+1. ปิดช่องโหว่ v1.0 ที่เหลือ (launch screen, privacy policy/terms, แถว Subscription) + ทดสอบบนเครื่องจริง → พร้อมปล่อย v1.0 ตามสเปก §12
 2. สร้าง OAuth clients (ข้อ 3.2) → v1.1 manual backup
 3. เชื่อม rules เข้ากับ upload queue → v1.2 ครบ
 4. Verification + safe delete → v1.3 ครบ

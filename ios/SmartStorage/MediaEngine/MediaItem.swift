@@ -12,7 +12,8 @@ struct MediaItem: Identifiable, Hashable, Sendable {
     let creationDate: Date
     /// Last edit time; a change invalidates cached analysis.
     var modifiedAt: Date = .distantPast
-    let bytes: Int64
+    /// Exact once measured; an estimate (`isSizeEstimated`) until then, or for iCloud-only originals.
+    var bytes: Int64
     let pixelWidth: Int
     let pixelHeight: Int
     let duration: TimeInterval
@@ -22,6 +23,7 @@ struct MediaItem: Identifiable, Hashable, Sendable {
     /// Where it was taken, when known; used on device only (home vs. trips).
     var latitude: Double? = nil
     var longitude: Double? = nil
+    var isSizeEstimated = false
 
     var isVideo: Bool { kind == .video || kind == .screenRecording }
     var isStill: Bool { !isVideo }

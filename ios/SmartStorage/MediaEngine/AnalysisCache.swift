@@ -60,28 +60,52 @@ extension CachePlanner {
         let staleIDs: [String]
     }
 
-    /// Content hashes stay valid until the asset is edited.
-    static func plan(hashing candidates: [MediaItem], cached: [String: CachedHash]) -> HashPlan {
+    struct MeasurePlan: Sendable {
+        let hits: [String: CachedHash]
+        let toMeasure: [MediaItem]
+        let staleIDs: [String]
+    }
+
+    /// Exact sizes (and photo hashes) stay valid until the asset is edited.
+    static func plan(measuring items: [MediaItem], cached: [String: CachedHash]) -> MeasurePlan {
+        var hits: [String: CachedHash] = [:]
+        var toMeasure: [MediaItem] = []
+        for item in items {
+            if let entry = cached[item.id], entry.modifiedAt == item.modifiedAt {
+                hits[item.id] = entry
+            } else {
+                toMeasure.append(item)
+            }
+        }
+        let live = Set(items.map(\.id))
+        return MeasurePlan(hits: hits, toMeasure: toMeasure, staleIDs: cached.keys.filter { !live.contains($0) }.sorted())
+    }
+
+    /// Content hashes stay valid until the asset is edited. `liveIDs` should contain the whole
+    /// library when the shared measurement/hash cache is being pruned, not just hash candidates.
+    static func plan(hashing candidates: [MediaItem], cached: [String: CachedHash], liveIDs: Set<String>? = nil) -> HashPlan {
         var hits: [String: String] = [:]
         var toHash: [MediaItem] = []
         for item in candidates {
-            if let entry = cached[item.id], entry.modifiedAt == item.modifiedAt, entry.bytes == item.bytes {
-                hits[item.id] = entry.hash
+            if let entry = cached[item.id], entry.modifiedAt == item.modifiedAt, entry.bytes == item.bytes, let hash = entry.hash {
+                hits[item.id] = hash
             } else {
                 toHash.append(item)
             }
         }
-        let live = Set(candidates.map(\.id))
+        let live = liveIDs ?? Set(candidates.map(\.id))
         return HashPlan(hits: hits, toHash: toHash, staleIDs: cached.keys.filter { !live.contains($0) }.sorted())
     }
 }
 
-/// SHA-256 of an asset's original file, for exact-duplicate detection.
+/// What was measured from an asset's original file: its exact size and, when it was read, its SHA-256
+/// (for exact-duplicate detection). `hash` is nil for videos that were sized but not read, and for edited
+/// photos, whose displayed image isn't the original file.
 struct CachedHash: Sendable, Equatable {
     let assetID: String
     let modifiedAt: Date
     let bytes: Int64
-    let hash: String
+    let hash: String?
 }
 
 extension CachePlanner {
@@ -239,7 +263,8 @@ final class HashRecord {
     @Attribute(.unique) var assetID: String
     var modifiedAt: Date
     var bytes: Int64
-    var sha256: String
+    /// Nil for items that were sized but not read.
+    var sha256: String?
 
     init(_ entry: CachedHash) {
         assetID = entry.assetID

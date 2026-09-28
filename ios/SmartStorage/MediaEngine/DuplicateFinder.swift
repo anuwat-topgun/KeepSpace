@@ -1,7 +1,8 @@
 import Foundation
 
-/// Finds byte-for-byte identical files. Only files that share an exact size with another file of
-/// the same kind are hashed, so a scan never reads the whole library. Pure, for tests.
+/// Finds byte-for-byte identical files. The platform layer supplies hashes; Android and iOS videos
+/// hash only equal-size candidates, while iOS stills get a hash during their public-API size pass.
+/// Pure, for tests.
 enum DuplicateFinder {
     struct Group: Sendable, Equatable {
         /// The copy that stays: a favourite, else the oldest.

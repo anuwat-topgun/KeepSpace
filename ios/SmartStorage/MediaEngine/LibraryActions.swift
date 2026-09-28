@@ -5,8 +5,7 @@ import Photos
 /// Changes to the user's library. Every destructive change goes through PhotoKit, which always
 /// shows the system confirmation and moves items to Recently Deleted (recoverable for 30 days).
 enum LibraryActions {
-    static func delete(ids: [String]) async -> DeletionOutcome {
-        let bytes = sizes(of: ids)
+    static func delete(ids: [String], bytes: Int64) async -> DeletionOutcome {
         guard !ids.isEmpty else { return .cancelled }
         do {
             try await PHPhotoLibrary.shared().performChanges {
@@ -42,13 +41,13 @@ enum LibraryActions {
     /// (keeping date, location and favourite) and moves the original to Recently Deleted.
     static func compress(
         id: String,
+        originalBytes: Int64,
         preset: CompressionPreset,
         progress: @escaping @Sendable (Double) -> Void
     ) async throws -> CompressionOutcome {
         guard let asset = PHAsset.fetchAssets(withLocalIdentifiers: [id], options: nil).firstObject else {
             throw CompressionError.unavailable
         }
-        let originalBytes = sizes(of: [id])
         let creationDate = asset.creationDate
         let isFavorite = asset.isFavorite
         let location = asset.location.map { LocationSnapshot($0) }
@@ -59,7 +58,7 @@ enum LibraryActions {
 
         try await export(avAsset, preset: preset, to: output, progress: progress)
 
-        let newBytes = (try? FileManager.default.attributesOfItem(atPath: output.path)[.size] as? Int64) ?? 0
+        let newBytes = Int64((try? output.resourceValues(forKeys: [.fileSizeKey]).fileSize) ?? 0)
         guard CompressionEstimator.shouldReplace(originalBytes: originalBytes, compressedBytes: newBytes) else {
             throw CompressionError.notWorthIt(saved: max(0, originalBytes - newBytes))
         }
@@ -120,15 +119,6 @@ enum LibraryActions {
     }
 
     // MARK: - Helpers
-
-    private static func sizes(of ids: [String]) -> Int64 {
-        var total: Int64 = 0
-        PHAsset.fetchAssets(withLocalIdentifiers: ids, options: nil).enumerateObjects { asset, _, _ in
-            let resource = PHAssetResource.assetResources(for: asset).first
-            total += (resource?.value(forKey: "fileSize") as? Int64) ?? 0
-        }
-        return total
-    }
 
     private static func isUserCancel(_ error: Error) -> Bool {
         (error as? PHPhotosError)?.code == .userCancelled

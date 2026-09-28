@@ -84,7 +84,8 @@ final class LibraryStore {
     @discardableResult
     func delete(_ ids: Set<String>) async -> DeletionOutcome {
         guard !isDemo else { return .cancelled }
-        let outcome = await LibraryActions.delete(ids: Array(ids))
+        let bytes = lastItems.lazy.filter { ids.contains($0.id) }.reduce(Int64(0)) { $0 + $1.bytes }
+        let outcome = await LibraryActions.delete(ids: Array(ids), bytes: bytes)
         switch outcome {
         case .deleted(let count, let bytes):
             removeFromResults(ids)
@@ -112,8 +113,11 @@ final class LibraryStore {
 
     func compress(videoID: String, preset: CompressionPreset, progress: @escaping @Sendable (Double) -> Void) async -> String? {
         guard !isDemo else { return nil }
+        guard let originalBytes = lastItems.first(where: { $0.id == videoID })?.bytes else {
+            return "This video is no longer in your library."
+        }
         do {
-            switch try await LibraryActions.compress(id: videoID, preset: preset, progress: progress) {
+            switch try await LibraryActions.compress(id: videoID, originalBytes: originalBytes, preset: preset, progress: progress) {
             case .replaced(let original, let new):
                 notice = "Compressed \(original.formattedBytes) → \(new.formattedBytes). The original is in Recently Deleted."
                 scan() // pick up the new asset; everything else comes from the cache
@@ -158,49 +162,104 @@ final class LibraryStore {
     private func runScan() async {
         phase = .loadingLibrary
         let storage = Self.deviceStorage()
-        let items = await engine.loadItems(screenSizes: Self.screenPixelSizes())
+        var items = await engine.loadItems(screenSizes: Self.screenPixelSizes())
+        let cache = self.cache
 
-        // Reuse cached analysis; only new or edited items go through the AI again.
+        // Exact sizes share a cache record with hashes. Apply unchanged measurements immediately;
+        // local items that are new or edited are then measured through public APIs only.
+        let cachedMeasurements = await cache?.loadHashes() ?? [:]
+        let measurePlan = CachePlanner.plan(measuring: items, cached: cachedMeasurements)
+        items = Self.applying(Array(measurePlan.hits.values), to: items)
+        await cache?.deleteHashes(ids: measurePlan.staleIDs)
+        let cachedAnalyses = await cache?.loadAll() ?? [:]
+        let cachedReads = await cache?.loadScreenshots() ?? [:]
+        let previewPhotos = items.filter { $0.kind == .photo }
+        let previewScreenshots = items.filter { $0.kind == .screenshot }
+        let previewPhotoPlan = CachePlanner.plan(photos: previewPhotos, cached: cachedAnalyses)
+        let previewReadItems = previewScreenshots + previewPhotoPlan.hits
+            .filter(PaperReceiptDetector.isCandidate).map(\.item)
+        let previewReads = CachePlanner.plan(screenshots: previewReadItems, cached: cachedReads)
+        lastItems = items
+        lastAnalyzed = previewPhotoPlan.hits
+        lastScreenshotInfo = previewReads.hits
+        lastHashes = Dictionary(measurePlan.hits.values.compactMap { entry in
+            entry.hash.map { (entry.assetID, $0) }
+        }, uniquingKeysWith: { _, latest in latest })
+        rebuild(storage: storage)
+
+        let measured = measurePlan.toMeasure.count
+        var freshMeasurements: [CachedHash] = []
+        if measured > 0 {
+            phase = .analyzing(done: 0, total: measured)
+            freshMeasurements = await engine.measure(
+                measurePlan.toMeasure,
+                progress: { done, _ in
+                    await MainActor.run { self.phase = .analyzing(done: done, total: measured) }
+                },
+                onBatch: { batch in
+                    await cache?.saveHashes(batch)
+                    await MainActor.run {
+                        self.lastItems = Self.applying(batch, to: self.lastItems)
+                        self.rebuild(storage: storage)
+                    }
+                }
+            )
+            items = Self.applying(freshMeasurements, to: items)
+            lastItems = items
+        }
+
+        var measurements = measurePlan.hits
+        freshMeasurements.forEach { measurements[$0.assetID] = $0 }
+
+        // Reuse cached analysis; only new or edited items go through the AI again. This happens
+        // after measurement so every new analysis carries the exact size when one is available.
         let photos = items.filter { $0.kind == .photo }
         let screenshots = items.filter { $0.kind == .screenshot }
-        let photoPlan = CachePlanner.plan(photos: photos, cached: await cache?.loadAll() ?? [:])
-        let cachedReads = await cache?.loadScreenshots() ?? [:]
+        let photoPlan = CachePlanner.plan(photos: photos, cached: cachedAnalyses)
         // Text is read from screenshots and from photos that look like paper receipts.
         func toRead(_ analyzed: [AnalyzedPhoto]) -> [MediaItem] {
             screenshots + analyzed.filter(PaperReceiptDetector.isCandidate).map(\.item)
         }
         let earlyReads = CachePlanner.plan(screenshots: toRead(photoPlan.hits), cached: cachedReads)
-        let hashPlan = CachePlanner.plan(hashing: DuplicateFinder.candidates(items), cached: await cache?.loadHashes() ?? [:])
+        let hashPlan = CachePlanner.plan(
+            hashing: DuplicateFinder.candidates(items),
+            cached: measurements,
+            liveIDs: Set(items.map(\.id))
+        )
         await cache?.delete(ids: photoPlan.staleIDs)
-        await cache?.deleteHashes(ids: hashPlan.staleIDs)
         // Counts only — never filenames or other personal data.
-        Self.log.info("scan: \(items.count) items, \(photoPlan.hits.count) cached, \(photoPlan.toAnalyze.count) to analyze, \(photoPlan.staleIDs.count) stale; hashes \(hashPlan.hits.count) cached, \(hashPlan.toHash.count) to hash; text reads \(earlyReads.hits.count) cached, \(earlyReads.toAnalyze.count) to read")
+        Self.log.info("scan: \(items.count) items, sizes \(measurePlan.hits.count) cached, \(measured) measured, \(photoPlan.hits.count) analyses cached, \(photoPlan.toAnalyze.count) to analyze, \(photoPlan.staleIDs.count) stale; hashes \(hashPlan.hits.count) cached, \(hashPlan.toHash.count) to hash; text reads \(earlyReads.hits.count) cached, \(earlyReads.toAnalyze.count) to read")
 
-        // Publish straight away: sizes plus everything the cache already knows.
+        // Publish exact sizes plus everything the other caches already know.
         lastItems = items
         lastAnalyzed = photoPlan.hits
         lastScreenshotInfo = earlyReads.hits
         lastHashes = hashPlan.hits
         rebuild(storage: storage)
 
-        let cache = self.cache
         let hashed = hashPlan.toHash.count
-        var total = hashed + photoPlan.toAnalyze.count + earlyReads.toAnalyze.count
-        // Exact duplicates first: quick (only same-size files are read) and the safest cleanup.
+        var total = measured + hashed + photoPlan.toAnalyze.count + earlyReads.toAnalyze.count
+        // Photos already got hashes while being measured. Only same-size videos (and any legacy
+        // cache misses) need a separate stream here.
         if hashed > 0 {
-            phase = .analyzing(done: 0, total: total)
+            phase = .analyzing(done: measured, total: total)
             let fresh = await engine.hashFiles(hashPlan.toHash) { done, _ in
-                await MainActor.run { self.phase = .analyzing(done: done, total: total) }
+                await MainActor.run { self.phase = .analyzing(done: measured + done, total: total) }
             }
             await cache?.saveHashes(fresh)
-            fresh.forEach { lastHashes[$0.assetID] = $0.hash }
+            items = Self.applying(fresh, to: items)
+            lastItems = items
+            fresh.forEach { entry in
+                if let hash = entry.hash { lastHashes[entry.assetID] = hash }
+            }
             rebuild(storage: storage)
         }
         if !photoPlan.toAnalyze.isEmpty {
-            phase = .analyzing(done: hashed, total: total)
+            let offset = measured + hashed
+            phase = .analyzing(done: offset, total: total)
             let fresh = await engine.analyze(
                 photoPlan.toAnalyze,
-                progress: { done, _ in await MainActor.run { self.phase = .analyzing(done: hashed + done, total: total) } },
+                progress: { done, _ in await MainActor.run { self.phase = .analyzing(done: offset + done, total: total) } },
                 onBatch: { batch in
                     // Persist as we go so an interrupted scan keeps its progress.
                     await cache?.save(batch.map {
@@ -216,7 +275,7 @@ final class LibraryStore {
         let reads = CachePlanner.plan(screenshots: toRead(lastAnalyzed), cached: cachedReads)
         await cache?.deleteScreenshots(ids: reads.staleIDs)
         reads.staleIDs.forEach { lastScreenshotInfo[$0] = nil }
-        total = hashed + photoPlan.toAnalyze.count + reads.toAnalyze.count
+        total = measured + hashed + photoPlan.toAnalyze.count + reads.toAnalyze.count
         let candidates = lastAnalyzed.filter(PaperReceiptDetector.isCandidate).count
         Self.log.info("scan: \(candidates) receipt-like photos; text reads \(reads.hits.count) cached, \(reads.toAnalyze.count) to read")
         guard !reads.toAnalyze.isEmpty else {
@@ -224,7 +283,7 @@ final class LibraryStore {
             phase = .ready
             return
         }
-        let offset = hashed + photoPlan.toAnalyze.count
+        let offset = measured + hashed + photoPlan.toAnalyze.count
         phase = .analyzing(done: offset, total: total)
         let read = await engine.analyzeScreenshots(
             reads.toAnalyze,
@@ -238,6 +297,19 @@ final class LibraryStore {
         lastScreenshotInfo.merge(read) { _, new in new }
         rebuild(storage: storage)
         phase = .ready
+    }
+
+    /// Replaces estimates with cached or freshly measured values without disturbing item order.
+    private static func applying(_ entries: [CachedHash], to items: [MediaItem]) -> [MediaItem] {
+        guard !entries.isEmpty else { return items }
+        let byID = Dictionary(entries.map { ($0.assetID, $0) }, uniquingKeysWith: { _, latest in latest })
+        return items.map { item in
+            guard let entry = byID[item.id], entry.modifiedAt == item.modifiedAt else { return item }
+            var measured = item
+            measured.bytes = entry.bytes
+            measured.isSizeEstimated = false
+            return measured
+        }
     }
 
     private func rebuild(storage: StorageSummary = LibraryStore.deviceStorage()) {

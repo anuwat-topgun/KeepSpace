@@ -41,6 +41,16 @@ Folder: `screenshots/`
 16. `16_Receipt_Filing_v1_3.png`
 17. `17_Backup_Verification_Safe_Delete_v1_3.png`
 
+## Project status and working docs
+
+The two documents above are the original product/design handoff and are not edited. What has been built, and how to
+work on it, lives in:
+
+- [`todo.md`](todo.md) — what is done and tested, and what remains in detail (including work in progress)
+- [`handoff.md`](handoff.md) — developer handoff: current in-progress work, architecture, key decisions and why, risks, gotchas
+- [`runbook.md`](runbook.md) — setup, build, run, test, logs, cache versions, privacy manifest, troubleshooting
+- [`icons/README.md`](icons/README.md) — app icon sources and the script that builds every size
+
 ## Recommended dev flow
 
 1. Read the product / technical spec first.
@@ -118,7 +128,8 @@ Photos are grouped only when taken within 2 minutes of each other *and* they loo
 
 **Incremental scanning.** Analysis results are cached per asset (SwiftData on iOS, Room on Android),
 keyed by asset ID + modification time + `analyzerVersion`. A scan shows cached results immediately,
-analyzes only new or edited photos (saving every 25), and drops entries for deleted photos.
+analyzes only new or edited photos (saving every 25), and drops entries for deleted photos. iOS also caches
+the exact measured byte count and optional content hash; iCloud-only originals keep a public-metadata estimate.
 The cache lives in `Caches/` (iOS) and `no_backup/` (Android): it is regenerable and is never backed up.
 Bump `analyzerVersion` / `ANALYZER_VERSION` whenever analyzer output changes. Scan logs contain counts only.
 The pure logic (grouping, scoring, report/plan/forecast) is unit-tested on both platforms:
@@ -139,10 +150,11 @@ Notes:
 
 ### Exact duplicates
 
-`DuplicateFinder` (both platforms, pure) finds byte-for-byte identical files without reading the whole library:
-only files that share an exact size with another file of the same kind (still vs. video) are hashed (SHA-256,
-cached until the file is edited). iOS hashes the original resource via `PHAssetResourceManager` and skips edited
-assets and iCloud-only originals; Android streams the MediaStore file.
+`DuplicateFinder` (both platforms, pure) finds byte-for-byte identical files. Android hashes only files that share
+an exact size with another file of the same kind. iOS must stream each local still once to obtain its exact size
+without PhotoKit's non-public `fileSize` KVC, so it calculates SHA-256 in that same pass; videos use public
+`AVAssetTrack.totalSampleDataLength` for sizing and are streamed only when equal-size candidates need hashes.
+Hashes are cached until the asset is edited. Edited stills and iCloud-only originals are never hashed.
 
 - One copy per group is kept: a favourite, else the oldest. The others are preselected (the safest cleanup there
   is) and appear first in the Cleanup Plan as "Exact Duplicates".

@@ -253,6 +253,23 @@ private func photo(_ id: String, at seconds: TimeInterval, print: [Float], sharp
         #expect(plan.staleIDs == ["gone"])
     }
 
+    @Test func measurementPlannerReusesUneditedSizesAndPrunesDeletedAssets() {
+        var same = item("same"); same.modifiedAt = t0
+        var edited = item("edited"); edited.modifiedAt = t0.addingTimeInterval(60)
+        let fresh = item("fresh")
+        let cached = [
+            "same": CachedHash(assetID: "same", modifiedAt: t0, bytes: 42, hash: "photo-hash"),
+            "edited": CachedHash(assetID: "edited", modifiedAt: t0, bytes: 43, hash: nil),
+            "gone": CachedHash(assetID: "gone", modifiedAt: t0, bytes: 44, hash: "old"),
+        ]
+
+        let plan = CachePlanner.plan(measuring: [same, edited, fresh], cached: cached)
+
+        #expect(plan.hits == ["same": cached["same"]!])
+        #expect(Set(plan.toMeasure.map(\.id)) == ["edited", "fresh"])
+        #expect(plan.staleIDs == ["gone"])
+    }
+
     @Test func storeRoundTripsUpsertsAndDeletes() async throws {
         let store = try AnalysisStore.make(inMemory: true)
         await store.save([entry("a", modified: t0), entry("b", modified: t0)])
@@ -864,6 +881,19 @@ struct DuplicateFinderTests {
         #expect(plan.staleIDs == ["gone"])
     }
 
+    @Test func hashPlanDoesNotReuseSizeOnlyMeasurement() {
+        let a = item("a"), b = item("b")
+        let cached = [
+            "a": CachedHash(assetID: "a", modifiedAt: a.modifiedAt, bytes: a.bytes, hash: "ready"),
+            "b": CachedHash(assetID: "b", modifiedAt: b.modifiedAt, bytes: b.bytes, hash: nil),
+        ]
+
+        let plan = CachePlanner.plan(hashing: [a, b], cached: cached)
+
+        #expect(plan.hits == ["a": "ready"])
+        #expect(plan.toHash.map(\.id) == ["b"])
+    }
+
     @Test func copiesComeFirstAndAreNotCountedTwice() {
         let original = item("orig", kind: .screenshot, day: 1), copy = item("copy", kind: .screenshot, day: 2)
         let content = LibraryReportBuilder().build(items: [original, copy], analyzed: [], fileHashes: ["orig": "h", "copy": "h"],
@@ -931,6 +961,25 @@ struct CacheClearTests {
         #expect(await store.loadAll().isEmpty)
         #expect(await store.loadScreenshots().isEmpty)
         #expect(await store.loadHashes().isEmpty)
+    }
+}
+
+// MARK: - Public-API size estimates
+
+struct SizeEstimatorTests {
+    @Test func stillEstimateUsesFormatAndNeverReturnsZero() {
+        let heic = SizeEstimator.estimate(isVideo: false, pixelWidth: 4_000, pixelHeight: 3_000, duration: 0, fileName: "IMG.HEIC")
+        let jpeg = SizeEstimator.estimate(isVideo: false, pixelWidth: 4_000, pixelHeight: 3_000, duration: 0, fileName: "IMG.JPG")
+        let invalid = SizeEstimator.estimate(isVideo: false, pixelWidth: -1, pixelHeight: 0, duration: 0, fileName: nil)
+
+        #expect(heic == 2_040_000)
+        #expect(jpeg == 3_960_000)
+        #expect(invalid == 1)
+    }
+
+    @Test func videoEstimateUsesPixelsAndDuration() {
+        let bytes = SizeEstimator.estimate(isVideo: true, pixelWidth: 1_920, pixelHeight: 1_080, duration: 10, fileName: "clip.mov")
+        #expect(bytes == 5_443_200)
     }
 }
 
