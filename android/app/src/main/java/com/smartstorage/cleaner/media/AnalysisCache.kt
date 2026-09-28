@@ -169,6 +169,9 @@ interface HashDao {
     @Query("SELECT * FROM hashes")
     suspend fun all(): List<HashEntity>
 
+    @Query("DELETE FROM hashes")
+    suspend fun deleteAll()
+
     @Upsert
     suspend fun upsert(entities: List<HashEntity>)
 
@@ -186,6 +189,9 @@ interface ScreenshotDao {
 
     @Query("DELETE FROM screenshots WHERE assetId IN (:ids)")
     suspend fun delete(ids: List<String>)
+
+    @Query("DELETE FROM screenshots")
+    suspend fun deleteAll()
 }
 
 @Dao
@@ -201,6 +207,9 @@ interface AnalysisDao {
 
     @Query("SELECT COUNT(*) FROM analysis")
     suspend fun count(): Int
+
+    @Query("DELETE FROM analysis")
+    suspend fun deleteAll()
 }
 
 @Database(entities = [AnalysisEntity::class, ScreenshotEntity::class, HashEntity::class], version = 6, exportSchema = false)
@@ -236,6 +245,13 @@ class AnalysisStore private constructor(private val dao: AnalysisDao, private va
     }
 
     suspend fun deleteScreenshots(ids: List<String>) = ids.chunked(500).forEach { shots.delete(it) }
+
+    /** Forgets everything derived from the library (analysis, text reads, hashes). Nothing else is stored here. */
+    suspend fun deleteAll() {
+        dao.deleteAll()
+        shots.deleteAll()
+        hashes.deleteAll()
+    }
 
     suspend fun loadHashes(): Map<String, CachedHash> = hashes.all().associate { it.assetId to it.toCached() }
 

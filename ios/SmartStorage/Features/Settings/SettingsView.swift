@@ -26,15 +26,15 @@ struct SettingsView: View {
             row(.cloudOverview, icon: "cloud.fill", tint: .blue, subtitle: "Google Drive · OneDrive")
             row(.storageRules, icon: "arrow.triangle.branch", tint: .teal, subtitle: "Automatic filing")
 
-            CardRow(systemImage: "photo.fill", tint: .coral, title: "Photo Access", subtitle: accessText)
+            row(.photoAccess, icon: "photo.fill", tint: .coral, subtitle: accessText)
             CardRow(systemImage: "bell.fill", tint: .purple, title: "Notifications", subtitle: "Weekly Smart Clean")
             CardRow(systemImage: "crown.fill", tint: .mint, title: "Subscription", subtitle: "KeepSpace Pro")
-            CardRow(systemImage: "checkmark.shield.fill", tint: .blue, title: "Privacy & Security")
-            CardRow(systemImage: "info.circle.fill", tint: .gray, title: "About")
+            row(.privacy, icon: "checkmark.shield.fill", tint: .blue, subtitle: nil)
+            row(.about, icon: "info.circle.fill", tint: .gray, subtitle: nil)
         }
     }
 
-    private func row(_ route: Route, icon: String, tint: Tint, subtitle: String) -> some View {
+    private func row(_ route: Route, icon: String, tint: Tint, subtitle: String?) -> some View {
         Button {
             router.push(route)
         } label: {

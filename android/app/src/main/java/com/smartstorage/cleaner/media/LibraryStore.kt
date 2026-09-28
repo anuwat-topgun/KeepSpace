@@ -24,6 +24,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -161,6 +162,18 @@ class LibraryStore(context: Context, demo: Boolean) {
         _state.update { it.copy(access = access) }
         // Incremental thanks to the cache, so returning to the app always picks up library changes.
         if (access.canRead) scan()
+    }
+
+    /** Clears the on-device analysis cache and starts over; the next scan re-reads the library. */
+    fun clearAnalysisCache() {
+        if (_state.value.isDemo) return
+        scope.launch {
+            scanJob?.cancelAndJoin()
+            withContext(Dispatchers.IO) { cache.deleteAll() }
+            lastAnalyzed = emptyList(); lastScreenshotInfo = emptyMap(); lastHashes = emptyMap()
+            _state.update { it.copy(phase = ScanPhase.Idle, notice = "Analysis cache cleared. KeepSpace will look at your library again.") }
+            scan()
+        }
     }
 
     fun scan() {

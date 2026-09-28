@@ -50,6 +50,9 @@ enum class Screen(val title: String) {
     Screenshots("Screenshots"),
     Videos("Videos"),
     Memories("Memories"),
+    PhotoAccess("Photo Access"),
+    Privacy("Privacy & Security"),
+    About("About"),
     // v1.1
     CloudOverview("Cloud"),
     ManualBackup("Back Up Now"),

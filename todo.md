@@ -12,7 +12,7 @@
 
 | แพลตฟอร์ม | Unit tests | สถานะ | ทดสอบบนอุปกรณ์ |
 |---|---|---|---|
-| iOS (SwiftUI, iOS 17+) | 66 tests / 22 suites (Swift Testing) | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator |
+| iOS (SwiftUI, iOS 17+) | 67 tests / 23 suites (Swift Testing) | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator |
 | Android (Compose, API 26+) | 66 tests (JUnit, JVM) + Thai OCR spike (instrumented) | ✅ ผ่านทั้งหมด | `keepspace_tablet` emulator (Pixel Tablet, API 36) |
 
 คำสั่งรันเทส: ดู `runbook.md` หัวข้อ 4
@@ -48,6 +48,7 @@
 | Feature (สเปก §5.2) | iOS | Android | หมายเหตุ |
 |---|---|---|---|
 | Storage Analysis (Home dashboard) | ✅ | ✅ | พื้นที่เครื่องจริง + ขนาดตามหมวด |
+| Settings: Photo Access / Privacy & Security / About | ✅ | ✅ | ล้าง cache การวิเคราะห์ได้; Notifications และ Subscription ยังเป็นแถวเปล่า |
 | Safety Score | ✅ | ✅ | ระดับ + คะแนนถ่วงน้ำหนัก, แผนเรียงจากปลอดภัยที่สุดก่อน |
 | Exact Duplicate Detection | ✅ | ✅ | hash เฉพาะไฟล์ขนาดชนกัน, เก็บรายการโปรด/เก่าสุด, อยู่อันดับแรกใน Cleanup Plan |
 | Similar Photo Groups | ✅ | ✅ | iOS: Vision feature print · Android: dHash — iOS ต้องยืนยันความแม่นบนเครื่องจริง |
@@ -102,12 +103,14 @@
 - [ ] ปรับน้ำหนัก BestShotScorer (เช่น ชอบรูปคมกว่า vs ชอบรูปที่มีคนยิ้ม) แบบง่าย เช่น online logistic weights
 - [ ] ปุ่ม reset ใน Settings
 
-#### 🟡 Settings — หน้าที่ยังเป็น placeholder
+#### 🟡 Settings
+- [x] Photo Access: สถานะ (Full/Limited/Off), ปุ่มขอสิทธิ์ / เลือกรูปเพิ่ม / เปิดหน้า Settings ของระบบ
+- [x] Privacy & Security: อธิบายว่าอะไรอยู่ในเครื่อง + ปุ่มล้าง cache การวิเคราะห์ (มี dialog ยืนยัน, สแกนใหม่ทันที)
+- [x] About: เวอร์ชัน + ไลเซนส์ open-source (Android)
 - [ ] Notifications (ผูกกับ Weekly Smart Clean)
 - [ ] Subscription (ดูข้อ 3.5)
-- [ ] Privacy & Security: อธิบายว่าอะไรอยู่ในเครื่อง, ปุ่มล้าง cache การวิเคราะห์, ล้างข้อมูลใบเสร็จ
-- [ ] About: เวอร์ชัน, ลิงก์ privacy policy / terms, open-source licenses
-- [ ] Photo Access: ปุ่มเปิด system settings / เลือกรูปเพิ่ม (limited access)
+- [ ] About: ลิงก์ privacy policy / terms (ยังไม่มี URL — ต้องเขียนเอกสารก่อน, ดูข้อ 3.7)
+- [ ] Privacy & Security: ปุ่มล้างข้อมูลใบเสร็จที่บันทึกไว้ (ตอนนี้ปุ่มล้าง cache ครอบคลุมทั้งหมดที่ derive จากคลังรูปแล้ว; กฎ Storage Rules ยังเก็บแยก)
 
 #### 🟡 Memories — ต่อยอด
 - [ ] Android: เพิ่ม scene labeling (ML Kit Image Labeling bundled) เพื่อให้ชื่อธีม (Birthday Party, Beach Trip) เหมือน iOS
@@ -191,7 +194,7 @@
 
 ## 4. ลำดับที่แนะนำ
 
-1. ทดสอบบนเครื่องจริง + ปิดช่องโหว่ v1.0 (Weekly Smart Clean, Settings placeholders, app icon, privacy manifest, ความเสี่ยง `fileSize`) → พร้อมปล่อย v1.0 ตามสเปก §12
+1. ทดสอบบนเครื่องจริง + ปิดช่องโหว่ v1.0 (Weekly Smart Clean, Notifications/Subscription, app icon, privacy manifest, ความเสี่ยง `fileSize`) → พร้อมปล่อย v1.0 ตามสเปก §12
 2. สร้าง OAuth clients (ข้อ 3.2) → v1.1 manual backup
 3. เชื่อม rules เข้ากับ upload queue → v1.2 ครบ
 4. Verification + safe delete → v1.3 ครบ

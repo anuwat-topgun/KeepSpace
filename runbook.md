@@ -88,7 +88,7 @@ Launch arguments (เฉพาะ Debug build, `Shell/DebugLaunch.swift`):
 | `-hasCompletedOnboarding YES` | ข้าม onboarding |
 | `-demoData YES` | ใช้ข้อมูลตัวอย่างตาม mockup (ไม่อ่านคลังรูป) |
 | `-debugTab` | `home` `clean` `library` `insights` `settings` |
-| `-debugRoute` | `cleanupPlan` `similarPhotos` `bestShot:<id>` (`bestShot:first`) `screenshots` `videos` `memories` `memory:<id>` (`memory:first`) `review:<kind>` `storageRules` `newRule` `receipts` `receiptFiling:<id>` `cloudOverview` `manualBackup` `backupVerification` |
+| `-debugRoute` | `photoAccess` `privacy` `about` `cleanupPlan` `similarPhotos` `bestShot:<id>` (`bestShot:first`) `screenshots` `videos` `memories` `memory:<id>` (`memory:first`) `review:<kind>` `storageRules` `newRule` `receipts` `receiptFiling:<id>` `cloudOverview` `manualBackup` `backupVerification` |
 | `review:<kind>` | `duplicates` `similar` `blurry` `oldScreenshots` `oldRecordings` `largeVideos` `expired` `screenshots.<kind>` (เช่น `screenshots.receipts`) |
 
 iPad: เปลี่ยน destination เป็น `name=iPad Pro 13-inch (M5)` (หรือรุ่นที่มีใน `xcrun simctl list devices`)
@@ -132,7 +132,7 @@ cd ios && xcodegen && xcodebuild test -project SmartStorage.xcodeproj -scheme Sm
 ```bash
 cd android && ./gradlew testDebugUnitTest
 ```
-- สถานะล่าสุด: iOS 66 tests / Android 66 tests ผ่านทั้งหมด
+- สถานะล่าสุด: iOS 67 tests / Android 66 tests ผ่านทั้งหมด
 - ผล Android: `android/app/build/test-results/testDebugUnitTest/*.xml` · report HTML: `android/app/build/reports/tests/testDebugUnitTest/index.html`
 - ถ้า `xcodebuild test` ค้างนาน (มัก hang ที่ `simctl diagnose` เมื่อ test crash หรือ simulator ยังไม่ boot) ให้แยกเป็น 2 ขั้น:
 ```bash
@@ -237,6 +237,7 @@ adb shell content query --uri content://media/external/images/media --projection
 | Android OCR อ่านไม่ออก/ภาพเล็ก | `ContentResolver.loadThumbnail` ถูกจำกัดราว 600–800 px — งานที่ต้องการรายละเอียดใช้ `decodeUpright()` |
 | สลิปไทยบน Android ไม่ถูกจัดเป็นใบเสร็จ | สลิปมี QR → ML Kit จัดเป็น QR Codes; ต้องผ่านรอบ Tesseract (`needsThai` รวม QR แล้ว) |
 | ไม่มีทริปใน Memories บน Android | ไม่ได้ให้ `ACCESS_MEDIA_LOCATION` หรือรูปไม่มี GPS |
+| `uiautomator dump` แสดง `&` เป็น `&amp;` (เช่น "Privacy &amp; Security") | ใช้ข้อความที่ escape แล้วเวลาจับ node ด้วยข้อความ |
 | Emulator ช้า/ANR | ปิด iOS simulator ที่ไม่ใช้, restart emulator แล้วให้สิทธิ์ใหม่ |
 | สแกนไม่เริ่มหลัง `pm clear` | ยังค้างที่ onboarding — กด Continue |
 | `sleep` ยาวใน script ถูกบล็อก (ในเครื่องมือ agent) | ใช้ loop รอเงื่อนไข เช่น `until adb logcat -d -s KeepSpaceScan \| grep -q scan:; do sleep 3; done` |

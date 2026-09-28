@@ -912,3 +912,24 @@ struct SafetyScoreTests {
         #expect((60...100).contains(plan.safetyScore))
     }
 }
+
+// MARK: - Cache clearing (Privacy & Security)
+
+struct CacheClearTests {
+    @Test func deleteAllForgetsEverythingDerived() async throws {
+        let store = try AnalysisStore.make(inMemory: true)
+        let when = Date(timeIntervalSince1970: 1)
+        await store.save([CachedAnalysis(assetID: "a", modifiedAt: when, version: analyzerVersion,
+                                         features: ImageFeatures(featurePrint: [1, 0], sharpness: 1, exposure: 0.5, faceQuality: nil, faceCount: 0))])
+        await store.saveScreenshots([CachedScreenshot(assetID: "s", modifiedAt: when, version: screenshotReaderVersion, info: ScreenshotInfo(kind: .chats))])
+        await store.saveHashes([CachedHash(assetID: "h", modifiedAt: when, bytes: 10, hash: "abc")])
+        #expect(await store.loadAll().count == 1)
+        #expect(await store.loadScreenshots().count == 1)
+        #expect(await store.loadHashes().count == 1)
+
+        await store.deleteAll()
+        #expect(await store.loadAll().isEmpty)
+        #expect(await store.loadScreenshots().isEmpty)
+        #expect(await store.loadHashes().isEmpty)
+    }
+}

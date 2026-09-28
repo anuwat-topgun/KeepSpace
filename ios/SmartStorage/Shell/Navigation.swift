@@ -37,6 +37,9 @@ enum Route: Hashable, Sendable {
     case videos
     case memories
     case memory(id: String)
+    case photoAccess
+    case privacy
+    case about
     case review(ReviewKind)
     case reviewGroup(groupID: String)
     // v1.1
@@ -60,6 +63,9 @@ enum Route: Hashable, Sendable {
         case .videos: "Videos"
         case .memories: "Memories"
         case .memory: "Memory"
+        case .photoAccess: "Photo Access"
+        case .privacy: "Privacy & Security"
+        case .about: "About"
         case .review(let kind): kind.title
         case .reviewGroup: "Review Group"
         case .cloudOverview: "Cloud"

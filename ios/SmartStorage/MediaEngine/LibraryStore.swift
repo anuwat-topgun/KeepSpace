@@ -118,6 +118,18 @@ final class LibraryStore {
         }
     }
 
+    /// Clears the on-device analysis cache and starts over; the next scan re-reads the library.
+    func clearAnalysisCache() async {
+        guard !isDemo else { return }
+        scanTask?.cancel()
+        await scanTask?.value
+        await cache?.deleteAll()
+        lastAnalyzed = []; lastScreenshotInfo = [:]; lastHashes = [:]
+        phase = .idle
+        notice = "Analysis cache cleared. KeepSpace will look at your library again."
+        scan()
+    }
+
     func scan() {
         guard !isDemo, access.canRead, !isScanning else { return }
         scanTask = Task { await runScan() }

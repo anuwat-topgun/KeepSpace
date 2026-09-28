@@ -64,10 +64,10 @@ fun SettingsScreen(onOpen: (Screen) -> Unit) {
             LibraryAccess.Denied -> "Off"
             LibraryAccess.NotDetermined -> "Not set"
         }
-        CardRow(Icons.Rounded.Photo, "Photo Access", tint = Tint.Coral, subtitle = accessText)
+        CardRow(Icons.Rounded.Photo, "Photo Access", tint = Tint.Coral, subtitle = accessText) { onOpen(Screen.PhotoAccess) }
         CardRow(Icons.Rounded.Notifications, "Notifications", tint = Tint.Purple, subtitle = "Weekly Smart Clean")
         CardRow(Icons.Rounded.WorkspacePremium, "Subscription", tint = Tint.Mint, subtitle = "KeepSpace Pro")
-        CardRow(Icons.Rounded.VerifiedUser, "Privacy & Security", tint = Tint.Blue)
-        CardRow(Icons.Rounded.Info, "About", tint = Tint.Gray)
+        CardRow(Icons.Rounded.VerifiedUser, "Privacy & Security", tint = Tint.Blue) { onOpen(Screen.Privacy) }
+        CardRow(Icons.Rounded.Info, "About", tint = Tint.Gray) { onOpen(Screen.About) }
     }
 }

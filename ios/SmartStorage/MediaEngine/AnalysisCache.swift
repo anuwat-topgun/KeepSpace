@@ -338,6 +338,14 @@ actor AnalysisStore {
         try? modelContext.save()
     }
 
+    /// Forgets everything derived from the library (analysis, text reads, hashes). Nothing else is stored here.
+    func deleteAll() {
+        try? modelContext.delete(model: AnalysisRecord.self)
+        try? modelContext.delete(model: ScreenshotRecord.self)
+        try? modelContext.delete(model: HashRecord.self)
+        try? modelContext.save()
+    }
+
     func count() -> Int {
         (try? modelContext.fetchCount(FetchDescriptor<AnalysisRecord>())) ?? 0
     }

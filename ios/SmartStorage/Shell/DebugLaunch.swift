@@ -24,6 +24,9 @@ private extension Route {
         case "screenshots": self = .screenshots
         case "videos": self = .videos
         case "memories": self = .memories
+        case "photoAccess": self = .photoAccess
+        case "privacy": self = .privacy
+        case "about": self = .about
         case "memory": self = .memory(id: parts.count > 1 ? parts[1] : "Tokyo Trip")
         case "review": self = .review(parts.count > 1 ? ReviewKind(debugName: parts[1]) ?? .similar : .similar)
         case "cloudOverview": self = .cloudOverview
