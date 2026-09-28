@@ -5,6 +5,7 @@ final class StoreSmokeTests: XCTestCase {
         continueAfterFailure = false
     }
 
+    @MainActor
     func testDemoLibraryPrimaryNavigation() {
         let app = XCUIApplication()
         app.launchArguments = ["-hasCompletedOnboarding", "YES", "-demoData", "YES"]
