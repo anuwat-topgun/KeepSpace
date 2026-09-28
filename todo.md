@@ -1,7 +1,8 @@
 # KeepSpace — สถานะงานและสิ่งที่เหลือ
 
-อัปเดตล่าสุด: 27 ก.ย. 2026 (commit `4a225ea`)
+อัปเดตล่าสุด: 28 ก.ย. 2026 (commit `f537ad3`)
 อ้างอิงสเปก: `01_Product_Technical_Spec_v1_to_v1_3.md`, `02_Design_Handoff_v1_to_v1_3.md`
+วิธี build / run / test / แก้ปัญหา: ดู [`runbook.md`](runbook.md)
 
 สัญลักษณ์: ✅ เสร็จและผ่านเทส · 🟡 ทำแล้วบางส่วน / ยังต้องยืนยัน · ⬜ ยังไม่เริ่ม
 
@@ -14,11 +15,13 @@
 | iOS (SwiftUI, iOS 17+) | 63 tests / 21 suites (Swift Testing) | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator |
 | Android (Compose, API 26+) | 63 tests (JUnit, JVM) + Thai OCR spike (instrumented) | ✅ ผ่านทั้งหมด | `keepspace_tablet` emulator (Pixel Tablet, API 36) |
 
-คำสั่งรันเทส:
-```bash
-cd ios && xcodegen && xcodebuild test -project SmartStorage.xcodeproj -scheme SmartStorage -destination 'platform=iOS Simulator,name=iPhone 17'
-cd android && JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home ./gradlew testDebugUnitTest assembleDebug
-```
+คำสั่งรันเทส: ดู `runbook.md` หัวข้อ 4
+
+ทดสอบบนอุปกรณ์จำลองล่าสุด (27–28 ก.ย.):
+- Exact duplicates: emulator เจอ 3 สำเนา, iOS simulator เจอ 1 สำเนา
+- ใบเสร็จ/สลิปไทย+อังกฤษบน Android: 7/7 ถูก (ชื่อร้าน, ยอด, วันที่); แชท/ช้อปปิ้งไทยจัดหมวดถูก
+- Memories: ทริป 2 วัน ห่างบ้าน 580 กม. + อีเวนต์ ตรวจพบทั้งสองแพลตฟอร์ม
+- Release build Android (R8) ผ่าน
 
 ข้อจำกัดของการทดสอบที่ผ่านมา:
 - เทสทั้งหมดเป็น unit test ของ logic ล้วน (grouping, scoring, OCR classification, receipt extraction, rules, templates, events) — **ยังไม่มี UI test อัตโนมัติ**
@@ -38,19 +41,21 @@ cd android && JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Content
 | App Store Connect: app "Keep space. Keep what matters." | ✅ | — | ASC app 6816584493, bundle `com.keepspace.app`, SKU keepspace-ios-001 |
 | เชื่อม Photo Library / MediaStore + ขอสิทธิ์ | ✅ | ✅ | รองรับ Limited access (iOS) / Selected photos (Android 14) |
 | On-device AI (Vision / ML Kit) | ✅ | ✅ | ไม่มี API ภายนอก; ML Kit แบบ bundled |
+| OCR ภาษาไทย | ✅ (Vision) | ✅ | Android: ML Kit + Tesseract tha+eng เฉพาะเมื่อจำเป็น (`ThaiOcr`), โมเดลดาวน์โหลดตอน build + ตรวจ SHA-256 |
 | Local database cache + incremental scan | ✅ | ✅ | SwiftData / Room (Caches, no_backup) มี version ต่อ analyzer |
 
 ### v1.0 — Core MVP
 | Feature (สเปก §5.2) | iOS | Android | หมายเหตุ |
 |---|---|---|---|
 | Storage Analysis (Home dashboard) | ✅ | ✅ | พื้นที่เครื่องจริง + ขนาดตามหมวด |
+| Exact Duplicate Detection | ✅ | ✅ | hash เฉพาะไฟล์ขนาดชนกัน, เก็บรายการโปรด/เก่าสุด, อยู่อันดับแรกใน Cleanup Plan |
 | Similar Photo Groups | ✅ | ✅ | iOS: Vision feature print · Android: dHash — iOS ต้องยืนยันความแม่นบนเครื่องจริง |
 | AI Best Shot + เหตุผล | ✅ | ✅ | คะแนนความคมชัด, ใบหน้า/ตาเปิด, แสง |
 | Clean X GB (เลือกเป้าหมาย + Cleanup Plan) | ✅ | ✅ | |
 | Screenshot semantic grouping (OCR) | ✅ | ✅ | Shopping/Receipts/Chats/QR/Tickets/Other, ตั๋วหมดอายุ — Android อ่านไทยด้วย Tesseract เมื่อจำเป็น |
 | Large Videos / Screen Recordings | ✅ | ✅ | |
 | Blurry / Bad Shot Detection | ✅ | ✅ | Laplacian variance |
-| Protected Memories + Event/Trip Grouping | ✅ | ✅ | ใหม่ล่าสุด — ทริป/อีเวนต์, ระยะห่างจากบ้าน, หน้า detail, รูปเบลอในความทรงจำไม่ถูกเลือกไว้ล่วงหน้า |
+| Protected Memories + Event/Trip Grouping | ✅ | ✅ | ทริป/อีเวนต์, ระยะห่างจากบ้าน, หน้า detail, รูปเบลอในความทรงจำไม่ถูกเลือกไว้ล่วงหน้า |
 | Review ก่อนลบ + ลบผ่าน system confirmation | ✅ | ✅ | ลงถัง Recently Deleted / Trash เท่านั้น; favorites ไม่ถูกเลือกไว้ |
 | Video Compression | ✅ | ✅ | iOS: AVAssetExportSession HEVC · Android: Media3 Transformer (คง DATE_TAKEN) |
 | Storage Forecast (Insights) | ✅ | ✅ | คาดการณ์จากอัตราเพิ่มของสื่อ |
@@ -78,20 +83,7 @@ cd android && JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Content
 
 ### 3.1 v1.0 — ส่วนที่ยังขาด
 
-#### ✅ Exact Duplicate Detection (สเปก §5.2) — เสร็จแล้ว
-- hash เฉพาะไฟล์ที่ขนาดเท่ากันและชนิดเดียวกัน (SHA-256, cache จนกว่าไฟล์ถูกแก้), เก็บรายการโปรด/เก่าสุด, ที่เหลือเลือกไว้ล่วงหน้า, อยู่อันดับแรกใน Cleanup Plan, ไม่นับซ้ำกับหมวดอื่น
-- ทดสอบ: unit tests ทั้งสองแพลตฟอร์ม + emulator (เจอ 3 สำเนา) + iOS simulator (เจอ 1 สำเนา)
-
-<details><summary>แผนเดิม</summary>
-
-ตอนนี้มีแค่ "Similar" (ภาพคล้าย) ยังไม่มีการหาไฟล์ซ้ำเป๊ะ
-- [ ] คำนวณ hash ของไฟล์ (SHA-256 ของ original, หรือ size + hash ของ 64KB แรก/สุดท้ายเพื่อความเร็ว) เก็บใน cache
-- [ ] iOS: อ่าน data ผ่าน `PHAssetResourceManager` (ข้ามไฟล์ iCloud-only) · Android: `ContentResolver.openInputStream`
-- [ ] จัดกลุ่มตาม hash; เก็บตัวที่เก่าที่สุด/favorite, ที่เหลือ preselected (ปลอดภัยที่สุดเพราะเหมือนกันทุก byte)
-- [ ] เพิ่มหมวด "Exact Duplicates" ใน Cleanup Plan + Review
-- [ ] Unit tests ทั้งสองแพลตฟอร์ม
-
-</details>
+#### ✅ Exact Duplicate Detection — เสร็จแล้ว (ดูตารางข้อ 2)
 
 #### ⬜ Safety Score (สเปก §5.2)
 - [ ] นิยามคะแนนต่อรายการ/ต่อแผน เช่น exact duplicate = สูงสุด, extra shot ในกลุ่ม similar = สูง, blurry = กลาง, วิดีโอส่วนตัว = ต่ำ, อยู่ในความทรงจำ/favorite = ห้าม
@@ -176,7 +168,7 @@ cd android && JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Content
 ### 3.7 คุณภาพและการเตรียมปล่อยแอป
 - [ ] **ทดสอบบนเครื่องจริง** iPhone + iPad + Android phone + tablet ด้วยคลังรูปใหญ่ (10k+ รูป): เวลาสแกน, หน่วยความจำ, แบตเตอรี่, ความแม่นของ similar/blurry/receipt/events
 - [ ] ยืนยัน threshold ของ SimilarityGrouper บน iPhone จริง (simulator ให้ feature print เสื่อม)
-- [ ] **Android OCR ภาษาไทย**: ✅ ขั้นที่ 1 (spike) เสร็จ — ดู `android/app/src/androidTest/THAI_OCR_SPIKE.md` (Tesseract fast tha+eng + fixes: 21/25 เทียบ ML Kit 13/25)
+- [x] **Android OCR ภาษาไทย**: ขั้นที่ 1 (spike) เสร็จ — ดู `android/app/src/androidTest/THAI_OCR_SPIKE.md` (Tesseract fast tha+eng + fixes: 21/25 เทียบ ML Kit 13/25)
   - [x] ขั้นที่ 2: Tesseract อยู่ในแอปแล้ว (`ThaiOcr`) เรียกเฉพาะรูปใบเสร็จ/ใบเสร็จ/QR/ข้อความที่ดูเป็นไทยอ่านเพี้ยน, `ThaiText` + unit tests — ทดสอบบน emulator: ใบเสร็จไทย 7/7, แชท/ช้อปปิ้งไทยจัดหมวดถูก
   - [x] จับคู่คีย์เวิร์ดแบบไม่สนวรรณยุกต์ (ทั้งสองแพลตฟอร์ม) + คีย์เวิร์ดแชท/ช้อปปิ้งไทยเพิ่ม
   - [ ] วัดเวลาสแกนครั้งแรกบนมือถือจริงที่มี screenshot ไทยจำนวนมาก (Tesseract ~0.2 วินาทีต่อรูปบน emulator)
@@ -190,7 +182,7 @@ cd android && JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Content
 - [ ] Accessibility: VoiceOver/TalkBack label ครบ, Dynamic Type/font scale ใหญ่, contrast
 - [ ] UI tests อัตโนมัติ (XCUITest / Compose UI test) สำหรับ flow หลัก: onboarding → scan → cleanup plan → review → delete
 - [ ] iPad landscape: ทดสอบด้วยมือ (หมุน simulator จาก CLI ไม่ได้)
-- [ ] Android release: keystore สำหรับ release, R8/ProGuard rules (ML Kit, Room, Media3), Play Console listing, Data safety form, target API ล่าสุด
+- [ ] Android release: keystore สำหรับ release, Play Console listing, Data safety form, target API ล่าสุด, ทดสอบ release build บนเครื่องจริง (R8 build ผ่านแล้ว + keep rules ของ Tesseract; ยังไม่ได้รันแอป release)
 - [ ] iOS release: signing/provisioning, TestFlight, screenshots สำหรับ store (phone + iPad), App Privacy nutrition label
 - [ ] Privacy policy + Terms (จำเป็นสำหรับทั้งสอง store และสำหรับ Google OAuth verification)
 - [ ] CI (GitHub Actions): build + unit tests ทั้งสองแพลตฟอร์มทุก PR
@@ -199,7 +191,7 @@ cd android && JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Content
 
 ## 4. ลำดับที่แนะนำ
 
-1. ทดสอบบนเครื่องจริง + ปิดช่องโหว่ v1.0 (Exact Duplicates, Safety Score, Settings placeholders, app icon, privacy manifest) → พร้อมปล่อย v1.0 ตามสเปก §12
+1. ทดสอบบนเครื่องจริง + ปิดช่องโหว่ v1.0 (Safety Score, Weekly Smart Clean, Settings placeholders, app icon, privacy manifest, ความเสี่ยง `fileSize`) → พร้อมปล่อย v1.0 ตามสเปก §12
 2. สร้าง OAuth clients (ข้อ 3.2) → v1.1 manual backup
 3. เชื่อม rules เข้ากับ upload queue → v1.2 ครบ
 4. Verification + safe delete → v1.3 ครบ
