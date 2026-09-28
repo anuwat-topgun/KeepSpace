@@ -43,6 +43,7 @@ import com.smartstorage.cleaner.ui.feature.library.SimilarPhotosScreen
 import com.smartstorage.cleaner.ui.feature.library.VideosScreen
 import com.smartstorage.cleaner.ui.feature.placeholder.PlaceholderScreen
 import com.smartstorage.cleaner.ui.feature.settings.AboutScreen
+import com.smartstorage.cleaner.ui.feature.settings.AiTasteScreen
 import com.smartstorage.cleaner.ui.feature.settings.NotificationsScreen
 import com.smartstorage.cleaner.ui.feature.settings.PhotoAccessScreen
 import com.smartstorage.cleaner.ui.feature.settings.PrivacyScreen
@@ -151,6 +152,7 @@ private fun AppNavHost(navController: NavHostController) {
                         Screen.Receipts -> ReceiptsScreen(onOpen = { navController.navigate(tab.receiptRoute(it)) }, onBack = back)
                         Screen.PhotoAccess -> PhotoAccessScreen(onBack = back)
                         Screen.Notifications -> NotificationsScreen(onBack = back)
+                        Screen.AiTaste -> AiTasteScreen(onBack = back)
                         Screen.Privacy -> PrivacyScreen(onBack = back)
                         Screen.About -> AboutScreen(onBack = back)
                         Screen.Videos -> VideosScreen(onReview = review, onBack = back)

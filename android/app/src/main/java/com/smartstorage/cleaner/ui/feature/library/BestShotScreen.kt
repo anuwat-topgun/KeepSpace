@@ -32,6 +32,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -91,6 +92,7 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?, onReviewGroup: (Str
     }
     var kept by rememberSaveable(group.id) { mutableStateOf(false) }
     val haptics = LocalHapticFeedback.current
+    val tasteOn = store.taste.state.collectAsState().value.enabled
 
     ScreenScaffold(maxWidth = SmartMetrics.wideContentWidth, onBack = onBack) {
         ScreenHeader("Best Shot", "AI selected the best photo in this group.", Modifier.padding(bottom = 4.dp))
@@ -123,16 +125,21 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?, onReviewGroup: (Str
         }
 
         Column(Modifier.padding(top = 4.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            val keepingRecommended = selected == recommended
             PrimaryButton(
-                if (kept) "Recommended Kept" else "Keep Recommended",
+                when {
+                    kept -> if (keepingRecommended) "Recommended Kept" else "Photo Kept"
+                    keepingRecommended -> "Keep Recommended"
+                    else -> "Keep This One"
+                },
                 onClick = {
                     if (group.assetUris.isEmpty()) { kept = true; return@PrimaryButton } // demo content
                     val act = actions ?: return@PrimaryButton
-                    // Deletes every photo in the group except the keeper (system confirmation first).
-                    val others = group.assetUris.filterIndexed { i, _ -> i != group.recommendedIndex }.toSet()
+                    // Deletes every photo in the group except the selected one (system confirmation first).
+                    // The selected photo is the recommended one unless the person picked another in the strip.
                     scope.launch {
                         deleting = true
-                        val outcome = store.delete(others, act)
+                        val outcome = store.keep(group, selected, act)
                         deleting = false
                         if (outcome is DeletionOutcome.Deleted) {
                             kept = true
@@ -148,7 +155,8 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?, onReviewGroup: (Str
             SecondaryButton("Review All", onClick = { if (group.assetUris.isNotEmpty()) onReviewGroup(group.id) }, modifier = Modifier.fillMaxWidth())
             if (group.assetUris.isNotEmpty()) {
                 Text(
-                    "Keeping the recommended photo deletes the other ${group.photoCount - 1} after you confirm. They stay in Trash for 30 days.",
+                    "Keeping this photo deletes the other ${group.photoCount - 1} after you confirm. They stay in Trash for 30 days." +
+                        if (tasteOn) " Your choice also teaches Best Shot your taste, on this device." else "",
                     style = TextStyle(fontSize = 12.sp),
                     color = SmartTheme.colors.textSecondary,
                 )

@@ -88,7 +88,7 @@ Launch arguments (เฉพาะ Debug build, `Shell/DebugLaunch.swift`):
 | `-hasCompletedOnboarding YES` | ข้าม onboarding |
 | `-demoData YES` | ใช้ข้อมูลตัวอย่างตาม mockup (ไม่อ่านคลังรูป) |
 | `-debugTab` | `home` `clean` `library` `insights` `settings` |
-| `-debugRoute` | `photoAccess` `notifications` `privacy` `about` `cleanupPlan` `similarPhotos` `bestShot:<id>` (`bestShot:first`) `screenshots` `videos` `memories` `memory:<id>` (`memory:first`) `review:<kind>` `storageRules` `newRule` `receipts` `receiptFiling:<id>` `cloudOverview` `manualBackup` `backupVerification` |
+| `-debugRoute` | `photoAccess` `notifications` `aiTaste` `privacy` `about` `cleanupPlan` `similarPhotos` `bestShot:<id>` (`bestShot:first`) `screenshots` `videos` `memories` `memory:<id>` (`memory:first`) `review:<kind>` `storageRules` `newRule` `receipts` `receiptFiling:<id>` `cloudOverview` `manualBackup` `backupVerification` |
 | `review:<kind>` | `duplicates` `similar` `blurry` `oldScreenshots` `oldRecordings` `largeVideos` `expired` `screenshots.<kind>` (เช่น `screenshots.receipts`) |
 
 iPad: เปลี่ยน destination เป็น `name=iPad Pro 13-inch (M5)` (หรือรุ่นที่มีใน `xcrun simctl list devices`)
@@ -132,7 +132,7 @@ cd ios && xcodegen && xcodebuild test -project SmartStorage.xcodeproj -scheme Sm
 ```bash
 cd android && ./gradlew testDebugUnitTest
 ```
-- สถานะล่าสุด: iOS 70 tests / Android 68 tests ผ่านทั้งหมด
+- สถานะล่าสุด: iOS 77 tests / Android 74 tests ผ่านทั้งหมด
 - ผล Android: `android/app/build/test-results/testDebugUnitTest/*.xml` · report HTML: `android/app/build/reports/tests/testDebugUnitTest/index.html`
 - ถ้า `xcodebuild test` ค้างนาน (มัก hang ที่ `simctl diagnose` เมื่อ test crash หรือ simulator ยังไม่ boot) ให้แยกเป็น 2 ขั้น:
 ```bash

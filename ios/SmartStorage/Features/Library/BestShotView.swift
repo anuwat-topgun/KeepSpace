@@ -144,9 +144,9 @@ struct BestShotView: View {
     private var actions: some View {
         VStack(spacing: 12) {
             Button {
-                Task { await keepRecommended() }
+                Task { await keepSelected() }
             } label: {
-                if isDeleting { ProgressView().tint(.white) } else { Text(kept ? "Recommended Kept" : "Keep Recommended") }
+                if isDeleting { ProgressView().tint(.white) } else { Text(keepTitle) }
             }
             .buttonStyle(PrimaryButtonStyle(showsArrow: false))
             .disabled(kept || isDeleting)
@@ -157,7 +157,8 @@ struct BestShotView: View {
             .buttonStyle(.secondary)
 
             if !group.assetIDs.isEmpty {
-                Text("Keeping the recommended photo deletes the other \(group.photoCount - 1) after you confirm. They stay in Recently Deleted for 30 days.")
+                Text("Keeping this photo deletes the other \(group.photoCount - 1) after you confirm. They stay in Recently Deleted for 30 days."
+                     + (library.taste.isEnabled ? " Your choice also teaches Best Shot your taste, on this device." : ""))
                     .font(.caption)
                     .foregroundStyle(Palette.textSecondary)
                     .multilineTextAlignment(.center)
@@ -166,12 +167,17 @@ struct BestShotView: View {
         .padding(.top, 4)
     }
 
-    /// Deletes every photo in the group except the keeper (system confirmation first).
-    private func keepRecommended() async {
+    private var keepTitle: String {
+        if kept { return selectedIndex == group.recommendedIndex ? "Recommended Kept" : "Photo Kept" }
+        return selectedIndex == group.recommendedIndex ? "Keep Recommended" : "Keep This One"
+    }
+
+    /// Deletes every photo in the group except the selected one (system confirmation first).
+    /// The selected photo is the recommended one unless the person picked another in the strip.
+    private func keepSelected() async {
         guard !group.assetIDs.isEmpty else { kept = true; return } // demo content
-        let others = Set(group.assetIDs.enumerated().filter { $0.offset != group.recommendedIndex }.map(\.element))
         isDeleting = true
-        let outcome = await library.delete(others)
+        let outcome = await library.keep(group, keeperIndex: selectedIndex)
         isDeleting = false
         if case .deleted = outcome {
             kept = true

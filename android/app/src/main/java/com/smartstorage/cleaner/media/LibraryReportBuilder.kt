@@ -213,6 +213,7 @@ data class LibraryReportBuilder(
             assetUris = members.map { it.id },
             reasons = pick.reasons.map(::reason),
             reclaimableBytes = total - keeper.item.bytes,
+            scoreFeatures = scorer.features(members),
         )
     }
 

@@ -149,6 +149,19 @@ assets and iCloud-only originals; Android streams the MediaStore file.
 - Extra copies are removed from Similar, Blurry, Old Screenshots, Expired, recordings and memories so their space
   is never counted twice.
 
+### Personalized AI Taste
+
+Best Shot scores each photo in a group by sharpness, faces and lighting (`ScoreWeights`, standard mix 45/35/20).
+When someone keeps a photo in Best Shot (the strip lets them pick one other than the recommendation, and "Keep This
+One" keeps it), that photo "beats" every other photo in the group. `TasteProfile` (both platforms, pure) learns from
+this with a tiny pairwise logistic model (Bradley–Terry) that nudges the three weights, with a pull back to the
+standard mix, a 3% floor per factor, and gradual trust: the learned mix is blended in over the first 20 choices.
+
+- Only a **confirmed** choice teaches anything (denying the system delete dialog does not).
+- Stored on the device: three weights and a count — never photos, ids, or their content. Switch off or reset in
+  Settings → AI Taste; a favorite always wins.
+- Recommendations are rebuilt with the new weights right after each choice.
+
 ### Weekly Smart Clean (reminder)
 
 Opt-in (Settings → Notifications): a weekly local notification at a chosen day and time (default Sunday 10:00)

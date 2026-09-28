@@ -32,7 +32,14 @@ final class LibraryStore {
 
     private static let log = Logger(subsystem: "com.keepspace.app", category: "scan")
     private let engine = LibraryEngine()
-    private let builder = LibraryReportBuilder()
+    /// What Best Shot has learned about this person's taste (on this device only).
+    let taste = TasteStore()
+    /// Built per use so a new choice changes the very next recommendation.
+    private var builder: LibraryReportBuilder {
+        var builder = LibraryReportBuilder()
+        builder.scorer = BestShotScorer(weights: taste.weights)
+        return builder
+    }
     /// nil only if the on-disk cache can't be opened; scans then work uncached.
     private let cache = try? AnalysisStore.make()
     private var scanTask: Task<Void, Never>?
@@ -86,6 +93,19 @@ final class LibraryStore {
             notice = "Couldn't delete: \(message)"
         case .cancelled:
             break
+        }
+        return outcome
+    }
+
+    /// Keeps the photo at `keeperIndex` and deletes the rest of the group (after the system confirmation).
+    /// A confirmed choice is what Best Shot learns from; a cancelled one teaches nothing.
+    @discardableResult
+    func keep(_ group: PhotoGroup, keeperIndex: Int) async -> DeletionOutcome {
+        let others = Set(group.assetIDs.enumerated().filter { $0.offset != keeperIndex }.map(\.element))
+        let outcome = await delete(others)
+        if case .deleted = outcome, !group.scoreFeatures.isEmpty {
+            taste.learn(chosen: keeperIndex, among: group.scoreFeatures)
+            rebuild()
         }
         return outcome
     }

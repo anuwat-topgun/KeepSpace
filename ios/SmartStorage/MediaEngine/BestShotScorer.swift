@@ -1,5 +1,23 @@
 import Foundation
 
+/// How much Best Shot cares about each thing. Sums to 1. The standard mix is tuned by hand; a
+/// person's own mix is learned on the device from the photos they choose to keep (`TasteProfile`).
+struct ScoreWeights: Equatable, Sendable, Codable {
+    var sharpness: Double
+    var face: Double
+    var exposure: Double
+
+    static let standard = ScoreWeights(sharpness: 0.45, face: 0.35, exposure: 0.20)
+}
+
+/// One photo's standing inside its group, each 0...1: sharpness and faces relative to the group's best,
+/// exposure absolute (1 at mid-grey). This is what a choice is learned from — no pixels, no ids.
+struct ScoreFeatures: Hashable, Sendable, Codable {
+    var sharpness: Double
+    var face: Double
+    var exposure: Double
+}
+
 /// Picks the keeper in a group of similar photos and explains why.
 ///
 /// Sharpness and face quality are scored relative to the best in the group (value / max), so a
@@ -15,9 +33,28 @@ struct BestShotScorer: Sendable {
         case sharpest, bestFaces, bestExposure, favorite
     }
 
-    var sharpnessWeight = 0.45
-    var faceWeight = 0.35
-    var exposureWeight = 0.20
+    var sharpnessWeight = ScoreWeights.standard.sharpness
+    var faceWeight = ScoreWeights.standard.face
+    var exposureWeight = ScoreWeights.standard.exposure
+
+    init() {}
+
+    init(weights: ScoreWeights) {
+        sharpnessWeight = weights.sharpness
+        faceWeight = weights.face
+        exposureWeight = weights.exposure
+    }
+
+    /// Each photo's relative standing; faces count only when someone in the group has one.
+    func features(_ photos: [AnalyzedPhoto]) -> [ScoreFeatures] {
+        let sharpness = relativeToBest(photos.map(\.features.sharpness))
+        let faces = photos.map { $0.features.faceQuality }
+        let faceScores = faces.contains { $0 != nil } ? relativeToBest(faces.map { $0 ?? 0 }) : photos.map { _ in 0.0 }
+        return photos.indices.map { i in
+            // Exposure: 1 at mid-grey, 0 at pure black/white.
+            ScoreFeatures(sharpness: sharpness[i], face: faceScores[i], exposure: 1 - abs(photos[i].features.exposure - 0.5) * 2)
+        }
+    }
 
     func pick(_ photos: [AnalyzedPhoto]) -> Pick? {
         guard !photos.isEmpty else { return nil }
@@ -26,27 +63,18 @@ struct BestShotScorer: Sendable {
             return Pick(index: favorite, reasons: [.favorite])
         }
 
-        let sharpness = relativeToBest(photos.map(\.features.sharpness))
-        let faces = photos.map { $0.features.faceQuality }
-        let hasFaces = faces.contains { $0 != nil }
-        let faceScores = relativeToBest(faces.map { $0 ?? 0 })
-        // Exposure: 1 at mid-grey, 0 at pure black/white.
-        let exposure = photos.map { 1 - abs($0.features.exposure - 0.5) * 2 }
-        let bestExposure = exposure.max() ?? 0
-
-        let scores = photos.indices.map { i in
-            sharpnessWeight * sharpness[i]
-                + (hasFaces ? faceWeight * faceScores[i] : 0)
-                + exposureWeight * exposure[i]
-        }
+        let scored = features(photos)
+        let scores = scored.map { sharpnessWeight * $0.sharpness + faceWeight * $0.face + exposureWeight * $0.exposure }
         guard let best = scores.indices.max(by: { scores[$0] < scores[$1] }) else { return nil }
 
+        let bestExposure = scored.map(\.exposure).max() ?? 0
+        let hasFaces = photos.contains { $0.features.faceQuality != nil }
         var reasons: [Reason] = []
-        if sharpness[best] >= 0.999 { reasons.append(.sharpest) }
-        if hasFaces, faceScores[best] >= 0.999 { reasons.append(.bestFaces) }
-        if exposure[best] >= bestExposure - 0.001 { reasons.append(.bestExposure) }
+        if scored[best].sharpness >= 0.999 { reasons.append(.sharpest) }
+        if hasFaces, scored[best].face >= 0.999 { reasons.append(.bestFaces) }
+        if scored[best].exposure >= bestExposure - 0.001 { reasons.append(.bestExposure) }
         // Always give at least one honest reason: the strongest signal it won on.
-        if reasons.isEmpty { reasons.append(sharpness[best] >= exposure[best] ? .sharpest : .bestExposure) }
+        if reasons.isEmpty { reasons.append(scored[best].sharpness >= scored[best].exposure ? .sharpest : .bestExposure) }
         return Pick(index: best, reasons: reasons)
     }
 

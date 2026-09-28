@@ -6,6 +6,7 @@ struct SettingsView: View {
     @Environment(AppRouter.self) private var router
     @Environment(LibraryStore.self) private var library
     @Environment(WeeklyCleanReminder.self) private var weekly
+    @Environment(TasteStore.self) private var taste
 
     private var accessText: String {
         switch library.access {
@@ -26,6 +27,7 @@ struct SettingsView: View {
             row(.memories, icon: "heart.fill", tint: .coral, subtitle: "Protected by default")
             row(.cloudOverview, icon: "cloud.fill", tint: .blue, subtitle: "Google Drive · OneDrive")
             row(.storageRules, icon: "arrow.triangle.branch", tint: .teal, subtitle: "Automatic filing")
+            row(.aiTaste, icon: "wand.and.stars", tint: .purple, subtitle: taste.isEnabled ? (taste.decisions == 0 ? "Learns as you choose" : "Learned from \(taste.decisions) \(taste.decisions == 1 ? "choice" : "choices")") : "Off")
 
             row(.photoAccess, icon: "photo.fill", tint: .coral, subtitle: accessText)
             row(.notifications, icon: "bell.fill", tint: .purple, subtitle: weekly.isEnabled ? "Weekly Smart Clean · On" : "Weekly Smart Clean · Off")

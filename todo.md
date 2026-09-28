@@ -12,8 +12,8 @@
 
 | แพลตฟอร์ม | Unit tests | สถานะ | ทดสอบบนอุปกรณ์ |
 |---|---|---|---|
-| iOS (SwiftUI, iOS 17+) | 70 tests / 24 suites (Swift Testing) | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator |
-| Android (Compose, API 26+) | 68 tests (JUnit, JVM) + Thai OCR spike (instrumented) | ✅ ผ่านทั้งหมด | `keepspace_tablet` emulator (Pixel Tablet, API 36) |
+| iOS (SwiftUI, iOS 17+) | 77 tests / 25 suites (Swift Testing) | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator |
+| Android (Compose, API 26+) | 74 tests (JUnit, JVM) + Thai OCR spike (instrumented) | ✅ ผ่านทั้งหมด | `keepspace_tablet` emulator (Pixel Tablet, API 36) |
 
 คำสั่งรันเทส: ดู `runbook.md` หัวข้อ 4
 
@@ -100,10 +100,15 @@
 - [ ] ยืนยันบน iPhone จริง: การยิงแจ้งเตือนตามเวลา, ข้อความหลังสแกน, การแตะเปิด Cleanup Plan (cold launch)
 - [ ] ไอคอนแอปยังไม่มี — Android ใช้ไอคอนแจ้งเตือนชั่วคราว (`ic_stat_keepspace`)
 
-#### ⬜ Personalized AI Taste
-- [ ] เก็บสัญญาณในเครื่อง: รูปที่ผู้ใช้เก็บ/ลบใน Best Shot และ Review (ไม่ส่งออกนอกเครื่อง)
-- [ ] ปรับน้ำหนัก BestShotScorer (เช่น ชอบรูปคมกว่า vs ชอบรูปที่มีคนยิ้ม) แบบง่าย เช่น online logistic weights
-- [ ] ปุ่ม reset ใน Settings
+#### ✅ Personalized AI Taste — เสร็จแล้ว (จาก Best Shot)
+- Best Shot: เลือกรูปอื่นในแถบรูป → ปุ่มเปลี่ยนเป็น "Keep This One" และเก็บรูปที่เลือกจริง (เดิมปุ่มเก็บแต่รูปที่ AI แนะนำเสมอ)
+- เรียนรู้ในเครื่อง: โมเดล pairwise logistic (Bradley–Terry) ปรับน้ำหนัก ความคมชัด/ใบหน้า/แสง จากรูปที่ผู้ใช้เก็บเทียบกับรูปอื่นในกลุ่ม, เรียนเฉพาะเมื่อผู้ใช้ยืนยันการลบแล้ว (ยกเลิก = ไม่เรียน), เชื่อถือทีละน้อยจนเต็มที่ 20 ครั้ง, ไม่มีน้ำหนักใดต่ำกว่า 3%
+- เก็บแค่ตัวเลข 3 ค่า + จำนวนครั้ง (ไม่เก็บรูป/id/เนื้อหา); รูปโปรด (favorite) ยังชนะเสมอ
+- Settings → AI Taste: สวิตช์เปิด/ปิด, แถบแสดงน้ำหนักเทียบค่ามาตรฐาน, ปุ่ม reset (ยืนยันก่อน)
+- ทดสอบ: unit tests 8+6 ตัว (การเรียนรู้, ความเชื่อถือทีละน้อย, ไม่เรียนเรื่องใบหน้าถ้ากลุ่มไม่มีหน้า, เปิด/ปิด/reset/บันทึก) + emulator (ยกเลิกไม่เรียน → ยืนยันเรียน 1 ครั้ง → หน้า AI Taste)
+- [ ] ยังไม่ทำ: เรียนรู้จากหน้า Review กลุ่ม/หมวด "Similar" ที่ผู้ใช้ติ๊กออกรูปที่ AI เลือกลบ (สัญญาณอ่อนกว่า Best Shot)
+- [ ] ยังไม่ทำ: ปัจจัยเพิ่ม (เช่น ขนาดไฟล์, รอยยิ้ม, ฉากที่ชอบ) — ต้องมีข้อมูลจริงก่อนว่าปัจจัยไหนมีผล
+- [ ] ยังไม่ได้ทดสอบ: iOS บนหน้าจอจริง (ทดสอบตรรกะด้วย unit tests เท่านั้น) และผลกับคลังรูปจริงหลายกลุ่ม
 
 #### 🟡 Settings
 - [x] Photo Access: สถานะ (Full/Limited/Off), ปุ่มขอสิทธิ์ / เลือกรูปเพิ่ม / เปิดหน้า Settings ของระบบ

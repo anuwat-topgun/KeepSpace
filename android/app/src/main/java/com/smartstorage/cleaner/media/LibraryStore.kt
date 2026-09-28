@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import com.smartstorage.cleaner.model.CleanupPlan
 import com.smartstorage.cleaner.model.LibraryContent
+import com.smartstorage.cleaner.model.PhotoGroup
 import com.smartstorage.cleaner.model.StorageSummary
 import com.smartstorage.cleaner.model.formattedBytes
 import kotlinx.coroutines.CoroutineScope
@@ -71,7 +72,10 @@ data class LibraryState(
 class LibraryStore(context: Context, demo: Boolean) {
     private val app = context.applicationContext
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
-    private val builder = LibraryReportBuilder()
+    /** What Best Shot has learned about this person's taste (on this device only). */
+    val taste = TasteStore(app)
+    /** Built per use so a new choice changes the very next recommendation. */
+    private val builder get() = LibraryReportBuilder(scorer = BestShotScorer(taste.weights))
     private val cache by lazy { AnalysisStore.open(app) }
     private val prefs = app.getSharedPreferences("keepspace", Context.MODE_PRIVATE)
     private var scanJob: Job? = null
@@ -136,6 +140,20 @@ class LibraryStore(context: Context, demo: Boolean) {
         } catch (e: Exception) {
             "Compression failed: ${e.message ?: "unknown error"}"
         }
+    }
+
+    /**
+     * Keeps the photo at [keeperIndex] and deletes the rest of the group (after the system confirmation).
+     * A confirmed choice is what Best Shot learns from; a cancelled one teaches nothing.
+     */
+    suspend fun keep(group: PhotoGroup, keeperIndex: Int, actions: MediaActions): DeletionOutcome {
+        val others = group.assetUris.filterIndexed { i, _ -> i != keeperIndex }.toSet()
+        val outcome = delete(others, actions)
+        if (outcome is DeletionOutcome.Deleted && group.scoreFeatures.isNotEmpty()) {
+            taste.learn(keeperIndex, group.scoreFeatures)
+            rebuild()
+        }
+        return outcome
     }
 
     private fun removeFromResults(ids: Set<String>) {

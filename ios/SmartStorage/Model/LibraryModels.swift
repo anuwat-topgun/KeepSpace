@@ -90,6 +90,8 @@ struct PhotoGroup: Identifiable, Hashable, Sendable {
     var assetIDs: [String] = []
     /// Why the recommended photo was picked; empty means "use the generic explanation".
     var reasons: [BestShotReason] = []
+    /// Each photo's standing in the group (same order as `assetIDs`); what a choice is learned from.
+    var scoreFeatures: [ScoreFeatures] = []
     /// Space recovered by keeping only the recommended photo.
     var reclaimableBytes: Int64 = 0
 }

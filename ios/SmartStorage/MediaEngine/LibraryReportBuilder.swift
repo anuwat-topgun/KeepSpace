@@ -216,6 +216,7 @@ struct LibraryReportBuilder: Sendable {
             recommendedIndex: pick.index,
             assetIDs: members.map(\.id),
             reasons: pick.reasons.map(Self.reason),
+            scoreFeatures: scorer.features(members),
             reclaimableBytes: total - keeper.item.bytes
         )
     }

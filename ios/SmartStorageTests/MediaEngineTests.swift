@@ -933,3 +933,94 @@ struct CacheClearTests {
         #expect(await store.loadHashes().isEmpty)
     }
 }
+
+// MARK: - Personalized AI Taste
+
+struct TasteTests {
+    private func photo(_ id: String, sharpness: Double, exposure: Double, face: Double? = nil) -> AnalyzedPhoto {
+        AnalyzedPhoto(
+            item: MediaItem(id: id, kind: .photo, creationDate: Date(timeIntervalSince1970: 1_790_000_000), bytes: 1_000_000,
+                            pixelWidth: 4032, pixelHeight: 3024, duration: 0, isFavorite: false),
+            features: ImageFeatures(featurePrint: [], sharpness: sharpness, exposure: exposure, faceQuality: face, faceCount: face == nil ? 0 : 1)
+        )
+    }
+
+    /// Standard mix picks the sharper "a"; a person who likes good lighting keeps the balanced "b".
+    private var group: [AnalyzedPhoto] { [photo("a", sharpness: 500, exposure: 0.9), photo("b", sharpness: 250, exposure: 0.5)] }
+
+    @Test func standardWeightsSumToOneAndPickTheSharperPhoto() {
+        let w = ScoreWeights.standard
+        #expect(abs(w.sharpness + w.face + w.exposure - 1) < 1e-9)
+        #expect(BestShotScorer().pick(group)?.index == 0)
+    }
+
+    @Test func choicesMoveWeightsTowardWhatWasChosen() {
+        var profile = TasteProfile()
+        let features = BestShotScorer().features(group)
+        for _ in 0..<25 { profile.learn(chosen: 1, among: features) }
+        #expect(profile.decisions == 25)
+        #expect(profile.learned.exposure > ScoreWeights.standard.exposure + 0.1)
+        #expect(profile.learned.sharpness < ScoreWeights.standard.sharpness)
+        let w = profile.learned
+        #expect(abs(w.sharpness + w.face + w.exposure - 1) < 1e-9)
+        #expect(w.face >= 0.02) // nothing is ever ignored entirely
+        // Fully trusted: the personal mix now picks the balanced photo.
+        #expect(BestShotScorer(weights: profile.effective).pick(group)?.index == 1)
+    }
+
+    @Test func trustGrowsGraduallyAndAFewChoicesBarelyMoveThings() {
+        var profile = TasteProfile()
+        #expect(profile.effective == .standard)
+        let features = BestShotScorer().features(group)
+        profile.learn(chosen: 1, among: features)
+        #expect(profile.confidence == 1.0 / Double(TasteProfile.fullTrustAfter))
+        #expect(abs(profile.effective.exposure - ScoreWeights.standard.exposure) < 0.02)
+        #expect(BestShotScorer(weights: profile.effective).pick(group)?.index == 0)
+    }
+
+    @Test func agreeingWithTheRecommendationChangesLittle() {
+        var profile = TasteProfile()
+        let features = BestShotScorer().features(group)
+        for _ in 0..<25 { profile.learn(chosen: 0, among: features) }
+        // Agreeing with a sharpness win says "sharpness matters to me": the pick stays, and lighting counts for less.
+        #expect(BestShotScorer(weights: profile.effective).pick(group)?.index == 0)
+        #expect(profile.learned.exposure <= ScoreWeights.standard.exposure)
+        #expect(profile.learned.sharpness >= ScoreWeights.standard.sharpness)
+    }
+
+    @Test func groupsWithoutFacesNeverTeachAboutFaces() {
+        var profile = TasteProfile()
+        let features = BestShotScorer().features(group) // no faces: face feature is 0 for everyone
+        #expect(features.allSatisfy { $0.face == 0 })
+        let before = profile.learned.face
+        profile.learn(chosen: 1, among: features)
+        // Only the pull toward standard and normalisation touch it; direction isn't taught.
+        #expect(abs(profile.learned.face - before) < 0.02)
+    }
+
+    @Test func ignoresNonsenseChoices() {
+        var profile = TasteProfile()
+        profile.learn(chosen: 5, among: BestShotScorer().features(group))
+        profile.learn(chosen: 0, among: [ScoreFeatures(sharpness: 1, face: 0, exposure: 1)])
+        #expect(profile.decisions == 0)
+    }
+
+    @Test @MainActor func storeSavesResetsAndHonoursTheSwitch() throws {
+        let defaults = try #require(UserDefaults(suiteName: "taste-tests-\(UUID().uuidString)"))
+        let store = TasteStore(defaults: defaults)
+        #expect(store.isEnabled)
+        let features = BestShotScorer().features(group)
+        store.learn(chosen: 1, among: features)
+        #expect(store.decisions == 1)
+        #expect(TasteStore(defaults: defaults).decisions == 1) // persisted
+
+        store.setEnabled(false)
+        store.learn(chosen: 1, among: features)
+        #expect(store.decisions == 1) // not learning while off
+        #expect(store.weights == .standard)
+        #expect(!TasteStore(defaults: defaults).isEnabled)
+
+        store.reset()
+        #expect(store.decisions == 0)
+    }
+}

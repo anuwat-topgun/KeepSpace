@@ -84,6 +84,8 @@ data class PhotoGroup(
     val reasons: List<BestShotReason> = emptyList(),
     /** Space recovered by keeping only the recommended photo. */
     val reclaimableBytes: Long = 0,
+    /** Each photo's standing in the group (same order as [assetUris]); what a choice is learned from. */
+    val scoreFeatures: List<com.smartstorage.cleaner.media.ScoreFeatures> = emptyList(),
 )
 
 enum class PhotoGroupFilter(val label: String) { All("All"), Recent("Recent"), Reviewed("Reviewed") }

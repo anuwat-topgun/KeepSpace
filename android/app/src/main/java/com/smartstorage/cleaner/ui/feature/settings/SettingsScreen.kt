@@ -17,6 +17,8 @@ import androidx.compose.material.icons.rounded.VerifiedUser
 import androidx.compose.material.icons.rounded.WorkspacePremium
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import com.smartstorage.cleaner.media.LocalLibraryStore
+import androidx.compose.material.icons.rounded.AutoFixHigh
 import com.smartstorage.cleaner.media.LocalWeeklyReminder
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.collectAsState
@@ -61,6 +63,13 @@ fun SettingsScreen(onOpen: (Screen) -> Unit) {
         CardRow(Icons.Rounded.AccountTree, Screen.StorageRules.title, tint = Tint.Teal, subtitle = "Automatic filing") {
             onOpen(Screen.StorageRules)
         }
+        val taste by LocalLibraryStore.current.taste.state.collectAsState()
+        CardRow(Icons.Rounded.AutoFixHigh, Screen.AiTaste.title, tint = Tint.Purple,
+            subtitle = when {
+                !taste.enabled -> "Off"
+                taste.profile.decisions == 0 -> "Learns as you choose"
+                else -> "Learned from ${taste.profile.decisions} ${if (taste.profile.decisions == 1) "choice" else "choices"}"
+            }) { onOpen(Screen.AiTaste) }
         val accessText = when (libraryState().access) {
             LibraryAccess.Authorized -> "Full Access"
             LibraryAccess.Limited -> "Limited Access"

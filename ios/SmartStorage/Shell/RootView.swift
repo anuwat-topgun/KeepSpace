@@ -30,6 +30,7 @@ struct RootView: View {
         .environment(library)
         .environment(rules)
         .environment(weekly)
+        .environment(library.taste)
         .tint(Palette.accent)
         // Keep the reminder's text current, and open the Cleanup Plan when a reminder is tapped.
         .onChange(of: library.phase) { _, phase in
@@ -174,6 +175,7 @@ struct RouteDestination: View {
         case .memory(let id): MemoryDetailView(memoryID: id)
         case .photoAccess: PhotoAccessView()
         case .notifications: NotificationsView()
+        case .aiTaste: AITasteView()
         case .privacy: PrivacyView()
         case .about: AboutView()
         case .review(let kind): ReviewView(source: .kind(kind))
