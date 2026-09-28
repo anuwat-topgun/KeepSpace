@@ -1,0 +1,32 @@
+KeepSpace helps you recover storage without giving up the photos and videos that matter.
+
+PRIVATE BY DESIGN
+AI analysis runs entirely on your device. Your photos, videos, locations, and recognized text are never sent to KeepSpace.
+
+BACK UP WHERE YOU CHOOSE
+• Connect Google Drive or Microsoft OneDrive with secure OAuth
+• Copy photos, screenshots, or receipts directly from your device to your account
+• Choose a folder, use Wi-Fi only, and follow upload and verification status
+• KeepSpace has no media server and never receives your files
+• Version 1.1 always keeps the local original
+
+CLEAN WITH CONFIDENCE
+• Find exact duplicates and similar photos
+• Compare a group and keep its best shot
+• Review blurry photos, old screenshots, screen recordings, and large videos
+• See a Safety Score and a cleanup plan before anything changes
+• Confirm every deletion through the system
+
+UNDERSTAND YOUR LIBRARY
+• Sort screenshots into shopping, receipts, chats, QR codes, tickets, and more
+• Protect favorites and meaningful memories by default
+• Group trips and events using on-device signals
+• See a storage forecast based on how your library grows
+
+SAVE MORE SPACE
+Compress large videos and review the saved copy before deciding whether to remove the original.
+
+SMART, NOT SILENT
+Nothing is deleted automatically. Items you approve go to Recently Deleted, where iOS controls the recovery period. Optional Weekly Smart Clean reminders are created locally from your latest scan.
+
+KeepSpace supports iPhone and iPad and works with limited photo-library access.

@@ -106,7 +106,13 @@ fun OnboardingScreen(onContinue: () -> Unit) {
         }
 
         Column(Modifier.fillMaxWidth().padding(top = 8.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-            PrimaryButton("Continue", onClick = onContinue, modifier = Modifier.widthIn(max = SmartMetrics.readableWidth).fillMaxWidth())
+            Text(
+                "Next, choose which photos and videos KeepSpace may analyze on this device.",
+                style = SmartType.metadata,
+                color = colors.textSecondary,
+                modifier = Modifier.widthIn(max = SmartMetrics.readableWidth).padding(bottom = 8.dp),
+            )
+            PrimaryButton("Choose Photo Access", onClick = onContinue, modifier = Modifier.widthIn(max = SmartMetrics.readableWidth).fillMaxWidth())
             TextButton(onClick = { showsLearnMore = true }) {
                 Text("Learn More", style = SmartType.body.copy(fontWeight = FontWeight.Medium), color = colors.textSecondary)
             }
@@ -152,9 +158,9 @@ private fun BenefitCards() {
                     Icon(Icons.Rounded.Lock, contentDescription = null, tint = colors.accent)
                 }
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Text("Your photos never leave your phone.", style = SmartType.cardHeadline, color = colors.textPrimary)
+                    Text("Your photos go only where you choose.", style = SmartType.cardHeadline, color = colors.textPrimary)
                     Text(
-                        "All analysis happens on your device, keeping your data private and secure.",
+                        "AI analysis stays on this device. Cloud Backup sends only files you request directly to your Drive or OneDrive.",
                         style = SmartType.metadata,
                         color = colors.textSecondary,
                     )

@@ -105,7 +105,7 @@ cd ios && xcodegen generate && open SmartStorage.xcodeproj
 ```
 
 Android: open the `android/` folder in Android Studio, or build from the terminal with JDK 17
-(`brew install openjdk@17`) and an SDK containing `platforms;android-35` + `build-tools;35.0.0`:
+(`brew install openjdk@17`) and an SDK containing `platforms;android-36` + `build-tools;36.0.0`:
 
 ```bash
 cd android && echo "sdk.dir=$ANDROID_HOME" > local.properties
@@ -114,7 +114,7 @@ JAVA_HOME=/opt/homebrew/opt/openjdk@17 ./gradlew assembleDebug
 
 ### Media engine (on-device AI)
 
-Everything runs on the device; nothing is uploaded.
+AI analysis runs on the device. Only an explicit v1.1 Cloud Backup sends selected source files, directly to the user's Google Drive or OneDrive; KeepSpace has no media backend.
 
 | | iOS | Android |
 |---|---|---|
@@ -223,6 +223,19 @@ tickets whose date has passed become **Expired Tickets**.
 - Known limits: the iOS Simulator can't run Vision's barcode model (works on devices and on macOS); Thai names read
   by Tesseract may lose tone marks ("รานกาแฟ"); accuracy on real (non-synthetic) receipts still to be measured.
 
+### Cloud Backup (v1.1)
+
+Settings → Cloud connects Google Drive or OneDrive; Library → Back Up Now selects Photos, Screenshots, or Receipts,
+a folder inside KeepSpace/app folder, automatic naming, and Wi-Fi-only behavior. OAuth uses Authorization Code +
+PKCE with no client secret. iOS credentials live in Keychain; Android OneDrive state is encrypted with Android
+Keystore, while Google uses the official short-lived `AuthorizationClient` token.
+
+The persistent queue records waiting, uploading, verifying, backed-up, failed, and cancelled states outside the
+regenerable analysis cache. Android executes it through WorkManager with network constraints and exponential retry;
+iOS persists and resumes it whenever the app is active. Drive uses resumable upload and a KeepSpace folder;
+OneDrive writes only to the app folder. A metadata read verifies the remote file ID. v1.1 always retains local files.
+Production setup and remaining account/device gates are in `store/CLOUD_SETUP.md` and `store/RELEASE_CHECKLIST.md`.
+
 ### Receipt Filing (v1.3, extraction + rules)
 
 Receipts found in screenshots and in camera photos of paper receipts get their details read on the device and a
@@ -234,8 +247,8 @@ filing destination from the rules engine:
   {MEDIA_TYPE} {ORIGINAL_NAME} {INDEX}`, with characters Drive/OneDrive reject removed and short merchant names
   ("Central Department Store" → `Central`, honorifics dropped).
 - Receipt Filing uses the first enabled Receipts rule from Storage Rules (below).
-- Extracted details are stored on the device only. **Uploading needs v1.1 cloud accounts**; until then the
-  Receipt Filing screen says so and offers to connect.
+- Extracted details are stored on the device only. The receipt source image can be selected in v1.1 Back Up Now;
+  automatic rule-based filing remains v1.2/v1.3 work.
 
 #### Paper receipts (camera photos)
 
@@ -282,7 +295,7 @@ Settings → Storage Rules (mockups 14–15). Rules live on the device (`RuleSto
   Save is disabled while any problem remains.
 - Changing the trigger only replaces templates and the name if they were still the old trigger's suggestions.
 - "Suggest deletion after 30 days" requires an explicit acknowledgement, and every deletion is still confirmed.
-- The hero honestly says no cloud account is connected yet; rules start uploading once v1.1 lands.
+- Rules remain local previews in v1.1; wiring automatic rule matches into the upload queue is v1.2 work.
 
 ### Deleting and compressing (safety model)
 

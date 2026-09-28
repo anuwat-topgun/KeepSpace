@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.TextSnippet
 import androidx.compose.material.icons.rounded.CheckCircle
 import androidx.compose.material.icons.rounded.Memory
 import androidx.compose.material.icons.rounded.Error
@@ -17,8 +18,8 @@ import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material.icons.rounded.MyLocation
 import androidx.compose.material.icons.rounded.RestartAlt
-import androidx.compose.material.icons.rounded.TextSnippet
 import androidx.compose.material.icons.rounded.DeleteForever
+import androidx.compose.material.icons.rounded.CloudUpload
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -34,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.core.content.pm.PackageInfoCompat
 import com.smartstorage.cleaner.media.LibraryAccess
 import com.smartstorage.cleaner.media.LocalLibraryStore
 import com.smartstorage.cleaner.media.LocalRequestLibraryAccess
@@ -106,13 +108,15 @@ fun PrivacyScreen(onBack: () -> Unit) {
     val demo = libraryState().isDemo
     var confirming by rememberSaveable { mutableStateOf(false) }
     ScreenScaffold(onBack = onBack) {
-        ScreenHeader("Privacy & Security", "Your photos never leave your device.", Modifier.padding(bottom = 8.dp))
+        ScreenHeader("Privacy & Security", "AI stays here. Backups go only where you choose.", Modifier.padding(bottom = 8.dp))
         Fact(Icons.Rounded.Memory, Tint.Blue, "AI runs on this device",
             "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server.")
-        Fact(Icons.Rounded.TextSnippet, Tint.Purple, "Text is never stored",
+        Fact(Icons.AutoMirrored.Rounded.TextSnippet, Tint.Purple, "Text is never stored",
             "Screenshots and receipts are read only to sort them. KeepSpace keeps the category, a ticket's date, and a receipt's merchant, date and amount — not the text.")
         Fact(Icons.Rounded.MyLocation, Tint.Mint, "Locations stay here too",
             "Photo locations are used on this device to tell trips from home. They are never looked up online or shared.")
+        Fact(Icons.Rounded.CloudUpload, Tint.Teal, "Direct cloud backup",
+            "When you start a backup, selected files go over encrypted HTTPS directly to your Google Drive or OneDrive. KeepSpace has no media server and never receives them.")
         Fact(Icons.Rounded.DeleteForever, Tint.Coral, "You confirm every delete",
             "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected.")
         SmartCard(contentPadding = PaddingValues(16.dp)) {
@@ -156,8 +160,11 @@ fun AboutScreen(onBack: () -> Unit) {
     val version = remember {
         runCatching {
             val info = context.packageManager.getPackageInfo(context.packageName, 0)
-            "${info.versionName} (${info.longVersionCode})"
+            "${info.versionName} (${PackageInfoCompat.getLongVersionCode(info)})"
         }.getOrDefault("1.0")
+    }
+    val openWebPage: (String) -> Unit = { url ->
+        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
     }
     ScreenScaffold(onBack = onBack) {
         ScreenHeader("About", "Keep space. Keep what matters.", Modifier.padding(bottom = 8.dp))
@@ -176,6 +183,22 @@ fun AboutScreen(onBack: () -> Unit) {
         }
         SmartCard(contentPadding = PaddingValues(16.dp)) {
             androidx.compose.foundation.layout.Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                SecondaryButton(
+                    "Privacy Policy",
+                    onClick = { openWebPage(PRIVACY_POLICY_URL) },
+                    modifier = Modifier.fillMaxWidth(),
+                    outlined = true,
+                )
+                SecondaryButton(
+                    "Terms of Use",
+                    onClick = { openWebPage(TERMS_OF_USE_URL) },
+                    modifier = Modifier.fillMaxWidth(),
+                    outlined = true,
+                )
+            }
+        }
+        SmartCard(contentPadding = PaddingValues(16.dp)) {
+            androidx.compose.foundation.layout.Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Text("Open-source software", style = SmartType.cardHeadline, color = colors.textPrimary)
                 LICENSES.forEach { (name, license) ->
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
@@ -187,6 +210,9 @@ fun AboutScreen(onBack: () -> Unit) {
         }
     }
 }
+
+private const val PRIVACY_POLICY_URL = "https://github.com/anuwat-topgun/KeepSpace/blob/main/legal/privacy-policy.md"
+private const val TERMS_OF_USE_URL = "https://github.com/anuwat-topgun/KeepSpace/blob/main/legal/terms-of-use.md"
 
 /** Libraries shipped in the app. Keep in step with app/build.gradle.kts. */
 private val LICENSES = listOf(

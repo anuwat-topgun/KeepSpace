@@ -70,7 +70,9 @@ struct PhotoAccessView: View {
     private func presentLimitedPicker() {
         guard let scene = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).first,
               let controller = scene.keyWindow?.rootViewController else { return }
-        PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: controller) { _ in library.refreshAccess() }
+        PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: controller) { _ in
+            Task { @MainActor in library.refreshAccess() }
+        }
     }
 }
 

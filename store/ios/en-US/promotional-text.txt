@@ -1,0 +1,1 @@
+Clean with private on-device AI, then back up selected photos, screenshots, and receipts directly to your Drive or OneDrive.

@@ -8,7 +8,7 @@ struct PrivacyView: View {
 
     var body: some View {
         ScreenScaffold {
-            ScreenHeader(title: "Privacy & Security", subtitle: "Your photos never leave your device.")
+            ScreenHeader(title: "Privacy & Security", subtitle: "AI stays here. Backups go only where you choose.")
                 .padding(.bottom, 8)
 
             fact("cpu", .blue, "AI runs on this device",
@@ -17,6 +17,8 @@ struct PrivacyView: View {
                  "Screenshots and receipts are read only to sort them. KeepSpace keeps the category, a ticket's date, and a receipt's merchant, date and amount — not the text.")
             fact("location.fill", .mint, "Locations stay here too",
                  "Photo locations are used on this device to tell trips from home. They are never looked up online or shared.")
+            fact("icloud.and.arrow.up", .teal, "Direct cloud backup",
+                 "When you start a backup, selected files go over encrypted HTTPS directly to your Google Drive or OneDrive. KeepSpace has no media server and never receives them.")
             fact("trash.slash", .coral, "You confirm every delete",
                  "iOS asks before anything is removed, and items stay in Recently Deleted for 30 days. Favorites and memories are never preselected.")
 

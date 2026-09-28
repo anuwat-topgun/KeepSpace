@@ -1,7 +1,5 @@
 package com.smartstorage.cleaner.ui.feature.library
 
-import com.smartstorage.cleaner.ui.components.ListTile
-import androidx.compose.material.icons.rounded.CloudUpload
 import com.smartstorage.cleaner.model.ThumbnailStyle
 import com.smartstorage.cleaner.ui.components.AssetImage
 import androidx.compose.material.icons.rounded.Lock
@@ -66,7 +64,7 @@ import com.smartstorage.cleaner.ui.theme.Tint
 
 /** 11 — Screenshots grouped by what they contain, plus time-sensitive content that has expired. */
 @Composable
-fun ScreenshotsScreen(onReview: (ReviewKind) -> Unit, onOpenReceipts: () -> Unit, onBack: () -> Unit) {
+fun ScreenshotsScreen(onReview: (ReviewKind) -> Unit, onBack: () -> Unit) {
     ScreenScaffold(maxWidth = SmartMetrics.wideContentWidth, onBack = onBack) {
         val state = libraryState()
         ScreenHeader("Screenshots", "${state.content.screenshotsBytes.formattedBytes()} recoverable", Modifier.padding(bottom = 8.dp))
@@ -76,15 +74,6 @@ fun ScreenshotsScreen(onReview: (ReviewKind) -> Unit, onOpenReceipts: () -> Unit
                     if (state.isScanning) "Reading your library…" else "No screenshots found.",
                     style = SmartType.metadata,
                     color = SmartTheme.colors.textSecondary,
-                )
-            }
-        }
-        val receiptCount = state.content.receipts.size
-        if (receiptCount > 0) {
-            SmartCard(style = CardStyle.Hero, contentPadding = PaddingValues(16.dp), modifier = Modifier.clickable(role = Role.Button, onClick = onOpenReceipts)) {
-                ListTile(
-                    Icons.Rounded.CloudUpload, "Receipt Filing", tint = Tint.Teal,
-                    subtitle = "$receiptCount ${if (receiptCount == 1) "receipt" else "receipts"} ready to file",
                 )
             }
         }

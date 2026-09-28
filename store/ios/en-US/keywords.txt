@@ -1,0 +1,1 @@
+photo cleaner,storage,backup,drive,onedrive,duplicates,screenshots,private,cleanup,cloud

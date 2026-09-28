@@ -1,13 +1,12 @@
 package com.smartstorage.cleaner.ui.feature.library
 
-import androidx.compose.material.icons.automirrored.rounded.ReceiptLong
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.CloudUpload
 import androidx.compose.material.icons.rounded.Collections
 import androidx.compose.material.icons.rounded.CropFree
 import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.Videocam
+import androidx.compose.material.icons.rounded.CloudUpload
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -27,8 +26,7 @@ private val entries = listOf(
     LibraryEntry(Screen.Screenshots, Icons.Rounded.CropFree, Tint.Blue, "Understood by content"),
     LibraryEntry(Screen.Videos, Icons.Rounded.Videocam, Tint.Purple, "Large files and recordings"),
     LibraryEntry(Screen.Memories, Icons.Rounded.Favorite, Tint.Coral, "Protected by default"),
-    LibraryEntry(Screen.Receipts, Icons.AutoMirrored.Rounded.ReceiptLong, Tint.Amber, "Receipts read and ready to file"),
-    LibraryEntry(Screen.ManualBackup, Icons.Rounded.CloudUpload, Tint.Teal, "Back up to Drive or OneDrive"),
+    LibraryEntry(Screen.ManualBackup, Icons.Rounded.CloudUpload, Tint.Teal, "Copy selected media to your cloud"),
 )
 
 /** Library tab root. Not in the mockups — lists the media review flows as entry points. */

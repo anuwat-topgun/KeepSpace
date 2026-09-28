@@ -31,6 +31,8 @@ import com.smartstorage.cleaner.media.WeeklyCleanReminder
 import com.smartstorage.cleaner.ui.feature.onboarding.OnboardingScreen
 import com.smartstorage.cleaner.ui.shell.AppShell
 import com.smartstorage.cleaner.ui.theme.SmartStorageTheme
+import com.smartstorage.cleaner.cloud.CloudStore
+import com.smartstorage.cleaner.cloud.LocalCloudStore
 
 class MainActivity : ComponentActivity() {
     private val libraryViewModel: LibraryViewModel by viewModels()
@@ -38,6 +40,7 @@ class MainActivity : ComponentActivity() {
     private val mediaActions = MediaActions(this)
     private val ruleStore by lazy { RuleStore(applicationContext) }
     private val weeklyReminder by lazy { WeeklyCleanReminder(applicationContext) }
+    private val cloudStore by lazy { CloudStore(applicationContext) }
     /** Bumped each time a reminder is tapped; the shell opens the Cleanup Plan for every new value. */
     private var openPlanRequest by mutableIntStateOf(0)
     private val prefs by lazy { getSharedPreferences(PREFS, MODE_PRIVATE) }
@@ -72,6 +75,7 @@ class MainActivity : ComponentActivity() {
                     LocalMediaActions provides mediaActions,
                     LocalRuleStore provides ruleStore,
                     LocalWeeklyReminder provides weeklyReminder,
+                    LocalCloudStore provides cloudStore,
                 ) {
                     if (onboarded) AppShell(openCleanupPlanRequest = openPlanRequest) else OnboardingScreen(onContinue = { permissionLauncher.launch(LibraryStore.permissions) })
                 }

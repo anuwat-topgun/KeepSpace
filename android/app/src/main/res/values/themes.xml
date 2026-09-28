@@ -1,6 +1,9 @@
 <resources>
-    <!-- Compose draws everything; this only sets the window background before the first frame. -->
+    <!-- Compose draws everything after this static branded launch screen. -->
     <style name="Theme.SmartStorage" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:windowBackground">@color/background</item>
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:navigationBarColor">@color/background</item>
     </style>
 </resources>

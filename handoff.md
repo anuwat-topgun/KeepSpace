@@ -35,9 +35,9 @@ v1.0 Core ครบทั้งสองแพลตฟอร์ม: Storage Ana
 Memories (ทริป/อีเวนต์), Safety Score, Clean X GB + Cleanup Plan, Insights/Forecast, Weekly Smart Clean (แจ้งเตือนรายสัปดาห์), Personalized AI Taste, Settings (Photo Access / Privacy / Notifications / AI Taste / About), ไอคอนครบทุกขนาด
 v1.2: Storage Rules + Rule Builder · v1.3 (ส่วนไม่ใช้ cloud): Receipt Filing (screenshot + ใบเสร็จกระดาษจากรูปกล้อง)
 
-**ยังไม่มีเลย:** v1.1 cloud (auth, upload queue, หน้า Cloud/Backup), การเชื่อมกฎเข้าคิวอัปโหลด, backup verification + safe delete (v1.3), Subscription/Monetization, Analytics
+**มีแล้วใน v1.1:** Google Drive/OneDrive auth, secure token storage, persistent upload queue, direct upload + remote-ID verification, Cloud/Back Up Now UI, retry/cancel/Wi-Fi-only และ release/privacy docs. **ยังไม่มี:** production OAuth clients + physical-device sign-off, การเชื่อมกฎเข้าคิวอัปโหลด, safe delete (v1.3), Subscription/Monetization, Analytics
 
-Tests: iOS 81 / Android 74 unit tests ผ่านทั้งหมด — เป็น logic ล้วน ยังไม่มี UI test อัตโนมัติ และ **ยังไม่เคยรันบนเครื่องจริง**
+Tests: iOS 83 / Android 76 unit tests ผ่านทั้งหมด; iOS มี UI smoke test ครอบเส้นทางหลักและหน้า Cloud, Android UI test compile ผ่าน แต่ **ยังไม่เคยยืนยัน Cloud OAuth/upload บนเครื่องจริง**
 
 ---
 
@@ -61,7 +61,7 @@ Tests: iOS 81 / Android 74 unit tests ผ่านทั้งหมด — เ�
 - ขนาด/hash cache อยู่ใน `HashRecord` และ invalidated ด้วย `modifiedAt`
 - delete/compress รับขนาดจาก `LibraryStore`; output ของ compression ใช้ `URLResourceValues.fileSizeKey`
 - integration probe บน iPhone 17 simulator: รูปนิ่ง 115/115 ตรงกับ KVC เดิม, 0 mismatch; ลบ `TMPPROBE` แล้ว
-- iOS 81 tests / 26 suites ผ่าน รวม test ของ estimator, measurement plan และ optional hash
+- iOS 83 tests / 27 suites ผ่าน รวม test ของ estimator, measurement plan, optional hash และ Cloud queue state
 
 Android ไม่ต้องเปลี่ยน เพราะใช้ `MediaStore.SIZE` ซึ่งเป็น public API อยู่แล้ว
 
@@ -91,7 +91,7 @@ Android ไม่ต้องเปลี่ยน เพราะใช้ `Med
 | Weekly Smart Clean | opt-in, ข้อความอ้างผลสแกนล่าสุด, **ไม่สแกนเบื้องหลัง** | แบตเตอรี่และยืนยันความน่าเชื่อถือบน simulator ไม่ได้; หน้าจอบอกผู้ใช้ตรง ๆ |
 | AI Taste | Bradley–Terry เล็ก ๆ ปรับน้ำหนัก 3 ตัว, เรียนเฉพาะเมื่อยืนยันลบ, เชื่อถือเต็มที่ 20 ครั้ง, เก็บแค่ตัวเลข | ไม่เก็บรูป/id; กันน้ำหนักเพี้ยน; เปิด/ปิด/รีเซ็ตได้ |
 | ไอคอน | สร้างใหม่จากต้นฉบับด้วย `icons/build_icons.py` (ไม่ copy ไฟล์ export ตรง ๆ) | ต้นฉบับมีพื้นดำทึบ → iOS เห็นมุมดำใต้ mask, Android เห็นมุมดำ/วงกลมซีด; ทำ adaptive icon ให้เพราะ minSdk 26 |
-| Cloud (v1.1) | ใช้ OAuth client ของ KeepSpace เอง (Google Cloud Console + Microsoft Entra), PKCE, scope `drive.file` | ผู้ใช้ย้ำ — ไม่ใช่ credential ของผู้ใช้หรือของกลาง; ขั้นตอนสร้างอยู่ใน `todo.md` 3.2 |
+| Cloud (v1.1) | direct-to-provider, no backend; Google Android ใช้ AuthorizationClient, ที่เหลือ OAuth PKCE; Drive `drive.file`, OneDrive app folder | โค้ดเสร็จ; ต้องสร้าง production clients ตาม `store/CLOUD_SETUP.md` และทดสอบจริงก่อนส่ง |
 
 ---
 
@@ -102,7 +102,8 @@ Android ไม่ต้องเปลี่ยน เพราะใช้ `Med
 - Android: ชื่อไทยที่ Tesseract อ่านอาจขาดวรรณยุกต์ ("รานกาแฟ") — จัดหมวดไม่กระทบแล้ว แต่ชื่อโฟลเดอร์เพี้ยน
 - Android ยังไม่มี scene labeling → อีเวนต์ตั้งชื่อตามวันที่เท่านั้น
 - ขนาดแอป Android: Tesseract เพิ่ม ~7.5 MB native + 5.2 MB โมเดลต่อเครื่อง (APK รวมทุก ABI ~136 MB → ต้องปล่อยเป็น App Bundle)
-- ยังไม่มี: privacy policy/terms URL, launch screen, ไอคอนโหมดมืด/themed, keystore สำหรับ release, CI
+- release baseline ใน repo ทำแล้ว: privacy policy/terms URL, launch screen, Android themed icon, API 36, signing hook, Store copy/privacy drafts, smoke UI tests และ CI
+- ยังต้องใช้เจ้าของบัญชี/เครื่องจริง: Android upload keystore + Play App Signing, Apple distribution signing/TestFlight, Store forms/screenshots และ physical-device test gates ใน `store/RELEASE_CHECKLIST.md`
 
 ---
 
@@ -120,8 +121,8 @@ Android ไม่ต้องเปลี่ยน เพราะใช้ `Med
 
 ## 8. ลำดับที่แนะนำต่อจากนี้
 
-1. Launch screen + privacy policy/terms (จำเป็นต่อการส่ง store) + ทดสอบเครื่องจริงด้วยคลังรูปใหญ่ → พร้อมปล่อย v1.0
-2. (เจ้าของแอป) สร้าง OAuth clients ของ Google/Microsoft → เริ่ม v1.1 manual backup
+1. ทดสอบเครื่องจริงด้วยคลัง 10k+ และอัปโหลด build 1 เข้า TestFlight / Play Internal Testing ตาม `store/RELEASE_CHECKLIST.md`
+2. (เจ้าของแอป) สร้าง OAuth clients ของ Google/Microsoft ตาม `store/CLOUD_SETUP.md` → ทดสอบ v1.1 บน TestFlight/Play Internal
 3. เชื่อมกฎเข้าคิวอัปโหลด (v1.2) → backup verification + safe delete (v1.3)
 4. Monetization + analytics ก่อนปล่อยจริง
 

@@ -1,12 +1,13 @@
 import SwiftUI
 
 /// 09 — Settings with the privacy stance front and centre.
-/// Cloud (v1.1) and Storage Rules (v1.2) are pushed from here.
+/// Only features that are functional in the Store build are exposed here.
 struct SettingsView: View {
     @Environment(AppRouter.self) private var router
     @Environment(LibraryStore.self) private var library
     @Environment(WeeklyCleanReminder.self) private var weekly
     @Environment(TasteStore.self) private var taste
+    @Environment(CloudStore.self) private var cloud
 
     private var accessText: String {
         switch library.access {
@@ -25,13 +26,12 @@ struct SettingsView: View {
             PrivacyHeroCard()
 
             row(.memories, icon: "heart.fill", tint: .coral, subtitle: "Protected by default")
-            row(.cloudOverview, icon: "cloud.fill", tint: .blue, subtitle: "Google Drive · OneDrive")
-            row(.storageRules, icon: "arrow.triangle.branch", tint: .teal, subtitle: "Automatic filing")
             row(.aiTaste, icon: "wand.and.stars", tint: .purple, subtitle: taste.isEnabled ? (taste.decisions == 0 ? "Learns as you choose" : "Learned from \(taste.decisions) \(taste.decisions == 1 ? "choice" : "choices")") : "Off")
+            row(.cloudOverview, icon: "icloud.fill", tint: .blue,
+                subtitle: cloud.connections.filter(\.isConnected).isEmpty ? "Connect Google Drive or OneDrive" : "\(cloud.connections.filter(\.isConnected).count) connected")
 
             row(.photoAccess, icon: "photo.fill", tint: .coral, subtitle: accessText)
             row(.notifications, icon: "bell.fill", tint: .purple, subtitle: weekly.isEnabled ? "Weekly Smart Clean · On" : "Weekly Smart Clean · Off")
-            CardRow(systemImage: "crown.fill", tint: .mint, title: "Subscription", subtitle: "KeepSpace Pro")
             row(.privacy, icon: "checkmark.shield.fill", tint: .blue, subtitle: nil)
             row(.about, icon: "info.circle.fill", tint: .gray, subtitle: nil)
         }
@@ -56,7 +56,7 @@ private struct PrivacyHeroCard: View {
                     Text("On-device AI only")
                         .font(.system(.title2, weight: .bold))
                         .foregroundStyle(Palette.textPrimary)
-                    Text("Your photos never leave your device.")
+                    Text("AI stays on device. Backups go only where you choose.")
                         .font(Typography.body)
                         .foregroundStyle(Palette.textSecondary)
                 }

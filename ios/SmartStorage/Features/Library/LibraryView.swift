@@ -9,8 +9,7 @@ struct LibraryView: View {
         (.screenshots, "viewfinder", .blue, "Understood by content"),
         (.videos, "video.fill", .purple, "Large files and recordings"),
         (.memories, "heart.fill", .coral, "Protected by default"),
-        (.receipts, "tray.and.arrow.up.fill", .amber, "Receipts read and ready to file"),
-        (.manualBackup, "icloud.and.arrow.up.fill", .teal, "Back up to Drive or OneDrive"),
+        (.manualBackup, "icloud.and.arrow.up.fill", .teal, "Copy selected media to your cloud"),
     ]
 
     var body: some View {

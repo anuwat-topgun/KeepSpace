@@ -8,5 +8,6 @@ extension View {
             .environment(TasteStore(defaults: UserDefaults(suiteName: "preview") ?? .standard))
             .environment(RuleStore(defaults: UserDefaults(suiteName: "preview") ?? .standard))
             .environment(WeeklyCleanReminder(defaults: UserDefaults(suiteName: "preview") ?? .standard))
+            .environment(CloudStore(defaults: UserDefaults(suiteName: "preview.cloud") ?? .standard))
     }
 }

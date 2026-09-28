@@ -11,6 +11,7 @@ struct RootView: View {
     @State private var library = LibraryStore(demo: UserDefaults.standard.bool(forKey: "demoData"))
     @State private var rules = RuleStore()
     @State private var weekly = WeeklyCleanReminder()
+    @State private var cloud = CloudStore()
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
 
     var body: some View {
@@ -30,6 +31,7 @@ struct RootView: View {
         .environment(library)
         .environment(rules)
         .environment(weekly)
+        .environment(cloud)
         .environment(library.taste)
         .tint(Palette.accent)
         // Keep the reminder's text current, and open the Cleanup Plan when a reminder is tapped.
@@ -46,6 +48,7 @@ struct RootView: View {
         .onChange(of: scenePhase, initial: true) { _, phase in
             // Also covers returning from Settings after changing photo access.
             if phase == .active, hasCompletedOnboarding { library.refreshAccess() }
+            if phase == .active { cloud.resumePending() }
         }
         .fullScreenCover(isPresented: showsOnboarding) {
             OnboardingView {
@@ -178,6 +181,8 @@ struct RouteDestination: View {
         case .aiTaste: AITasteView()
         case .privacy: PrivacyView()
         case .about: AboutView()
+        case .cloudOverview: CloudOverviewView()
+        case .manualBackup: ManualBackupView()
         case .review(let kind): ReviewView(source: .kind(kind))
         case .receipts: ReceiptsView()
         case .storageRules: StorageRulesView()
@@ -185,7 +190,7 @@ struct RouteDestination: View {
         case .editRule(let id): RuleEditorView(ruleID: id, existing: rules.rules.first { $0.id == id })
         case .receiptFiling(let id): ReceiptFilingView(receiptID: id)
         case .reviewGroup(let id): ReviewView(source: .group(id))
-        default: PlaceholderScreen(title: route.title)
+        case .backupVerification: PlaceholderScreen(title: route.title)
         }
     }
 

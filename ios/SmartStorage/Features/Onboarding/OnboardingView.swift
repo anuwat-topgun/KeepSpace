@@ -35,7 +35,11 @@ struct OnboardingView: View {
             .padding(.top, 24)
 
             VStack(spacing: 12) {
-                Button("Continue", action: onContinue)
+                Text("Next, choose which photos and videos KeepSpace may analyze on this device.")
+                    .font(Typography.metadata)
+                    .foregroundStyle(Palette.textSecondary)
+                    .frame(maxWidth: Metrics.readableWidth, alignment: .leading)
+                Button("Choose Photo Access", action: onContinue)
                     .buttonStyle(.primary)
                     .frame(maxWidth: Metrics.readableWidth)
                 Button("Learn More") { showsLearnMore = true }
@@ -79,10 +83,10 @@ struct OnboardingView: View {
                         .frame(width: 52, height: 52)
                         .background(Tint.teal.background, in: Circle())
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Your photos never leave your phone.")
+                        Text("Your photos go only where you choose.")
                             .font(Typography.cardHeadline)
                             .foregroundStyle(Palette.textPrimary)
-                        Text("All analysis happens on your device, keeping your data private and secure.")
+                        Text("AI analysis stays on this device. Cloud Backup sends only files you request directly to your Drive or OneDrive.")
                             .font(Typography.metadata)
                             .foregroundStyle(Palette.textSecondary)
                     }

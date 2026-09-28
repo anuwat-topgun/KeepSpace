@@ -18,6 +18,7 @@ import com.smartstorage.cleaner.model.LibraryContent
 import com.smartstorage.cleaner.model.PhotoGroup
 import com.smartstorage.cleaner.model.StorageSummary
 import com.smartstorage.cleaner.model.formattedBytes
+import com.smartstorage.cleaner.cloud.CloudBackupScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -92,6 +93,19 @@ class LibraryStore(context: Context, demo: Boolean) {
         else LibraryState(currentAccess(), ScanPhase.Idle, LibraryContent.empty(deviceStorage())),
     )
     val state: StateFlow<LibraryState> = _state.asStateFlow()
+
+    /** Current real media for an explicit v1.1 backup. Demo rows never become upload jobs. */
+    fun backupCandidates(scope: CloudBackupScope): List<MediaItem> {
+        if (_state.value.isDemo) return emptyList()
+        val receiptIds = _state.value.content.receipts.mapTo(mutableSetOf()) { it.id }
+        return lastItems.filter { item ->
+            when (scope) {
+                CloudBackupScope.Photos -> item.kind == MediaItem.Kind.Photo
+                CloudBackupScope.Screenshots -> item.kind == MediaItem.Kind.Screenshot
+                CloudBackupScope.Receipts -> item.id in receiptIds
+            }
+        }
+    }
 
     fun setCleanupTarget(bytes: Long?) = _state.update { it.copy(cleanupTarget = bytes) }
 
@@ -406,11 +420,16 @@ class LibraryStore(context: Context, demo: Boolean) {
                     Manifest.permission.READ_MEDIA_VIDEO,
                     Manifest.permission.ACCESS_MEDIA_LOCATION,
                 )
-                // Android 8–10: deleting other apps' media needs write access too.
-                Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q -> arrayOf(
+                // Android 10 exposes original-location metadata behind a separate permission.
+                Build.VERSION.SDK_INT == Build.VERSION_CODES.Q -> arrayOf(
                     Manifest.permission.READ_EXTERNAL_STORAGE,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.ACCESS_MEDIA_LOCATION, // 10 only; ignored on 8–9
+                    Manifest.permission.ACCESS_MEDIA_LOCATION,
+                )
+                // Android 8–9: deleting other apps' media needs write access too.
+                Build.VERSION.SDK_INT < Build.VERSION_CODES.Q -> arrayOf(
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 )
                 else -> arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.ACCESS_MEDIA_LOCATION)
             }

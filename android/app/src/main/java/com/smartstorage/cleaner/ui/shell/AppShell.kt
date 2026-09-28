@@ -48,6 +48,8 @@ import com.smartstorage.cleaner.ui.feature.settings.NotificationsScreen
 import com.smartstorage.cleaner.ui.feature.settings.PhotoAccessScreen
 import com.smartstorage.cleaner.ui.feature.settings.PrivacyScreen
 import com.smartstorage.cleaner.ui.feature.settings.SettingsScreen
+import com.smartstorage.cleaner.ui.feature.cloud.CloudOverviewScreen
+import com.smartstorage.cleaner.ui.feature.cloud.ManualBackupScreen
 import com.smartstorage.cleaner.ui.theme.SmartTheme
 
 /**
@@ -142,7 +144,7 @@ private fun AppNavHost(navController: NavHostController) {
                     when (screen) {
                         Screen.CleanupPlan -> CleanupPlanScreen(onOpen = push, onReview = review, onBack = back)
                         Screen.SimilarPhotos -> SimilarPhotosScreen(onOpenGroup = openGroup, onReviewGroup = reviewGroup, onBack = back)
-                        Screen.Screenshots -> ScreenshotsScreen(onReview = review, onOpenReceipts = { push(Screen.Receipts) }, onBack = back)
+                        Screen.Screenshots -> ScreenshotsScreen(onReview = review, onBack = back)
                         Screen.StorageRules -> StorageRulesScreen(
                             onAdd = { push(Screen.NewRule) },
                             onEdit = { navController.navigate(tab.ruleRoute(it)) },
@@ -152,6 +154,8 @@ private fun AppNavHost(navController: NavHostController) {
                         Screen.Receipts -> ReceiptsScreen(onOpen = { navController.navigate(tab.receiptRoute(it)) }, onBack = back)
                         Screen.PhotoAccess -> PhotoAccessScreen(onBack = back)
                         Screen.Notifications -> NotificationsScreen(onBack = back)
+                        Screen.CloudOverview -> CloudOverviewScreen(onBackUpNow = { push(Screen.ManualBackup) }, onBack = back)
+                        Screen.ManualBackup -> ManualBackupScreen(onBack = back)
                         Screen.AiTaste -> AiTasteScreen(onBack = back)
                         Screen.Privacy -> PrivacyScreen(onBack = back)
                         Screen.About -> AboutScreen(onBack = back)

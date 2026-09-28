@@ -52,6 +52,19 @@ final class LibraryStore {
 
     var cleanupPlan: CleanupPlan { content.plan(for: cleanupTarget) }
 
+    /// Current real media for an explicit v1.1 backup. Demo rows never become upload jobs.
+    func backupCandidates(for scope: CloudBackupScope) -> [MediaItem] {
+        guard !isDemo else { return [] }
+        let receiptIDs = Set(content.receipts.map(\.id))
+        return lastItems.filter { item in
+            switch scope {
+            case .photos: item.kind == .photo
+            case .screenshots: item.kind == .screenshot
+            case .receipts: receiptIDs.contains(item.id)
+            }
+        }
+    }
+
     var isScanning: Bool {
         switch phase {
         case .loadingLibrary, .analyzing: true

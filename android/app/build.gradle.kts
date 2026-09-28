@@ -1,6 +1,19 @@
 import java.net.URI
 import java.security.MessageDigest
 
+val releaseKeystoreFile = providers.environmentVariable("KEYSTORE_FILE").orNull
+val releaseKeystorePassword = providers.environmentVariable("KEYSTORE_PASSWORD").orNull
+val releaseKeyAlias = providers.environmentVariable("KEY_ALIAS").orNull
+val releaseKeyPassword = providers.environmentVariable("KEY_PASSWORD").orNull
+val hasReleaseSigning = listOf(
+    releaseKeystoreFile,
+    releaseKeystorePassword,
+    releaseKeyAlias,
+    releaseKeyPassword,
+).all { !it.isNullOrBlank() }
+val microsoftOAuthClientId = providers.gradleProperty("KEEP_SPACE_MICROSOFT_CLIENT_ID")
+    .orElse(providers.environmentVariable("KEEP_SPACE_MICROSOFT_CLIENT_ID")).orElse("")
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -10,20 +23,33 @@ plugins {
 
 android {
     namespace = "com.smartstorage.cleaner"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.keepspace.app"
         minSdk = 26
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0.0"
+        targetSdk = 36
+        versionCode = 2
+        versionName = "1.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "MICROSOFT_OAUTH_CLIENT_ID", "\"${microsoftOAuthClientId.get()}\"")
+        manifestPlaceholders["appAuthRedirectScheme"] = "keepspace"
     }
 
+    signingConfigs {
+        if (hasReleaseSigning) {
+            create("release") {
+                storeFile = file(releaseKeystoreFile!!)
+                storePassword = releaseKeystorePassword
+                keyAlias = releaseKeyAlias
+                keyPassword = releaseKeyPassword
+            }
+        }
+    }
     buildTypes {
         release {
             isMinifyEnabled = true
+            if (hasReleaseSigning) signingConfig = signingConfigs.getByName("release")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -36,6 +62,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     // Tesseract models for Thai OCR (see fetchTessdata below).
     sourceSets["main"].assets.srcDir(layout.buildDirectory.dir("generated/tessdata"))
@@ -69,6 +96,7 @@ tasks.named("preBuild") { dependsOn(fetchTessdata) }
 
 dependencies {
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.exifinterface)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
@@ -95,6 +123,9 @@ dependencies {
     implementation(libs.androidx.media3.muxer)
     // Weekly Smart Clean reminder: a weekly slot that survives reboots.
     implementation(libs.androidx.work.runtime.ktx)
+    // OneDrive uses Authorization Code + PKCE; Google Drive uses the official AuthorizationClient.
+    implementation(libs.appauth)
+    implementation(libs.play.services.auth)
     debugImplementation(libs.androidx.ui.tooling)
     testImplementation(libs.junit)
     testImplementation(libs.json)
@@ -103,4 +134,8 @@ dependencies {
     // Thai OCR spike (instrumented): compares Tesseract with ML Kit.
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }

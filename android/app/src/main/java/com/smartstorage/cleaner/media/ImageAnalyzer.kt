@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.util.Size
+import androidx.exifinterface.media.ExifInterface
 import com.google.android.gms.tasks.Tasks
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.FaceDetection
@@ -71,11 +72,7 @@ class ImageAnalyzer(private val resolver: ContentResolver) : Closeable {
     private fun location(uri: Uri): DoubleArray? = try {
         val source = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) android.provider.MediaStore.setRequireOriginal(uri) else uri
         resolver.openInputStream(source)?.use { stream ->
-            // The framework ExifInterface reports floats (~1 m precision: plenty for trips).
-            val latLong = FloatArray(2)
-            if (android.media.ExifInterface(stream).getLatLong(latLong) && !(latLong[0] == 0f && latLong[1] == 0f)) {
-                doubleArrayOf(latLong[0].toDouble(), latLong[1].toDouble())
-            } else null
+            ExifInterface(stream).latLong?.takeUnless { it[0] == 0.0 && it[1] == 0.0 }
         }
     } catch (_: Exception) {
         null // SecurityException without the permission, or unreadable EXIF
@@ -131,12 +128,12 @@ fun ContentResolver.decodeUpright(uri: Uri, side: Int): Bitmap? = try {
         }
     } else {
         val orientation = openInputStream(uri)?.use {
-            android.media.ExifInterface(it).getAttributeInt(android.media.ExifInterface.TAG_ORIENTATION, android.media.ExifInterface.ORIENTATION_NORMAL)
+            ExifInterface(it).getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
         }
         val degrees = when (orientation) {
-            android.media.ExifInterface.ORIENTATION_ROTATE_90 -> 90
-            android.media.ExifInterface.ORIENTATION_ROTATE_180 -> 180
-            android.media.ExifInterface.ORIENTATION_ROTATE_270 -> 270
+            ExifInterface.ORIENTATION_ROTATE_90 -> 90
+            ExifInterface.ORIENTATION_ROTATE_180 -> 180
+            ExifInterface.ORIENTATION_ROTATE_270 -> 270
             else -> 0
         }
         thumbnail(uri, side)?.let { bitmap ->
