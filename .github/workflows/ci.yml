@@ -48,9 +48,18 @@ jobs:
       - name: Create and boot an available simulator
         id: simulator
         run: |
-          RUNTIME_ID=$(xcrun simctl list runtimes -j | jq -er '[.runtimes[] | select(.isAvailable == true and (.identifier | contains("iOS")))] | last | .identifier')
-          DEVICE_TYPE_ID=$(xcrun simctl list devicetypes -j | jq -er '[.devicetypes[] | select(.name | startswith("iPhone"))] | last | .identifier')
-          UDID=$(xcrun simctl create "KeepSpace CI" "$DEVICE_TYPE_ID" "$RUNTIME_ID")
+          RUNTIME_IDS=$(xcrun simctl list runtimes -j | jq -er '.runtimes[] | select(.isAvailable == true and (.identifier | contains("iOS"))) | .identifier')
+          DEVICE_TYPE_IDS=$(xcrun simctl list devicetypes -j | jq -er '[.devicetypes[] | select(.name == "iPhone 16 Pro")] + [.devicetypes[] | select((.name | startswith("iPhone")) and .name != "iPhone 16 Pro")] | .[].identifier')
+          UDID=""
+          for RUNTIME_ID in $RUNTIME_IDS; do
+            for DEVICE_TYPE_ID in $DEVICE_TYPE_IDS; do
+              if CANDIDATE=$(xcrun simctl create "KeepSpace CI" "$DEVICE_TYPE_ID" "$RUNTIME_ID" 2>/dev/null); then
+                UDID="$CANDIDATE"
+                break 2
+              fi
+            done
+          done
+          test -n "$UDID"
           xcrun simctl boot "$UDID"
           xcrun simctl bootstatus "$UDID" -b
           echo "udid=$UDID" >> "$GITHUB_OUTPUT"
