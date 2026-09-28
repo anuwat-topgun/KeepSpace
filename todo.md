@@ -98,7 +98,7 @@
 - ทดสอบ: unit tests (คำนวณช่วงเวลา, ข้อความ) ทั้งสองแพลตฟอร์ม + emulator (สวิตช์ → dialog สิทธิ์ → job ตั้งเวลาถูก 5 วัน 20 ชม. ก่อนวันอาทิตย์ 10:00 → ส่งทดสอบ → แตะแล้วเปิด Cleanup Plan) · iOS ดูหน้าจอบน simulator + unit tests (ยังไม่ได้ยืนยันการยิงแจ้งเตือนจริงบน iOS)
 - [ ] **ยังไม่ทำ (ตั้งใจ):** สแกนเบื้องหลังจริง (iOS `BGProcessingTask` / Android worker สแกนเอง) — ตัวเลขในการแจ้งเตือนจึงเท่ากับตอนที่เปิดแอปครั้งล่าสุด; ต้องวัดแบตเตอรี่/ความน่าเชื่อถือบนเครื่องจริงก่อนตัดสินใจ
 - [ ] ยืนยันบน iPhone จริง: การยิงแจ้งเตือนตามเวลา, ข้อความหลังสแกน, การแตะเปิด Cleanup Plan (cold launch)
-- [ ] ไอคอนแอปยังไม่มี — Android ใช้ไอคอนแจ้งเตือนชั่วคราว (`ic_stat_keepspace`)
+- ไอคอนการแจ้งเตือน Android ยังเป็นไอคอนประกายชั่วคราว (`ic_stat_keepspace`, ต้องเป็นภาพขาวดำ) — ไอคอนแอปจริงทำแล้ว
 
 #### ✅ Personalized AI Taste — เสร็จแล้ว (จาก Best Shot)
 - Best Shot: เลือกรูปอื่นในแถบรูป → ปุ่มเปลี่ยนเป็น "Keep This One" และเก็บรูปที่เลือกจริง (เดิมปุ่มเก็บแต่รูปที่ AI แนะนำเสมอ)
@@ -185,7 +185,10 @@
   - [ ] ขนาดแอป: ปล่อยเป็น App Bundle (แยก ABI) — Tesseract +7.5 MB native + 5.2 MB models ต่อเครื่อง
   - [ ] ทดสอบกับใบเสร็จ/สลิปจริง (รูปทดสอบตอนนี้เป็นภาพสังเคราะห์)
 - [ ] **ความเสี่ยง App Review**: iOS อ่านขนาดไฟล์ด้วย `PHAssetResource.value(forKey: "fileSize")` (KVC ที่ไม่ใช่ public API) → หาทางเลือก (เช่น ประมาณจาก resource/อ่านผ่าน `PHAssetResourceManager` เฉพาะเมื่อจำเป็น) หรือยอมรับความเสี่ยงอย่างรู้ตัว
-- [ ] App icon (ตอนนี้เป็นไอคอนว่าง) + launch screen ทั้งสองแพลตฟอร์ม
+- [x] App icon ครบทุกขนาด ทั้ง iOS (18 ไฟล์) และ Android (legacy + round + adaptive ทุก density + Play Store 512) — สร้างด้วย `icons/build_icons.py`
+  - [ ] iOS 18 dark/tinted icon และ Android 13 themed (monochrome) icon — ต้องออกแบบภาพเพิ่ม
+  - [ ] ไอคอนแจ้งเตือน Android แบบขาวดำที่ออกแบบจริง (ตอนนี้เป็นประกายชั่วคราว)
+- [ ] Launch screen ทั้งสองแพลตฟอร์ม (ตอนนี้ใช้ค่า default เปล่า)
 - [ ] `PrivacyInfo.xcprivacy` (Required Reason APIs เช่น UserDefaults, file timestamps, disk space)
 - [ ] Info.plist: ข้อความขอสิทธิ์ Photos ให้ครบ/สุภาพ; Android: ข้อความอธิบาย ACCESS_MEDIA_LOCATION
 - [ ] Localization ภาษาไทย (ตอนนี้ UI เป็นภาษาอังกฤษทั้งหมด)

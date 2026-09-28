@@ -163,6 +163,20 @@ adb logcat -d -v raw -s ThaiOcrSpike
 
 ---
 
+## 4.5 ไอคอนแอป
+
+ไอคอนทั้งหมดสร้างจาก `icons/source/KeepSpace_icon_source_1254.png` ด้วยสคริปต์เดียว (ต้องมี Pillow):
+```bash
+python3 icons/build_icons.py
+```
+สคริปต์เขียนตรงเข้า `ios/.../AppIcon.appiconset`, `android/app/src/main/res/mipmap-*` และ `icons/build/ic_launcher-playstore.png`
+(เหตุผลที่ไม่ใช้ไฟล์ export ตรง ๆ: ต้นฉบับมีพื้นหลังดำทึบ — ดู `icons/README.md`) ถ้าเปลี่ยนภาพต้นฉบับ ให้รันสคริปต์แล้ว commit ไฟล์ที่เปลี่ยน
+
+- launcher ของ Android แคชไอคอนเก่า: หลังติดตั้งใหม่ถ้ายังเห็นไอคอนเดิม ให้ `adb shell am force-stop com.google.android.apps.nexuslauncher` แล้วกด Home
+- iOS simulator: ติดตั้งใหม่ (uninstall → install) จึงจะเห็นไอคอนใหม่
+
+---
+
 ## 5. ข้อมูลทดสอบ (รูป/วิดีโอ)
 
 - รูปทดสอบ OCR ไทย/ใบเสร็จอยู่ใน git: `android/app/src/androidTest/assets/ocr/` (screenshot ไทย, สลิป, ใบเสร็จกระดาษ)
