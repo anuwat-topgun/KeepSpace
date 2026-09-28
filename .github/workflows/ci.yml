@@ -45,5 +45,14 @@ jobs:
         run: brew install xcodegen
       - name: Generate project
         run: xcodegen
-      - name: Unit tests
-        run: xcodebuild test -project SmartStorage.xcodeproj -scheme SmartStorage -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=latest' CODE_SIGNING_ALLOWED=NO
+      - name: Create and boot an available simulator
+        id: simulator
+        run: |
+          RUNTIME_ID=$(xcrun simctl list runtimes -j | jq -er '[.runtimes[] | select(.isAvailable == true and (.identifier | contains("iOS")))] | last | .identifier')
+          DEVICE_TYPE_ID=$(xcrun simctl list devicetypes -j | jq -er '[.devicetypes[] | select(.name | startswith("iPhone"))] | last | .identifier')
+          UDID=$(xcrun simctl create "KeepSpace CI" "$DEVICE_TYPE_ID" "$RUNTIME_ID")
+          xcrun simctl boot "$UDID"
+          xcrun simctl bootstatus "$UDID" -b
+          echo "udid=$UDID" >> "$GITHUB_OUTPUT"
+      - name: Unit and UI tests
+        run: xcodebuild test -project SmartStorage.xcodeproj -scheme SmartStorage -destination 'platform=iOS Simulator,id=${{ steps.simulator.outputs.udid }}' CODE_SIGNING_ALLOWED=NO
