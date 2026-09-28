@@ -10,6 +10,7 @@ struct RootView: View {
     /// `-demoData YES` shows the mockup data set (screenshots, demos, simulators without photos).
     @State private var library = LibraryStore(demo: UserDefaults.standard.bool(forKey: "demoData"))
     @State private var rules = RuleStore()
+    @State private var weekly = WeeklyCleanReminder()
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
 
     var body: some View {
@@ -28,7 +29,16 @@ struct RootView: View {
         .environment(router)
         .environment(library)
         .environment(rules)
+        .environment(weekly)
         .tint(Palette.accent)
+        // Keep the reminder's text current, and open the Cleanup Plan when a reminder is tapped.
+        .onChange(of: library.phase) { _, phase in
+            if phase == .ready, !library.isDemo {
+                Task { await weekly.recordScan(potentialBytes: library.content.storage.potentialCleanupBytes) }
+            }
+        }
+        .task { await weekly.refreshPermission(); openFromNotificationIfPending() }
+        .onReceive(NotificationCenter.default.publisher(for: .openFromNotification)) { _ in openFromNotificationIfPending() }
         #if DEBUG
         .task { router.applyDebugLaunchArguments() }
         #endif
@@ -43,6 +53,14 @@ struct RootView: View {
             }
             .environment(library)
         }
+    }
+
+    private func openFromNotificationIfPending() {
+        guard NotificationTarget.pending == NotificationTarget.cleanupPlan else { return }
+        NotificationTarget.pending = nil
+        router.selectedTab = .clean
+        router.popToRoot(.clean)
+        router.push(.cleanupPlan)
     }
 
     private var showsOnboarding: Binding<Bool> {
@@ -155,6 +173,7 @@ struct RouteDestination: View {
         case .memories: MemoriesView()
         case .memory(let id): MemoryDetailView(memoryID: id)
         case .photoAccess: PhotoAccessView()
+        case .notifications: NotificationsView()
         case .privacy: PrivacyView()
         case .about: AboutView()
         case .review(let kind): ReviewView(source: .kind(kind))

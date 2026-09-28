@@ -17,6 +17,9 @@ import androidx.compose.material.icons.rounded.VerifiedUser
 import androidx.compose.material.icons.rounded.WorkspacePremium
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import com.smartstorage.cleaner.media.LocalWeeklyReminder
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.smartstorage.cleaner.ui.components.CardRow
@@ -65,7 +68,9 @@ fun SettingsScreen(onOpen: (Screen) -> Unit) {
             LibraryAccess.NotDetermined -> "Not set"
         }
         CardRow(Icons.Rounded.Photo, "Photo Access", tint = Tint.Coral, subtitle = accessText) { onOpen(Screen.PhotoAccess) }
-        CardRow(Icons.Rounded.Notifications, "Notifications", tint = Tint.Purple, subtitle = "Weekly Smart Clean")
+        val weekly by LocalWeeklyReminder.current.state.collectAsState()
+        CardRow(Icons.Rounded.Notifications, "Notifications", tint = Tint.Purple,
+            subtitle = if (weekly.enabled) "Weekly Smart Clean · On" else "Weekly Smart Clean · Off") { onOpen(Screen.Notifications) }
         CardRow(Icons.Rounded.WorkspacePremium, "Subscription", tint = Tint.Mint, subtitle = "KeepSpace Pro")
         CardRow(Icons.Rounded.VerifiedUser, "Privacy & Security", tint = Tint.Blue) { onOpen(Screen.Privacy) }
         CardRow(Icons.Rounded.Info, "About", tint = Tint.Gray) { onOpen(Screen.About) }

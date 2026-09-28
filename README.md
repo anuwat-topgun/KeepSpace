@@ -149,6 +149,21 @@ assets and iCloud-only originals; Android streams the MediaStore file.
 - Extra copies are removed from Similar, Blurry, Old Screenshots, Expired, recordings and memories so their space
   is never counted twice.
 
+### Weekly Smart Clean (reminder)
+
+Opt-in (Settings → Notifications): a weekly local notification at a chosen day and time (default Sunday 10:00)
+whose text comes from the last completed scan — "About 2.3 GB can be cleaned up. Review the safest items first."
+Below 50 MB it says the library looks tidy; with no scan yet, or one older than 30 days, it quotes no number.
+Tapping it opens the Cleanup Plan from wherever the app was.
+
+- iOS: `UNCalendarNotificationTrigger` (repeating); the pending request is rewritten after every completed scan so
+  it quotes the latest result. Permission is asked when the switch is turned on.
+- Android: WorkManager periodic work (7 days, first run delayed to the next slot, survives reboots); the worker reads
+  the latest scan result when it fires. `POST_NOTIFICATIONS` (Android 13+) is asked when the switch is turned on.
+- There is **no silent background scan** — the screen says so. Everything stays on the device; the notification never
+  names files or people.
+- Pure logic (`WeeklyCleanSchedule.nextFire`, `WeeklyCleanMessage.body`) is unit-tested on both platforms.
+
 ### Safety Score
 
 Every suggestion has a `SafetyLevel` from its review set: **Very safe** (exact duplicates, 100), **Safe** (extra

@@ -5,6 +5,7 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(AppRouter.self) private var router
     @Environment(LibraryStore.self) private var library
+    @Environment(WeeklyCleanReminder.self) private var weekly
 
     private var accessText: String {
         switch library.access {
@@ -27,7 +28,7 @@ struct SettingsView: View {
             row(.storageRules, icon: "arrow.triangle.branch", tint: .teal, subtitle: "Automatic filing")
 
             row(.photoAccess, icon: "photo.fill", tint: .coral, subtitle: accessText)
-            CardRow(systemImage: "bell.fill", tint: .purple, title: "Notifications", subtitle: "Weekly Smart Clean")
+            row(.notifications, icon: "bell.fill", tint: .purple, subtitle: weekly.isEnabled ? "Weekly Smart Clean · On" : "Weekly Smart Clean · Off")
             CardRow(systemImage: "crown.fill", tint: .mint, title: "Subscription", subtitle: "KeepSpace Pro")
             row(.privacy, icon: "checkmark.shield.fill", tint: .blue, subtitle: nil)
             row(.about, icon: "info.circle.fill", tint: .gray, subtitle: nil)

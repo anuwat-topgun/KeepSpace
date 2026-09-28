@@ -6,5 +6,6 @@ extension View {
         environment(AppRouter())
             .environment(LibraryStore(demo: true))
             .environment(RuleStore(defaults: UserDefaults(suiteName: "preview") ?? .standard))
+            .environment(WeeklyCleanReminder(defaults: UserDefaults(suiteName: "preview") ?? .standard))
     }
 }

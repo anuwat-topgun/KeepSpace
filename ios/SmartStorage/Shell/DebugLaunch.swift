@@ -25,6 +25,7 @@ private extension Route {
         case "videos": self = .videos
         case "memories": self = .memories
         case "photoAccess": self = .photoAccess
+        case "notifications": self = .notifications
         case "privacy": self = .privacy
         case "about": self = .about
         case "memory": self = .memory(id: parts.count > 1 ? parts[1] : "Tokyo Trip")

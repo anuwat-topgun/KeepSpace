@@ -17,6 +17,7 @@ import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteDefaul
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -42,6 +43,7 @@ import com.smartstorage.cleaner.ui.feature.library.SimilarPhotosScreen
 import com.smartstorage.cleaner.ui.feature.library.VideosScreen
 import com.smartstorage.cleaner.ui.feature.placeholder.PlaceholderScreen
 import com.smartstorage.cleaner.ui.feature.settings.AboutScreen
+import com.smartstorage.cleaner.ui.feature.settings.NotificationsScreen
 import com.smartstorage.cleaner.ui.feature.settings.PhotoAccessScreen
 import com.smartstorage.cleaner.ui.feature.settings.PrivacyScreen
 import com.smartstorage.cleaner.ui.feature.settings.SettingsScreen
@@ -54,7 +56,7 @@ import com.smartstorage.cleaner.ui.theme.SmartTheme
  * - expanded width (tablets, desktop windows) → permanent sidebar drawer
  */
 @Composable
-fun AppShell() {
+fun AppShell(openCleanupPlanRequest: Int = 0) {
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentTab = AppTab.entries.firstOrNull { tab ->
@@ -67,6 +69,15 @@ fun AppShell() {
         sizeClass.windowHeightSizeClass == WindowHeightSizeClass.COMPACT -> NavigationSuiteType.NavigationRail
         sizeClass.windowWidthSizeClass == WindowWidthSizeClass.EXPANDED -> NavigationSuiteType.NavigationDrawer
         else -> NavigationSuiteType.NavigationRail
+    }
+
+    // A tapped Weekly Smart Clean reminder opens the Cleanup Plan, from wherever the app was.
+    LaunchedEffect(openCleanupPlanRequest) {
+        if (openCleanupPlanRequest > 0) {
+            navController.selectTab(AppTab.Clean, currentTab)
+            navController.popBackStack(AppTab.Clean.rootRoute, inclusive = false)
+            navController.navigate(AppTab.Clean.screenRoute(Screen.CleanupPlan))
+        }
     }
 
     val colors = SmartTheme.colors
@@ -139,6 +150,7 @@ private fun AppNavHost(navController: NavHostController) {
                         Screen.NewRule -> RuleEditorScreen(ruleId = null, onDone = back)
                         Screen.Receipts -> ReceiptsScreen(onOpen = { navController.navigate(tab.receiptRoute(it)) }, onBack = back)
                         Screen.PhotoAccess -> PhotoAccessScreen(onBack = back)
+                        Screen.Notifications -> NotificationsScreen(onBack = back)
                         Screen.Privacy -> PrivacyScreen(onBack = back)
                         Screen.About -> AboutScreen(onBack = back)
                         Screen.Videos -> VideosScreen(onReview = review, onBack = back)

@@ -38,6 +38,7 @@ enum Route: Hashable, Sendable {
     case memories
     case memory(id: String)
     case photoAccess
+    case notifications
     case privacy
     case about
     case review(ReviewKind)
@@ -64,6 +65,7 @@ enum Route: Hashable, Sendable {
         case .memories: "Memories"
         case .memory: "Memory"
         case .photoAccess: "Photo Access"
+        case .notifications: "Notifications"
         case .privacy: "Privacy & Security"
         case .about: "About"
         case .review(let kind): kind.title

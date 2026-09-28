@@ -12,8 +12,8 @@
 
 | แพลตฟอร์ม | Unit tests | สถานะ | ทดสอบบนอุปกรณ์ |
 |---|---|---|---|
-| iOS (SwiftUI, iOS 17+) | 67 tests / 23 suites (Swift Testing) | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator |
-| Android (Compose, API 26+) | 66 tests (JUnit, JVM) + Thai OCR spike (instrumented) | ✅ ผ่านทั้งหมด | `keepspace_tablet` emulator (Pixel Tablet, API 36) |
+| iOS (SwiftUI, iOS 17+) | 70 tests / 24 suites (Swift Testing) | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator |
+| Android (Compose, API 26+) | 68 tests (JUnit, JVM) + Thai OCR spike (instrumented) | ✅ ผ่านทั้งหมด | `keepspace_tablet` emulator (Pixel Tablet, API 36) |
 
 คำสั่งรันเทส: ดู `runbook.md` หัวข้อ 4
 
@@ -48,7 +48,8 @@
 | Feature (สเปก §5.2) | iOS | Android | หมายเหตุ |
 |---|---|---|---|
 | Storage Analysis (Home dashboard) | ✅ | ✅ | พื้นที่เครื่องจริง + ขนาดตามหมวด |
-| Settings: Photo Access / Privacy & Security / About | ✅ | ✅ | ล้าง cache การวิเคราะห์ได้; Notifications และ Subscription ยังเป็นแถวเปล่า |
+| Settings: Photo Access / Privacy & Security / About | ✅ | ✅ | ล้าง cache การวิเคราะห์ได้; Subscription ยังเป็นแถวเปล่า |
+| Weekly Smart Clean (เตือนรายสัปดาห์) | ✅ | ✅ | opt-in, ข้อความจากผลสแกนล่าสุด, ไม่สแกนเบื้องหลัง |
 | Safety Score | ✅ | ✅ | ระดับ + คะแนนถ่วงน้ำหนัก, แผนเรียงจากปลอดภัยที่สุดก่อน |
 | Exact Duplicate Detection | ✅ | ✅ | hash เฉพาะไฟล์ขนาดชนกัน, เก็บรายการโปรด/เก่าสุด, อยู่อันดับแรกใน Cleanup Plan |
 | Similar Photo Groups | ✅ | ✅ | iOS: Vision feature print · Android: dHash — iOS ต้องยืนยันความแม่นบนเครื่องจริง |
@@ -91,12 +92,13 @@
 - ระดับ Very safe / Safe / Review first ตามชนิดของรายการ, คะแนนถ่วงน้ำหนักตามขนาด (0–100) พร้อมคำอธิบายบรรทัดเดียว, ป้ายในแต่ละแถวของ Cleanup Plan และหน้า Review, แผนเรียงจากปลอดภัยที่สุดก่อน
 - ทดสอบ: unit tests ทั้งสองแพลตฟอร์ม + emulator (คะแนน 89/100)
 
-#### 🟡 Weekly Smart Clean
-มีปุ่ม "Run Weekly Smart Clean" และแถว Notifications ใน Settings แต่ยังไม่มีระบบจริง
-- [ ] Local notification รายสัปดาห์ (iOS `UNUserNotificationCenter` · Android `WorkManager` + notification permission API 33+)
-- [ ] สแกนเบื้องหลังแบบเบา (iOS `BGProcessingTask` · Android `WorkManager` constraints: charging/idle)
-- [ ] สรุป "สัปดาห์นี้เพิ่ม X รูป, ลบได้ Y GB" → เปิดแอปไปหน้า Cleanup Plan
-- [ ] หน้า Settings > Notifications (เปิด/ปิด, เลือกวัน/เวลา)
+#### ✅ Weekly Smart Clean — เสร็จแล้ว (แบบเตือนจากผลสแกนล่าสุด)
+- เปิดเอง (opt-in) ที่ Settings → Notifications: เลือกวัน/เวลา, ขอสิทธิ์แจ้งเตือนตอนเปิดสวิตช์, ปุ่มส่งการแจ้งเตือนทดสอบ, แตะแล้วเปิด Cleanup Plan
+- iOS: repeating calendar notification เขียนใหม่หลังสแกนเสร็จทุกครั้ง · Android: WorkManager รายสัปดาห์ อ่านผลสแกนล่าสุดตอนยิง
+- ทดสอบ: unit tests (คำนวณช่วงเวลา, ข้อความ) ทั้งสองแพลตฟอร์ม + emulator (สวิตช์ → dialog สิทธิ์ → job ตั้งเวลาถูก 5 วัน 20 ชม. ก่อนวันอาทิตย์ 10:00 → ส่งทดสอบ → แตะแล้วเปิด Cleanup Plan) · iOS ดูหน้าจอบน simulator + unit tests (ยังไม่ได้ยืนยันการยิงแจ้งเตือนจริงบน iOS)
+- [ ] **ยังไม่ทำ (ตั้งใจ):** สแกนเบื้องหลังจริง (iOS `BGProcessingTask` / Android worker สแกนเอง) — ตัวเลขในการแจ้งเตือนจึงเท่ากับตอนที่เปิดแอปครั้งล่าสุด; ต้องวัดแบตเตอรี่/ความน่าเชื่อถือบนเครื่องจริงก่อนตัดสินใจ
+- [ ] ยืนยันบน iPhone จริง: การยิงแจ้งเตือนตามเวลา, ข้อความหลังสแกน, การแตะเปิด Cleanup Plan (cold launch)
+- [ ] ไอคอนแอปยังไม่มี — Android ใช้ไอคอนแจ้งเตือนชั่วคราว (`ic_stat_keepspace`)
 
 #### ⬜ Personalized AI Taste
 - [ ] เก็บสัญญาณในเครื่อง: รูปที่ผู้ใช้เก็บ/ลบใน Best Shot และ Review (ไม่ส่งออกนอกเครื่อง)
@@ -107,7 +109,7 @@
 - [x] Photo Access: สถานะ (Full/Limited/Off), ปุ่มขอสิทธิ์ / เลือกรูปเพิ่ม / เปิดหน้า Settings ของระบบ
 - [x] Privacy & Security: อธิบายว่าอะไรอยู่ในเครื่อง + ปุ่มล้าง cache การวิเคราะห์ (มี dialog ยืนยัน, สแกนใหม่ทันที)
 - [x] About: เวอร์ชัน + ไลเซนส์ open-source (Android)
-- [ ] Notifications (ผูกกับ Weekly Smart Clean)
+- [x] Notifications: Weekly Smart Clean (ดูด้านบน)
 - [ ] Subscription (ดูข้อ 3.5)
 - [ ] About: ลิงก์ privacy policy / terms (ยังไม่มี URL — ต้องเขียนเอกสารก่อน, ดูข้อ 3.7)
 - [ ] Privacy & Security: ปุ่มล้างข้อมูลใบเสร็จที่บันทึกไว้ (ตอนนี้ปุ่มล้าง cache ครอบคลุมทั้งหมดที่ derive จากคลังรูปแล้ว; กฎ Storage Rules ยังเก็บแยก)
@@ -194,7 +196,7 @@
 
 ## 4. ลำดับที่แนะนำ
 
-1. ทดสอบบนเครื่องจริง + ปิดช่องโหว่ v1.0 (Weekly Smart Clean, Notifications/Subscription, app icon, privacy manifest, ความเสี่ยง `fileSize`) → พร้อมปล่อย v1.0 ตามสเปก §12
+1. ทดสอบบนเครื่องจริง + ปิดช่องโหว่ v1.0 (Subscription, app icon, privacy manifest, ความเสี่ยง `fileSize`) → พร้อมปล่อย v1.0 ตามสเปก §12
 2. สร้าง OAuth clients (ข้อ 3.2) → v1.1 manual backup
 3. เชื่อม rules เข้ากับ upload queue → v1.2 ครบ
 4. Verification + safe delete → v1.3 ครบ

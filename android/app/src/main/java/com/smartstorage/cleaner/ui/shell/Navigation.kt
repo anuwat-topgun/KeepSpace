@@ -51,6 +51,7 @@ enum class Screen(val title: String) {
     Videos("Videos"),
     Memories("Memories"),
     PhotoAccess("Photo Access"),
+    Notifications("Notifications"),
     Privacy("Privacy & Security"),
     About("About"),
     // v1.1
