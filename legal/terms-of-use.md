@@ -43,4 +43,4 @@ For the iOS app, these terms are between you and the KeepSpace developer, not Ap
 
 ## Contact
 
-Questions can be submitted through the public [KeepSpace support tracker](https://github.com/anuwat-topgun/KeepSpace/issues/new). Do not post sensitive or personal information in a public issue.
+Questions can be submitted through the [KeepSpace support page](https://keepspace.itston.com/support/). Do not post sensitive or personal information in a public issue.

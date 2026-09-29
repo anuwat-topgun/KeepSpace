@@ -130,7 +130,7 @@
 - [x] About: เวอร์ชัน + ไลเซนส์ open-source (Android)
 - [x] Notifications: Weekly Smart Clean (ดูด้านบน)
 - [ ] Subscription (ดูข้อ 3.5)
-- [x] About: ลิงก์ privacy policy / terms แบบ public (`legal/` บน GitHub)
+- [x] About: ลิงก์ privacy policy / terms แบบ public บน `https://keepspace.itston.com/`
 - [ ] Privacy & Security: ปุ่มล้างข้อมูลใบเสร็จที่บันทึกไว้ (ตอนนี้ปุ่มล้าง cache ครอบคลุมทั้งหมดที่ derive จากคลังรูปแล้ว; กฎ Storage Rules ยังเก็บแยก)
 
 #### 🟡 Memories — ต่อยอด
@@ -153,6 +153,7 @@
 - [x] privacy/terms/store copy/review notes/release checklist อัปเดตสำหรับ v1.1; version `1.1.0 (2)`
 
 Release gates ที่ต้องใช้เจ้าของบัญชี/เครื่องจริง (รายละเอียด `store/CLOUD_SETUP.md`):
+- [x] Production website: Home, Privacy, Terms, Support และ health check เปิดผ่าน `https://keepspace.itston.com/`
 - [ ] Google Cloud: เปิด Drive API, ทำ consent screen, iOS client ID, Android clients สำหรับ debug/release/Play SHA-1, app ownership/verification
 - [x] Microsoft Entra: app registration personal+work, public client, redirect URIs, scope `Files.ReadWrite.AppFolder`; ฝัง public client ID ใน build defaults และยัง override ผ่าน environment ได้
 - [ ] Microsoft publisher verification: เพิ่ม custom domain ที่ยืนยัน DNS แล้วและเชื่อม Microsoft Partner Center; ตอนนี้ Entra แสดง Unverified publisher และเตือนว่าผู้ใช้ทั่วไปยัง consent ให้แอป multitenant ใหม่ไม่ได้

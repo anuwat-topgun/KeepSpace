@@ -50,4 +50,4 @@ If a future version changes how information is handled, we will update this poli
 
 ## Contact
 
-Privacy questions can be submitted through the public [KeepSpace support tracker](https://github.com/anuwat-topgun/KeepSpace/issues/new). Do not include private photos, recognized text, precise locations, credentials, or other sensitive information in a public issue.
+Privacy questions can be submitted through the [KeepSpace support page](https://keepspace.itston.com/support/). Do not include private photos, recognized text, precise locations, credentials, or other sensitive information in a public issue.

@@ -13,7 +13,7 @@ These answers describe the code in this repository at version 1.1, including opt
   - **Contact Info → Email Address** — App Functionality; optional; used by the connected provider for OAuth/account display.
   - **Identifiers → User ID** — App Functionality; optional; used by the connected provider to authorize the user's cloud account.
 - **Data not linked to you:** None.
-- **Privacy Policy URL:** `https://github.com/anuwat-topgun/KeepSpace/blob/main/legal/privacy-policy.md`
+- **Privacy Policy URL:** `https://keepspace.itston.com/privacy/`
 
 Reasoning: KeepSpace does not receive data and has no backend, and AI data remains on-device. However, Apple's privacy-label guidance says to disclose the specific media type when an app enables uploads. These conservative answers cover the optional OAuth connection and user-initiated image upload even though the developer cannot access the provider account. Do not declare precise location, OCR text, face data, analytics, advertising, or tracking because none leaves the device through KeepSpace.
 
