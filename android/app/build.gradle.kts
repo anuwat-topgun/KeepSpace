@@ -12,7 +12,8 @@ val hasReleaseSigning = listOf(
     releaseKeyPassword,
 ).all { !it.isNullOrBlank() }
 val microsoftOAuthClientId = providers.gradleProperty("KEEP_SPACE_MICROSOFT_CLIENT_ID")
-    .orElse(providers.environmentVariable("KEEP_SPACE_MICROSOFT_CLIENT_ID")).orElse("")
+    .orElse(providers.environmentVariable("KEEP_SPACE_MICROSOFT_CLIENT_ID"))
+    .orElse("3f3a9ce1-efd8-4c61-bd72-5fcce0aa47f6")
 
 plugins {
     alias(libs.plugins.android.application)

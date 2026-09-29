@@ -232,7 +232,7 @@ class CloudStore(context: Context) {
     )
 
     companion object {
-        val REDIRECT_URI: Uri = Uri.parse("keepspace:/oauth2redirect")
+        val REDIRECT_URI: Uri = Uri.parse("keepspace://oauth2redirect")
         const val WORK_NAME = "cloud-backup"
         private const val KEY_STATE = "state"
         private const val GOOGLE_TOKEN_KEY = "google.accessToken"

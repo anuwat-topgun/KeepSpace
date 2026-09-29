@@ -13,10 +13,11 @@ The app contains no OAuth client secret and no KeepSpace backend. Client IDs are
 ## Microsoft OneDrive
 
 1. Create one Microsoft Entra app registration that supports personal Microsoft accounts and work/school accounts.
-2. Enable public client flows and delegated scopes `openid`, `profile`, `email`, `offline_access`, and `Files.ReadWrite.AppFolder`.
-3. Register iOS redirect URI `msauth.com.keepspace.app://auth`. Set `KEEP_SPACE_MICROSOFT_CLIENT_ID` in the iOS release build settings.
-4. For the current standards-based Android PKCE flow, add the mobile/desktop custom redirect `keepspace:/oauth2redirect`. Set Gradle property or environment variable `KEEP_SPACE_MICROSOFT_CLIENT_ID` for the release build.
-5. Do not add a client secret. KeepSpace is a public native client.
+2. The production registration is `KeepSpace OneDrive Production`, client ID `3f3a9ce1-efd8-4c61-bd72-5fcce0aa47f6`. It supports organizational directories plus personal Microsoft accounts, enables public client flows, and has delegated Microsoft Graph permission `Files.ReadWrite.AppFolder` (along with the OpenID scopes requested at authorization time).
+3. The iOS redirect URI is `msauth.com.keepspace.app://auth`. The public client ID is checked into the iOS build settings and may be overridden with `KEEP_SPACE_MICROSOFT_CLIENT_ID`.
+4. The Android PKCE redirect is `keepspace://oauth2redirect`. The same public client ID is the Gradle default and may be overridden by Gradle property or environment variable `KEEP_SPACE_MICROSOFT_CLIENT_ID`.
+5. Complete Microsoft publisher verification before public release. The Entra portal currently marks the registration as an unverified publisher and warns that end users cannot consent to newly registered multitenant apps until the publisher is verified. This requires a verified custom domain and the corresponding Microsoft Partner Center publisher identity.
+6. Do not add a client secret. KeepSpace is a public native client.
 
 ## Build examples
 

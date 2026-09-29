@@ -154,7 +154,8 @@
 
 Release gates ที่ต้องใช้เจ้าของบัญชี/เครื่องจริง (รายละเอียด `store/CLOUD_SETUP.md`):
 - [ ] Google Cloud: เปิด Drive API, ทำ consent screen, iOS client ID, Android clients สำหรับ debug/release/Play SHA-1, app ownership/verification
-- [ ] Microsoft Entra: app registration personal+work, public client, redirect URIs, scopes; ใส่ client ID ผ่าน build environment
+- [x] Microsoft Entra: app registration personal+work, public client, redirect URIs, scope `Files.ReadWrite.AppFolder`; ฝัง public client ID ใน build defaults และยัง override ผ่าน environment ได้
+- [ ] Microsoft publisher verification: เพิ่ม custom domain ที่ยืนยัน DNS แล้วและเชื่อม Microsoft Partner Center; ตอนนี้ Entra แสดง Unverified publisher และเตือนว่าผู้ใช้ทั่วไปยัง consent ให้แอป multitenant ใหม่ไม่ได้
 - [ ] ทดสอบ connect/upload/refresh/revoke จริงทั้ง 2 providers บน iOS/Android production-signed build; quota/offline/kill-resume/Wi-Fi-only
 - [ ] Android Google token มีอายุประมาณ 1 ชม.; หากคิวข้ามอายุ แอปแจ้งให้ reconnect แล้ว retry (แนวทางทางการไม่แนะนำเก็บ refresh token บนอุปกรณ์)
 - [ ] iOS ทำงานต่อเมื่อแอปกลับ active; ถ้าต้องการอัปโหลดต่อขณะถูก suspend เป็นเวลานาน ให้ย้าย data PUT ไป background `URLSession` หลังวัดบนเครื่องจริง
