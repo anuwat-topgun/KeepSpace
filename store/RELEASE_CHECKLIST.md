@@ -15,14 +15,15 @@ Repository release baseline updated September 28, 2026.
 
 ## Required owner/account actions
 
-- [ ] Create and securely back up an Android upload keystore. Do not commit it. Build with `KEYSTORE_FILE`, `KEYSTORE_PASSWORD`, `KEY_ALIAS`, and `KEY_PASSWORD` environment variables.
+- [x] Create the Android upload keystore outside the repo and store its passwords in macOS Keychain. A signed release AAB was built and its upload certificate SHA-1 verified on September 29, 2026.
+- [ ] Securely back up the upload keystore and recovery details somewhere independent of this Mac before uploading the first Play build.
 - [ ] Register/enroll the App Store distribution certificate and provisioning through the Apple Developer account; archive and upload build 1 to TestFlight.
 - [ ] Enable Play App Signing and upload the signed `app-release.aab` to an internal testing track.
 - [ ] Accept current Apple agreements, tax/banking details if applicable, age rating, export-compliance answer, content rights, and availability.
 - [ ] Complete Google Play app access, ads, content rating, target audience, news, health, financial-features, government-app, and data-safety forms.
 - [ ] Enter the privacy/support URLs and listing copy from this directory.
 - [ ] Upload final screenshots: at least one required iPhone size plus iPad because the binary supports iPad; phone and tablet assets for Google Play.
-- [ ] Complete `store/CLOUD_SETUP.md`: Google Android upload/release and Play App Signing clients, provider consent/branding, least-privilege scopes, and production-client physical-device validation. Microsoft, Google iOS, and Google Android debug clients are configured.
+- [ ] Complete `store/CLOUD_SETUP.md`: Google Play App Signing client, app-ownership verification, and production-client physical-device validation. Microsoft, Google iOS, and Google Android debug/release clients are configured.
 - [ ] Put temporary Google/Microsoft reviewer credentials in the private Store review field; never commit passwords or tokens.
 
 ## Physical-device release gates

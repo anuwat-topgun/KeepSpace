@@ -154,7 +154,7 @@
 
 Release gates ที่ต้องใช้เจ้าของบัญชี/เครื่องจริง (รายละเอียด `store/CLOUD_SETUP.md`):
 - [x] Production website: Home, Privacy, Terms, Support และ health check เปิดผ่าน `https://keepspace.itston.com/`
-- [ ] Google Cloud: consent screen อยู่ In production, iOS client และ Android debug client สร้างแล้ว; ยังเหลือ Android upload/release + Play App Signing SHA-1, app ownership/verification และทดสอบ Drive API บนเครื่องจริง
+- [ ] Google Cloud: consent screen อยู่ In production, iOS client และ Android debug/release clients สร้างแล้ว; ยังเหลือ Play App Signing SHA-1, app ownership/verification และทดสอบ Drive API บนเครื่องจริง
 - [x] Microsoft Entra: app registration รองรับเฉพาะ Personal Microsoft accounts, public client, redirect URIs, scope `Files.ReadWrite.AppFolder`; ฝัง public client ID ใน build defaults และยัง override ผ่าน environment ได้
 - [x] OneDrive personal-only hardening: Entra audience เป็น Personal Microsoft accounts และ iOS/Android ใช้ OAuth authority `consumers`; Microsoft Partner Center publisher verification ไม่เป็น release gate จนกว่าจะเพิ่มบัญชีองค์กร
 - [ ] ทดสอบ connect/upload/refresh/revoke จริงทั้ง 2 providers บน iOS/Android production-signed build; quota/offline/kill-resume/Wi-Fi-only
