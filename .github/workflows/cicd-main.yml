@@ -1,0 +1,85 @@
+name: CI/CD PROD
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "webapps/**"
+      - ".github/workflows/cicd-main.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: keepspace-web-production
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build Docker Image
+    # GitHub-hosted. Nothing in this build needs the VPC: it checks the code out,
+    # builds an image and pushes it to ECR over the public endpoint with the keys in
+    # secrets. Note that ECR must therefore be reachable from outside the VPC — a
+    # registry locked to a VPC endpoint or an IP allowlist will refuse this runner.
+    runs-on: ubuntu-latest
+    outputs:
+      image:    ${{ steps.set-env.outputs.image }}
+      date_tag: ${{ steps.set-env.outputs.date_tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id:     ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ap-southeast-1
+
+      - name: Login to ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      # Lets an x86 runner produce the arm64 half. Drop both of these only if you add a
+      # native arm64 runner and build the two halves separately.
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Set Image Variables
+        id: set-env
+        shell: bash
+        run: |
+          set -euo pipefail
+          REPO="526905974500.dkr.ecr.ap-southeast-1.amazonaws.com/keepspace"
+          echo "image=$REPO:latest" >> "$GITHUB_OUTPUT"
+          echo "date_tag=$REPO:$(date -u +%Y%m%d.%H%M%S)" >> "$GITHUB_OUTPUT"
+
+      # One build, both architectures, pushed straight to ECR.
+      #
+      # The cache matters here because a hosted runner starts cold every time.
+      #
+      # `docker build` produced whatever the runner itself is, which is how an image
+      # that runs on an x86 instance fails to start on Graviton. A multi-platform build
+      # cannot be loaded into the local daemon — the manifest list only exists in the
+      # registry — so both tags are given here rather than tagged and pushed afterwards.
+      - name: Build and push
+        run: |
+          docker buildx build \
+            --platform linux/amd64,linux/arm64 \
+            -t ${{ steps.set-env.outputs.image }} \
+            -t ${{ steps.set-env.outputs.date_tag }} \
+            -f ./webapps/Dockerfile \
+            --provenance=false \
+            --cache-from type=gha \
+            --cache-to type=gha,mode=max \
+            --push ./webapps
+
+      - name: Show what was published
+        run: docker buildx imagetools inspect ${{ steps.set-env.outputs.image }}
