@@ -9,7 +9,7 @@ settings:
     SWIFT_VERSION: "6.0"
     MARKETING_VERSION: "1.1.0"
     CURRENT_PROJECT_VERSION: "2"
-    KEEP_SPACE_GOOGLE_CLIENT_ID: ""
+    KEEP_SPACE_GOOGLE_CLIENT_ID: "704189605605-aaosn5etn4m6peil1dttaffdb0c20jtk.apps.googleusercontent.com"
     KEEP_SPACE_MICROSOFT_CLIENT_ID: ""
 targets:
   SmartStorage:

@@ -4,9 +4,9 @@ The app contains no OAuth client secret and no KeepSpace backend. Client IDs are
 
 ## Google Drive
 
-1. Create a Google Cloud project, enable Google Drive API, and complete Branding/Audience/Data Access for an external production app.
+1. Use the Google Cloud project `keepspace-production`, enable Google Drive API, and complete Branding/Audience/Data Access for an external production app.
 2. Add the public privacy and terms URLs from `store/ios/en-US/` and request only `openid`, `email`, `profile`, and `https://www.googleapis.com/auth/drive.file`.
-3. Create an iOS OAuth client for bundle `com.keepspace.app`. Register `com.keepspace.app:/oauth2redirect` for the native authorization flow and set the iOS build setting `KEEP_SPACE_GOOGLE_CLIENT_ID` to its client ID.
+3. The iOS OAuth client `KeepSpace iOS Production` is registered for bundle `com.keepspace.app`. The checked-in iOS build setting `KEEP_SPACE_GOOGLE_CLIENT_ID` contains its public client ID and the native authorization flow redirects to `com.keepspace.app:/oauth2redirect`.
 4. Create separate Android OAuth clients for package `com.keepspace.app` and each SHA-1 that can sign the app: debug, upload/release, and Google Play App Signing. Android uses Google Identity `AuthorizationClient`; no Android client ID is embedded in the APK.
 5. Publish/verify the consent screen and, after the Play listing exists, verify Android app ownership.
 
