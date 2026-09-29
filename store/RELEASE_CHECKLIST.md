@@ -22,7 +22,7 @@ Repository release baseline updated September 28, 2026.
 - [ ] Complete Google Play app access, ads, content rating, target audience, news, health, financial-features, government-app, and data-safety forms.
 - [ ] Enter the privacy/support URLs and listing copy from this directory.
 - [ ] Upload final screenshots: at least one required iPhone size plus iPad because the binary supports iPad; phone and tablet assets for Google Play.
-- [ ] Complete `store/CLOUD_SETUP.md`: Google Android clients and SHA-1/signature hashes, provider consent/branding, least-privilege scopes, and production-client physical-device validation. Microsoft and Google iOS production clients are configured.
+- [ ] Complete `store/CLOUD_SETUP.md`: Google Android upload/release and Play App Signing clients, provider consent/branding, least-privilege scopes, and production-client physical-device validation. Microsoft, Google iOS, and Google Android debug clients are configured.
 - [ ] Put temporary Google/Microsoft reviewer credentials in the private Store review field; never commit passwords or tokens.
 
 ## Physical-device release gates
