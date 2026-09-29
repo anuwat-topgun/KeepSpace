@@ -4,6 +4,13 @@ import Testing
 
 @Suite("Cloud backup state")
 struct CloudBackupTests {
+    @Test func oneDriveUsesPersonalMicrosoftAccountAuthority() {
+        let endpoints = CloudConfiguration.endpoints(for: .oneDrive)
+        #expect(endpoints.authorize.host == "login.microsoftonline.com")
+        #expect(endpoints.authorize.path.hasPrefix("/consumers/"))
+        #expect(endpoints.token.path.hasPrefix("/consumers/"))
+    }
+
     @Test func queueRoundTripsEveryStatus() throws {
         for status in [CloudUploadStatus.waiting, .uploading, .verifying, .backedUp, .failed, .cancelled] {
             var item = CloudUploadItem(provider: .googleDrive, scope: .screenshots, assetID: "asset-1",

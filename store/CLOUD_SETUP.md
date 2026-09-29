@@ -12,12 +12,12 @@ The app contains no OAuth client secret and no KeepSpace backend. Client IDs are
 
 ## Microsoft OneDrive
 
-1. Create one Microsoft Entra app registration that supports personal Microsoft accounts and work/school accounts.
-2. The production registration is `KeepSpace OneDrive Production`, client ID `3f3a9ce1-efd8-4c61-bd72-5fcce0aa47f6`. It supports organizational directories plus personal Microsoft accounts, enables public client flows, and has delegated Microsoft Graph permission `Files.ReadWrite.AppFolder` (along with the OpenID scopes requested at authorization time).
+1. Use a Microsoft Entra app registration whose supported account type is **Personal Microsoft accounts only**.
+2. The production registration is `KeepSpace OneDrive Production`, client ID `3f3a9ce1-efd8-4c61-bd72-5fcce0aa47f6`. It enables public client flows and has delegated Microsoft Graph permission `Files.ReadWrite.AppFolder` (along with the OpenID scopes requested at authorization time). Both apps use the Microsoft `consumers` authority so work/school accounts cannot sign in.
 3. The iOS redirect URI is `msauth.com.keepspace.app://auth`. The public client ID is checked into the iOS build settings and may be overridden with `KEEP_SPACE_MICROSOFT_CLIENT_ID`.
 4. The Android PKCE redirect is `keepspace://oauth2redirect`. The same public client ID is the Gradle default and may be overridden by Gradle property or environment variable `KEEP_SPACE_MICROSOFT_CLIENT_ID`.
 5. Configure the Microsoft app branding home page as `https://keepspace.itston.com/`, privacy policy as `https://keepspace.itston.com/privacy/`, terms of service as `https://keepspace.itston.com/terms/`, and support page as `https://keepspace.itston.com/support/`.
-6. Complete Microsoft publisher verification before public release. The Entra portal currently marks the registration as an unverified publisher and warns that end users cannot consent to newly registered multitenant apps until the publisher is verified. Verify the parent custom domain `itston.com` in the tenant and connect the corresponding Microsoft Partner Center publisher identity.
+6. The publisher domain is `keepspace.itston.com`. Microsoft Partner Center publisher verification is not a v1.1 release gate because this registration accepts personal Microsoft accounts only; revisit it before adding organizational accounts.
 7. Do not add a client secret. KeepSpace is a public native client.
 
 ## Build examples

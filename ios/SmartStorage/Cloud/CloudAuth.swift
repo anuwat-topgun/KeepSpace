@@ -20,7 +20,7 @@ enum CloudConfiguration {
         case .googleDrive:
             (URL(string: "https://accounts.google.com/o/oauth2/v2/auth")!, URL(string: "https://oauth2.googleapis.com/token")!, URL(string: "https://oauth2.googleapis.com/revoke")!)
         case .oneDrive:
-            (URL(string: "https://login.microsoftonline.com/common/oauth2/v2.0/authorize")!, URL(string: "https://login.microsoftonline.com/common/oauth2/v2.0/token")!, nil)
+            (URL(string: "https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize")!, URL(string: "https://login.microsoftonline.com/consumers/oauth2/v2.0/token")!, nil)
         }
     }
 

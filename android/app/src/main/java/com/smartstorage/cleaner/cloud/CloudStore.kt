@@ -210,8 +210,8 @@ class CloudStore(context: Context) {
             Uri.parse("https://accounts.google.com/o/oauth2/v2/auth"), Uri.parse("https://oauth2.googleapis.com/token"),
             null, Uri.parse("https://oauth2.googleapis.com/revoke"))
         CloudProvider.OneDrive -> AuthorizationServiceConfiguration(
-            Uri.parse("https://login.microsoftonline.com/common/oauth2/v2.0/authorize"),
-            Uri.parse("https://login.microsoftonline.com/common/oauth2/v2.0/token"))
+            Uri.parse("https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize"),
+            Uri.parse("https://login.microsoftonline.com/consumers/oauth2/v2.0/token"))
     }
 
     private fun scopes(provider: CloudProvider) = when (provider) {

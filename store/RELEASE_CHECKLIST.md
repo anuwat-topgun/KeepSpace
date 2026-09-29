@@ -5,8 +5,10 @@ Repository release baseline updated September 28, 2026.
 ## Automated and repository checks
 
 - [x] `cd ios && xcodegen && xcodebuild test -project SmartStorage.xcodeproj -scheme SmartStorage -destination 'platform=iOS Simulator,name=iPhone 17'` — 83 unit tests + 1 UI smoke test passed on September 28, 2026
+- [x] OneDrive personal-account authority regression suite — 3 Cloud Backup tests passed on iPhone 17 simulator on September 29, 2026
 - [ ] iPhone and iPad simulator smoke test, including launch screen, onboarding, limited/full access, dark mode, large text, landscape on iPad, and every primary tab.
 - [x] `cd android && ./gradlew testDebugUnitTest assembleDebugAndroidTest lintRelease bundleRelease` — 76 unit tests, UI-test APK compile, lint, and unsigned release bundle passed on September 28, 2026
+- [x] Android `testDebugUnitTest` passed again after the OneDrive `consumers` authority change on September 29, 2026
 - [ ] Android 16 phone and tablet emulator smoke test, including predictive back, edge-to-edge insets, selected photos, themed icon, and notification permission.
 - [ ] Inspect the iOS archive for `PrivacyInfo.xcprivacy`, launch storyboard, version `1.1.0 (2)`, bundle ID `com.keepspace.app`, OAuth callback URL, and distribution signing.
 - [ ] Inspect the signed AAB with Play Console pre-launch report; verify version `1.1.0 (2)`, target API 36, package `com.keepspace.app`, OAuth redirect activity, and Play App Signing.
@@ -20,7 +22,7 @@ Repository release baseline updated September 28, 2026.
 - [ ] Complete Google Play app access, ads, content rating, target audience, news, health, financial-features, government-app, and data-safety forms.
 - [ ] Enter the privacy/support URLs and listing copy from this directory.
 - [ ] Upload final screenshots: at least one required iPhone size plus iPad because the binary supports iPad; phone and tablet assets for Google Play.
-- [ ] Complete `store/CLOUD_SETUP.md`: production Google and Microsoft clients, consent screens, redirect URIs, SHA-1/signature hashes, least-privilege scopes, and environment-injected client IDs.
+- [ ] Complete `store/CLOUD_SETUP.md`: Google Android clients and SHA-1/signature hashes, provider consent/branding, least-privilege scopes, and production-client physical-device validation. Microsoft and Google iOS production clients are configured.
 - [ ] Put temporary Google/Microsoft reviewer credentials in the private Store review field; never commit passwords or tokens.
 
 ## Physical-device release gates
