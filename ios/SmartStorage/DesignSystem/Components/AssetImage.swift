@@ -8,6 +8,8 @@ struct AssetImage: View {
     var variant: Int = 0
     var cornerRadius: CGFloat = 12
     var symbolScale: CGFloat = 0.3
+    /// Fill for compact thumbnails; fit for previews where the whole portrait must remain visible.
+    var contentMode: ContentMode = .fill
     /// Which part of the image to keep when cropping (receipts and screenshots read from the top).
     var cropAlignment: Alignment = .center
 
@@ -17,10 +19,11 @@ struct AssetImage: View {
     var body: some View {
         GeometryReader { proxy in
             ZStack {
+                if contentMode == .fit { Color.black.opacity(0.92) }
                 if let image {
                     Image(uiImage: image)
                         .resizable()
-                        .scaledToFill()
+                        .aspectRatio(contentMode: contentMode)
                         .frame(width: proxy.size.width, height: proxy.size.height, alignment: cropAlignment)
                         .clipped()
                         .transition(.opacity)
@@ -51,14 +54,15 @@ struct AssetImage: View {
         options.isNetworkAccessAllowed = false
         let target = CGSize(width: side * displayScale, height: side * displayScale)
         // Opportunistic delivery may call back twice (fast degraded, then final); keep the latest.
-        for await next in Self.images(for: asset, target: target, options: options) {
+        for await next in Self.images(for: asset, target: target, contentMode: contentMode, options: options) {
             withAnimation(.easeOut(duration: 0.15)) { image = next }
         }
     }
 
-    private static func images(for asset: PHAsset, target: CGSize, options: PHImageRequestOptions) -> AsyncStream<UIImage> {
+    private static func images(for asset: PHAsset, target: CGSize, contentMode: ContentMode, options: PHImageRequestOptions) -> AsyncStream<UIImage> {
         AsyncStream { continuation in
-            let id = PHImageManager.default().requestImage(for: asset, targetSize: target, contentMode: .aspectFill, options: options) { image, info in
+            let requestMode: PHImageContentMode = contentMode == .fit ? .aspectFit : .aspectFill
+            let id = PHImageManager.default().requestImage(for: asset, targetSize: target, contentMode: requestMode, options: options) { image, info in
                 if let image { continuation.yield(image) }
                 let degraded = (info?[PHImageResultIsDegradedKey] as? Bool) ?? false
                 if !degraded { continuation.finish() }

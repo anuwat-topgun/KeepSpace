@@ -70,6 +70,13 @@ data class ReviewItem(
 val List<ReviewItem>.defaultSelection: Set<String>
     get() = filter { it.preselected && !it.isKeeper }.mapTo(HashSet()) { it.id }
 
+val List<ReviewItem>.selectableIds: Set<String>
+    get() = filterNot { it.isKeeper }.mapTo(HashSet()) { it.id }
+
+/** Drops keepers and IDs removed by a live library refresh. */
+fun List<ReviewItem>.validSelection(selection: Set<String>?): Set<String> =
+    (selection ?: defaultSelection).intersect(selectableIds)
+
 fun List<ReviewItem>.bytesOf(selection: Set<String>): Long = filter { it.id in selection }.sumOf { it.bytes }
 
 sealed interface DeletionOutcome {

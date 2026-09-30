@@ -20,24 +20,28 @@ import kotlin.coroutines.resumeWithException
 class CloudUploadWorker(appContext: Context, params: WorkerParameters) : CoroutineWorker(appContext, params) {
     private val cloud = CloudStore(appContext)
 
-    override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
-        val pending = cloud.snapshot().uploads.filter { it.status == CloudUploadStatus.Waiting }
-        for (item in pending) {
-            if (isStopped) return@withContext Result.success()
-            try {
-                upload(item)
-            } catch (error: Exception) {
-                val nextAttempt = item.attempt + 1
-                val retrying = nextAttempt < MAX_ATTEMPTS
-                cloud.replaceUpload(item.copy(
-                    status = if (retrying) CloudUploadStatus.Waiting else CloudUploadStatus.Failed,
-                    attempt = nextAttempt,
-                    error = error.message ?: "Upload failed",
-                ))
-                if (retrying) return@withContext Result.retry()
+    override suspend fun doWork(): Result = try {
+        withContext(Dispatchers.IO) {
+            val pending = cloud.snapshot().uploads.filter { it.status == CloudUploadStatus.Waiting }
+            for (item in pending) {
+                if (isStopped) return@withContext Result.success()
+                try {
+                    upload(item)
+                } catch (error: Exception) {
+                    val nextAttempt = item.attempt + 1
+                    val retrying = nextAttempt < MAX_ATTEMPTS
+                    cloud.replaceUpload(item.copy(
+                        status = if (retrying) CloudUploadStatus.Waiting else CloudUploadStatus.Failed,
+                        attempt = nextAttempt,
+                        error = error.message ?: "Upload failed",
+                    ))
+                    if (retrying) return@withContext Result.retry()
+                }
             }
+            Result.success()
         }
-        Result.success()
+    } finally {
+        cloud.close()
     }
 
     private suspend fun upload(item: CloudUploadItem) {

@@ -325,6 +325,8 @@ private func photo(_ id: String, at seconds: TimeInterval, print: [Float], sharp
             ReviewItem(id: "k", bytes: 40, isVideo: false, duration: 0, createdAt: t0, preselected: true, isKeeper: true),
         ]
         #expect(items.defaultSelection == ["a"])
+        #expect(items.selectableIDs == ["a", "b"])
+        #expect(items.validSelection(["b", "k", "stale"]) == ["b"])
         #expect(items.bytes(of: ["a", "b"]) == 30)
     }
 }

@@ -161,8 +161,8 @@ struct RuleEditorView: View {
                                     .font(.title2)
                                     .foregroundStyle(selected ? Palette.accent : Palette.textSecondary.opacity(0.6))
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text(action.title).font(.system(.body, weight: .semibold)).foregroundStyle(Palette.textPrimary)
-                                    Text(action.detail).font(Typography.metadata).foregroundStyle(Palette.textSecondary)
+                                    Text(action.title.localizedUI).font(.system(.body, weight: .semibold)).foregroundStyle(Palette.textPrimary)
+                                    Text(action.detail.localizedUI).font(Typography.metadata).foregroundStyle(Palette.textSecondary)
                                 }
                             }
                         }

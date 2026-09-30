@@ -47,7 +47,9 @@ struct ReviewView: View {
 
     var body: some View {
         let items = items
-        let selected = selection ?? items.defaultSelection
+        // Results may refresh while this screen is open. Ignore stale IDs and keepers so
+        // Select All always means every currently visible, deletable item.
+        let selected = items.validSelection(selection)
         ScreenScaffold(maxWidth: Metrics.wideContentWidth) {
             ScreenHeader(title: title, subtitle: explanation)
                 .padding(.bottom, 4)
@@ -79,15 +81,15 @@ struct ReviewView: View {
     }
 
     private func selectionBar(items: [ReviewItem], selected: Set<String>) -> some View {
-        let selectable = items.filter { !$0.isKeeper }
-        let allSelected = selected.count == selectable.count
+        let selectableIDs = items.selectableIDs
+        let allSelected = !selectableIDs.isEmpty && selected == selectableIDs
         return HStack {
-            Text("\(selected.count) of \(selectable.count) selected · \(items.bytes(of: selected).formattedBytes)")
+            Text("\(selected.count) of \(selectableIDs.count) selected · \(items.bytes(of: selected).formattedBytes)")
                 .font(Typography.metadata)
                 .foregroundStyle(Palette.textSecondary)
             Spacer()
             Button(allSelected ? "Deselect All" : "Select All") {
-                selection = allSelected ? [] : Set(selectable.map(\.id))
+                selection = allSelected ? [] : selectableIDs
             }
             .font(.system(.subheadline, weight: .semibold))
         }
@@ -141,7 +143,7 @@ private struct ReviewTile: View {
 
     var body: some View {
         Button(action: onTap) {
-            AssetImage(assetID: item.id, fallback: item.isVideo ? .mountain : .sunset, cornerRadius: 12)
+            AssetImage(assetID: item.id, fallback: item.isVideo ? .mountain : .sunset, cornerRadius: 12, contentMode: .fit)
                 .aspectRatio(1, contentMode: .fit)
                 .overlay {
                     RoundedRectangle(cornerRadius: 12, style: .continuous)

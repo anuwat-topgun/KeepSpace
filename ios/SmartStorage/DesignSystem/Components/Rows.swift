@@ -14,11 +14,11 @@ struct ListTile<Trailing: View>: View {
         HStack(spacing: 16) {
             IconTile(systemName: systemImage, tint: tint)
             VStack(alignment: .leading, spacing: 4) {
-                Text(title)
+                Text(LocalizedStringKey(title))
                     .font(Typography.cardHeadline)
                     .foregroundStyle(Palette.textPrimary)
                 if let subtitle {
-                    Text(subtitle)
+                    Text(LocalizedStringKey(subtitle))
                         .font(Typography.metadata)
                         .foregroundStyle(Palette.textSecondary)
                 }

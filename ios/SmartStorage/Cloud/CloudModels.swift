@@ -38,11 +38,45 @@ struct CloudUploadItem: Identifiable, Codable, Sendable {
     let sourceName: String
     let destinationFolder: String
     let bytes: Int64
+    /// Used to distinguish a verified backup from an older version of an edited asset.
+    var sourceModifiedAt: Date?
     var status: CloudUploadStatus = .waiting
     var progress = 0
     var attempt = 0
     var error: String?
     var remoteID: String?
+}
+
+/// The one status shown on a library tile. The newest job for the current asset version wins.
+struct AssetCloudState: Equatable, Sendable {
+    let status: CloudUploadStatus?
+    let provider: CloudProvider?
+    let progress: Int
+
+    static let notBackedUp = AssetCloudState(status: nil, provider: nil, progress: 0)
+
+    var isBackedUp: Bool { status == .backedUp }
+
+    var title: String {
+        switch status {
+        case .waiting: "Waiting"
+        case .uploading: "Uploading"
+        case .verifying: "Verifying"
+        case .backedUp: "Backed up"
+        case .failed: "Failed"
+        case .cancelled, nil: "Not backed up"
+        }
+    }
+
+    static func resolve(for item: MediaItem, uploads: [CloudUploadItem]) -> AssetCloudState {
+        let matching = uploads.filter { upload in
+            guard upload.assetID == item.id else { return false }
+            guard let uploadedVersion = upload.sourceModifiedAt else { return true }
+            return abs(uploadedVersion.timeIntervalSince(item.modifiedAt)) < 1
+        }
+        guard let latest = matching.last else { return .notBackedUp }
+        return AssetCloudState(status: latest.status, provider: latest.provider, progress: latest.progress)
+    }
 }
 
 struct OAuthToken: Codable, Sendable {

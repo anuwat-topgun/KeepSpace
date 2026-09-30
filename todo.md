@@ -1,6 +1,6 @@
 # KeepSpace — สถานะงานและสิ่งที่เหลือ
 
-อัปเดตล่าสุด: 28 ก.ย. 2026 · v1.1 Cloud Backup implementation ใน repo พร้อมแล้ว; เหลือ OAuth/physical-device/Store-account gates
+อัปเดตล่าสุด: 30 ก.ย. 2026 · Library/preview/cloud status/localization พร้อมแล้ว; เหลือ production OAuth, physical-device และ Store submission gates
 อ้างอิงสเปก: `01_Product_Technical_Spec_v1_to_v1_3.md`, `02_Design_Handoff_v1_to_v1_3.md`
 วิธี build / run / test / แก้ปัญหา: ดู [`runbook.md`](runbook.md) · ส่งต่องาน/การตัดสินใจ/กับดัก: ดู [`handoff.md`](handoff.md)
 
@@ -17,7 +17,7 @@
 | iOS privacy manifest (`PrivacyInfo.xcprivacy`) | ✅ | ประกาศ UserDefaults `CA92.1` + disk space `85F4.1`; ไม่เก็บข้อมูล/ไม่ track; lint ผ่าน + อยู่ใน bundle · commit `834cb18` |
 | iOS เลิกใช้ `value(forKey: "fileSize")` | ✅ | รูปอ่าน byte + SHA-256 รอบเดียวผ่าน `PHAssetResourceManager`; วิดีโอใช้ `totalSampleDataLength`; compression/delete รับขนาดที่วัดแล้วจาก store; `rg value(forKey:)` ว่าง |
 
-การยืนยัน: iOS 83 tests / 27 suites ผ่าน; integration probe บน iPhone 17 simulator เทียบรูปนิ่ง 115 ไฟล์กับ KVC เดิม ตรง 115/115 (0 mismatch); ไม่มี `TMPPROBE` เหลือใน source
+การยืนยัน: iOS unit tests ปัจจุบัน 86 tests ผ่าน; integration probe บน iPhone 17 simulator เทียบรูปนิ่ง 115 ไฟล์กับ KVC เดิม ตรง 115/115 (0 mismatch); ไม่มี `TMPPROBE` เหลือใน source
 ข้อแลกเปลี่ยนที่ยอมรับ: สแกนครั้งแรกของคลัง 10,000 รูปช้าขึ้นราว 1–2 นาที (อ่านทุกไฟล์หนึ่งรอบ) แต่รอบถัดไปใช้ cache และได้ตัวเลขที่แม่นพร้อม hash ของรูปใน pass เดียว
 
 ---
@@ -26,8 +26,8 @@
 
 | แพลตฟอร์ม | Unit tests | สถานะ | ทดสอบบนอุปกรณ์ |
 |---|---|---|---|
-| iOS (SwiftUI, iOS 17+) | 83 tests / 27 suites + 1 UI smoke test | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator |
-| Android (Compose, API 26+) | 76 tests (JUnit, JVM) + UI test compile + Thai OCR spike (instrumented) | ✅ ผ่านทั้งหมด | `keepspace_tablet` emulator (Pixel Tablet, API 36) |
+| iOS (SwiftUI, iOS 17+) | 86 unit tests + 1 UI smoke test | ✅ ผ่านทั้งหมด | iPhone 17 + iPad Pro simulator; signed build ติดตั้ง/เปิดบน iPhone 100 Pro Max |
+| Android (Compose, API 26+) | 77 tests (JUnit, JVM) + UI test compile + Thai OCR spike (instrumented) | ✅ ผ่านทั้งหมด | `keepspace_tablet` emulator (Pixel Tablet, API 36) |
 
 คำสั่งรันเทส: ดู `runbook.md` หัวข้อ 4
 
@@ -41,7 +41,7 @@
 - มี unit test ของ logic (grouping, scoring, OCR classification, receipt extraction, rules, templates, events) + smoke UI test สองแพลตฟอร์มสำหรับ demo navigation; flow ลบผ่าน system confirmation ยังต้องทดสอบจริง
 - หน้าจอตรวจด้วยมือบน simulator/emulator โดยใช้รูปทดสอบที่สร้างขึ้นเอง (PIL) ไม่ใช่คลังรูปจริง
 - **iOS Simulator ใช้ Vision ได้ไม่เต็มที่** (feature print และ scene classifier ให้ค่าเสื่อม) → ความแม่นของ Similar Photos, ชื่อธีมของอีเวนต์ และการหาใบเสร็จภาษาไทยจาก classifier ต้องยืนยันบน iPhone จริง
-- ยังไม่เคยรันบน iPhone / Android เครื่องจริง
+- iPhone จริงยืนยัน build/install/launch แล้ว แต่ยังไม่ได้ sign-off คลังใหญ่, cloud end-to-end, permission/delete และ background/resume; Android ยังไม่ทดสอบบนเครื่องจริง
 
 ---
 
@@ -77,6 +77,8 @@
 | Video Compression | ✅ | ✅ | iOS: AVAssetExportSession HEVC · Android: Media3 Transformer (คง DATE_TAKEN) |
 | Storage Forecast (Insights) | ✅ | ✅ | คาดการณ์จากอัตราเพิ่มของสื่อ |
 | Onboarding + privacy promise | ✅ | ✅ | |
+| Library แบบ Photos + cloud status | ✅ | ✅ | กรอง All/Photos/Videos/Backed Up, badge ต่อ asset, รูป portrait แสดงเต็มแบบ aspect-fit, ปัดซ้าย/ขวาและปัดลงปิด; วิดีโอเล่นและเข้า fullscreen ด้วย double tap/ไอคอนได้ |
+| Select All ในหน้า Review | ✅ | ✅ | เลือกเฉพาะรายการ selectable ที่แสดงอยู่, ล้าง stale IDs และไม่เลือกรายการ keeper/protected |
 
 ### v1.2 — Rules engine
 | Feature | iOS | Android | หมายเหตุ |
@@ -144,17 +146,19 @@
 งานใน repo:
 - [x] OAuth Authorization Code + PKCE ไม่มี client secret; iOS token อยู่ Keychain, Android OneDrive token เข้ารหัสด้วย Android Keystore
 - [x] Android Google Drive ใช้ Google Identity `AuthorizationClient` ตามข้อกำหนดปัจจุบัน (ไม่ใช้ custom-scheme browser OAuth ที่ Google เลิกรองรับ)
+- [x] iOS Google Drive ใช้ Google Sign-In SDK, production client ID และ reversed client-ID callback URL scheme
 - [x] Scope ต่ำสุด: Drive `drive.file`; OneDrive `Files.ReadWrite.AppFolder`; disconnect/revoke Google token; ไม่มี KeepSpace backend
 - [x] Persistent queue แยกจาก analysis cache: waiting → uploading → verifying → backed up / failed / cancelled, retry/backoff, resume หลังเปิดแอปใหม่
 - [x] Android WorkManager + Wi-Fi constraint; iOS persistent Application Support queue + no-cellular URLSession และ resume ตอน active
 - [x] Drive resumable upload + KeepSpace folder; OneDrive app-folder upload; คืน/ตรวจ remote file ID
 - [x] Preferences: rename, Wi-Fi only, keep local copies (บังคับเปิดใน v1.1); เลือก Photos/Screenshots/Receipts และโฟลเดอร์ปลายทาง
 - [x] Cloud Overview + Back Up Now + progress/error/retry/cancel UI ทั้งสองแพลตฟอร์ม; เปิด entry point ใน Settings/Library
+- [x] ผูกสถานะ backup กับ `assetID + sourceModifiedAt` เพื่อไม่แสดง badge ว่า backed up หลังไฟล์ต้นฉบับเปลี่ยน; Android รับ progress จาก WorkManager แบบ live
 - [x] privacy/terms/store copy/review notes/release checklist อัปเดตสำหรับ v1.1; version `1.1.0 (2)`
 
 Release gates ที่ต้องใช้เจ้าของบัญชี/เครื่องจริง (รายละเอียด `store/CLOUD_SETUP.md`):
 - [x] Production website: Home, Privacy, Terms, Support และ health check เปิดผ่าน `https://keepspace.itston.com/`
-- [ ] Google Cloud: consent screen อยู่ In production, iOS client และ Android debug/release clients สร้างแล้ว; ยังเหลือ Play App Signing SHA-1, app ownership/verification และทดสอบ Drive API บนเครื่องจริง
+- [ ] Google Cloud: iOS client และ Android debug/release clients สร้างแล้ว; ยังต้องเข้าสู่ `keepspace-production` ด้วยบัญชี ITSTON.COM ที่ถูกต้องเพื่อยืนยัน consent/app ownership, สร้าง client จาก Play App Signing SHA-1 และทดสอบ Drive API บนเครื่องจริง (session ล่าสุดเป็นบัญชี Google อื่น)
 - [x] Microsoft Entra: app registration รองรับเฉพาะ Personal Microsoft accounts, public client, redirect URIs, scope `Files.ReadWrite.AppFolder`; ฝัง public client ID ใน build defaults และยัง override ผ่าน environment ได้
 - [x] OneDrive personal-only hardening: Entra audience เป็น Personal Microsoft accounts และ iOS/Android ใช้ OAuth authority `consumers`; Microsoft Partner Center publisher verification ไม่เป็น release gate จนกว่าจะเพิ่มบัญชีองค์กร
 - [ ] ทดสอบ connect/upload/refresh/revoke จริงทั้ง 2 providers บน iOS/Android production-signed build; quota/offline/kill-resume/Wi-Fi-only
@@ -193,6 +197,8 @@ Release gates ที่ต้องใช้เจ้าของบัญชี
 
 ### 3.7 คุณภาพและการเตรียมปล่อยแอป
 - [ ] **ทดสอบบนเครื่องจริง** iPhone + iPad + Android phone + tablet ด้วยคลังรูปใหญ่ (10k+ รูป): เวลาสแกน, หน่วยความจำ, แบตเตอรี่, ความแม่นของ similar/blurry/receipt/events
+- [x] iPhone 100 Pro Max (iOS 26.6.2): signed build ด้วย Team `Anuwat Palasak` (`82MGZU2HH4`) build/install/launch สำเร็จ
+- [ ] iPhone 100 Pro Max: ทดสอบ Library grid/filter, swipe viewer, portrait aspect-fit, video playback/fullscreen, Select All และสถานะ cloud กับคลังจริง
 - [ ] ยืนยัน threshold ของ SimilarityGrouper บน iPhone จริง (simulator ให้ feature print เสื่อม)
 - [x] **Android OCR ภาษาไทย**: ขั้นที่ 1 (spike) เสร็จ — ดู `android/app/src/androidTest/THAI_OCR_SPIKE.md` (Tesseract fast tha+eng + fixes: 21/25 เทียบ ML Kit 13/25)
   - [x] ขั้นที่ 2: Tesseract อยู่ในแอปแล้ว (`ThaiOcr`) เรียกเฉพาะรูปใบเสร็จ/ใบเสร็จ/QR/ข้อความที่ดูเป็นไทยอ่านเพี้ยน, `ThaiText` + unit tests — ทดสอบบน emulator: ใบเสร็จไทย 7/7, แชท/ช้อปปิ้งไทยจัดหมวดถูก
@@ -210,15 +216,15 @@ Release gates ที่ต้องใช้เจ้าของบัญชี
   - [x] เตรียมคำตอบ App Privacy เป็น "Data Not Collected" ใน `store/app-privacy.md`; [ ] เจ้าของบัญชีกดส่งคำตอบใน App Store Connect
   - [x] เตรียมคำตอบ Android Data safety ใน `store/app-privacy.md`; [ ] เจ้าของบัญชีกดส่งใน Play Console
 - [x] Info.plist: ข้อความขอสิทธิ์ Photos/Add Photos ชัดเจน; onboarding Android/iOS อธิบายก่อนเปิด permission dialog และหน้า Photo Access อธิบาย location/on-device
-- [ ] Localization ภาษาไทย (ตอนนี้ UI เป็นภาษาอังกฤษทั้งหมด)
+- [x] Localization 25 ภาษาเหมือน IPTV Prime (รวมไทย, Arabic RTL, iOS permission prompts และ Android per-app language config); shared catalogue + generators อยู่ใน `i18n/`
 - [ ] Accessibility: VoiceOver/TalkBack label ครบ, Dynamic Type/font scale ใหญ่, contrast
 - [x] Smoke UI tests (XCUITest / Compose UI test): demo launch + Home → Clean → Library → Settings
 - [ ] UI test ที่ใช้คลังรูปจริงสำหรับ onboarding → permission → scan → cleanup plan → review → system delete confirmation
 - [ ] iPad landscape: ทดสอบด้วยมือ (หมุน simulator จาก CLI ไม่ได้)
-- [x] Android repo release: target API 36 + AGP 8.10.1, env-based signing hook, Play listing/Data safety draft, R8 App Bundle
-  - [ ] เจ้าของแอป: สร้าง/สำรอง upload keystore, เปิด Play App Signing, อัปโหลด Internal Testing, กรอก Console forms และทดสอบ release บนเครื่องจริง
-- [x] iOS repo release: listing/App Privacy/review-note draft, launch screen, privacy manifest, version/build พร้อม archive
-  - [ ] เจ้าของแอป: distribution signing/provisioning, TestFlight, screenshots phone+iPad และกดส่ง App Privacy
+- [x] Android repo release: target API 36 + AGP 8.10.1, env-based signing hook, upload keystore นอก repo, signed AAB, Play listing/Data safety draft, R8 App Bundle
+  - [ ] เจ้าของแอป: เปิด Play App Signing, เพิ่ม signing SHA-1 ใน Google OAuth, อัปโหลด closed testing, กรอก Console forms และทดสอบ release บนเครื่องจริง
+- [x] iOS repo release: listing/App Privacy/review-note draft, launch screen, privacy manifest, version/build และ Team `Anuwat Palasak` signing พร้อม archive
+  - [ ] เจ้าของแอป: archive/upload TestFlight, screenshots phone+iPad และกดส่ง App Privacy
 - [x] Privacy policy + Terms (public GitHub URLs; ลิงก์ใน About ทั้งสองแพลตฟอร์ม)
 - [x] CI (`.github/workflows/ci.yml`): Android unit/UI-test compile/lint/AAB + iOS unit/UI tests ทุก PR
 
@@ -226,8 +232,9 @@ Release gates ที่ต้องใช้เจ้าของบัญชี
 
 ## 4. ลำดับที่แนะนำ
 
-1. ทำ `store/CLOUD_SETUP.md` และรัน physical-device/OAuth gates ใน `store/RELEASE_CHECKLIST.md`
-2. อัปโหลด build 2 (`1.1.0`) เข้า TestFlight + Play Internal Testing แล้วทดสอบ cloud ด้วย production clients
-3. เชื่อม rules เข้ากับ upload queue → v1.2 ครบ
-4. Verification + safe delete → v1.3 ครบ
-5. Monetization + analytics ก่อนปล่อยจริงบน store
+1. ใช้บัญชี ITSTON.COM จบ Google consent/app ownership และเพิ่ม OAuth client จาก Play App Signing SHA-1 ตาม `store/CLOUD_SETUP.md`
+2. อัปโหลด build 2 (`1.1.0`) เข้า TestFlight + Play closed testing แล้วทดสอบ Google Drive/OneDrive upload จริงด้วย production clients
+3. รัน physical-device checklist: คลัง 10k+, Library/preview/video/Select All, permission/delete, offline/kill-resume/Wi-Fi-only และ accessibility
+4. เชื่อม rules เข้ากับ upload queue → v1.2 ครบ
+5. Verification + safe delete → v1.3 ครบ
+6. Monetization + analytics ก่อนปล่อยจริงบน store

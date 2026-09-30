@@ -227,6 +227,8 @@ class ReviewSetTest {
             ReviewItem("k", 40, false, 0, 0, preselected = true, isKeeper = true),
         )
         assertEquals(setOf("a"), items.defaultSelection)
+        assertEquals(setOf("a", "b"), items.selectableIds)
+        assertEquals(setOf("b"), items.validSelection(setOf("b", "k", "stale")))
         assertEquals(30L, items.bytesOf(setOf("a", "b")))
     }
 }

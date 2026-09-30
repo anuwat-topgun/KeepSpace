@@ -3,6 +3,7 @@ package com.smartstorage.cleaner.ui.components
 import android.net.Uri
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,6 +13,7 @@ import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
@@ -35,6 +37,8 @@ fun AssetImage(
     iconScale: Float = 0.3f,
     /** Keep the top when cropping (receipts and screenshots read from the top). */
     cropTop: Boolean = false,
+    /** Crop compact thumbnails; use Fit for previews where the whole portrait must be visible. */
+    contentScale: ContentScale = ContentScale.Crop,
 ) {
     if (uri == null) {
         MediaThumbnail(fallback, modifier, variant, cornerRadius, iconScale)
@@ -42,7 +46,11 @@ fun AssetImage(
     }
     val resolver = LocalContext.current.contentResolver
     val density = LocalDensity.current
-    BoxWithConstraints(modifier.clip(RoundedCornerShape(cornerRadius))) {
+    BoxWithConstraints(
+        modifier
+            .clip(RoundedCornerShape(cornerRadius))
+            .background(if (contentScale == ContentScale.Fit) Color.Black.copy(alpha = 0.92f) else Color.Transparent),
+    ) {
         val longEdge = if (maxWidth == Dp.Infinity || maxHeight == Dp.Infinity) 256.dp else maxOf(maxWidth, maxHeight)
         val px = with(density) { longEdge.roundToPx() }.coerceIn(64, 1024)
         val bitmap by produceState<ImageBitmap?>(null, uri, px) {
@@ -53,7 +61,7 @@ fun AssetImage(
                 Image(
                     image,
                     contentDescription = null,
-                    contentScale = ContentScale.Crop,
+                    contentScale = contentScale,
                     alignment = if (cropTop) Alignment.TopCenter else Alignment.Center,
                     modifier = Modifier.fillMaxSize(),
                 )

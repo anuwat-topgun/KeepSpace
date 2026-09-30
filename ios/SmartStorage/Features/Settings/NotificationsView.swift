@@ -41,7 +41,7 @@ struct NotificationsView: View {
                         Picker("Day", selection: Binding(get: { weekly.schedule.weekday }, set: { day in
                             var s = weekly.schedule; s.weekday = day; Task { await weekly.setSchedule(s) }
                         })) {
-                            ForEach(Self.days, id: \.0) { Text($0.1).tag($0.0) }
+                            ForEach(Self.days, id: \.0) { Text($0.1.localizedUI).tag($0.0) }
                         }
                         DatePicker("Time", selection: Binding(get: { time }, set: { new in
                             let parts = Calendar.current.dateComponents([.hour, .minute], from: new)

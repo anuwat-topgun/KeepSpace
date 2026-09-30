@@ -79,7 +79,7 @@ private struct TabShell: View {
         TabView(selection: tabSelection) {
             ForEach(AppTab.allCases) { tab in
                 TabStack(tab: tab)
-                    .tabItem { Label(tab.title, systemImage: tab.systemImage) }
+                    .tabItem { Label(tab.title.localizedUI, systemImage: tab.systemImage) }
                     .tag(tab)
             }
         }
@@ -104,7 +104,7 @@ private struct SidebarShell: View {
         @Bindable var router = router
         NavigationSplitView(columnVisibility: $router.sidebarVisibility) {
             List(AppTab.allCases, selection: sidebarSelection) { tab in
-                Label(tab.title, systemImage: tab.systemImage)
+                Label(tab.title.localizedUI, systemImage: tab.systemImage)
                     .font(.system(.body, weight: .medium))
                     .padding(.vertical, 4)
             }

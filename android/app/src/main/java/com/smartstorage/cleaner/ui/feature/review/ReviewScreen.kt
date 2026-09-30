@@ -32,7 +32,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
+import com.smartstorage.cleaner.ui.i18n.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -44,6 +44,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -57,7 +58,8 @@ import com.smartstorage.cleaner.media.LocalMediaActions
 import com.smartstorage.cleaner.media.ReviewItem
 import com.smartstorage.cleaner.media.ReviewKind
 import com.smartstorage.cleaner.media.bytesOf
-import com.smartstorage.cleaner.media.defaultSelection
+import com.smartstorage.cleaner.media.selectableIds
+import com.smartstorage.cleaner.media.validSelection
 import com.smartstorage.cleaner.media.libraryState
 import com.smartstorage.cleaner.model.ThumbnailStyle
 import com.smartstorage.cleaner.model.formattedBytes
@@ -95,8 +97,11 @@ fun ReviewScreen(source: ReviewSource, onBack: () -> Unit) {
 
     val items = reviewItems(source, state)
     // null until the user changes it, so the default follows the current items.
-    var selection by rememberSaveable { mutableStateOf<Set<String>?>(null) }
-    val selected = selection ?: items.defaultSelection
+    var selection by rememberSaveable(source) { mutableStateOf<Set<String>?>(null) }
+    val selectableIds = items.selectableIds
+    // Results can refresh while this screen is open. Stale IDs and keepers must never affect
+    // Select All or the selected count.
+    val selected = items.validSelection(selection)
     var deleting by rememberSaveable { mutableStateOf(false) }
     var confirming by rememberSaveable { mutableStateOf(false) }
 
@@ -147,16 +152,15 @@ fun ReviewScreen(source: ReviewSource, onBack: () -> Unit) {
                             Text("Nothing left to review here.", style = SmartType.metadata, color = colors.textSecondary)
                         }
                     } else {
-                        val selectable = items.filterNot { it.isKeeper }
-                        val allSelected = selected.size == selectable.size
+                        val allSelected = selectableIds.isNotEmpty() && selected == selectableIds
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(
-                                "${selected.size} of ${selectable.size} selected · ${items.bytesOf(selected).formattedBytes()}",
+                                "${selected.size} of ${selectableIds.size} selected · ${items.bytesOf(selected).formattedBytes()}",
                                 style = SmartType.metadata,
                                 color = colors.textSecondary,
                                 modifier = Modifier.weight(1f),
                             )
-                            TextButton(onClick = { selection = if (allSelected) emptySet() else selectable.mapTo(HashSet()) { it.id } }) {
+                            TextButton(onClick = { selection = if (allSelected) emptySet() else selectableIds }) {
                                 Text(if (allSelected) "Deselect All" else "Select All", fontWeight = FontWeight.SemiBold, color = colors.accent)
                             }
                         }
@@ -241,7 +245,13 @@ private fun ReviewTile(item: ReviewItem, isSelected: Boolean, onToggle: () -> Un
             .border(2.5.dp, if (isSelected) colors.accent else Color.Transparent, shape)
             .toggleable(value = isSelected, enabled = !item.isKeeper, role = Role.Checkbox, onValueChange = { onToggle() }),
     ) {
-        AssetImage(item.id, if (item.isVideo) ThumbnailStyle.Mountain else ThumbnailStyle.Sunset, Modifier.fillMaxSize(), cornerRadius = 12.dp)
+        AssetImage(
+            item.id,
+            if (item.isVideo) ThumbnailStyle.Mountain else ThumbnailStyle.Sunset,
+            Modifier.fillMaxSize(),
+            cornerRadius = 12.dp,
+            contentScale = ContentScale.Fit,
+        )
         if (isSelected) Box(Modifier.fillMaxSize().background(Color.Black.copy(alpha = 0.12f)))
         if (!item.isKeeper) {
             Icon(

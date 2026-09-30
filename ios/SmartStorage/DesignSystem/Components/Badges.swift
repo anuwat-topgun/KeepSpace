@@ -13,7 +13,7 @@ struct StatusBadge: View {
             if let systemImage {
                 Image(systemName: systemImage)
             }
-            Text(text)
+            Text(LocalizedStringKey(text))
         }
         .font(.system(compact ? .footnote : .subheadline, weight: .medium))
         .lineLimit(1)
@@ -52,7 +52,7 @@ struct ChipPicker<Option: Hashable>: View {
                     Button {
                         withAnimation(.spring(duration: 0.3)) { selection = option }
                     } label: {
-                        Text(title(option))
+                        Text(LocalizedStringKey(title(option)))
                             .font(.system(.body, weight: isSelected ? .semibold : .regular))
                             .foregroundStyle(isSelected ? .white : Palette.textPrimary)
                             .padding(.horizontal, 22)
