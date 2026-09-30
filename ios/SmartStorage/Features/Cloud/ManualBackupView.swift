@@ -18,7 +18,7 @@ struct ManualBackupView: View {
 
             SectionLabel("Content")
             Picker("Content", selection: $scope) {
-                ForEach(CloudBackupScope.allCases, id: \.self) { Text($0.title).tag($0) }
+                ForEach(CloudBackupScope.allCases, id: \.self) { Text($0.title.localizedUI).tag($0) }
             }
             .pickerStyle(.segmented)
             .onChange(of: scope) { _, value in folder = value.title }
@@ -28,7 +28,7 @@ struct ManualBackupView: View {
             SectionLabel("Destination")
             Picker("Cloud provider", selection: $provider) {
                 ForEach(CloudProvider.allCases, id: \.self) { value in
-                    Text(value.title).tag(value).disabled(!connectedProviders.contains(value))
+                    Text(value.title.localizedUI).tag(value).disabled(!connectedProviders.contains(value))
                 }
             }
             .pickerStyle(.segmented)

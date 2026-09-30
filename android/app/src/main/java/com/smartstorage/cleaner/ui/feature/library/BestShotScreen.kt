@@ -30,7 +30,7 @@ import androidx.compose.material.icons.rounded.People
 import androidx.compose.material.icons.rounded.WbSunny
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
+import com.smartstorage.cleaner.ui.i18n.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -43,6 +43,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
@@ -213,6 +214,7 @@ private fun Hero(group: PhotoGroup, selected: Int, modifier: Modifier) {
             variant = index,
             cornerRadius = SmartMetrics.cardRadius,
             iconScale = 0.22f,
+            contentScale = ContentScale.Fit,
         )
     }
 }

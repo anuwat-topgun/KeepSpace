@@ -13,7 +13,7 @@ import androidx.compose.material.icons.rounded.Photo
 import androidx.compose.material.icons.rounded.Security
 import androidx.compose.material.icons.rounded.VerifiedUser
 import androidx.compose.material.icons.rounded.Cloud
-import androidx.compose.material3.Text
+import com.smartstorage.cleaner.ui.i18n.Text
 import androidx.compose.runtime.Composable
 import com.smartstorage.cleaner.media.LocalLibraryStore
 import androidx.compose.material.icons.rounded.AutoFixHigh

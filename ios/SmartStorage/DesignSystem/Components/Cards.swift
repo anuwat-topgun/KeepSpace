@@ -65,7 +65,7 @@ struct SectionLabel: View {
     init(_ text: String) { self.text = text }
 
     var body: some View {
-        Text(text.uppercased())
+        Text(LocalizedStringKey(text)).textCase(.uppercase)
             .font(Typography.sectionLabel)
             .tracking(2)
             .foregroundStyle(Palette.textSecondary)
@@ -79,12 +79,12 @@ struct ScreenHeader: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .font(Typography.screenTitle)
                 .foregroundStyle(Palette.textPrimary)
                 .accessibilityAddTraits(.isHeader)
             if let subtitle {
-                Text(subtitle)
+                Text(LocalizedStringKey(subtitle))
                     .font(Typography.screenSubtitle)
                     .foregroundStyle(Palette.textSecondary)
             }

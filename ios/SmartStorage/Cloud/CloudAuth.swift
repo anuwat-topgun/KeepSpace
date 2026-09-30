@@ -1,6 +1,7 @@
 import AuthenticationServices
 import CryptoKit
 import Foundation
+import GoogleSignIn
 import Security
 import UIKit
 
@@ -12,7 +13,9 @@ enum CloudConfiguration {
     }
 
     static func redirectURI(for provider: CloudProvider) -> String {
-        provider == .googleDrive ? "com.keepspace.app:/oauth2redirect" : "msauth.com.keepspace.app://auth"
+        provider == .googleDrive
+            ? "com.googleusercontent.apps.704189605605-aaosn5etn4m6peil1dttaffdb0c20jtk:/oauthredirect"
+            : "msauth.com.keepspace.app://auth"
     }
 
     static func endpoints(for provider: CloudProvider) -> (authorize: URL, token: URL, revoke: URL?) {
@@ -39,6 +42,9 @@ final class CloudAuthenticator: NSObject, ASWebAuthenticationPresentationContext
     func connect(_ provider: CloudProvider) async throws -> (OAuthToken, String?) {
         let clientID = CloudConfiguration.clientID(for: provider)
         guard !clientID.isEmpty else { throw CloudError.notConfigured(provider) }
+        if provider == .googleDrive {
+            return try await connectGoogle(clientID: clientID)
+        }
         let verifier = Self.randomURLSafe(bytes: 32)
         let challenge = Data(SHA256.hash(data: Data(verifier.utf8))).base64URLEncoded
         let state = Self.randomURLSafe(bytes: 24)
@@ -73,6 +79,18 @@ final class CloudAuthenticator: NSObject, ASWebAuthenticationPresentationContext
     }
 
     func refresh(_ token: OAuthToken, provider: CloudProvider) async throws -> OAuthToken {
+        if provider == .googleDrive {
+            let signIn = GIDSignIn.sharedInstance
+            signIn.configuration = GIDConfiguration(clientID: CloudConfiguration.clientID(for: .googleDrive))
+            let signedInUser: GIDGoogleUser
+            if let currentUser = signIn.currentUser {
+                signedInUser = currentUser
+            } else {
+                signedInUser = try await signIn.restorePreviousSignIn()
+            }
+            let user = try await signedInUser.refreshTokensIfNeeded()
+            return Self.googleToken(from: user)
+        }
         guard token.expiresAt.timeIntervalSinceNow < 120 else { return token }
         guard let refreshToken = token.refreshToken else { throw CloudError.disconnected(provider) }
         let clientID = CloudConfiguration.clientID(for: provider)
@@ -85,6 +103,10 @@ final class CloudAuthenticator: NSObject, ASWebAuthenticationPresentationContext
     }
 
     func revoke(_ token: OAuthToken, provider: CloudProvider) async {
+        if provider == .googleDrive {
+            try? await GIDSignIn.sharedInstance.disconnect()
+            return
+        }
         guard let endpoint = CloudConfiguration.endpoints(for: provider).revoke else { return }
         var request = URLRequest(url: endpoint)
         request.httpMethod = "POST"
@@ -95,6 +117,38 @@ final class CloudAuthenticator: NSObject, ASWebAuthenticationPresentationContext
 
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.flatMap(\.windows).first { $0.isKeyWindow } ?? ASPresentationAnchor()
+    }
+
+    private func connectGoogle(clientID: String) async throws -> (OAuthToken, String?) {
+        let signIn = GIDSignIn.sharedInstance
+        signIn.configuration = GIDConfiguration(clientID: clientID)
+        guard let presenter = UIApplication.shared.connectedScenes
+            .compactMap({ $0 as? UIWindowScene })
+            .flatMap(\.windows)
+            .first(where: { $0.isKeyWindow })?
+            .rootViewController else {
+            throw CloudError.invalidResponse("Google sign-in could not find a screen to present from.")
+        }
+        let driveScope = "https://www.googleapis.com/auth/drive.file"
+        let result = try await signIn.signIn(
+            withPresenting: presenter,
+            hint: nil,
+            additionalScopes: [driveScope]
+        )
+        let user = try await result.user.refreshTokensIfNeeded()
+        guard user.grantedScopes?.contains(driveScope) == true else {
+            throw CloudError.invalidResponse("Google Drive access was not granted.")
+        }
+        return (Self.googleToken(from: user), user.profile?.email)
+    }
+
+    private static func googleToken(from user: GIDGoogleUser) -> OAuthToken {
+        OAuthToken(
+            accessToken: user.accessToken.tokenString,
+            refreshToken: user.refreshToken.tokenString,
+            expiresAt: user.accessToken.expirationDate ?? Date().addingTimeInterval(3_600),
+            idToken: user.idToken?.tokenString
+        )
     }
 
     private func callbackURL(from url: URL, scheme: String) async throws -> URL {

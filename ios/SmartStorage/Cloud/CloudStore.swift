@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import OSLog
 import Photos
 import CryptoKit
 
@@ -12,6 +13,7 @@ final class CloudStore {
     var notice: String?
 
     private let authenticator = CloudAuthenticator()
+    private let logger = Logger(subsystem: "com.keepspace.app", category: "CloudBackup")
     private var uploadTask: Task<Void, Never>?
     private let defaults: UserDefaults
 
@@ -48,8 +50,10 @@ final class CloudStore {
                 try TokenKeychain.save(token, provider: provider)
                 updateConnection(provider, connected: true, accountName: account)
                 notice = "\(provider.title) connected. Backups go directly to this account."
+                logger.info("Connected cloud provider: \(provider.rawValue, privacy: .public)")
             } catch {
                 notice = error.localizedDescription
+                logger.error("Cloud sign-in failed for \(provider.rawValue, privacy: .public): \(error.localizedDescription, privacy: .public)")
             }
         }
     }
@@ -77,13 +81,18 @@ final class CloudStore {
                 name = "KeepSpace-\(media.creationDate.formatted(.iso8601.year().month().day()))-\(suffix).\(ext)"
             } else { name = original }
             return CloudUploadItem(provider: provider, scope: scope, assetID: media.id, sourceName: name,
-                                   destinationFolder: cleanFolder, bytes: media.bytes)
+                                   destinationFolder: cleanFolder, bytes: media.bytes,
+                                   sourceModifiedAt: media.modifiedAt)
         }
         guard !queued.isEmpty else { notice = "No \(scope.title.lowercased()) are available to back up."; return }
         uploads.append(contentsOf: queued)
         notice = "Queued \(queued.count) items for \(provider.title)."
         persist()
         resumePending()
+    }
+
+    func state(for item: MediaItem) -> AssetCloudState {
+        AssetCloudState.resolve(for: item, uploads: uploads)
     }
 
     func cancelPending() {
@@ -119,6 +128,7 @@ final class CloudStore {
                         uploads[index].status = .waiting
                         try? await Task.sleep(for: .seconds(pow(2.0, Double(uploads[index].attempt))))
                     }
+                    logger.error("Cloud upload attempt failed for \(self.uploads[index].provider.rawValue, privacy: .public): \(error.localizedDescription, privacy: .public)")
                     persist()
                 }
             }
@@ -142,6 +152,7 @@ final class CloudStore {
         updateUpload(id) { $0.status = .verifying; $0.progress = 92; $0.remoteID = remoteID }
         try await verify(provider: initial.provider, remoteID: remoteID, accessToken: token.accessToken)
         updateUpload(id) { $0.status = .backedUp; $0.progress = 100; $0.remoteID = remoteID }
+        logger.info("Cloud upload verified for \(initial.provider.rawValue, privacy: .public); remote ID: \(remoteID, privacy: .private(mask: .hash))")
     }
 
     private func uploadGoogle(_ item: CloudUploadItem, file: URL, accessToken: String) async throws -> String {

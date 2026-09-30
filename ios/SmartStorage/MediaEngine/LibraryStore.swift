@@ -52,6 +52,11 @@ final class LibraryStore {
 
     var cleanupPlan: CleanupPlan { content.plan(for: cleanupTarget) }
 
+    /// Full device library for the Photos-style browser, newest first.
+    var mediaItems: [MediaItem] {
+        lastItems.sorted { $0.creationDate > $1.creationDate }
+    }
+
     /// Current real media for an explicit v1.1 backup. Demo rows never become upload jobs.
     func backupCandidates(for scope: CloudBackupScope) -> [MediaItem] {
         guard !isDemo else { return [] }

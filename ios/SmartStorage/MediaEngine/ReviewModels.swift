@@ -111,7 +111,13 @@ struct ReviewItem: Identifiable, Hashable, Sendable {
 }
 
 extension Array where Element == ReviewItem {
+    var selectableIDs: Set<String> { Set(lazy.filter { !$0.isKeeper }.map(\.id)) }
     var defaultSelection: Set<String> { Set(filter { $0.preselected && !$0.isKeeper }.map(\.id)) }
+
+    /// Drops keepers and IDs removed by a live library refresh.
+    func validSelection(_ selection: Set<String>?) -> Set<String> {
+        (selection ?? defaultSelection).intersection(selectableIDs)
+    }
 
     func bytes(of selection: Set<String>) -> Int64 {
         reduce(0) { selection.contains($1.id) ? $0 + $1.bytes : $0 }

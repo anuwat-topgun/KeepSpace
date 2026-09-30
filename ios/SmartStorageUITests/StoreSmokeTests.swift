@@ -17,11 +17,12 @@ final class StoreSmokeTests: XCTestCase {
         XCTAssertTrue(app.staticTexts["How much space do you need?"].waitForExistence(timeout: 5))
 
         app.tabBars.buttons["Library"].tap()
-        XCTAssertTrue(app.staticTexts["Review and organize your media."].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Your full photo library, with cloud backup status."].waitForExistence(timeout: 5))
 
         app.tabBars.buttons["Settings"].tap()
         XCTAssertTrue(app.staticTexts["On-device AI only"].waitForExistence(timeout: 5))
         app.buttons["Cloud, Connect Google Drive or OneDrive"].tap()
-        XCTAssertTrue(app.staticTexts.matching(identifier: "OAuth setup required").firstMatch.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Cloud Backup"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.buttons["Connect Google Drive"].exists)
     }
 }

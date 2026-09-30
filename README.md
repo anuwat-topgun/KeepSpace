@@ -112,6 +112,15 @@ cd android && echo "sdk.dir=$ANDROID_HOME" > local.properties
 JAVA_HOME=/opt/homebrew/opt/openjdk@17 ./gradlew assembleDebug
 ```
 
+### Localization
+
+KeepSpace ships the same 25-language set as IPTV Prime on iOS and Android: English,
+Spanish, Brazilian Portuguese, French, German, Italian, Arabic (RTL), Turkish, Russian,
+Simplified Chinese, Japanese, Korean, Thai, Indonesian, Vietnamese, Dutch, Polish,
+Romanian, Greek, Ukrainian, Hindi, Malay, Traditional Chinese, Swedish, and Czech.
+The shared source catalogue and generators live in [`i18n/`](i18n/README.md). iOS and
+Android follow the device or per-app language setting and fall back to English.
+
 ### Media engine (on-device AI)
 
 AI analysis runs on the device. Only an explicit v1.1 Cloud Backup sends selected source files, directly to the user's Google Drive or OneDrive; KeepSpace has no media backend.

@@ -56,6 +56,8 @@ data class LibraryState(
     val access: LibraryAccess,
     val phase: ScanPhase,
     val content: LibraryContent,
+    /** Full device library for the Photos-style browser, newest first. */
+    val mediaItems: List<MediaItem> = emptyList(),
     /** Cleanup target chosen on the Clean tab; null = Maximum Safe Cleanup. */
     val cleanupTarget: Long? = 10_000_000_000,
     val isDemo: Boolean = false,
@@ -272,7 +274,11 @@ class LibraryStore(context: Context, demo: Boolean) {
     private fun rebuild(phase: ScanPhase? = null) {
         val storage = deviceStorage()
         val content = builder.build(lastItems, lastAnalyzed, storage.totalBytes, storage.freeBytes, screenshotInfo = lastScreenshotInfo, fileHashes = lastHashes)
-        _state.update { if (phase != null) it.copy(content = content, phase = phase) else it.copy(content = content) }
+        val mediaItems = lastItems.sortedByDescending { it.createdAt }
+        _state.update {
+            if (phase != null) it.copy(content = content, mediaItems = mediaItems, phase = phase)
+            else it.copy(content = content, mediaItems = mediaItems)
+        }
     }
 
     /** OCR + barcode pass over screenshots, two at a time, persisting every [BATCH_SIZE]. */

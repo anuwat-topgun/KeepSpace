@@ -11,7 +11,7 @@ import com.smartstorage.cleaner.ui.feature.receipts.ReceiptFilingScreen
 import com.smartstorage.cleaner.ui.feature.receipts.ReceiptsScreen
 import com.smartstorage.cleaner.media.ReviewKind
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
+import com.smartstorage.cleaner.ui.i18n.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteDefaults
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold

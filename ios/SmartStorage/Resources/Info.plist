@@ -25,11 +25,13 @@
 			<string>com.keepspace.oauth</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.keepspace.app</string>
+				<string>com.googleusercontent.apps.704189605605-aaosn5etn4m6peil1dttaffdb0c20jtk</string>
 				<string>msauth.com.keepspace.app</string>
 			</array>
 		</dict>
 	</array>
+	<key>GIDClientID</key>
+	<string>$(KEEP_SPACE_GOOGLE_CLIENT_ID)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>KEEP_SPACE_GOOGLE_CLIENT_ID</key>

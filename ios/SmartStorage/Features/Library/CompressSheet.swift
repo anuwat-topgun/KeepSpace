@@ -34,7 +34,7 @@ struct CompressSheet: View {
                         Card(style: selected ? .selected : .plain, padding: 16) {
                             HStack {
                                 VStack(alignment: .leading, spacing: 4) {
-                                    Text(option.title).font(Typography.cardHeadline).foregroundStyle(Palette.textPrimary)
+                                    Text(option.title.localizedUI).font(Typography.cardHeadline).foregroundStyle(Palette.textPrimary)
                                     Text("Saves about \((video.estimatedSavings(option) ?? 0).formattedBytes)")
                                         .font(Typography.metadata).foregroundStyle(Palette.textSecondary)
                                 }

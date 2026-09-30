@@ -110,7 +110,8 @@ struct BestShotView: View {
     }
 
     private var hero: some View {
-        AssetImage(assetID: assetID(selectedIndex), fallback: group.style, variant: selectedIndex, cornerRadius: Metrics.cardRadius, symbolScale: 0.22)
+        AssetImage(assetID: assetID(selectedIndex), fallback: group.style, variant: selectedIndex,
+                   cornerRadius: Metrics.cardRadius, symbolScale: 0.22, contentMode: .fit)
             .aspectRatio(4 / 3, contentMode: .fit)
             .id(selectedIndex)
             .transition(.opacity)
@@ -127,10 +128,10 @@ struct BestShotView: View {
                     HStack(spacing: 14) {
                         IconTile(systemName: reason.systemImage, tint: reason.tint, size: 44)
                         VStack(alignment: .leading, spacing: 2) {
-                            Text(reason.title)
+                            Text(reason.title.localizedUI)
                                 .font(.system(.body, weight: .medium))
                                 .foregroundStyle(Palette.textPrimary)
-                            Text(reason.detail)
+                            Text(reason.detail.localizedUI)
                                 .font(Typography.metadata)
                                 .foregroundStyle(Palette.textSecondary)
                         }
@@ -146,7 +147,7 @@ struct BestShotView: View {
             Button {
                 Task { await keepSelected() }
             } label: {
-                if isDeleting { ProgressView().tint(.white) } else { Text(keepTitle) }
+                if isDeleting { ProgressView().tint(.white) } else { Text(keepTitle.localizedUI) }
             }
             .buttonStyle(PrimaryButtonStyle(showsArrow: false))
             .disabled(kept || isDeleting)

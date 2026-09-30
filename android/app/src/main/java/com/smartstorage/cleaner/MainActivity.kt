@@ -101,6 +101,11 @@ class MainActivity : ComponentActivity() {
         if (prefs.getBoolean(KEY_ONBOARDED, false)) store.refreshAccess()
     }
 
+    override fun onDestroy() {
+        cloudStore.close()
+        super.onDestroy()
+    }
+
     private companion object {
         const val PREFS = "keepspace"
         const val KEY_ONBOARDED = "hasCompletedOnboarding"

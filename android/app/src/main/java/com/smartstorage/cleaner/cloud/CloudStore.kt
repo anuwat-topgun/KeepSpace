@@ -2,6 +2,7 @@ package com.smartstorage.cleaner.cloud
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.app.Activity
 import androidx.activity.result.IntentSenderRequest
@@ -36,6 +37,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.cancel
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -47,6 +49,21 @@ class CloudStore(context: Context) {
     private val ioScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private val _state = MutableStateFlow(load())
     val state: StateFlow<CloudState> = _state.asStateFlow()
+    private val preferenceListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+        // Workers use a separate CloudStore instance. Mirror their persisted progress into the
+        // activity instance so Library badges update while the upload is running.
+        if (key == KEY_STATE) _state.value = load()
+    }
+
+    init {
+        prefs.registerOnSharedPreferenceChangeListener(preferenceListener)
+    }
+
+    fun close() {
+        prefs.unregisterOnSharedPreferenceChangeListener(preferenceListener)
+        authService.dispose()
+        ioScope.cancel()
+    }
 
     fun authorizationIntent(provider: CloudProvider): Intent? {
         if (provider == CloudProvider.GoogleDrive) return null
@@ -136,7 +153,7 @@ class CloudStore(context: Context) {
                 "KeepSpace-${Instant.ofEpochMilli(media.createdAt).toString().take(10)}-${media.id.hashCode().toUInt()}.$extension"
             } else original
             CloudUploadItem(provider = provider, scope = scope, sourceUri = media.id, sourceName = name,
-                destinationFolder = cleanFolder, bytes = media.bytes)
+                destinationFolder = cleanFolder, bytes = media.bytes, sourceModifiedAt = media.modifiedAt)
         }
         if (queued.isEmpty()) {
             notice("No ${scope.title.lowercase()} are available to back up.")
@@ -254,7 +271,8 @@ private fun CloudState.toJson() = JSONObject().apply {
 
 private fun CloudUploadItem.toJson() = JSONObject().apply {
     put("id", id); put("provider", provider.name); put("scope", scope.name); put("uri", sourceUri); put("name", sourceName)
-    put("folder", destinationFolder); put("bytes", bytes); put("status", status.name); put("progress", progress); put("attempt", attempt)
+    put("folder", destinationFolder); put("bytes", bytes); put("sourceModifiedAt", sourceModifiedAt)
+    put("status", status.name); put("progress", progress); put("attempt", attempt)
     put("error", error); put("remoteId", remoteId)
 }
 
@@ -270,6 +288,7 @@ private fun JSONObject.toCloudState(): CloudState {
     val uploads = (0 until uploadsJson.length()).map { uploadsJson.getJSONObject(it) }.map { o ->
         CloudUploadItem(o.getString("id"), CloudProvider.valueOf(o.getString("provider")), CloudBackupScope.valueOf(o.getString("scope")),
             o.getString("uri"), o.getString("name"), o.getString("folder"), o.optLong("bytes"),
+            if (o.isNull("sourceModifiedAt")) null else o.optLong("sourceModifiedAt"),
             CloudUploadStatus.valueOf(o.optString("status", "Waiting")), o.optInt("progress"), o.optInt("attempt"),
             o.optString("error").ifBlank { null }, o.optString("remoteId").ifBlank { null })
     }

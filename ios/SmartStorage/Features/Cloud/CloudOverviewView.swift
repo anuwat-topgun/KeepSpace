@@ -44,7 +44,7 @@ struct CloudOverviewView: View {
                         VStack(alignment: .leading, spacing: 12) {
                             ListTile(systemImage: icon(upload.status), tint: upload.status == .failed ? .coral : .teal,
                                      title: upload.sourceName,
-                                     subtitle: "\(upload.provider.title) · \(upload.status.title) · \(upload.bytes.formattedBytes)",
+                                     subtitle: "\(upload.provider.title) · \(upload.status.title.localizedUI) · \(upload.bytes.formattedBytes)",
                                      showsChevron: false)
                             if upload.status == .uploading || upload.status == .verifying {
                                 ProgressView(value: Double(upload.progress), total: 100).tint(Palette.accent)
