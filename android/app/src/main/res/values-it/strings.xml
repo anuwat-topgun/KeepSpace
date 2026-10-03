@@ -83,6 +83,8 @@
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d giorni gratuiti, poi %s all\'anno. Si rinnova automaticamente fino all\'annullamento nelle impostazioni del tuo account.</string>
     <string name="subscription_d_of_d_files_used">%d di %d file utilizzati</string>
     <string name="subscription_d_of_d_used">%d di %d utilizzato</string>
+    <string name="common_d_rule_on">Regole attive: %d</string>
+    <string name="common_d_rules_on">Regole attive: %d</string>
     <string name="receipt_filing_photo_date">(data della foto)</string>
     <string name="rule_screens_add_rule">+ Aggiungi regola</string>
     <string name="common_a_reminder_to_review_the_safest_cleanup_suggestions">Un promemoria per rivedere i suggerimenti di pulizia più sicuri.</string>
@@ -113,7 +115,6 @@
     <string name="memory_detail_and_d_more">e %,d in più</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android chiede prima che qualsiasi cosa venga rimossa e gli elementi rimangono nel Cestino per 30 giorni. Preferiti e ricordi non vengono mai preselezionati.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Foto, SwiftUI e SwiftData: tutti parte di iOS. In questa versione non sono incluse librerie di terze parti.</string>
-    <string name="common_automatically_file_content_where_it_belongs">Archivia automaticamente il contenuto a cui appartiene.</string>
     <string name="common_automation">Automazione</string>
     <string name="common_back">Indietro</string>
     <string name="manual_backup_back_up_d_files">Esegui il backup di %d file</string>
@@ -153,6 +154,7 @@
     <string name="paywall_check_your_connection_and_try_again">Controlla la connessione e riprova.</string>
     <string name="common_choose_photo_access">Scegli Accesso foto</string>
     <string name="common_choose_what_to_copy_and_where_it_should_go">Scegli cosa copiare e dove dovrebbe andare.</string>
+    <string name="common_choose_where_each_kind_of_file_would_be_filed">Scegli dove verrebbe archiviato ogni tipo di file.</string>
     <string name="common_classification_happens_on_your_device">La classificazione avviene sul tuo dispositivo.</string>
     <string name="common_clean">Pulito</string>
     <string name="subscription_cleanup">Pulizia</string>
@@ -220,7 +222,7 @@
     <string name="common_files_are_analyzed_and_categorized_on_this_device_nothin">I file vengono analizzati e classificati su questo dispositivo. Nulla viene inviato al cloud finché non viene eseguito il backup.</string>
     <string name="common_find_and_remove_unnecessary_files">Trova e rimuovi i file non necessari.</string>
     <string name="common_find_duplicates">Trova duplicati</string>
-    <string name="paywall_find_receipts_and_file_them_in_the_right_place">Trova le ricevute e archiviale nel posto giusto.</string>
+    <string name="common_find_receipts_and_see_where_each_would_be_filed">Trova le ricevute e vedi dove verrebbe archiviata ciascuna.</string>
     <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Trova le ricevute nei tuoi screenshot e nelle tue foto, legge il commerciante, la data e l\'importo su questo dispositivo e mostra dove verrebbero archiviate ciascuna.</string>
     <string name="common_folder">Cartella</string>
     <string name="common_folder_inside_keepspace">Cartella all\'interno di KeepSpace</string>
@@ -299,6 +301,7 @@
     <string name="common_no_enabled_rule_files_receipts_yet">Nessuna ricevuta dei file di regole ancora abilitata.</string>
     <string name="common_no_media_found">Nessun supporto trovato.</string>
     <string name="common_no_receipts_found_in_your_screenshots_or_photos_yet">Ancora nessuna ricevuta trovata nei tuoi screenshot o nelle tue foto.</string>
+    <string name="common_no_rules_on">Nessuna regola attiva</string>
     <string name="common_no_rules_yet_add_one_to_start_filing_automatically">Nessuna regola ancora. Aggiungine uno per avviare l\'archiviazione automaticamente.</string>
     <string name="common_no_screenshots_found">Nessuno screenshot trovato.</string>
     <string name="common_no_similar_photos_found">Nessuna foto simile trovata.</string>

@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "และ %,d เพิ่มเติม",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android ถามก่อนที่จะนำสิ่งใดออก และรายการต่างๆ จะอยู่ในถังขยะเป็นเวลา 30 วัน รายการโปรดและความทรงจำไม่เคยถูกเลือกไว้ล่วงหน้า",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, รูปภาพ, SwiftUI และ SwiftData — ทั้งหมดนี้เป็นส่วนหนึ่งของ iOS ไม่มีไลบรารีของบุคคลที่สามรวมอยู่ในเวอร์ชันนี้",
-    "common.automatically_file_content_where_it_belongs": "จัดเก็บเนื้อหาโดยอัตโนมัติในตำแหน่งที่เนื้อหานั้นอยู่",
     "common.automation": "ระบบอัตโนมัติ",
     "common.back": "กลับ",
     "common.back_up_more": "สำรองข้อมูลเพิ่มเติม",
@@ -432,7 +431,6 @@
     "paywall.continue": "ดำเนินการต่อ",
     "subscription.ends_bbb6ff2b": "สิ้นสุด %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "ทุกสิ่งที่คุณเห็นสามารถสแกนและตรวจสอบได้ฟรี",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "ค้นหาใบเสร็จรับเงินและยื่นให้ถูกที่",
     "subscription.free": "ฟรี",
     "subscription.free_trial_ends_then_renews": "การทดลองใช้งานฟรีสิ้นสุด %@ จากนั้นต่ออายุ",
     "subscription.free_trial_ends": "ทดลองใช้ฟรีสิ้นสุด %@",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "การล้างข้อมูลแบบไม่จำกัด การบีบอัดวิดีโอ ภาพหน้าจออัจฉริยะ การยื่นใบเสร็จรับเงิน AI Taste และการสำรองข้อมูลและกฎแบบไม่จำกัด",
     "common.unlock_keepspace_pro": "ปลดล็อค KeepSpace มือโปร",
     "manual_backup.unlock_unlimited_backup": "ปลดล็อกการสำรองข้อมูลไม่จำกัด",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "คุณได้ใช้การสำรองข้อมูลฟรีของเดือนนี้แล้ว"
+    "manual_backup.you_ve_used_this_month_s_free_backups": "คุณได้ใช้การสำรองข้อมูลฟรีของเดือนนี้แล้ว",
+    "common.d_rule_on": "กฎที่เปิดอยู่: %d",
+    "common.d_rules_on": "กฎที่เปิดอยู่: %d",
+    "common.no_rules_on": "ไม่มีกฎที่เปิดอยู่",
+    "common.find_receipts_and_see_where_each_would_be_filed": "ค้นหาใบเสร็จและดูว่าแต่ละใบจะถูกจัดเก็บที่ไหน",
+    "common.choose_where_each_kind_of_file_would_be_filed": "เลือกว่าไฟล์แต่ละประเภทจะถูกจัดเก็บที่ไหน"
   }
 }

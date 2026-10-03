@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d दिन मुफ़्त, फिर %@ प्रति वर्ष। जब तक आप अपनी खाता सेटिंग में रद्द नहीं करते तब तक स्वचालित रूप से नवीनीकृत हो जाता है।";
 "%d of %d files used" = "%d फ़ाइलों में से %d का उपयोग किया गया";
 "%d of %d used" = "%d में से %d का उपयोग किया गया";
+"%d rule on" = "चालू नियम: %d";
+"%d rules on" = "चालू नियम: %d";
 "(photo date)" = "(फोटो दिनांक)";
 "+  Add Rule" = "+ नियम जोड़ें";
 "A reminder to review the safest cleanup suggestions." = "सबसे सुरक्षित सफ़ाई सुझावों की समीक्षा करने के लिए एक अनुस्मारक।";
@@ -111,7 +113,6 @@
 "and %,d more" = "और %,d अधिक";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android कुछ भी हटाने से पहले पूछता है, और आइटम 30 दिनों तक कूड़ेदान में रहते हैं। पसंदीदा और यादें कभी भी पूर्व-चयनित नहीं होती हैं।";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple विज़न, फ़ोटो, स्विफ्टयूआई और स्विफ्टडेटा - सभी iOS के भाग। इस संस्करण में कोई तृतीय-पक्ष लाइब्रेरी शामिल नहीं है।";
-"Automatically file content where it belongs." = "सामग्री को स्वचालित रूप से वहीं फ़ाइल करें जहां वह है।";
 "Automation" = "स्वचालन";
 "Back" = "वापस";
 "Back Up %d Files" = "%d फ़ाइलों का बैकअप लें";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "अपना कनेक्शन जांचें और पुनः प्रयास करें।";
 "Choose Photo Access" = "फोटो एक्सेस चुनें";
 "Choose what to copy and where it should go." = "चुनें कि क्या कॉपी करना है और इसे कहाँ जाना चाहिए।";
+"Choose where each kind of file would be filed." = "चुनें कि हर तरह की फ़ाइल कहाँ फ़ाइल होगी।";
 "Classification happens on your device." = "वर्गीकरण आपके डिवाइस पर होता है.";
 "Clean" = "साफ़";
 "Cleanup" = "सफ़ाई";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "इस डिवाइस पर फ़ाइलों का विश्लेषण और वर्गीकरण किया जाता है। जब तक आप बैकअप नहीं लेते तब तक क्लाउड पर कुछ भी नहीं भेजा जाता है।";
 "Find and remove unnecessary files." = "अनावश्यक फ़ाइलें ढूंढें और हटाएं.";
 "Find duplicates" = "डुप्लिकेट खोजें";
-"Find receipts and file them in the right place." = "रसीदें ढूंढें और उन्हें सही जगह पर दाखिल करें।";
+"Find receipts and see where each would be filed." = "रसीदें खोजें और देखें कि हर एक कहाँ फ़ाइल होगी।";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "आपके स्क्रीनशॉट और फ़ोटो में रसीदें ढूंढता है, इस डिवाइस पर व्यापारी, तारीख और राशि पढ़ता है, और दिखाता है कि प्रत्येक को कहां दाखिल किया जाएगा।";
 "Folder" = "फ़ोल्डर";
 "Folder inside KeepSpace" = "KeepSpace के अंदर फ़ोल्डर";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "अभी तक कोई सक्षम नियम फ़ाइल रसीद नहीं।";
 "No media found." = "कोई मीडिया नहीं मिला.";
 "No receipts found in your screenshots or photos yet." = "आपके स्क्रीनशॉट या फ़ोटो में अभी तक कोई रसीद नहीं मिली है।";
+"No rules on" = "कोई नियम चालू नहीं";
 "No rules yet. Add one to start filing automatically." = "अभी तक कोई नियम नहीं. स्वचालित रूप से फाइलिंग शुरू करने के लिए एक जोड़ें।";
 "No screenshots found." = "कोई स्क्रीनशॉट नहीं मिला.";
 "No similar photos found." = "ऐसी कोई फ़ोटो नहीं मिली.";

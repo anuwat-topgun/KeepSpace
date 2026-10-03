@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "그 외 %,d개",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android는 항목을 삭제하기 전에 확인하고 항목은 30일 동안 휴지통에 보관됩니다. 즐겨찾기와 추억은 미리 선택되지 않습니다.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Photos, SwiftUI 및 SwiftData — 모두 iOS의 일부입니다. 이 버전에는 타사 라이브러리가 포함되어 있지 않습니다.",
-    "common.automatically_file_content_where_it_belongs": "콘텐츠가 속한 곳에 자동으로 파일을 보관합니다.",
     "common.automation": "자동화",
     "common.back": "뒤로",
     "common.back_up_more": "더 많이 백업하세요",
@@ -432,7 +431,6 @@
     "paywall.continue": "계속",
     "subscription.ends_bbb6ff2b": "%@ 종료",
     "subscription.everything_you_see_is_free_to_scan_and_review": "당신이 보는 모든 것은 무료로 스캔하고 검토할 수 있습니다.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "영수증을 찾아 올바른 장소에 보관하세요.",
     "subscription.free": "무료",
     "subscription.free_trial_ends_then_renews": "무료 평가판은 %@ 종료된 후 갱신됩니다.",
     "subscription.free_trial_ends": "무료 평가판이 %@ 종료됩니다.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "무제한 정리, 비디오 압축, 스마트 스크린샷, 영수증 파일링, AI Taste, 무제한 백업 및 규칙.",
     "common.unlock_keepspace_pro": "KeepSpace Pro 잠금 해제",
     "manual_backup.unlock_unlimited_backup": "무제한 백업 잠금 해제",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "이번 달의 무료 백업을 사용하셨습니다."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "이번 달의 무료 백업을 사용하셨습니다.",
+    "common.d_rule_on": "활성 규칙: %d",
+    "common.d_rules_on": "활성 규칙: %d",
+    "common.no_rules_on": "활성 규칙 없음",
+    "common.find_receipts_and_see_where_each_would_be_filed": "영수증을 찾고 각각이 어디에 보관될지 확인하세요.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "파일 종류별로 보관할 위치를 선택하세요."
   }
 }

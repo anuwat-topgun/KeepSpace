@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d 日間無料、その後は %@ 年あたり。アカウント設定でキャンセルするまで自動的に更新されます。";
 "%d of %d files used" = "%d/%d ファイルが使用されました";
 "%d of %d used" = "%d/%d 個が使用されました";
+"%d rule on" = "有効なルール：%d";
+"%d rules on" = "有効なルール：%d";
 "(photo date)" = "(写真の日付)";
 "+  Add Rule" = "+ ルールの追加";
 "A reminder to review the safest cleanup suggestions." = "最も安全なクリーンアップの提案を確認するようリマインドします。";
@@ -111,7 +113,6 @@
 "and %,d more" = "そしてさらに %,d";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android は、何かが削除される前に質問し、アイテムは 30 日間ゴミ箱に残ります。お気に入りや思い出が事前に選択されることはありません。";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision、写真、SwiftUI、SwiftData — すべて iOS の一部です。このバージョンにはサードパーティのライブラリは含まれていません。";
-"Automatically file content where it belongs." = "コンテンツを自動的に適切な場所にファイルします。";
 "Automation" = "自動化";
 "Back" = "戻る";
 "Back Up %d Files" = "%d ファイルをバックアップする";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "接続を確認して、もう一度試してください。";
 "Choose Photo Access" = "写真へのアクセスを選択してください";
 "Choose what to copy and where it should go." = "何をコピーするか、どこにコピーするかを選択します。";
+"Choose where each kind of file would be filed." = "ファイルの種類ごとに保存先を選びます。";
 "Classification happens on your device." = "分類はデバイス上で行われます。";
 "Clean" = "クリーン";
 "Cleanup" = "クリーンアップ";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "ファイルはこのデバイス上で分析および分類されます。バックアップするまで、クラウドには何も送信されません。";
 "Find and remove unnecessary files." = "不要なファイルを見つけて削除します。";
 "Find duplicates" = "重複の検索";
-"Find receipts and file them in the right place." = "領収書を見つけて、適切な場所に保管してください。";
+"Find receipts and see where each would be filed." = "レシートを見つけ、それぞれの保存先を確認できます。";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "スクリーンショットや写真から領収書を検索し、このデバイス上の販売者、日付、金額を読み取り、それぞれの領収書が保管される場所を示します。";
 "Folder" = "フォルダー";
 "Folder inside KeepSpace" = "KeepSpace 内のフォルダー";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "有効なルール ファイルの受信はまだありません。";
 "No media found." = "メディアが見つかりませんでした。";
 "No receipts found in your screenshots or photos yet." = "スクリーンショットや写真に領収書はまだ見つかりません。";
+"No rules on" = "有効なルールはありません";
 "No rules yet. Add one to start filing automatically." = "まだルールはありません。 1 つ追加すると、自動的にファイリングが開始されます。";
 "No screenshots found." = "スクリーンショットが見つかりませんでした。";
 "No similar photos found." = "似たような写真は見つかりませんでした。";

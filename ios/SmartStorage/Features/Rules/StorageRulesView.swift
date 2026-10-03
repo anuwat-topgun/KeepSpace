@@ -8,7 +8,7 @@ struct StorageRulesView: View {
 
     var body: some View {
         ScreenScaffold(maxWidth: Metrics.wideContentWidth) {
-            ScreenHeader(title: "Storage Rules", subtitle: "Automatically file content where it belongs.")
+            ScreenHeader(title: "Storage Rules", subtitle: "Choose where each kind of file would be filed.")
                 .padding(.bottom, 8)
 
             AutomationHeroCard(active: store.activeCount)

@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d hari gratis, lalu %@ per tahun. Diperpanjang secara otomatis hingga Anda membatalkan di pengaturan akun Anda.";
 "%d of %d files used" = "%d dari %d file digunakan";
 "%d of %d used" = "%d dari %d digunakan";
+"%d rule on" = "Aturan aktif: %d";
+"%d rules on" = "Aturan aktif: %d";
 "(photo date)" = "(tanggal foto)";
 "+  Add Rule" = "+ Tambahkan Aturan";
 "A reminder to review the safest cleanup suggestions." = "Pengingat untuk meninjau saran pembersihan yang paling aman.";
@@ -111,7 +113,6 @@
 "and %,d more" = "dan %,d lainnya";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android bertanya sebelum sesuatu dihapus, dan item tetap berada di Sampah selama 30 hari. Favorit dan kenangan tidak pernah dipilih sebelumnya.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision, Foto, SwiftUI, dan SwiftData — semuanya bagian dari iOS. Tidak ada perpustakaan pihak ketiga yang disertakan dalam versi ini.";
-"Automatically file content where it belongs." = "Secara otomatis mengarsipkan konten pada tempatnya.";
 "Automation" = "Otomatisasi";
 "Back" = "Kembali";
 "Back Up %d Files" = "Cadangkan %d File";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "Periksa koneksi Anda dan coba lagi.";
 "Choose Photo Access" = "Pilih Akses Foto";
 "Choose what to copy and where it should go." = "Pilih apa yang akan disalin dan ke mana harus dipindahkan.";
+"Choose where each kind of file would be filed." = "Pilih di mana setiap jenis berkas akan disimpan.";
 "Classification happens on your device." = "Klasifikasi terjadi pada perangkat Anda.";
 "Clean" = "Bersih";
 "Cleanup" = "Pembersihan";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "File dianalisis dan dikategorikan pada perangkat ini. Tidak ada yang dikirim ke cloud sampai Anda membuat cadangan.";
 "Find and remove unnecessary files." = "Temukan dan hapus file yang tidak diperlukan.";
 "Find duplicates" = "Temukan duplikat";
-"Find receipts and file them in the right place." = "Temukan tanda terima dan arsipkan di tempat yang tepat.";
+"Find receipts and see where each would be filed." = "Temukan struk dan lihat di mana masing-masing akan disimpan.";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Menemukan tanda terima di tangkapan layar dan foto Anda, membaca pedagang, tanggal dan jumlah di perangkat ini, dan menunjukkan di mana masing-masing tanda terima akan disimpan.";
 "Folder" = "Map";
 "Folder inside KeepSpace" = "Folder di dalam KeepSpace";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "Belum ada tanda terima file aturan yang diaktifkan.";
 "No media found." = "Tidak ada media yang ditemukan.";
 "No receipts found in your screenshots or photos yet." = "Belum ada tanda terima di tangkapan layar atau foto Anda.";
+"No rules on" = "Tidak ada aturan aktif";
 "No rules yet. Add one to start filing automatically." = "Belum ada aturan. Tambahkan satu untuk mulai mengarsipkan secara otomatis.";
 "No screenshots found." = "Tidak ada tangkapan layar yang ditemukan.";
 "No similar photos found." = "Tidak ditemukan foto serupa.";

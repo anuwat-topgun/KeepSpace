@@ -83,6 +83,8 @@
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d dní zdarma, poté %s za rok. Obnovuje se automaticky, dokud nezrušíte v nastavení účtu.</string>
     <string name="subscription_d_of_d_files_used">Použito %d z %d souborů</string>
     <string name="subscription_d_of_d_used">Využito %d z %d</string>
+    <string name="common_d_rule_on">Aktivní pravidla: %d</string>
+    <string name="common_d_rules_on">Aktivní pravidla: %d</string>
     <string name="receipt_filing_photo_date">(datum focení)</string>
     <string name="rule_screens_add_rule">+ Přidat pravidlo</string>
     <string name="common_a_reminder_to_review_the_safest_cleanup_suggestions">Připomenutí, abyste si přečetli nejbezpečnější návrhy čištění.</string>
@@ -113,7 +115,6 @@
     <string name="memory_detail_and_d_more">a %d více</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android se zeptá, než bude cokoli odstraněno, a položky zůstanou v koši 30 dní. Oblíbené a vzpomínky nejsou nikdy předem vybrány.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Photos, SwiftUI a SwiftData – to vše je součástí iOS. V této verzi nejsou zahrnuty žádné knihovny třetích stran.</string>
-    <string name="common_automatically_file_content_where_it_belongs">Automaticky ukládat obsah tam, kam patří.</string>
     <string name="common_automation">automatizace</string>
     <string name="common_back">Zpět</string>
     <string name="manual_backup_back_up_d_files">Zálohujte %d souborů</string>
@@ -153,6 +154,7 @@
     <string name="paywall_check_your_connection_and_try_again">Zkontrolujte připojení a zkuste to znovu.</string>
     <string name="common_choose_photo_access">Vyberte Přístup k fotografiím</string>
     <string name="common_choose_what_to_copy_and_where_it_should_go">Vyberte, co chcete zkopírovat a kam to má jít.</string>
+    <string name="common_choose_where_each_kind_of_file_would_be_filed">Vyberte, kam by se ukládal každý typ souboru.</string>
     <string name="common_classification_happens_on_your_device">Klasifikace probíhá na vašem zařízení.</string>
     <string name="common_clean">Čistý</string>
     <string name="subscription_cleanup">Čištění</string>
@@ -220,7 +222,7 @@
     <string name="common_files_are_analyzed_and_categorized_on_this_device_nothin">Soubory jsou na tomto zařízení analyzovány a kategorizovány. Dokud neprovedete zálohu, nic se neodešle do cloudu.</string>
     <string name="common_find_and_remove_unnecessary_files">Najděte a odstraňte nepotřebné soubory.</string>
     <string name="common_find_duplicates">Najděte duplikáty</string>
-    <string name="paywall_find_receipts_and_file_them_in_the_right_place">Najděte účtenky a uložte je na správné místo.</string>
+    <string name="common_find_receipts_and_see_where_each_would_be_filed">Najděte účtenky a podívejte se, kam by se každá uložila.</string>
     <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Vyhledá účtenky na snímcích obrazovky a fotografiích, přečte obchodníka, datum a částku na tomto zařízení a ukáže, kde by byly jednotlivé položky uloženy.</string>
     <string name="common_folder">Složka</string>
     <string name="common_folder_inside_keepspace">Složka uvnitř KeepSpace</string>
@@ -299,6 +301,7 @@
     <string name="common_no_enabled_rule_files_receipts_yet">Dosud žádná aktivovaná pravidla nesoubory účtenek.</string>
     <string name="common_no_media_found">Nebyla nalezena žádná média.</string>
     <string name="common_no_receipts_found_in_your_screenshots_or_photos_yet">Na snímcích obrazovky nebo fotkách zatím nebyly nalezeny žádné účtenky.</string>
+    <string name="common_no_rules_on">Žádná aktivní pravidla</string>
     <string name="common_no_rules_yet_add_one_to_start_filing_automatically">Zatím žádná pravidla. Chcete-li automaticky zahájit podávání, přidejte jeden.</string>
     <string name="common_no_screenshots_found">Nebyly nalezeny žádné snímky obrazovky.</string>
     <string name="common_no_similar_photos_found">Nebyly nalezeny žádné podobné fotografie.</string>

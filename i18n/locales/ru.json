@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "и еще %,d",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android спрашивает, прежде чем что-либо будет удалено, и элементы останутся в корзине в течение 30 дней. Избранное и воспоминания никогда не выбираются заранее.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Photos, SwiftUI и SwiftData — все это часть iOS. В эту версию не включены сторонние библиотеки.",
-    "common.automatically_file_content_where_it_belongs": "Автоматически сохраняйте содержимое там, где ему место.",
     "common.automation": "Автоматизация",
     "common.back": "Назад",
     "common.back_up_more": "Резервное копирование еще",
@@ -432,7 +431,6 @@
     "paywall.continue": "Продолжить",
     "subscription.ends_bbb6ff2b": "Заканчивается %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Все, что вы видите, можно бесплатно сканировать и просматривать.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Найдите квитанции и сохраните их в нужном месте.",
     "subscription.free": "Бесплатно",
     "subscription.free_trial_ends_then_renews": "Бесплатная пробная версия заканчивается %@, а затем продлевается.",
     "subscription.free_trial_ends": "Бесплатная пробная версия заканчивается %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Неограниченная очистка, сжатие видео, умные снимки экрана, сохранение квитанций, AI Taste, а также неограниченное резервное копирование и правила.",
     "common.unlock_keepspace_pro": "Разблокируйте KeepSpace Pro",
     "manual_backup.unlock_unlimited_backup": "Разблокировать неограниченное резервное копирование",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "Вы использовали бесплатные резервные копии этого месяца."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Вы использовали бесплатные резервные копии этого месяца.",
+    "common.d_rule_on": "Активных правил: %d",
+    "common.d_rules_on": "Активных правил: %d",
+    "common.no_rules_on": "Нет активных правил",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Находите чеки и смотрите, куда каждый был бы сохранён.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Выберите, куда сохранялся бы каждый тип файлов."
   }
 }

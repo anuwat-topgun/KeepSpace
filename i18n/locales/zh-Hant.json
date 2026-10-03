@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "還有 %,d 個",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android 在刪除任何內容之前會先詢問，並且項目會在垃圾箱中保留 30 天。最喜歡的東西和回憶從來都不是預先選擇的。",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision、Photos、SwiftUI 和 SwiftData — 都是 iOS 的一部分。此版本不包含任何第三方程式庫。",
-    "common.automatically_file_content_where_it_belongs": "自動將內容歸檔到所屬的位置。",
     "common.automation": "自動化",
     "common.back": "返回",
     "common.back_up_more": "備份更多",
@@ -432,7 +431,6 @@
     "paywall.continue": "繼續",
     "subscription.ends_bbb6ff2b": "結束%@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "您看到的所有内容都可以免费扫描和查看。",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "找到收據並將其歸檔在正確的位置。",
     "subscription.free": "免費",
     "subscription.free_trial_ends_then_renews": "免費試用結束%@，然後續訂。",
     "subscription.free_trial_ends": "免費試用結束%@。",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "無限清理、視訊壓縮、智慧截圖、收據歸檔、AI 品味以及無限備份和規則。",
     "common.unlock_keepspace_pro": "解鎖 KeepSpace 專業版",
     "manual_backup.unlock_unlimited_backup": "解鎖無限備份",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "您已使用本月的免費備份。"
+    "manual_backup.you_ve_used_this_month_s_free_backups": "您已使用本月的免費備份。",
+    "common.d_rule_on": "已啟用規則：%d",
+    "common.d_rules_on": "已啟用規則：%d",
+    "common.no_rules_on": "沒有已啟用的規則",
+    "common.find_receipts_and_see_where_each_would_be_filed": "尋找收據，並查看每張收據將歸檔到哪裡。",
+    "common.choose_where_each_kind_of_file_would_be_filed": "選擇每種檔案將歸檔到哪裡。"
   }
 }

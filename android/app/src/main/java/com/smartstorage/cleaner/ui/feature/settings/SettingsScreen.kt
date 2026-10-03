@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AutoAwesome
+import androidx.compose.material.icons.rounded.AccountTree
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import androidx.compose.material.icons.rounded.Favorite
 import com.smartstorage.cleaner.monetization.LocalMonetization
 import androidx.compose.material.icons.rounded.Info
@@ -79,6 +81,10 @@ fun SettingsScreen(onOpen: (Screen) -> Unit) {
             LibraryAccess.Denied -> "Off"
             LibraryAccess.NotDetermined -> "Not set"
         }
+        val rules by com.smartstorage.cleaner.media.LocalRuleStore.current.rules.collectAsState()
+        val activeRules = rules.count { it.isEnabled }
+        CardRow(Icons.Rounded.AccountTree, Screen.StorageRules.title, tint = Tint.Mint,
+            subtitle = if (activeRules == 0) "No rules on" else localizedFormat(if (activeRules == 1) "%d rule on" else "%d rules on", activeRules)) { onOpen(Screen.StorageRules) }
         CardRow(Icons.Rounded.Photo, "Photo Access", tint = Tint.Coral, subtitle = accessText) { onOpen(Screen.PhotoAccess) }
         val weekly by LocalWeeklyReminder.current.state.collectAsState()
         CardRow(Icons.Rounded.Notifications, "Notifications", tint = Tint.Purple,

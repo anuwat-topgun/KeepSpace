@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d hari percuma, kemudian %@ setahun. Dibaharui secara automatik sehingga anda membatalkan dalam tetapan akaun anda.";
 "%d of %d files used" = "%d daripada %d fail digunakan";
 "%d of %d used" = "%d daripada %d digunakan";
+"%d rule on" = "Peraturan aktif: %d";
+"%d rules on" = "Peraturan aktif: %d";
 "(photo date)" = "(tarikh gambar)";
 "+  Add Rule" = "+ Tambah Peraturan";
 "A reminder to review the safest cleanup suggestions." = "Peringatan untuk menyemak cadangan pembersihan paling selamat.";
@@ -111,7 +113,6 @@
 "and %,d more" = "dan %,d lagi";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android bertanya sebelum apa-apa dialih keluar dan item kekal dalam Sampah selama 30 hari. Kegemaran dan kenangan tidak pernah diprapilih.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision, Photos, SwiftUI dan SwiftData — semuanya sebahagian daripada iOS. Tiada perpustakaan pihak ketiga disertakan dalam versi ini.";
-"Automatically file content where it belongs." = "Failkan kandungan secara automatik di tempat yang sepatutnya.";
 "Automation" = "Automasi";
 "Back" = "belakang";
 "Back Up %d Files" = "Sandarkan %d Fail";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "Semak sambungan anda dan cuba lagi.";
 "Choose Photo Access" = "Pilih Akses Foto";
 "Choose what to copy and where it should go." = "Pilih apa yang hendak disalin dan ke mana ia patut pergi.";
+"Choose where each kind of file would be filed." = "Pilih di mana setiap jenis fail akan difailkan.";
 "Classification happens on your device." = "Pengelasan berlaku pada peranti anda.";
 "Clean" = "Bersih";
 "Cleanup" = "Pembersihan";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "Fail dianalisis dan dikategorikan pada peranti ini. Tiada apa-apa dihantar ke awan sehingga anda membuat sandaran.";
 "Find and remove unnecessary files." = "Cari dan alih keluar fail yang tidak diperlukan.";
 "Find duplicates" = "Cari pendua";
-"Find receipts and file them in the right place." = "Cari resit dan failkannya di tempat yang betul.";
+"Find receipts and see where each would be filed." = "Cari resit dan lihat di mana setiap satu akan difailkan.";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Mencari resit dalam tangkapan skrin dan foto anda, membaca pedagang, tarikh dan jumlah pada peranti ini dan menunjukkan tempat setiap satu akan difailkan.";
 "Folder" = "folder";
 "Folder inside KeepSpace" = "Folder di dalam KeepSpace";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "Tiada resit fail peraturan yang didayakan lagi.";
 "No media found." = "Tiada media ditemui.";
 "No receipts found in your screenshots or photos yet." = "Tiada resit ditemui dalam tangkapan skrin atau foto anda lagi.";
+"No rules on" = "Tiada peraturan aktif";
 "No rules yet. Add one to start filing automatically." = "Tiada peraturan lagi. Tambahkan satu untuk mula memfailkan secara automatik.";
 "No screenshots found." = "Tiada tangkapan skrin ditemui.";
 "No similar photos found." = "Tiada foto serupa ditemui.";

@@ -83,6 +83,8 @@
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d days free, then %s per year. Renews automatically until you cancel in your account settings.</string>
     <string name="subscription_d_of_d_files_used">%d of %d files used</string>
     <string name="subscription_d_of_d_used">%d of %d used</string>
+    <string name="common_d_rule_on">%d rule on</string>
+    <string name="common_d_rules_on">%d rules on</string>
     <string name="receipt_filing_photo_date">(photo date)</string>
     <string name="rule_screens_add_rule">+  Add Rule</string>
     <string name="common_a_reminder_to_review_the_safest_cleanup_suggestions">A reminder to review the safest cleanup suggestions.</string>
@@ -113,7 +115,6 @@
     <string name="memory_detail_and_d_more">and %,d more</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version.</string>
-    <string name="common_automatically_file_content_where_it_belongs">Automatically file content where it belongs.</string>
     <string name="common_automation">Automation</string>
     <string name="common_back">Back</string>
     <string name="manual_backup_back_up_d_files">Back Up %d Files</string>
@@ -153,6 +154,7 @@
     <string name="paywall_check_your_connection_and_try_again">Check your connection and try again.</string>
     <string name="common_choose_photo_access">Choose Photo Access</string>
     <string name="common_choose_what_to_copy_and_where_it_should_go">Choose what to copy and where it should go.</string>
+    <string name="common_choose_where_each_kind_of_file_would_be_filed">Choose where each kind of file would be filed.</string>
     <string name="common_classification_happens_on_your_device">Classification happens on your device.</string>
     <string name="common_clean">Clean</string>
     <string name="subscription_cleanup">Cleanup</string>
@@ -220,7 +222,7 @@
     <string name="common_files_are_analyzed_and_categorized_on_this_device_nothin">Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up.</string>
     <string name="common_find_and_remove_unnecessary_files">Find and remove unnecessary files.</string>
     <string name="common_find_duplicates">Find duplicates</string>
-    <string name="paywall_find_receipts_and_file_them_in_the_right_place">Find receipts and file them in the right place.</string>
+    <string name="common_find_receipts_and_see_where_each_would_be_filed">Find receipts and see where each would be filed.</string>
     <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed.</string>
     <string name="common_folder">Folder</string>
     <string name="common_folder_inside_keepspace">Folder inside KeepSpace</string>
@@ -299,6 +301,7 @@
     <string name="common_no_enabled_rule_files_receipts_yet">No enabled rule files receipts yet.</string>
     <string name="common_no_media_found">No media found.</string>
     <string name="common_no_receipts_found_in_your_screenshots_or_photos_yet">No receipts found in your screenshots or photos yet.</string>
+    <string name="common_no_rules_on">No rules on</string>
     <string name="common_no_rules_yet_add_one_to_start_filing_automatically">No rules yet. Add one to start filing automatically.</string>
     <string name="common_no_screenshots_found">No screenshots found.</string>
     <string name="common_no_similar_photos_found">No similar photos found.</string>

@@ -83,6 +83,8 @@
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d jours gratuits, puis %s par an. Se renouvelle automatiquement jusqu\'à ce que vous annuliez dans les paramètres de votre compte.</string>
     <string name="subscription_d_of_d_files_used">%d sur %d fichiers utilisés</string>
     <string name="subscription_d_of_d_used">%d sur %d utilisés</string>
+    <string name="common_d_rule_on">Règles actives : %d</string>
+    <string name="common_d_rules_on">Règles actives : %d</string>
     <string name="receipt_filing_photo_date">(date de la photo)</string>
     <string name="rule_screens_add_rule">+ Ajouter une règle</string>
     <string name="common_a_reminder_to_review_the_safest_cleanup_suggestions">Un rappel pour examiner les suggestions de nettoyage les plus sûres.</string>
@@ -113,7 +115,6 @@
     <string name="memory_detail_and_d_more">et %d plus</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android demande avant que quoi que ce soit ne soit supprimé et les éléments restent dans la corbeille pendant 30 jours. Les favoris et les souvenirs ne sont jamais présélectionnés.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Photos, SwiftUI et SwiftData — tous font partie de iOS. Aucune bibliothèque tierce n\'est incluse dans cette version.</string>
-    <string name="common_automatically_file_content_where_it_belongs">Classez automatiquement le contenu à sa place.</string>
     <string name="common_automation">Automatisation</string>
     <string name="common_back">Retour</string>
     <string name="manual_backup_back_up_d_files">Sauvegarder %d fichiers</string>
@@ -153,6 +154,7 @@
     <string name="paywall_check_your_connection_and_try_again">Vérifiez votre connexion et réessayez.</string>
     <string name="common_choose_photo_access">Choisissez l\'accès aux photos</string>
     <string name="common_choose_what_to_copy_and_where_it_should_go">Choisissez ce que vous souhaitez copier et où cela doit aller.</string>
+    <string name="common_choose_where_each_kind_of_file_would_be_filed">Choisissez où chaque type de fichier serait classé.</string>
     <string name="common_classification_happens_on_your_device">La classification s\'effectue sur votre appareil.</string>
     <string name="common_clean">Nettoyer</string>
     <string name="subscription_cleanup">Nettoyage</string>
@@ -220,7 +222,7 @@
     <string name="common_files_are_analyzed_and_categorized_on_this_device_nothin">Les fichiers sont analysés et classés sur cet appareil. Rien n\'est envoyé vers le cloud jusqu\'à ce que vous effectuiez une sauvegarde.</string>
     <string name="common_find_and_remove_unnecessary_files">Recherchez et supprimez les fichiers inutiles.</string>
     <string name="common_find_duplicates">Rechercher des doublons</string>
-    <string name="paywall_find_receipts_and_file_them_in_the_right_place">Trouvez les reçus et classez-les au bon endroit.</string>
+    <string name="common_find_receipts_and_see_where_each_would_be_filed">Retrouvez vos reçus et voyez où chacun serait classé.</string>
     <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Recherche les reçus dans vos captures d\'écran et photos, lit le commerçant, la date et le montant sur cet appareil, et indique où chacun serait classé.</string>
     <string name="common_folder">Dossier</string>
     <string name="common_folder_inside_keepspace">Dossier dans KeepSpace</string>
@@ -299,6 +301,7 @@
     <string name="common_no_enabled_rule_files_receipts_yet">Aucun reçu de fichier de règles activé pour l\'instant.</string>
     <string name="common_no_media_found">Aucun média trouvé.</string>
     <string name="common_no_receipts_found_in_your_screenshots_or_photos_yet">Aucun reçu n\'a encore été trouvé dans vos captures d\'écran ou vos photos.</string>
+    <string name="common_no_rules_on">Aucune règle active</string>
     <string name="common_no_rules_yet_add_one_to_start_filing_automatically">Pas de règles pour l\'instant. Ajoutez-en un pour commencer à déposer automatiquement.</string>
     <string name="common_no_screenshots_found">Aucune capture d\'écran trouvée.</string>
     <string name="common_no_similar_photos_found">Aucune photo similaire trouvée.</string>

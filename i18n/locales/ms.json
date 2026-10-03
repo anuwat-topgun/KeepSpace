@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "dan %,d lagi",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android bertanya sebelum apa-apa dialih keluar dan item kekal dalam Sampah selama 30 hari. Kegemaran dan kenangan tidak pernah diprapilih.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Photos, SwiftUI dan SwiftData — semuanya sebahagian daripada iOS. Tiada perpustakaan pihak ketiga disertakan dalam versi ini.",
-    "common.automatically_file_content_where_it_belongs": "Failkan kandungan secara automatik di tempat yang sepatutnya.",
     "common.automation": "Automasi",
     "common.back": "belakang",
     "common.back_up_more": "Sandarkan Lagi",
@@ -432,7 +431,6 @@
     "paywall.continue": "Teruskan",
     "subscription.ends_bbb6ff2b": "Tamat %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Semua yang anda lihat adalah percuma untuk diimbas dan disemak.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Cari resit dan failkannya di tempat yang betul.",
     "subscription.free": "Percuma",
     "subscription.free_trial_ends_then_renews": "Percubaan percuma tamat %@, kemudian diperbaharui.",
     "subscription.free_trial_ends": "Percubaan percuma tamat %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Pembersihan tanpa had, pemampatan video, tangkapan skrin pintar, Pemfailan Resit, AI Rasa dan sandaran dan peraturan tanpa had.",
     "common.unlock_keepspace_pro": "Buka kunci KeepSpace Pro",
     "manual_backup.unlock_unlimited_backup": "Buka Kunci Sandaran Tanpa Had",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "Anda telah menggunakan sandaran percuma bulan ini."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Anda telah menggunakan sandaran percuma bulan ini.",
+    "common.d_rule_on": "Peraturan aktif: %d",
+    "common.d_rules_on": "Peraturan aktif: %d",
+    "common.no_rules_on": "Tiada peraturan aktif",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Cari resit dan lihat di mana setiap satu akan difailkan.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Pilih di mana setiap jenis fail akan difailkan."
   }
 }

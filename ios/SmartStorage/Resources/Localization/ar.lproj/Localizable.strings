@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d يوم مجاني، ثم %@ سنويًا. يتم التجديد تلقائيًا حتى تقوم بالإلغاء في إعدادات حسابك.";
 "%d of %d files used" = "تم استخدام %d من %d ملف";
 "%d of %d used" = "تم استخدام %d من %d";
+"%d rule on" = "القواعد النشطة: %d";
+"%d rules on" = "القواعد النشطة: %d";
 "(photo date)" = "(تاريخ الصورة)";
 "+  Add Rule" = "+ إضافة القاعدة";
 "A reminder to review the safest cleanup suggestions." = "تذكير لمراجعة اقتراحات التنظيف الأكثر أمانًا.";
@@ -111,7 +113,6 @@
 "and %,d more" = "و%،د أكثر";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "يسألك Android قبل إزالة أي شيء، وتظل العناصر في سلة المهملات لمدة 30 يومًا. لا يتم تحديد المفضلة والذكريات مسبقًا.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision وPhotos وSwiftUI وSwiftData — كلها جزء من iOS. لا يتم تضمين مكتبات الطرف الثالث في هذا الإصدار.";
-"Automatically file content where it belongs." = "حفظ المحتوى تلقائيًا في المكان الذي ينتمي إليه.";
 "Automation" = "الأتمتة";
 "Back" = "العودة";
 "Back Up %d Files" = "نسخ احتياطي لملفات %d";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "تحقق من اتصالك وحاول مرة أخرى.";
 "Choose Photo Access" = "اختر الوصول إلى الصور";
 "Choose what to copy and where it should go." = "اختر ما تريد نسخه وأين يجب أن يذهب.";
+"Choose where each kind of file would be filed." = "اختر أين سيتم حفظ كل نوع من الملفات.";
 "Classification happens on your device." = "يحدث التصنيف على جهازك.";
 "Clean" = "نظيفة";
 "Cleanup" = "تنظيف";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "يتم تحليل الملفات وتصنيفها على هذا الجهاز. لا يتم إرسال أي شيء إلى السحابة حتى تقوم بعمل نسخة احتياطية.";
 "Find and remove unnecessary files." = "البحث عن الملفات غير الضرورية وإزالتها.";
 "Find duplicates" = "البحث عن التكرارات";
-"Find receipts and file them in the right place." = "ابحث عن الإيصالات وقم بتقديمها في المكان المناسب.";
+"Find receipts and see where each would be filed." = "اعثر على الإيصالات وشاهد أين سيتم حفظ كل منها.";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "يجد الإيصالات في لقطات الشاشة والصور الخاصة بك، ويقرأ التاجر والتاريخ والمبلغ على هذا الجهاز، ويعرض المكان الذي سيتم حفظ كل إيصال فيه.";
 "Folder" = "مجلد";
 "Folder inside KeepSpace" = "مجلد داخل KeepSpace";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "لم يتم تمكين أي إيصالات لملفات القاعدة حتى الآن.";
 "No media found." = "لم يتم العثور على أي وسائط.";
 "No receipts found in your screenshots or photos yet." = "لم يتم العثور على إيصالات في لقطات الشاشة أو الصور الخاصة بك حتى الآن.";
+"No rules on" = "لا توجد قواعد نشطة";
 "No rules yet. Add one to start filing automatically." = "لا توجد قواعد حتى الآن. أضف واحدًا لبدء التسجيل تلقائيًا.";
 "No screenshots found." = "لم يتم العثور على لقطات الشاشة.";
 "No similar photos found." = "لم يتم العثور على صور مماثلة.";

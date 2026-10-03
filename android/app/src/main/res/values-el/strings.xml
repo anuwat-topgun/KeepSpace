@@ -83,6 +83,8 @@
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d ημέρες δωρεάν, μετά %s ανά έτος. Ανανεώνεται αυτόματα μέχρι να ακυρώσετε τις ρυθμίσεις του λογαριασμού σας.</string>
     <string name="subscription_d_of_d_files_used">Χρησιμοποιήθηκαν %d από %d αρχεία</string>
     <string name="subscription_d_of_d_used">Χρησιμοποιήθηκε %d από %d</string>
+    <string name="common_d_rule_on">Ενεργοί κανόνες: %d</string>
+    <string name="common_d_rules_on">Ενεργοί κανόνες: %d</string>
     <string name="receipt_filing_photo_date">(ημερομηνία φωτογραφίας)</string>
     <string name="rule_screens_add_rule">+ Προσθήκη κανόνα</string>
     <string name="common_a_reminder_to_review_the_safest_cleanup_suggestions">Μια υπενθύμιση για να ελέγξετε τις πιο ασφαλείς προτάσεις καθαρισμού.</string>
@@ -113,7 +115,6 @@
     <string name="memory_detail_and_d_more">και %d περισσότερα</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Το Android ζητά πριν αφαιρεθεί οτιδήποτε και τα στοιχεία παραμένουν στον Κάδο απορριμμάτων για 30 ημέρες. Τα αγαπημένα και οι αναμνήσεις δεν προεπιλέγονται ποτέ.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Photos, SwiftUI και SwiftData — όλα μέρος του iOS. Δεν περιλαμβάνονται βιβλιοθήκες τρίτων σε αυτήν την έκδοση.</string>
-    <string name="common_automatically_file_content_where_it_belongs">Αυτόματη αρχειοθέτηση περιεχομένου όπου ανήκει.</string>
     <string name="common_automation">Αυτοματοποίηση</string>
     <string name="common_back">Πίσω</string>
     <string name="manual_backup_back_up_d_files">Δημιουργία αντιγράφων ασφαλείας %d αρχείων</string>
@@ -153,6 +154,7 @@
     <string name="paywall_check_your_connection_and_try_again">Ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.</string>
     <string name="common_choose_photo_access">Επιλέξτε Photo Access</string>
     <string name="common_choose_what_to_copy_and_where_it_should_go">Επιλέξτε τι να αντιγράψετε και πού θα πάει.</string>
+    <string name="common_choose_where_each_kind_of_file_would_be_filed">Επιλέξτε πού θα αρχειοθετείται κάθε τύπος αρχείου.</string>
     <string name="common_classification_happens_on_your_device">Η ταξινόμηση πραγματοποιείται στη συσκευή σας.</string>
     <string name="common_clean">Καθαρό</string>
     <string name="subscription_cleanup">Καθαρισμός</string>
@@ -220,7 +222,7 @@
     <string name="common_files_are_analyzed_and_categorized_on_this_device_nothin">Τα αρχεία αναλύονται και κατηγοριοποιούνται σε αυτήν τη συσκευή. Δεν αποστέλλεται τίποτα στο cloud μέχρι να δημιουργήσετε αντίγραφα ασφαλείας.</string>
     <string name="common_find_and_remove_unnecessary_files">Βρείτε και αφαιρέστε τα περιττά αρχεία.</string>
     <string name="common_find_duplicates">Βρείτε διπλότυπα</string>
-    <string name="paywall_find_receipts_and_file_them_in_the_right_place">Βρείτε τις αποδείξεις και αρχειοθετήστε τις στο σωστό μέρος.</string>
+    <string name="common_find_receipts_and_see_where_each_would_be_filed">Βρείτε αποδείξεις και δείτε πού θα αρχειοθετούνταν η καθεμία.</string>
     <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Βρίσκει αποδείξεις στα στιγμιότυπα οθόνης και τις φωτογραφίες σας, διαβάζει τον έμπορο, την ημερομηνία και το ποσό σε αυτήν τη συσκευή και δείχνει πού θα κατατεθεί το καθένα.</string>
     <string name="common_folder">Φάκελος</string>
     <string name="common_folder_inside_keepspace">Φάκελος μέσα στο KeepSpace</string>
@@ -299,6 +301,7 @@
     <string name="common_no_enabled_rule_files_receipts_yet">Δεν υπάρχουν ενεργοποιημένες αποδείξεις αρχείων κανόνων ακόμα.</string>
     <string name="common_no_media_found">Δεν βρέθηκαν μέσα.</string>
     <string name="common_no_receipts_found_in_your_screenshots_or_photos_yet">Δεν βρέθηκαν ακόμη αποδείξεις στα στιγμιότυπα οθόνης ή στις φωτογραφίες σας.</string>
+    <string name="common_no_rules_on">Κανένας ενεργός κανόνας</string>
     <string name="common_no_rules_yet_add_one_to_start_filing_automatically">Δεν υπάρχουν κανόνες ακόμα. Προσθέστε ένα για να ξεκινήσει αυτόματα η αρχειοθέτηση.</string>
     <string name="common_no_screenshots_found">Δεν βρέθηκαν στιγμιότυπα οθόνης.</string>
     <string name="common_no_similar_photos_found">Δεν βρέθηκαν παρόμοιες φωτογραφίες.</string>

@@ -122,7 +122,7 @@ fun StorageRulesScreen(onAdd: () -> Unit, onEdit: (String) -> Unit, onBack: () -
     val rules by store.rules.collectAsState()
     val colors = SmartTheme.colors
     ScreenScaffold(maxWidth = SmartMetrics.wideContentWidth, onBack = onBack) {
-        ScreenHeader("Storage Rules", "Automatically file content where it belongs.", Modifier.padding(bottom = 8.dp))
+        ScreenHeader("Storage Rules", "Choose where each kind of file would be filed.", Modifier.padding(bottom = 8.dp))
 
         SmartCard(style = CardStyle.Hero) {
             Row(verticalAlignment = Alignment.CenterVertically) {

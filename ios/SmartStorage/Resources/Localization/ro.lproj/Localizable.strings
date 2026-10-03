@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d zile gratuite, apoi %@ pe an. Se reînnoiește automat până când anulați din setările contului.";
 "%d of %d files used" = "%d din %d fișiere utilizate";
 "%d of %d used" = "%d din %d folosit";
+"%d rule on" = "Reguli active: %d";
+"%d rules on" = "Reguli active: %d";
 "(photo date)" = "(data fotografie)";
 "+  Add Rule" = "+ Adăugați o regulă";
 "A reminder to review the safest cleanup suggestions." = "Un memento pentru a examina cele mai sigure sugestii de curățare.";
@@ -111,7 +113,6 @@
 "and %,d more" = "și %,d mai mult";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android întreabă înainte ca ceva să fie eliminat, iar articolele rămân în Coșul de gunoi timp de 30 de zile. Favoritele și amintirile nu sunt niciodată preselectate.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision, Photos, SwiftUI și SwiftData — toate fac parte din iOS. În această versiune nu sunt incluse biblioteci terță parte.";
-"Automatically file content where it belongs." = "Arhivați automat conținutul acolo unde îi aparține.";
 "Automation" = "Automatizare";
 "Back" = "Înapoi";
 "Back Up %d Files" = "Faceți backup pentru %d fișiere";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "Verificați conexiunea și încercați din nou.";
 "Choose Photo Access" = "Alegeți Acces foto";
 "Choose what to copy and where it should go." = "Alegeți ce să copiați și unde ar trebui să meargă.";
+"Choose where each kind of file would be filed." = "Alege unde ar fi arhivat fiecare tip de fișier.";
 "Classification happens on your device." = "Clasificarea are loc pe dispozitivul dvs.";
 "Clean" = "Curat";
 "Cleanup" = "Curățare";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "Fișierele sunt analizate și clasificate pe acest dispozitiv. Nimic nu este trimis în cloud până când faceți o copie de rezervă.";
 "Find and remove unnecessary files." = "Găsiți și eliminați fișierele inutile.";
 "Find duplicates" = "Găsiți duplicate";
-"Find receipts and file them in the right place." = "Găsiți chitanțele și depuneți-le la locul potrivit.";
+"Find receipts and see where each would be filed." = "Găsește bonurile și vezi unde ar fi arhivat fiecare.";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Găsește chitanțe în capturile de ecran și fotografiile tale, citește comerciantul, data și suma de pe acest dispozitiv și arată unde ar fi depuse fiecare.";
 "Folder" = "Folder";
 "Folder inside KeepSpace" = "Dosar în interiorul KeepSpace";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "Încă nu au fost activate chitanțe pentru fișierele cu reguli.";
 "No media found." = "Nu s-a găsit media.";
 "No receipts found in your screenshots or photos yet." = "Încă nu s-au găsit chitanțe în capturile de ecran sau fotografiile dvs.";
+"No rules on" = "Nicio regulă activă";
 "No rules yet. Add one to start filing automatically." = "Încă nu există reguli. Adăugați unul pentru a începe depunerea automată.";
 "No screenshots found." = "Nu s-au găsit capturi de ecran.";
 "No similar photos found." = "Nu s-au găsit fotografii similare.";

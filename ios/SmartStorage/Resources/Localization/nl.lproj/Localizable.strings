@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d dagen gratis, daarna %@ per jaar. Wordt automatisch verlengd totdat u opzegt in uw accountinstellingen.";
 "%d of %d files used" = "%d van %d gebruikte bestanden";
 "%d of %d used" = "%d van %d gebruikt";
+"%d rule on" = "Actieve regels: %d";
+"%d rules on" = "Actieve regels: %d";
 "(photo date)" = "(fotodatum)";
 "+  Add Rule" = "+ Regel toevoegen";
 "A reminder to review the safest cleanup suggestions." = "Een herinnering om de veiligste opruimsuggesties te bekijken.";
@@ -111,7 +113,6 @@
 "and %,d more" = "en %,d meer";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android vraagt voordat er iets wordt verwijderd en items blijven 30 dagen in de prullenbak. Favorieten en herinneringen zijn nooit vooraf geselecteerd.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision, Photos, SwiftUI en SwiftData: allemaal onderdeel van iOS. In deze versie zijn geen bibliotheken van derden opgenomen.";
-"Automatically file content where it belongs." = "Bewaar inhoud automatisch waar deze thuishoort.";
 "Automation" = "Automatisering";
 "Back" = "Terug";
 "Back Up %d Files" = "Maak een back-up van %d bestanden";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "Controleer uw verbinding en probeer het opnieuw.";
 "Choose Photo Access" = "Kies Fototoegang";
 "Choose what to copy and where it should go." = "Kies wat u wilt kopiëren en waar het naartoe moet.";
+"Choose where each kind of file would be filed." = "Kies waar elk type bestand zou worden opgeslagen.";
 "Classification happens on your device." = "Classificatie gebeurt op uw apparaat.";
 "Clean" = "Schoon";
 "Cleanup" = "Opruimen";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "Bestanden worden op dit apparaat geanalyseerd en gecategoriseerd. Er wordt niets naar de cloud verzonden totdat u een back-up maakt.";
 "Find and remove unnecessary files." = "Zoek en verwijder onnodige bestanden.";
 "Find duplicates" = "Vind duplicaten";
-"Find receipts and file them in the right place." = "Zoek bonnen en archiveer ze op de juiste plaats.";
+"Find receipts and see where each would be filed." = "Vind bonnetjes en zie waar elk zou worden opgeslagen.";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Vindt bonnen in uw schermafbeeldingen en foto's, leest de verkoper, de datum en het bedrag op dit apparaat en laat zien waar ze allemaal worden bewaard.";
 "Folder" = "Map";
 "Folder inside KeepSpace" = "Map binnen KeepSpace";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "Er zijn nog geen ingeschakelde ontvangstbewijzen voor regelbestanden.";
 "No media found." = "Geen media gevonden.";
 "No receipts found in your screenshots or photos yet." = "Er zijn nog geen ontvangstbewijzen gevonden in uw screenshots of foto's.";
+"No rules on" = "Geen actieve regels";
 "No rules yet. Add one to start filing automatically." = "Nog geen regels. Voeg er één toe om automatisch te beginnen met archiveren.";
 "No screenshots found." = "Geen schermafbeeldingen gevonden.";
 "No similar photos found." = "Er zijn geen vergelijkbare foto's gevonden.";

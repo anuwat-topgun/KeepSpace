@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d ngày miễn phí, sau đó là %@ mỗi năm. Tự động gia hạn cho đến khi bạn hủy trong cài đặt tài khoản của mình.";
 "%d of %d files used" = "%d trong số %d tệp được sử dụng";
 "%d of %d used" = "%d trong số %d đã sử dụng";
+"%d rule on" = "Quy tắc đang bật: %d";
+"%d rules on" = "Quy tắc đang bật: %d";
 "(photo date)" = "(ngày chụp ảnh)";
 "+  Add Rule" = "+ Thêm quy tắc";
 "A reminder to review the safest cleanup suggestions." = "Lời nhắc xem xét các đề xuất dọn dẹp an toàn nhất.";
@@ -111,7 +113,6 @@
 "and %,d more" = "và %,d nữa";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android hỏi trước khi xóa bất kỳ nội dung nào và các mục sẽ ở trong Thùng rác trong 30 ngày. Mục yêu thích và kỷ niệm không bao giờ được chọn trước.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision, Photos, SwiftUI và SwiftData — tất cả đều là một phần của iOS. Không có thư viện của bên thứ ba nào được đưa vào phiên bản này.";
-"Automatically file content where it belongs." = "Tự động lưu trữ nội dung ở nơi nó thuộc về.";
 "Automation" = "Tự động hóa";
 "Back" = "Quay lại";
 "Back Up %d Files" = "Sao lưu các tập tin %d";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "Hãy kiểm tra kết nối của bạn và thử lại.";
 "Choose Photo Access" = "Chọn quyền truy cập ảnh";
 "Choose what to copy and where it should go." = "Chọn những gì để sao chép và nơi nó sẽ đi.";
+"Choose where each kind of file would be filed." = "Chọn nơi mỗi loại tệp sẽ được lưu.";
 "Classification happens on your device." = "Việc phân loại diễn ra trên thiết bị của bạn.";
 "Clean" = "Sạch sẽ";
 "Cleanup" = "Dọn dẹp";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "Các tập tin được phân tích và phân loại trên thiết bị này. Không có gì được gửi lên đám mây cho đến khi bạn sao lưu.";
 "Find and remove unnecessary files." = "Tìm và loại bỏ các tập tin không cần thiết.";
 "Find duplicates" = "Tìm bản sao";
-"Find receipts and file them in the right place." = "Tìm biên lai và nộp chúng vào đúng nơi.";
+"Find receipts and see where each would be filed." = "Tìm biên lai và xem từng biên lai sẽ được lưu ở đâu.";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Tìm biên lai trong ảnh chụp màn hình và ảnh của bạn, đọc thông tin người bán, ngày và số tiền trên thiết bị này, đồng thời hiển thị nơi mỗi biên nhận sẽ được nộp.";
 "Folder" = "Thư mục";
 "Folder inside KeepSpace" = "Thư mục bên trong KeepSpace";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "Chưa bật biên nhận tệp quy tắc nào.";
 "No media found." = "Không tìm thấy phương tiện truyền thông nào.";
 "No receipts found in your screenshots or photos yet." = "Chưa tìm thấy biên nhận nào trong ảnh chụp màn hình hoặc ảnh của bạn.";
+"No rules on" = "Không có quy tắc nào đang bật";
 "No rules yet. Add one to start filing automatically." = "Chưa có quy tắc nào. Thêm một để bắt đầu nộp đơn tự động.";
 "No screenshots found." = "Không tìm thấy ảnh chụp màn hình.";
 "No similar photos found." = "Không tìm thấy ảnh tương tự.";

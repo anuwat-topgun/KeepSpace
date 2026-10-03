@@ -83,6 +83,8 @@
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">ฟรี %d วัน จากนั้น %s ต่อปี ต่ออายุโดยอัตโนมัติจนกว่าคุณจะยกเลิกในการตั้งค่าบัญชีของคุณ</string>
     <string name="subscription_d_of_d_files_used">%d จาก %d ไฟล์ที่ใช้ไป</string>
     <string name="subscription_d_of_d_used">%d จาก %d ใช้แล้ว</string>
+    <string name="common_d_rule_on">กฎที่เปิดอยู่: %d</string>
+    <string name="common_d_rules_on">กฎที่เปิดอยู่: %d</string>
     <string name="receipt_filing_photo_date">(วันที่ถ่ายรูป)</string>
     <string name="rule_screens_add_rule">+ เพิ่มกฎ</string>
     <string name="common_a_reminder_to_review_the_safest_cleanup_suggestions">คำเตือนให้ตรวจสอบคำแนะนำในการล้างข้อมูลที่ปลอดภัยที่สุด</string>
@@ -113,7 +115,6 @@
     <string name="memory_detail_and_d_more">และ %,d เพิ่มเติม</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android ถามก่อนที่จะนำสิ่งใดออก และรายการต่างๆ จะอยู่ในถังขยะเป็นเวลา 30 วัน รายการโปรดและความทรงจำไม่เคยถูกเลือกไว้ล่วงหน้า</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, รูปภาพ, SwiftUI และ SwiftData — ทั้งหมดนี้เป็นส่วนหนึ่งของ iOS ไม่มีไลบรารีของบุคคลที่สามรวมอยู่ในเวอร์ชันนี้</string>
-    <string name="common_automatically_file_content_where_it_belongs">จัดเก็บเนื้อหาโดยอัตโนมัติในตำแหน่งที่เนื้อหานั้นอยู่</string>
     <string name="common_automation">ระบบอัตโนมัติ</string>
     <string name="common_back">กลับ</string>
     <string name="manual_backup_back_up_d_files">สำรองข้อมูล %d ไฟล์</string>
@@ -153,6 +154,7 @@
     <string name="paywall_check_your_connection_and_try_again">ตรวจสอบการเชื่อมต่อของคุณแล้วลองอีกครั้ง</string>
     <string name="common_choose_photo_access">เลือกการเข้าถึงรูปภาพ</string>
     <string name="common_choose_what_to_copy_and_where_it_should_go">เลือกสิ่งที่จะคัดลอกและตำแหน่งที่จะคัดลอก</string>
+    <string name="common_choose_where_each_kind_of_file_would_be_filed">เลือกว่าไฟล์แต่ละประเภทจะถูกจัดเก็บที่ไหน</string>
     <string name="common_classification_happens_on_your_device">การจัดประเภทเกิดขึ้นบนอุปกรณ์ของคุณ</string>
     <string name="common_clean">สะอาด</string>
     <string name="subscription_cleanup">การล้างข้อมูล</string>
@@ -220,7 +222,7 @@
     <string name="common_files_are_analyzed_and_categorized_on_this_device_nothin">ไฟล์จะได้รับการวิเคราะห์และจัดหมวดหมู่บนอุปกรณ์นี้ ไม่มีการส่งสิ่งใดไปยังคลาวด์จนกว่าคุณจะสำรองข้อมูล</string>
     <string name="common_find_and_remove_unnecessary_files">ค้นหาและลบไฟล์ที่ไม่จำเป็น</string>
     <string name="common_find_duplicates">ค้นหารายการที่ซ้ำกัน</string>
-    <string name="paywall_find_receipts_and_file_them_in_the_right_place">ค้นหาใบเสร็จรับเงินและยื่นให้ถูกที่</string>
+    <string name="common_find_receipts_and_see_where_each_would_be_filed">ค้นหาใบเสร็จและดูว่าแต่ละใบจะถูกจัดเก็บที่ไหน</string>
     <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">ค้นหาใบเสร็จในภาพหน้าจอและรูปถ่ายของคุณ อ่านผู้ขาย วันที่และจำนวนเงินบนอุปกรณ์นี้ และแสดงตำแหน่งที่จะยื่นแต่ละรายการ</string>
     <string name="common_folder">โฟลเดอร์</string>
     <string name="common_folder_inside_keepspace">โฟลเดอร์ภายใน KeepSpace</string>
@@ -299,6 +301,7 @@
     <string name="common_no_enabled_rule_files_receipts_yet">ยังไม่มีการรับไฟล์กฎที่เปิดใช้งาน</string>
     <string name="common_no_media_found">ไม่พบสื่อ</string>
     <string name="common_no_receipts_found_in_your_screenshots_or_photos_yet">ยังไม่พบใบเสร็จในภาพหน้าจอหรือรูปถ่ายของคุณ</string>
+    <string name="common_no_rules_on">ไม่มีกฎที่เปิดอยู่</string>
     <string name="common_no_rules_yet_add_one_to_start_filing_automatically">ยังไม่มีกฎเกณฑ์ เพิ่มหนึ่งรายการเพื่อเริ่มยื่นโดยอัตโนมัติ</string>
     <string name="common_no_screenshots_found">ไม่พบภาพหน้าจอ</string>
     <string name="common_no_similar_photos_found">ไม่พบภาพถ่ายที่คล้ายกัน</string>

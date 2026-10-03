@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "y %d más",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android pregunta antes de eliminar algo y los elementos permanecen en la Papelera durante 30 días. Los favoritos y recuerdos nunca se preseleccionan.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Photos, SwiftUI y SwiftData, todos parte de iOS. No se incluyen bibliotecas de terceros en esta versión.",
-    "common.automatically_file_content_where_it_belongs": "Archiva automáticamente el contenido donde pertenece.",
     "common.automation": "Automatización",
     "common.back": "Atrás",
     "common.back_up_more": "Hacer una copia de seguridad más",
@@ -432,7 +431,6 @@
     "paywall.continue": "Continuar",
     "subscription.ends_bbb6ff2b": "Termina %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Todo lo que ves se puede escanear y revisar gratis.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Encuentre recibos y archívelos en el lugar correcto.",
     "subscription.free": "Gratis",
     "subscription.free_trial_ends_then_renews": "La prueba gratuita finaliza %@ y luego se renueva.",
     "subscription.free_trial_ends": "La prueba gratuita finaliza %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Limpieza ilimitada, compresión de video, capturas de pantalla inteligentes, archivo de recibos, AI Taste y copias de seguridad y reglas ilimitadas.",
     "common.unlock_keepspace_pro": "Desbloquear KeepSpace Pro",
     "manual_backup.unlock_unlimited_backup": "Desbloquear copia de seguridad ilimitada",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "Has utilizado las copias de seguridad gratuitas de este mes."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Has utilizado las copias de seguridad gratuitas de este mes.",
+    "common.d_rule_on": "Reglas activas: %d",
+    "common.d_rules_on": "Reglas activas: %d",
+    "common.no_rules_on": "Sin reglas activas",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Encuentra recibos y consulta dónde se archivaría cada uno.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Elige dónde se archivaría cada tipo de archivo."
   }
 }

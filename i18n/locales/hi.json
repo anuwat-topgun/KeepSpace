@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "और %,d अधिक",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android कुछ भी हटाने से पहले पूछता है, और आइटम 30 दिनों तक कूड़ेदान में रहते हैं। पसंदीदा और यादें कभी भी पूर्व-चयनित नहीं होती हैं।",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple विज़न, फ़ोटो, स्विफ्टयूआई और स्विफ्टडेटा - सभी iOS के भाग। इस संस्करण में कोई तृतीय-पक्ष लाइब्रेरी शामिल नहीं है।",
-    "common.automatically_file_content_where_it_belongs": "सामग्री को स्वचालित रूप से वहीं फ़ाइल करें जहां वह है।",
     "common.automation": "स्वचालन",
     "common.back": "वापस",
     "common.back_up_more": "अधिक बैकअप लें",
@@ -432,7 +431,6 @@
     "paywall.continue": "जारी रखें",
     "subscription.ends_bbb6ff2b": "समाप्त %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "आप जो कुछ भी देखते हैं वह स्कैन और समीक्षा के लिए निःशुल्क है।",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "रसीदें ढूंढें और उन्हें सही जगह पर दाखिल करें।",
     "subscription.free": "निःशुल्क",
     "subscription.free_trial_ends_then_renews": "नि:शुल्क परीक्षण %@ समाप्त होता है, फिर नवीनीकृत होता है।",
     "subscription.free_trial_ends": "नि:शुल्क परीक्षण %@ समाप्त होता है.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "असीमित सफाई, वीडियो संपीड़न, स्मार्ट स्क्रीनशॉट, रसीद फाइलिंग, AI स्वाद, और असीमित बैकअप और नियम।",
     "common.unlock_keepspace_pro": "KeepSpace प्रो अनलॉक करें",
     "manual_backup.unlock_unlimited_backup": "असीमित बैकअप अनलॉक करें",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "आपने इस महीने के निःशुल्क बैकअप का उपयोग कर लिया है।"
+    "manual_backup.you_ve_used_this_month_s_free_backups": "आपने इस महीने के निःशुल्क बैकअप का उपयोग कर लिया है।",
+    "common.d_rule_on": "चालू नियम: %d",
+    "common.d_rules_on": "चालू नियम: %d",
+    "common.no_rules_on": "कोई नियम चालू नहीं",
+    "common.find_receipts_and_see_where_each_would_be_filed": "रसीदें खोजें और देखें कि हर एक कहाँ फ़ाइल होगी।",
+    "common.choose_where_each_kind_of_file_would_be_filed": "चुनें कि हर तरह की फ़ाइल कहाँ फ़ाइल होगी।"
   }
 }

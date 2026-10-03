@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "و%،د أكثر",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "يسألك Android قبل إزالة أي شيء، وتظل العناصر في سلة المهملات لمدة 30 يومًا. لا يتم تحديد المفضلة والذكريات مسبقًا.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision وPhotos وSwiftUI وSwiftData — كلها جزء من iOS. لا يتم تضمين مكتبات الطرف الثالث في هذا الإصدار.",
-    "common.automatically_file_content_where_it_belongs": "حفظ المحتوى تلقائيًا في المكان الذي ينتمي إليه.",
     "common.automation": "الأتمتة",
     "common.back": "العودة",
     "common.back_up_more": "النسخ الاحتياطي أكثر",
@@ -432,7 +431,6 @@
     "paywall.continue": "متابعة",
     "subscription.ends_bbb6ff2b": "ينتهي %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "كل ما تراه مجاني للمسح والمراجعة.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "ابحث عن الإيصالات وقم بتقديمها في المكان المناسب.",
     "subscription.free": "مجاني",
     "subscription.free_trial_ends_then_renews": "تنتهي النسخة التجريبية المجانية %@، ثم يتم تجديدها.",
     "subscription.free_trial_ends": "تنتهي النسخة التجريبية المجانية %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "تنظيف غير محدود، وضغط الفيديو، ولقطات الشاشة الذكية، وحفظ الإيصالات، وذوق AI، والنسخ الاحتياطي والقواعد غير المحدودة.",
     "common.unlock_keepspace_pro": "فتح KeepSpace برو",
     "manual_backup.unlock_unlimited_backup": "فتح النسخ الاحتياطي غير المحدود",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "لقد استخدمت النسخ الاحتياطية المجانية لهذا الشهر."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "لقد استخدمت النسخ الاحتياطية المجانية لهذا الشهر.",
+    "common.d_rule_on": "القواعد النشطة: %d",
+    "common.d_rules_on": "القواعد النشطة: %d",
+    "common.no_rules_on": "لا توجد قواعد نشطة",
+    "common.find_receipts_and_see_where_each_would_be_filed": "اعثر على الإيصالات وشاهد أين سيتم حفظ كل منها.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "اختر أين سيتم حفظ كل نوع من الملفات."
   }
 }

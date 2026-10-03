@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "ve %,d tane daha",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android herhangi bir şey kaldırılmadan önce sorar ve öğeler 30 gün boyunca Çöp Kutusu'nda kalır. Favoriler ve anılar hiçbir zaman önceden seçilmez.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Fotoğraflar, SwiftUI ve SwiftData — hepsi iOS'un parçaları. Bu sürümde hiçbir üçüncü taraf kitaplığı bulunmamaktadır.",
-    "common.automatically_file_content_where_it_belongs": "İçeriği ait olduğu yere otomatik olarak dosyalayın.",
     "common.automation": "Otomasyon",
     "common.back": "Geri",
     "common.back_up_more": "Daha Fazla Yedekle",
@@ -432,7 +431,6 @@
     "paywall.continue": "Devam et",
     "subscription.ends_bbb6ff2b": "%@'de sona eriyor",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Gördüğünüz her şeyi taramak ve incelemek ücretsizdir.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Makbuzları bulun ve doğru yere dosyalayın.",
     "subscription.free": "Ücretsiz",
     "subscription.free_trial_ends_then_renews": "Ücretsiz deneme süresi %@ sona erer ve ardından yenilenir.",
     "subscription.free_trial_ends": "Ücretsiz deneme %@ sona eriyor.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Sınırsız temizleme, video sıkıştırma, akıllı ekran görüntüleri, Makbuz Dosyalama, AI Tat ve sınırsız yedekleme ve kurallar.",
     "common.unlock_keepspace_pro": "KeepSpace Pro'nun kilidini açın",
     "manual_backup.unlock_unlimited_backup": "Sınırsız Yedeklemenin Kilidini Açın",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "Bu ayın ücretsiz yedeklemelerini kullandınız."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Bu ayın ücretsiz yedeklemelerini kullandınız.",
+    "common.d_rule_on": "Etkin kurallar: %d",
+    "common.d_rules_on": "Etkin kurallar: %d",
+    "common.no_rules_on": "Etkin kural yok",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Fişleri bul ve her birinin nereye kaydedileceğini gör.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Her dosya türünün nereye kaydedileceğini seç."
   }
 }

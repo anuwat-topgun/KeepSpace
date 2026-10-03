@@ -153,6 +153,8 @@ fun LibraryScreen(onOpen: (Screen) -> Unit) {
                                 Screen.Screenshots,
                                 Screen.Videos,
                                 Screen.Memories,
+                                Screen.Receipts,
+                                Screen.StorageRules,
                                 Screen.ManualBackup,
                             ).forEach { screen ->
                                 DropdownMenuItem(

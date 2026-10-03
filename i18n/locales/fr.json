@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "et %d plus",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android demande avant que quoi que ce soit ne soit supprimé et les éléments restent dans la corbeille pendant 30 jours. Les favoris et les souvenirs ne sont jamais présélectionnés.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Photos, SwiftUI et SwiftData — tous font partie de iOS. Aucune bibliothèque tierce n'est incluse dans cette version.",
-    "common.automatically_file_content_where_it_belongs": "Classez automatiquement le contenu à sa place.",
     "common.automation": "Automatisation",
     "common.back": "Retour",
     "common.back_up_more": "Sauvegarder davantage",
@@ -432,7 +431,6 @@
     "paywall.continue": "Continuer",
     "subscription.ends_bbb6ff2b": "Se termine %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Tout ce que vous voyez peut être numérisé et examiné gratuitement.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Trouvez les reçus et classez-les au bon endroit.",
     "subscription.free": "Gratuit",
     "subscription.free_trial_ends_then_renews": "L'essai gratuit se termine %@, puis se renouvelle.",
     "subscription.free_trial_ends": "L'essai gratuit se termine %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Nettoyage illimité, compression vidéo, captures d'écran intelligentes, classement des reçus, goût AI et sauvegarde et règles illimitées.",
     "common.unlock_keepspace_pro": "Débloquez KeepSpace Pro",
     "manual_backup.unlock_unlimited_backup": "Débloquez une sauvegarde illimitée",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "Vous avez utilisé les sauvegardes gratuites de ce mois-ci."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Vous avez utilisé les sauvegardes gratuites de ce mois-ci.",
+    "common.d_rule_on": "Règles actives : %d",
+    "common.d_rules_on": "Règles actives : %d",
+    "common.no_rules_on": "Aucune règle active",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Retrouvez vos reçus et voyez où chacun serait classé.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Choisissez où chaque type de fichier serait classé."
   }
 }

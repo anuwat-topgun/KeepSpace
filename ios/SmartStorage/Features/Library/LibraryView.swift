@@ -48,6 +48,8 @@ struct LibraryView: View {
                     Button("Screenshots") { router.push(.screenshots) }
                     Button("Videos") { router.push(.videos) }
                     Button("Memories") { router.push(.memories) }
+                    Button("Receipt Filing") { router.push(.receipts) }
+                    Button("Storage Rules") { router.push(.storageRules) }
                     Button("Back Up Now") { router.push(.manualBackup) }
                 } label: {
                     Image(systemName: "ellipsis.circle")

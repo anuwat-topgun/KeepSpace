@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d ημέρες δωρεάν, μετά %@ ανά έτος. Ανανεώνεται αυτόματα μέχρι να ακυρώσετε τις ρυθμίσεις του λογαριασμού σας.";
 "%d of %d files used" = "Χρησιμοποιήθηκαν %d από %d αρχεία";
 "%d of %d used" = "Χρησιμοποιήθηκε %d από %d";
+"%d rule on" = "Ενεργοί κανόνες: %d";
+"%d rules on" = "Ενεργοί κανόνες: %d";
 "(photo date)" = "(ημερομηνία φωτογραφίας)";
 "+  Add Rule" = "+ Προσθήκη κανόνα";
 "A reminder to review the safest cleanup suggestions." = "Μια υπενθύμιση για να ελέγξετε τις πιο ασφαλείς προτάσεις καθαρισμού.";
@@ -111,7 +113,6 @@
 "and %,d more" = "και %d περισσότερα";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Το Android ζητά πριν αφαιρεθεί οτιδήποτε και τα στοιχεία παραμένουν στον Κάδο απορριμμάτων για 30 ημέρες. Τα αγαπημένα και οι αναμνήσεις δεν προεπιλέγονται ποτέ.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision, Photos, SwiftUI και SwiftData — όλα μέρος του iOS. Δεν περιλαμβάνονται βιβλιοθήκες τρίτων σε αυτήν την έκδοση.";
-"Automatically file content where it belongs." = "Αυτόματη αρχειοθέτηση περιεχομένου όπου ανήκει.";
 "Automation" = "Αυτοματοποίηση";
 "Back" = "Πίσω";
 "Back Up %d Files" = "Δημιουργία αντιγράφων ασφαλείας %d αρχείων";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "Ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.";
 "Choose Photo Access" = "Επιλέξτε Photo Access";
 "Choose what to copy and where it should go." = "Επιλέξτε τι να αντιγράψετε και πού θα πάει.";
+"Choose where each kind of file would be filed." = "Επιλέξτε πού θα αρχειοθετείται κάθε τύπος αρχείου.";
 "Classification happens on your device." = "Η ταξινόμηση πραγματοποιείται στη συσκευή σας.";
 "Clean" = "Καθαρό";
 "Cleanup" = "Καθαρισμός";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "Τα αρχεία αναλύονται και κατηγοριοποιούνται σε αυτήν τη συσκευή. Δεν αποστέλλεται τίποτα στο cloud μέχρι να δημιουργήσετε αντίγραφα ασφαλείας.";
 "Find and remove unnecessary files." = "Βρείτε και αφαιρέστε τα περιττά αρχεία.";
 "Find duplicates" = "Βρείτε διπλότυπα";
-"Find receipts and file them in the right place." = "Βρείτε τις αποδείξεις και αρχειοθετήστε τις στο σωστό μέρος.";
+"Find receipts and see where each would be filed." = "Βρείτε αποδείξεις και δείτε πού θα αρχειοθετούνταν η καθεμία.";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Βρίσκει αποδείξεις στα στιγμιότυπα οθόνης και τις φωτογραφίες σας, διαβάζει τον έμπορο, την ημερομηνία και το ποσό σε αυτήν τη συσκευή και δείχνει πού θα κατατεθεί το καθένα.";
 "Folder" = "Φάκελος";
 "Folder inside KeepSpace" = "Φάκελος μέσα στο KeepSpace";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "Δεν υπάρχουν ενεργοποιημένες αποδείξεις αρχείων κανόνων ακόμα.";
 "No media found." = "Δεν βρέθηκαν μέσα.";
 "No receipts found in your screenshots or photos yet." = "Δεν βρέθηκαν ακόμη αποδείξεις στα στιγμιότυπα οθόνης ή στις φωτογραφίες σας.";
+"No rules on" = "Κανένας ενεργός κανόνας";
 "No rules yet. Add one to start filing automatically." = "Δεν υπάρχουν κανόνες ακόμα. Προσθέστε ένα για να ξεκινήσει αυτόματα η αρχειοθέτηση.";
 "No screenshots found." = "Δεν βρέθηκαν στιγμιότυπα οθόνης.";
 "No similar photos found." = "Δεν βρέθηκαν παρόμοιες φωτογραφίες.";

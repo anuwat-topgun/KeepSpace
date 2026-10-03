@@ -347,7 +347,7 @@ private fun content(benefit: ProBenefit) = when (benefit) {
     ProBenefit.UnlimitedCleanup -> BenefitContent(Icons.Rounded.Delete, Tint.Coral, "Unlimited Cleanup", "Clear whole categories at once, with no monthly limit.")
     ProBenefit.CompressVideos -> BenefitContent(Icons.Rounded.Movie, Tint.Purple, "Compress Videos", "Shrink big videos on your device and keep the quality.")
     ProBenefit.SmartScreenshots -> BenefitContent(Icons.Rounded.Screenshot, Tint.Blue, "Smart Screenshots", "Browse screenshots by what's in them.")
-    ProBenefit.ReceiptFiling -> BenefitContent(Icons.Rounded.Receipt, Tint.Mint, "Receipt Filing", "Find receipts and file them in the right place.")
+    ProBenefit.ReceiptFiling -> BenefitContent(Icons.Rounded.Receipt, Tint.Mint, "Receipt Filing", "Find receipts and see where each would be filed.")
     ProBenefit.AiTaste -> BenefitContent(Icons.Rounded.AutoFixHigh, Tint.Amber, "AI Taste", "Suggestions that learn what you like to keep.")
     ProBenefit.UnlimitedBackupAndRules -> BenefitContent(Icons.Rounded.Cloud, Tint.Teal, "Unlimited Backup & Rules", "Back up as much as you want, with every rule and cloud account.")
 }

@@ -83,6 +83,8 @@
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d dias grátis e depois %s por ano. Renova automaticamente até você cancelar nas configurações da sua conta.</string>
     <string name="subscription_d_of_d_files_used">%d de %d arquivos usados</string>
     <string name="subscription_d_of_d_used">%d de %d usado</string>
+    <string name="common_d_rule_on">Regras ativas: %d</string>
+    <string name="common_d_rules_on">Regras ativas: %d</string>
     <string name="receipt_filing_photo_date">(data da foto)</string>
     <string name="rule_screens_add_rule">+ Adicionar regra</string>
     <string name="common_a_reminder_to_review_the_safest_cleanup_suggestions">Um lembrete para revisar as sugestões de limpeza mais seguras.</string>
@@ -113,7 +115,6 @@
     <string name="memory_detail_and_d_more">e %,d mais</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android pergunta antes que qualquer coisa seja removida e os itens permanecem na Lixeira por 30 dias. Favoritos e memórias nunca são pré-selecionados.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Photos, SwiftUI e SwiftData — todos parte do iOS. Nenhuma biblioteca de terceiros está incluída nesta versão.</string>
-    <string name="common_automatically_file_content_where_it_belongs">Arquive automaticamente o conteúdo onde ele pertence.</string>
     <string name="common_automation">Automação</string>
     <string name="common_back">Voltar</string>
     <string name="manual_backup_back_up_d_files">Fazer backup de %d arquivos</string>
@@ -153,6 +154,7 @@
     <string name="paywall_check_your_connection_and_try_again">Verifique sua conexão e tente novamente.</string>
     <string name="common_choose_photo_access">Escolha o acesso às fotos</string>
     <string name="common_choose_what_to_copy_and_where_it_should_go">Escolha o que copiar e para onde deve ir.</string>
+    <string name="common_choose_where_each_kind_of_file_would_be_filed">Escolha onde cada tipo de arquivo seria arquivado.</string>
     <string name="common_classification_happens_on_your_device">A classificação acontece no seu dispositivo.</string>
     <string name="common_clean">Limpar</string>
     <string name="subscription_cleanup">Limpeza</string>
@@ -220,7 +222,7 @@
     <string name="common_files_are_analyzed_and_categorized_on_this_device_nothin">Os arquivos são analisados e categorizados neste dispositivo. Nada é enviado para a nuvem até que você faça backup.</string>
     <string name="common_find_and_remove_unnecessary_files">Encontre e remova arquivos desnecessários.</string>
     <string name="common_find_duplicates">Encontre duplicatas</string>
-    <string name="paywall_find_receipts_and_file_them_in_the_right_place">Encontre recibos e arquive-os no lugar certo.</string>
+    <string name="common_find_receipts_and_see_where_each_would_be_filed">Encontre recibos e veja onde cada um seria arquivado.</string>
     <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Encontra recibos em suas capturas de tela e fotos, lê o comerciante, a data e o valor neste dispositivo e mostra onde cada um seria arquivado.</string>
     <string name="common_folder">Pasta</string>
     <string name="common_folder_inside_keepspace">Pasta dentro de KeepSpace</string>
@@ -299,6 +301,7 @@
     <string name="common_no_enabled_rule_files_receipts_yet">Ainda não há recibos de arquivos de regras ativados.</string>
     <string name="common_no_media_found">Nenhuma mídia encontrada.</string>
     <string name="common_no_receipts_found_in_your_screenshots_or_photos_yet">Nenhum recibo encontrado em suas capturas de tela ou fotos ainda.</string>
+    <string name="common_no_rules_on">Nenhuma regra ativa</string>
     <string name="common_no_rules_yet_add_one_to_start_filing_automatically">Ainda não há regras. Adicione um para começar a arquivar automaticamente.</string>
     <string name="common_no_screenshots_found">Nenhuma captura de tela encontrada.</string>
     <string name="common_no_similar_photos_found">Nenhuma foto semelhante encontrada.</string>

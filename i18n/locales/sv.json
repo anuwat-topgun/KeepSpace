@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "och %,d mer",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android frågar innan något tas bort, och objekt stannar i papperskorgen i 30 dagar. Favoriter och minnen är aldrig förvalda.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Photos, SwiftUI och SwiftData — allt en del av iOS. Inga tredjepartsbibliotek ingår i den här versionen.",
-    "common.automatically_file_content_where_it_belongs": "Arkivera automatiskt innehåll där det hör hemma.",
     "common.automation": "Automation",
     "common.back": "Tillbaka",
     "common.back_up_more": "Säkerhetskopiera mer",
@@ -432,7 +431,6 @@
     "paywall.continue": "Fortsätt",
     "subscription.ends_bbb6ff2b": "Slutar %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Allt du ser är gratis att skanna och granska.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Hitta kvitton och spara dem på rätt plats.",
     "subscription.free": "Gratis",
     "subscription.free_trial_ends_then_renews": "Gratis provperiod slutar %@ och förnyas sedan.",
     "subscription.free_trial_ends": "Gratis provperiod slutar %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Obegränsad rensning, videokomprimering, smarta skärmdumpar, kvittoarkivering, AI Taste och obegränsad säkerhetskopiering och regler.",
     "common.unlock_keepspace_pro": "Lås upp KeepSpace Pro",
     "manual_backup.unlock_unlimited_backup": "Lås upp obegränsad säkerhetskopiering",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "Du har använt denna månads kostnadsfria säkerhetskopior."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Du har använt denna månads kostnadsfria säkerhetskopior.",
+    "common.d_rule_on": "Aktiva regler: %d",
+    "common.d_rules_on": "Aktiva regler: %d",
+    "common.no_rules_on": "Inga aktiva regler",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Hitta kvitton och se var vart och ett skulle sparas.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Välj var varje filtyp skulle sparas."
   }
 }

@@ -83,6 +83,8 @@
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">免費 %d 天，然後每年 %s。自动续订，直到您在帐户设置中取消为止。</string>
     <string name="subscription_d_of_d_files_used">使用了 %d 個檔案（共 %d 個）</string>
     <string name="subscription_d_of_d_used">已使用 %d（共 %d）</string>
+    <string name="common_d_rule_on">已啟用規則：%d</string>
+    <string name="common_d_rules_on">已啟用規則：%d</string>
     <string name="receipt_filing_photo_date">（照片日期）</string>
     <string name="rule_screens_add_rule">+ 新增規則</string>
     <string name="common_a_reminder_to_review_the_safest_cleanup_suggestions">提醒您查看最安全的清理建議。</string>
@@ -113,7 +115,6 @@
     <string name="memory_detail_and_d_more">還有 %,d 個</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android 在刪除任何內容之前會先詢問，並且項目會在垃圾箱中保留 30 天。最喜歡的東西和回憶從來都不是預先選擇的。</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision、Photos、SwiftUI 和 SwiftData — 都是 iOS 的一部分。此版本不包含任何第三方程式庫。</string>
-    <string name="common_automatically_file_content_where_it_belongs">自動將內容歸檔到所屬的位置。</string>
     <string name="common_automation">自動化</string>
     <string name="common_back">返回</string>
     <string name="manual_backup_back_up_d_files">備份 %d 個文件</string>
@@ -153,6 +154,7 @@
     <string name="paywall_check_your_connection_and_try_again">檢查您的連線並重試。</string>
     <string name="common_choose_photo_access">選擇照片訪問</string>
     <string name="common_choose_what_to_copy_and_where_it_should_go">選擇要複製的內容以及複製的位置。</string>
+    <string name="common_choose_where_each_kind_of_file_would_be_filed">選擇每種檔案將歸檔到哪裡。</string>
     <string name="common_classification_happens_on_your_device">分類發生在您的裝置上。</string>
     <string name="common_clean">乾淨</string>
     <string name="subscription_cleanup">清理</string>
@@ -220,7 +222,7 @@
     <string name="common_files_are_analyzed_and_categorized_on_this_device_nothin">文件在此設備上進行分析和分類。在您進行備份之前，不會將任何內容傳送到雲端。</string>
     <string name="common_find_and_remove_unnecessary_files">尋找並刪除不需要的文件。</string>
     <string name="common_find_duplicates">尋找重複項</string>
-    <string name="paywall_find_receipts_and_file_them_in_the_right_place">找到收據並將其歸檔在正確的位置。</string>
+    <string name="common_find_receipts_and_see_where_each_would_be_filed">尋找收據，並查看每張收據將歸檔到哪裡。</string>
     <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">在您的螢幕截圖和照片中找到收據，讀取此裝置上的商家、日期和金額，並顯示每張收據的歸檔位置。</string>
     <string name="common_folder">資料夾</string>
     <string name="common_folder_inside_keepspace">KeepSpace 內的資料夾</string>
@@ -299,6 +301,7 @@
     <string name="common_no_enabled_rule_files_receipts_yet">尚未啟用規則文件收據。</string>
     <string name="common_no_media_found">沒有找到媒體。</string>
     <string name="common_no_receipts_found_in_your_screenshots_or_photos_yet">您的螢幕截圖或照片中尚未找到收據。</string>
+    <string name="common_no_rules_on">沒有已啟用的規則</string>
     <string name="common_no_rules_yet_add_one_to_start_filing_automatically">還沒有規則。新增一項即可自動開始歸檔。</string>
     <string name="common_no_screenshots_found">沒有找到截圖。</string>
     <string name="common_no_similar_photos_found">沒有找到類似的照片。</string>

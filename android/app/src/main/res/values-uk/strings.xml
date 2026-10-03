@@ -83,6 +83,8 @@
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d днів безкоштовно, потім %s на рік. Автоматично поновлюється, доки ви не скасуєте в налаштуваннях облікового запису.</string>
     <string name="subscription_d_of_d_files_used">Використано %d з %d файлів</string>
     <string name="subscription_d_of_d_used">%d з %d використано</string>
+    <string name="common_d_rule_on">Активних правил: %d</string>
+    <string name="common_d_rules_on">Активних правил: %d</string>
     <string name="receipt_filing_photo_date">(дата фото)</string>
     <string name="rule_screens_add_rule">+ Додати правило</string>
     <string name="common_a_reminder_to_review_the_safest_cleanup_suggestions">Нагадування переглянути найбезпечніші пропозиції очищення.</string>
@@ -113,7 +115,6 @@
     <string name="memory_detail_and_d_more">і ще %,d</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android запитує, перш ніж щось буде видалено, і елементи залишаються в кошику протягом 30 днів. Улюблені та спогади ніколи не вибираються заздалегідь.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Photos, SwiftUI та SwiftData — усе це частина iOS. У цій версії немає сторонніх бібліотек.</string>
-    <string name="common_automatically_file_content_where_it_belongs">Автоматично зберігати вміст там, де він належить.</string>
     <string name="common_automation">автоматизація</string>
     <string name="common_back">Назад</string>
     <string name="manual_backup_back_up_d_files">Резервне копіювання %d файлів</string>
@@ -153,6 +154,7 @@
     <string name="paywall_check_your_connection_and_try_again">Перевірте підключення та повторіть спробу.</string>
     <string name="common_choose_photo_access">Виберіть Доступ до фотографій</string>
     <string name="common_choose_what_to_copy_and_where_it_should_go">Виберіть, що скопіювати та куди це має бути.</string>
+    <string name="common_choose_where_each_kind_of_file_would_be_filed">Виберіть, куди зберігався б кожен тип файлів.</string>
     <string name="common_classification_happens_on_your_device">Класифікація відбувається на вашому пристрої.</string>
     <string name="common_clean">чистий</string>
     <string name="subscription_cleanup">Очищення</string>
@@ -220,7 +222,7 @@
     <string name="common_files_are_analyzed_and_categorized_on_this_device_nothin">Файли аналізуються та класифікуються на цьому пристрої. Нічого не надсилається в хмару, доки ви не створите резервну копію.</string>
     <string name="common_find_and_remove_unnecessary_files">Знайдіть і видаліть непотрібні файли.</string>
     <string name="common_find_duplicates">Знайти дублікати</string>
-    <string name="paywall_find_receipts_and_file_them_in_the_right_place">Знайдіть квитанції та зберігайте їх у потрібному місці.</string>
+    <string name="common_find_receipts_and_see_where_each_would_be_filed">Знаходьте чеки й дивіться, куди кожен було б збережено.</string>
     <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Знаходить квитанції на ваших знімках екрана та фотографіях, зчитує продавця, дату та суму на цьому пристрої та показує, куди потрібно помістити кожну з них.</string>
     <string name="common_folder">Папка</string>
     <string name="common_folder_inside_keepspace">Папка всередині KeepSpace</string>
@@ -299,6 +301,7 @@
     <string name="common_no_enabled_rule_files_receipts_yet">Ще немає ввімкнених квитанцій про файли правил.</string>
     <string name="common_no_media_found">Медіа не знайдено.</string>
     <string name="common_no_receipts_found_in_your_screenshots_or_photos_yet">На ваших скріншотах чи фотографіях ще не знайдено квитанцій.</string>
+    <string name="common_no_rules_on">Немає активних правил</string>
     <string name="common_no_rules_yet_add_one_to_start_filing_automatically">Правил ще немає. Додайте один, щоб розпочати автоматичне подання документів.</string>
     <string name="common_no_screenshots_found">Скріншотів не знайдено.</string>
     <string name="common_no_similar_photos_found">Подібних фото не знайдено.</string>

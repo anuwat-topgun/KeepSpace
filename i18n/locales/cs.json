@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "a %d více",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android se zeptá, než bude cokoli odstraněno, a položky zůstanou v koši 30 dní. Oblíbené a vzpomínky nejsou nikdy předem vybrány.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Photos, SwiftUI a SwiftData – to vše je součástí iOS. V této verzi nejsou zahrnuty žádné knihovny třetích stran.",
-    "common.automatically_file_content_where_it_belongs": "Automaticky ukládat obsah tam, kam patří.",
     "common.automation": "automatizace",
     "common.back": "Zpět",
     "common.back_up_more": "Zálohujte více",
@@ -432,7 +431,6 @@
     "paywall.continue": "Pokračovat",
     "subscription.ends_bbb6ff2b": "Končí %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Vše, co vidíte, můžete zdarma naskenovat a zkontrolovat.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Najděte účtenky a uložte je na správné místo.",
     "subscription.free": "Zdarma",
     "subscription.free_trial_ends_then_renews": "Bezplatné zkušební období končí %@ a poté se obnoví.",
     "subscription.free_trial_ends": "Bezplatné zkušební období končí %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Neomezené čištění, komprese videa, chytré snímky obrazovky, archivace účtenek, AI Taste a neomezené zálohování a pravidla.",
     "common.unlock_keepspace_pro": "Odemkněte KeepSpace Pro",
     "manual_backup.unlock_unlimited_backup": "Odemkněte neomezené zálohování",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "Využili jste bezplatné zálohy z tohoto měsíce."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Využili jste bezplatné zálohy z tohoto měsíce.",
+    "common.d_rule_on": "Aktivní pravidla: %d",
+    "common.d_rules_on": "Aktivní pravidla: %d",
+    "common.no_rules_on": "Žádná aktivní pravidla",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Najděte účtenky a podívejte se, kam by se každá uložila.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Vyberte, kam by se ukládal každý typ souboru."
   }
 }

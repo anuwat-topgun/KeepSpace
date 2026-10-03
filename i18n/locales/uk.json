@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "і ще %,d",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android запитує, перш ніж щось буде видалено, і елементи залишаються в кошику протягом 30 днів. Улюблені та спогади ніколи не вибираються заздалегідь.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Photos, SwiftUI та SwiftData — усе це частина iOS. У цій версії немає сторонніх бібліотек.",
-    "common.automatically_file_content_where_it_belongs": "Автоматично зберігати вміст там, де він належить.",
     "common.automation": "автоматизація",
     "common.back": "Назад",
     "common.back_up_more": "Резервне копіювання більше",
@@ -432,7 +431,6 @@
     "paywall.continue": "Продовжити",
     "subscription.ends_bbb6ff2b": "Закінчується %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Усе, що ви бачите, можна безкоштовно сканувати та переглядати.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Знайдіть квитанції та зберігайте їх у потрібному місці.",
     "subscription.free": "безкоштовно",
     "subscription.free_trial_ends_then_renews": "Безкоштовна пробна версія закінчується %@, а потім поновлюється.",
     "subscription.free_trial_ends": "Безкоштовна пробна версія закінчується %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Необмежене очищення, стиснення відео, інтелектуальні скріншоти, реєстрація квитанцій, AI смак, необмежене резервне копіювання та правила.",
     "common.unlock_keepspace_pro": "Розблокуйте KeepSpace Pro",
     "manual_backup.unlock_unlimited_backup": "Розблокуйте необмежену резервну копію",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "Ви використали безкоштовні резервні копії цього місяця."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Ви використали безкоштовні резервні копії цього місяця.",
+    "common.d_rule_on": "Активних правил: %d",
+    "common.d_rules_on": "Активних правил: %d",
+    "common.no_rules_on": "Немає активних правил",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Знаходьте чеки й дивіться, куди кожен було б збережено.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Виберіть, куди зберігався б кожен тип файлів."
   }
 }

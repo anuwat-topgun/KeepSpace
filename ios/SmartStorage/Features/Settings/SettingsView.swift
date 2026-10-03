@@ -8,6 +8,7 @@ struct SettingsView: View {
     @Environment(WeeklyCleanReminder.self) private var weekly
     @Environment(TasteStore.self) private var taste
     @Environment(CloudStore.self) private var cloud
+    @Environment(RuleStore.self) private var rules
     @Environment(MonetizationStore.self) private var monetization
 
     private var accessText: String {
@@ -32,6 +33,7 @@ struct SettingsView: View {
             row(.cloudOverview, icon: "icloud.fill", tint: .blue,
                 subtitle: cloud.connections.filter(\.isConnected).isEmpty ? "Connect Google Drive or OneDrive" : "\(cloud.connections.filter(\.isConnected).count) connected")
 
+            row(.storageRules, icon: "arrow.triangle.branch", tint: .mint, subtitle: rules.activeCount == 0 ? "No rules on" : localizedFormat(rules.activeCount == 1 ? "%d rule on" : "%d rules on", rules.activeCount))
             row(.photoAccess, icon: "photo.fill", tint: .coral, subtitle: accessText)
             row(.notifications, icon: "bell.fill", tint: .purple, subtitle: weekly.isEnabled ? "Weekly Smart Clean · On" : "Weekly Smart Clean · Off")
             row(.privacy, icon: "checkmark.shield.fill", tint: .blue, subtitle: nil)

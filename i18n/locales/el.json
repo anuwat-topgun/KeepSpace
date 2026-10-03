@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "και %d περισσότερα",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Το Android ζητά πριν αφαιρεθεί οτιδήποτε και τα στοιχεία παραμένουν στον Κάδο απορριμμάτων για 30 ημέρες. Τα αγαπημένα και οι αναμνήσεις δεν προεπιλέγονται ποτέ.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Photos, SwiftUI και SwiftData — όλα μέρος του iOS. Δεν περιλαμβάνονται βιβλιοθήκες τρίτων σε αυτήν την έκδοση.",
-    "common.automatically_file_content_where_it_belongs": "Αυτόματη αρχειοθέτηση περιεχομένου όπου ανήκει.",
     "common.automation": "Αυτοματοποίηση",
     "common.back": "Πίσω",
     "common.back_up_more": "Δημιουργία αντιγράφων ασφαλείας περισσότερων",
@@ -432,7 +431,6 @@
     "paywall.continue": "Συνέχεια",
     "subscription.ends_bbb6ff2b": "Λήγει %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Όλα όσα βλέπετε είναι δωρεάν για σάρωση και αναθεώρηση.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Βρείτε τις αποδείξεις και αρχειοθετήστε τις στο σωστό μέρος.",
     "subscription.free": "Δωρεάν",
     "subscription.free_trial_ends_then_renews": "Η δωρεάν δοκιμή λήγει %@ και μετά ανανεώνεται.",
     "subscription.free_trial_ends": "Η δωρεάν δοκιμή λήγει %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Απεριόριστος καθαρισμός, συμπίεση βίντεο, έξυπνα στιγμιότυπα οθόνης, Αρχειοθέτηση αποδείξεων, AI Taste και απεριόριστο αντίγραφο ασφαλείας και κανόνες.",
     "common.unlock_keepspace_pro": "Ξεκλειδώστε KeepSpace Pro",
     "manual_backup.unlock_unlimited_backup": "Ξεκλείδωμα Unlimited Backup",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "Έχετε χρησιμοποιήσει τα δωρεάν αντίγραφα ασφαλείας αυτού του μήνα."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Έχετε χρησιμοποιήσει τα δωρεάν αντίγραφα ασφαλείας αυτού του μήνα.",
+    "common.d_rule_on": "Ενεργοί κανόνες: %d",
+    "common.d_rules_on": "Ενεργοί κανόνες: %d",
+    "common.no_rules_on": "Κανένας ενεργός κανόνας",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Βρείτε αποδείξεις και δείτε πού θα αρχειοθετούνταν η καθεμία.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Επιλέξτε πού θα αρχειοθετείται κάθε τύπος αρχείου."
   }
 }

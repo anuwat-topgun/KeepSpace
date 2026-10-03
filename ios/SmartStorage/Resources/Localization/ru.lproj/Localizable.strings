@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d дней бесплатно, затем %@ в год. Продлевается автоматически, пока вы не отмените его в настройках своей учетной записи.";
 "%d of %d files used" = "%d из %d файлов использовано";
 "%d of %d used" = "%d из %d использовано";
+"%d rule on" = "Активных правил: %d";
+"%d rules on" = "Активных правил: %d";
 "(photo date)" = "(дата фото)";
 "+  Add Rule" = "+ Добавить правило";
 "A reminder to review the safest cleanup suggestions." = "Напоминание о необходимости ознакомиться с самыми безопасными рекомендациями по очистке.";
@@ -111,7 +113,6 @@
 "and %,d more" = "и еще %,d";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android спрашивает, прежде чем что-либо будет удалено, и элементы останутся в корзине в течение 30 дней. Избранное и воспоминания никогда не выбираются заранее.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision, Photos, SwiftUI и SwiftData — все это часть iOS. В эту версию не включены сторонние библиотеки.";
-"Automatically file content where it belongs." = "Автоматически сохраняйте содержимое там, где ему место.";
 "Automation" = "Автоматизация";
 "Back" = "Назад";
 "Back Up %d Files" = "Резервное копирование %d файлов";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "Проверьте подключение и повторите попытку.";
 "Choose Photo Access" = "Выберите доступ к фотографиям";
 "Choose what to copy and where it should go." = "Выберите, что копировать и куда это должно идти.";
+"Choose where each kind of file would be filed." = "Выберите, куда сохранялся бы каждый тип файлов.";
 "Classification happens on your device." = "Классификация происходит на вашем устройстве.";
 "Clean" = "Чистый";
 "Cleanup" = "Очистка";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "На этом устройстве файлы анализируются и классифицируются. Ничего не отправляется в облако, пока вы не создадите резервную копию.";
 "Find and remove unnecessary files." = "Найдите и удалите ненужные файлы.";
 "Find duplicates" = "Найти дубликаты";
-"Find receipts and file them in the right place." = "Найдите квитанции и сохраните их в нужном месте.";
+"Find receipts and see where each would be filed." = "Находите чеки и смотрите, куда каждый был бы сохранён.";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Находит квитанции на ваших скриншотах и фотографиях, считывает торговца, дату и сумму на этом устройстве и показывает, где будет храниться каждая из них.";
 "Folder" = "Папка";
 "Folder inside KeepSpace" = "Папка внутри KeepSpace";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "Получений о включенных файлах правил пока нет.";
 "No media found." = "Носители не найдены.";
 "No receipts found in your screenshots or photos yet." = "На ваших скриншотах и фотографиях пока не найдено квитанций.";
+"No rules on" = "Нет активных правил";
 "No rules yet. Add one to start filing automatically." = "Никаких правил пока нет. Добавьте один, чтобы начать подачу автоматически.";
 "No screenshots found." = "Скриншоты не найдены.";
 "No similar photos found." = "Похожих фотографий не найдено.";

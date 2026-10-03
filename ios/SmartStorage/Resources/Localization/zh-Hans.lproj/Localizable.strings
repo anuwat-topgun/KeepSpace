@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "免费 %d 天，然后每年 %@。自动续订，直到您在帐户设置中取消为止。";
 "%d of %d files used" = "使用了 %d 个文件（共 %d 个）";
 "%d of %d used" = "已使用 %d（共 %d）";
+"%d rule on" = "已启用规则：%d";
+"%d rules on" = "已启用规则：%d";
 "(photo date)" = "（照片日期）";
 "+  Add Rule" = "+ 添加规则";
 "A reminder to review the safest cleanup suggestions." = "提醒您查看最安全的清理建议。";
@@ -111,7 +113,6 @@
 "and %,d more" = "还有 %,d 个";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android 在删除任何内容之前会进行询问，并且项目会在垃圾箱中保留 30 天。最喜欢的东西和回忆从来都不是预先选择的。";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision、Photos、SwiftUI 和 SwiftData — 都是 iOS 的一部分。此版本不包含任何第三方库。";
-"Automatically file content where it belongs." = "自动将内容归档到其所属的位置。";
 "Automation" = "自动化";
 "Back" = "返回";
 "Back Up %d Files" = "备份 %d 个文件";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "检查您的连接并重试。";
 "Choose Photo Access" = "选择照片访问";
 "Choose what to copy and where it should go." = "选择要复制的内容以及复制的位置。";
+"Choose where each kind of file would be filed." = "选择每种文件将归档到哪里。";
 "Classification happens on your device." = "分类发生在您的设备上。";
 "Clean" = "干净";
 "Cleanup" = "清理";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "文件在此设备上进行分析和分类。在您进行备份之前，不会将任何内容发送到云端。";
 "Find and remove unnecessary files." = "查找并删除不需要的文件。";
 "Find duplicates" = "查找重复项";
-"Find receipts and file them in the right place." = "找到收据并将其归档在正确的位置。";
+"Find receipts and see where each would be filed." = "查找收据，并查看每张收据将归档到哪里。";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "在您的屏幕截图和照片中查找收据，读取此设备上的商家、日期和金额，并显示每张收据的归档位置。";
 "Folder" = "文件夹";
 "Folder inside KeepSpace" = "KeepSpace 内的文件夹";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "尚未启用规则文件收据。";
 "No media found." = "没有找到媒体。";
 "No receipts found in your screenshots or photos yet." = "您的屏幕截图或照片中尚未找到收据。";
+"No rules on" = "没有已启用的规则";
 "No rules yet. Add one to start filing automatically." = "还没有规则。添加一项即可自动开始归档。";
 "No screenshots found." = "没有找到截图。";
 "No similar photos found." = "没有找到类似的照片。";

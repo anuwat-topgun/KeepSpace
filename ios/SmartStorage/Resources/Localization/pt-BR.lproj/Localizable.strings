@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d dias grátis e depois %@ por ano. Renova automaticamente até você cancelar nas configurações da sua conta.";
 "%d of %d files used" = "%d de %d arquivos usados";
 "%d of %d used" = "%d de %d usado";
+"%d rule on" = "Regras ativas: %d";
+"%d rules on" = "Regras ativas: %d";
 "(photo date)" = "(data da foto)";
 "+  Add Rule" = "+ Adicionar regra";
 "A reminder to review the safest cleanup suggestions." = "Um lembrete para revisar as sugestões de limpeza mais seguras.";
@@ -111,7 +113,6 @@
 "and %,d more" = "e %,d mais";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android pergunta antes que qualquer coisa seja removida e os itens permanecem na Lixeira por 30 dias. Favoritos e memórias nunca são pré-selecionados.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision, Photos, SwiftUI e SwiftData — todos parte do iOS. Nenhuma biblioteca de terceiros está incluída nesta versão.";
-"Automatically file content where it belongs." = "Arquive automaticamente o conteúdo onde ele pertence.";
 "Automation" = "Automação";
 "Back" = "Voltar";
 "Back Up %d Files" = "Fazer backup de %d arquivos";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "Verifique sua conexão e tente novamente.";
 "Choose Photo Access" = "Escolha o acesso às fotos";
 "Choose what to copy and where it should go." = "Escolha o que copiar e para onde deve ir.";
+"Choose where each kind of file would be filed." = "Escolha onde cada tipo de arquivo seria arquivado.";
 "Classification happens on your device." = "A classificação acontece no seu dispositivo.";
 "Clean" = "Limpar";
 "Cleanup" = "Limpeza";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "Os arquivos são analisados e categorizados neste dispositivo. Nada é enviado para a nuvem até que você faça backup.";
 "Find and remove unnecessary files." = "Encontre e remova arquivos desnecessários.";
 "Find duplicates" = "Encontre duplicatas";
-"Find receipts and file them in the right place." = "Encontre recibos e arquive-os no lugar certo.";
+"Find receipts and see where each would be filed." = "Encontre recibos e veja onde cada um seria arquivado.";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Encontra recibos em suas capturas de tela e fotos, lê o comerciante, a data e o valor neste dispositivo e mostra onde cada um seria arquivado.";
 "Folder" = "Pasta";
 "Folder inside KeepSpace" = "Pasta dentro de KeepSpace";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "Ainda não há recibos de arquivos de regras ativados.";
 "No media found." = "Nenhuma mídia encontrada.";
 "No receipts found in your screenshots or photos yet." = "Nenhum recibo encontrado em suas capturas de tela ou fotos ainda.";
+"No rules on" = "Nenhuma regra ativa";
 "No rules yet. Add one to start filing automatically." = "Ainda não há regras. Adicione um para começar a arquivar automaticamente.";
 "No screenshots found." = "Nenhuma captura de tela encontrada.";
 "No similar photos found." = "Nenhuma foto semelhante encontrada.";

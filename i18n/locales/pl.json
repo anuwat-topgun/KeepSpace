@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "i%,d więcej",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android pyta, zanim cokolwiek zostanie usunięte, a elementy pozostaną w Koszu przez 30 dni. Ulubione i wspomnienia nigdy nie są wybierane z góry.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Photos, SwiftUI i SwiftData — wszystkie są częścią iOS. Ta wersja nie zawiera żadnych bibliotek innych firm.",
-    "common.automatically_file_content_where_it_belongs": "Automatycznie zapisuj zawartość tam, gdzie powinna.",
     "common.automation": "Automatyzacja",
     "common.back": "Powrót",
     "common.back_up_more": "Utwórz kopię zapasową więcej",
@@ -432,7 +431,6 @@
     "paywall.continue": "Kontynuuj",
     "subscription.ends_bbb6ff2b": "Kończy się %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Wszystko, co widzisz, możesz bezpłatnie zeskanować i przejrzeć.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Znajdź rachunki i złóż je we właściwym miejscu.",
     "subscription.free": "Bezpłatny",
     "subscription.free_trial_ends_then_renews": "Bezpłatny okres próbny kończy się %@, a następnie odnawia.",
     "subscription.free_trial_ends": "Bezpłatny okres próbny kończy się %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Nieograniczone czyszczenie, kompresja wideo, inteligentne zrzuty ekranu, archiwizacja paragonów, smak AI oraz nieograniczone kopie zapasowe i reguły.",
     "common.unlock_keepspace_pro": "Odblokuj KeepSpace Pro",
     "manual_backup.unlock_unlimited_backup": "Odblokuj nieograniczoną kopię zapasową",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "Wykorzystałeś bezpłatne kopie zapasowe z tego miesiąca."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Wykorzystałeś bezpłatne kopie zapasowe z tego miesiąca.",
+    "common.d_rule_on": "Aktywne reguły: %d",
+    "common.d_rules_on": "Aktywne reguły: %d",
+    "common.no_rules_on": "Brak aktywnych reguł",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Znajdź paragony i zobacz, gdzie każdy zostałby zapisany.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Wybierz, gdzie zapisywany byłby każdy rodzaj plików."
   }
 }

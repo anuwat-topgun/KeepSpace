@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d dagar gratis, sedan %@ per år. Förnyas automatiskt tills du avslutar i dina kontoinställningar.";
 "%d of %d files used" = "%d av %d filer används";
 "%d of %d used" = "%d av %d använd";
+"%d rule on" = "Aktiva regler: %d";
+"%d rules on" = "Aktiva regler: %d";
 "(photo date)" = "(fotodatum)";
 "+  Add Rule" = "+ Lägg till regel";
 "A reminder to review the safest cleanup suggestions." = "En påminnelse om att granska de säkraste städförslagen.";
@@ -111,7 +113,6 @@
 "and %,d more" = "och %,d mer";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android frågar innan något tas bort, och objekt stannar i papperskorgen i 30 dagar. Favoriter och minnen är aldrig förvalda.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision, Photos, SwiftUI och SwiftData — allt en del av iOS. Inga tredjepartsbibliotek ingår i den här versionen.";
-"Automatically file content where it belongs." = "Arkivera automatiskt innehåll där det hör hemma.";
 "Automation" = "Automation";
 "Back" = "Tillbaka";
 "Back Up %d Files" = "Säkerhetskopiera %d filer";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "Kontrollera din anslutning och försök igen.";
 "Choose Photo Access" = "Välj Photo Access";
 "Choose what to copy and where it should go." = "Välj vad du vill kopiera och vart det ska gå.";
+"Choose where each kind of file would be filed." = "Välj var varje filtyp skulle sparas.";
 "Classification happens on your device." = "Klassificering sker på din enhet.";
 "Clean" = "Rent";
 "Cleanup" = "Rengöring";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "Filer analyseras och kategoriseras på den här enheten. Ingenting skickas till molnet förrän du säkerhetskopierar.";
 "Find and remove unnecessary files." = "Hitta och ta bort onödiga filer.";
 "Find duplicates" = "Hitta dubbletter";
-"Find receipts and file them in the right place." = "Hitta kvitton och spara dem på rätt plats.";
+"Find receipts and see where each would be filed." = "Hitta kvitton och se var vart och ett skulle sparas.";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Hittar kvitton i dina skärmdumpar och foton, läser säljaren, datum och belopp på den här enheten och visar var var och en skulle arkiveras.";
 "Folder" = "Mapp";
 "Folder inside KeepSpace" = "Mapp inuti KeepSpace";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "Inga aktiverade kvitton för regelfiler ännu.";
 "No media found." = "Ingen media hittades.";
 "No receipts found in your screenshots or photos yet." = "Inga kvitton har hittats i dina skärmdumpar eller bilder ännu.";
+"No rules on" = "Inga aktiva regler";
 "No rules yet. Add one to start filing automatically." = "Inga regler än. Lägg till en för att börja arkivera automatiskt.";
 "No screenshots found." = "Inga skärmdumpar hittades.";
 "No similar photos found." = "Inga liknande foton hittades.";

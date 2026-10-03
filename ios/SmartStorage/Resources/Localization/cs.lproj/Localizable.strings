@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d dní zdarma, poté %@ za rok. Obnovuje se automaticky, dokud nezrušíte v nastavení účtu.";
 "%d of %d files used" = "Použito %d z %d souborů";
 "%d of %d used" = "Využito %d z %d";
+"%d rule on" = "Aktivní pravidla: %d";
+"%d rules on" = "Aktivní pravidla: %d";
 "(photo date)" = "(datum focení)";
 "+  Add Rule" = "+ Přidat pravidlo";
 "A reminder to review the safest cleanup suggestions." = "Připomenutí, abyste si přečetli nejbezpečnější návrhy čištění.";
@@ -111,7 +113,6 @@
 "and %,d more" = "a %d více";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android se zeptá, než bude cokoli odstraněno, a položky zůstanou v koši 30 dní. Oblíbené a vzpomínky nejsou nikdy předem vybrány.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision, Photos, SwiftUI a SwiftData – to vše je součástí iOS. V této verzi nejsou zahrnuty žádné knihovny třetích stran.";
-"Automatically file content where it belongs." = "Automaticky ukládat obsah tam, kam patří.";
 "Automation" = "automatizace";
 "Back" = "Zpět";
 "Back Up %d Files" = "Zálohujte %d souborů";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "Zkontrolujte připojení a zkuste to znovu.";
 "Choose Photo Access" = "Vyberte Přístup k fotografiím";
 "Choose what to copy and where it should go." = "Vyberte, co chcete zkopírovat a kam to má jít.";
+"Choose where each kind of file would be filed." = "Vyberte, kam by se ukládal každý typ souboru.";
 "Classification happens on your device." = "Klasifikace probíhá na vašem zařízení.";
 "Clean" = "Čistý";
 "Cleanup" = "Čištění";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "Soubory jsou na tomto zařízení analyzovány a kategorizovány. Dokud neprovedete zálohu, nic se neodešle do cloudu.";
 "Find and remove unnecessary files." = "Najděte a odstraňte nepotřebné soubory.";
 "Find duplicates" = "Najděte duplikáty";
-"Find receipts and file them in the right place." = "Najděte účtenky a uložte je na správné místo.";
+"Find receipts and see where each would be filed." = "Najděte účtenky a podívejte se, kam by se každá uložila.";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Vyhledá účtenky na snímcích obrazovky a fotografiích, přečte obchodníka, datum a částku na tomto zařízení a ukáže, kde by byly jednotlivé položky uloženy.";
 "Folder" = "Složka";
 "Folder inside KeepSpace" = "Složka uvnitř KeepSpace";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "Dosud žádná aktivovaná pravidla nesoubory účtenek.";
 "No media found." = "Nebyla nalezena žádná média.";
 "No receipts found in your screenshots or photos yet." = "Na snímcích obrazovky nebo fotkách zatím nebyly nalezeny žádné účtenky.";
+"No rules on" = "Žádná aktivní pravidla";
 "No rules yet. Add one to start filing automatically." = "Zatím žádná pravidla. Chcete-li automaticky zahájit podávání, přidejte jeden.";
 "No screenshots found." = "Nebyly nalezeny žádné snímky obrazovky.";
 "No similar photos found." = "Nebyly nalezeny žádné podobné fotografie.";

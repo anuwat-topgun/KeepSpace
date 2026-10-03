@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d days free, then %@ per year. Renews automatically until you cancel in your account settings.";
 "%d of %d files used" = "%d of %d files used";
 "%d of %d used" = "%d of %d used";
+"%d rule on" = "%d rule on";
+"%d rules on" = "%d rules on";
 "(photo date)" = "(photo date)";
 "+  Add Rule" = "+  Add Rule";
 "A reminder to review the safest cleanup suggestions." = "A reminder to review the safest cleanup suggestions.";
@@ -111,7 +113,6 @@
 "and %,d more" = "and %,d more";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version.";
-"Automatically file content where it belongs." = "Automatically file content where it belongs.";
 "Automation" = "Automation";
 "Back" = "Back";
 "Back Up %d Files" = "Back Up %d Files";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "Check your connection and try again.";
 "Choose Photo Access" = "Choose Photo Access";
 "Choose what to copy and where it should go." = "Choose what to copy and where it should go.";
+"Choose where each kind of file would be filed." = "Choose where each kind of file would be filed.";
 "Classification happens on your device." = "Classification happens on your device.";
 "Clean" = "Clean";
 "Cleanup" = "Cleanup";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up.";
 "Find and remove unnecessary files." = "Find and remove unnecessary files.";
 "Find duplicates" = "Find duplicates";
-"Find receipts and file them in the right place." = "Find receipts and file them in the right place.";
+"Find receipts and see where each would be filed." = "Find receipts and see where each would be filed.";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed.";
 "Folder" = "Folder";
 "Folder inside KeepSpace" = "Folder inside KeepSpace";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "No enabled rule files receipts yet.";
 "No media found." = "No media found.";
 "No receipts found in your screenshots or photos yet." = "No receipts found in your screenshots or photos yet.";
+"No rules on" = "No rules on";
 "No rules yet. Add one to start filing automatically." = "No rules yet. Add one to start filing automatically.";
 "No screenshots found." = "No screenshots found.";
 "No similar photos found." = "No similar photos found.";

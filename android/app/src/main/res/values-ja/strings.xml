@@ -83,6 +83,8 @@
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d 日間無料、その後は %s 年あたり。アカウント設定でキャンセルするまで自動的に更新されます。</string>
     <string name="subscription_d_of_d_files_used">%d/%d ファイルが使用されました</string>
     <string name="subscription_d_of_d_used">%d/%d 個が使用されました</string>
+    <string name="common_d_rule_on">有効なルール：%d</string>
+    <string name="common_d_rules_on">有効なルール：%d</string>
     <string name="receipt_filing_photo_date">(写真の日付)</string>
     <string name="rule_screens_add_rule">+ ルールの追加</string>
     <string name="common_a_reminder_to_review_the_safest_cleanup_suggestions">最も安全なクリーンアップの提案を確認するようリマインドします。</string>
@@ -113,7 +115,6 @@
     <string name="memory_detail_and_d_more">そしてさらに %,d</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android は、何かが削除される前に質問し、アイテムは 30 日間ゴミ箱に残ります。お気に入りや思い出が事前に選択されることはありません。</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision、写真、SwiftUI、SwiftData — すべて iOS の一部です。このバージョンにはサードパーティのライブラリは含まれていません。</string>
-    <string name="common_automatically_file_content_where_it_belongs">コンテンツを自動的に適切な場所にファイルします。</string>
     <string name="common_automation">自動化</string>
     <string name="common_back">戻る</string>
     <string name="manual_backup_back_up_d_files">%d ファイルをバックアップする</string>
@@ -153,6 +154,7 @@
     <string name="paywall_check_your_connection_and_try_again">接続を確認して、もう一度試してください。</string>
     <string name="common_choose_photo_access">写真へのアクセスを選択してください</string>
     <string name="common_choose_what_to_copy_and_where_it_should_go">何をコピーするか、どこにコピーするかを選択します。</string>
+    <string name="common_choose_where_each_kind_of_file_would_be_filed">ファイルの種類ごとに保存先を選びます。</string>
     <string name="common_classification_happens_on_your_device">分類はデバイス上で行われます。</string>
     <string name="common_clean">クリーン</string>
     <string name="subscription_cleanup">クリーンアップ</string>
@@ -220,7 +222,7 @@
     <string name="common_files_are_analyzed_and_categorized_on_this_device_nothin">ファイルはこのデバイス上で分析および分類されます。バックアップするまで、クラウドには何も送信されません。</string>
     <string name="common_find_and_remove_unnecessary_files">不要なファイルを見つけて削除します。</string>
     <string name="common_find_duplicates">重複の検索</string>
-    <string name="paywall_find_receipts_and_file_them_in_the_right_place">領収書を見つけて、適切な場所に保管してください。</string>
+    <string name="common_find_receipts_and_see_where_each_would_be_filed">レシートを見つけ、それぞれの保存先を確認できます。</string>
     <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">スクリーンショットや写真から領収書を検索し、このデバイス上の販売者、日付、金額を読み取り、それぞれの領収書が保管される場所を示します。</string>
     <string name="common_folder">フォルダー</string>
     <string name="common_folder_inside_keepspace">KeepSpace 内のフォルダー</string>
@@ -299,6 +301,7 @@
     <string name="common_no_enabled_rule_files_receipts_yet">有効なルール ファイルの受信はまだありません。</string>
     <string name="common_no_media_found">メディアが見つかりませんでした。</string>
     <string name="common_no_receipts_found_in_your_screenshots_or_photos_yet">スクリーンショットや写真に領収書はまだ見つかりません。</string>
+    <string name="common_no_rules_on">有効なルールはありません</string>
     <string name="common_no_rules_yet_add_one_to_start_filing_automatically">まだルールはありません。 1 つ追加すると、自動的にファイリングが開始されます。</string>
     <string name="common_no_screenshots_found">スクリーンショットが見つかりませんでした。</string>
     <string name="common_no_similar_photos_found">似たような写真は見つかりませんでした。</string>

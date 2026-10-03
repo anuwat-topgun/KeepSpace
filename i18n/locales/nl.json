@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "en %,d meer",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android vraagt voordat er iets wordt verwijderd en items blijven 30 dagen in de prullenbak. Favorieten en herinneringen zijn nooit vooraf geselecteerd.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Photos, SwiftUI en SwiftData: allemaal onderdeel van iOS. In deze versie zijn geen bibliotheken van derden opgenomen.",
-    "common.automatically_file_content_where_it_belongs": "Bewaar inhoud automatisch waar deze thuishoort.",
     "common.automation": "Automatisering",
     "common.back": "Terug",
     "common.back_up_more": "Maak meer back-ups",
@@ -432,7 +431,6 @@
     "paywall.continue": "Ga door",
     "subscription.ends_bbb6ff2b": "Eindigt %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Alles wat u ziet, kunt u gratis scannen en beoordelen.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Zoek bonnen en archiveer ze op de juiste plaats.",
     "subscription.free": "Gratis",
     "subscription.free_trial_ends_then_renews": "De gratis proefperiode eindigt %@ en wordt vervolgens verlengd.",
     "subscription.free_trial_ends": "Gratis proefperiode eindigt %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Onbeperkt opschonen, videocompressie, slimme schermafbeeldingen, ontvangstbevestiging, AI Taste en onbeperkte back-up en regels.",
     "common.unlock_keepspace_pro": "Ontgrendel KeepSpace Pro",
     "manual_backup.unlock_unlimited_backup": "Ontgrendel onbeperkte back-up",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "U heeft de gratis back-ups van deze maand gebruikt."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "U heeft de gratis back-ups van deze maand gebruikt.",
+    "common.d_rule_on": "Actieve regels: %d",
+    "common.d_rules_on": "Actieve regels: %d",
+    "common.no_rules_on": "Geen actieve regels",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Vind bonnetjes en zie waar elk zou worden opgeslagen.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Kies waar elk type bestand zou worden opgeslagen."
   }
 }

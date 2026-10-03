@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "und %,d mehr",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android fragt, bevor etwas entfernt wird, und Elemente bleiben 30 Tage lang im Papierkorb. Favoriten und Erinnerungen werden nie vorgewählt.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Fotos, SwiftUI und SwiftData – alle Teil von iOS. In dieser Version sind keine Bibliotheken von Drittanbietern enthalten.",
-    "common.automatically_file_content_where_it_belongs": "Legen Sie Inhalte automatisch dort ab, wo sie hingehören.",
     "common.automation": "Automatisierung",
     "common.back": "Zurück",
     "common.back_up_more": "Mehr sichern",
@@ -432,7 +431,6 @@
     "paywall.continue": "Weiter",
     "subscription.ends_bbb6ff2b": "Endet %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Alles, was Sie sehen, können Sie kostenlos scannen und überprüfen.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Finden Sie Quittungen und legen Sie sie am richtigen Ort ab.",
     "subscription.free": "Kostenlos",
     "subscription.free_trial_ends_then_renews": "Die kostenlose Testversion endet am %@ und wird dann verlängert.",
     "subscription.free_trial_ends": "Die kostenlose Testversion endet %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Unbegrenzte Bereinigung, Videokomprimierung, intelligente Screenshots, Belegablage, AI-Geschmack und unbegrenzte Sicherung und Regeln.",
     "common.unlock_keepspace_pro": "Schalten Sie KeepSpace Pro frei",
     "manual_backup.unlock_unlimited_backup": "Schalten Sie unbegrenztes Backup frei",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "Sie haben die kostenlosen Backups dieses Monats verwendet."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Sie haben die kostenlosen Backups dieses Monats verwendet.",
+    "common.d_rule_on": "Aktive Regeln: %d",
+    "common.d_rules_on": "Aktive Regeln: %d",
+    "common.no_rules_on": "Keine aktiven Regeln",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Finde Belege und sieh, wo jeder abgelegt würde.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Lege fest, wo jede Dateiart abgelegt würde."
   }
 }

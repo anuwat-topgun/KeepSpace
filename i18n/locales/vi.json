@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "và %,d nữa",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android hỏi trước khi xóa bất kỳ nội dung nào và các mục sẽ ở trong Thùng rác trong 30 ngày. Mục yêu thích và kỷ niệm không bao giờ được chọn trước.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Photos, SwiftUI và SwiftData — tất cả đều là một phần của iOS. Không có thư viện của bên thứ ba nào được đưa vào phiên bản này.",
-    "common.automatically_file_content_where_it_belongs": "Tự động lưu trữ nội dung ở nơi nó thuộc về.",
     "common.automation": "Tự động hóa",
     "common.back": "Quay lại",
     "common.back_up_more": "Sao lưu thêm",
@@ -432,7 +431,6 @@
     "paywall.continue": "Tiếp tục",
     "subscription.ends_bbb6ff2b": "Kết thúc %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Mọi thứ bạn nhìn thấy đều được quét và xem xét miễn phí.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Tìm biên lai và nộp chúng vào đúng nơi.",
     "subscription.free": "miễn phí",
     "subscription.free_trial_ends_then_renews": "Thời gian dùng thử miễn phí kết thúc %@, sau đó gia hạn.",
     "subscription.free_trial_ends": "Thời gian dùng thử miễn phí kết thúc %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Dọn dẹp không giới hạn, nén video, chụp ảnh màn hình thông minh, Gửi biên nhận, AI Taste cũng như các quy tắc và sao lưu không giới hạn.",
     "common.unlock_keepspace_pro": "Mở khóa KeepSpace Pro",
     "manual_backup.unlock_unlimited_backup": "Mở khóa sao lưu không giới hạn",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "Bạn đã sử dụng bản sao lưu miễn phí của tháng này."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Bạn đã sử dụng bản sao lưu miễn phí của tháng này.",
+    "common.d_rule_on": "Quy tắc đang bật: %d",
+    "common.d_rules_on": "Quy tắc đang bật: %d",
+    "common.no_rules_on": "Không có quy tắc nào đang bật",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Tìm biên lai và xem từng biên lai sẽ được lưu ở đâu.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Chọn nơi mỗi loại tệp sẽ được lưu."
   }
 }

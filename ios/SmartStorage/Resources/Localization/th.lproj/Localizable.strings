@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "ฟรี %d วัน จากนั้น %@ ต่อปี ต่ออายุโดยอัตโนมัติจนกว่าคุณจะยกเลิกในการตั้งค่าบัญชีของคุณ";
 "%d of %d files used" = "%d จาก %d ไฟล์ที่ใช้ไป";
 "%d of %d used" = "%d จาก %d ใช้แล้ว";
+"%d rule on" = "กฎที่เปิดอยู่: %d";
+"%d rules on" = "กฎที่เปิดอยู่: %d";
 "(photo date)" = "(วันที่ถ่ายรูป)";
 "+  Add Rule" = "+ เพิ่มกฎ";
 "A reminder to review the safest cleanup suggestions." = "คำเตือนให้ตรวจสอบคำแนะนำในการล้างข้อมูลที่ปลอดภัยที่สุด";
@@ -111,7 +113,6 @@
 "and %,d more" = "และ %,d เพิ่มเติม";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android ถามก่อนที่จะนำสิ่งใดออก และรายการต่างๆ จะอยู่ในถังขยะเป็นเวลา 30 วัน รายการโปรดและความทรงจำไม่เคยถูกเลือกไว้ล่วงหน้า";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision, รูปภาพ, SwiftUI และ SwiftData — ทั้งหมดนี้เป็นส่วนหนึ่งของ iOS ไม่มีไลบรารีของบุคคลที่สามรวมอยู่ในเวอร์ชันนี้";
-"Automatically file content where it belongs." = "จัดเก็บเนื้อหาโดยอัตโนมัติในตำแหน่งที่เนื้อหานั้นอยู่";
 "Automation" = "ระบบอัตโนมัติ";
 "Back" = "กลับ";
 "Back Up %d Files" = "สำรองข้อมูล %d ไฟล์";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "ตรวจสอบการเชื่อมต่อของคุณแล้วลองอีกครั้ง";
 "Choose Photo Access" = "เลือกการเข้าถึงรูปภาพ";
 "Choose what to copy and where it should go." = "เลือกสิ่งที่จะคัดลอกและตำแหน่งที่จะคัดลอก";
+"Choose where each kind of file would be filed." = "เลือกว่าไฟล์แต่ละประเภทจะถูกจัดเก็บที่ไหน";
 "Classification happens on your device." = "การจัดประเภทเกิดขึ้นบนอุปกรณ์ของคุณ";
 "Clean" = "สะอาด";
 "Cleanup" = "การล้างข้อมูล";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "ไฟล์จะได้รับการวิเคราะห์และจัดหมวดหมู่บนอุปกรณ์นี้ ไม่มีการส่งสิ่งใดไปยังคลาวด์จนกว่าคุณจะสำรองข้อมูล";
 "Find and remove unnecessary files." = "ค้นหาและลบไฟล์ที่ไม่จำเป็น";
 "Find duplicates" = "ค้นหารายการที่ซ้ำกัน";
-"Find receipts and file them in the right place." = "ค้นหาใบเสร็จรับเงินและยื่นให้ถูกที่";
+"Find receipts and see where each would be filed." = "ค้นหาใบเสร็จและดูว่าแต่ละใบจะถูกจัดเก็บที่ไหน";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "ค้นหาใบเสร็จในภาพหน้าจอและรูปถ่ายของคุณ อ่านผู้ขาย วันที่และจำนวนเงินบนอุปกรณ์นี้ และแสดงตำแหน่งที่จะยื่นแต่ละรายการ";
 "Folder" = "โฟลเดอร์";
 "Folder inside KeepSpace" = "โฟลเดอร์ภายใน KeepSpace";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "ยังไม่มีการรับไฟล์กฎที่เปิดใช้งาน";
 "No media found." = "ไม่พบสื่อ";
 "No receipts found in your screenshots or photos yet." = "ยังไม่พบใบเสร็จในภาพหน้าจอหรือรูปถ่ายของคุณ";
+"No rules on" = "ไม่มีกฎที่เปิดอยู่";
 "No rules yet. Add one to start filing automatically." = "ยังไม่มีกฎเกณฑ์ เพิ่มหนึ่งรายการเพื่อเริ่มยื่นโดยอัตโนมัติ";
 "No screenshots found." = "ไม่พบภาพหน้าจอ";
 "No similar photos found." = "ไม่พบภาพถ่ายที่คล้ายกัน";

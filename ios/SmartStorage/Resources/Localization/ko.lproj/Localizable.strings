@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d일간 무료이고 이후에는 연간 %@입니다. 계정 설정에서 취소할 때까지 자동으로 갱신됩니다.";
 "%d of %d files used" = "%d개 중 %d개의 파일이 사용됨";
 "%d of %d used" = "%d/%d 사용됨";
+"%d rule on" = "활성 규칙: %d";
+"%d rules on" = "활성 규칙: %d";
 "(photo date)" = "(사진 날짜)";
 "+  Add Rule" = "+ 규칙 추가";
 "A reminder to review the safest cleanup suggestions." = "가장 안전한 정리 제안을 검토하라는 알림입니다.";
@@ -111,7 +113,6 @@
 "and %,d more" = "그 외 %,d개";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android는 항목을 삭제하기 전에 확인하고 항목은 30일 동안 휴지통에 보관됩니다. 즐겨찾기와 추억은 미리 선택되지 않습니다.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision, Photos, SwiftUI 및 SwiftData — 모두 iOS의 일부입니다. 이 버전에는 타사 라이브러리가 포함되어 있지 않습니다.";
-"Automatically file content where it belongs." = "콘텐츠가 속한 곳에 자동으로 파일을 보관합니다.";
 "Automation" = "자동화";
 "Back" = "뒤로";
 "Back Up %d Files" = "%d개의 파일 백업";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "연결을 확인하고 다시 시도하세요.";
 "Choose Photo Access" = "사진 액세스 선택";
 "Choose what to copy and where it should go." = "복사할 내용과 복사할 위치를 선택하세요.";
+"Choose where each kind of file would be filed." = "파일 종류별로 보관할 위치를 선택하세요.";
 "Classification happens on your device." = "분류는 귀하의 장치에서 이루어집니다.";
 "Clean" = "깨끗하다";
 "Cleanup" = "정리";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "파일은 이 장치에서 분석되고 분류됩니다. 백업할 때까지 아무 것도 클라우드로 전송되지 않습니다.";
 "Find and remove unnecessary files." = "불필요한 파일을 찾아서 제거하세요.";
 "Find duplicates" = "중복 찾기";
-"Find receipts and file them in the right place." = "영수증을 찾아 올바른 장소에 보관하세요.";
+"Find receipts and see where each would be filed." = "영수증을 찾고 각각이 어디에 보관될지 확인하세요.";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "스크린샷과 사진에서 영수증을 찾고, 이 기기의 판매자, 날짜, 금액을 읽고, 각 영수증이 보관되는 위치를 표시합니다.";
 "Folder" = "폴더";
 "Folder inside KeepSpace" = "KeepSpace 내의 폴더";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "활성화된 규칙 파일 수신이 아직 없습니다.";
 "No media found." = "미디어를 찾을 수 없습니다.";
 "No receipts found in your screenshots or photos yet." = "아직 스크린샷이나 사진에 영수증이 없습니다.";
+"No rules on" = "활성 규칙 없음";
 "No rules yet. Add one to start filing automatically." = "아직 규칙이 없습니다. 자동으로 제출을 시작하려면 하나를 추가하세요.";
 "No screenshots found." = "스크린샷을 찾을 수 없습니다.";
 "No similar photos found." = "유사한 사진이 없습니다.";

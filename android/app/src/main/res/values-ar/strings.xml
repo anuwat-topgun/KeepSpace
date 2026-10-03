@@ -83,6 +83,8 @@
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d يوم مجاني، ثم %s سنويًا. يتم التجديد تلقائيًا حتى تقوم بالإلغاء في إعدادات حسابك.</string>
     <string name="subscription_d_of_d_files_used">تم استخدام %d من %d ملف</string>
     <string name="subscription_d_of_d_used">تم استخدام %d من %d</string>
+    <string name="common_d_rule_on">القواعد النشطة: %d</string>
+    <string name="common_d_rules_on">القواعد النشطة: %d</string>
     <string name="receipt_filing_photo_date">(تاريخ الصورة)</string>
     <string name="rule_screens_add_rule">+ إضافة القاعدة</string>
     <string name="common_a_reminder_to_review_the_safest_cleanup_suggestions">تذكير لمراجعة اقتراحات التنظيف الأكثر أمانًا.</string>
@@ -113,7 +115,6 @@
     <string name="memory_detail_and_d_more">و%،د أكثر</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">يسألك Android قبل إزالة أي شيء، وتظل العناصر في سلة المهملات لمدة 30 يومًا. لا يتم تحديد المفضلة والذكريات مسبقًا.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision وPhotos وSwiftUI وSwiftData — كلها جزء من iOS. لا يتم تضمين مكتبات الطرف الثالث في هذا الإصدار.</string>
-    <string name="common_automatically_file_content_where_it_belongs">حفظ المحتوى تلقائيًا في المكان الذي ينتمي إليه.</string>
     <string name="common_automation">الأتمتة</string>
     <string name="common_back">العودة</string>
     <string name="manual_backup_back_up_d_files">نسخ احتياطي لملفات %d</string>
@@ -153,6 +154,7 @@
     <string name="paywall_check_your_connection_and_try_again">تحقق من اتصالك وحاول مرة أخرى.</string>
     <string name="common_choose_photo_access">اختر الوصول إلى الصور</string>
     <string name="common_choose_what_to_copy_and_where_it_should_go">اختر ما تريد نسخه وأين يجب أن يذهب.</string>
+    <string name="common_choose_where_each_kind_of_file_would_be_filed">اختر أين سيتم حفظ كل نوع من الملفات.</string>
     <string name="common_classification_happens_on_your_device">يحدث التصنيف على جهازك.</string>
     <string name="common_clean">نظيفة</string>
     <string name="subscription_cleanup">تنظيف</string>
@@ -220,7 +222,7 @@
     <string name="common_files_are_analyzed_and_categorized_on_this_device_nothin">يتم تحليل الملفات وتصنيفها على هذا الجهاز. لا يتم إرسال أي شيء إلى السحابة حتى تقوم بعمل نسخة احتياطية.</string>
     <string name="common_find_and_remove_unnecessary_files">البحث عن الملفات غير الضرورية وإزالتها.</string>
     <string name="common_find_duplicates">البحث عن التكرارات</string>
-    <string name="paywall_find_receipts_and_file_them_in_the_right_place">ابحث عن الإيصالات وقم بتقديمها في المكان المناسب.</string>
+    <string name="common_find_receipts_and_see_where_each_would_be_filed">اعثر على الإيصالات وشاهد أين سيتم حفظ كل منها.</string>
     <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">يجد الإيصالات في لقطات الشاشة والصور الخاصة بك، ويقرأ التاجر والتاريخ والمبلغ على هذا الجهاز، ويعرض المكان الذي سيتم حفظ كل إيصال فيه.</string>
     <string name="common_folder">مجلد</string>
     <string name="common_folder_inside_keepspace">مجلد داخل KeepSpace</string>
@@ -299,6 +301,7 @@
     <string name="common_no_enabled_rule_files_receipts_yet">لم يتم تمكين أي إيصالات لملفات القاعدة حتى الآن.</string>
     <string name="common_no_media_found">لم يتم العثور على أي وسائط.</string>
     <string name="common_no_receipts_found_in_your_screenshots_or_photos_yet">لم يتم العثور على إيصالات في لقطات الشاشة أو الصور الخاصة بك حتى الآن.</string>
+    <string name="common_no_rules_on">لا توجد قواعد نشطة</string>
     <string name="common_no_rules_yet_add_one_to_start_filing_automatically">لا توجد قواعد حتى الآن. أضف واحدًا لبدء التسجيل تلقائيًا.</string>
     <string name="common_no_screenshots_found">لم يتم العثور على لقطات الشاشة.</string>
     <string name="common_no_similar_photos_found">لم يتم العثور على صور مماثلة.</string>

@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "e %,d in più",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android chiede prima che qualsiasi cosa venga rimossa e gli elementi rimangono nel Cestino per 30 giorni. Preferiti e ricordi non vengono mai preselezionati.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Foto, SwiftUI e SwiftData: tutti parte di iOS. In questa versione non sono incluse librerie di terze parti.",
-    "common.automatically_file_content_where_it_belongs": "Archivia automaticamente il contenuto a cui appartiene.",
     "common.automation": "Automazione",
     "common.back": "Indietro",
     "common.back_up_more": "Eseguire il backup di più",
@@ -432,7 +431,6 @@
     "paywall.continue": "Continua",
     "subscription.ends_bbb6ff2b": "Termina %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Tutto ciò che vedi può essere scansionato e revisionato gratuitamente.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Trova le ricevute e archiviale nel posto giusto.",
     "subscription.free": "Gratuito",
     "subscription.free_trial_ends_then_renews": "La prova gratuita termina %@, poi si rinnoverà.",
     "subscription.free_trial_ends": "La prova gratuita termina %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Pulizia illimitata, compressione video, screenshot intelligenti, archiviazione di ricevute, AI Taste e backup e regole illimitati.",
     "common.unlock_keepspace_pro": "Sblocca KeepSpace Pro",
     "manual_backup.unlock_unlimited_backup": "Sblocca backup illimitato",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "Hai utilizzato i backup gratuiti di questo mese."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Hai utilizzato i backup gratuiti di questo mese.",
+    "common.d_rule_on": "Regole attive: %d",
+    "common.d_rules_on": "Regole attive: %d",
+    "common.no_rules_on": "Nessuna regola attiva",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Trova le ricevute e vedi dove verrebbe archiviata ciascuna.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Scegli dove verrebbe archiviato ogni tipo di file."
   }
 }

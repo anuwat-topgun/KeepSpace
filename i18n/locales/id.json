@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "dan %,d lainnya",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android bertanya sebelum sesuatu dihapus, dan item tetap berada di Sampah selama 30 hari. Favorit dan kenangan tidak pernah dipilih sebelumnya.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Foto, SwiftUI, dan SwiftData — semuanya bagian dari iOS. Tidak ada perpustakaan pihak ketiga yang disertakan dalam versi ini.",
-    "common.automatically_file_content_where_it_belongs": "Secara otomatis mengarsipkan konten pada tempatnya.",
     "common.automation": "Otomatisasi",
     "common.back": "Kembali",
     "common.back_up_more": "Cadangkan Lebih Banyak",
@@ -432,7 +431,6 @@
     "paywall.continue": "Lanjutkan",
     "subscription.ends_bbb6ff2b": "Berakhir %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Segala sesuatu yang Anda lihat bebas untuk dipindai dan ditinjau.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Temukan tanda terima dan arsipkan di tempat yang tepat.",
     "subscription.free": "Gratis",
     "subscription.free_trial_ends_then_renews": "Uji coba gratis berakhir %@, lalu diperpanjang.",
     "subscription.free_trial_ends": "Uji coba gratis berakhir %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Pembersihan tanpa batas, kompresi video, tangkapan layar cerdas, Pengarsipan Tanda Terima, AI Rasa, serta pencadangan dan aturan tanpa batas.",
     "common.unlock_keepspace_pro": "Buka kunci KeepSpace Pro",
     "manual_backup.unlock_unlimited_backup": "Buka Kunci Cadangan Tanpa Batas",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "Anda telah menggunakan cadangan gratis bulan ini."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Anda telah menggunakan cadangan gratis bulan ini.",
+    "common.d_rule_on": "Aturan aktif: %d",
+    "common.d_rules_on": "Aturan aktif: %d",
+    "common.no_rules_on": "Tidak ada aturan aktif",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Temukan struk dan lihat di mana masing-masing akan disimpan.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Pilih di mana setiap jenis berkas akan disimpan."
   }
 }

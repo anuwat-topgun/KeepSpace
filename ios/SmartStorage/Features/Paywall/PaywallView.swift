@@ -252,7 +252,7 @@ private struct BenefitRow: View {
         case .unlimitedCleanup: ("trash.fill", .coral, "Unlimited Cleanup", "Clear whole categories at once, with no monthly limit.")
         case .compressVideos: ("film.stack.fill", .purple, "Compress Videos", "Shrink big videos on your device and keep the quality.")
         case .smartScreenshots: ("camera.viewfinder", .blue, "Smart Screenshots", "Browse screenshots by what's in them.")
-        case .receiptFiling: ("doc.text.fill", .mint, "Receipt Filing", "Find receipts and file them in the right place.")
+        case .receiptFiling: ("doc.text.fill", .mint, "Receipt Filing", "Find receipts and see where each would be filed.")
         case .aiTaste: ("wand.and.stars", .amber, "AI Taste", "Suggestions that learn what you like to keep.")
         case .unlimitedBackupAndRules: ("icloud.fill", .teal, "Unlimited Backup & Rules", "Back up as much as you want, with every rule and cloud account.")
         }

@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "そしてさらに %,d",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android は、何かが削除される前に質問し、アイテムは 30 日間ゴミ箱に残ります。お気に入りや思い出が事前に選択されることはありません。",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision、写真、SwiftUI、SwiftData — すべて iOS の一部です。このバージョンにはサードパーティのライブラリは含まれていません。",
-    "common.automatically_file_content_where_it_belongs": "コンテンツを自動的に適切な場所にファイルします。",
     "common.automation": "自動化",
     "common.back": "戻る",
     "common.back_up_more": "さらにバックアップ",
@@ -432,7 +431,6 @@
     "paywall.continue": "続ける",
     "subscription.ends_bbb6ff2b": "%@ を終了します",
     "subscription.everything_you_see_is_free_to_scan_and_review": "目にするものはすべて無料でスキャンして確認できます。",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "領収書を見つけて、適切な場所に保管してください。",
     "subscription.free": "無料",
     "subscription.free_trial_ends_then_renews": "無料トライアルは %@ で終了し、その後更新されます。",
     "subscription.free_trial_ends": "無料トライアルは %@ で終了します。",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "無制限のクリーンアップ、ビデオ圧縮、スマート スクリーンショット、レシート ファイリング、AI テイスト、無制限のバックアップとルール。",
     "common.unlock_keepspace_pro": "KeepSpace プロのロックを解除する",
     "manual_backup.unlock_unlimited_backup": "無制限のバックアップのロックを解除する",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "今月の無料バックアップを使用しました。"
+    "manual_backup.you_ve_used_this_month_s_free_backups": "今月の無料バックアップを使用しました。",
+    "common.d_rule_on": "有効なルール：%d",
+    "common.d_rules_on": "有効なルール：%d",
+    "common.no_rules_on": "有効なルールはありません",
+    "common.find_receipts_and_see_where_each_would_be_filed": "レシートを見つけ、それぞれの保存先を確認できます。",
+    "common.choose_where_each_kind_of_file_would_be_filed": "ファイルの種類ごとに保存先を選びます。"
   }
 }

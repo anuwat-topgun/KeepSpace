@@ -83,6 +83,8 @@
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d ngày miễn phí, sau đó là %s mỗi năm. Tự động gia hạn cho đến khi bạn hủy trong cài đặt tài khoản của mình.</string>
     <string name="subscription_d_of_d_files_used">%d trong số %d tệp được sử dụng</string>
     <string name="subscription_d_of_d_used">%d trong số %d đã sử dụng</string>
+    <string name="common_d_rule_on">Quy tắc đang bật: %d</string>
+    <string name="common_d_rules_on">Quy tắc đang bật: %d</string>
     <string name="receipt_filing_photo_date">(ngày chụp ảnh)</string>
     <string name="rule_screens_add_rule">+ Thêm quy tắc</string>
     <string name="common_a_reminder_to_review_the_safest_cleanup_suggestions">Lời nhắc xem xét các đề xuất dọn dẹp an toàn nhất.</string>
@@ -113,7 +115,6 @@
     <string name="memory_detail_and_d_more">và %,d nữa</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android hỏi trước khi xóa bất kỳ nội dung nào và các mục sẽ ở trong Thùng rác trong 30 ngày. Mục yêu thích và kỷ niệm không bao giờ được chọn trước.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Photos, SwiftUI và SwiftData — tất cả đều là một phần của iOS. Không có thư viện của bên thứ ba nào được đưa vào phiên bản này.</string>
-    <string name="common_automatically_file_content_where_it_belongs">Tự động lưu trữ nội dung ở nơi nó thuộc về.</string>
     <string name="common_automation">Tự động hóa</string>
     <string name="common_back">Quay lại</string>
     <string name="manual_backup_back_up_d_files">Sao lưu các tập tin %d</string>
@@ -153,6 +154,7 @@
     <string name="paywall_check_your_connection_and_try_again">Hãy kiểm tra kết nối của bạn và thử lại.</string>
     <string name="common_choose_photo_access">Chọn quyền truy cập ảnh</string>
     <string name="common_choose_what_to_copy_and_where_it_should_go">Chọn những gì để sao chép và nơi nó sẽ đi.</string>
+    <string name="common_choose_where_each_kind_of_file_would_be_filed">Chọn nơi mỗi loại tệp sẽ được lưu.</string>
     <string name="common_classification_happens_on_your_device">Việc phân loại diễn ra trên thiết bị của bạn.</string>
     <string name="common_clean">Sạch sẽ</string>
     <string name="subscription_cleanup">Dọn dẹp</string>
@@ -220,7 +222,7 @@
     <string name="common_files_are_analyzed_and_categorized_on_this_device_nothin">Các tập tin được phân tích và phân loại trên thiết bị này. Không có gì được gửi lên đám mây cho đến khi bạn sao lưu.</string>
     <string name="common_find_and_remove_unnecessary_files">Tìm và loại bỏ các tập tin không cần thiết.</string>
     <string name="common_find_duplicates">Tìm bản sao</string>
-    <string name="paywall_find_receipts_and_file_them_in_the_right_place">Tìm biên lai và nộp chúng vào đúng nơi.</string>
+    <string name="common_find_receipts_and_see_where_each_would_be_filed">Tìm biên lai và xem từng biên lai sẽ được lưu ở đâu.</string>
     <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Tìm biên lai trong ảnh chụp màn hình và ảnh của bạn, đọc thông tin người bán, ngày và số tiền trên thiết bị này, đồng thời hiển thị nơi mỗi biên nhận sẽ được nộp.</string>
     <string name="common_folder">Thư mục</string>
     <string name="common_folder_inside_keepspace">Thư mục bên trong KeepSpace</string>
@@ -299,6 +301,7 @@
     <string name="common_no_enabled_rule_files_receipts_yet">Chưa bật biên nhận tệp quy tắc nào.</string>
     <string name="common_no_media_found">Không tìm thấy phương tiện truyền thông nào.</string>
     <string name="common_no_receipts_found_in_your_screenshots_or_photos_yet">Chưa tìm thấy biên nhận nào trong ảnh chụp màn hình hoặc ảnh của bạn.</string>
+    <string name="common_no_rules_on">Không có quy tắc nào đang bật</string>
     <string name="common_no_rules_yet_add_one_to_start_filing_automatically">Chưa có quy tắc nào. Thêm một để bắt đầu nộp đơn tự động.</string>
     <string name="common_no_screenshots_found">Không tìm thấy ảnh chụp màn hình.</string>
     <string name="common_no_similar_photos_found">Không tìm thấy ảnh tương tự.</string>

@@ -83,6 +83,8 @@
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d gün ücretsiz, ardından yılda %s. Hesap ayarlarınızda iptal edene kadar otomatik olarak yenilenir.</string>
     <string name="subscription_d_of_d_files_used">%d dosyadan %d tanesi kullanıldı</string>
     <string name="subscription_d_of_d_used">%d / %d kullanıldı</string>
+    <string name="common_d_rule_on">Etkin kurallar: %d</string>
+    <string name="common_d_rules_on">Etkin kurallar: %d</string>
     <string name="receipt_filing_photo_date">(fotoğraf tarihi)</string>
     <string name="rule_screens_add_rule">+ Kural Ekle</string>
     <string name="common_a_reminder_to_review_the_safest_cleanup_suggestions">En güvenli temizlik önerilerini incelemeniz için bir hatırlatma.</string>
@@ -113,7 +115,6 @@
     <string name="memory_detail_and_d_more">ve %,d tane daha</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android herhangi bir şey kaldırılmadan önce sorar ve öğeler 30 gün boyunca Çöp Kutusu\'nda kalır. Favoriler ve anılar hiçbir zaman önceden seçilmez.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Fotoğraflar, SwiftUI ve SwiftData — hepsi iOS\'un parçaları. Bu sürümde hiçbir üçüncü taraf kitaplığı bulunmamaktadır.</string>
-    <string name="common_automatically_file_content_where_it_belongs">İçeriği ait olduğu yere otomatik olarak dosyalayın.</string>
     <string name="common_automation">Otomasyon</string>
     <string name="common_back">Geri</string>
     <string name="manual_backup_back_up_d_files">%d Dosyayı Yedekle</string>
@@ -153,6 +154,7 @@
     <string name="paywall_check_your_connection_and_try_again">Bağlantınızı kontrol edip tekrar deneyin.</string>
     <string name="common_choose_photo_access">Fotoğraf Erişimini Seçin</string>
     <string name="common_choose_what_to_copy_and_where_it_should_go">Neyin kopyalanacağını ve nereye gitmesi gerektiğini seçin.</string>
+    <string name="common_choose_where_each_kind_of_file_would_be_filed">Her dosya türünün nereye kaydedileceğini seç.</string>
     <string name="common_classification_happens_on_your_device">Sınıflandırma cihazınızda gerçekleşir.</string>
     <string name="common_clean">Temiz</string>
     <string name="subscription_cleanup">Temizleme</string>
@@ -220,7 +222,7 @@
     <string name="common_files_are_analyzed_and_categorized_on_this_device_nothin">Dosyalar bu cihazda analiz edilir ve kategorize edilir. Siz yedekleme yapana kadar buluta hiçbir şey gönderilmez.</string>
     <string name="common_find_and_remove_unnecessary_files">Gereksiz dosyaları bulun ve kaldırın.</string>
     <string name="common_find_duplicates">Yinelenenleri bul</string>
-    <string name="paywall_find_receipts_and_file_them_in_the_right_place">Makbuzları bulun ve doğru yere dosyalayın.</string>
+    <string name="common_find_receipts_and_see_where_each_would_be_filed">Fişleri bul ve her birinin nereye kaydedileceğini gör.</string>
     <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Ekran görüntülerinizdeki ve fotoğraflarınızdaki makbuzları bulur, bu cihazdaki satıcıyı, tarihi ve tutarı okur ve her birinin nereye dosyalanacağını gösterir.</string>
     <string name="common_folder">Klasör</string>
     <string name="common_folder_inside_keepspace">KeepSpace içindeki klasör</string>
@@ -299,6 +301,7 @@
     <string name="common_no_enabled_rule_files_receipts_yet">Henüz etkin kural dosyası alımı yok.</string>
     <string name="common_no_media_found">Medya bulunamadı.</string>
     <string name="common_no_receipts_found_in_your_screenshots_or_photos_yet">Ekran görüntülerinizde veya fotoğraflarınızda henüz fatura bulunamadı.</string>
+    <string name="common_no_rules_on">Etkin kural yok</string>
     <string name="common_no_rules_yet_add_one_to_start_filing_automatically">Henüz kural yok. Otomatik olarak dosyalamaya başlamak için bir tane ekleyin.</string>
     <string name="common_no_screenshots_found">Ekran görüntüsü bulunamadı.</string>
     <string name="common_no_similar_photos_found">Benzer fotoğraf bulunamadı.</string>

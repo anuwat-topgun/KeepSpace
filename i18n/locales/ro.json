@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "și %,d mai mult",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android întreabă înainte ca ceva să fie eliminat, iar articolele rămân în Coșul de gunoi timp de 30 de zile. Favoritele și amintirile nu sunt niciodată preselectate.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Photos, SwiftUI și SwiftData — toate fac parte din iOS. În această versiune nu sunt incluse biblioteci terță parte.",
-    "common.automatically_file_content_where_it_belongs": "Arhivați automat conținutul acolo unde îi aparține.",
     "common.automation": "Automatizare",
     "common.back": "Înapoi",
     "common.back_up_more": "Mai multe copii de rezervă",
@@ -432,7 +431,6 @@
     "paywall.continue": "Continuă",
     "subscription.ends_bbb6ff2b": "Se termină %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Tot ceea ce vedeți este gratuit pentru scanare și revizuire.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Găsiți chitanțele și depuneți-le la locul potrivit.",
     "subscription.free": "Gratuit",
     "subscription.free_trial_ends_then_renews": "Perioada de încercare gratuită se încheie %@, apoi se reînnoiește.",
     "subscription.free_trial_ends": "Perioada de încercare gratuită se încheie %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Curățare nelimitată, compresie video, capturi de ecran inteligente, depunere a chitanțelor, AI Gust și backup și reguli nelimitate.",
     "common.unlock_keepspace_pro": "Deblocați KeepSpace Pro",
     "manual_backup.unlock_unlimited_backup": "Deblocați backup nelimitat",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "Ați folosit backup-urile gratuite din această lună."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Ați folosit backup-urile gratuite din această lună.",
+    "common.d_rule_on": "Reguli active: %d",
+    "common.d_rules_on": "Reguli active: %d",
+    "common.no_rules_on": "Nicio regulă activă",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Găsește bonurile și vezi unde ar fi arhivat fiecare.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Alege unde ar fi arhivat fiecare tip de fișier."
   }
 }

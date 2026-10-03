@@ -81,6 +81,8 @@
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d gün ücretsiz, ardından yılda %@. Hesap ayarlarınızda iptal edene kadar otomatik olarak yenilenir.";
 "%d of %d files used" = "%d dosyadan %d tanesi kullanıldı";
 "%d of %d used" = "%d / %d kullanıldı";
+"%d rule on" = "Etkin kurallar: %d";
+"%d rules on" = "Etkin kurallar: %d";
 "(photo date)" = "(fotoğraf tarihi)";
 "+  Add Rule" = "+ Kural Ekle";
 "A reminder to review the safest cleanup suggestions." = "En güvenli temizlik önerilerini incelemeniz için bir hatırlatma.";
@@ -111,7 +113,6 @@
 "and %,d more" = "ve %,d tane daha";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android herhangi bir şey kaldırılmadan önce sorar ve öğeler 30 gün boyunca Çöp Kutusu'nda kalır. Favoriler ve anılar hiçbir zaman önceden seçilmez.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision, Fotoğraflar, SwiftUI ve SwiftData — hepsi iOS'un parçaları. Bu sürümde hiçbir üçüncü taraf kitaplığı bulunmamaktadır.";
-"Automatically file content where it belongs." = "İçeriği ait olduğu yere otomatik olarak dosyalayın.";
 "Automation" = "Otomasyon";
 "Back" = "Geri";
 "Back Up %d Files" = "%d Dosyayı Yedekle";
@@ -151,6 +152,7 @@
 "Check your connection and try again." = "Bağlantınızı kontrol edip tekrar deneyin.";
 "Choose Photo Access" = "Fotoğraf Erişimini Seçin";
 "Choose what to copy and where it should go." = "Neyin kopyalanacağını ve nereye gitmesi gerektiğini seçin.";
+"Choose where each kind of file would be filed." = "Her dosya türünün nereye kaydedileceğini seç.";
 "Classification happens on your device." = "Sınıflandırma cihazınızda gerçekleşir.";
 "Clean" = "Temiz";
 "Cleanup" = "Temizleme";
@@ -218,7 +220,7 @@
 "Files are analyzed and categorized on this device. Nothing is sent to the cloud until you back up." = "Dosyalar bu cihazda analiz edilir ve kategorize edilir. Siz yedekleme yapana kadar buluta hiçbir şey gönderilmez.";
 "Find and remove unnecessary files." = "Gereksiz dosyaları bulun ve kaldırın.";
 "Find duplicates" = "Yinelenenleri bul";
-"Find receipts and file them in the right place." = "Makbuzları bulun ve doğru yere dosyalayın.";
+"Find receipts and see where each would be filed." = "Fişleri bul ve her birinin nereye kaydedileceğini gör.";
 "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Ekran görüntülerinizdeki ve fotoğraflarınızdaki makbuzları bulur, bu cihazdaki satıcıyı, tarihi ve tutarı okur ve her birinin nereye dosyalanacağını gösterir.";
 "Folder" = "Klasör";
 "Folder inside KeepSpace" = "KeepSpace içindeki klasör";
@@ -297,6 +299,7 @@
 "No enabled rule files receipts yet." = "Henüz etkin kural dosyası alımı yok.";
 "No media found." = "Medya bulunamadı.";
 "No receipts found in your screenshots or photos yet." = "Ekran görüntülerinizde veya fotoğraflarınızda henüz fatura bulunamadı.";
+"No rules on" = "Etkin kural yok";
 "No rules yet. Add one to start filing automatically." = "Henüz kural yok. Otomatik olarak dosyalamaya başlamak için bir tane ekleyin.";
 "No screenshots found." = "Ekran görüntüsü bulunamadı.";
 "No similar photos found." = "Benzer fotoğraf bulunamadı.";

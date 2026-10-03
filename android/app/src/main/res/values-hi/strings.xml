@@ -83,6 +83,8 @@
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d दिन मुफ़्त, फिर %s प्रति वर्ष। जब तक आप अपनी खाता सेटिंग में रद्द नहीं करते तब तक स्वचालित रूप से नवीनीकृत हो जाता है।</string>
     <string name="subscription_d_of_d_files_used">%d फ़ाइलों में से %d का उपयोग किया गया</string>
     <string name="subscription_d_of_d_used">%d में से %d का उपयोग किया गया</string>
+    <string name="common_d_rule_on">चालू नियम: %d</string>
+    <string name="common_d_rules_on">चालू नियम: %d</string>
     <string name="receipt_filing_photo_date">(फोटो दिनांक)</string>
     <string name="rule_screens_add_rule">+ नियम जोड़ें</string>
     <string name="common_a_reminder_to_review_the_safest_cleanup_suggestions">सबसे सुरक्षित सफ़ाई सुझावों की समीक्षा करने के लिए एक अनुस्मारक।</string>
@@ -113,7 +115,6 @@
     <string name="memory_detail_and_d_more">और %,d अधिक</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android कुछ भी हटाने से पहले पूछता है, और आइटम 30 दिनों तक कूड़ेदान में रहते हैं। पसंदीदा और यादें कभी भी पूर्व-चयनित नहीं होती हैं।</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple विज़न, फ़ोटो, स्विफ्टयूआई और स्विफ्टडेटा - सभी iOS के भाग। इस संस्करण में कोई तृतीय-पक्ष लाइब्रेरी शामिल नहीं है।</string>
-    <string name="common_automatically_file_content_where_it_belongs">सामग्री को स्वचालित रूप से वहीं फ़ाइल करें जहां वह है।</string>
     <string name="common_automation">स्वचालन</string>
     <string name="common_back">वापस</string>
     <string name="manual_backup_back_up_d_files">%d फ़ाइलों का बैकअप लें</string>
@@ -153,6 +154,7 @@
     <string name="paywall_check_your_connection_and_try_again">अपना कनेक्शन जांचें और पुनः प्रयास करें।</string>
     <string name="common_choose_photo_access">फोटो एक्सेस चुनें</string>
     <string name="common_choose_what_to_copy_and_where_it_should_go">चुनें कि क्या कॉपी करना है और इसे कहाँ जाना चाहिए।</string>
+    <string name="common_choose_where_each_kind_of_file_would_be_filed">चुनें कि हर तरह की फ़ाइल कहाँ फ़ाइल होगी।</string>
     <string name="common_classification_happens_on_your_device">वर्गीकरण आपके डिवाइस पर होता है.</string>
     <string name="common_clean">साफ़</string>
     <string name="subscription_cleanup">सफ़ाई</string>
@@ -220,7 +222,7 @@
     <string name="common_files_are_analyzed_and_categorized_on_this_device_nothin">इस डिवाइस पर फ़ाइलों का विश्लेषण और वर्गीकरण किया जाता है। जब तक आप बैकअप नहीं लेते तब तक क्लाउड पर कुछ भी नहीं भेजा जाता है।</string>
     <string name="common_find_and_remove_unnecessary_files">अनावश्यक फ़ाइलें ढूंढें और हटाएं.</string>
     <string name="common_find_duplicates">डुप्लिकेट खोजें</string>
-    <string name="paywall_find_receipts_and_file_them_in_the_right_place">रसीदें ढूंढें और उन्हें सही जगह पर दाखिल करें।</string>
+    <string name="common_find_receipts_and_see_where_each_would_be_filed">रसीदें खोजें और देखें कि हर एक कहाँ फ़ाइल होगी।</string>
     <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">आपके स्क्रीनशॉट और फ़ोटो में रसीदें ढूंढता है, इस डिवाइस पर व्यापारी, तारीख और राशि पढ़ता है, और दिखाता है कि प्रत्येक को कहां दाखिल किया जाएगा।</string>
     <string name="common_folder">फ़ोल्डर</string>
     <string name="common_folder_inside_keepspace">KeepSpace के अंदर फ़ोल्डर</string>
@@ -299,6 +301,7 @@
     <string name="common_no_enabled_rule_files_receipts_yet">अभी तक कोई सक्षम नियम फ़ाइल रसीद नहीं।</string>
     <string name="common_no_media_found">कोई मीडिया नहीं मिला.</string>
     <string name="common_no_receipts_found_in_your_screenshots_or_photos_yet">आपके स्क्रीनशॉट या फ़ोटो में अभी तक कोई रसीद नहीं मिली है।</string>
+    <string name="common_no_rules_on">कोई नियम चालू नहीं</string>
     <string name="common_no_rules_yet_add_one_to_start_filing_automatically">अभी तक कोई नियम नहीं. स्वचालित रूप से फाइलिंग शुरू करने के लिए एक जोड़ें।</string>
     <string name="common_no_screenshots_found">कोई स्क्रीनशॉट नहीं मिला.</string>
     <string name="common_no_similar_photos_found">ऐसी कोई फ़ोटो नहीं मिली.</string>

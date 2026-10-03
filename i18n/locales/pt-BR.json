@@ -31,7 +31,6 @@
     "memory_detail.and_d_more": "e %,d mais",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "Android pergunta antes que qualquer coisa seja removida e os itens permanecem na Lixeira por 30 dias. Favoritos e memórias nunca são pré-selecionados.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision, Photos, SwiftUI e SwiftData — todos parte do iOS. Nenhuma biblioteca de terceiros está incluída nesta versão.",
-    "common.automatically_file_content_where_it_belongs": "Arquive automaticamente o conteúdo onde ele pertence.",
     "common.automation": "Automação",
     "common.back": "Voltar",
     "common.back_up_more": "Faça backup mais",
@@ -432,7 +431,6 @@
     "paywall.continue": "Continuar",
     "subscription.ends_bbb6ff2b": "Termina %@",
     "subscription.everything_you_see_is_free_to_scan_and_review": "Tudo o que você vê é gratuito para digitalizar e revisar.",
-    "paywall.find_receipts_and_file_them_in_the_right_place": "Encontre recibos e arquive-os no lugar certo.",
     "subscription.free": "Grátis",
     "subscription.free_trial_ends_then_renews": "A avaliação gratuita termina em %@ e depois é renovada.",
     "subscription.free_trial_ends": "A avaliação gratuita termina em %@.",
@@ -518,6 +516,11 @@
     "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Limpeza ilimitada, compactação de vídeo, capturas de tela inteligentes, arquivamento de recibos, AI Taste e backup e regras ilimitadas.",
     "common.unlock_keepspace_pro": "Desbloquear KeepSpace Pro",
     "manual_backup.unlock_unlimited_backup": "Desbloquear backup ilimitado",
-    "manual_backup.you_ve_used_this_month_s_free_backups": "Você usou os backups gratuitos deste mês."
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Você usou os backups gratuitos deste mês.",
+    "common.d_rule_on": "Regras ativas: %d",
+    "common.d_rules_on": "Regras ativas: %d",
+    "common.no_rules_on": "Nenhuma regra ativa",
+    "common.find_receipts_and_see_where_each_would_be_filed": "Encontre recibos e veja onde cada um seria arquivado.",
+    "common.choose_where_each_kind_of_file_would_be_filed": "Escolha onde cada tipo de arquivo seria arquivado."
   }
 }
