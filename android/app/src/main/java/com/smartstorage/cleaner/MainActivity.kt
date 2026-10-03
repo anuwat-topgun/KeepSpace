@@ -37,6 +37,11 @@ import com.smartstorage.cleaner.monetization.MonetizationStore
 import com.smartstorage.cleaner.monetization.PrefsMonetizationStorage
 import com.smartstorage.cleaner.monetization.ProBillingService
 import androidx.lifecycle.lifecycleScope
+import com.smartstorage.cleaner.monetization.LocalMonetization
+import com.smartstorage.cleaner.monetization.LocalPresentPaywall
+import com.smartstorage.cleaner.monetization.LocalProBilling
+import com.smartstorage.cleaner.monetization.ProFeature
+import com.smartstorage.cleaner.ui.feature.paywall.PaywallScreen
 
 class MainActivity : ComponentActivity() {
     private val libraryViewModel: LibraryViewModel by viewModels()
@@ -47,6 +52,8 @@ class MainActivity : ComponentActivity() {
     private val cloudStore by lazy { CloudStore(applicationContext) }
     private val monetization by lazy { MonetizationStore(PrefsMonetizationStorage(prefs)) }
     private val proBilling by lazy { ProBillingService(applicationContext, monetization, lifecycleScope) }
+    /** The paywall request, if one is showing. Set only by a person tapping something locked or Upgrade — never at launch. */
+    private var paywall by mutableStateOf<PaywallRequest?>(null)
     /** Bumped each time a reminder is tapped; the shell opens the Cleanup Plan for every new value. */
     private var openPlanRequest by mutableIntStateOf(0)
     private val prefs by lazy { getSharedPreferences(PREFS, MODE_PRIVATE) }
@@ -58,6 +65,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         handleOpenIntent(intent)
+        if (BuildConfig.DEBUG && intent.getBooleanExtra(EXTRA_DEBUG_PAYWALL, false)) {
+            proBilling.useDemoOffers()
+            paywall = PaywallRequest(intent.getStringExtra(EXTRA_DEBUG_FOCUS)?.let { name -> ProFeature.entries.firstOrNull { it.name == name } })
+        }
         setContent {
             SmartStorageTheme {
                 var onboarded by remember { mutableStateOf(prefs.getBoolean(KEY_ONBOARDED, false)) }
@@ -82,8 +93,12 @@ class MainActivity : ComponentActivity() {
                     LocalRuleStore provides ruleStore,
                     LocalWeeklyReminder provides weeklyReminder,
                     LocalCloudStore provides cloudStore,
+                    LocalMonetization provides monetization,
+                    LocalProBilling provides proBilling,
+                    LocalPresentPaywall provides { feature -> paywall = PaywallRequest(feature) },
                 ) {
                     if (onboarded) AppShell(openCleanupPlanRequest = openPlanRequest) else OnboardingScreen(onContinue = { permissionLauncher.launch(LibraryStore.permissions) })
+                    paywall?.let { request -> PaywallScreen(focus = request.feature, onDismiss = { paywall = null }) }
                 }
             }
         }
@@ -114,9 +129,13 @@ class MainActivity : ComponentActivity() {
         super.onDestroy()
     }
 
+    private data class PaywallRequest(val feature: ProFeature?)
+
     private companion object {
         const val PREFS = "keepspace"
         const val KEY_ONBOARDED = "hasCompletedOnboarding"
         const val EXTRA_DEMO = "demoData"
+        const val EXTRA_DEBUG_PAYWALL = "debugPaywall"
+        const val EXTRA_DEBUG_FOCUS = "debugPaywallFocus"
     }
 }

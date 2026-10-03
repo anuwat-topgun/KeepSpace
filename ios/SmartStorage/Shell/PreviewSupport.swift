@@ -1,5 +1,7 @@
 import SwiftUI
 
+@MainActor private let previewMonetization = MonetizationStore(defaults: UserDefaults(suiteName: "preview.monetization") ?? .standard)
+
 extension View {
     /// Router + demo library, for SwiftUI previews of screens that read the environment.
     func previewEnvironment() -> some View {
@@ -9,6 +11,7 @@ extension View {
             .environment(RuleStore(defaults: UserDefaults(suiteName: "preview") ?? .standard))
             .environment(WeeklyCleanReminder(defaults: UserDefaults(suiteName: "preview") ?? .standard))
             .environment(CloudStore(defaults: UserDefaults(suiteName: "preview.cloud") ?? .standard))
-            .environment(MonetizationStore(defaults: UserDefaults(suiteName: "preview.monetization") ?? .standard))
+            .environment(previewMonetization)
+            .environment(ProStoreService(monetization: previewMonetization))
     }
 }

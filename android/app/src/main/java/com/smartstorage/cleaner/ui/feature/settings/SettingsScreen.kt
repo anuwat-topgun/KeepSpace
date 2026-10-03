@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material.icons.rounded.Favorite
+import com.smartstorage.cleaner.monetization.LocalMonetization
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material.icons.rounded.Photo
@@ -53,6 +55,9 @@ fun SettingsScreen(onOpen: (Screen) -> Unit) {
             }
         }
 
+        val proStatus by LocalMonetization.current.status.collectAsState()
+        CardRow(Icons.Rounded.AutoAwesome, "Subscription · KeepSpace Pro", tint = Tint.Teal,
+            subtitle = subscriptionSettingsSubtitle(proStatus)) { onOpen(Screen.Subscription) }
         CardRow(Icons.Rounded.Favorite, Screen.Memories.title, tint = Tint.Coral, subtitle = "Protected by default") {
             onOpen(Screen.Memories)
         }

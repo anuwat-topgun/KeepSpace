@@ -8,6 +8,7 @@ struct SettingsView: View {
     @Environment(WeeklyCleanReminder.self) private var weekly
     @Environment(TasteStore.self) private var taste
     @Environment(CloudStore.self) private var cloud
+    @Environment(MonetizationStore.self) private var monetization
 
     private var accessText: String {
         switch library.access {
@@ -25,6 +26,7 @@ struct SettingsView: View {
 
             PrivacyHeroCard()
 
+            row(.subscription, icon: "sparkle", tint: .teal, subtitle: SubscriptionView.settingsSubtitle(monetization.status), title: "Subscription · KeepSpace Pro")
             row(.memories, icon: "heart.fill", tint: .coral, subtitle: "Protected by default")
             row(.aiTaste, icon: "wand.and.stars", tint: .purple, subtitle: taste.isEnabled ? (taste.decisions == 0 ? "Learns as you choose" : "Learned from \(taste.decisions) \(taste.decisions == 1 ? "choice" : "choices")") : "Off")
             row(.cloudOverview, icon: "icloud.fill", tint: .blue,
@@ -37,11 +39,11 @@ struct SettingsView: View {
         }
     }
 
-    private func row(_ route: Route, icon: String, tint: Tint, subtitle: String?) -> some View {
+    private func row(_ route: Route, icon: String, tint: Tint, subtitle: String?, title: String? = nil) -> some View {
         Button {
             router.push(route)
         } label: {
-            CardRow(systemImage: icon, tint: tint, title: route.title, subtitle: subtitle)
+            CardRow(systemImage: icon, tint: tint, title: title ?? route.title, subtitle: subtitle)
         }
         .buttonStyle(.plain)
     }

@@ -44,6 +44,11 @@ struct RootView: View {
         .environment(proStore)
         .environment(library.taste)
         .tint(Palette.accent)
+        .fullScreenCover(item: $router.paywall) { request in
+            PaywallView(focus: request.focus)
+                .environment(monetization)
+                .environment(proStore)
+        }
         // Keep the reminder's text current, and open the Cleanup Plan when a reminder is tapped.
         .onChange(of: library.phase) { _, phase in
             if phase == .ready, !library.isDemo {
@@ -192,6 +197,7 @@ struct RouteDestination: View {
         case .aiTaste: AITasteView()
         case .privacy: PrivacyView()
         case .about: AboutView()
+        case .subscription: SubscriptionView()
         case .cloudOverview: CloudOverviewView()
         case .manualBackup: ManualBackupView()
         case .review(let kind): ReviewView(source: .kind(kind))

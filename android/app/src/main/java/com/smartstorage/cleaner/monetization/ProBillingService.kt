@@ -23,7 +23,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 /** One purchasable plan, as the paywall shows it. Prices come from Play (localized, already formatted). */
-data class ProOffer(val product: ProProduct, val displayPrice: String, val trialDays: Int?)
+data class ProOffer(
+    val product: ProProduct,
+    val displayPrice: String,
+    /** The billed amount in micro-units (for comparing plans; never shown directly). */
+    val priceMicros: Long,
+    /** Yearly only: the price per month, formatted in the store's currency. */
+    val perMonthDisplay: String?,
+    val trialDays: Int?,
+)
 
 enum class PurchaseOutcome { Success, Pending, Cancelled, Failed }
 
@@ -67,6 +75,16 @@ class ProBillingService(
         .setListener(purchasesListener)
         .enablePendingPurchases(PendingPurchasesParams.newBuilder().enableOneTimeProducts().build())
         .build()
+
+    /** Fixed plans for screenshots and emulators without Play products (`--ez debugPaywall true`, debug builds only). */
+    fun useDemoOffers() {
+        _offers.value = listOf(
+            ProOffer(ProProduct.Annual, "$19.99", 19_990_000, "$1.67", 7),
+            ProOffer(ProProduct.Monthly, "$2.99", 2_990_000, null, null),
+            ProOffer(ProProduct.Lifetime, "$39.99", 39_990_000, null, null),
+        )
+        _offersFailed.value = false
+    }
 
     /** Call at launch and again when the app returns to the foreground. */
     fun start() {
@@ -158,11 +176,15 @@ class ProBillingService(
     }
 
     private fun toOffer(product: ProProduct, d: ProductDetails): ProOffer {
-        if (!product.isSubscription) return ProOffer(product, d.oneTimePurchaseOfferDetails?.formattedPrice.orEmpty(), null)
+        if (!product.isSubscription) {
+            val once = d.oneTimePurchaseOfferDetails
+            return ProOffer(product, once?.formattedPrice.orEmpty(), once?.priceAmountMicros ?: 0, null, null)
+        }
         val offers = d.subscriptionOfferDetails.orEmpty()
         val base = offers.firstOrNull { trialDays(it) == null } ?: offers.firstOrNull()
-        val price = base?.pricingPhases?.pricingPhaseList?.lastOrNull()?.formattedPrice.orEmpty()
-        return ProOffer(product, price, offers.firstNotNullOfOrNull { trialDays(it) })
+        val phase = base?.pricingPhases?.pricingPhaseList?.lastOrNull() // the recurring phase
+        val perMonth = if (product == ProProduct.Annual && phase != null) formatPerMonth(phase.priceAmountMicros, phase.priceCurrencyCode) else null
+        return ProOffer(product, phase?.formattedPrice.orEmpty(), phase?.priceAmountMicros ?: 0, perMonth, offers.firstNotNullOfOrNull { trialDays(it) })
     }
 
     private fun trialDays(offer: ProductDetails.SubscriptionOfferDetails): Int? {
@@ -170,6 +192,12 @@ class ProBillingService(
         return billingPeriodDays(free.billingPeriod)
     }
 }
+
+/** A yearly price spread over twelve months, in the store's currency. */
+internal fun formatPerMonth(yearlyMicros: Long, currencyCode: String): String? = runCatching {
+    java.text.NumberFormat.getCurrencyInstance().apply { currency = java.util.Currency.getInstance(currencyCode) }
+        .format(yearlyMicros / 12_000_000.0)
+}.getOrNull()
 
 /** What the mapping needs from a Play purchase (so it can be tested without Play's classes). */
 data class OwnedPurchase(val productIds: List<String>, val purchaseTime: Long, val isPurchased: Boolean, val isAutoRenewing: Boolean)

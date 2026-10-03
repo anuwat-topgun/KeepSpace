@@ -3,7 +3,7 @@
 Design spec for the Free/Pro split and paywall, ready to implement. Decisions and the build checklist live in
 [`todo.md`](../todo.md) §3.5; this document is the screen-level design.
 
-**Status: design only — nothing here is implemented yet.** Visuals: [`paywall/paywall-overview.png`](paywall/paywall-overview.png)
+**Status: the paywall (§3.1) and the Subscription screen (§3.3) are implemented on iOS and Android; the quota gate (§3.2), locks in context (§3.4) and the entry points (§4) are not wired yet.** Visuals: [`paywall/paywall-overview.png`](paywall/paywall-overview.png)
 (source: [`paywall/paywall-mockup.html`](paywall/paywall-mockup.html), colours are the app's own tokens). The mockups are static HTML:
 icons are stand-ins for SF Symbols / Material icons, and prices are the launch defaults — **the real app must read price,
 currency, trial length and eligibility from the store, never hard-code them.**
@@ -39,7 +39,7 @@ Product IDs: `com.keepspace.app.pro.annual`, `com.keepspace.app.pro.monthly` (sa
 
 ### 3.1 Paywall (full screen, modal)
 Layout, top to bottom: close (×, top-left) · Restore (top-right) · compact header (app icon, "KeepSpace Pro", tagline) ·
-benefits card (6 rows) · plan picker (3 cards) · **pinned footer**: primary button, fine print, trust line.
+plan picker (3 cards) · benefits card (6 rows) · **pinned footer**: primary button, fine print, trust line.
 
 - **Benefits (6):** Unlimited cleanup · Compress videos · Smart screenshots · Receipt Filing · AI Taste · Unlimited backup & rules.
   One line of explanation each. When opened from a feature, that row is highlighted and scrolled into view.
@@ -82,6 +82,8 @@ Pro features stay visible. Tapping one opens the paywall focused on that feature
 - Smart-screenshot categories: counts and sizes visible to everyone; opening a category's contents is Pro.
 - Compress, Receipt Filing, AI Taste: the entry exists on Free; tapping shows a one-screen explainer ("what this does") with Unlock, not an error.
 - Rule Builder: the first rule is free; creating a second opens the paywall. Cloud: a second account, or backups past the allowance, opens it.
+
+> **Implementation note:** the plan picker sits *above* the benefits (the mockups had them the other way round). On a phone the six benefit rows pushed every price below the fold, so the price was only visible in the fine print — the billed price should be seen before the button.
 
 ## 4. Where it opens
 

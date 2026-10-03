@@ -8,6 +8,9 @@ extension AppRouter {
         if let tab = defaults.string(forKey: "debugTab").flatMap(AppTab.init(rawValue:)) {
             selectedTab = tab
         }
+        if let value = defaults.string(forKey: "debugPaywall") {
+            presentPaywall(focus: value == "YES" ? nil : ProFeature.allCases.first { "\($0)" == value })
+        }
         if let value = defaults.string(forKey: "debugRoute"), let route = Route(debugName: value) {
             push(route)
         }
@@ -29,6 +32,7 @@ private extension Route {
         case "aiTaste": self = .aiTaste
         case "privacy": self = .privacy
         case "about": self = .about
+        case "subscription": self = .subscription
         case "memory": self = .memory(id: parts.count > 1 ? parts[1] : "Tokyo Trip")
         case "review": self = .review(parts.count > 1 ? ReviewKind(debugName: parts[1]) ?? .similar : .similar)
         case "cloudOverview": self = .cloudOverview

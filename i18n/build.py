@@ -39,6 +39,7 @@ def apple_escape(value: str) -> str:
 
 
 def android_escape(value: str) -> str:
+    value = value.replace("%@", "%s")  # Apple's object placeholder → Java's string placeholder
     return (value.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
             .replace("'", "\\'").replace('"', '\\"').replace("\n", "\\n").replace("@", "\\@"))
 

@@ -24,6 +24,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.smartstorage.cleaner.ui.feature.settings.SubscriptionScreen
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.navigation
@@ -159,6 +160,7 @@ private fun AppNavHost(navController: NavHostController) {
                         Screen.AiTaste -> AiTasteScreen(onBack = back)
                         Screen.Privacy -> PrivacyScreen(onBack = back)
                         Screen.About -> AboutScreen(onBack = back)
+                        Screen.Subscription -> SubscriptionScreen(onBack = back)
                         Screen.Videos -> VideosScreen(onReview = review, onBack = back)
                         Screen.Memories -> MemoriesScreen(
                             onOpen = { navController.navigate(tab.memoryRoute(it)) },

@@ -55,6 +55,7 @@ enum class Screen(val title: String) {
     AiTaste("AI Taste"),
     Privacy("Privacy & Security"),
     About("About"),
+    Subscription("Subscription"),
     // v1.1
     CloudOverview("Cloud"),
     ManualBackup("Back Up Now"),

@@ -6,6 +6,10 @@ import StoreKit
 struct ProOffer: Identifiable, Equatable, Sendable {
     let product: ProProduct
     let displayPrice: String
+    /// The billed amount as a number (for comparing plans; never shown directly).
+    let priceValue: Decimal
+    /// Yearly only: the price per month, formatted in the store's currency.
+    let perMonthDisplay: String?
     /// Length of the free trial in days, when the store offers this person one (they haven't used it before).
     let trialDays: Int?
     var id: String { product.rawValue }
@@ -54,7 +58,22 @@ final class ProStoreService {
         }
     }
 
+    #if DEBUG
+    /// Fixed plans for screenshots and simulators without store products (`-debugPaywall`).
+    func useDemoOffers() {
+        offers = [
+            ProOffer(product: .annual, displayPrice: "$19.99", priceValue: 19.99, perMonthDisplay: "$1.67", trialDays: 7),
+            ProOffer(product: .monthly, displayPrice: "$2.99", priceValue: 2.99, perMonthDisplay: nil, trialDays: nil),
+            ProOffer(product: .lifetime, displayPrice: "$39.99", priceValue: 39.99, perMonthDisplay: nil, trialDays: nil),
+        ]
+        offersFailed = false
+    }
+    #endif
+
     func loadOffers() async {
+        #if DEBUG
+        if UserDefaults.standard.string(forKey: "debugPaywall") != nil { useDemoOffers(); return }
+        #endif
         isLoadingOffers = true
         defer { isLoadingOffers = false }
         do {
@@ -65,7 +84,9 @@ final class ProStoreService {
             var next: [ProOffer] = []
             for kind in ProProduct.allCases {
                 guard let product = products[kind] else { continue }
-                next.append(ProOffer(product: kind, displayPrice: product.displayPrice, trialDays: await trialDays(of: product)))
+                let perMonth = kind == .annual ? (product.price / 12).formatted(product.priceFormatStyle) : nil
+                next.append(ProOffer(product: kind, displayPrice: product.displayPrice, priceValue: product.price,
+                                     perMonthDisplay: perMonth, trialDays: await trialDays(of: product)))
             }
             offers = next
             offersFailed = next.isEmpty

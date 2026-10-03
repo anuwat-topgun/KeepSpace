@@ -42,6 +42,7 @@ enum Route: Hashable, Sendable {
     case aiTaste
     case privacy
     case about
+    case subscription
     case review(ReviewKind)
     case reviewGroup(groupID: String)
     // v1.1
@@ -70,6 +71,7 @@ enum Route: Hashable, Sendable {
         case .aiTaste: "AI Taste"
         case .privacy: "Privacy & Security"
         case .about: "About"
+        case .subscription: "Subscription"
         case .review(let kind): kind.title
         case .reviewGroup: "Review Group"
         case .cloudOverview: "Cloud"
@@ -83,6 +85,12 @@ enum Route: Hashable, Sendable {
     }
 }
 
+/// A request to show the paywall, optionally focused on the Pro feature the person just tapped.
+struct PaywallRequest: Identifiable, Equatable, Sendable {
+    let id = UUID()
+    var focus: ProFeature?
+}
+
 /// Owns tab selection and one navigation path per tab. Shared by the phone tab bar and the
 /// iPad sidebar so state survives size-class changes (rotation, Split View, Stage Manager).
 @MainActor
@@ -91,6 +99,8 @@ final class AppRouter {
     var selectedTab: AppTab = .home
     /// iPad sidebar visibility; lives here so it survives size-class changes like the paths do.
     var sidebarVisibility: NavigationSplitViewVisibility = .all
+    /// The paywall, shown full screen over everything. Never opened at launch, in onboarding or during a scan.
+    var paywall: PaywallRequest?
     private var paths: [AppTab: NavigationPath] = [:]
 
     func path(for tab: AppTab) -> Binding<NavigationPath> {
@@ -98,6 +108,10 @@ final class AppRouter {
             get: { self.paths[tab] ?? NavigationPath() },
             set: { self.paths[tab] = $0 }
         )
+    }
+
+    func presentPaywall(focus: ProFeature? = nil) {
+        paywall = PaywallRequest(focus: focus)
     }
 
     func push(_ route: Route) {
