@@ -72,7 +72,7 @@ private struct LibraryStatusCard: View {
             if case .analyzing(let done, let total) = library.phase, total > 0 {
                 Card(style: .info) {
                     VStack(alignment: .leading, spacing: 10) {
-                        Label("Analyzing on device · \(done) of \(total) items", systemImage: "sparkles")
+                        Label(localizedFormat("Analyzing on device · %d of %d items", done, total), systemImage: "sparkles")
                             .font(Typography.metadata)
                             .foregroundStyle(Palette.textSecondary)
                         ProgressView(value: Double(done), total: Double(total))
@@ -102,10 +102,10 @@ private struct LibraryStatusCard: View {
                 HStack(alignment: .top, spacing: 14) {
                     IconTile(systemName: icon, tint: tint, size: 48)
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(title)
+                        Text(LocalizedStringKey(title))
                             .font(Typography.cardHeadline)
                             .foregroundStyle(Palette.textPrimary)
-                        Text(detail)
+                        Text(LocalizedStringKey(detail))
                             .font(Typography.metadata)
                             .foregroundStyle(Palette.textSecondary)
                     }
@@ -138,7 +138,7 @@ private struct StorageHeroCard: View {
 
                 UsageBar(fraction: storage.usedFraction)
 
-                Text("\(storage.freeBytes.formattedBytes) Free")
+                Text(localizedFormat("%@ Free", storage.freeBytes.formattedBytes))
                     .font(Typography.body)
                     .foregroundStyle(Palette.textSecondary)
 

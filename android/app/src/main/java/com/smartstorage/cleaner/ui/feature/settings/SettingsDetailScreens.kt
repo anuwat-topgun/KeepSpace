@@ -1,5 +1,6 @@
 package com.smartstorage.cleaner.ui.feature.settings
 
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
@@ -169,7 +170,7 @@ fun AboutScreen(onBack: () -> Unit) {
     ScreenScaffold(onBack = onBack) {
         ScreenHeader("About", "Keep space. Keep what matters.", Modifier.padding(bottom = 8.dp))
         SmartCard(contentPadding = PaddingValues(16.dp)) {
-            ListTile(Icons.Rounded.Info, "KeepSpace", tint = Tint.Teal, subtitle = "Version $version", showsChevron = false)
+            ListTile(Icons.Rounded.Info, "KeepSpace", tint = Tint.Teal, subtitle = localizedFormat("Version %@", version), showsChevron = false)
         }
         SmartCard(style = CardStyle.Info) {
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {

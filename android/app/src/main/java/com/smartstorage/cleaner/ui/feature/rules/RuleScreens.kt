@@ -264,7 +264,7 @@ fun RuleEditorScreen(ruleId: String?, onDone: () -> Unit) {
                     when (problem) {
                         RuleProblem.EmptyFolder -> "Add a folder to save into."
                         RuleProblem.EmptyFileName -> "Add a file name."
-                        is RuleProblem.UnknownVariables -> "Not a known variable: ${problem.names.joinToString()}. Tap a chip to insert one."
+                        is RuleProblem.UnknownVariables -> localizedFormat("Not a known variable: %@. Tap a chip to insert one.", problem.names.joinToString())
                     },
                     style = SmartType.metadata,
                     color = Tint.Coral.foreground(colors.isDark),

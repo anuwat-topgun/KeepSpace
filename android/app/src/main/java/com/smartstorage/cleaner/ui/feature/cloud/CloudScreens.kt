@@ -95,7 +95,7 @@ fun CloudOverviewScreen(onBackUpNow: () -> Unit, onBack: () -> Unit) {
                 } else {
                     // One cloud account is free; connecting another opens the paywall. Connected accounts are never disconnected.
                     val canConnect = monetization.allowances().canConnectCloudAccount(state.connections.count { it.connected })
-                    PrimaryButton(if (connection.configured) "Connect ${connection.provider.title}" else "Setup required", {
+                    PrimaryButton(if (connection.configured) localizedFormat("Connect %@", connection.provider.title) else "Setup required", {
                         if (!canConnect) { presentPaywall(ProFeature.MultipleCloudAccounts); return@PrimaryButton }
                         authorizing = connection.provider
                         if (connection.provider == CloudProvider.GoogleDrive) {
@@ -155,7 +155,7 @@ fun ManualBackupScreen(onBack: () -> Unit) {
                 FilterChip(selected = scope == option, onClick = { scope = option; folder = option.title }, label = { Text(option.title) })
             }
         }
-        Text("${candidates.size} items · ${candidates.sumOf { it.bytes }.formattedBytes()}", style = SmartType.metadata, color = SmartTheme.colors.textSecondary)
+        Text(localizedFormat("%d items · %@", candidates.size, candidates.sumOf { it.bytes }.formattedBytes()), style = SmartType.metadata, color = SmartTheme.colors.textSecondary)
 
         SectionLabel("Destination")
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {

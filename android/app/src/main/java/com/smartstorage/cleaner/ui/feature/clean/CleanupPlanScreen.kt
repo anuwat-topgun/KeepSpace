@@ -1,5 +1,6 @@
 package com.smartstorage.cleaner.ui.feature.clean
 
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import com.smartstorage.cleaner.media.ReviewKind
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -61,7 +62,7 @@ fun CleanupPlanScreen(onOpen: (Screen) -> Unit, onReview: (ReviewKind) -> Unit, 
     val colors = SmartTheme.colors
 
     ScreenScaffold(onBack = onBack) {
-        ScreenHeader("Cleanup Plan", "${plan.estimatedBytes.formattedBytes()} recommended", Modifier.padding(bottom = 8.dp))
+        ScreenHeader("Cleanup Plan", localizedFormat("%@ recommended", plan.estimatedBytes.formattedBytes()), Modifier.padding(bottom = 8.dp))
         PlanSummaryCard(plan)
 
         if (plan.items.isNotEmpty()) {
@@ -101,7 +102,7 @@ fun CleanupPlanScreen(onOpen: (Screen) -> Unit, onReview: (ReviewKind) -> Unit, 
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(Icons.Rounded.Schedule, contentDescription = null, tint = colors.textSecondary, modifier = Modifier.size(18.dp))
-            Text("Estimated review time ${plan.reviewTime}", style = SmartType.metadata, color = colors.textSecondary)
+            Text(localizedFormat("Estimated review time %@", plan.reviewTime), style = SmartType.metadata, color = colors.textSecondary)
         }
 
         plan.items.firstOrNull()?.let { first ->
@@ -111,10 +112,11 @@ fun CleanupPlanScreen(onOpen: (Screen) -> Unit, onReview: (ReviewKind) -> Unit, 
 }
 
 /** Why the plan scores what it does (spec: recommendations must be explainable). */
+@Composable
 private fun safetyExplanation(plan: CleanupPlan): String = when (plan.lowestSafety) {
-    SafetyLevel.VerySafe -> "Safety ${plan.safetyScore}/100 — only identical copies. Nothing is lost."
-    SafetyLevel.Safe -> "Safety ${plan.safetyScore}/100 — the best shot of every group is kept. Safest items come first."
-    SafetyLevel.ReviewFirst -> "Safety ${plan.safetyScore}/100 — safest items come first. Blurry photos and screenshots are worth a quick look before you delete."
+    SafetyLevel.VerySafe -> localizedFormat("Safety %d/100 — only identical copies. Nothing is lost.", plan.safetyScore)
+    SafetyLevel.Safe -> localizedFormat("Safety %d/100 — the best shot of every group is kept. Safest items come first.", plan.safetyScore)
+    SafetyLevel.ReviewFirst -> localizedFormat("Safety %d/100 — safest items come first. Blurry photos and screenshots are worth a quick look before you delete.", plan.safetyScore)
 }
 
 internal val SafetyLevel.icon: ImageVector

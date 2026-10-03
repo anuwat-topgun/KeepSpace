@@ -1,5 +1,8 @@
 package com.smartstorage.cleaner.ui.feature.insights
 
+import com.smartstorage.cleaner.ui.i18n.localized
+import com.smartstorage.cleaner.ui.i18n.localizedCount
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -94,6 +97,8 @@ fun InsightsScreen(onOpenPhotos: () -> Unit, onOpenVideos: () -> Unit, onSmartCl
 @Composable
 private fun ForecastCard(forecast: StorageForecast) {
     val colors = SmartTheme.colors
+    val fullLabel = fullText(forecast)
+    val chartDescription = localizedFormat("%@ remaining. %@", forecast.remainingBytes.formattedBytes(), fullLabel)
     SmartCard(style = CardStyle.Hero) {
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             SectionLabel("Storage forecast")
@@ -101,7 +106,7 @@ private fun ForecastCard(forecast: StorageForecast) {
                 Text(forecast.remainingBytes.formattedBytes(), style = SmartType.metricLarge, color = colors.textPrimary)
                 Text("remaining", style = TextStyle(fontSize = 22.sp), color = colors.textPrimary.copy(alpha = 0.8f), modifier = Modifier.padding(bottom = 4.dp))
             }
-            Text(fullText(forecast), style = SmartType.body, color = colors.textSecondary)
+            Text(fullLabel, style = SmartType.body, color = colors.textSecondary)
             ForecastChart(
                 forecast,
                 Modifier
@@ -109,7 +114,7 @@ private fun ForecastCard(forecast: StorageForecast) {
                     .height(220.dp)
                     .padding(top = 8.dp)
                     .semantics {
-                        contentDescription = "Storage forecast: ${forecast.remainingBytes.formattedBytes()} remaining. ${fullText(forecast)}"
+                        contentDescription = chartDescription
                     },
             )
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
@@ -120,9 +125,11 @@ private fun ForecastCard(forecast: StorageForecast) {
     }
 }
 
+@Composable
 private fun fullText(forecast: StorageForecast): String {
-    val days = forecast.daysUntilFull ?: return "Storage use is steady — no full date in sight."
-    return if (days > 365) "More than a year until full at the current pace." else "Estimated full in $days days"
+    val days = forecast.daysUntilFull ?: return localized("Storage use is steady — no full date in sight.")
+    return if (days > 365) localized("More than a year until full at the current pace.")
+    else localizedCount(days, "Estimated full in %d day", "Estimated full in %d days")
 }
 
 /** Axis ranges follow the data: history minimum up to capacity, today-4w to the projection end. */
@@ -149,6 +156,15 @@ private fun ForecastChart(forecast: StorageForecast, modifier: Modifier) {
     val labelStyle = TextStyle(fontSize = 11.sp, color = colors.textSecondary)
 
     val scale = ChartScale(forecast)
+    // The canvas draws outside composition, so every label is resolved here first.
+    val tickLabels = scale.xTicks.associateWith { week ->
+        when {
+            week == 0 -> localized("Today")
+            week < 0 -> localizedFormat("%dw ago", -week)
+            else -> localizedFormat("+%dw", week)
+        }
+    }
+    val capacityLabel = localizedFormat("Full · %d GB", forecast.capacityGB.toInt())
     Canvas(modifier) {
         val leftAxis = 52.dp.toPx()
         val bottomAxis = 22.dp.toPx()
@@ -165,11 +181,7 @@ private fun ForecastChart(forecast: StorageForecast, modifier: Modifier) {
             drawLabel(measurer, "${gb.roundToInt()} GB", labelStyle, Offset(0f, y(gb) - 8.dp.toPx()))
         }
         scale.xTicks.forEach { week ->
-            val label = when {
-                week == 0 -> "Today"
-                week < 0 -> "${-week}w ago"
-                else -> "+${week}w"
-            }
+            val label = tickLabels.getValue(week)
             val layout = measurer.measure(label, labelStyle)
             drawText(layout, topLeft = Offset(x(week.toFloat()) - layout.size.width / 2f, plotH + 6.dp.toPx()))
         }
@@ -206,7 +218,7 @@ private fun ForecastChart(forecast: StorageForecast, modifier: Modifier) {
         )
         drawLabel(
             measurer,
-            "Full · ${forecast.capacityGB.toInt()} GB",
+            capacityLabel,
             labelStyle.copy(color = coral, fontWeight = FontWeight.SemiBold),
             Offset(leftAxis + 4.dp.toPx(), capY - 16.dp.toPx()),
         )

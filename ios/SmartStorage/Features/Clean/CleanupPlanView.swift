@@ -8,7 +8,7 @@ struct CleanupPlanView: View {
     var body: some View {
         let plan = library.cleanupPlan
         ScreenScaffold {
-            ScreenHeader(title: "Cleanup Plan", subtitle: "\(plan.estimatedBytes.formattedBytes) recommended")
+            ScreenHeader(title: "Cleanup Plan", subtitle: localizedFormat("%@ recommended", plan.estimatedBytes.formattedBytes))
                 .padding(.bottom, 8)
 
             PlanSummaryCard(plan: plan)
@@ -41,12 +41,12 @@ struct CleanupPlanView: View {
                         }
                     }
                     .accessibilityElement(children: .combine)
-                    .accessibilityHint("Safety: \(item.safety.title)")
+                    .accessibilityHint(localizedFormat("Safety: %@", item.safety.title.localizedUI))
                 }
                 .buttonStyle(.plain)
             }
 
-            Label("Estimated review time \(plan.reviewTime)", systemImage: "clock")
+            Label(localizedFormat("Estimated review time %@", plan.reviewTime), systemImage: "clock")
                 .font(Typography.metadata)
                 .foregroundStyle(Palette.textSecondary)
                 .frame(maxWidth: .infinity)
@@ -65,9 +65,9 @@ struct CleanupPlanView: View {
 /// Why the plan scores what it does (spec: recommendations must be explainable).
 private func safetyExplanation(_ plan: CleanupPlan) -> String {
     switch plan.lowestSafety {
-    case .verySafe: "Safety \(plan.safetyScore)/100 — only identical copies. Nothing is lost."
-    case .safe: "Safety \(plan.safetyScore)/100 — the best shot of every group is kept. Safest items come first."
-    case .reviewFirst: "Safety \(plan.safetyScore)/100 — safest items come first. Blurry photos and screenshots are worth a quick look before you delete."
+    case .verySafe: localizedFormat("Safety %d/100 — only identical copies. Nothing is lost.", plan.safetyScore)
+    case .safe: localizedFormat("Safety %d/100 — the best shot of every group is kept. Safest items come first.", plan.safetyScore)
+    case .reviewFirst: localizedFormat("Safety %d/100 — safest items come first. Blurry photos and screenshots are worth a quick look before you delete.", plan.safetyScore)
     }
 }
 
@@ -96,7 +96,7 @@ private struct PlanSummaryCard: View {
     private func metric(icon: String, title: String, value: String) -> some View {
         VStack(spacing: 8) {
             circleIcon(icon, tint: .teal)
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .font(Typography.metadata)
                 .foregroundStyle(Palette.textSecondary)
                 .multilineTextAlignment(.center)

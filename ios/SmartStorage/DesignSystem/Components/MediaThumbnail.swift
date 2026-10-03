@@ -46,7 +46,7 @@ struct OverflowTile: View {
                     .font(.system(.title3, weight: .semibold))
                     .foregroundStyle(.white)
             )
-            .accessibilityLabel("\(count) more")
+            .accessibilityLabel(localizedFormat("%d more", count))
     }
 }
 

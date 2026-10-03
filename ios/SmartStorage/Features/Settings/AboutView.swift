@@ -16,7 +16,7 @@ struct AboutView: View {
                 .padding(.bottom, 8)
 
             Card(padding: 16) {
-                ListTile(systemImage: "app.badge.fill", tint: .teal, title: "KeepSpace", subtitle: "Version \(version)", showsChevron: false)
+                ListTile(systemImage: "app.badge.fill", tint: .teal, title: "KeepSpace", subtitle: localizedFormat("Version %@", version), showsChevron: false)
             }
             Card(style: .info) {
                 Label("AI processing never leaves your device. Files go only to the cloud destinations you choose.", systemImage: "lock.shield")

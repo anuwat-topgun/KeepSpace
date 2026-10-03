@@ -1,5 +1,7 @@
 package com.smartstorage.cleaner.ui.feature.library
 
+import com.smartstorage.cleaner.ui.i18n.localized
+import com.smartstorage.cleaner.ui.i18n.localizedCount
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -88,9 +90,10 @@ private fun MemoryContent(memory: MemoryEvent, onOpenSimilar: () -> Unit, onRevi
         Row(horizontalArrangement = Arrangement.spacedBy(14.dp)) {
             Icon(Icons.Rounded.Shield, contentDescription = null, tint = Tint.Teal.foreground(colors.isDark), modifier = Modifier.size(28.dp))
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Text("Protected $noun", style = SmartType.cardHeadline, color = colors.textPrimary)
+                Text(if (memory.kind == MemoryEvent.Kind.Trip) localized("Protected trip") else localized("Protected event"), style = SmartType.cardHeadline, color = colors.textPrimary)
                 Text(
-                    "Photos from this $noun are never suggested on their own. Only extra shots of similar photos are offered, and blurry ones are never preselected.",
+                    if (memory.kind == MemoryEvent.Kind.Trip) localized("Photos from this trip are never suggested on their own. Only extra shots of similar photos are offered, and blurry ones are never preselected.")
+                    else localized("Photos from this event are never suggested on their own. Only extra shots of similar photos are offered, and blurry ones are never preselected."),
                     style = SmartType.metadata,
                     color = colors.textSecondary,
                 )
@@ -104,7 +107,7 @@ private fun MemoryContent(memory: MemoryEvent, onOpenSimilar: () -> Unit, onRevi
             modifier = Modifier.clickable(role = Role.Button, onClick = if (memory.similarCount > 0) onOpenSimilar else onReviewBlurry),
         ) {
             ListTile(Icons.Rounded.AutoAwesome, "Potential cleanup inside", tint = Tint.Teal,
-                subtitle = "${memory.similarCount} similar ${if (memory.similarCount == 1) "photo" else "photos"} · ${memory.blurryCount} blurry ${if (memory.blurryCount == 1) "shot" else "shots"}")
+                subtitle = localizedCount(memory.similarCount, "%d similar photo", "%d similar photos") + " · " + localizedCount(memory.blurryCount, "%d blurry shot", "%d blurry shots"))
         }
     }
 

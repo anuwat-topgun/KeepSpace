@@ -34,7 +34,7 @@ extension StatusBadge {
     }
 
     static func verified(in provider: String) -> StatusBadge {
-        StatusBadge(text: "Verified in \(provider)", systemImage: "checkmark.icloud.fill", tint: .blue)
+        StatusBadge(text: localizedFormat("Verified in %@", provider), systemImage: "checkmark.icloud.fill", tint: .blue)
     }
 }
 

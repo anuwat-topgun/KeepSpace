@@ -10,8 +10,8 @@ struct AITasteView: View {
     private var progress: String {
         let n = taste.decisions
         if n == 0 { return "No choices yet. Keep a photo other than the recommended one in Best Shot and it starts learning." }
-        if n >= TasteProfile.fullTrustAfter { return "Learned from \(n) choices. Your taste now fully guides Best Shot." }
-        return "Learning from \(n) \(n == 1 ? "choice" : "choices"). Best Shot leans further your way after \(TasteProfile.fullTrustAfter)."
+        if n >= TasteProfile.fullTrustAfter { return localizedFormat("Learned from %d choices. Your taste now fully guides Best Shot.", n) }
+        return localizedFormat(n == 1 ? "Learning from %d choice. Best Shot leans further your way after %d." : "Learning from %d choices. Best Shot leans further your way after %d.", n, TasteProfile.fullTrustAfter)
     }
 
     var body: some View {
@@ -81,7 +81,7 @@ struct AITasteView: View {
     private func weightRow(_ title: String, standard: Double, yours: Double) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
-                Text(title).font(Typography.body).foregroundStyle(Palette.textPrimary)
+                Text(LocalizedStringKey(title)).font(Typography.body).foregroundStyle(Palette.textPrimary)
                 Spacer()
                 Text("\(Int((yours * 100).rounded()))%").font(Typography.metadata).foregroundStyle(Palette.textSecondary)
             }
@@ -97,7 +97,7 @@ struct AITasteView: View {
             .frame(height: 10)
         }
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(title): \(Int((yours * 100).rounded())) percent, standard \(Int((standard * 100).rounded())) percent")
+        .accessibilityLabel(localizedFormat("%@: %d percent, standard %d percent", title.localizedUI, Int((yours * 100).rounded()), Int((standard * 100).rounded())))
     }
 }
 

@@ -1,5 +1,8 @@
 package com.smartstorage.cleaner.ui.feature.library
 
+import com.smartstorage.cleaner.ui.i18n.localized
+import com.smartstorage.cleaner.ui.i18n.localizedCount
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -88,7 +91,7 @@ private fun GroupList(state: LibraryState, selectedId: String?, onBack: () -> Un
     ScreenScaffold(onBack = onBack) {
         ScreenHeader(
             "Similar Photos",
-            "${state.content.similarBytes.formattedBytes()} recoverable · ${groups.size} ${if (groups.size == 1) "group" else "groups"}",
+            localizedFormat("%@ recoverable", state.content.similarBytes.formattedBytes()) + " · " + localizedCount(groups.size, "%d group", "%d groups"),
         )
         if (groups.isEmpty()) {
             SmartCard(style = CardStyle.Info) {
@@ -127,7 +130,7 @@ private fun PhotoGroupCard(group: PhotoGroup, isSelected: Boolean, onClick: () -
                     Text(group.title, style = SmartType.cardHeadline, color = colors.textPrimary)
                     val recoverable = group.reclaimableBytes > 0
                     Text(
-                        "${group.photoCount} photos · ${(if (recoverable) group.reclaimableBytes else group.bytes).formattedBytes()}${if (recoverable) " recoverable" else ""}",
+                        localizedFormat("%d photos · %@", group.photoCount, (if (recoverable) group.reclaimableBytes else group.bytes).formattedBytes()) + (if (recoverable) " " + localized("recoverable") else ""),
                         style = SmartType.metadata,
                         color = colors.textSecondary,
                     )

@@ -48,10 +48,12 @@ struct MemoryDetailView: View {
                     .font(.system(size: 26))
                     .foregroundStyle(Tint.teal.foreground)
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Protected \(memory.kind == .trip ? "trip" : "event")")
+                    Text(memory.kind == .trip ? "Protected trip".localizedUI : "Protected event".localizedUI)
                         .font(Typography.cardHeadline)
                         .foregroundStyle(Palette.textPrimary)
-                    Text("Photos from this \(memory.kind == .trip ? "trip" : "event") are never suggested on their own. Only extra shots of similar photos are offered, and blurry ones are never preselected.")
+                    Text(memory.kind == .trip
+                         ? "Photos from this trip are never suggested on their own. Only extra shots of similar photos are offered, and blurry ones are never preselected.".localizedUI
+                         : "Photos from this event are never suggested on their own. Only extra shots of similar photos are offered, and blurry ones are never preselected.".localizedUI)
                         .font(Typography.metadata)
                         .foregroundStyle(Palette.textSecondary)
                 }
@@ -62,7 +64,7 @@ struct MemoryDetailView: View {
             Button { router.push(memory.similarCount > 0 ? .similarPhotos : .review(.blurry)) } label: {
                 Card(padding: 16) {
                     ListTile(systemImage: "sparkles", tint: .teal, title: "Potential cleanup inside",
-                             subtitle: "\(memory.similarCount) similar \(memory.similarCount == 1 ? "photo" : "photos") · \(memory.blurryCount) blurry \(memory.blurryCount == 1 ? "shot" : "shots")")
+                             subtitle: localizedCount(memory.similarCount, one: "%d similar photo", other: "%d similar photos") + " · " + localizedCount(memory.blurryCount, one: "%d blurry shot", other: "%d blurry shots"))
                 }
             }
             .buttonStyle(.plain)
@@ -84,7 +86,7 @@ struct MemoryDetailView: View {
             }
         }
         if memory.assetIDs.count > previewLimit {
-            Text("and \((memory.assetIDs.count - previewLimit).formatted()) more")
+            Text(localizedFormat("and %@ more", (memory.assetIDs.count - previewLimit).formatted()))
                 .font(Typography.metadata)
                 .foregroundStyle(Palette.textSecondary)
         }
@@ -98,7 +100,7 @@ struct MemoryDetailView: View {
                     .foregroundStyle(Palette.textPrimary)
                     .lineLimit(1)
                     .minimumScaleFactor(0.7)
-                Text(label)
+                Text(LocalizedStringKey(label))
                     .font(Typography.metadata)
                     .foregroundStyle(Palette.textSecondary)
             }

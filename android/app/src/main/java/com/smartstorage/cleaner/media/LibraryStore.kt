@@ -1,5 +1,6 @@
 package com.smartstorage.cleaner.media
 
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.Composable
 import android.Manifest
@@ -140,15 +141,16 @@ class LibraryStore(context: Context, demo: Boolean) {
         }
         when (outcome) {
             is DeletionOutcome.Deleted -> {
-                val where = if (actions.needsInAppConfirmation) "deleted" else "moved to Trash. Empty it in your gallery to free the space now"
-                val noun = if (outcome.count == 1) "item" else "items"
-                _state.update { it.copy(notice = "${outcome.count} $noun (${outcome.bytes.formattedBytes()}) $where.") }
+                val one = outcome.count == 1
+                val source = if (actions.needsInAppConfirmation) (if (one) "%d item (%@) deleted." else "%d items (%@) deleted.")
+                else (if (one) "%d item (%@) moved to Trash. Empty it in your gallery to free the space now." else "%d items (%@) moved to Trash. Empty it in your gallery to free the space now.")
+                _state.update { it.copy(notice = app.localizedFormat(source, outcome.count, outcome.bytes.formattedBytes())) }
                 // Updating results can remove the calling screen (and cancel its scope), so this must
                 // not suspend; cache cleanup runs in the store's own scope.
                 removeFromResults(ids)
                 onDeleted?.invoke(outcome.bytes)
             }
-            is DeletionOutcome.Failed -> _state.update { it.copy(notice = "Couldn't delete: ${outcome.message}") }
+            is DeletionOutcome.Failed -> _state.update { it.copy(notice = app.localizedFormat("Couldn't delete: %@", outcome.message)) }
             DeletionOutcome.Cancelled -> Unit
         }
         return outcome
@@ -161,7 +163,7 @@ class LibraryStore(context: Context, demo: Boolean) {
             when (val result = actions.compress(video, preset, onProgress)) {
                 is MediaActions.CompressionOutcome.Replaced -> {
                     _state.update {
-                        it.copy(notice = "Compressed ${result.originalBytes.formattedBytes()} → ${result.newBytes.formattedBytes()}. The original is in Trash.")
+                        it.copy(notice = app.localizedFormat("Compressed %@ → %@. The original is in Trash.", result.originalBytes.formattedBytes(), result.newBytes.formattedBytes()))
                     }
                     scan() // pick up the new copy; everything else comes from the cache
                     null
@@ -223,7 +225,7 @@ class LibraryStore(context: Context, demo: Boolean) {
             scanJob?.cancelAndJoin()
             withContext(Dispatchers.IO) { cache.deleteAll() }
             lastAnalyzed = emptyList(); lastScreenshotInfo = emptyMap(); lastHashes = emptyMap()
-            _state.update { it.copy(phase = ScanPhase.Idle, notice = "Analysis cache cleared. KeepSpace will look at your library again.") }
+            _state.update { it.copy(phase = ScanPhase.Idle, notice = app.localizedFormat("Analysis cache cleared. KeepSpace will look at your library again.")) }
             scan()
         }
     }

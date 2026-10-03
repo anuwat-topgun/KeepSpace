@@ -1,5 +1,6 @@
 package com.smartstorage.cleaner.ui.feature.review
 
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -169,7 +170,7 @@ fun ReviewScreen(source: ReviewSource, onBack: () -> Unit) {
                         val allSelected = selectableIds.isNotEmpty() && selected == selectableIds
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(
-                                "${selected.size} of ${selectableIds.size} selected · ${items.bytesOf(selected).formattedBytes()}",
+                                localizedFormat("%d of %d selected · %@", selected.size, selectableIds.size, items.bytesOf(selected).formattedBytes()),
                                 style = SmartType.metadata,
                                 color = colors.textSecondary,
                                 modifier = Modifier.weight(1f),
@@ -203,7 +204,7 @@ fun ReviewScreen(source: ReviewSource, onBack: () -> Unit) {
                         CircularProgressIndicator(color = colors.accent, modifier = Modifier.size(32.dp))
                     } else {
                         PrimaryButton(
-                            "Delete ${selected.size} · ${items.bytesOf(selected).formattedBytes()}",
+                            localizedFormat("Delete %d · %@", selected.size, items.bytesOf(selected).formattedBytes()),
                             onClick = {
                                 // The free monthly allowance first; over it, the quota gate is offered instead of deleting.
                                 val candidates = items.filter { it.id in selected }.map { CleanupItem(it.id, it.bytes, itemSafety) }
@@ -249,8 +250,8 @@ fun ReviewScreen(source: ReviewSource, onBack: () -> Unit) {
     if (confirming) {
         AlertDialog(
             onDismissRequest = { confirming = false },
-            title = { Text("Delete ${selected.size} items?") },
-            text = { Text("This frees ${items.bytesOf(selected).formattedBytes()}. On this Android version deleted items can't be restored.") },
+            title = { Text(localizedFormat("Delete %d items?", selected.size)) },
+            text = { Text(localizedFormat("This frees %@. On this Android version deleted items can't be restored.", items.bytesOf(selected).formattedBytes())) },
             confirmButton = { TextButton(onClick = { confirming = false; runDelete() }) { Text("Delete") } },
             dismissButton = { TextButton(onClick = { confirming = false }) { Text("Cancel") } },
         )

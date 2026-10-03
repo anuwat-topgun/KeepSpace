@@ -1,5 +1,7 @@
 package com.smartstorage.cleaner.ui.feature.settings
 
+import com.smartstorage.cleaner.ui.i18n.localized
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -69,8 +71,8 @@ fun AiTasteScreen(onBack: () -> Unit) {
     val decisions = state.profile.decisions
     val progress = when {
         decisions == 0 -> "No choices yet. Keep a photo other than the recommended one in Best Shot and it starts learning."
-        decisions >= TasteProfile.FULL_TRUST_AFTER -> "Learned from $decisions choices. Your taste now fully guides Best Shot."
-        else -> "Learning from $decisions ${if (decisions == 1) "choice" else "choices"}. Best Shot leans further your way after ${TasteProfile.FULL_TRUST_AFTER}."
+        decisions >= TasteProfile.FULL_TRUST_AFTER -> localizedFormat("Learned from %d choices. Your taste now fully guides Best Shot.", decisions)
+        else -> localizedFormat(if (decisions == 1) "Learning from %d choice. Best Shot leans further your way after %d." else "Learning from %d choices. Best Shot leans further your way after %d.", decisions, TasteProfile.FULL_TRUST_AFTER)
     }
 
     val proStatus by LocalMonetization.current.status.collectAsState()
@@ -148,8 +150,9 @@ fun AiTasteScreen(onBack: () -> Unit) {
 private fun WeightRow(title: String, standard: Double, yours: Double) {
     val colors = SmartTheme.colors
     val percent = (yours * 100).roundToInt()
+    val description = localizedFormat("%@: %d percent, standard %d percent", localized(title), percent, (standard * 100).roundToInt())
     Column(
-        Modifier.semantics { contentDescription = "$title: $percent percent, standard ${(standard * 100).roundToInt()} percent" },
+        Modifier.semantics { contentDescription = description },
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {

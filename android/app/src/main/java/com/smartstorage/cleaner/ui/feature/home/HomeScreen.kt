@@ -1,5 +1,6 @@
 package com.smartstorage.cleaner.ui.feature.home
 
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
@@ -118,7 +119,7 @@ private fun LibraryStatusCard(state: LibraryState) {
                     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
                             Icon(Icons.Rounded.AutoAwesome, contentDescription = null, tint = colors.textSecondary, modifier = Modifier.size(18.dp))
-                            Text("Analyzing on device · ${phase.done} of ${phase.total} items", style = SmartType.metadata, color = colors.textSecondary)
+                            Text(localizedFormat("Analyzing on device · %d of %d items", phase.done, phase.total), style = SmartType.metadata, color = colors.textSecondary)
                         }
                         LinearProgressIndicator(
                             progress = { phase.done.toFloat() / phase.total },
@@ -176,7 +177,7 @@ private fun StorageHeroCard(storage: StorageSummary, showsCleanup: Boolean, onFr
                 )
             }
             UsageBar(storage.usedFraction)
-            Text("${storage.freeBytes.formattedBytes()} Free", style = SmartType.body, color = colors.textSecondary)
+            Text(localizedFormat("%@ Free", storage.freeBytes.formattedBytes()), style = SmartType.body, color = colors.textSecondary)
             if (showsCleanup) {
                 HorizontalDivider(color = colors.separator)
                 // Side-by-side when there is room (tablets), stacked on narrow phones.

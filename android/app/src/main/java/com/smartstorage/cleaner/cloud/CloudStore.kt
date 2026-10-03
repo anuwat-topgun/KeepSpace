@@ -1,5 +1,6 @@
 package com.smartstorage.cleaner.cloud
 
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -121,7 +122,7 @@ class CloudStore(context: Context) {
             secure.put(authKey(provider), auth.jsonSerializeString())
             val account = response.additionalParameters["login_hint"]
             updateConnection(provider, connected = true, accountName = account ?: provider.title)
-            notice("${provider.title} connected. Backups go directly to this account.")
+            notice(app.localizedFormat("%@ connected. Backups go directly to this account.", provider.title))
         }
     }
 
@@ -133,7 +134,7 @@ class CloudStore(context: Context) {
         }
         secure.remove(authKey(provider))
         updateConnection(provider, connected = false, accountName = null)
-        notice("${provider.title} disconnected. Existing cloud files were not changed.")
+        notice(app.localizedFormat("%@ disconnected. Existing cloud files were not changed.", provider.title))
     }
 
     fun updatePreferences(value: UploadPreferences) {
@@ -142,7 +143,7 @@ class CloudStore(context: Context) {
 
     fun enqueue(provider: CloudProvider, scope: CloudBackupScope, folder: String, items: List<MediaItem>) {
         if (!_state.value.connections.any { it.provider == provider && it.connected }) {
-            notice("Connect ${provider.title} before starting a backup.")
+            notice(app.localizedFormat("Connect %@ before starting a backup.", provider.title))
             return
         }
         val cleanFolder = folder.trim().trim('/').ifBlank { scope.title }
@@ -156,10 +157,10 @@ class CloudStore(context: Context) {
                 destinationFolder = cleanFolder, bytes = media.bytes, sourceModifiedAt = media.modifiedAt)
         }
         if (queued.isEmpty()) {
-            notice("No ${scope.title.lowercase()} are available to back up.")
+            notice(app.localizedFormat("No %@ are available to back up.", app.localizedFormat(scope.title).lowercase()))
             return
         }
-        persist(_state.value.copy(uploads = _state.value.uploads + queued, notice = "Queued ${queued.size} items for ${provider.title}."))
+        persist(_state.value.copy(uploads = _state.value.uploads + queued, notice = app.localizedFormat("Queued %d items for %@.", queued.size, provider.title)))
         schedule()
     }
 
@@ -168,7 +169,7 @@ class CloudStore(context: Context) {
         val changed = _state.value.uploads.map {
             if (it.status in setOf(CloudUploadStatus.Waiting, CloudUploadStatus.Uploading, CloudUploadStatus.Verifying)) it.copy(status = CloudUploadStatus.Cancelled) else it
         }
-        persist(_state.value.copy(uploads = changed, notice = "Pending backup cancelled."))
+        persist(_state.value.copy(uploads = changed, notice = app.localizedFormat("Pending backup cancelled.")))
     }
 
     fun retryFailed() {

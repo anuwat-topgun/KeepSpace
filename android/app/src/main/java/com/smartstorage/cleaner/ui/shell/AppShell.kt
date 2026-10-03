@@ -119,7 +119,7 @@ fun AppShell(openCleanupPlanRequest: Int = 0) {
 }
 
 /**
- * A tab label that stays on one line. Long translations ("Einstellungen") shrink a little until they fit the tab
+ * A tab label that stays on one line. Long translations (e.g. the German word for Settings) shrink a little until they fit the tab
  * instead of wrapping in the middle of a word; below 8sp they are cut with an ellipsis rather than shrink further.
  */
 @Composable

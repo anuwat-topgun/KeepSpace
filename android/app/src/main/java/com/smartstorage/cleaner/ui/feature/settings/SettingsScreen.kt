@@ -1,5 +1,6 @@
 package com.smartstorage.cleaner.ui.feature.settings
 
+import com.smartstorage.cleaner.ui.i18n.localizedCount
 import com.smartstorage.cleaner.media.LibraryAccess
 import com.smartstorage.cleaner.media.libraryState
 import androidx.compose.foundation.layout.Arrangement
@@ -66,14 +67,14 @@ fun SettingsScreen(onOpen: (Screen) -> Unit) {
         val cloud by LocalCloudStore.current.state.collectAsState()
         val connectedClouds = cloud.connections.count { it.connected }
         CardRow(Icons.Rounded.Cloud, Screen.CloudOverview.title, tint = Tint.Blue,
-            subtitle = if (connectedClouds == 0) "Connect Google Drive or OneDrive" else "$connectedClouds connected") { onOpen(Screen.CloudOverview) }
+            subtitle = if (connectedClouds == 0) "Connect Google Drive or OneDrive" else localizedFormat("%d connected", connectedClouds)) { onOpen(Screen.CloudOverview) }
         val taste by LocalLibraryStore.current.taste.state.collectAsState()
         CardRow(Icons.Rounded.AutoFixHigh, Screen.AiTaste.title, tint = Tint.Purple,
             isProLocked = !proStatus.isPro && taste.profile.decisions == 0,
             subtitle = when {
                 !taste.enabled -> "Off"
                 taste.profile.decisions == 0 -> "Learns as you choose"
-                else -> "Learned from ${taste.profile.decisions} ${if (taste.profile.decisions == 1) "choice" else "choices"}"
+                else -> localizedCount(taste.profile.decisions, "Learned from %d choice", "Learned from %d choices")
             }) { onOpen(Screen.AiTaste) }
         val accessText = when (libraryState().access) {
             LibraryAccess.Authorized -> "Full Access"

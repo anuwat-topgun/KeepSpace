@@ -130,7 +130,7 @@ struct ReceiptFilingView: View {
                     field("Merchant", receipt.details.merchant, icon: "storefront.fill", tint: .blue)
                     // No printed date: filing falls back to when the screenshot or photo was taken, so say that.
                     field("Date", receipt.details.date?.formatted(date: .abbreviated, time: .omitted)
-                          ?? receipt.capturedAt.formatted(date: .abbreviated, time: .omitted) + " (photo date)",
+                          ?? localizedFormat("%@ (photo date)", receipt.capturedAt.formatted(date: .abbreviated, time: .omitted)),
                           icon: "calendar", tint: .blue)
                     field("Amount", receipt.amountText, icon: "banknote.fill", tint: .purple)
                     field("Category", receipt.details.category.title, icon: "bag.fill", tint: .coral)
@@ -143,7 +143,7 @@ struct ReceiptFilingView: View {
         HStack(spacing: 12) {
             IconTile(systemName: icon, tint: tint, size: 40)
             VStack(alignment: .leading, spacing: 1) {
-                Text(label).font(.caption).foregroundStyle(Palette.textSecondary)
+                Text(LocalizedStringKey(label)).font(.caption).foregroundStyle(Palette.textSecondary)
                 Text(value ?? "Not found")
                     .font(.system(.body, weight: .semibold))
                     .foregroundStyle(value == nil ? Palette.textSecondary : Palette.textPrimary)
@@ -181,7 +181,7 @@ struct ReceiptFilingView: View {
         HStack(spacing: 14) {
             IconTile(systemName: icon, tint: .gray, size: 40)
             VStack(alignment: .leading, spacing: 1) {
-                Text(label).font(.caption).foregroundStyle(Palette.textSecondary)
+                Text(LocalizedStringKey(label)).font(.caption).foregroundStyle(Palette.textSecondary)
                 // Paths can be long (spec §7.2): wrap rather than truncate.
                 Text(value).font(.system(.body, weight: .medium)).foregroundStyle(Palette.textPrimary).fixedSize(horizontal: false, vertical: true)
             }
@@ -196,7 +196,7 @@ struct ReceiptFilingView: View {
                    detail: "Some details couldn't be read. Missing values use placeholders in the file name.")
         }
         notice(icon: "icloud.slash", tint: .blue, title: "Connect a cloud account to upload",
-               detail: "The file is prepared and matched with the rule. Uploads go straight from this device to your \(receipt.filingPlan(rules: rules.rules)?.rule.provider.title ?? "cloud").")
+               detail: localizedFormat("The file is prepared and matched with the rule. Uploads go straight from this device to your %@.", receipt.filingPlan(rules: rules.rules)?.rule.provider.title ?? "cloud".localizedUI))
     }
 
     private func notice(icon: String, tint: Tint, title: String, detail: String) -> some View {
@@ -204,8 +204,8 @@ struct ReceiptFilingView: View {
             HStack(alignment: .top, spacing: 14) {
                 Image(systemName: icon).font(.title2).foregroundStyle(tint.foreground)
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(title).font(Typography.cardHeadline).foregroundStyle(Palette.textPrimary)
-                    Text(detail).font(Typography.metadata).foregroundStyle(Palette.textSecondary)
+                    Text(LocalizedStringKey(title)).font(Typography.cardHeadline).foregroundStyle(Palette.textPrimary)
+                    Text(LocalizedStringKey(detail)).font(Typography.metadata).foregroundStyle(Palette.textSecondary)
                 }
             }
         }

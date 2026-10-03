@@ -1,5 +1,6 @@
 package com.smartstorage.cleaner.ui.feature.library
 
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import com.smartstorage.cleaner.model.ThumbnailStyle
 import com.smartstorage.cleaner.ui.components.AssetImage
 import androidx.compose.material.icons.rounded.Lock
@@ -75,7 +76,7 @@ fun ScreenshotsScreen(onReview: (ReviewKind) -> Unit, onBack: () -> Unit) {
         val proStatus by LocalMonetization.current.status.collectAsState()
         val isPro = proStatus.isPro
         val presentPaywall = LocalPresentPaywall.current
-        ScreenHeader("Screenshots", "${state.content.screenshotsBytes.formattedBytes()} recoverable", Modifier.padding(bottom = 8.dp))
+        ScreenHeader("Screenshots", localizedFormat("%@ recoverable", state.content.screenshotsBytes.formattedBytes()), Modifier.padding(bottom = 8.dp))
         if (state.content.screenshotCategories.isEmpty()) {
             SmartCard(style = CardStyle.Info) {
                 Text(

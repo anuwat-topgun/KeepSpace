@@ -29,9 +29,9 @@ struct SettingsView: View {
 
             row(.subscription, icon: "sparkle", tint: .teal, subtitle: SubscriptionView.settingsSubtitle(monetization.status), title: "Subscription · KeepSpace Pro")
             row(.memories, icon: "heart.fill", tint: .coral, subtitle: "Protected by default")
-            row(.aiTaste, icon: "wand.and.stars", tint: .purple, locked: !monetization.isPro && taste.decisions == 0, subtitle: taste.isEnabled ? (taste.decisions == 0 ? "Learns as you choose" : "Learned from \(taste.decisions) \(taste.decisions == 1 ? "choice" : "choices")") : "Off")
+            row(.aiTaste, icon: "wand.and.stars", tint: .purple, locked: !monetization.isPro && taste.decisions == 0, subtitle: taste.isEnabled ? (taste.decisions == 0 ? "Learns as you choose" : localizedCount(taste.decisions, one: "Learned from %d choice", other: "Learned from %d choices")) : "Off")
             row(.cloudOverview, icon: "icloud.fill", tint: .blue,
-                subtitle: cloud.connections.filter(\.isConnected).isEmpty ? "Connect Google Drive or OneDrive" : "\(cloud.connections.filter(\.isConnected).count) connected")
+                subtitle: cloud.connections.filter(\.isConnected).isEmpty ? "Connect Google Drive or OneDrive" : localizedFormat("%d connected", cloud.connections.filter(\.isConnected).count))
 
             row(.storageRules, icon: "arrow.triangle.branch", tint: .mint, subtitle: rules.activeCount == 0 ? "No rules on" : localizedFormat(rules.activeCount == 1 ? "%d rule on" : "%d rules on", rules.activeCount))
             row(.photoAccess, icon: "photo.fill", tint: .coral, subtitle: accessText)

@@ -43,7 +43,7 @@ struct SimilarPhotosView: View {
         ScreenScaffold {
             ScreenHeader(
                 title: "Similar Photos",
-                subtitle: "\(library.content.similarBytes.formattedBytes) recoverable · \(groups.count) \(groups.count == 1 ? "group" : "groups")"
+                subtitle: localizedFormat("%@ recoverable", library.content.similarBytes.formattedBytes) + " · " + localizedCount(groups.count, one: "%d group", other: "%d groups")
             )
 
             if groups.isEmpty {
@@ -89,7 +89,7 @@ private struct PhotoGroupCard: View {
                         Text(group.title)
                             .font(Typography.cardHeadline)
                             .foregroundStyle(Palette.textPrimary)
-                        Text("\(group.photoCount) photos · \((group.reclaimableBytes > 0 ? group.reclaimableBytes : group.bytes).formattedBytes)\(group.reclaimableBytes > 0 ? " recoverable" : "")")
+                        Text(localizedFormat("%d photos · %@", group.photoCount, (group.reclaimableBytes > 0 ? group.reclaimableBytes : group.bytes).formattedBytes) + (group.reclaimableBytes > 0 ? " " + "recoverable".localizedUI : ""))
                             .font(Typography.metadata)
                             .foregroundStyle(Palette.textSecondary)
                         StatusBadge(text: "Recommended keep selected", systemImage: "sparkles", tint: .teal, compact: true)

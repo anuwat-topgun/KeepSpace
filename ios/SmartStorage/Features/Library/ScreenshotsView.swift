@@ -8,7 +8,7 @@ struct ScreenshotsView: View {
 
     var body: some View {
         ScreenScaffold(maxWidth: Metrics.wideContentWidth) {
-            ScreenHeader(title: "Screenshots", subtitle: "\(library.content.screenshotsBytes.formattedBytes) recoverable")
+            ScreenHeader(title: "Screenshots", subtitle: localizedFormat("%@ recoverable", library.content.screenshotsBytes.formattedBytes))
                 .padding(.bottom, 8)
 
             AdaptiveGrid {

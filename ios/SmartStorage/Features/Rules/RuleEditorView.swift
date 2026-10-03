@@ -141,7 +141,7 @@ struct RuleEditorView: View {
         switch problem {
         case .emptyFolder: "Add a folder to save into."
         case .emptyFileName: "Add a file name."
-        case .unknownVariables(let names): "Not a known variable: \(names.joined(separator: ", ")). Tap a chip to insert one."
+        case .unknownVariables(let names): localizedFormat("Not a known variable: %@. Tap a chip to insert one.", names.joined(separator: ", "))
         }
     }
 
@@ -214,7 +214,7 @@ private struct TemplateField: View {
                 HStack(spacing: 14) {
                     IconTile(systemName: icon, tint: tint, size: 44)
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(label).font(Typography.cardHeadline).foregroundStyle(Palette.textPrimary)
+                        Text(LocalizedStringKey(label)).font(Typography.cardHeadline).foregroundStyle(Palette.textPrimary)
                         // Paths get long; wrap instead of scrolling out of view.
                         TextField(label, text: $text, axis: .vertical)
                             .font(.system(.body, design: .monospaced))
@@ -232,7 +232,7 @@ private struct TemplateField: View {
                             .padding(.horizontal, 10)
                             .padding(.vertical, 6)
                             .background(Palette.icyBlue, in: Capsule())
-                            .accessibilityLabel("Insert \(variable)")
+                            .accessibilityLabel(localizedFormat("Insert %@", variable))
                         }
                     }
                 }

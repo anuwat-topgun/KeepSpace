@@ -1,5 +1,7 @@
 package com.smartstorage.cleaner.ui.feature.receipts
 
+import com.smartstorage.cleaner.ui.i18n.localized
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.collectAsState
 import com.smartstorage.cleaner.media.LocalRuleStore
@@ -157,7 +159,7 @@ fun ReceiptFilingScreen(receiptId: String, onConnectCloud: () -> Unit, onReviewR
         }
         Notice(
             Icons.Rounded.CloudOff, Tint.Blue, "Connect a cloud account to upload",
-            "The file is prepared and matched with the rule. Uploads go straight from this device to your ${receipt.filingPlan(rules)?.rule?.provider?.title ?: "cloud"}.",
+            localizedFormat("The file is prepared and matched with the rule. Uploads go straight from this device to your %@.", receipt.filingPlan(rules)?.rule?.provider?.title ?: localized("cloud")),
         )
         PrimaryButton("Connect Google Drive", onClick = onConnectCloud, modifier = Modifier.fillMaxWidth())
         SecondaryButton("Review Rule", onClick = onReviewRule, modifier = Modifier.fillMaxWidth())
@@ -176,7 +178,7 @@ private fun ExtractedCard(receipt: ReceiptEntry) {
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Field("Merchant", receipt.details.merchant, Icons.Rounded.Storefront, Tint.Blue)
                 // No printed date: filing falls back to when the screenshot or photo was taken, so say that.
-                Field("Date", receipt.details.date?.let(::formatDay) ?: "${formatDay(receipt.capturedAt)} (photo date)", Icons.Rounded.CalendarMonth, Tint.Blue)
+                Field("Date", receipt.details.date?.let(::formatDay) ?: localizedFormat("%@ (photo date)", formatDay(receipt.capturedAt)), Icons.Rounded.CalendarMonth, Tint.Blue)
                 Field("Amount", receipt.amountText, Icons.Rounded.Payments, Tint.Purple)
                 Field("Category", receipt.details.category.title, Icons.Rounded.ShoppingBag, Tint.Coral)
             }

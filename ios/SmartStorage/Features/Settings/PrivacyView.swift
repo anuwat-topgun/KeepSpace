@@ -47,8 +47,8 @@ struct PrivacyView: View {
             HStack(alignment: .top, spacing: 14) {
                 IconTile(systemName: icon, tint: tint, size: 44)
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(title).font(Typography.cardHeadline).foregroundStyle(Palette.textPrimary)
-                    Text(detail).font(Typography.metadata).foregroundStyle(Palette.textSecondary)
+                    Text(LocalizedStringKey(title)).font(Typography.cardHeadline).foregroundStyle(Palette.textPrimary)
+                    Text(LocalizedStringKey(detail)).font(Typography.metadata).foregroundStyle(Palette.textSecondary)
                 }
             }
         }

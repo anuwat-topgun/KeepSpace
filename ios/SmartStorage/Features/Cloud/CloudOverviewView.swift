@@ -28,7 +28,7 @@ struct CloudOverviewView: View {
                                 if canConnect { cloud.connect(connection.provider) } else { router.presentPaywall(focus: .multipleCloudAccounts) }
                             } label: {
                                 HStack(spacing: 8) {
-                                    Text(connection.isConfigured ? "Connect \(connection.provider.title)" : "Setup required")
+                                    Text(connection.isConfigured ? localizedFormat("Connect %@", connection.provider.title) : "Setup required".localizedUI)
                                     if !canConnect { ProChip() }
                                 }
                             }

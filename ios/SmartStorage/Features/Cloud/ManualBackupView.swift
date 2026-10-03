@@ -24,7 +24,7 @@ struct ManualBackupView: View {
             }
             .pickerStyle(.segmented)
             .onChange(of: scope) { _, value in folder = value.title }
-            Text("\(candidates.count) items · \(candidates.reduce(Int64(0)) { $0 + $1.bytes }.formattedBytes)")
+            Text(localizedFormat("%d items · %@", candidates.count, candidates.reduce(Int64(0)) { $0 + $1.bytes }.formattedBytes))
                 .font(Typography.metadata).foregroundStyle(Palette.textSecondary)
 
             SectionLabel("Destination")

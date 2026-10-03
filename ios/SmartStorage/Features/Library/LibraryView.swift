@@ -123,7 +123,7 @@ private struct LibraryTile: View {
                 }
         }
         .buttonStyle(.plain)
-        .accessibilityLabel("\(item.fileName ?? "Photo"), \(state.title.localizedUI)")
+        .accessibilityLabel("\(item.fileName ?? "Photo".localizedUI), \(state.title.localizedUI)")
     }
 }
 

@@ -48,7 +48,7 @@ struct VideosView: View {
     private func metric(icon: String, tint: Tint, title: String, bytes: Int64) -> some View {
         VStack(spacing: 8) {
             IconTile(systemName: icon, tint: tint, size: 60)
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .font(Typography.metadata)
                 .foregroundStyle(Palette.textSecondary)
             Text(bytes.formattedBytes)

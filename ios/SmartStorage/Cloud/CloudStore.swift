@@ -49,7 +49,7 @@ final class CloudStore {
                 let (token, account) = try await authenticator.connect(provider)
                 try TokenKeychain.save(token, provider: provider)
                 updateConnection(provider, connected: true, accountName: account)
-                notice = "\(provider.title) connected. Backups go directly to this account."
+                notice = localizedFormat("%@ connected. Backups go directly to this account.", provider.title)
                 logger.info("Connected cloud provider: \(provider.rawValue, privacy: .public)")
             } catch {
                 notice = error.localizedDescription
@@ -62,13 +62,13 @@ final class CloudStore {
         let token = TokenKeychain.load(provider)
         TokenKeychain.remove(provider)
         updateConnection(provider, connected: false, accountName: nil)
-        notice = "\(provider.title) disconnected. Existing cloud files were not changed."
+        notice = localizedFormat("%@ disconnected. Existing cloud files were not changed.", provider.title)
         if let token { Task { await authenticator.revoke(token, provider: provider) } }
     }
 
     func enqueue(provider: CloudProvider, scope: CloudBackupScope, folder: String, items: [MediaItem]) {
         guard connections.contains(where: { $0.provider == provider && $0.isConnected }) else {
-            notice = "Connect \(provider.title) before starting a backup."
+            notice = localizedFormat("Connect %@ before starting a backup.", provider.title)
             return
         }
         let cleanFolder = folder.trimmingCharacters(in: CharacterSet(charactersIn: "/ ")).isEmpty ? scope.title : folder.trimmingCharacters(in: CharacterSet(charactersIn: "/ "))
@@ -84,9 +84,9 @@ final class CloudStore {
                                    destinationFolder: cleanFolder, bytes: media.bytes,
                                    sourceModifiedAt: media.modifiedAt)
         }
-        guard !queued.isEmpty else { notice = "No \(scope.title.lowercased()) are available to back up."; return }
+        guard !queued.isEmpty else { notice = localizedFormat("No %@ are available to back up.", scope.title.localizedUI.lowercased()); return }
         uploads.append(contentsOf: queued)
-        notice = "Queued \(queued.count) items for \(provider.title)."
+        notice = localizedFormat("Queued %d items for %@.", queued.count, provider.title)
         persist()
         resumePending()
     }
@@ -100,7 +100,7 @@ final class CloudStore {
         for index in uploads.indices where [.waiting, .uploading, .verifying].contains(uploads[index].status) {
             uploads[index].status = .cancelled
         }
-        notice = "Pending backup cancelled."
+        notice = "Pending backup cancelled.".localizedUI
         persist()
     }
 

@@ -1,5 +1,6 @@
 package com.smartstorage.cleaner.ui.components
 
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -66,7 +67,7 @@ fun ProtectedBadge() = StatusBadge("Protected", Icons.Rounded.Lock, Tint.Teal)
 fun ConnectedBadge() = StatusBadge("Connected", Icons.Rounded.CheckCircle, Tint.Mint)
 
 @Composable
-fun VerifiedBadge(provider: String) = StatusBadge("Verified in $provider", Icons.Rounded.CloudDone, Tint.Blue)
+fun VerifiedBadge(provider: String) = StatusBadge(localizedFormat("Verified in %@", provider), Icons.Rounded.CloudDone, Tint.Blue)
 
 /** Horizontal filter chips ("All / Recent / Reviewed"). */
 @Composable

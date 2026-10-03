@@ -1,5 +1,6 @@
 package com.smartstorage.cleaner.ui.components
 
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -105,11 +106,12 @@ private fun gradient(colors: List<Color>, variant: Int, size: Size): Brush {
 /** Translucent "+8" tile that ends a thumbnail strip. */
 @Composable
 fun OverflowTile(count: Int, modifier: Modifier = Modifier, cornerRadius: Dp = 12.dp) {
+    val moreDescription = localizedFormat("%d more", count)
     Box(
         modifier
             .clip(RoundedCornerShape(cornerRadius))
             .background(Color.Gray.copy(alpha = 0.55f))
-            .semantics { contentDescription = "$count more" },
+            .semantics { contentDescription = moreDescription },
         contentAlignment = Alignment.Center,
     ) {
         Text("+$count", style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.SemiBold), color = Color.White)

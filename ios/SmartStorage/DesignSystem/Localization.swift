@@ -11,3 +11,8 @@ extension String {
 func localizedFormat(_ source: String, _ arguments: CVarArg...) -> String {
     String(format: source.localizedUI, arguments: arguments)
 }
+
+/// Picks the singular or plural format for English (`one` when the count is 1). Other languages use one neutral wording for both.
+func localizedCount(_ count: Int, one: String, other: String) -> String {
+    localizedFormat(count == 1 ? one : other, count)
+}

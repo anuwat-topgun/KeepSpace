@@ -125,7 +125,7 @@ struct ReviewView: View {
         let selectableIDs = items.selectableIDs
         let allSelected = !selectableIDs.isEmpty && selected == selectableIDs
         return HStack {
-            Text("\(selected.count) of \(selectableIDs.count) selected · \(items.bytes(of: selected).formattedBytes)")
+            Text(localizedFormat("%d of %d selected · %@", selected.count, selectableIDs.count, items.bytes(of: selected).formattedBytes))
                 .font(Typography.metadata)
                 .foregroundStyle(Palette.textSecondary)
             Spacer()
@@ -144,7 +144,7 @@ struct ReviewView: View {
                 if isDeleting {
                     ProgressView().tint(.white)
                 } else {
-                    Label("Delete \(selected.count) · \(items.bytes(of: selected).formattedBytes)", systemImage: "trash")
+                    Label(localizedFormat("Delete %d · %@", selected.count, items.bytes(of: selected).formattedBytes), systemImage: "trash")
                 }
             }
             .buttonStyle(PrimaryButtonStyle(showsArrow: false))
@@ -215,7 +215,7 @@ private struct ReviewTile: View {
         }
         .buttonStyle(.plain)
         .disabled(item.isKeeper)
-        .accessibilityLabel(item.isKeeper ? "Best photo, kept" : "\(item.isVideo ? "Video" : "Photo"), \(item.bytes.formattedBytes)")
+        .accessibilityLabel(item.isKeeper ? "Best photo, kept".localizedUI : localizedFormat("%@, %@", (item.isVideo ? "Video" : "Photo").localizedUI, item.bytes.formattedBytes))
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 }

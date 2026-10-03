@@ -66,7 +66,7 @@ struct InsightsView: View {
                     Text(value)
                         .font(Typography.metric)
                         .foregroundStyle(Palette.textPrimary)
-                    Text(label)
+                    Text(LocalizedStringKey(label))
                         .font(Typography.body)
                         .foregroundStyle(Palette.textSecondary)
                 }
@@ -143,8 +143,9 @@ private struct ForecastCard: View {
     }
 
     private var fullText: String {
-        guard let days = forecast.daysUntilFull else { return "Storage use is steady — no full date in sight." }
-        return days > 365 ? "More than a year until full at the current pace." : "Estimated full in \(days) days"
+        guard let days = forecast.daysUntilFull else { return "Storage use is steady — no full date in sight.".localizedUI }
+        return days > 365 ? "More than a year until full at the current pace.".localizedUI
+            : localizedCount(days, one: "Estimated full in %d day", other: "Estimated full in %d days")
     }
 
     // Axis ranges follow the data: history minimum up to capacity, today-4w to the projection end.
@@ -193,7 +194,7 @@ private struct ForecastCard: View {
                 .foregroundStyle(Tint.coral.foreground.opacity(0.7))
                 .lineStyle(StrokeStyle(lineWidth: 1, dash: [3, 3]))
                 .annotation(position: .top, alignment: .leading) {
-                    Text("Full · \(Int(forecast.capacityGB)) GB")
+                    Text(localizedFormat("Full · %d GB", Int(forecast.capacityGB)))
                         .font(.caption2.weight(.semibold))
                         .foregroundStyle(Tint.coral.foreground)
                 }
@@ -212,14 +213,14 @@ private struct ForecastCard: View {
             }
         }
         .accessibilityLabel("Storage forecast")
-        .accessibilityValue("\(forecast.remainingBytes.formattedBytes) remaining. \(fullText)")
+        .accessibilityValue(localizedFormat("%@ remaining. %@", forecast.remainingBytes.formattedBytes, fullText))
     }
 
     private func weekLabel(_ week: Double) -> String {
         switch week {
-        case 0: "Today"
-        case ..<0: "\(Int(-week))w ago"
-        default: "+\(Int(week))w"
+        case 0: "Today".localizedUI
+        case ..<0: localizedFormat("%dw ago", Int(-week))
+        default: localizedFormat("+%dw", Int(week))
         }
     }
 
@@ -231,7 +232,7 @@ private struct ForecastCard: View {
             }
             .stroke(Palette.accent, style: StrokeStyle(lineWidth: 2.5, dash: dashed ? [4, 3] : []))
             .frame(width: 18, height: 2)
-            Text(text)
+            Text(LocalizedStringKey(text))
         }
     }
 }

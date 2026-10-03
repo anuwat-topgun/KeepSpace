@@ -94,7 +94,7 @@ struct BestShotView: View {
                         .scaleEffect(isSelected ? 1.03 : 1)
                 }
                 .buttonStyle(.plain)
-                .accessibilityLabel("Photo \(index + 1)\(isRecommended ? ", recommended" : "")")
+                .accessibilityLabel(localizedFormat(isRecommended ? "Photo %d, recommended" : "Photo %d", index + 1))
                 .accessibilityAddTraits(isSelected ? .isSelected : [])
             }
         }
@@ -161,8 +161,8 @@ struct BestShotView: View {
             .buttonStyle(.secondary)
 
             if !group.assetIDs.isEmpty {
-                Text("Keeping this photo deletes the other \(group.photoCount - 1) after you confirm. They stay in Recently Deleted for 30 days."
-                     + (library.taste.isEnabled ? " Your choice also teaches Best Shot your taste, on this device." : ""))
+                Text(localizedFormat("Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days.", group.photoCount - 1)
+                     + (library.taste.isEnabled ? " " + "Your choice also teaches Best Shot your taste, on this device.".localizedUI : ""))
                     .font(.caption)
                     .foregroundStyle(Palette.textSecondary)
                     .multilineTextAlignment(.center)

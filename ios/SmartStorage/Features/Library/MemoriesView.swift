@@ -56,8 +56,8 @@ struct MemoriesView: View {
                     Text(memories.isEmpty ? "Potential cleanup in your photos" : "Potential cleanup inside trips")
                         .font(Typography.cardHeadline)
                         .foregroundStyle(Palette.textPrimary)
-                    Label("\(cleanup.similarPhotos) similar \(cleanup.similarPhotos == 1 ? "photo" : "photos")", systemImage: "photo.on.rectangle")
-                    Label("\(cleanup.blurryShots) blurry \(cleanup.blurryShots == 1 ? "shot" : "shots")", systemImage: "circle.dotted")
+                    Label(localizedCount(cleanup.similarPhotos, one: "%d similar photo", other: "%d similar photos"), systemImage: "photo.on.rectangle")
+                    Label(localizedCount(cleanup.blurryShots, one: "%d blurry shot", other: "%d blurry shots"), systemImage: "circle.dotted")
                 }
                 .font(Typography.body)
                 .foregroundStyle(Palette.textSecondary)
@@ -88,7 +88,7 @@ private struct MemoryCard: View {
                         .font(Typography.metadata)
                         .foregroundStyle(Palette.textSecondary)
                     if let detail = memory.detail {
-                        Text(detail)
+                        Text(LocalizedStringKey(detail))
                             .font(.caption)
                             .foregroundStyle(Palette.textSecondary)
                     }

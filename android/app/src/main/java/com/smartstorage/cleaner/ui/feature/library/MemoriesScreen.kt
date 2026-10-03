@@ -1,5 +1,6 @@
 package com.smartstorage.cleaner.ui.feature.library
 
+import com.smartstorage.cleaner.ui.i18n.localizedCount
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -77,8 +78,8 @@ fun MemoriesScreen(onOpen: (String) -> Unit, onOpenSimilar: () -> Unit, onBack: 
                         style = SmartType.cardHeadline,
                         color = colors.textPrimary,
                     )
-                    StatLine(Icons.Rounded.Collections, "${content.tripSimilarPhotos} similar ${if (content.tripSimilarPhotos == 1) "photo" else "photos"}")
-                    StatLine(Icons.Rounded.BlurOn, "${content.tripBlurryShots} blurry ${if (content.tripBlurryShots == 1) "shot" else "shots"}")
+                    StatLine(Icons.Rounded.Collections, localizedCount(content.tripSimilarPhotos, "%d similar photo", "%d similar photos"))
+                    StatLine(Icons.Rounded.BlurOn, localizedCount(content.tripBlurryShots, "%d blurry shot", "%d blurry shots"))
                 }
                 Icon(
                     Icons.AutoMirrored.Rounded.KeyboardArrowRight,

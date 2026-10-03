@@ -34,7 +34,7 @@ struct PhotoAccessView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     StatusBadge(text: title, systemImage: library.access.canRead ? "checkmark.circle.fill" : "exclamationmark.circle.fill",
                                 tint: library.access.canRead ? .mint : .amber)
-                    Text(detail).font(Typography.body).foregroundStyle(Palette.textSecondary)
+                    Text(LocalizedStringKey(detail)).font(Typography.body).foregroundStyle(Palette.textSecondary)
                 }
             }
 

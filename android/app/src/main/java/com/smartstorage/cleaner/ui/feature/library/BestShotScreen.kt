@@ -1,5 +1,7 @@
 package com.smartstorage.cleaner.ui.feature.library
 
+import com.smartstorage.cleaner.ui.i18n.localized
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import kotlinx.coroutines.launch
 import androidx.compose.runtime.rememberCoroutineScope
 import com.smartstorage.cleaner.media.DeletionOutcome
@@ -185,8 +187,8 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?, onReviewGroup: (Str
             SecondaryButton("Review All", onClick = { if (group.assetUris.isNotEmpty()) onReviewGroup(group.id) }, modifier = Modifier.fillMaxWidth())
             if (group.assetUris.isNotEmpty()) {
                 Text(
-                    "Keeping this photo deletes the other ${group.photoCount - 1} after you confirm. They stay in Trash for 30 days." +
-                        if (tasteOn) " Your choice also teaches Best Shot your taste, on this device." else "",
+                    localizedFormat("Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days.", group.photoCount - 1) +
+                        if (tasteOn) " " + localized("Your choice also teaches Best Shot your taste, on this device.") else "",
                     style = TextStyle(fontSize = 12.sp),
                     color = SmartTheme.colors.textSecondary,
                 )

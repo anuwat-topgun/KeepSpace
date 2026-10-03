@@ -1,5 +1,6 @@
 package com.smartstorage.cleaner.ui.feature.library
 
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -81,7 +82,7 @@ fun CompressSheet(video: VideoItem, onDismiss: () -> Unit) {
                         Column(Modifier.weight(1f)) {
                             Text(option.title, style = SmartType.cardHeadline, color = colors.textPrimary)
                             Text(
-                                "Saves about ${(video.estimatedSavings(option) ?: 0).formattedBytes()}",
+                                localizedFormat("Saves about %@", (video.estimatedSavings(option) ?: 0).formattedBytes()),
                                 style = SmartType.metadata,
                                 color = colors.textSecondary,
                             )

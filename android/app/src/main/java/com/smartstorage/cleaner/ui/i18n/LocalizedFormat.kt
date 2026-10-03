@@ -17,3 +17,13 @@ fun localizedFormat(source: String, vararg args: Any): String {
 /** Resolves a plain catalogue string held in a variable (the `Text` overload does this for composables). */
 @Composable
 fun localized(source: String): String = I18nCatalog.resources[source]?.let { stringResource(it) } ?: source
+
+/** [localizedFormat] for code that isn't composable (stores that post notices). Uses the app's current locale. */
+fun android.content.Context.localizedFormat(source: String, vararg args: Any): String {
+    val id = I18nCatalog.resources[source]
+    return if (id != null) getString(id, *args) else source.replace("%@", "%s").format(*args)
+}
+
+/** Singular format for a count of 1, plural otherwise. Other languages use the same neutral wording for both. */
+@Composable
+fun localizedCount(count: Int, one: String, other: String): String = localizedFormat(if (count == 1) one else other, count)

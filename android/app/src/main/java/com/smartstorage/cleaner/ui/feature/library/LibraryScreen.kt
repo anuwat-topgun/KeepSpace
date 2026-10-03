@@ -1,5 +1,6 @@
 package com.smartstorage.cleaner.ui.feature.library
 
+import com.smartstorage.cleaner.ui.i18n.localized
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -201,13 +202,15 @@ fun LibraryScreen(onOpen: (Screen) -> Unit) {
 
 @Composable
 private fun LibraryTile(item: MediaItem, state: AssetCloudState, onClick: () -> Unit) {
+    val photoWord = localized("Photo")
+    val stateTitle = localized(state.title)
     Box(
         Modifier
             .fillMaxWidth()
             .aspectRatio(1f)
             .clip(RoundedCornerShape(2.dp))
             .clickable(onClick = onClick)
-            .semantics { contentDescription = "${item.fileName ?: "Photo"}, ${state.title}" },
+            .semantics { contentDescription = "${item.fileName ?: photoWord}, $stateTitle" },
     ) {
         AssetImage(item.id, item.fallbackStyle, Modifier.fillMaxSize(), cornerRadius = 2.dp)
         CloudStateIcon(state, Modifier.align(Alignment.BottomEnd).padding(6.dp))

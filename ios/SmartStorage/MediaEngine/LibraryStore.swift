@@ -118,9 +118,9 @@ final class LibraryStore {
         case .deleted(let count, let bytes):
             removeFromResults(ids)
             onDeleted?(bytes)
-            notice = "\(count) \(count == 1 ? "item" : "items") (\(bytes.formattedBytes)) moved to Recently Deleted. Empty it in Photos to free the space now."
+            notice = localizedFormat(count == 1 ? "%d item (%@) moved to Recently Deleted. Empty it in Photos to free the space now." : "%d items (%@) moved to Recently Deleted. Empty it in Photos to free the space now.", count, bytes.formattedBytes)
         case .failed(let message):
-            notice = "Couldn't delete: \(message)"
+            notice = localizedFormat("Couldn't delete: %@", message)
         case .cancelled:
             break
         }
@@ -149,7 +149,7 @@ final class LibraryStore {
         do {
             switch try await LibraryActions.compress(id: videoID, originalBytes: originalBytes, preset: preset, progress: progress) {
             case .replaced(let original, let new):
-                notice = "Compressed \(original.formattedBytes) → \(new.formattedBytes). The original is in Recently Deleted."
+                notice = localizedFormat("Compressed %@ → %@. The original is in Recently Deleted.", original.formattedBytes, new.formattedBytes)
                 scan() // pick up the new asset; everything else comes from the cache
             case .cancelled:
                 return nil
@@ -180,7 +180,7 @@ final class LibraryStore {
         await cache?.deleteAll()
         lastAnalyzed = []; lastScreenshotInfo = [:]; lastHashes = [:]
         phase = .idle
-        notice = "Analysis cache cleared. KeepSpace will look at your library again."
+        notice = "Analysis cache cleared. KeepSpace will look at your library again.".localizedUI
         scan()
     }
 
