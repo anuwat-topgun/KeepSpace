@@ -183,12 +183,53 @@ Release gates ที่ต้องใช้เจ้าของบัญชี
 - [ ] ปุ่ม "Connect Google Drive" ในหน้า Receipt Filing ให้ทำงานจริง
 - [ ] Acceptance (สเปก §14): uploaded files become verified / cleanup suggestion appears only after verification
 
-### 3.5 Monetization (สเปก §11) ⬜
-- [ ] ตัดสินใจราคา + สิทธิ์ Free vs Pro
-- [ ] iOS StoreKit 2 (subscription group ใน App Store Connect) · Android Play Billing Library
-- [ ] Entitlement layer ในแอป + paywall + restore purchases
-- [ ] จำกัดฟีเจอร์ Free ตามสเปก (cleanup จำกัด, 1 cloud account, backup จำกัด ฯลฯ)
-- [ ] (ถ้าต้องมี backend) server สำหรับ entitlement/feature flags เท่านั้น — ห้ามรับไฟล์สื่อ (สเปก §4.2)
+### 3.5 Monetization (สเปก §11) 🟡 ตัดสินใจและออกแบบแล้ว · ยังไม่ได้ implement
+
+ผู้ใช้อนุมัติแนวทางนี้แล้ว (3 ต.ค. 2026) ราคาเป็นราคาตั้งต้นจากการประเมิน **ยังไม่ได้ตรวจราคาคู่แข่งหรือวัด conversion จริง** → ต้องวัดผลหลังเปิดแล้วปรับ
+ดีไซน์หน้าจอ: `store/PAYWALL_DESIGN.md` + mockup `store/paywall/` (`store/paywall/paywall-mockup.html`, PNG ใน `store/paywall/*.png`)
+
+#### แพ็กเกจและฟีเจอร์ (ที่ตัดสินใจแล้ว)
+| ฟีเจอร์ | Free | Pro |
+|---|---|---|
+| สแกนทั้งคลัง, Storage Analysis, เห็นขนาดที่เคลียร์ได้ทุกหมวด | ✅ ไม่จำกัด | ✅ |
+| Safety Score, Memories ที่ปกป้องไว้, ยืนยันก่อนลบ, ถังขยะ 30 วัน | ✅ **ห้ามเอามาขาย** | ✅ |
+| Exact Duplicates, Similar Photos, Blurry | ✅ ลบได้ตามโควตา | ✅ ไม่จำกัด |
+| Best Shot (รูปที่ AI แนะนำ) | ✅ (ต่างจากสเปก — ถ้าซ่อนไว้ กลุ่มรูปคล้ายใช้ไม่ได้) | ✅ + ลบทั้งหมวดในครั้งเดียว |
+| Storage Forecast, Weekly Smart Clean, Photo Access/Privacy | ✅ (Forecast ต่างจากสเปก — ต้นทุนต่ำ ช่วยให้กลับมาเปิดแอป) | ✅ |
+| Backup ไป Drive/OneDrive แบบมือ | ✅ 1 บัญชี, จำกัดจำนวนต่อเดือน | ✅ ทุกบัญชี, ไม่จำกัด |
+| Storage Rules + Rule Builder | ✅ 1 กฎ | ✅ ไม่จำกัด |
+| บีบอัดวิดีโอ | — | ✅ |
+| Screenshot แยกหมวดด้วย OCR (ใบเสร็จ/ตั๋ว/แชท/ช้อปปิ้ง, ไทย/อังกฤษ) | ดูจำนวน+ขนาดต่อหมวด | ✅ เปิดดู/จัดการรายหมวด |
+| Receipt Filing (screenshot + ใบเสร็จกระดาษ) | — | ✅ |
+| AI Taste (เรียนรู้รสนิยม) | — | ✅ |
+
+- **ห้ามโฆษณาฟีเจอร์ที่ยังไม่มี:** การเชื่อมกฎเข้าคิวอัปโหลดอัตโนมัติ และ backup verification + safe delete (ข้อ 3.3–3.4) ยังไม่ได้ทำ — ห้ามอยู่ในรายการ Pro บนหน้า paywall/store จนกว่าจะส่งมอบจริง
+- โควตา Free (ตัวตั้งต้น ต้องวัดแล้วปรับ): **ลบได้ ~1 GB ต่อเดือน** (นับเฉพาะที่ผู้ใช้ยืนยันลบแล้ว, รีเซ็ตต้นเดือนตามเวลาเครื่อง) · backup **~100 ไฟล์ต่อเดือน** · rules **1 กฎ**
+- ต้องไม่ล็อก: การ "ดู" ผลสแกน, การปกป้อง Memories/รูปโปรด, หน้าลบที่มีคำเตือนความปลอดภัย — ล็อกได้เฉพาะ "การกระทำ" ที่เกินโควตาหรือฟีเจอร์ Pro
+
+#### ราคา (ตั้งต้น — ใช้ตารางราคาตามประเทศของ App Store / Play Console ห้าม hardcode ในแอป)
+| ตัวเลือก | USD | บาท (ประมาณ) | หมายเหตุ |
+|---|---|---|---|
+| **รายปี** (ตัวหลัก, เลือกไว้ล่วงหน้า) | $19.99 | ~฿690 | ทดลองฟรี 7 วัน |
+| รายเดือน | $2.99 | ~฿99 | |
+| ซื้อขาด (lifetime) | $39.99 | ~฿1,390 | non-consumable / one-time product |
+
+- ไม่ทำรายสัปดาห์ (ขัดกับจุดขายเรื่องความไว้ใจ)
+- Product IDs ที่เสนอ: `com.keepspace.app.pro.annual`, `.monthly` (อยู่ subscription group เดียวกัน), `.lifetime`
+- ต้นทุนหลักคือส่วนแบ่งร้านค้า 15–30% (ไม่มี backend/ไม่มีค่าพื้นที่ cloud) — สมัครโปรแกรมร้านค้ารายเล็กของ Apple/Google เพื่อให้ได้ 15%
+
+#### งานที่ต้องทำ (implement)
+- [ ] **ผู้ใช้ต้องทำก่อน:** ตั้ง subscription group + 3 products ใน App Store Connect และ Play Console, ข้อตกลง Paid Apps/ข้อมูลภาษี-ธนาคาร, สมัคร Small Business Program, ตอบ App Privacy/Data safety ให้ตรงกับที่แอปเก็บ (ไม่เก็บข้อมูล — IAP ไม่เปลี่ยนคำตอบ)
+- [ ] Entitlement layer (ไม่มี backend, ไม่มีบัญชีผู้ใช้): iOS StoreKit 2 `Transaction.currentEntitlements` + `Transaction.updates` · Android Play Billing `queryPurchasesAsync` + acknowledge; cache สิทธิ์ในเครื่องให้ใช้ออฟไลน์ได้ (grace) ; `Entitlement` เป็น pure logic ใช้ร่วมกับ test
+- [ ] `UsageLimits` (pure, มีคู่ Swift/Kotlin + unit test): โควตาลบต่อเดือน, โควตา backup, จำนวนกฎ — เก็บเป็นตัวเลขใน UserDefaults/SharedPreferences (ไม่เก็บรายการไฟล์)
+- [ ] Paywall ตาม `store/PAYWALL_DESIGN.md` (full paywall, quota gate sheet, แถว/หน้า Subscription ใน Settings, ป้าย "Pro" บนฟีเจอร์ที่ล็อก) — ราคา/ทดลองฟรีดึงจาก store เท่านั้น
+- [ ] ผูก gate เข้าจุดต่าง ๆ: ปุ่มลบ (Review/Best Shot/Cleanup Plan), บีบอัดวิดีโอ, หมวด Screenshot, Receipt Filing, AI Taste, Rule Builder (กฎที่ 2), Cloud (บัญชีที่ 2 / เกินโควตา)
+- [ ] Restore Purchases (ปุ่มในหน้า paywall + Settings), จัดการ Subscription (ลิงก์ไปหน้าจัดการของระบบ), ข้อความ auto-renew/ยกเลิกตามข้อกำหนดร้านค้า
+- [ ] พฤติกรรมเมื่อ Pro หมดอายุ: **ไม่ลบข้อมูลของผู้ใช้เด็ดขาด** — กฎที่เกิน 1 ถูกปิดไว้ (ไม่ลบ), บัญชี cloud ที่สองยังเชื่อมอยู่แต่หยุดคิวใหม่, ของที่ backup ไปแล้วยังอยู่ในบัญชีผู้ใช้
+- [ ] Tests: entitlement state machine (ซื้อ/ทดลอง/หมดอายุ/refund/restore), โควตา (นับเฉพาะที่ลบสำเร็จ, รีเซ็ตต้นเดือน, ตัดรายการให้พอดีโควตาโดยเรียงจากปลอดภัยที่สุดก่อน), ไม่มีทางที่ gate ซ่อนฟีเจอร์ความปลอดภัย; ทดสอบจริงด้วย StoreKit configuration file (iOS) และ Play test tracks/license testers (Android)
+- [ ] อัปเดต `store/` (store copy, review notes: ให้ reviewer ทดลองซื้อ/restore ได้, App Privacy) และ privacy policy/terms ให้พูดถึงการสมัครสมาชิก
+- [ ] วัดผลหลังเปิด (เมื่อมี analytics ตามข้อ 3.6 และได้รับความยินยอม): อัตรากดซื้อ, trial→paid, แล้วปรับโควตา/ราคา (Google Play ทดลองหลายราคาได้)
+- [x] ~~ถ้าต้องมี backend~~ ตัดสินใจ: **ไม่ต้องมี backend** — สิทธิ์ตรวจกับร้านค้าโดยตรง (สเปก §4.2 อนุญาต backend เฉพาะ entitlement/feature flags ซึ่งเรายังไม่ต้องใช้)
 
 ### 3.6 Analytics (สเปก §10) ⬜
 - [ ] เลือกเครื่องมือที่เคารพ privacy (หรือทำ endpoint เอง) + ขอความยินยอม

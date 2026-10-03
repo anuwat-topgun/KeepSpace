@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>KeepSpace Pro — paywall mockups</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Static mockups for store/PAYWALL_DESIGN.md. Colours are the app's own tokens (Palette.swift / Color.kt).
+     Prices shown are the launch defaults; the real app reads price, currency and trial length from the store. -->
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 40px 24px 56px; background: #e9edf1; font: 15px/1.4 -apple-system, "SF Pro Text", system-ui, "Segoe UI", Roboto, sans-serif; color: #0B1B2B; }
+  h1 { font-size: 22px; margin: 0 0 4px; text-align: center; }
+  p.sub { text-align: center; color: #5b6b7e; margin: 0 0 32px; }
+  .row { display: flex; flex-wrap: wrap; gap: 36px; justify-content: center; }
+  figure { margin: 0; }
+  figcaption { text-align: center; margin-top: 12px; font-size: 13px; color: #5b6b7e; max-width: 390px; }
+  figcaption b { color: #0B1B2B; }
+
+  /* Light / dark tokens, from the design system */
+  .screen { --bg:#F8F7F4; --surface:#FFFFFF; --muted:#EEF2F6; --sep:#E4E8ED; --text:#0B1B2B; --text2:#6B7A8F;
+            --accent:#1E8FB0; --g1:#52B6CE; --g2:#16809F; --icy:#E7F4FA;
+            --teal-bg:#E3F3F6; --teal:#1E8FB0; --blue-bg:#E6F0FD; --blue:#2F7FE8; --purple-bg:#EEEBFD; --purple:#6A5AE0;
+            --coral-bg:#FDE8E7; --coral:#E8534F; --mint-bg:#E2F5EC; --mint:#2FA878; --amber-bg:#FDF1DC; --amber:#E89B1F; }
+  .screen.dark { --bg:#0E1419; --surface:#172029; --muted:#1F2A35; --sep:#2A3642; --text:#F2F5F8; --text2:#97A5B5;
+            --accent:#4FB8D4; --g1:#3FA7C4; --g2:#1B7390; --icy:#16303D;
+            --teal-bg:#163239; --teal:#4FB8D4; --blue-bg:#192B42; --blue:#6BA8F5; --purple-bg:#252242; --purple:#9D91F2;
+            --coral-bg:#3A2224; --coral:#F28782; --mint-bg:#173327; --mint:#5CCB9C; --amber-bg:#3A2E17; --amber:#F2B955; }
+
+  .phone { width: 390px; height: 844px; border-radius: 44px; background: var(--bg); color: var(--text); position: relative; overflow: hidden;
+           box-shadow: 0 0 0 10px #10151b, 0 18px 50px rgba(10,20,30,.35); }
+  .status { height: 50px; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 28px 6px; font-weight: 600; font-size: 15px; }
+  .island { position: absolute; top: 11px; left: 50%; width: 118px; height: 33px; margin-left: -59px; background: #000; border-radius: 20px; }
+
+  /* shared bits */
+  .tile { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; flex: none; }
+  .tile svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .t-teal { background: var(--teal-bg); color: var(--teal); } .t-blue { background: var(--blue-bg); color: var(--blue); }
+  .t-purple { background: var(--purple-bg); color: var(--purple); } .t-coral { background: var(--coral-bg); color: var(--coral); }
+  .t-mint { background: var(--mint-bg); color: var(--mint); } .t-amber { background: var(--amber-bg); color: var(--amber); }
+  .card { background: var(--surface); border-radius: 22px; box-shadow: 0 1px 0 var(--sep), 0 6px 18px rgba(20,40,60,.05); }
+  .dark .card { box-shadow: 0 1px 0 var(--sep); }
+  .btn { height: 54px; border-radius: 27px; display: grid; place-items: center; font-weight: 700; font-size: 17px; }
+  .btn.primary { background: linear-gradient(90deg, var(--g1), var(--g2)); color: #fff; box-shadow: 0 8px 18px rgba(22,128,159,.28); }
+  .btn.secondary { background: var(--icy); color: var(--accent); }
+  .btn.text { color: var(--text2); font-weight: 600; height: 40px; }
+
+  /* ---- Paywall ---- */
+  .pw-top { display: flex; justify-content: space-between; align-items: center; padding: 0 20px; height: 34px; }
+  .pw-top .x { width: 30px; height: 30px; border-radius: 15px; background: var(--muted); display: grid; place-items: center; color: var(--text2); }
+  .pw-top .x svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 2.4; fill: none; stroke-linecap: round; }
+  .pw-top .restore { color: var(--accent); font-weight: 600; font-size: 15px; }
+  .hero { display: flex; align-items: center; gap: 14px; padding: 6px 24px 0; }
+  .hero img { width: 52px; height: 52px; border-radius: 12px; box-shadow: 0 6px 16px rgba(60,40,200,.25); flex: none; }
+  .hero h2 { margin: 0 0 1px; font-size: 25px; letter-spacing: -.3px; line-height: 1.15; }
+  .hero p { margin: 0; color: var(--text2); font-size: 14px; }
+  .benefits { margin: 14px 20px 0; padding: 2px 14px; }
+  .benefit { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
+  .pw-footer { position: absolute; left: 0; right: 0; bottom: 0; padding: 12px 0 22px; background: linear-gradient(to bottom, transparent, var(--bg) 14px); }
+  .benefit + .benefit { border-top: 1px solid var(--sep); }
+  .benefit .tile { width: 32px; height: 32px; border-radius: 10px; } .benefit .tile svg { width: 18px; height: 18px; }
+  .benefit b { display: block; font-size: 15px; font-weight: 600; line-height: 1.2; }
+  .benefit span { display: block; color: var(--text2); font-size: 12.5px; line-height: 1.25; }
+  .plans { margin: 14px 20px 0; display: grid; gap: 8px; }
+  .plan { position: relative; border-radius: 18px; background: var(--surface); border: 2px solid var(--sep); padding: 11px 14px; display: flex; align-items: center; gap: 12px; }
+  .plan.sel { border-color: var(--accent); background: var(--icy); }
+  .radio { width: 22px; height: 22px; border-radius: 11px; border: 2px solid var(--sep); flex: none; display: grid; place-items: center; }
+  .sel .radio { border-color: var(--accent); background: var(--accent); }
+  .sel .radio::after { content: ""; width: 8px; height: 8px; border-radius: 4px; background: #fff; }
+  .plan .name { font-weight: 700; font-size: 16px; line-height: 1.2; }
+  .plan .note { color: var(--text2); font-size: 12.5px; line-height: 1.25; }
+  .plan .price { margin-left: auto; text-align: right; white-space: nowrap; }
+  .plan > div:nth-child(3) { min-width: 0; }
+  .plan .price b { display: block; font-size: 17px; line-height: 1.2; }
+  .plan .price span { color: var(--text2); font-size: 12px; }
+  .badge { position: absolute; top: -10px; right: 14px; background: linear-gradient(90deg, var(--g1), var(--g2)); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .4px; padding: 3px 10px; border-radius: 10px; }
+  .cta { margin: 14px 20px 0; }
+  .fine { margin: 10px 28px 0; text-align: center; color: var(--text2); font-size: 11.5px; line-height: 1.35; }
+  .fine a { color: var(--text2); text-decoration: underline; }
+  .trust { margin: 8px 0 0; padding: 0 24px; text-align: center; color: var(--text2); font-size: 12px; display: flex; gap: 6px; justify-content: center; align-items: center; }
+  .trust svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ---- Quota gate (bottom sheet over Review) ---- */
+  .bg-review { padding: 0 20px; opacity: .55; }
+  .bg-review h3 { font-size: 30px; margin: 22px 0 4px; letter-spacing: -.4px; }
+  .bg-review .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 18px; }
+  .bg-review .grid i { aspect-ratio: 1; border-radius: 14px; background: linear-gradient(135deg, var(--muted), var(--icy)); display: block; }
+  .scrim { position: absolute; inset: 0; background: rgba(8,16,24,.38); }
+  .sheet { position: absolute; left: 0; right: 0; bottom: 0; background: var(--surface); border-radius: 30px 30px 0 0; padding: 12px 22px 30px; box-shadow: 0 -10px 40px rgba(0,0,0,.18); }
+  .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--sep); margin: 0 auto 16px; }
+  .sheet h4 { margin: 0 0 6px; font-size: 22px; letter-spacing: -.2px; }
+  .sheet p { margin: 0 0 14px; color: var(--text2); font-size: 15px; }
+  .meter { height: 12px; border-radius: 6px; background: var(--muted); overflow: hidden; }
+  .meter i { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--g1), var(--g2)); }
+  .meter-l { display: flex; justify-content: space-between; font-size: 13px; color: var(--text2); margin: 7px 0 16px; }
+  .sheet .btn + .btn { margin-top: 10px; }
+  .sheet .safe { margin-top: 10px; text-align: center; font-size: 12.5px; color: var(--text2); }
+
+  /* ---- Subscription screen (Free) ---- */
+  .nav { padding: 0 20px; } .nav h3 { font-size: 34px; margin: 14px 0 4px; letter-spacing: -.5px; }
+  .nav p { margin: 0 0 14px; color: var(--text2); }
+  .usage { padding: 16px; margin: 0 20px 12px; }
+  .usage h5 { margin: 0 0 12px; font-size: 17px; display: flex; justify-content: space-between; align-items: center; }
+  .chip { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 10px; background: var(--muted); color: var(--text2); }
+  .u { margin-top: 12px; } .u .l { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; } .u .l span { color: var(--text2); }
+  .u .meter { height: 9px; } .u.full .meter i { background: linear-gradient(90deg, #F2B955, #E89B1F); }
+  .reset { margin-top: 12px; font-size: 12.5px; color: var(--text2); }
+  .list { margin: 0 20px; padding: 2px 16px; }
+  .list .benefit { padding: 11px 0; }
+  .lock { margin-left: auto; font-size: 11px; font-weight: 700; color: var(--accent); background: var(--icy); padding: 3px 9px; border-radius: 9px; }
+  .actions { margin: 14px 20px 0; }
+</style>
+</head>
+<body>
+<h1>KeepSpace Pro — paywall mockups</h1>
+<p class="sub">Free vs Pro as agreed · Annual $19.99 (7-day trial) · Monthly $2.99 · Lifetime $39.99 · see store/PAYWALL_DESIGN.md</p>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="3"/><path d="M16 10l6-3v10l-6-3z"/></symbol>
+    <symbol id="i-viewfinder" viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/><path d="M8 12h8"/></symbol>
+    <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9M19 7h1M4 17h1M11 17h9"/><circle cx="16" cy="7" r="2.2"/><circle cx="8" cy="17" r="2.2"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.6-7.96A5.5 5.5 0 0 1 17 9a4.5 4.5 0 0 1 .5 9z"/><path d="M12 15v-5M9.5 12L12 9.5 14.5 12"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  </defs>
+</svg>
+
+<div class="row">
+
+  <!-- 1. Paywall, light -->
+  <figure>
+    <div class="screen"><div class="phone">
+      <div class="island"></div><div class="status"><span>9:41</span><span>●●● ▮</span></div>
+      <div class="pw-top"><div class="x"><svg viewBox="0 0 14 14"><path d="M2 2l10 10M12 2L2 12"/></svg></div><div class="restore">Restore</div></div>
+      <div class="hero">
+        <img src="../../ios/SmartStorage/Resources/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png" alt="">
+        <div><h2>KeepSpace Pro</h2>
+        <p>Free up more. Keep what matters.</p></div>
+      </div>
+      <div class="card benefits">
+        <div class="benefit"><div class="tile t-teal"><svg><use href="#i-spark"/></svg></div><div><b>Unlimited cleanup</b><span>No monthly limit, clean whole categories</span></div></div>
+        <div class="benefit"><div class="tile t-purple"><svg><use href="#i-video"/></svg></div><div><b>Compress videos</b><span>Keep the video, lose the weight</span></div></div>
+        <div class="benefit"><div class="tile t-blue"><svg><use href="#i-viewfinder"/></svg></div><div><b>Smart screenshots</b><span>Receipts, tickets and chats, sorted on-device</span></div></div>
+        <div class="benefit"><div class="tile t-mint"><svg><use href="#i-receipt"/></svg></div><div><b>Receipt Filing</b><span>From screenshots and paper-receipt photos</span></div></div>
+        <div class="benefit"><div class="tile t-coral"><svg><use href="#i-sliders"/></svg></div><div><b>AI Taste</b><span>Best Shot learns which photos you keep</span></div></div>
+        <div class="benefit"><div class="tile t-amber"><svg><use href="#i-cloud"/></svg></div><div><b>Unlimited backup &amp; rules</b><span>Every cloud account, as many rules as you like</span></div></div>
+      </div>
+      <div class="plans">
+        <div class="plan sel"><div class="badge">BEST VALUE</div><div class="radio"></div>
+          <div><div class="name">Yearly</div><div class="note">7 days free, then billed yearly</div></div>
+          <div class="price"><b>$19.99 / year</b><span>$1.67 / month</span></div></div>
+        <div class="plan"><div class="radio"></div><div><div class="name">Monthly</div></div><div class="price"><b>$2.99 / month</b></div></div>
+        <div class="plan"><div class="radio"></div><div><div class="name">Lifetime</div><div class="note">Pay once, keep Pro</div></div><div class="price"><b>$39.99</b><span>one time</span></div></div>
+      </div>
+      <div class="pw-footer">
+      <div class="cta" style="margin-top:0"><div class="btn primary">Start 7-Day Free Trial</div></div>
+      <div class="fine">7 days free, then $19.99 per year. Renews automatically until you cancel in your account settings. <a>Terms</a> · <a>Privacy</a></div>
+      <div class="trust"><svg viewBox="0 0 24 24"><use href="#i-lock"/></svg>Your photos never leave your device. Pro doesn't change that.</div>
+      </div>
+    </div></div>
+    <figcaption><b>Paywall · light.</b> Yearly pre-selected; the billed price is the largest price shown, the per-month figure is secondary.</figcaption>
+  </figure>
+
+  <!-- 2. Paywall, dark -->
+  <figure>
+    <div class="screen dark"><div class="phone">
+      <div class="island"></div><div class="status"><span>9:41</span><span>●●● ▮</span></div>
+      <div class="pw-top"><div class="x"><svg viewBox="0 0 14 14"><path d="M2 2l10 10M12 2L2 12"/></svg></div><div class="restore">Restore</div></div>
+      <div class="hero">
+        <img src="../../ios/SmartStorage/Resources/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png" alt="">
+        <div><h2>KeepSpace Pro</h2>
+        <p>Free up more. Keep what matters.</p></div>
+      </div>
+      <div class="card benefits">
+        <div class="benefit"><div class="tile t-teal"><svg><use href="#i-spark"/></svg></div><div><b>Unlimited cleanup</b><span>No monthly limit, clean whole categories</span></div></div>
+        <div class="benefit"><div class="tile t-purple"><svg><use href="#i-video"/></svg></div><div><b>Compress videos</b><span>Keep the video, lose the weight</span></div></div>
+        <div class="benefit"><div class="tile t-blue"><svg><use href="#i-viewfinder"/></svg></div><div><b>Smart screenshots</b><span>Receipts, tickets and chats, sorted on-device</span></div></div>
+        <div class="benefit"><div class="tile t-mint"><svg><use href="#i-receipt"/></svg></div><div><b>Receipt Filing</b><span>From screenshots and paper-receipt photos</span></div></div>
+        <div class="benefit"><div class="tile t-coral"><svg><use href="#i-sliders"/></svg></div><div><b>AI Taste</b><span>Best Shot learns which photos you keep</span></div></div>
+        <div class="benefit"><div class="tile t-amber"><svg><use href="#i-cloud"/></svg></div><div><b>Unlimited backup &amp; rules</b><span>Every cloud account, as many rules as you like</span></div></div>
+      </div>
+      <div class="plans">
+        <div class="plan"><div class="radio"></div><div><div class="name">Yearly</div><div class="note">7 days free, then billed yearly</div></div><div class="price"><b>$19.99 / year</b><span>$1.67 / month</span></div></div>
+        <div class="plan"><div class="radio"></div><div><div class="name">Monthly</div></div><div class="price"><b>$2.99 / month</b></div></div>
+        <div class="plan sel"><div class="badge">PAY ONCE</div><div class="radio"></div><div><div class="name">Lifetime</div><div class="note">Pay once, keep Pro</div></div><div class="price"><b>$39.99</b><span>one time</span></div></div>
+      </div>
+      <div class="pw-footer">
+      <div class="cta" style="margin-top:0"><div class="btn primary">Buy Lifetime · $39.99</div></div>
+      <div class="fine">One-time purchase. No subscription, no renewal. <a>Terms</a> · <a>Privacy</a></div>
+      <div class="trust"><svg viewBox="0 0 24 24"><use href="#i-lock"/></svg>Your photos never leave your device. Pro doesn't change that.</div>
+      </div>
+    </div></div>
+    <figcaption><b>Paywall · dark, Lifetime selected.</b> The button and fine print change with the plan: no trial wording and no renewal text for a one-time purchase.</figcaption>
+  </figure>
+
+  <!-- 3. Quota gate sheet -->
+  <figure>
+    <div class="screen"><div class="phone">
+      <div class="island"></div><div class="status"><span>9:41</span><span>●●● ▮</span></div>
+      <div class="bg-review"><h3>Exact Duplicates</h3><div style="color:var(--text2)">Identical copies. One of each is kept.</div>
+        <div class="grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      <div class="scrim"></div>
+      <div class="sheet">
+        <div class="grab"></div>
+        <h4>You're close to this month's free limit</h4>
+        <p>Your selection is 2.4 GB. You can free 100 MB more on Free.</p>
+        <div class="meter"><i style="width:90%"></i></div>
+        <div class="meter-l"><span>0.9 of 1 GB used this month</span><span>Resets Nov 1</span></div>
+        <div class="btn primary">Unlock Unlimited Cleanup</div>
+        <div class="btn secondary">Delete 100 MB (safest first)</div>
+        <div class="btn text">Not now</div>
+        <div class="safe">Nothing is deleted without your confirmation.</div>
+      </div>
+    </div></div>
+    <figcaption><b>Quota gate.</b> Appears only when a selection is bigger than the remaining free allowance. Free users can always finish with a smaller delete, so the limit never feels like a hostage situation.</figcaption>
+  </figure>
+
+  <!-- 4. Subscription (Settings), Free -->
+  <figure>
+    <div class="screen"><div class="phone">
+      <div class="island"></div><div class="status"><span>9:41</span><span>●●● ▮</span></div>
+      <div class="nav"><h3>Subscription</h3><p>You're on the Free plan.</p></div>
+      <div class="card usage">
+        <h5>This month <span class="chip">FREE</span></h5>
+        <div class="u full"><div class="l">Cleanup<span>0.9 of 1 GB</span></div><div class="meter"><i style="width:90%"></i></div></div>
+        <div class="u"><div class="l">Backups<span>62 of 100 files</span></div><div class="meter"><i style="width:62%"></i></div></div>
+        <div class="u"><div class="l">Storage rules<span>1 of 1</span></div><div class="meter"><i style="width:100%"></i></div></div>
+        <div class="reset">Cleanup and backup allowances reset on Nov 1.</div>
+      </div>
+      <div class="card list">
+        <div class="benefit"><div class="tile t-purple"><svg><use href="#i-video"/></svg></div><div><b>Compress videos</b></div><div class="lock">PRO</div></div>
+        <div class="benefit"><div class="tile t-blue"><svg><use href="#i-viewfinder"/></svg></div><div><b>Smart screenshots</b></div><div class="lock">PRO</div></div>
+        <div class="benefit"><div class="tile t-mint"><svg><use href="#i-receipt"/></svg></div><div><b>Receipt Filing</b></div><div class="lock">PRO</div></div>
+        <div class="benefit"><div class="tile t-coral"><svg><use href="#i-sliders"/></svg></div><div><b>AI Taste</b></div><div class="lock">PRO</div></div>
+      </div>
+      <div class="actions"><div class="btn primary">Upgrade to Pro</div><div class="btn text">Restore Purchases</div></div>
+    </div></div>
+    <figcaption><b>Settings → Subscription (Free).</b> Shows what is used, when it resets, and what Pro adds. A Pro member sees the plan, renewal date, and "Manage Subscription" instead.</figcaption>
+  </figure>
+
+</div>
+</body>
+</html>
