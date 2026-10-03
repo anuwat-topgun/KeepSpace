@@ -12,7 +12,15 @@ struct RootView: View {
     @State private var rules = RuleStore()
     @State private var weekly = WeeklyCleanReminder()
     @State private var cloud = CloudStore()
+    @State private var monetization: MonetizationStore
+    @State private var proStore: ProStoreService
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
+
+    init() {
+        let monetization = MonetizationStore()
+        _monetization = State(initialValue: monetization)
+        _proStore = State(initialValue: ProStoreService(monetization: monetization))
+    }
 
     var body: some View {
         Group {
@@ -32,6 +40,8 @@ struct RootView: View {
         .environment(rules)
         .environment(weekly)
         .environment(cloud)
+        .environment(monetization)
+        .environment(proStore)
         .environment(library.taste)
         .tint(Palette.accent)
         // Keep the reminder's text current, and open the Cleanup Plan when a reminder is tapped.
@@ -40,6 +50,7 @@ struct RootView: View {
                 Task { await weekly.recordScan(potentialBytes: library.content.storage.potentialCleanupBytes) }
             }
         }
+        .task { proStore.start() }
         .task { await weekly.refreshPermission(); openFromNotificationIfPending() }
         .onReceive(NotificationCenter.default.publisher(for: .openFromNotification)) { _ in openFromNotificationIfPending() }
         #if DEBUG

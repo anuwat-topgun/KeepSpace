@@ -33,6 +33,10 @@ import com.smartstorage.cleaner.ui.shell.AppShell
 import com.smartstorage.cleaner.ui.theme.SmartStorageTheme
 import com.smartstorage.cleaner.cloud.CloudStore
 import com.smartstorage.cleaner.cloud.LocalCloudStore
+import com.smartstorage.cleaner.monetization.MonetizationStore
+import com.smartstorage.cleaner.monetization.PrefsMonetizationStorage
+import com.smartstorage.cleaner.monetization.ProBillingService
+import androidx.lifecycle.lifecycleScope
 
 class MainActivity : ComponentActivity() {
     private val libraryViewModel: LibraryViewModel by viewModels()
@@ -41,6 +45,8 @@ class MainActivity : ComponentActivity() {
     private val ruleStore by lazy { RuleStore(applicationContext) }
     private val weeklyReminder by lazy { WeeklyCleanReminder(applicationContext) }
     private val cloudStore by lazy { CloudStore(applicationContext) }
+    private val monetization by lazy { MonetizationStore(PrefsMonetizationStorage(prefs)) }
+    private val proBilling by lazy { ProBillingService(applicationContext, monetization, lifecycleScope) }
     /** Bumped each time a reminder is tapped; the shell opens the Cleanup Plan for every new value. */
     private var openPlanRequest by mutableIntStateOf(0)
     private val prefs by lazy { getSharedPreferences(PREFS, MODE_PRIVATE) }
@@ -97,12 +103,14 @@ class MainActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
+        proBilling.start() // re-reads what the account owns (renewals, refunds, purchases made elsewhere)
         // Also covers returning from system Settings after changing photo access.
         if (prefs.getBoolean(KEY_ONBOARDED, false)) store.refreshAccess()
     }
 
     override fun onDestroy() {
         cloudStore.close()
+        proBilling.close()
         super.onDestroy()
     }
 

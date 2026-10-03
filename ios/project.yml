@@ -83,5 +83,7 @@ schemes:
     build:
       targets:
         SmartStorage: all
+    run:
+      storeKitConfiguration: StoreKit/KeepSpace.storekit
     test:
       targets: [SmartStorageTests, SmartStorageUITests]

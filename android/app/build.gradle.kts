@@ -127,6 +127,8 @@ dependencies {
     // OneDrive uses Authorization Code + PKCE; Google Drive uses the official AuthorizationClient.
     implementation(libs.appauth)
     implementation(libs.play.services.auth)
+    // Pro subscriptions / lifetime purchase. Entitlement is read from Play directly; there is no backend.
+    implementation(libs.play.billing)
     debugImplementation(libs.androidx.ui.tooling)
     testImplementation(libs.junit)
     testImplementation(libs.json)

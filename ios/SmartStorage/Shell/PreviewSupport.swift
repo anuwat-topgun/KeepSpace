@@ -9,5 +9,6 @@ extension View {
             .environment(RuleStore(defaults: UserDefaults(suiteName: "preview") ?? .standard))
             .environment(WeeklyCleanReminder(defaults: UserDefaults(suiteName: "preview") ?? .standard))
             .environment(CloudStore(defaults: UserDefaults(suiteName: "preview.cloud") ?? .standard))
+            .environment(MonetizationStore(defaults: UserDefaults(suiteName: "preview.monetization") ?? .standard))
     }
 }

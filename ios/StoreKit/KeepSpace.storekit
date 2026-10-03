@@ -1,0 +1,58 @@
+{
+  "identifier" : "6A1D0F10",
+  "nonRenewingSubscriptions" : [],
+  "products" : [
+    {
+      "displayPrice" : "39.99",
+      "familyShareable" : false,
+      "internalID" : "6A1D0F11",
+      "localizations" : [ { "description" : "Pay once. Pro forever.", "displayName" : "KeepSpace Pro Lifetime", "locale" : "en_US" } ],
+      "productID" : "com.keepspace.app.pro.lifetime",
+      "referenceName" : "Pro Lifetime",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : { "_failTransactionsEnabled" : false, "_locale" : "en_US", "_storefront" : "USA", "_storeKitErrors" : [] },
+  "subscriptionGroups" : [
+    {
+      "id" : "6A1D0F20",
+      "localizations" : [],
+      "name" : "KeepSpace Pro",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [],
+          "codeOffers" : [],
+          "displayPrice" : "19.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6A1D0F21",
+          "introductoryOffer" : { "internalID" : "6A1D0F22", "numberOfPeriods" : 1, "paymentMode" : "free", "subscriptionPeriod" : "P1W" },
+          "localizations" : [ { "description" : "Everything in Pro, billed yearly.", "displayName" : "KeepSpace Pro Yearly", "locale" : "en_US" } ],
+          "productID" : "com.keepspace.app.pro.annual",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Pro Yearly",
+          "subscriptionGroupID" : "6A1D0F20",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : []
+        },
+        {
+          "adHocOffers" : [],
+          "codeOffers" : [],
+          "displayPrice" : "2.99",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "6A1D0F23",
+          "introductoryOffer" : null,
+          "localizations" : [ { "description" : "Everything in Pro, billed monthly.", "displayName" : "KeepSpace Pro Monthly", "locale" : "en_US" } ],
+          "productID" : "com.keepspace.app.pro.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Pro Monthly",
+          "subscriptionGroupID" : "6A1D0F20",
+          "type" : "RecurringSubscription",
+          "winbackOffers" : []
+        }
+      ]
+    }
+  ],
+  "version" : { "major" : 4, "minor" : 0 }
+}

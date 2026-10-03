@@ -287,3 +287,39 @@ class MonetizationStoreTest {
         assertEquals(1_000_000_000L, s.allowances().cleanupRemaining)
     }
 }
+
+class PlayBillingMappingTest {
+    private fun owned(id: String, purchased: Boolean = true, renewing: Boolean = true) = OwnedPurchase(listOf(id), now - DAY, purchased, renewing)
+
+    @Test fun ownedSubscriptionIsTrustedForADayAndFeedsEntitlement() {
+        val purchases = toStorePurchases(listOf(owned(ProProduct.Annual.id)), now)
+        assertEquals(now + OWNED_TRUST_MS, purchases.single().expiresAt)
+        assertTrue(purchases.single().willRenew)
+        assertEquals(ProProduct.Annual, (resolve(purchases) as ProStatus.Pro).product)
+    }
+
+    @Test fun lifetimeHasNoExpiry() {
+        val status = resolve(toStorePurchases(listOf(owned(ProProduct.Lifetime.id)), now)) as ProStatus.Pro
+        assertEquals(ProProduct.Lifetime, status.product)
+        assertNull(status.expiresAt)
+    }
+
+    @Test fun pendingAndUnknownPurchasesDoNotUnlock() {
+        assertEquals(ProStatus.Free, resolve(toStorePurchases(listOf(owned(ProProduct.Annual.id, purchased = false)), now)))
+        assertEquals(ProStatus.Free, resolve(toStorePurchases(listOf(owned("com.other.app.pro")), now)))
+    }
+
+    @Test fun aRefundedPurchaseJustStopsBeingListed() {
+        val cached = ProStatus.Pro(ProProduct.Lifetime, null, isTrial = false, willRenew = false, isGrace = false)
+        assertEquals(ProStatus.Free, resolve(toStorePurchases(emptyList(), now), cached))
+    }
+
+    @Test fun billingPeriodsBecomeDays() {
+        assertEquals(7, billingPeriodDays("P7D"))
+        assertEquals(7, billingPeriodDays("P1W"))
+        assertEquals(30, billingPeriodDays("P1M"))
+        assertEquals(365, billingPeriodDays("P1Y"))
+        assertNull(billingPeriodDays("garbage"))
+        assertNull(billingPeriodDays("P0D"))
+    }
+}
