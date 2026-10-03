@@ -139,15 +139,17 @@ KEYSTORE_PASSWORD='…' KEY_ALIAS='…' KEY_PASSWORD='…' \
 
 ## 4. Tests
 
+- AVD ของโปรเจกต์: `keepspace_phone` (Pixel 8, android-36 ใช้ตรวจ layout โทรศัพท์) และ `keepspace_tablet`
+
 ### Unit tests
-- Monetization (`Monetization/` ↔ `monetization/`): เก็บเฉพาะสถานะ Pro กับตัวนับรายเดือนใน UserDefaults/SharedPreferences คีย์ `monetization.status.v1`, `monetization.usage.v1` (ไม่เก็บชื่อไฟล์); StoreKit 2 (`ProStoreService`) / Play Billing 7.1.1 (`ProBillingService`) ต่อแล้วแต่ยังไม่ได้ลองกับสินค้าจริง; Play Billing ไม่ให้วันหมดอายุบนเครื่อง จึงถือว่ารายการที่ Play ยังแสดงอยู่ใช้ได้ 1 วันแล้วอ่านใหม่ทุกครั้งที่เปิด/resume; Paywall + หน้า Subscription + quota gate ในปุ่มลบ (Review/Best Shot) ทำแล้ว และล็อกฟีเจอร์ Pro ครบแล้ว; ดู quota gate แบบ debug บน iOS: `-debugTab clean -debugRoute review:similar -debugQuotaGate YES`. ดู paywall แบบ debug: iOS `-debugPaywall YES|<ชื่อ ProFeature>` (ใช้ราคาตัวอย่าง), Android `--ez debugPaywall true --es debugPaywallFocus VideoCompression`; หน้า Subscription: iOS `-debugTab settings -debugRoute subscription`. ทดสอบ iOS ในเครื่อง: เปิดจาก Xcode (scheme ใช้ `ios/StoreKit/KeepSpace.storekit`)
+- Monetization (`Monetization/` ↔ `monetization/`): เก็บเฉพาะสถานะ Pro กับตัวนับรายเดือนใน UserDefaults/SharedPreferences คีย์ `monetization.status.v1`, `monetization.usage.v1` (ไม่เก็บชื่อไฟล์); StoreKit 2 (`ProStoreService`) / Play Billing 7.1.1 (`ProBillingService`) ต่อแล้วแต่ยังไม่ได้ลองกับสินค้าจริง; Play Billing ไม่ให้วันหมดอายุบนเครื่อง จึงถือว่ารายการที่ Play ยังแสดงอยู่ใช้ได้ 1 วันแล้วอ่านใหม่ทุกครั้งที่เปิด/resume; Paywall + หน้า Subscription + quota gate ในปุ่มลบ (Review/Best Shot) ทำแล้ว และล็อกฟีเจอร์ Pro ครบแล้ว; ดู quota gate แบบ debug: Android `--ez debugQuotaGate true`, iOS `-debugTab clean -debugRoute review:similar -debugQuotaGate YES`. ดู paywall แบบ debug: iOS `-debugPaywall YES|<ชื่อ ProFeature>` (ใช้ราคาตัวอย่าง), Android `--ez debugPaywall true --es debugPaywallFocus VideoCompression`; หน้า Subscription: iOS `-debugTab settings -debugRoute subscription`. ทดสอบ iOS ในเครื่อง: เปิดจาก Xcode (scheme ใช้ `ios/StoreKit/KeepSpace.storekit`)
 ```bash
 cd ios && xcodegen && xcodebuild test -project SmartStorage.xcodeproj -scheme SmartStorage -destination 'platform=iOS Simulator,name=iPhone 17'
 ```
 ```bash
 cd android && ./gradlew testDebugUnitTest
 ```
-- สถานะล่าสุด: iOS 128 unit tests / 34 suites + 1 UI smoke test และ Android 123 unit tests ผ่านทั้งหมด
+- สถานะล่าสุด: iOS 130 unit tests / 35 suites + 1 UI smoke test และ Android 125 unit tests ผ่านทั้งหมด
 - ผล Android: `android/app/build/test-results/testDebugUnitTest/*.xml` · report HTML: `android/app/build/reports/tests/testDebugUnitTest/index.html`
 - ถ้า `xcodebuild test` ค้างนาน (มัก hang ที่ `simctl diagnose` เมื่อ test crash หรือ simulator ยังไม่ boot) ให้แยกเป็น 2 ขั้น:
 ```bash

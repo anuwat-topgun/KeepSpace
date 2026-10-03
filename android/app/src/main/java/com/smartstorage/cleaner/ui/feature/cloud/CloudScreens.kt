@@ -81,6 +81,8 @@ fun CloudOverviewScreen(onBackUpNow: () -> Unit, onBack: () -> Unit) {
         ScreenHeader("Cloud Backup", "Direct from this device to your account. KeepSpace never receives your files.", Modifier.padding(bottom = 8.dp))
         state.connections.forEach { connection ->
             SmartCard {
+              // A card's content is a Box, so the tile and its button need a Column or they draw on top of each other.
+              Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 ListTile(Icons.Rounded.Cloud, connection.provider.title, tint = if (connection.connected) Tint.Teal else Tint.Blue,
                     subtitle = when {
                         connection.connected -> connection.accountName ?: "Connected"
@@ -101,8 +103,9 @@ fun CloudOverviewScreen(onBackUpNow: () -> Unit, onBack: () -> Unit) {
                             cloud.authorizationIntent(connection.provider)?.let(browserLauncher::launch)
                         }
                     }, Modifier.fillMaxWidth(), showsArrow = false, enabled = connection.configured)
-                    if (!canConnect) Row(Modifier.fillMaxWidth().padding(top = 6.dp), horizontalArrangement = Arrangement.Center) { ProChip() }
+                    if (!canConnect) Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) { ProChip() }
                 }
+              }
             }
         }
         if (state.notice != null) Text(state.notice.orEmpty(), style = SmartType.metadata, color = SmartTheme.colors.textSecondary)

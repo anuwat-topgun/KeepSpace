@@ -201,8 +201,9 @@ fun AboutScreen(onBack: () -> Unit) {
             androidx.compose.foundation.layout.Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Text("Open-source software", style = SmartType.cardHeadline, color = colors.textPrimary)
                 LICENSES.forEach { (name, license) ->
-                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                        Text(name, style = SmartType.metadata, color = colors.textPrimary)
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                        // The name takes the remaining width and wraps, so a long name never runs into the licence.
+                        Text(name, style = SmartType.metadata, color = colors.textPrimary, modifier = Modifier.weight(1f))
                         Text(license, style = SmartType.metadata, color = colors.textSecondary)
                     }
                 }

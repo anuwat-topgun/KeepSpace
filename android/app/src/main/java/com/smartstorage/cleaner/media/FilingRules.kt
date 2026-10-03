@@ -41,6 +41,12 @@ data class StorageRule(
     val afterUpload: AfterUploadAction,
     val isEnabled: Boolean = true,
 ) {
+    /**
+     * True for the built-in example rules exactly as shipped. Editing one makes it the person's own, and only
+     * their own rules count toward the Free plan's rule limit.
+     */
+    val isExample: Boolean get() = defaults.any { it.copy(id = id, isEnabled = isEnabled) == this }
+
     companion object {
         /** The spec's example rules (§7.3), used until the rule builder (v1.2 UI) lets people edit them. */
         val defaults = listOf(

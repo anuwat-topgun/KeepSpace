@@ -93,20 +93,26 @@ fun SecondaryButton(
     }
 }
 
-/** Small inline pill action inside rows ("Compress", "Review"). */
+/** Small inline pill action inside rows ("Compress", "Review"). [isProLocked] adds a PRO mark inside the pill. */
 @Composable
-fun InlinePillButton(text: String, onClick: () -> Unit, tint: Tint = Tint.Teal) {
+fun InlinePillButton(text: String, onClick: () -> Unit, tint: Tint = Tint.Teal, isProLocked: Boolean = false) {
     val dark = SmartTheme.colors.isDark
-    Text(
-        text = text,
-        style = TextStyle(fontSize = 15.sp, fontWeight = FontWeight.SemiBold),
-        color = tint.foreground(dark),
-        maxLines = 1,
-        softWrap = false,
+    Row(
         modifier = Modifier
             .clip(CircleShape)
             .background(tint.background(dark))
             .clickable(role = Role.Button, onClick = onClick)
-            .padding(horizontal = 16.dp, vertical = 9.dp),
-    )
+            .padding(start = 16.dp, end = if (isProLocked) 10.dp else 16.dp, top = 9.dp, bottom = 9.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(
+            text = text,
+            style = TextStyle(fontSize = 15.sp, fontWeight = FontWeight.SemiBold),
+            color = tint.foreground(dark),
+            maxLines = 1,
+            softWrap = false,
+        )
+        if (isProLocked) ProChip()
+    }
 }

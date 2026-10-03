@@ -32,7 +32,7 @@ struct StorageRulesView: View {
             }
 
             // The first rule is free; a second opens the paywall. Existing rules are never removed.
-            let canAdd = monetization.allowances.canCreateRule(existing: store.rules.count)
+            let canAdd = monetization.allowances.canCreateRule(existing: store.userRuleCount)
             Button {
                 if canAdd { router.push(.newRule) } else { router.presentPaywall(focus: .unlimitedRules) }
             } label: {

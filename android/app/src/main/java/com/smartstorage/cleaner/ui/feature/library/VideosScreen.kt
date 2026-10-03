@@ -132,10 +132,7 @@ private fun VideoRow(video: VideoItem, onReview: (ReviewKind) -> Unit) {
             if (video.isMeaningful || !canCompress) {
                 InlinePillButton("Review", onClick = { onReview(ReviewKind.LargeVideos) }, tint = Tint.Mint)
             } else {
-                Row(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
-                    InlinePillButton("Compress", onClick = { if (isPro) compressing = true else explaining = true }, tint = Tint.Teal)
-                    if (!isPro) ProChip()
-                }
+                InlinePillButton("Compress", onClick = { if (isPro) compressing = true else explaining = true }, tint = Tint.Teal, isProLocked = !isPro)
             }
         }
     }

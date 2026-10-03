@@ -72,8 +72,8 @@ struct SubscriptionView: View {
                       text: localizedFormat("%@ of %@ used", usedBytes.formattedBytes, limits.cleanupBytesPerMonth.formattedBytes))
                 Meter(title: "Backup", value: Double(min(a.ledger.backupFiles, limits.backupFilesPerMonth)), limit: Double(limits.backupFilesPerMonth),
                       text: localizedFormat("%d of %d files used", min(a.ledger.backupFiles, limits.backupFilesPerMonth), limits.backupFilesPerMonth))
-                Meter(title: "Rules", value: Double(min(rules.rules.count, limits.maxRules)), limit: Double(limits.maxRules),
-                      text: localizedFormat("%d of %d used", min(rules.rules.count, limits.maxRules), limits.maxRules))
+                Meter(title: "Rules", value: Double(min(rules.userRuleCount, limits.maxRules)), limit: Double(limits.maxRules),
+                      text: localizedFormat("%d of %d used", min(rules.userRuleCount, limits.maxRules), limits.maxRules))
                 Text(localizedFormat("Resets %@", a.resetDate.formatted(.dateTime.month(.wide).day())))
                     .font(Typography.metadata).foregroundStyle(Palette.textSecondary)
             }

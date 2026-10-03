@@ -16,6 +16,9 @@ final class RuleStore {
 
     var activeCount: Int { rules.filter(\.isEnabled).count }
 
+    /// Rules the person made or edited — what counts toward the Free plan's limit (the shipped examples don't).
+    var userRuleCount: Int { rules.filter { !$0.isExample }.count }
+
     /// The first enabled rule for a trigger wins, in list order (spec §7.9).
     func rule(for trigger: RuleTrigger) -> StorageRule? {
         rules.first { $0.isEnabled && $0.trigger == trigger }

@@ -54,6 +54,7 @@ class MainActivity : ComponentActivity() {
     private val proBilling by lazy { ProBillingService(applicationContext, monetization, lifecycleScope) }
     /** The paywall request, if one is showing. Set only by a person tapping something locked or Upgrade — never at launch. */
     private var paywall by mutableStateOf<PaywallRequest?>(null)
+    private var debugQuota by mutableStateOf(false)
     /** Bumped each time a reminder is tapped; the shell opens the Cleanup Plan for every new value. */
     private var openPlanRequest by mutableIntStateOf(0)
     private val prefs by lazy { getSharedPreferences(PREFS, MODE_PRIVATE) }
@@ -69,6 +70,7 @@ class MainActivity : ComponentActivity() {
         store.onDeleted = { bytes -> monetization.recordCleanup(bytes) }
         // AI Taste is Pro: Free keeps what was learned but stops learning.
         store.canLearnTaste = { monetization.isPro }
+        if (BuildConfig.DEBUG && intent.getBooleanExtra("debugQuotaGate", false)) debugQuota = true
         if (BuildConfig.DEBUG && intent.getBooleanExtra(EXTRA_DEBUG_PAYWALL, false)) {
             proBilling.useDemoOffers()
             paywall = PaywallRequest(intent.getStringExtra(EXTRA_DEBUG_FOCUS)?.let { name -> ProFeature.entries.firstOrNull { it.name == name } })
@@ -102,6 +104,21 @@ class MainActivity : ComponentActivity() {
                     LocalPresentPaywall provides { feature -> paywall = PaywallRequest(feature) },
                 ) {
                     if (onboarded) AppShell(openCleanupPlanRequest = openPlanRequest) else OnboardingScreen(onContinue = { permissionLauncher.launch(LibraryStore.permissions) })
+                    if (BuildConfig.DEBUG && debugQuota) {
+                        // `--ez debugQuotaGate true`: the quota gate with sample numbers (screenshots; demo data has no real sizes).
+                        val sample = listOf(
+                            com.smartstorage.cleaner.monetization.CleanupItem("a", 600_000_000, com.smartstorage.cleaner.media.SafetyLevel.VerySafe),
+                            com.smartstorage.cleaner.monetization.CleanupItem("b", 700_000_000, com.smartstorage.cleaner.media.SafetyLevel.Safe),
+                        )
+                        val now = System.currentTimeMillis()
+                        val allowances = com.smartstorage.cleaner.monetization.Allowances(
+                            com.smartstorage.cleaner.monetization.ProStatus.Free,
+                            com.smartstorage.cleaner.monetization.UsageLedger.empty(now).copy(cleanupBytes = 100_000_000), now,
+                        )
+                        com.smartstorage.cleaner.monetization.QuotaGatePrompt.of(allowances.gate(sample), sample, allowances)?.let { prompt ->
+                            com.smartstorage.cleaner.ui.feature.paywall.QuotaGateSheet(prompt, onUnlock = { debugQuota = false }, onDeletePartial = { debugQuota = false }, onNotNow = { debugQuota = false })
+                        }
+                    }
                     paywall?.let { request -> PaywallScreen(focus = request.feature, onDismiss = { paywall = null }) }
                 }
             }

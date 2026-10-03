@@ -90,6 +90,17 @@ struct StorageRule: Identifiable, Hashable, Sendable, Codable {
     var afterUpload: AfterUploadAction
     var isEnabled = true
 
+    /// True for the built-in example rules exactly as shipped. Editing one makes it the person's own, and only
+    /// their own rules count toward the Free plan's rule limit.
+    var isExample: Bool {
+        Self.defaults.contains { example in
+            var candidate = example
+            candidate.id = id
+            candidate.isEnabled = isEnabled
+            return candidate == self
+        }
+    }
+
     /// The spec's example rules (§7.3), used until the rule builder (v1.2 UI) lets people edit them.
     static let defaults: [StorageRule] = [
         StorageRule(name: "Receipts", trigger: .receipt, provider: .googleDrive,

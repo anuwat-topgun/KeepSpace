@@ -82,7 +82,7 @@ fun SubscriptionScreen(onBack: () -> Unit) {
             }
         }
 
-        if (!allowances.isPro) UsageCard(allowances, ruleCount = rules.size, limits = monetization.limits)
+        if (!allowances.isPro) UsageCard(allowances, ruleCount = rules.count { !it.isExample }, limits = monetization.limits)
 
         if (allowances.isPro) {
             if ((status as? ProStatus.Pro)?.product?.isSubscription == true) {

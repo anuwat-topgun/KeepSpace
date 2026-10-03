@@ -65,7 +65,9 @@ fun SmartCard(
     } else {
         filled.border(1.dp, colors.separator.copy(alpha = 0.6f), shape)
     }
-    Box(bordered.padding(contentPadding)) { content() }
+    // A Column, not a Box: a card with several children (a tile and its button, a tile and a progress bar) stacks them
+    // instead of drawing them on top of each other. A single child lays out exactly as before.
+    Column(bordered.padding(contentPadding), verticalArrangement = Arrangement.spacedBy(14.dp)) { content() }
 }
 
 /** Rounded square holding an icon on a soft tint. */

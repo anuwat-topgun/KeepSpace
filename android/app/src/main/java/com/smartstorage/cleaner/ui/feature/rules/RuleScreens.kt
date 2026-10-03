@@ -152,7 +152,7 @@ fun StorageRulesScreen(onAdd: () -> Unit, onEdit: (String) -> Unit, onBack: () -
         val monetization = LocalMonetization.current
         val proStatus by monetization.status.collectAsState()
         val presentPaywall = LocalPresentPaywall.current
-        val canAdd = remember(proStatus, rules.size) { monetization.allowances().canCreateRule(rules.size) }
+        val canAdd = remember(proStatus, rules) { monetization.allowances().canCreateRule(rules.count { !it.isExample }) }
         Box(contentAlignment = Alignment.Center) {
             PrimaryButton("+  Add Rule", onClick = { if (canAdd) onAdd() else presentPaywall(ProFeature.UnlimitedRules) },
                 modifier = Modifier.fillMaxWidth().padding(top = 4.dp), showsArrow = false)
