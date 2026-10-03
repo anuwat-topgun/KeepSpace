@@ -106,6 +106,9 @@ struct ReviewView: View {
     private func requestDelete(items: [ReviewItem], selected: Set<String>) {
         let candidates = items.filter { selected.contains($0.id) }.map { CleanupItem(id: $0.id, bytes: $0.bytes, safety: itemSafety) }
         let allowances = monetization.allowances
+        #if DEBUG
+        print("[KeepSpace] gate: \(candidates.count) items, \(candidates.reduce(Int64(0)) { $0 + $1.bytes }) B, remaining \(String(describing: allowances.cleanupRemaining)) → \(allowances.gate(cleanup: candidates))")
+        #endif
         if let prompt = QuotaGatePrompt(allowances.gate(cleanup: candidates), selection: candidates, allowances: allowances) {
             quotaPrompt = prompt
         } else {

@@ -55,6 +55,9 @@ final class MonetizationStore {
         guard !isPro else { return } // Pro is unlimited; nothing to count
         ledger = ledger.recordingCleanup(bytes, at: clock(), calendar: calendar)
         save(ledger, key: Key.ledger)
+        #if DEBUG
+        print("[KeepSpace] recordCleanup +\(bytes) B → month \(ledger.month) used \(ledger.cleanupBytes) B of \(limits.cleanupBytesPerMonth) B")
+        #endif
     }
 
     /// Call when files were actually queued for backup.

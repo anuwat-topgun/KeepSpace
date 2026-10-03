@@ -113,7 +113,13 @@ final class LibraryStore {
     func delete(_ ids: Set<String>) async -> DeletionOutcome {
         guard !isDemo else { return .cancelled }
         let bytes = lastItems.lazy.filter { ids.contains($0.id) }.reduce(Int64(0)) { $0 + $1.bytes }
+        #if DEBUG
+        print("[KeepSpace] delete requested: \(ids.count) items, \(bytes) B")
+        #endif
         let outcome = await LibraryActions.delete(ids: Array(ids), bytes: bytes)
+        #if DEBUG
+        print("[KeepSpace] delete outcome: \(outcome)")
+        #endif
         switch outcome {
         case .deleted(let count, let bytes):
             removeFromResults(ids)
