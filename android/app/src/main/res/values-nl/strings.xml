@@ -124,7 +124,6 @@
     <string name="common_backed_up_7f12f675">Back-up gemaakt</string>
     <string name="subscription_backup">Back-up</string>
     <string name="cloud_overview_backup_activity">Back-upactiviteit</string>
-    <string name="cloud_screens_backup_activity">BACK-UPACTIVITEIT</string>
     <string name="common_backups_go_where_you_choose">Back-ups gaan waar u maar wilt</string>
     <string name="insights_base">Basis</string>
     <string name="common_best">Beste</string>
@@ -177,7 +176,6 @@
     <string name="common_connect_google_drive_or_onedrive">Verbind Google Drive of OneDrive</string>
     <string name="common_connected">Verbonden</string>
     <string name="common_content">Inhoud</string>
-    <string name="cloud_screens_content">INHOUD</string>
     <string name="paywall_continue">Ga door</string>
     <string name="common_create_an_automatic_filing_rule">Maak een automatische archiveringsregel.</string>
     <string name="common_date">Datum</string>
@@ -193,7 +191,6 @@
     <string name="settings_detail_screens_deleting_always_asks_you_first_and_items_stay_in_trash_f">Als u wilt verwijderen, wordt u altijd eerst gevraagd en items blijven 30 dagen in de prullenbak.</string>
     <string name="common_deselect_all">Deselecteer Alles</string>
     <string name="common_destination">Bestemming</string>
-    <string name="cloud_screens_destination">BESTEMMING</string>
     <string name="common_details_read_on_this_device_ready_to_file_by_your_rules">Details gelezen op dit apparaat, klaar om te archiveren volgens jouw regels.</string>
     <string name="common_details_were_read_on_this_device_and_stay_here">Details zijn op dit apparaat gelezen en blijven hier.</string>
     <string name="common_device_storage">Apparaatopslag</string>

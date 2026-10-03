@@ -122,7 +122,6 @@
 "Backed Up" = "Резервное копирование";
 "Backup" = "Резервное копирование";
 "Backup Activity" = "Резервное копирование";
-"BACKUP ACTIVITY" = "РЕЗЕРВНОЕ КОПИРОВАНИЕ";
 "Backups go where you choose" = "Резервные копии хранятся там, где вы выберете";
 "Base" = "База";
 "Best" = "Лучший";
@@ -175,7 +174,6 @@
 "Connect Google Drive or OneDrive" = "Подключите Google Drive или OneDrive";
 "Connected" = "Подключено";
 "Content" = "Содержание";
-"CONTENT" = "СОДЕРЖАНИЕ";
 "Continue" = "Продолжить";
 "Create an automatic filing rule." = "Создайте правило автоматического хранения.";
 "Date" = "Дата";
@@ -191,7 +189,6 @@
 "Deleting always asks you first, and items stay in Trash for 30 days." = "При удалении всегда сначала запрашивается ваш запрос, а элементы остаются в корзине в течение 30 дней.";
 "Deselect All" = "Отменить выбор всех";
 "Destination" = "Пункт назначения";
-"DESTINATION" = "НАЗНАЧЕНИЕ";
 "Details read on this device, ready to file by your rules." = "Подробности читайте на этом устройстве, готовом к подаче по вашим правилам.";
 "Details were read on this device and stay here." = "Подробности читались об этом устройстве и остаются здесь.";
 "Device Storage" = "Хранение устройства";

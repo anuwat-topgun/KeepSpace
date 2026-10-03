@@ -222,7 +222,7 @@ private fun StripItem(
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    Icon(Icons.Rounded.AutoAwesome, contentDescription = "Recommended", tint = Color.White, modifier = Modifier.size(12.dp))
+                    Icon(Icons.Rounded.AutoAwesome, contentDescription = com.smartstorage.cleaner.ui.i18n.localized("Recommended"), tint = Color.White, modifier = Modifier.size(12.dp))
                     // Collapse to the icon alone when the tile is too narrow for the word.
                     if (showsWord) {
                         Text("Recommended", style = TextStyle(fontSize = 11.sp, fontWeight = FontWeight.SemiBold), color = Color.White, maxLines = 1)

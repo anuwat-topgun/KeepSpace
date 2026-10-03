@@ -124,7 +124,6 @@
     <string name="common_backed_up_7f12f675">Dicadangkan</string>
     <string name="subscription_backup">Cadangan</string>
     <string name="cloud_overview_backup_activity">Aktivitas Cadangan</string>
-    <string name="cloud_screens_backup_activity">AKTIVITAS CADANGAN</string>
     <string name="common_backups_go_where_you_choose">Cadangan dikirim ke tempat yang Anda pilih</string>
     <string name="insights_base">Pangkalan</string>
     <string name="common_best">Terbaik</string>
@@ -177,7 +176,6 @@
     <string name="common_connect_google_drive_or_onedrive">Hubungkan Google Drive atau OneDrive</string>
     <string name="common_connected">Terhubung</string>
     <string name="common_content">Konten</string>
-    <string name="cloud_screens_content">ISI</string>
     <string name="paywall_continue">Lanjutkan</string>
     <string name="common_create_an_automatic_filing_rule">Buat aturan pengarsipan otomatis.</string>
     <string name="common_date">Tanggal</string>
@@ -193,7 +191,6 @@
     <string name="settings_detail_screens_deleting_always_asks_you_first_and_items_stay_in_trash_f">Penghapusan selalu ditanyakan kepada Anda terlebih dahulu, dan item tetap berada di Sampah selama 30 hari.</string>
     <string name="common_deselect_all">Batalkan pilihan Semua</string>
     <string name="common_destination">Tujuan</string>
-    <string name="cloud_screens_destination">TUJUAN</string>
     <string name="common_details_read_on_this_device_ready_to_file_by_your_rules">Detail dibaca di perangkat ini, siap diarsipkan sesuai aturan Anda.</string>
     <string name="common_details_were_read_on_this_device_and_stay_here">Detailnya dibaca di perangkat ini dan tetap di sini.</string>
     <string name="common_device_storage">Penyimpanan Perangkat</string>

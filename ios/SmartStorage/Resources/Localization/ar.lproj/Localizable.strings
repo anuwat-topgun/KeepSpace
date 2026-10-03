@@ -122,7 +122,6 @@
 "Backed Up" = "نسخة احتياطية";
 "Backup" = "النسخ الاحتياطي";
 "Backup Activity" = "نشاط النسخ الاحتياطي";
-"BACKUP ACTIVITY" = "نشاط النسخ الاحتياطي";
 "Backups go where you choose" = "النسخ الاحتياطية تذهب إلى المكان الذي تختاره";
 "Base" = "قاعدة";
 "Best" = "الأفضل";
@@ -175,7 +174,6 @@
 "Connect Google Drive or OneDrive" = "قم بتوصيل Google Drive أو OneDrive";
 "Connected" = "متصل";
 "Content" = "المحتوى";
-"CONTENT" = "المحتوى";
 "Continue" = "متابعة";
 "Create an automatic filing rule." = "إنشاء قاعدة حفظ تلقائية.";
 "Date" = "التاريخ";
@@ -191,7 +189,6 @@
 "Deleting always asks you first, and items stay in Trash for 30 days." = "تتم مطالبتك دائمًا بالحذف أولاً، وتظل العناصر في سلة المهملات لمدة 30 يومًا.";
 "Deselect All" = "قم بإلغاء تحديد الكل";
 "Destination" = "الوجهة";
-"DESTINATION" = "الوجهة";
 "Details read on this device, ready to file by your rules." = "التفاصيل المقروءة على هذا الجهاز، جاهزة للتسجيل وفقًا لقواعدك.";
 "Details were read on this device and stay here." = "تمت قراءة التفاصيل على هذا الجهاز والبقاء هنا.";
 "Device Storage" = "تخزين الجهاز";

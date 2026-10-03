@@ -122,7 +122,6 @@
 "Backed Up" = "Δημιουργία αντιγράφων ασφαλείας";
 "Backup" = "Δημιουργία αντιγράφων ασφαλείας";
 "Backup Activity" = "Δραστηριότητα δημιουργίας αντιγράφων ασφαλείας";
-"BACKUP ACTIVITY" = "ΔΡΑΣΤΗΡΙΟΤΗΤΑ ΑΝΤΙΓΡΑΦΩΝ";
 "Backups go where you choose" = "Τα αντίγραφα ασφαλείας πηγαίνουν όπου επιλέγετε";
 "Base" = "Βάση";
 "Best" = "Καλύτερο";
@@ -175,7 +174,6 @@
 "Connect Google Drive or OneDrive" = "Σύνδεση Google Drive ή OneDrive";
 "Connected" = "Συνδεδεμένος";
 "Content" = "περιεχόμενο";
-"CONTENT" = "ΠΕΡΙΕΧΟΜΕΝΟ";
 "Continue" = "Συνέχεια";
 "Create an automatic filing rule." = "Δημιουργήστε έναν κανόνα αυτόματης αρχειοθέτησης.";
 "Date" = "Ημερομηνία";
@@ -191,7 +189,6 @@
 "Deleting always asks you first, and items stay in Trash for 30 days." = "Η διαγραφή ζητά πάντα πρώτα εσάς και τα στοιχεία παραμένουν στον Κάδο απορριμμάτων για 30 ημέρες.";
 "Deselect All" = "Καταργήστε την επιλογή όλων";
 "Destination" = "Προορισμός";
-"DESTINATION" = "ΠΡΟΟΡΙΣΜΟΣ";
 "Details read on this device, ready to file by your rules." = "Λεπτομέρειες που διαβάζονται σε αυτήν τη συσκευή, έτοιμες να αρχειοθετηθούν σύμφωνα με τους κανόνες σας.";
 "Details were read on this device and stay here." = "Οι λεπτομέρειες διαβάστηκαν σε αυτήν τη συσκευή και μείνετε εδώ.";
 "Device Storage" = "Αποθήκευση συσκευής";

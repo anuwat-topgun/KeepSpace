@@ -124,7 +124,6 @@
     <string name="common_backed_up_7f12f675">Sauvegarde</string>
     <string name="subscription_backup">Sauvegarde</string>
     <string name="cloud_overview_backup_activity">Activité de sauvegarde</string>
-    <string name="cloud_screens_backup_activity">ACTIVITÉ DE SAUVEGARDE</string>
     <string name="common_backups_go_where_you_choose">Les sauvegardes vont où vous le souhaitez</string>
     <string name="insights_base">Socle</string>
     <string name="common_best">Meilleur</string>
@@ -177,7 +176,6 @@
     <string name="common_connect_google_drive_or_onedrive">Connectez Google Drive ou OneDrive</string>
     <string name="common_connected">Connecté</string>
     <string name="common_content">Contenu</string>
-    <string name="cloud_screens_content">CONTENU</string>
     <string name="paywall_continue">Continuer</string>
     <string name="common_create_an_automatic_filing_rule">Créez une règle de dépôt automatique.</string>
     <string name="common_date">Date</string>
@@ -193,7 +191,6 @@
     <string name="settings_detail_screens_deleting_always_asks_you_first_and_items_stay_in_trash_f">La suppression vous le demande toujours en premier et les éléments restent dans la corbeille pendant 30 jours.</string>
     <string name="common_deselect_all">Désélectionner tout</string>
     <string name="common_destination">Destination</string>
-    <string name="cloud_screens_destination">DESTINATION</string>
     <string name="common_details_read_on_this_device_ready_to_file_by_your_rules">Détails lus sur cet appareil, prêts à être déposés selon vos règles.</string>
     <string name="common_details_were_read_on_this_device_and_stay_here">Les détails ont été lus sur cet appareil et restent ici.</string>
     <string name="common_device_storage">Stockage de l\'appareil</string>

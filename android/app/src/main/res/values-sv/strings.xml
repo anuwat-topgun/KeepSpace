@@ -124,7 +124,6 @@
     <string name="common_backed_up_7f12f675">Säkerhetskopierade</string>
     <string name="subscription_backup">Säkerhetskopiering</string>
     <string name="cloud_overview_backup_activity">Säkerhetskopieringsaktivitet</string>
-    <string name="cloud_screens_backup_activity">SÄKERHETSKOPIERING</string>
     <string name="common_backups_go_where_you_choose">Säkerhetskopieringar går där du väljer</string>
     <string name="insights_base">Bas</string>
     <string name="common_best">Bästa</string>
@@ -177,7 +176,6 @@
     <string name="common_connect_google_drive_or_onedrive">Anslut Google Drive eller OneDrive</string>
     <string name="common_connected">Ansluten</string>
     <string name="common_content">Innehåll</string>
-    <string name="cloud_screens_content">INNEHÅLL</string>
     <string name="paywall_continue">Fortsätt</string>
     <string name="common_create_an_automatic_filing_rule">Skapa en regel för automatisk arkivering.</string>
     <string name="common_date">Datum</string>
@@ -193,7 +191,6 @@
     <string name="settings_detail_screens_deleting_always_asks_you_first_and_items_stay_in_trash_f">Om du raderar frågar du alltid först, och objekt stannar i papperskorgen i 30 dagar.</string>
     <string name="common_deselect_all">Avmarkera alla</string>
     <string name="common_destination">Destination</string>
-    <string name="cloud_screens_destination">DESTINATION</string>
     <string name="common_details_read_on_this_device_ready_to_file_by_your_rules">Information läses på den här enheten, redo att arkiveras enligt dina regler.</string>
     <string name="common_details_were_read_on_this_device_and_stay_here">Detaljer lästes på den här enheten och stannar här.</string>
     <string name="common_device_storage">Enhetslagring</string>

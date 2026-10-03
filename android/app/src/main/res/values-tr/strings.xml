@@ -124,7 +124,6 @@
     <string name="common_backed_up_7f12f675">Yedeklendi</string>
     <string name="subscription_backup">Yedekleme</string>
     <string name="cloud_overview_backup_activity">Yedekleme Etkinliği</string>
-    <string name="cloud_screens_backup_activity">YEDEKLEME FAALİYETİ</string>
     <string name="common_backups_go_where_you_choose">Yedeklemeler seçtiğiniz yere gider</string>
     <string name="insights_base">Baz</string>
     <string name="common_best">En iyi</string>
@@ -177,7 +176,6 @@
     <string name="common_connect_google_drive_or_onedrive">Google Drive veya OneDrive\'a bağlanın</string>
     <string name="common_connected">Bağlı</string>
     <string name="common_content">İçerik</string>
-    <string name="cloud_screens_content">İÇERİK</string>
     <string name="paywall_continue">Devam et</string>
     <string name="common_create_an_automatic_filing_rule">Otomatik dosyalama kuralı oluşturun.</string>
     <string name="common_date">Tarih</string>
@@ -193,7 +191,6 @@
     <string name="settings_detail_screens_deleting_always_asks_you_first_and_items_stay_in_trash_f">Silme işleminde her zaman önce sizden sorulur ve öğeler Çöp Kutusu\'nda 30 gün boyunca kalır.</string>
     <string name="common_deselect_all">Tümünün Seçimini Kaldır</string>
     <string name="common_destination">Hedef</string>
-    <string name="cloud_screens_destination">HEDEF</string>
     <string name="common_details_read_on_this_device_ready_to_file_by_your_rules">Ayrıntılar bu cihazda okunur ve sizin kurallarınıza göre dosyalanmaya hazırdır.</string>
     <string name="common_details_were_read_on_this_device_and_stay_here">Ayrıntılar bu cihazda okundu ve burada kalın.</string>
     <string name="common_device_storage">Cihaz Depolama</string>

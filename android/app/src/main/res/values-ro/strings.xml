@@ -124,7 +124,6 @@
     <string name="common_backed_up_7f12f675">Copiere de rezervă</string>
     <string name="subscription_backup">Backup</string>
     <string name="cloud_overview_backup_activity">Activitate de backup</string>
-    <string name="cloud_screens_backup_activity">ACTIVITATE DE BACKUP</string>
     <string name="common_backups_go_where_you_choose">Backup-urile merg unde alegi</string>
     <string name="insights_base">Baza</string>
     <string name="common_best">Cel mai bun</string>
@@ -177,7 +176,6 @@
     <string name="common_connect_google_drive_or_onedrive">Conectați Google Drive sau OneDrive</string>
     <string name="common_connected">Conectat</string>
     <string name="common_content">Conținut</string>
-    <string name="cloud_screens_content">CONȚINUT</string>
     <string name="paywall_continue">Continuă</string>
     <string name="common_create_an_automatic_filing_rule">Creați o regulă de depunere automată.</string>
     <string name="common_date">Data</string>
@@ -193,7 +191,6 @@
     <string name="settings_detail_screens_deleting_always_asks_you_first_and_items_stay_in_trash_f">Ștergerea vă cere întotdeauna primul, iar articolele rămân în Coșul de gunoi timp de 30 de zile.</string>
     <string name="common_deselect_all">Deselectați Toate</string>
     <string name="common_destination">Destinație</string>
-    <string name="cloud_screens_destination">DESTINATIA</string>
     <string name="common_details_read_on_this_device_ready_to_file_by_your_rules">Detalii citite pe acest dispozitiv, gata să fie depuse după regulile dvs.</string>
     <string name="common_details_were_read_on_this_device_and_stay_here">Detaliile au fost citite pe acest dispozitiv și rămâneți aici.</string>
     <string name="common_device_storage">Stocarea dispozitivului</string>

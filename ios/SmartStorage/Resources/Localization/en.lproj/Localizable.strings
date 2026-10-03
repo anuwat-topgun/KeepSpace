@@ -122,7 +122,6 @@
 "Backed Up" = "Backed Up";
 "Backup" = "Backup";
 "Backup Activity" = "Backup Activity";
-"BACKUP ACTIVITY" = "BACKUP ACTIVITY";
 "Backups go where you choose" = "Backups go where you choose";
 "Base" = "Base";
 "Best" = "Best";
@@ -175,7 +174,6 @@
 "Connect Google Drive or OneDrive" = "Connect Google Drive or OneDrive";
 "Connected" = "Connected";
 "Content" = "Content";
-"CONTENT" = "CONTENT";
 "Continue" = "Continue";
 "Create an automatic filing rule." = "Create an automatic filing rule.";
 "Date" = "Date";
@@ -191,7 +189,6 @@
 "Deleting always asks you first, and items stay in Trash for 30 days." = "Deleting always asks you first, and items stay in Trash for 30 days.";
 "Deselect All" = "Deselect All";
 "Destination" = "Destination";
-"DESTINATION" = "DESTINATION";
 "Details read on this device, ready to file by your rules." = "Details read on this device, ready to file by your rules.";
 "Details were read on this device and stay here." = "Details were read on this device and stay here.";
 "Device Storage" = "Device Storage";

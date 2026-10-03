@@ -122,7 +122,6 @@
 "Backed Up" = "Copia de seguridad";
 "Backup" = "Copia de seguridad";
 "Backup Activity" = "Actividad de copia de seguridad";
-"BACKUP ACTIVITY" = "ACTIVIDAD DE RESPALDO";
 "Backups go where you choose" = "Las copias de seguridad van donde tú elijas";
 "Base" = "bases";
 "Best" = "mejor";
@@ -175,7 +174,6 @@
 "Connect Google Drive or OneDrive" = "Conecte Google Drive o OneDrive";
 "Connected" = "Conectado";
 "Content" = "Contenido";
-"CONTENT" = "CONTENIDO";
 "Continue" = "Continuar";
 "Create an automatic filing rule." = "Cree una regla de presentación automática.";
 "Date" = "Fecha";
@@ -191,7 +189,6 @@
 "Deleting always asks you first, and items stay in Trash for 30 days." = "La eliminación siempre te pregunta primero a ti y los elementos permanecen en la Papelera durante 30 días.";
 "Deselect All" = "Deseleccionar todo";
 "Destination" = "Destino";
-"DESTINATION" = "DESTINO";
 "Details read on this device, ready to file by your rules." = "Detalles leídos en este dispositivo, listo para archivar según sus reglas.";
 "Details were read on this device and stay here." = "Los detalles fueron leídos en este dispositivo y permanecen aquí.";
 "Device Storage" = "Almacenamiento del dispositivo";

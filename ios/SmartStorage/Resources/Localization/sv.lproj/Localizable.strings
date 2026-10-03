@@ -122,7 +122,6 @@
 "Backed Up" = "Säkerhetskopierade";
 "Backup" = "Säkerhetskopiering";
 "Backup Activity" = "Säkerhetskopieringsaktivitet";
-"BACKUP ACTIVITY" = "SÄKERHETSKOPIERING";
 "Backups go where you choose" = "Säkerhetskopieringar går där du väljer";
 "Base" = "Bas";
 "Best" = "Bästa";
@@ -175,7 +174,6 @@
 "Connect Google Drive or OneDrive" = "Anslut Google Drive eller OneDrive";
 "Connected" = "Ansluten";
 "Content" = "Innehåll";
-"CONTENT" = "INNEHÅLL";
 "Continue" = "Fortsätt";
 "Create an automatic filing rule." = "Skapa en regel för automatisk arkivering.";
 "Date" = "Datum";
@@ -191,7 +189,6 @@
 "Deleting always asks you first, and items stay in Trash for 30 days." = "Om du raderar frågar du alltid först, och objekt stannar i papperskorgen i 30 dagar.";
 "Deselect All" = "Avmarkera alla";
 "Destination" = "Destination";
-"DESTINATION" = "DESTINATION";
 "Details read on this device, ready to file by your rules." = "Information läses på den här enheten, redo att arkiveras enligt dina regler.";
 "Details were read on this device and stay here." = "Detaljer lästes på den här enheten och stannar här.";
 "Device Storage" = "Enhetslagring";

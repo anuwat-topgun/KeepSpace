@@ -141,11 +141,11 @@ fun LibraryScreen(onOpen: (Screen) -> Unit) {
                     StatusBadge("Backed up", Icons.Rounded.CloudDone, Tint.Mint, compact = true)
                     Text("Verified cloud copies", style = SmartType.metadata, color = colors.textSecondary, modifier = Modifier.weight(1f))
                     IconButton(onClick = { onOpen(Screen.CloudOverview) }) {
-                        Icon(Icons.Rounded.CloudUpload, contentDescription = "Cloud backup", tint = colors.accent)
+                        Icon(Icons.Rounded.CloudUpload, contentDescription = com.smartstorage.cleaner.ui.i18n.localized("Cloud backup"), tint = colors.accent)
                     }
                     Box {
                         IconButton(onClick = { menuOpen = true }) {
-                            Icon(Icons.Rounded.MoreVert, contentDescription = "Organize", tint = colors.textPrimary)
+                            Icon(Icons.Rounded.MoreVert, contentDescription = com.smartstorage.cleaner.ui.i18n.localized("Organize"), tint = colors.textPrimary)
                         }
                         DropdownMenu(expanded = menuOpen, onDismissRequest = { menuOpen = false }) {
                             listOf(
@@ -305,7 +305,7 @@ private fun LibraryPreview(
             ) {
                 if (!immersive) {
                     IconButton(onClick = onDismiss) {
-                        Icon(Icons.Rounded.Close, contentDescription = "Close", tint = Color.White)
+                        Icon(Icons.Rounded.Close, contentDescription = com.smartstorage.cleaner.ui.i18n.localized("Close"), tint = Color.White)
                     }
                 }
                 Box(Modifier.weight(1f))
@@ -388,7 +388,7 @@ private fun PhotoLibraryVideoPlayer(uri: String, active: Boolean, onToggleFullsc
             ) {
                 Icon(
                     Icons.Rounded.PlayArrow,
-                    contentDescription = "Play",
+                    contentDescription = com.smartstorage.cleaner.ui.i18n.localized("Play"),
                     tint = Color.White,
                     modifier = Modifier.size(40.dp),
                 )

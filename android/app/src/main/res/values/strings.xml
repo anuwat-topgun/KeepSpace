@@ -124,7 +124,6 @@
     <string name="common_backed_up_7f12f675">Backed Up</string>
     <string name="subscription_backup">Backup</string>
     <string name="cloud_overview_backup_activity">Backup Activity</string>
-    <string name="cloud_screens_backup_activity">BACKUP ACTIVITY</string>
     <string name="common_backups_go_where_you_choose">Backups go where you choose</string>
     <string name="insights_base">Base</string>
     <string name="common_best">Best</string>
@@ -177,7 +176,6 @@
     <string name="common_connect_google_drive_or_onedrive">Connect Google Drive or OneDrive</string>
     <string name="common_connected">Connected</string>
     <string name="common_content">Content</string>
-    <string name="cloud_screens_content">CONTENT</string>
     <string name="paywall_continue">Continue</string>
     <string name="common_create_an_automatic_filing_rule">Create an automatic filing rule.</string>
     <string name="common_date">Date</string>
@@ -193,7 +191,6 @@
     <string name="settings_detail_screens_deleting_always_asks_you_first_and_items_stay_in_trash_f">Deleting always asks you first, and items stay in Trash for 30 days.</string>
     <string name="common_deselect_all">Deselect All</string>
     <string name="common_destination">Destination</string>
-    <string name="cloud_screens_destination">DESTINATION</string>
     <string name="common_details_read_on_this_device_ready_to_file_by_your_rules">Details read on this device, ready to file by your rules.</string>
     <string name="common_details_were_read_on_this_device_and_stay_here">Details were read on this device and stay here.</string>
     <string name="common_device_storage">Device Storage</string>

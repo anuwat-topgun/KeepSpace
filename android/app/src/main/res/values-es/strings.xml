@@ -124,7 +124,6 @@
     <string name="common_backed_up_7f12f675">Copia de seguridad</string>
     <string name="subscription_backup">Copia de seguridad</string>
     <string name="cloud_overview_backup_activity">Actividad de copia de seguridad</string>
-    <string name="cloud_screens_backup_activity">ACTIVIDAD DE RESPALDO</string>
     <string name="common_backups_go_where_you_choose">Las copias de seguridad van donde tú elijas</string>
     <string name="insights_base">bases</string>
     <string name="common_best">mejor</string>
@@ -177,7 +176,6 @@
     <string name="common_connect_google_drive_or_onedrive">Conecte Google Drive o OneDrive</string>
     <string name="common_connected">Conectado</string>
     <string name="common_content">Contenido</string>
-    <string name="cloud_screens_content">CONTENIDO</string>
     <string name="paywall_continue">Continuar</string>
     <string name="common_create_an_automatic_filing_rule">Cree una regla de presentación automática.</string>
     <string name="common_date">Fecha</string>
@@ -193,7 +191,6 @@
     <string name="settings_detail_screens_deleting_always_asks_you_first_and_items_stay_in_trash_f">La eliminación siempre te pregunta primero a ti y los elementos permanecen en la Papelera durante 30 días.</string>
     <string name="common_deselect_all">Deseleccionar todo</string>
     <string name="common_destination">Destino</string>
-    <string name="cloud_screens_destination">DESTINO</string>
     <string name="common_details_read_on_this_device_ready_to_file_by_your_rules">Detalles leídos en este dispositivo, listo para archivar según sus reglas.</string>
     <string name="common_details_were_read_on_this_device_and_stay_here">Los detalles fueron leídos en este dispositivo y permanecen aquí.</string>
     <string name="common_device_storage">Almacenamiento del dispositivo</string>

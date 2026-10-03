@@ -155,7 +155,7 @@ fun ReviewScreen(source: ReviewSource, onBack: () -> Unit) {
             item(span = { androidx.compose.foundation.lazy.grid.GridItemSpan(maxLineSpan) }) {
                 Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = "Back", tint = colors.textPrimary)
+                        Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = com.smartstorage.cleaner.ui.i18n.localized("Back"), tint = colors.textPrimary)
                     }
                     ScreenHeader(title, explanation)
                     (source as? ReviewSource.Kind)?.kind?.let { kind ->

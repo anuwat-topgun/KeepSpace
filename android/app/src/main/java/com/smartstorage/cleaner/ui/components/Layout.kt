@@ -63,7 +63,7 @@ fun ScreenScaffold(
             ) {
                 if (onBack != null) {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = "Back", tint = colors.textPrimary)
+                        Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = com.smartstorage.cleaner.ui.i18n.localized("Back"), tint = colors.textPrimary)
                     }
                 }
                 content()

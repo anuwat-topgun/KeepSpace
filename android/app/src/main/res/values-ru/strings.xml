@@ -124,7 +124,6 @@
     <string name="common_backed_up_7f12f675">Резервное копирование</string>
     <string name="subscription_backup">Резервное копирование</string>
     <string name="cloud_overview_backup_activity">Резервное копирование</string>
-    <string name="cloud_screens_backup_activity">РЕЗЕРВНОЕ КОПИРОВАНИЕ</string>
     <string name="common_backups_go_where_you_choose">Резервные копии хранятся там, где вы выберете</string>
     <string name="insights_base">База</string>
     <string name="common_best">Лучший</string>
@@ -177,7 +176,6 @@
     <string name="common_connect_google_drive_or_onedrive">Подключите Google Drive или OneDrive</string>
     <string name="common_connected">Подключено</string>
     <string name="common_content">Содержание</string>
-    <string name="cloud_screens_content">СОДЕРЖАНИЕ</string>
     <string name="paywall_continue">Продолжить</string>
     <string name="common_create_an_automatic_filing_rule">Создайте правило автоматического хранения.</string>
     <string name="common_date">Дата</string>
@@ -193,7 +191,6 @@
     <string name="settings_detail_screens_deleting_always_asks_you_first_and_items_stay_in_trash_f">При удалении всегда сначала запрашивается ваш запрос, а элементы остаются в корзине в течение 30 дней.</string>
     <string name="common_deselect_all">Отменить выбор всех</string>
     <string name="common_destination">Пункт назначения</string>
-    <string name="cloud_screens_destination">НАЗНАЧЕНИЕ</string>
     <string name="common_details_read_on_this_device_ready_to_file_by_your_rules">Подробности читайте на этом устройстве, готовом к подаче по вашим правилам.</string>
     <string name="common_details_were_read_on_this_device_and_stay_here">Подробности читались об этом устройстве и остаются здесь.</string>
     <string name="common_device_storage">Хранение устройства</string>

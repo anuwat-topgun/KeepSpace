@@ -124,7 +124,6 @@
     <string name="common_backed_up_7f12f675">已备份</string>
     <string name="subscription_backup">备份</string>
     <string name="cloud_overview_backup_activity">备份活动</string>
-    <string name="cloud_screens_backup_activity">备份活动</string>
     <string name="common_backups_go_where_you_choose">备份保存在您选择的位置</string>
     <string name="insights_base">基地</string>
     <string name="common_best">最佳</string>
@@ -177,7 +176,6 @@
     <string name="common_connect_google_drive_or_onedrive">连接 Google Drive 或 OneDrive</string>
     <string name="common_connected">已连接</string>
     <string name="common_content">内容</string>
-    <string name="cloud_screens_content">内容</string>
     <string name="paywall_continue">继续</string>
     <string name="common_create_an_automatic_filing_rule">创建自动归档规则。</string>
     <string name="common_date">日期</string>
@@ -193,7 +191,6 @@
     <string name="settings_detail_screens_deleting_always_asks_you_first_and_items_stay_in_trash_f">删除总是先询问您，并且项目会在“回收站”中保留 30 天。</string>
     <string name="common_deselect_all">取消全选</string>
     <string name="common_destination">目的地</string>
-    <string name="cloud_screens_destination">目的地</string>
     <string name="common_details_read_on_this_device_ready_to_file_by_your_rules">在此设备上读取详细信息，准备好按照您的规则进行归档。</string>
     <string name="common_details_were_read_on_this_device_and_stay_here">详细信息已在此设备上阅读并留在这里。</string>
     <string name="common_device_storage">设备存储</string>

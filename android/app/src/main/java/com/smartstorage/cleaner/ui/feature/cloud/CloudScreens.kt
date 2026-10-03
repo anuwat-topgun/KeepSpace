@@ -1,5 +1,6 @@
 package com.smartstorage.cleaner.ui.feature.cloud
 
+import com.smartstorage.cleaner.ui.components.SectionLabel
 import com.smartstorage.cleaner.monetization.LocalMonetization
 import com.smartstorage.cleaner.monetization.LocalPresentPaywall
 import com.smartstorage.cleaner.monetization.ProFeature
@@ -110,7 +111,7 @@ fun CloudOverviewScreen(onBackUpNow: () -> Unit, onBack: () -> Unit) {
         }
         if (state.notice != null) Text(state.notice.orEmpty(), style = SmartType.metadata, color = SmartTheme.colors.textSecondary)
         if (state.uploads.isNotEmpty()) {
-            Text("BACKUP ACTIVITY", style = SmartType.sectionLabel, color = SmartTheme.colors.textSecondary)
+            SectionLabel("Backup Activity")
             state.uploads.takeLast(6).reversed().forEach { upload ->
                 val icon = when (upload.status) {
                     CloudUploadStatus.BackedUp -> Icons.Rounded.CloudDone
@@ -148,7 +149,7 @@ fun ManualBackupScreen(onBack: () -> Unit) {
 
     ScreenScaffold(onBack = onBack) {
         ScreenHeader("Back Up Now", "Choose what to copy and where it should go.", Modifier.padding(bottom = 8.dp))
-        Text("CONTENT", style = SmartType.sectionLabel, color = SmartTheme.colors.textSecondary)
+        SectionLabel("Content")
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             CloudBackupScope.entries.forEach { option ->
                 FilterChip(selected = scope == option, onClick = { scope = option; folder = option.title }, label = { Text(option.title) })
@@ -156,7 +157,7 @@ fun ManualBackupScreen(onBack: () -> Unit) {
         }
         Text("${candidates.size} items · ${candidates.sumOf { it.bytes }.formattedBytes()}", style = SmartType.metadata, color = SmartTheme.colors.textSecondary)
 
-        Text("DESTINATION", style = SmartType.sectionLabel, color = SmartTheme.colors.textSecondary)
+        SectionLabel("Destination")
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             CloudProvider.entries.forEach { option ->
                 val connection = state.connections.first { it.provider == option }

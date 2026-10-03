@@ -124,7 +124,6 @@
     <string name="common_backed_up_7f12f675">نسخة احتياطية</string>
     <string name="subscription_backup">النسخ الاحتياطي</string>
     <string name="cloud_overview_backup_activity">نشاط النسخ الاحتياطي</string>
-    <string name="cloud_screens_backup_activity">نشاط النسخ الاحتياطي</string>
     <string name="common_backups_go_where_you_choose">النسخ الاحتياطية تذهب إلى المكان الذي تختاره</string>
     <string name="insights_base">قاعدة</string>
     <string name="common_best">الأفضل</string>
@@ -177,7 +176,6 @@
     <string name="common_connect_google_drive_or_onedrive">قم بتوصيل Google Drive أو OneDrive</string>
     <string name="common_connected">متصل</string>
     <string name="common_content">المحتوى</string>
-    <string name="cloud_screens_content">المحتوى</string>
     <string name="paywall_continue">متابعة</string>
     <string name="common_create_an_automatic_filing_rule">إنشاء قاعدة حفظ تلقائية.</string>
     <string name="common_date">التاريخ</string>
@@ -193,7 +191,6 @@
     <string name="settings_detail_screens_deleting_always_asks_you_first_and_items_stay_in_trash_f">تتم مطالبتك دائمًا بالحذف أولاً، وتظل العناصر في سلة المهملات لمدة 30 يومًا.</string>
     <string name="common_deselect_all">قم بإلغاء تحديد الكل</string>
     <string name="common_destination">الوجهة</string>
-    <string name="cloud_screens_destination">الوجهة</string>
     <string name="common_details_read_on_this_device_ready_to_file_by_your_rules">التفاصيل المقروءة على هذا الجهاز، جاهزة للتسجيل وفقًا لقواعدك.</string>
     <string name="common_details_were_read_on_this_device_and_stay_here">تمت قراءة التفاصيل على هذا الجهاز والبقاء هنا.</string>
     <string name="common_device_storage">تخزين الجهاز</string>

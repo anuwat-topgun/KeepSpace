@@ -122,7 +122,6 @@
 "Backed Up" = "백업됨";
 "Backup" = "백업";
 "Backup Activity" = "백업 활동";
-"BACKUP ACTIVITY" = "백업 활동";
 "Backups go where you choose" = "선택한 곳으로 백업이 이동됩니다.";
 "Base" = "베이스";
 "Best" = "최고";
@@ -175,7 +174,6 @@
 "Connect Google Drive or OneDrive" = "Google Drive 또는 OneDrive 연결";
 "Connected" = "연결됨";
 "Content" = "내용";
-"CONTENT" = "내용";
 "Continue" = "계속";
 "Create an automatic filing rule." = "자동 제출 규칙을 만듭니다.";
 "Date" = "날짜";
@@ -191,7 +189,6 @@
 "Deleting always asks you first, and items stay in Trash for 30 days." = "삭제하려면 항상 사용자에게 먼저 묻고 항목은 30일 동안 휴지통에 보관됩니다.";
 "Deselect All" = "모두 선택 해제";
 "Destination" = "목적지";
-"DESTINATION" = "목적지";
 "Details read on this device, ready to file by your rules." = "이 장치에서 읽은 세부정보는 규칙에 따라 제출할 준비가 되었습니다.";
 "Details were read on this device and stay here." = "이 기기에서 세부정보를 읽었으므로 여기에 보관하세요.";
 "Device Storage" = "장치 저장소";

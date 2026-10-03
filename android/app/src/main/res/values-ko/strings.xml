@@ -124,7 +124,6 @@
     <string name="common_backed_up_7f12f675">백업됨</string>
     <string name="subscription_backup">백업</string>
     <string name="cloud_overview_backup_activity">백업 활동</string>
-    <string name="cloud_screens_backup_activity">백업 활동</string>
     <string name="common_backups_go_where_you_choose">선택한 곳으로 백업이 이동됩니다.</string>
     <string name="insights_base">베이스</string>
     <string name="common_best">최고</string>
@@ -177,7 +176,6 @@
     <string name="common_connect_google_drive_or_onedrive">Google Drive 또는 OneDrive 연결</string>
     <string name="common_connected">연결됨</string>
     <string name="common_content">내용</string>
-    <string name="cloud_screens_content">내용</string>
     <string name="paywall_continue">계속</string>
     <string name="common_create_an_automatic_filing_rule">자동 제출 규칙을 만듭니다.</string>
     <string name="common_date">날짜</string>
@@ -193,7 +191,6 @@
     <string name="settings_detail_screens_deleting_always_asks_you_first_and_items_stay_in_trash_f">삭제하려면 항상 사용자에게 먼저 묻고 항목은 30일 동안 휴지통에 보관됩니다.</string>
     <string name="common_deselect_all">모두 선택 해제</string>
     <string name="common_destination">목적지</string>
-    <string name="cloud_screens_destination">목적지</string>
     <string name="common_details_read_on_this_device_ready_to_file_by_your_rules">이 장치에서 읽은 세부정보는 규칙에 따라 제출할 준비가 되었습니다.</string>
     <string name="common_details_were_read_on_this_device_and_stay_here">이 기기에서 세부정보를 읽었으므로 여기에 보관하세요.</string>
     <string name="common_device_storage">장치 저장소</string>

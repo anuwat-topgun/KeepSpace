@@ -122,7 +122,6 @@
 "Backed Up" = "Yedeklendi";
 "Backup" = "Yedekleme";
 "Backup Activity" = "Yedekleme Etkinliği";
-"BACKUP ACTIVITY" = "YEDEKLEME FAALİYETİ";
 "Backups go where you choose" = "Yedeklemeler seçtiğiniz yere gider";
 "Base" = "Baz";
 "Best" = "En iyi";
@@ -175,7 +174,6 @@
 "Connect Google Drive or OneDrive" = "Google Drive veya OneDrive'a bağlanın";
 "Connected" = "Bağlı";
 "Content" = "İçerik";
-"CONTENT" = "İÇERİK";
 "Continue" = "Devam et";
 "Create an automatic filing rule." = "Otomatik dosyalama kuralı oluşturun.";
 "Date" = "Tarih";
@@ -191,7 +189,6 @@
 "Deleting always asks you first, and items stay in Trash for 30 days." = "Silme işleminde her zaman önce sizden sorulur ve öğeler Çöp Kutusu'nda 30 gün boyunca kalır.";
 "Deselect All" = "Tümünün Seçimini Kaldır";
 "Destination" = "Hedef";
-"DESTINATION" = "HEDEF";
 "Details read on this device, ready to file by your rules." = "Ayrıntılar bu cihazda okunur ve sizin kurallarınıza göre dosyalanmaya hazırdır.";
 "Details were read on this device and stay here." = "Ayrıntılar bu cihazda okundu ve burada kalın.";
 "Device Storage" = "Cihaz Depolama";

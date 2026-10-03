@@ -124,7 +124,6 @@
     <string name="common_backed_up_7f12f675">Δημιουργία αντιγράφων ασφαλείας</string>
     <string name="subscription_backup">Δημιουργία αντιγράφων ασφαλείας</string>
     <string name="cloud_overview_backup_activity">Δραστηριότητα δημιουργίας αντιγράφων ασφαλείας</string>
-    <string name="cloud_screens_backup_activity">ΔΡΑΣΤΗΡΙΟΤΗΤΑ ΑΝΤΙΓΡΑΦΩΝ</string>
     <string name="common_backups_go_where_you_choose">Τα αντίγραφα ασφαλείας πηγαίνουν όπου επιλέγετε</string>
     <string name="insights_base">Βάση</string>
     <string name="common_best">Καλύτερο</string>
@@ -177,7 +176,6 @@
     <string name="common_connect_google_drive_or_onedrive">Σύνδεση Google Drive ή OneDrive</string>
     <string name="common_connected">Συνδεδεμένος</string>
     <string name="common_content">περιεχόμενο</string>
-    <string name="cloud_screens_content">ΠΕΡΙΕΧΟΜΕΝΟ</string>
     <string name="paywall_continue">Συνέχεια</string>
     <string name="common_create_an_automatic_filing_rule">Δημιουργήστε έναν κανόνα αυτόματης αρχειοθέτησης.</string>
     <string name="common_date">Ημερομηνία</string>
@@ -193,7 +191,6 @@
     <string name="settings_detail_screens_deleting_always_asks_you_first_and_items_stay_in_trash_f">Η διαγραφή ζητά πάντα πρώτα εσάς και τα στοιχεία παραμένουν στον Κάδο απορριμμάτων για 30 ημέρες.</string>
     <string name="common_deselect_all">Καταργήστε την επιλογή όλων</string>
     <string name="common_destination">Προορισμός</string>
-    <string name="cloud_screens_destination">ΠΡΟΟΡΙΣΜΟΣ</string>
     <string name="common_details_read_on_this_device_ready_to_file_by_your_rules">Λεπτομέρειες που διαβάζονται σε αυτήν τη συσκευή, έτοιμες να αρχειοθετηθούν σύμφωνα με τους κανόνες σας.</string>
     <string name="common_details_were_read_on_this_device_and_stay_here">Οι λεπτομέρειες διαβάστηκαν σε αυτήν τη συσκευή και μείνετε εδώ.</string>
     <string name="common_device_storage">Αποθήκευση συσκευής</string>

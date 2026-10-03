@@ -124,7 +124,6 @@
     <string name="common_backed_up_7f12f675">बैकअप लिया गया</string>
     <string name="subscription_backup">बैकअप</string>
     <string name="cloud_overview_backup_activity">बैकअप गतिविधि</string>
-    <string name="cloud_screens_backup_activity">बैकअप गतिविधि</string>
     <string name="common_backups_go_where_you_choose">बैकअप वहां जाते हैं जहां आप चुनते हैं</string>
     <string name="insights_base">आधार</string>
     <string name="common_best">सर्वोत्तम</string>
@@ -177,7 +176,6 @@
     <string name="common_connect_google_drive_or_onedrive">Google Drive या OneDrive कनेक्ट करें</string>
     <string name="common_connected">जुड़ा हुआ</string>
     <string name="common_content">सामग्री</string>
-    <string name="cloud_screens_content">सामग्री</string>
     <string name="paywall_continue">जारी रखें</string>
     <string name="common_create_an_automatic_filing_rule">एक स्वचालित फाइलिंग नियम बनाएं.</string>
     <string name="common_date">दिनांक</string>
@@ -193,7 +191,6 @@
     <string name="settings_detail_screens_deleting_always_asks_you_first_and_items_stay_in_trash_f">हटाना हमेशा आपसे पहले पूछता है, और आइटम 30 दिनों तक कूड़ेदान में रहते हैं।</string>
     <string name="common_deselect_all">सभी को अचयनित करें</string>
     <string name="common_destination">गंतव्य</string>
-    <string name="cloud_screens_destination">गंतव्य</string>
     <string name="common_details_read_on_this_device_ready_to_file_by_your_rules">विवरण इस डिवाइस पर पढ़ें, आपके नियमों के अनुसार फाइल करने के लिए तैयार।</string>
     <string name="common_details_were_read_on_this_device_and_stay_here">विवरण इस डिवाइस पर पढ़ा गया और यहां रहें।</string>
     <string name="common_device_storage">डिवाइस भंडारण</string>

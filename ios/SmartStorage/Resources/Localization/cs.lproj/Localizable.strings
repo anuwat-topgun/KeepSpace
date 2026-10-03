@@ -122,7 +122,6 @@
 "Backed Up" = "Zálohováno";
 "Backup" = "Zálohování";
 "Backup Activity" = "Záložní aktivita";
-"BACKUP ACTIVITY" = "ZÁLOŽNÍ AKTIVITA";
 "Backups go where you choose" = "Zálohy se ukládají tam, kde si vyberete";
 "Base" = "Základna";
 "Best" = "Nejlepší";
@@ -175,7 +174,6 @@
 "Connect Google Drive or OneDrive" = "Připojte Google Drive nebo OneDrive";
 "Connected" = "Připojeno";
 "Content" = "Obsah";
-"CONTENT" = "OBSAH";
 "Continue" = "Pokračovat";
 "Create an automatic filing rule." = "Vytvořte pravidlo automatického ukládání.";
 "Date" = "Datum";
@@ -191,7 +189,6 @@
 "Deleting always asks you first, and items stay in Trash for 30 days." = "Při mazání se vždy nejprve zobrazí dotaz a položky zůstanou v koši 30 dní.";
 "Deselect All" = "Zrušte výběr všech";
 "Destination" = "Cíl";
-"DESTINATION" = "CÍL";
 "Details read on this device, ready to file by your rules." = "Podrobnosti čtené na tomto zařízení, připravené k zařazení podle vašich pravidel.";
 "Details were read on this device and stay here." = "Podrobnosti byly přečteny na tomto zařízení a zůstaňte zde.";
 "Device Storage" = "Úložiště zařízení";

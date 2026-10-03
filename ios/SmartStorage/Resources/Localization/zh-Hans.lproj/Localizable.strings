@@ -122,7 +122,6 @@
 "Backed Up" = "已备份";
 "Backup" = "备份";
 "Backup Activity" = "备份活动";
-"BACKUP ACTIVITY" = "备份活动";
 "Backups go where you choose" = "备份保存在您选择的位置";
 "Base" = "基地";
 "Best" = "最佳";
@@ -175,7 +174,6 @@
 "Connect Google Drive or OneDrive" = "连接 Google Drive 或 OneDrive";
 "Connected" = "已连接";
 "Content" = "内容";
-"CONTENT" = "内容";
 "Continue" = "继续";
 "Create an automatic filing rule." = "创建自动归档规则。";
 "Date" = "日期";
@@ -191,7 +189,6 @@
 "Deleting always asks you first, and items stay in Trash for 30 days." = "删除总是先询问您，并且项目会在“回收站”中保留 30 天。";
 "Deselect All" = "取消全选";
 "Destination" = "目的地";
-"DESTINATION" = "目的地";
 "Details read on this device, ready to file by your rules." = "在此设备上读取详细信息，准备好按照您的规则进行归档。";
 "Details were read on this device and stay here." = "详细信息已在此设备上阅读并留在这里。";
 "Device Storage" = "设备存储";

@@ -124,7 +124,6 @@
     <string name="common_backed_up_7f12f675">Zálohováno</string>
     <string name="subscription_backup">Zálohování</string>
     <string name="cloud_overview_backup_activity">Záložní aktivita</string>
-    <string name="cloud_screens_backup_activity">ZÁLOŽNÍ AKTIVITA</string>
     <string name="common_backups_go_where_you_choose">Zálohy se ukládají tam, kde si vyberete</string>
     <string name="insights_base">Základna</string>
     <string name="common_best">Nejlepší</string>
@@ -177,7 +176,6 @@
     <string name="common_connect_google_drive_or_onedrive">Připojte Google Drive nebo OneDrive</string>
     <string name="common_connected">Připojeno</string>
     <string name="common_content">Obsah</string>
-    <string name="cloud_screens_content">OBSAH</string>
     <string name="paywall_continue">Pokračovat</string>
     <string name="common_create_an_automatic_filing_rule">Vytvořte pravidlo automatického ukládání.</string>
     <string name="common_date">Datum</string>
@@ -193,7 +191,6 @@
     <string name="settings_detail_screens_deleting_always_asks_you_first_and_items_stay_in_trash_f">Při mazání se vždy nejprve zobrazí dotaz a položky zůstanou v koši 30 dní.</string>
     <string name="common_deselect_all">Zrušte výběr všech</string>
     <string name="common_destination">Cíl</string>
-    <string name="cloud_screens_destination">CÍL</string>
     <string name="common_details_read_on_this_device_ready_to_file_by_your_rules">Podrobnosti čtené na tomto zařízení, připravené k zařazení podle vašich pravidel.</string>
     <string name="common_details_were_read_on_this_device_and_stay_here">Podrobnosti byly přečteny na tomto zařízení a zůstaňte zde.</string>
     <string name="common_device_storage">Úložiště zařízení</string>

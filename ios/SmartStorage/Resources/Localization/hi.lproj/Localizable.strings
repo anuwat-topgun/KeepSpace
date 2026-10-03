@@ -122,7 +122,6 @@
 "Backed Up" = "बैकअप लिया गया";
 "Backup" = "बैकअप";
 "Backup Activity" = "बैकअप गतिविधि";
-"BACKUP ACTIVITY" = "बैकअप गतिविधि";
 "Backups go where you choose" = "बैकअप वहां जाते हैं जहां आप चुनते हैं";
 "Base" = "आधार";
 "Best" = "सर्वोत्तम";
@@ -175,7 +174,6 @@
 "Connect Google Drive or OneDrive" = "Google Drive या OneDrive कनेक्ट करें";
 "Connected" = "जुड़ा हुआ";
 "Content" = "सामग्री";
-"CONTENT" = "सामग्री";
 "Continue" = "जारी रखें";
 "Create an automatic filing rule." = "एक स्वचालित फाइलिंग नियम बनाएं.";
 "Date" = "दिनांक";
@@ -191,7 +189,6 @@
 "Deleting always asks you first, and items stay in Trash for 30 days." = "हटाना हमेशा आपसे पहले पूछता है, और आइटम 30 दिनों तक कूड़ेदान में रहते हैं।";
 "Deselect All" = "सभी को अचयनित करें";
 "Destination" = "गंतव्य";
-"DESTINATION" = "गंतव्य";
 "Details read on this device, ready to file by your rules." = "विवरण इस डिवाइस पर पढ़ें, आपके नियमों के अनुसार फाइल करने के लिए तैयार।";
 "Details were read on this device and stay here." = "विवरण इस डिवाइस पर पढ़ा गया और यहां रहें।";
 "Device Storage" = "डिवाइस भंडारण";
