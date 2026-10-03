@@ -55,7 +55,7 @@ private struct AutomationHeroCard: View {
             HStack(alignment: .center, spacing: 16) {
                 VStack(alignment: .leading, spacing: 8) {
                     SectionLabel("Automation")
-                    Text("\(active) active \(active == 1 ? "rule" : "rules")")
+                    Text(localizedFormat(active == 1 ? "%d rule on" : "%d rules on", active))
                         .font(Typography.metricLarge)
                         .foregroundStyle(Palette.textPrimary)
                     // Honest until v1.1 lands: rules are ready but nothing uploads yet.

@@ -1,5 +1,6 @@
 package com.smartstorage.cleaner.ui.feature.rules
 
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import com.smartstorage.cleaner.monetization.LocalMonetization
 import com.smartstorage.cleaner.monetization.LocalPresentPaywall
 import com.smartstorage.cleaner.monetization.ProFeature
@@ -129,7 +130,7 @@ fun StorageRulesScreen(onAdd: () -> Unit, onEdit: (String) -> Unit, onBack: () -
                 Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     SectionLabel("Automation")
                     val active = rules.count { it.isEnabled }
-                    Text("$active active ${if (active == 1) "rule" else "rules"}", style = SmartType.metricLarge, color = colors.textPrimary)
+                    Text(localizedFormat(if (active == 1) "%d rule on" else "%d rules on", active), style = SmartType.metricLarge, color = colors.textPrimary)
                     // Honest until v1.1 lands: rules are ready but nothing uploads yet.
                     Text("No cloud account connected yet", style = SmartType.body, color = colors.textSecondary)
                 }
