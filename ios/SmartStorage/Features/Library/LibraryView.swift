@@ -8,7 +8,7 @@ struct LibraryView: View {
     @Environment(CloudStore.self) private var cloud
     @Environment(AppRouter.self) private var router
     @State private var filter: LibraryFilter = .all
-    @State private var selectedItem: MediaItem?
+    @State private var previewRequest: LibraryPreviewRequest?
 
     private let columns = [GridItem(.adaptive(minimum: 104, maximum: 180), spacing: 3)]
 
@@ -59,7 +59,7 @@ struct LibraryView: View {
                 .foregroundStyle(Palette.textPrimary)
             }
 
-            ChipPicker(options: LibraryFilter.allCases, selection: $filter) { $0.title }
+            LibraryFilterPicker(selection: $filter)
                 .padding(.vertical, 2)
 
             if items.isEmpty {
@@ -72,18 +72,26 @@ struct LibraryView: View {
                 LazyVGrid(columns: columns, spacing: 3) {
                     ForEach(items) { item in
                         LibraryTile(item: item, state: cloud.state(for: item)) {
-                            selectedItem = item
+                            // Freeze the exact visible order at tap time. A library scan can otherwise
+                            // reorder the live collection while the full-screen preview is opening.
+                            previewRequest = LibraryPreviewRequest(items: items, initialID: item.id)
                         }
                     }
                 }
                 .animation(.easeInOut(duration: 0.2), value: filter)
             }
         }
-        .fullScreenCover(item: $selectedItem) { item in
-            LibraryPreview(items: items, initialID: item.id)
+        .fullScreenCover(item: $previewRequest) { request in
+            LibraryPreview(items: request.items, initialID: request.initialID)
                 .environment(cloud)
         }
     }
+}
+
+private struct LibraryPreviewRequest: Identifiable {
+    let items: [MediaItem]
+    let initialID: String
+    var id: String { initialID }
 }
 
 private enum LibraryFilter: String, CaseIterable, Hashable {
@@ -95,6 +103,42 @@ private enum LibraryFilter: String, CaseIterable, Hashable {
         case .photos: "Photos"
         case .videos: "Videos"
         case .backedUp: "Backed up"
+        }
+    }
+}
+
+/// Four equal-width controls keep the cloud filter visible and tappable on compact phones.
+private struct LibraryFilterPicker: View {
+    @Binding var selection: LibraryFilter
+
+    var body: some View {
+        HStack(spacing: 6) {
+            ForEach(LibraryFilter.allCases, id: \.self) { option in
+                let isSelected = option == selection
+                Button {
+                    withAnimation(.spring(duration: 0.3)) { selection = option }
+                } label: {
+                    Text(LocalizedStringKey(option.title))
+                        .font(.system(.subheadline, weight: isSelected ? .semibold : .regular))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.72)
+                        .foregroundStyle(isSelected ? .white : Palette.textPrimary)
+                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal, 4)
+                        .padding(.vertical, 10)
+                        .background {
+                            if isSelected {
+                                Capsule().fill(Palette.accentGradient)
+                            } else {
+                                Capsule().fill(Palette.surfaceMuted)
+                            }
+                        }
+                }
+                .buttonStyle(.plain)
+                .frame(maxWidth: .infinity)
+                .contentShape(Capsule())
+                .accessibilityAddTraits(isSelected ? .isSelected : [])
+            }
         }
     }
 }
@@ -164,30 +208,26 @@ private struct LibraryPreview: View {
     let items: [MediaItem]
     @Environment(CloudStore.self) private var cloud
     @Environment(\.dismiss) private var dismiss
-    @State private var selectedID: String
+    @State private var selectedIndex: Int
     @State private var isImmersive = false
 
     init(items: [MediaItem], initialID: String) {
         self.items = items
-        _selectedID = State(initialValue: initialID)
+        _selectedIndex = State(initialValue: items.firstIndex { $0.id == initialID } ?? 0)
     }
 
     private var item: MediaItem? {
-        items.first { $0.id == selectedID } ?? items.first
-    }
-
-    private var index: Int {
-        items.firstIndex { $0.id == selectedID } ?? 0
+        items.indices.contains(selectedIndex) ? items[selectedIndex] : items.first
     }
 
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
 
-            TabView(selection: $selectedID) {
-                ForEach(items) { item in
+            TabView(selection: $selectedIndex) {
+                ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
                     LibraryPreviewPage(item: item, isImmersive: $isImmersive)
-                        .tag(item.id)
+                        .tag(index)
                 }
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
@@ -232,7 +272,7 @@ private struct LibraryPreview: View {
                 .background(isImmersive ? .clear : .black.opacity(0.45))
                 Spacer()
                 if !items.isEmpty && !isImmersive {
-                    Text("\(index + 1) / \(items.count)")
+                    Text("\(selectedIndex + 1) / \(items.count)")
                         .font(.footnote.monospacedDigit().weight(.semibold))
                         .foregroundStyle(.white)
                         .padding(.horizontal, 12)
@@ -242,7 +282,7 @@ private struct LibraryPreview: View {
                 }
             }
         }
-        .onChange(of: selectedID) { _, _ in isImmersive = false }
+        .onChange(of: selectedIndex) { _, _ in isImmersive = false }
         .simultaneousGesture(
             DragGesture(minimumDistance: 24).onEnded { value in
                 let vertical = value.translation.height
@@ -264,11 +304,87 @@ private struct LibraryPreviewPage: View {
                     withAnimation(.easeInOut(duration: 0.2)) { isImmersive.toggle() }
                 }
             } else {
-                AssetImage(assetID: item.id, fallback: item.fallbackStyle, cornerRadius: 0, contentMode: .fit)
+                ZoomableLibraryPhoto(item: item)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black)
+    }
+}
+
+/// Photos-style zooming without changing the horizontal page gesture at the normal scale.
+private struct ZoomableLibraryPhoto: View {
+    let item: MediaItem
+    @State private var scale: CGFloat = 1
+    @State private var settledScale: CGFloat = 1
+    @State private var offset: CGSize = .zero
+    @State private var settledOffset: CGSize = .zero
+
+    var body: some View {
+        GeometryReader { proxy in
+            AssetImage(assetID: item.id, fallback: item.fallbackStyle, cornerRadius: 0, contentMode: .fit)
+                .scaleEffect(scale)
+                .offset(offset)
+                .contentShape(Rectangle())
+                .onTapGesture(count: 2) {
+                    withAnimation(.easeInOut(duration: 0.22)) {
+                        scale = scale > 1 ? 1 : 2.5
+                        settledScale = scale
+                        offset = .zero
+                        settledOffset = .zero
+                    }
+                }
+                .simultaneousGesture(
+                    MagnifyGesture()
+                        .onChanged { value in
+                            scale = min(max(settledScale * value.magnification, 1), 5)
+                            offset = clamped(offset, in: proxy.size, at: scale)
+                        }
+                        .onEnded { _ in
+                            if scale <= 1 {
+                                scale = 1
+                                offset = .zero
+                            }
+                            settledScale = scale
+                            settledOffset = offset
+                        }
+                )
+                .simultaneousGesture(
+                    DragGesture(minimumDistance: 8)
+                        .onChanged { value in
+                            guard scale > 1 else { return }
+                            let proposed = CGSize(
+                                width: settledOffset.width + value.translation.width,
+                                height: settledOffset.height + value.translation.height
+                            )
+                            offset = clamped(proposed, in: proxy.size, at: scale)
+                        }
+                        .onEnded { _ in settledOffset = offset }
+                )
+        }
+        .clipped()
+        .onDisappear {
+            scale = 1
+            settledScale = 1
+            offset = .zero
+            settledOffset = .zero
+        }
+        .accessibilityAction(named: "Zoom") {
+            scale = scale > 1 ? 1 : 2.5
+            settledScale = scale
+            offset = .zero
+            settledOffset = .zero
+        }
+    }
+
+    private func clamped(_ value: CGSize, in size: CGSize, at scale: CGFloat) -> CGSize {
+        guard scale > 1 else { return .zero }
+        let maxX = size.width * (scale - 1) / 2
+        let maxY = size.height * (scale - 1) / 2
+        return CGSize(
+            width: min(max(value.width, -maxX), maxX),
+            height: min(max(value.height, -maxY), maxY)
+        )
     }
 }
 

@@ -5,10 +5,10 @@ import java.util.Locale
 /** Cleanup categories shown on Home and in the cleanup plan. */
 enum class CleanupCategory(val title: String) {
     SimilarPhotos("Similar Photos"),
+    BlurryPhotos("Blurry Photos"),
     Screenshots("Screenshots"),
     LargeVideos("Large Videos"),
     ScreenRecordings("Screen Recordings"),
-    BlurryPhotos("Blurry Photos"),
     /** Plan/review only; not a Home tile (Home mirrors the mockup's five categories). */
     Duplicates("Exact Duplicates"),
 }

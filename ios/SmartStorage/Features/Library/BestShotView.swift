@@ -6,11 +6,9 @@ struct BestShotView: View {
     let group: PhotoGroup
     /// True when shown as the detail pane next to the group list (no navigation to pop).
     var isEmbedded = false
-    @Environment(AppRouter.self) private var router
     @Environment(LibraryStore.self) private var library
     @Environment(MonetizationStore.self) private var monetization
     @Environment(\.dismiss) private var dismiss
-    @State private var selectedIndex: Int
     @State private var kept = false
     @State private var isDeleting = false
     @State private var quotaPrompt: QuotaGatePrompt?
@@ -20,7 +18,6 @@ struct BestShotView: View {
     init(group: PhotoGroup, isEmbedded: Bool = false) {
         self.group = group
         self.isEmbedded = isEmbedded
-        _selectedIndex = State(initialValue: group.recommendedIndex)
     }
 
     private var reasons: [BestShotReason] {
@@ -71,31 +68,24 @@ struct BestShotView: View {
         HStack(spacing: 10) {
             ForEach(stripIndices, id: \.self) { index in
                 let isRecommended = index == group.recommendedIndex
-                let isSelected = index == selectedIndex
-                Button {
-                    withAnimation(.spring(duration: 0.3)) { selectedIndex = index }
-                } label: {
-                    AssetImage(assetID: assetID(index), fallback: group.style, variant: index, cornerRadius: 14)
-                        .aspectRatio(0.72, contentMode: .fit)
-                        .overlay(alignment: .top) {
-                            if isRecommended {
-                                ViewThatFits(in: .horizontal) {
-                                    recommendedTag(Label("Recommended", systemImage: "sparkles"))
-                                    recommendedTag(Image(systemName: "sparkles"))
-                                }
-                                .padding(6)
+                AssetImage(assetID: assetID(index), fallback: group.style, variant: index, cornerRadius: 14)
+                    .aspectRatio(0.72, contentMode: .fit)
+                    .overlay(alignment: .top) {
+                        if isRecommended {
+                            ViewThatFits(in: .horizontal) {
+                                recommendedTag(Label("Recommended", systemImage: "sparkles"))
+                                recommendedTag(Image(systemName: "sparkles"))
                             }
+                            .padding(6)
                         }
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                .strokeBorder(isSelected ? Palette.accent : .clear, lineWidth: 3)
-                                .padding(-4)
-                        )
-                        .scaleEffect(isSelected ? 1.03 : 1)
-                }
-                .buttonStyle(.plain)
+                    }
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .strokeBorder(isRecommended ? Palette.accent : .clear, lineWidth: 3)
+                            .padding(-4)
+                    )
                 .accessibilityLabel(localizedFormat(isRecommended ? "Photo %d, recommended" : "Photo %d", index + 1))
-                .accessibilityAddTraits(isSelected ? .isSelected : [])
+                .accessibilityAddTraits(isRecommended ? .isSelected : [])
             }
         }
         .padding(.vertical, 6)
@@ -113,11 +103,9 @@ struct BestShotView: View {
     }
 
     private var hero: some View {
-        AssetImage(assetID: assetID(selectedIndex), fallback: group.style, variant: selectedIndex,
+        AssetImage(assetID: assetID(group.recommendedIndex), fallback: group.style, variant: group.recommendedIndex,
                    cornerRadius: Metrics.cardRadius, symbolScale: 0.22, contentMode: .fit)
             .aspectRatio(4 / 3, contentMode: .fit)
-            .id(selectedIndex)
-            .transition(.opacity)
     }
 
     private var reasonsCard: some View {
@@ -148,21 +136,15 @@ struct BestShotView: View {
     private var actions: some View {
         VStack(spacing: 12) {
             Button {
-                Task { await keepSelected() }
+                Task { await keepRecommended() }
             } label: {
-                if isDeleting { ProgressView().tint(.white) } else { Text(keepTitle.localizedUI) }
+                if isDeleting { ProgressView().tint(.white) } else { Text((kept ? "Recommended Kept" : "Keep Recommended").localizedUI) }
             }
             .buttonStyle(PrimaryButtonStyle(showsArrow: false))
             .disabled(kept || isDeleting)
 
-            Button("Review All") {
-                if !group.assetIDs.isEmpty { router.push(.reviewGroup(groupID: group.id)) }
-            }
-            .buttonStyle(.secondary)
-
             if !group.assetIDs.isEmpty {
-                Text(localizedFormat("Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days.", group.photoCount - 1)
-                     + (library.taste.isEnabled ? " " + "Your choice also teaches Best Shot your taste, on this device.".localizedUI : ""))
+                Text(localizedFormat("Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days.", group.photoCount - 1))
                     .font(.caption)
                     .foregroundStyle(Palette.textSecondary)
                     .multilineTextAlignment(.center)
@@ -171,17 +153,11 @@ struct BestShotView: View {
         .padding(.top, 4)
     }
 
-    private var keepTitle: String {
-        if kept { return selectedIndex == group.recommendedIndex ? "Recommended Kept" : "Photo Kept" }
-        return selectedIndex == group.recommendedIndex ? "Keep Recommended" : "Keep This One"
-    }
-
-    /// Deletes every photo in the group except the selected one (system confirmation first).
-    /// The selected photo is the recommended one unless the person picked another in the strip.
-    private func keepSelected() async {
+    /// Deletes every photo in the group except Best Shot's recommendation (system confirmation first).
+    private func keepRecommended() async {
         guard !group.assetIDs.isEmpty else { kept = true; return } // demo content
         // The free monthly allowance first; over it, the quota gate is offered instead of deleting.
-        let others = group.assetIDs.enumerated().filter { $0.offset != selectedIndex }.map(\.element)
+        let others = group.assetIDs.enumerated().filter { $0.offset != group.recommendedIndex }.map(\.element)
         let candidates = library.cleanupItems(others, safety: ReviewKind.similar.safety)
         let allowances = monetization.allowances
         if let prompt = QuotaGatePrompt(allowances.gate(cleanup: candidates), selection: candidates, allowances: allowances) {
@@ -193,7 +169,7 @@ struct BestShotView: View {
 
     private func performKeep(limitingTo allowed: Set<String>?) async {
         isDeleting = true
-        let outcome = await library.keep(group, keeperIndex: selectedIndex, limitingTo: allowed)
+        let outcome = await library.keep(group, keeperIndex: group.recommendedIndex, limitingTo: allowed)
         isDeleting = false
         if case .deleted = outcome {
             kept = true

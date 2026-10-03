@@ -5,6 +5,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
+import androidx.compose.foundation.gestures.calculatePan
+import androidx.compose.foundation.gestures.calculateZoom
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -26,6 +30,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -57,13 +62,21 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.input.pointer.positionChanged
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.viewinterop.AndroidView
@@ -77,7 +90,6 @@ import com.smartstorage.cleaner.media.libraryState
 import com.smartstorage.cleaner.model.ThumbnailStyle
 import com.smartstorage.cleaner.ui.components.AssetImage
 import com.smartstorage.cleaner.ui.components.CardStyle
-import com.smartstorage.cleaner.ui.components.ChipPicker
 import com.smartstorage.cleaner.ui.components.ScreenHeader
 import com.smartstorage.cleaner.ui.components.SmartCard
 import com.smartstorage.cleaner.ui.components.StatusBadge
@@ -110,7 +122,6 @@ fun LibraryScreen(onOpen: (Screen) -> Unit) {
         }
     }
     val colors = SmartTheme.colors
-    val selectedItem = library.mediaItems.firstOrNull { it.id == selected }
 
     BoxWithConstraints(Modifier.fillMaxSize().background(colors.background)) {
         val gutter = if (maxWidth >= SmartMetrics.tabletBreakpoint) SmartMetrics.gutterExpanded else SmartMetrics.gutterCompact
@@ -168,13 +179,7 @@ fun LibraryScreen(onOpen: (Screen) -> Unit) {
                 }
             }
             item(span = { GridItemSpan(maxLineSpan) }) {
-                ChipPicker(
-                    options = LibraryFilter.entries,
-                    selected = filter,
-                    onSelect = { filter = it },
-                    label = { it.label },
-                    modifier = Modifier.padding(bottom = 12.dp),
-                )
+                LibraryFilterPicker(filter, onSelect = { filter = it }, modifier = Modifier.padding(bottom = 12.dp))
             }
             if (visible.isEmpty()) {
                 item(span = { GridItemSpan(maxLineSpan) }) {
@@ -190,13 +195,43 @@ fun LibraryScreen(onOpen: (Screen) -> Unit) {
         }
     }
 
-    if (selectedItem != null) {
-        LibraryPreview(
-            items = visible,
-            initialId = selectedItem.id,
-            statuses = statuses,
-            onDismiss = { selected = null },
-        )
+    if (selected != null) {
+        // Keep the same ordered list that was visible when the tile was tapped. Background scanning
+        // may update/reorder the library, but must never move the preview to a neighbouring asset.
+        val previewItems = remember(selected) { visible.toList() }
+        val selectedItem = previewItems.firstOrNull { it.id == selected }
+        if (selectedItem != null) {
+            LibraryPreview(
+                items = previewItems,
+                initialId = selectedItem.id,
+                statuses = statuses,
+                onDismiss = { selected = null },
+            )
+        }
+    }
+}
+
+/** Four equal-width controls keep Backed up visible and tappable on compact phones. */
+@Composable
+private fun LibraryFilterPicker(selected: LibraryFilter, onSelect: (LibraryFilter) -> Unit, modifier: Modifier = Modifier) {
+    val colors = SmartTheme.colors
+    Row(modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+        LibraryFilter.entries.forEach { option ->
+            val isSelected = option == selected
+            Text(
+                text = option.label,
+                style = SmartType.metadata.copy(fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal),
+                color = if (isSelected) Color.White else colors.textPrimary,
+                maxLines = 1,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .weight(1f)
+                    .clip(CircleShape)
+                    .let { if (isSelected) it.background(colors.accentGradient) else it.background(colors.surfaceMuted) }
+                    .selectable(selected = isSelected, role = Role.Tab, onClick = { onSelect(option) })
+                    .padding(horizontal = 4.dp, vertical = 10.dp),
+            )
+        }
     }
 }
 
@@ -257,9 +292,13 @@ private fun LibraryPreview(
     val pager = rememberPagerState(initialPage = initialPage) { items.size }
     var immersive by rememberSaveable(initialId) { mutableStateOf(false) }
     var verticalDrag by remember { mutableStateOf(0f) }
+    var zoomedPhotoId by remember { mutableStateOf<String?>(null) }
     val item = items.getOrNull(pager.currentPage)
     val state = item?.let { statuses[it.id] } ?: AssetCloudState()
-    LaunchedEffect(pager.currentPage) { immersive = false }
+    LaunchedEffect(pager.currentPage) {
+        immersive = false
+        zoomedPhotoId = null
+    }
     Dialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(usePlatformDefaultWidth = false, decorFitsSystemWindows = false),
@@ -280,7 +319,12 @@ private fun LibraryPreview(
                     )
                 },
         ) {
-            HorizontalPager(state = pager, key = { items[it].id }, modifier = Modifier.fillMaxSize()) { page ->
+            HorizontalPager(
+                state = pager,
+                key = { items[it].id },
+                userScrollEnabled = zoomedPhotoId == null,
+                modifier = Modifier.fillMaxSize(),
+            ) { page ->
                 val pageItem = items[page]
                 if (pageItem.isVideo) {
                     PhotoLibraryVideoPlayer(
@@ -289,12 +333,13 @@ private fun LibraryPreview(
                         onToggleFullscreen = { immersive = !immersive },
                     )
                 } else {
-                    AssetImage(
-                        pageItem.id,
-                        pageItem.fallbackStyle,
-                        Modifier.fillMaxSize(),
-                        cornerRadius = 0.dp,
-                        contentScale = ContentScale.Fit,
+                    ZoomableLibraryPhoto(
+                        item = pageItem,
+                        active = page == pager.currentPage,
+                        onZoomChanged = { zoomed ->
+                            if (zoomed) zoomedPhotoId = pageItem.id
+                            else if (zoomedPhotoId == pageItem.id) zoomedPhotoId = null
+                        },
                     )
                 }
             }
@@ -344,6 +389,74 @@ private fun LibraryPreview(
             }
         }
     }
+}
+
+/** Double-tap and multi-touch zoom for photos; one-finger paging stays enabled at 1x. */
+@Composable
+private fun ZoomableLibraryPhoto(item: MediaItem, active: Boolean, onZoomChanged: (Boolean) -> Unit) {
+    var zoom by remember(item.id) { mutableStateOf(1f) }
+    var offset by remember(item.id) { mutableStateOf(Offset.Zero) }
+    var size by remember(item.id) { mutableStateOf(IntSize.Zero) }
+
+    fun applyZoom(nextZoom: Float, pan: Offset = Offset.Zero) {
+        zoom = nextZoom.coerceIn(1f, 5f)
+        if (zoom == 1f) {
+            offset = Offset.Zero
+        } else {
+            val maxX = size.width * (zoom - 1f) / 2f
+            val maxY = size.height * (zoom - 1f) / 2f
+            offset = Offset(
+                (offset.x + pan.x).coerceIn(-maxX, maxX),
+                (offset.y + pan.y).coerceIn(-maxY, maxY),
+            )
+        }
+        onZoomChanged(zoom > 1f)
+    }
+
+    LaunchedEffect(active) {
+        if (!active) applyZoom(1f)
+    }
+
+    AssetImage(
+        item.id,
+        item.fallbackStyle,
+        Modifier
+            .fillMaxSize()
+            .onSizeChanged { size = it }
+            .graphicsLayer {
+                scaleX = zoom
+                scaleY = zoom
+                translationX = offset.x
+                translationY = offset.y
+            }
+            .pointerInput(item.id) {
+                awaitEachGesture {
+                    awaitFirstDown(requireUnconsumed = false)
+                    do {
+                        val event = awaitPointerEvent()
+                        val pressed = event.changes.count { it.pressed }
+                        // At 1x, a single finger belongs to HorizontalPager. Two fingers start
+                        // zooming; once zoomed, one finger pans the image instead of paging.
+                        if (pressed >= 2 || zoom > 1f) {
+                            applyZoom(zoom * event.calculateZoom(), event.calculatePan())
+                            event.changes.forEach { change ->
+                                if (change.positionChanged()) change.consume()
+                            }
+                        }
+                    } while (event.changes.any { it.pressed })
+                }
+            }
+            .pointerInput(item.id) {
+                detectTapGestures(
+                    onDoubleTap = {
+                        offset = Offset.Zero
+                        applyZoom(if (zoom > 1f) 1f else 2.5f)
+                    },
+                )
+            },
+        cornerRadius = 0.dp,
+        contentScale = ContentScale.Fit,
+    )
 }
 
 @Composable

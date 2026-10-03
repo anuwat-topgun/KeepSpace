@@ -2,7 +2,7 @@ import Foundation
 
 /// Cleanup categories shown on Home and in the cleanup plan.
 enum CleanupCategory: String, CaseIterable, Identifiable, Sendable {
-    case similarPhotos, screenshots, largeVideos, screenRecordings, blurryPhotos
+    case similarPhotos, blurryPhotos, screenshots, largeVideos, screenRecordings
 
     var id: Self { self }
 
@@ -40,7 +40,7 @@ enum CleanupCategory: String, CaseIterable, Identifiable, Sendable {
         case .similarPhotos: .similarPhotos
         case .screenshots: .screenshots
         case .largeVideos, .screenRecordings: .videos
-        case .blurryPhotos: .similarPhotos
+        case .blurryPhotos: .review(.blurry)
         }
     }
 }

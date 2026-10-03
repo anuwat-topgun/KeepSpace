@@ -41,6 +41,7 @@ import com.smartstorage.cleaner.media.LibraryAccess
 import com.smartstorage.cleaner.media.LibraryState
 import com.smartstorage.cleaner.media.LocalLibraryStore
 import com.smartstorage.cleaner.media.LocalRequestLibraryAccess
+import com.smartstorage.cleaner.media.ReviewKind
 import com.smartstorage.cleaner.media.ScanPhase
 import com.smartstorage.cleaner.model.CleanupCategory
 import com.smartstorage.cleaner.model.StorageSummary
@@ -63,7 +64,7 @@ import com.smartstorage.cleaner.ui.theme.Tint
 
 /** 02 — Home dashboard. */
 @Composable
-fun HomeScreen(onOpen: (Screen) -> Unit, onFreeUp: () -> Unit) {
+fun HomeScreen(onOpen: (Screen) -> Unit, onReview: (ReviewKind) -> Unit, onFreeUp: () -> Unit) {
     val state by LocalLibraryStore.current.state.collectAsState()
     val storage = state.content.storage
     ScreenScaffold(maxWidth = SmartMetrics.wideContentWidth) {
@@ -77,7 +78,7 @@ fun HomeScreen(onOpen: (Screen) -> Unit, onFreeUp: () -> Unit) {
                     title = category.title,
                     tint = category.tint,
                     subtitle = subtitle(category, storage, state),
-                    onClick = { onOpen(category.screen) },
+                    onClick = { openCategory(category, onOpen, onReview) },
                 )
             }
         }
@@ -231,10 +232,12 @@ internal val CleanupCategory.tint: Tint
         CleanupCategory.Duplicates -> Tint.Blue
     }
 
-private val CleanupCategory.screen: Screen
-    get() = when (this) {
-        CleanupCategory.SimilarPhotos, CleanupCategory.BlurryPhotos -> Screen.SimilarPhotos
-        CleanupCategory.Screenshots -> Screen.Screenshots
-        CleanupCategory.LargeVideos, CleanupCategory.ScreenRecordings -> Screen.Videos
-        CleanupCategory.Duplicates -> Screen.CleanupPlan
+private fun openCategory(category: CleanupCategory, onOpen: (Screen) -> Unit, onReview: (ReviewKind) -> Unit) {
+    when (category) {
+        CleanupCategory.SimilarPhotos -> onOpen(Screen.SimilarPhotos)
+        CleanupCategory.BlurryPhotos -> onReview(ReviewKind.Blurry)
+        CleanupCategory.Screenshots -> onOpen(Screen.Screenshots)
+        CleanupCategory.LargeVideos, CleanupCategory.ScreenRecordings -> onOpen(Screen.Videos)
+        CleanupCategory.Duplicates -> onOpen(Screen.CleanupPlan)
     }
+}

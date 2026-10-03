@@ -117,22 +117,33 @@ private fun VideoRow(video: VideoItem, onReview: (ReviewKind) -> Unit) {
     val isPro = proStatus.isPro
     val canCompress = LocalMediaActions.current?.canCompress == true &&
         CompressionPreset.entries.any { video.estimatedSavings(it) != null }
-    SmartCard(contentPadding = PaddingValues(12.dp)) {
-        Row(horizontalArrangement = Arrangement.spacedBy(14.dp), verticalAlignment = Alignment.CenterVertically) {
-            Box(Modifier.size(width = 96.dp, height = 64.dp)) {
-                AssetImage(video.assetUri, video.style, Modifier.fillMaxWidth().fillMaxHeight())
-                DurationBadge(video.duration, Modifier.align(Alignment.BottomEnd).padding(6.dp))
+    SmartCard(contentPadding = PaddingValues(14.dp)) {
+        Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Box(Modifier.size(width = 112.dp, height = 74.dp)) {
+                    AssetImage(video.assetUri, video.style, Modifier.fillMaxWidth().fillMaxHeight())
+                    DurationBadge(video.duration, Modifier.align(Alignment.BottomEnd).padding(6.dp))
+                }
+                Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
+                    Text(video.title, style = SmartType.cardHeadline, color = colors.textPrimary, maxLines = 2)
+                    Text(video.bytes.formattedBytes(), style = SmartType.metadata, color = colors.textSecondary)
+                    Text(video.metadata, style = SmartType.metadata, color = colors.textSecondary, maxLines = 1)
+                }
             }
-            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
-                Text(video.title, style = SmartType.cardHeadline, color = colors.textPrimary, maxLines = 2)
-                Text(video.bytes.formattedBytes(), style = SmartType.metadata, color = colors.textSecondary)
-                Text(video.metadata, style = SmartType.metadata, color = colors.textSecondary)
-            }
-            // Favourites and videos that wouldn't shrink are offered for review, not compression.
-            if (video.isMeaningful || !canCompress) {
-                InlinePillButton("Review", onClick = { onReview(ReviewKind.LargeVideos) }, tint = Tint.Mint)
-            } else {
-                InlinePillButton("Compress", onClick = { if (isPro) compressing = true else explaining = true }, tint = Tint.Teal, isProLocked = !isPro)
+
+            // A fixed-width action beside the title squeezed filenames down to a few characters
+            // on phones. Giving it a dedicated trailing row keeps the card readable at every width.
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                // Favourites and videos that wouldn't shrink are offered for review, not compression.
+                if (video.isMeaningful || !canCompress) {
+                    InlinePillButton("Review", onClick = { onReview(ReviewKind.LargeVideos) }, tint = Tint.Mint)
+                } else {
+                    InlinePillButton("Compress", onClick = { if (isPro) compressing = true else explaining = true }, tint = Tint.Teal, isProLocked = !isPro)
+                }
             }
         }
     }

@@ -144,12 +144,12 @@ private fun AppNavHost(navController: NavHostController) {
                 val back: () -> Unit = { navController.popBackStack() }
                 val openGroup: (String) -> Unit = { navController.navigate(tab.bestShotRoute(it)) }
                 val review: (ReviewKind) -> Unit = { navController.navigate(tab.reviewRoute(it)) }
-                val reviewGroup: (String) -> Unit = { navController.navigate(tab.reviewGroupRoute(it)) }
 
                 composable(tab.rootRoute) {
                     when (tab) {
                         AppTab.Home -> HomeScreen(
                             onOpen = push,
+                            onReview = review,
                             onFreeUp = { navController.selectTab(AppTab.Clean, tab) },
                         )
                         AppTab.Clean -> CleanScreen(onOpen = push)
@@ -168,7 +168,7 @@ private fun AppNavHost(navController: NavHostController) {
                         ?: Screen.CleanupPlan
                     when (screen) {
                         Screen.CleanupPlan -> CleanupPlanScreen(onOpen = push, onReview = review, onBack = back)
-                        Screen.SimilarPhotos -> SimilarPhotosScreen(onOpenGroup = openGroup, onReviewGroup = reviewGroup, onBack = back)
+                        Screen.SimilarPhotos -> SimilarPhotosScreen(onOpenGroup = openGroup, onBack = back)
                         Screen.Screenshots -> ScreenshotsScreen(onReview = review, onBack = back)
                         Screen.StorageRules -> StorageRulesScreen(
                             onAdd = { push(Screen.NewRule) },
@@ -226,7 +226,7 @@ private fun AppNavHost(navController: NavHostController) {
                     val id = entry.arguments?.getString(AppTab.GROUP_ARG)
                     val group = libraryState().content.photoGroups.firstOrNull { it.id == id }
                     if (group != null) {
-                        BestShotScreen(group, onBack = back, onReviewGroup = reviewGroup)
+                        BestShotScreen(group, onBack = back)
                     } else {
                         PlaceholderScreen(title = "Group not found", onBack = back)
                     }

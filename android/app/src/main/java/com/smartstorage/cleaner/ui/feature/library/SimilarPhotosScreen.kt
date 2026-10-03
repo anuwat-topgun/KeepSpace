@@ -61,7 +61,7 @@ private val TwoPaneMinWidth = 820.dp
  * Phone: list → navigate to Best Shot. Wide window: list on the left, Best Shot for the selected group on the right.
  */
 @Composable
-fun SimilarPhotosScreen(onOpenGroup: (String) -> Unit, onReviewGroup: (String) -> Unit, onBack: () -> Unit) {
+fun SimilarPhotosScreen(onOpenGroup: (String) -> Unit, onBack: () -> Unit) {
     val state = libraryState()
     val groups = state.content.photoGroups
     var selectedId by rememberSaveable { mutableStateOf<String?>(null) }
@@ -75,7 +75,7 @@ fun SimilarPhotosScreen(onOpenGroup: (String) -> Unit, onReviewGroup: (String) -
                 }
                 VerticalDivider(color = SmartTheme.colors.separator)
                 Crossfade(targetState = effectiveId, label = "bestShot", modifier = Modifier.weight(1f)) { id ->
-                    groups.firstOrNull { it.id == id }?.let { BestShotScreen(it, onBack = null, onReviewGroup = onReviewGroup) }
+                    groups.firstOrNull { it.id == id }?.let { BestShotScreen(it, onBack = null) }
                 }
             }
         } else {

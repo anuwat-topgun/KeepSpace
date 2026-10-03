@@ -71,41 +71,37 @@ private struct VideoRow: View {
     @State private var wantsPaywall = false
 
     var body: some View {
-        Card(padding: 12) {
-            HStack(spacing: 14) {
-                AssetImage(assetID: video.assetID, fallback: video.style, cornerRadius: 12)
-                    .frame(width: 96, height: 64)
-                    .overlay(alignment: .bottomTrailing) {
-                        DurationBadge(text: video.duration).padding(6)
-                    }
-                VStack(alignment: .leading, spacing: 3) {
-                    Text(video.title)
-                        .font(Typography.cardHeadline)
-                        .foregroundStyle(Palette.textPrimary)
-                        .lineLimit(2)
-                    Text(video.bytes.formattedBytes)
-                        .font(Typography.metadata)
-                        .foregroundStyle(Palette.textSecondary)
-                    Text(video.metadata)
-                        .font(Typography.metadata)
-                        .foregroundStyle(Palette.textSecondary)
-                }
-                Spacer(minLength: 4)
-                if video.isMeaningful || CompressionPreset.allCases.allSatisfy({ video.estimatedSavings($0) == nil }) {
-                    // Favourites and videos that wouldn't shrink are offered for review, not compression.
-                    Button("Review") { router.push(.review(.largeVideos)) }
-                        .buttonStyle(InlinePillButtonStyle(tint: .mint))
-                } else {
-                    Button {
-                        if monetization.isPro { compressing = video } else { explaining = true }
-                    } label: {
-                        HStack(spacing: 6) {
-                            Text("Compress")
-                            if !monetization.isPro { ProChip() }
+        Card(padding: 14) {
+            VStack(alignment: .leading, spacing: 12) {
+                HStack(alignment: .center, spacing: 12) {
+                    AssetImage(assetID: video.assetID, fallback: video.style, cornerRadius: 12)
+                        .frame(width: 112, height: 74)
+                        .overlay(alignment: .bottomTrailing) {
+                            DurationBadge(text: video.duration).padding(6)
                         }
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(video.title)
+                            .font(Typography.cardHeadline)
+                            .foregroundStyle(Palette.textPrimary)
+                            .lineLimit(2)
+                            .truncationMode(.middle)
+                            .fixedSize(horizontal: false, vertical: true)
+                        Text(video.bytes.formattedBytes)
+                            .font(Typography.metadata)
+                            .foregroundStyle(Palette.textSecondary)
+                        Text(video.metadata)
+                            .font(Typography.metadata)
+                            .foregroundStyle(Palette.textSecondary)
+                            .lineLimit(1)
                     }
-                    .buttonStyle(InlinePillButtonStyle(tint: .teal))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .layoutPriority(1)
                 }
+
+                // Keep the action on its own row. A trailing fixed-width pill beside the title
+                // left too little room on phones and caused filenames to wrap one character at a time.
+                actionButton
+                    .frame(maxWidth: .infinity, alignment: .trailing)
             }
         }
         .sheet(isPresented: $explaining, onDismiss: {
@@ -120,6 +116,25 @@ private struct VideoRow: View {
         .sheet(item: $compressing) { video in
             CompressSheet(video: video)
                 .presentationDetents([.medium, .large])
+        }
+    }
+
+    @ViewBuilder
+    private var actionButton: some View {
+        if video.isMeaningful || CompressionPreset.allCases.allSatisfy({ video.estimatedSavings($0) == nil }) {
+            // Favourites and videos that wouldn't shrink are offered for review, not compression.
+            Button("Review") { router.push(.review(.largeVideos)) }
+                .buttonStyle(InlinePillButtonStyle(tint: .mint))
+        } else {
+            Button {
+                if monetization.isPro { compressing = video } else { explaining = true }
+            } label: {
+                HStack(spacing: 6) {
+                    Text("Compress")
+                    if !monetization.isPro { ProChip() }
+                }
+            }
+            .buttonStyle(InlinePillButtonStyle(tint: .teal))
         }
     }
 }
