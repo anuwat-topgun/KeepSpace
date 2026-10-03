@@ -1,5 +1,10 @@
 package com.smartstorage.cleaner.ui.shell
 
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.sp
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.Box
@@ -100,7 +105,7 @@ fun AppShell(openCleanupPlanRequest: Int = 0) {
                     selected = tab == currentTab,
                     onClick = { navController.selectTab(tab, currentTab) },
                     icon = { Icon(tab.icon, contentDescription = null) },
-                    label = { Text(tab.title) },
+                    label = { TabLabel(tab.title) },
                 )
             }
         },
@@ -111,6 +116,23 @@ fun AppShell(openCleanupPlanRequest: Int = 0) {
             NoticeBanner(Modifier.align(Alignment.TopCenter))
         }
     }
+}
+
+/**
+ * A tab label that stays on one line. Long translations ("Einstellungen") shrink a little until they fit the tab
+ * instead of wrapping in the middle of a word; below 8sp they are cut with an ellipsis rather than shrink further.
+ */
+@Composable
+private fun TabLabel(title: String) {
+    var size by remember(title) { mutableFloatStateOf(12f) }
+    Text(
+        title,
+        fontSize = size.sp,
+        maxLines = 1,
+        softWrap = false,
+        overflow = TextOverflow.Ellipsis,
+        onTextLayout = { if (it.isLineEllipsized(0) && size > 8f) size -= 0.5f },
+    )
 }
 
 @Composable
