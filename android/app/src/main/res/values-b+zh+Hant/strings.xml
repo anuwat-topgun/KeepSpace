@@ -40,6 +40,10 @@
     <string name="subscription_ends">結束%s</string>
     <string name="subscription_pro_renews">親·續訂%s</string>
     <string name="subscription_pro_ends">親 · 結束 %s</string>
+    <string name="quota_gate_exhausted_message">免費包括每月 %s 的清理工作。它在 %s 重置。</string>
+    <string name="quota_gate_partial_message">您的選擇是%s。您可以透過免費免費獲得 %s 更多內容。</string>
+    <string name="quota_gate_meter">本月已使用 %s（共 %s） · 重設 %s</string>
+    <string name="quota_gate_delete_safest">刪除%s（最安全的優先）</string>
     <string name="screenshot_shopping">購物</string>
     <string name="screenshot_receipts">收據</string>
     <string name="screenshot_chats">聊天記錄</string>
@@ -74,6 +78,7 @@
     <string name="best_shot_your_favorite">你最喜歡的</string>
     <string name="best_shot_your_favorite_detail">您已將這張照片標記為最喜歡的照片。</string>
     <string name="subscription_of_used">已使用 %s（共 %s）</string>
+    <string name="quota_gate_sheet_of_used_this_month_resets">本月已使用 %s（共 %s） · 重設 %s</string>
     <string name="paywall_d_days_free">%d 天免費</string>
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">免費 %d 天，然後每年 %s。自动续订，直到您在帐户设置中取消为止。</string>
     <string name="subscription_d_of_d_files_used">使用了 %d 個檔案（共 %d 個）</string>
@@ -177,6 +182,7 @@
     <string name="common_day">日</string>
     <string name="common_deeper_cleanup_for_more_space">更深入的清理以獲得更多空間。</string>
     <string name="common_delete">刪除</string>
+    <string name="quota_gate_sheet_delete_safest_first">刪除%s（最安全的優先）</string>
     <string name="common_delete_rule">刪除規則</string>
     <string name="common_delete_this_rule">刪除這條規則？</string>
     <string name="review_deleted_items_can_t_be_recovered_on_this_android_version">在此 Android 版本上無法還原已刪除的項目。</string>
@@ -218,6 +224,7 @@
     <string name="common_forecast">預測</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">忘記 KeepSpace 對您的圖書館的了解。下次掃描時它將再次查看。</string>
     <string name="subscription_free">免費</string>
+    <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">免費包括每月 %s 的清理工作。它在 %s 重置。</string>
     <string name="subscription_free_trial_ends_then_renews">免費試用結束%s，然後續訂。</string>
     <string name="subscription_free_trial_ends">免費試用結束%s。</string>
     <string name="common_free_up_space">釋放空間</string>
@@ -293,11 +300,14 @@
     <string name="common_no_trips_or_events_found_yet_they_appear_as_your_library">尚未找到旅行或活動。它們隨著您的圖書館的增長而出現。未經您的審核，照片絕不會被刪除。</string>
     <string name="common_no_uploads_to_our_servers">沒有上傳到我們的伺服器</string>
     <string name="common_no_videos_here">這裡沒有影片。</string>
+    <string name="quota_gate_sheet_none_of_the_selected_items_fit_in_what_s_left_select_few">所選項目都不適合剩下的項目。選擇更少或更小的項目，或解鎖 Pro。</string>
     <string name="common_not_connected">未連接</string>
     <string name="common_not_found">未找到</string>
+    <string name="quota_gate_sheet_not_now">現在不行</string>
     <string name="common_not_set">未設定</string>
     <string name="common_not_set_yet">尚未設定</string>
     <string name="common_nothing_is_deleted_silently">沒有什麼會悄悄刪除</string>
+    <string name="quota_gate_sheet_nothing_is_deleted_without_your_confirmation">未經您的確認，不會刪除任何內容。</string>
     <string name="common_nothing_left_to_review_here">這裡沒有什麼好評論的了。</string>
     <string name="common_nothing_to_clean_up_right_now_your_library_is_in_good_sh">現在沒有什麼需要清理的。您的圖書館狀況良好。</string>
     <string name="common_notifications">通知</string>
@@ -451,6 +461,7 @@
     <string name="common_unknown_merchant">未知商人</string>
     <string name="common_unlimited_backup_rules">無限備份和規則</string>
     <string name="common_unlimited_cleanup">無限清理</string>
+    <string name="quota_gate_sheet_unlock_unlimited_cleanup">解鎖無限清理</string>
     <string name="subscription_upgrade_to_pro">升級到專業版</string>
     <string name="common_upload_over_wi_fi_only">僅透過 Wi-Fi 上傳</string>
     <string name="common_used">二手</string>
@@ -481,7 +492,9 @@
     <string name="common_you_review_every_cleanup_and_important_memories_are_prot">您檢查每一次清理工作，重要的記憶預設受到保護。</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_recently_d">您將在下一步中確認。項目在「最近刪除」中保留 30 天。</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">您將在下一步中確認。物品會在垃圾箱中保留 30 天。</string>
+    <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">您已接近本月的免費限額</string>
     <string name="subscription_you_re_on_the_free_plan">您使用的是免費方案。</string>
+    <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">您已使用本月的免費清理服務</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">您的選擇也會讓 Best Shot 了解您在此裝置上的品味。</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">您的完整照片庫，具有雲端備份狀態。</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">僅在此裝置上分析您的照片。</string>
@@ -490,6 +503,7 @@
     <string name="paywall_your_photos_stay_yours_analysis_stays_on_your_device_and">您的照片歸您所有。分析保留在您的设备上，备份仅保存在您选择的位置。</string>
     <string name="common_your_photos_videos_and_extracted_text_are_never_sent_to">您的照片、影片和提取的文字永遠不會發送到 KeepSpace。</string>
     <string name="common_your_privacy">您的隱私</string>
+    <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">您的選擇是%s。您可以透過免費免費獲得 %s 更多內容。</string>
     <string name="common_your_storage_organized_intelligently">您的儲存空間被智慧地組織起來。</string>
     <string name="paywall_month">≈ %s / 月</string>
 </resources>

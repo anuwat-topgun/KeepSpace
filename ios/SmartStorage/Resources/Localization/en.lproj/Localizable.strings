@@ -38,6 +38,10 @@
 "Ends %@" = "Ends %@";
 "Pro · renews %@" = "Pro · renews %@";
 "Pro · ends %@" = "Pro · ends %@";
+"Free includes %@ of cleanup each month. It resets on %@." = "Free includes %@ of cleanup each month. It resets on %@.";
+"Your selection is %@. You can free %@ more on Free." = "Your selection is %@. You can free %@ more on Free.";
+"%@ of %@ used this month · Resets %@" = "%@ of %@ used this month · Resets %@";
+"Delete %@ (safest first)" = "Delete %@ (safest first)";
 "Shopping" = "Shopping";
 "Receipts" = "Receipts";
 "Chats" = "Chats";
@@ -72,6 +76,7 @@
 "Your favorite" = "Your favorite";
 "You marked this photo as a favorite." = "You marked this photo as a favorite.";
 "%@ of %@ used" = "%@ of %@ used";
+"%@ of %@ used this month · Resets %@" = "%@ of %@ used this month · Resets %@";
 "%d days free" = "%d days free";
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d days free, then %@ per year. Renews automatically until you cancel in your account settings.";
 "%d of %d files used" = "%d of %d files used";
@@ -175,6 +180,7 @@
 "Day" = "Day";
 "Deeper cleanup for more space." = "Deeper cleanup for more space.";
 "Delete" = "Delete";
+"Delete %@ (safest first)" = "Delete %@ (safest first)";
 "Delete Rule" = "Delete Rule";
 "Delete this rule?" = "Delete this rule?";
 "Deleted items can't be recovered on this Android version." = "Deleted items can't be recovered on this Android version.";
@@ -216,6 +222,7 @@
 "Forecast" = "Forecast";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Forget what KeepSpace learned about your library. It will look again on the next scan.";
 "Free" = "Free";
+"Free includes %@ of cleanup each month. It resets on %@." = "Free includes %@ of cleanup each month. It resets on %@.";
 "Free trial ends %@, then renews." = "Free trial ends %@, then renews.";
 "Free trial ends %@." = "Free trial ends %@.";
 "Free Up Space" = "Free Up Space";
@@ -291,11 +298,14 @@
 "No trips or events found yet. They appear as your library grows. Photos are never removed without your review." = "No trips or events found yet. They appear as your library grows. Photos are never removed without your review.";
 "No uploads to our servers" = "No uploads to our servers";
 "No videos here." = "No videos here.";
+"None of the selected items fit in what's left. Select fewer or smaller items, or unlock Pro." = "None of the selected items fit in what's left. Select fewer or smaller items, or unlock Pro.";
 "Not connected" = "Not connected";
 "Not found" = "Not found";
+"Not now" = "Not now";
 "Not set" = "Not set";
 "Not set yet" = "Not set yet";
 "Nothing is deleted silently" = "Nothing is deleted silently";
+"Nothing is deleted without your confirmation." = "Nothing is deleted without your confirmation.";
 "Nothing left to review here." = "Nothing left to review here.";
 "Nothing to clean up right now. Your library is in good shape." = "Nothing to clean up right now. Your library is in good shape.";
 "Notifications" = "Notifications";
@@ -449,6 +459,7 @@
 "Unknown merchant" = "Unknown merchant";
 "Unlimited Backup & Rules" = "Unlimited Backup & Rules";
 "Unlimited Cleanup" = "Unlimited Cleanup";
+"Unlock Unlimited Cleanup" = "Unlock Unlimited Cleanup";
 "Upgrade to Pro" = "Upgrade to Pro";
 "Upload over Wi-Fi only" = "Upload over Wi-Fi only";
 "Used" = "Used";
@@ -479,7 +490,9 @@
 "You review every cleanup, and important memories are protected by default." = "You review every cleanup, and important memories are protected by default.";
 "You'll confirm in the next step. Items stay in Recently Deleted for 30 days." = "You'll confirm in the next step. Items stay in Recently Deleted for 30 days.";
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "You'll confirm in the next step. Items stay in Trash for 30 days.";
+"You're close to this month's free limit" = "You're close to this month's free limit";
 "You're on the Free plan." = "You're on the Free plan.";
+"You've used this month's free cleanup" = "You've used this month's free cleanup";
 "Your choice also teaches Best Shot your taste, on this device." = "Your choice also teaches Best Shot your taste, on this device.";
 "Your full photo library, with cloud backup status." = "Your full photo library, with cloud backup status.";
 "Your photos are analyzed on this device only." = "Your photos are analyzed on this device only.";
@@ -488,5 +501,6 @@
 "Your photos stay yours. Analysis stays on your device, and backups go only where you choose." = "Your photos stay yours. Analysis stays on your device, and backups go only where you choose.";
 "Your photos, videos and extracted text are never sent to KeepSpace." = "Your photos, videos and extracted text are never sent to KeepSpace.";
 "Your privacy" = "Your privacy";
+"Your selection is %@. You can free %@ more on Free." = "Your selection is %@. You can free %@ more on Free.";
 "Your storage, organized intelligently." = "Your storage, organized intelligently.";
 "≈ %@ / month" = "≈ %@ / month";

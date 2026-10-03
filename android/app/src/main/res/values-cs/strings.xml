@@ -40,6 +40,10 @@
     <string name="subscription_ends">Končí %s</string>
     <string name="subscription_pro_renews">Pro · obnovuje %s</string>
     <string name="subscription_pro_ends">Pro · končí %s</string>
+    <string name="quota_gate_exhausted_message">Zdarma zahrnuje %s úklidu každý měsíc. Resetuje se na %s.</string>
+    <string name="quota_gate_partial_message">Váš výběr je %s. Můžete zdarma %s více na Free.</string>
+    <string name="quota_gate_meter">%s z %s použité tento měsíc · Resetuje %s</string>
+    <string name="quota_gate_delete_safest">Smazat %s (nejbezpečnější první)</string>
     <string name="screenshot_shopping">Nakupování</string>
     <string name="screenshot_receipts">účtenky</string>
     <string name="screenshot_chats">Chaty</string>
@@ -74,6 +78,7 @@
     <string name="best_shot_your_favorite">Váš oblíbený</string>
     <string name="best_shot_your_favorite_detail">Tuto fotku jste označili jako oblíbenou.</string>
     <string name="subscription_of_used">%s z %s použité</string>
+    <string name="quota_gate_sheet_of_used_this_month_resets">%s z %s použité tento měsíc · Resetuje %s</string>
     <string name="paywall_d_days_free">%d dní zdarma</string>
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d dní zdarma, poté %s za rok. Obnovuje se automaticky, dokud nezrušíte v nastavení účtu.</string>
     <string name="subscription_d_of_d_files_used">Použito %d z %d souborů</string>
@@ -177,6 +182,7 @@
     <string name="common_day">den</string>
     <string name="common_deeper_cleanup_for_more_space">Hlubší čištění pro více místa.</string>
     <string name="common_delete">Smazat</string>
+    <string name="quota_gate_sheet_delete_safest_first">Smazat %s (nejbezpečnější první)</string>
     <string name="common_delete_rule">Smazat pravidlo</string>
     <string name="common_delete_this_rule">Smazat toto pravidlo?</string>
     <string name="review_deleted_items_can_t_be_recovered_on_this_android_version">Smazané položky nelze v této verzi Android obnovit.</string>
@@ -218,6 +224,7 @@
     <string name="common_forecast">Předpověď</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Zapomeňte, co se KeepSpace dozvěděla o vaší knihovně. Při dalším skenování se podívá znovu.</string>
     <string name="subscription_free">Zdarma</string>
+    <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Zdarma zahrnuje %s úklidu každý měsíc. Resetuje se na %s.</string>
     <string name="subscription_free_trial_ends_then_renews">Bezplatné zkušební období končí %s a poté se obnoví.</string>
     <string name="subscription_free_trial_ends">Bezplatné zkušební období končí %s.</string>
     <string name="common_free_up_space">Uvolněte místo</string>
@@ -293,11 +300,14 @@
     <string name="common_no_trips_or_events_found_yet_they_appear_as_your_library">Zatím nebyly nalezeny žádné výlety ani akce. Objevují se, jak se vaše knihovna rozrůstá. Fotografie nejsou nikdy odstraněny bez vaší kontroly.</string>
     <string name="common_no_uploads_to_our_servers">Žádné nahrávání na naše servery</string>
     <string name="common_no_videos_here">Nejsou zde žádná videa.</string>
+    <string name="quota_gate_sheet_none_of_the_selected_items_fit_in_what_s_left_select_few">Žádná z vybraných položek se nevejde do toho, co zbylo. Vyberte méně nebo menší položky nebo odemkněte Pro.</string>
     <string name="common_not_connected">Nepřipojeno</string>
     <string name="common_not_found">Nenalezeno</string>
+    <string name="quota_gate_sheet_not_now">Teď ne</string>
     <string name="common_not_set">Nenastaveno</string>
     <string name="common_not_set_yet">Zatím není nastaveno</string>
     <string name="common_nothing_is_deleted_silently">Nic se tiše nesmaže</string>
+    <string name="quota_gate_sheet_nothing_is_deleted_without_your_confirmation">Bez vašeho potvrzení se nic nesmaže.</string>
     <string name="common_nothing_left_to_review_here">Zde již není co hodnotit.</string>
     <string name="common_nothing_to_clean_up_right_now_your_library_is_in_good_sh">Momentálně není co uklízet. Vaše knihovna je v dobrém stavu.</string>
     <string name="common_notifications">Oznámení</string>
@@ -451,6 +461,7 @@
     <string name="common_unknown_merchant">Neznámý obchodník</string>
     <string name="common_unlimited_backup_rules">Neomezené zálohování a pravidla</string>
     <string name="common_unlimited_cleanup">Neomezené čištění</string>
+    <string name="quota_gate_sheet_unlock_unlimited_cleanup">Odemkněte neomezené čištění</string>
     <string name="subscription_upgrade_to_pro">Upgradujte na Pro</string>
     <string name="common_upload_over_wi_fi_only">Nahrávejte pouze přes Wi-Fi</string>
     <string name="common_used">Použité</string>
@@ -481,7 +492,9 @@
     <string name="common_you_review_every_cleanup_and_important_memories_are_prot">Kontrolujete každé čištění a důležité vzpomínky jsou ve výchozím nastavení chráněny.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_recently_d">V dalším kroku potvrdíte. Položky zůstávají ve složce Nedávno smazané po dobu 30 dnů.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">V dalším kroku potvrdíte. Položky zůstanou v koši 30 dní.</string>
+    <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Blížíte se k limitu zdarma pro tento měsíc</string>
     <string name="subscription_you_re_on_the_free_plan">Jste na bezplatném plánu.</string>
+    <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Využili jste bezplatný úklid tohoto měsíce</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Vaše volba také naučí Best Shot vašemu vkusu na tomto zařízení.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Vaše úplná knihovna fotografií se stavem zálohování v cloudu.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Vaše fotografie jsou analyzovány pouze na tomto zařízení.</string>
@@ -490,6 +503,7 @@
     <string name="paywall_your_photos_stay_yours_analysis_stays_on_your_device_and">Vaše fotografie zůstanou vaše. Analýza zůstává na vašem zařízení a zálohy se ukládají pouze tam, kde si vyberete.</string>
     <string name="common_your_photos_videos_and_extracted_text_are_never_sent_to">Vaše fotografie, videa a extrahovaný text se nikdy neodesílají do KeepSpace.</string>
     <string name="common_your_privacy">Vaše soukromí</string>
+    <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Váš výběr je %s. Můžete zdarma %s více na Free.</string>
     <string name="common_your_storage_organized_intelligently">Vaše úložiště, inteligentně organizované.</string>
     <string name="paywall_month">≈ %s / měsíc</string>
 </resources>

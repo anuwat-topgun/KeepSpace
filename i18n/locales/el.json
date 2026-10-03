@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "Οι φωτογραφίες σας παραμένουν δικές σας. Η ανάλυση παραμένει στη συσκευή σας και τα αντίγραφα ασφαλείας διατίθενται μόνο όπου επιλέγετε.",
     "paywall.month": "≈ %@ / μήνα",
     "subscription.ends_at_the_end_of_the_current_period": "Λήγει στο τέλος της τρέχουσας περιόδου.",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "Ανανεώνεται αυτόματα μέχρι να ακυρώσετε στο Google Play."
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "Ανανεώνεται αυτόματα μέχρι να ακυρώσετε στο Google Play.",
+    "quota_gate.exhausted_message": "Το δωρεάν περιλαμβάνει %@ καθαρισμού κάθε μήνα. Επαναφέρεται στο %@.",
+    "quota_gate.partial_message": "Η επιλογή σας είναι %@. Μπορείτε να ελευθερώσετε %@ περισσότερα στο Δωρεάν.",
+    "quota_gate.meter": "%@ από %@ χρησιμοποιήθηκε αυτόν τον μήνα · Επαναφέρει το %@",
+    "quota_gate.delete_safest": "Διαγραφή %@ (πρώτα το ασφαλέστερο)",
+    "quota_gate_sheet.of_used_this_month_resets": "%@ από %@ χρησιμοποιήθηκε αυτόν τον μήνα · Επαναφέρει το %@",
+    "quota_gate_sheet.delete_safest_first": "Διαγραφή %@ (πρώτα το ασφαλέστερο)",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "Το δωρεάν περιλαμβάνει %@ καθαρισμού κάθε μήνα. Επαναφέρεται στο %@.",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "Κανένα από τα επιλεγμένα στοιχεία δεν χωράει σε αυτό που έχει απομείνει. Επιλέξτε λιγότερα ή μικρότερα στοιχεία ή ξεκλειδώστε το Pro.",
+    "quota_gate_sheet.not_now": "Όχι τώρα",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "Τίποτα δεν διαγράφεται χωρίς την επιβεβαίωσή σας.",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "Ξεκλειδώστε την Απεριόριστη Εκκαθάριση",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Είστε κοντά στο δωρεάν όριο αυτού του μήνα",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Χρησιμοποιήσατε τη δωρεάν εκκαθάριση αυτού του μήνα",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Η επιλογή σας είναι %@. Μπορείτε να ελευθερώσετε %@ περισσότερα στο Δωρεάν."
   }
 }

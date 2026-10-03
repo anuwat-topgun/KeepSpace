@@ -18,6 +18,7 @@ import com.smartstorage.cleaner.model.LibraryContent
 import com.smartstorage.cleaner.model.PhotoGroup
 import com.smartstorage.cleaner.model.StorageSummary
 import com.smartstorage.cleaner.model.formattedBytes
+import com.smartstorage.cleaner.monetization.CleanupItem
 import com.smartstorage.cleaner.cloud.CloudBackupScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -113,6 +114,18 @@ class LibraryStore(context: Context, demo: Boolean) {
 
     fun clearNotice() = _state.update { it.copy(notice = null) }
 
+    /**
+     * Called with the bytes of every deletion the person confirmed (a cancelled system dialog never calls it).
+     * The app uses it to count the free monthly allowance.
+     */
+    var onDeleted: ((Long) -> Unit)? = null
+
+    /** The size of each of [ids], for checking a deletion against the free allowance. */
+    fun cleanupItems(ids: Collection<String>, safety: SafetyLevel): List<CleanupItem> {
+        val wanted = ids.toSet()
+        return lastItems.filter { it.id in wanted }.map { CleanupItem(it.id, it.bytes, safety) }
+    }
+
     /** Deletes after confirmation. Items go to the system Trash (30 days) on Android 11+. */
     suspend fun delete(ids: Set<String>, actions: MediaActions): DeletionOutcome {
         if (_state.value.isDemo || ids.isEmpty()) return DeletionOutcome.Cancelled
@@ -130,6 +143,7 @@ class LibraryStore(context: Context, demo: Boolean) {
                 // Updating results can remove the calling screen (and cancel its scope), so this must
                 // not suspend; cache cleanup runs in the store's own scope.
                 removeFromResults(ids)
+                onDeleted?.invoke(outcome.bytes)
             }
             is DeletionOutcome.Failed -> _state.update { it.copy(notice = "Couldn't delete: ${outcome.message}") }
             DeletionOutcome.Cancelled -> Unit
@@ -162,8 +176,9 @@ class LibraryStore(context: Context, demo: Boolean) {
      * Keeps the photo at [keeperIndex] and deletes the rest of the group (after the system confirmation).
      * A confirmed choice is what Best Shot learns from; a cancelled one teaches nothing.
      */
-    suspend fun keep(group: PhotoGroup, keeperIndex: Int, actions: MediaActions): DeletionOutcome {
-        val others = group.assetUris.filterIndexed { i, _ -> i != keeperIndex }.toSet()
+    suspend fun keep(group: PhotoGroup, keeperIndex: Int, actions: MediaActions, limitingTo: Set<String>? = null): DeletionOutcome {
+        var others = group.assetUris.filterIndexed { i, _ -> i != keeperIndex }.toSet()
+        if (limitingTo != null) others = others intersect limitingTo // free allowance: delete only what fits
         val outcome = delete(others, actions)
         if (outcome is DeletionOutcome.Deleted && group.scoreFeatures.isNotEmpty()) {
             taste.learn(keeperIndex, group.scoreFeatures)

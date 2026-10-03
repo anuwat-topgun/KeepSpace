@@ -40,6 +40,10 @@
     <string name="subscription_ends">%s\'de sona eriyor</string>
     <string name="subscription_pro_renews">Pro · %s\'yi yeniliyor</string>
     <string name="subscription_pro_ends">Profesyonel · %s sona eriyor</string>
+    <string name="quota_gate_exhausted_message">Ücretsiz, her ay %s temizliği içerir. %s tarihinde sıfırlanır.</string>
+    <string name="quota_gate_partial_message">Seçiminiz %s. Ücretsiz olarak %s daha fazlasını ücretsiz yapabilirsiniz.</string>
+    <string name="quota_gate_meter">Bu ay %s / %s kullanıldı · %s\'ı sıfırladı</string>
+    <string name="quota_gate_delete_safest">%s\'yi sil (önce en güvenli)</string>
     <string name="screenshot_shopping">Alışveriş</string>
     <string name="screenshot_receipts">Makbuzlar</string>
     <string name="screenshot_chats">Sohbetler</string>
@@ -74,6 +78,7 @@
     <string name="best_shot_your_favorite">Favorin</string>
     <string name="best_shot_your_favorite_detail">Bu fotoğrafı favori olarak işaretlediniz.</string>
     <string name="subscription_of_used">%s / %s kullanıldı</string>
+    <string name="quota_gate_sheet_of_used_this_month_resets">Bu ay %s / %s kullanıldı · %s\'ı sıfırladı</string>
     <string name="paywall_d_days_free">%d gün ücretsiz</string>
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d gün ücretsiz, ardından yılda %s. Hesap ayarlarınızda iptal edene kadar otomatik olarak yenilenir.</string>
     <string name="subscription_d_of_d_files_used">%d dosyadan %d tanesi kullanıldı</string>
@@ -177,6 +182,7 @@
     <string name="common_day">Gün</string>
     <string name="common_deeper_cleanup_for_more_space">Daha fazla alan için daha derin temizlik.</string>
     <string name="common_delete">Sil</string>
+    <string name="quota_gate_sheet_delete_safest_first">%s\'yi sil (önce en güvenli)</string>
     <string name="common_delete_rule">Kuralı Sil</string>
     <string name="common_delete_this_rule">Bu kural silinsin mi?</string>
     <string name="review_deleted_items_can_t_be_recovered_on_this_android_version">Silinen öğeler bu Android sürümünde kurtarılamaz.</string>
@@ -218,6 +224,7 @@
     <string name="common_forecast">Tahmin</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">KeepSpace\'nin kitaplığınız hakkında öğrendiklerini unutun. Bir sonraki taramada tekrar görünecektir.</string>
     <string name="subscription_free">Ücretsiz</string>
+    <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Ücretsiz, her ay %s temizliği içerir. %s tarihinde sıfırlanır.</string>
     <string name="subscription_free_trial_ends_then_renews">Ücretsiz deneme süresi %s sona erer ve ardından yenilenir.</string>
     <string name="subscription_free_trial_ends">Ücretsiz deneme %s sona eriyor.</string>
     <string name="common_free_up_space">Boş Alan Aç</string>
@@ -293,11 +300,14 @@
     <string name="common_no_trips_or_events_found_yet_they_appear_as_your_library">Henüz bir gezi veya etkinlik bulunamadı. Kitaplığınız büyüdükçe görünürler. Fotoğraflar sizin incelemeniz olmadan asla kaldırılmaz.</string>
     <string name="common_no_uploads_to_our_servers">Sunucularımıza yükleme yapılmaz</string>
     <string name="common_no_videos_here">Burada video yok.</string>
+    <string name="quota_gate_sheet_none_of_the_selected_items_fit_in_what_s_left_select_few">Seçilen öğelerin hiçbiri geriye kalanlara uymuyor. Daha az veya daha küçük öğe seçin veya Pro\'nun kilidini açın.</string>
     <string name="common_not_connected">Bağlı değil</string>
     <string name="common_not_found">Bulunamadı</string>
+    <string name="quota_gate_sheet_not_now">Şimdi değil</string>
     <string name="common_not_set">Ayarlanmadı</string>
     <string name="common_not_set_yet">Henüz ayarlanmadı</string>
     <string name="common_nothing_is_deleted_silently">Hiçbir şey sessizce silinmez</string>
+    <string name="quota_gate_sheet_nothing_is_deleted_without_your_confirmation">Onayınız olmadan hiçbir şey silinmez.</string>
     <string name="common_nothing_left_to_review_here">Burada incelenecek bir şey kalmadı.</string>
     <string name="common_nothing_to_clean_up_right_now_your_library_is_in_good_sh">Şu anda temizlenecek bir şey yok. Kitaplığınız iyi durumda.</string>
     <string name="common_notifications">Bildirimler</string>
@@ -451,6 +461,7 @@
     <string name="common_unknown_merchant">Bilinmeyen satıcı</string>
     <string name="common_unlimited_backup_rules">Sınırsız Yedekleme ve Kurallar</string>
     <string name="common_unlimited_cleanup">Sınırsız Temizleme</string>
+    <string name="quota_gate_sheet_unlock_unlimited_cleanup">Sınırsız Temizlemenin Kilidini Açın</string>
     <string name="subscription_upgrade_to_pro">Pro\'ya yükseltin</string>
     <string name="common_upload_over_wi_fi_only">Yalnızca Wi-Fi üzerinden yükleme yapın</string>
     <string name="common_used">Kullanılmış</string>
@@ -481,7 +492,9 @@
     <string name="common_you_review_every_cleanup_and_important_memories_are_prot">Her temizliği gözden geçirirsiniz ve önemli anılar varsayılan olarak korunur.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_recently_d">Bir sonraki adımda onaylayacaksınız. Öğeler 30 gün boyunca Son Silinenler klasöründe kalır.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Bir sonraki adımda onaylayacaksınız. Öğeler 30 gün boyunca Çöp Kutusu\'nda kalır.</string>
+    <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Bu ayın ücretsiz sınırına yaklaştınız</string>
     <string name="subscription_you_re_on_the_free_plan">Ücretsiz plandasınız.</string>
+    <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Bu ayın ücretsiz temizliğini kullandınız</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Seçiminiz aynı zamanda bu cihazda Best Shot zevkinizi de öğretir.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Bulut yedekleme durumuyla birlikte tam fotoğraf kitaplığınız.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Fotoğraflarınız yalnızca bu cihazda analiz edilir.</string>
@@ -490,6 +503,7 @@
     <string name="paywall_your_photos_stay_yours_analysis_stays_on_your_device_and">Fotoğraflarınız sizin kalsın. Analiz cihazınızda kalır ve yedeklemeler yalnızca seçtiğiniz yere gider.</string>
     <string name="common_your_photos_videos_and_extracted_text_are_never_sent_to">Fotoğraflarınız, videolarınız ve çıkarılan metinleriniz asla KeepSpace adresine gönderilmez.</string>
     <string name="common_your_privacy">Gizliliğiniz</string>
+    <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Seçiminiz %s. Ücretsiz olarak %s daha fazlasını ücretsiz yapabilirsiniz.</string>
     <string name="common_your_storage_organized_intelligently">Akıllıca organize edilen depolama alanınız.</string>
     <string name="paywall_month">≈ %s / ay</string>
 </resources>

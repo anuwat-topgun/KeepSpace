@@ -65,6 +65,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         handleOpenIntent(intent)
+        // Count confirmed deletions against the free monthly allowance.
+        store.onDeleted = { bytes -> monetization.recordCleanup(bytes) }
         if (BuildConfig.DEBUG && intent.getBooleanExtra(EXTRA_DEBUG_PAYWALL, false)) {
             proBilling.useDemoOffers()
             paywall = PaywallRequest(intent.getStringExtra(EXTRA_DEBUG_FOCUS)?.let { name -> ProFeature.entries.firstOrNull { it.name == name } })

@@ -40,6 +40,10 @@
     <string name="subscription_ends">Termina %s</string>
     <string name="subscription_pro_renews">Pro · rinnova %s</string>
     <string name="subscription_pro_ends">Pro · termina %s</string>
+    <string name="quota_gate_exhausted_message">La tariffa gratuita include %s di pulizia ogni mese. Si reimposta il %s.</string>
+    <string name="quota_gate_partial_message">La tua selezione è %s. Puoi liberare %s in più su Gratis.</string>
+    <string name="quota_gate_meter">%s di %s utilizzato questo mese · Reimposta %s</string>
+    <string name="quota_gate_delete_safest">Elimina %s (prima il più sicuro)</string>
     <string name="screenshot_shopping">Fare acquisti</string>
     <string name="screenshot_receipts">Ricevute</string>
     <string name="screenshot_chats">Chat</string>
@@ -74,6 +78,7 @@
     <string name="best_shot_your_favorite">Il tuo preferito</string>
     <string name="best_shot_your_favorite_detail">Hai contrassegnato questa foto come preferita.</string>
     <string name="subscription_of_used">%s di %s utilizzati</string>
+    <string name="quota_gate_sheet_of_used_this_month_resets">%s di %s utilizzato questo mese · Reimposta %s</string>
     <string name="paywall_d_days_free">%d giorni gratuiti</string>
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d giorni gratuiti, poi %s all\'anno. Si rinnova automaticamente fino all\'annullamento nelle impostazioni del tuo account.</string>
     <string name="subscription_d_of_d_files_used">%d di %d file utilizzati</string>
@@ -177,6 +182,7 @@
     <string name="common_day">Giorno</string>
     <string name="common_deeper_cleanup_for_more_space">Una pulizia più profonda per più spazio.</string>
     <string name="common_delete">Elimina</string>
+    <string name="quota_gate_sheet_delete_safest_first">Elimina %s (prima il più sicuro)</string>
     <string name="common_delete_rule">Elimina regola</string>
     <string name="common_delete_this_rule">Eliminare questa regola?</string>
     <string name="review_deleted_items_can_t_be_recovered_on_this_android_version">Gli elementi eliminati non possono essere recuperati su questa versione Android.</string>
@@ -218,6 +224,7 @@
     <string name="common_forecast">Previsione</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Dimentica ciò che KeepSpace ha imparato sulla tua libreria. Verrà visualizzato di nuovo alla scansione successiva.</string>
     <string name="subscription_free">Gratuito</string>
+    <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">La tariffa gratuita include %s di pulizia ogni mese. Si reimposta il %s.</string>
     <string name="subscription_free_trial_ends_then_renews">La prova gratuita termina %s, poi si rinnoverà.</string>
     <string name="subscription_free_trial_ends">La prova gratuita termina %s.</string>
     <string name="common_free_up_space">Libera spazio</string>
@@ -293,11 +300,14 @@
     <string name="common_no_trips_or_events_found_yet_they_appear_as_your_library">Nessun viaggio o evento ancora trovato. Appaiono man mano che la tua libreria cresce. Le foto non vengono mai rimosse senza la tua recensione.</string>
     <string name="common_no_uploads_to_our_servers">Nessun caricamento sui nostri server</string>
     <string name="common_no_videos_here">Nessun video qui.</string>
+    <string name="quota_gate_sheet_none_of_the_selected_items_fit_in_what_s_left_select_few">Nessuno degli elementi selezionati rientra in ciò che resta. Seleziona meno elementi o più piccoli oppure sblocca Pro.</string>
     <string name="common_not_connected">Non connesso</string>
     <string name="common_not_found">Non trovato</string>
+    <string name="quota_gate_sheet_not_now">Non ora</string>
     <string name="common_not_set">Non impostato</string>
     <string name="common_not_set_yet">Non ancora impostato</string>
     <string name="common_nothing_is_deleted_silently">Niente viene cancellato silenziosamente</string>
+    <string name="quota_gate_sheet_nothing_is_deleted_without_your_confirmation">Niente viene cancellato senza la tua conferma.</string>
     <string name="common_nothing_left_to_review_here">Non è rimasto niente da recensire qui.</string>
     <string name="common_nothing_to_clean_up_right_now_your_library_is_in_good_sh">Niente da pulire in questo momento. La tua biblioteca è in buona forma.</string>
     <string name="common_notifications">Notifiche</string>
@@ -451,6 +461,7 @@
     <string name="common_unknown_merchant">Commerciante sconosciuto</string>
     <string name="common_unlimited_backup_rules">Backup e regole illimitati</string>
     <string name="common_unlimited_cleanup">Pulizia illimitata</string>
+    <string name="quota_gate_sheet_unlock_unlimited_cleanup">Sblocca la pulizia illimitata</string>
     <string name="subscription_upgrade_to_pro">Passa a Pro</string>
     <string name="common_upload_over_wi_fi_only">Carica solo tramite Wi-Fi</string>
     <string name="common_used">Usato</string>
@@ -481,7 +492,9 @@
     <string name="common_you_review_every_cleanup_and_important_memories_are_prot">Rivedi ogni pulizia e i ricordi importanti sono protetti per impostazione predefinita.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_recently_d">Confermerai nel passaggio successivo. Gli elementi rimangono in Eliminati di recente per 30 giorni.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Confermerai nel passaggio successivo. Gli elementi rimangono nel Cestino per 30 giorni.</string>
+    <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Sei vicino al limite gratuito di questo mese</string>
     <string name="subscription_you_re_on_the_free_plan">Hai il piano gratuito.</string>
+    <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Hai utilizzato la pulizia gratuita di questo mese</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">La tua scelta insegna anche a Best Shot i tuoi gusti, su questo dispositivo.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">La tua libreria fotografica completa, con stato del backup su cloud.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Le tue foto vengono analizzate solo su questo dispositivo.</string>
@@ -490,6 +503,7 @@
     <string name="paywall_your_photos_stay_yours_analysis_stays_on_your_device_and">Le tue foto restano tue. L\'analisi rimane sul tuo dispositivo e i backup vanno solo dove scegli tu.</string>
     <string name="common_your_photos_videos_and_extracted_text_are_never_sent_to">Le tue foto, i tuoi video e il testo estratto non verranno mai inviati a KeepSpace.</string>
     <string name="common_your_privacy">La tua privacy</string>
+    <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">La tua selezione è %s. Puoi liberare %s in più su Gratis.</string>
     <string name="common_your_storage_organized_intelligently">Il tuo spazio di archiviazione, organizzato in modo intelligente.</string>
     <string name="paywall_month">≈ %s /mese</string>
 </resources>

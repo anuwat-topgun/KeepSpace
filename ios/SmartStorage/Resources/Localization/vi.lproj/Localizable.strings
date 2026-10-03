@@ -38,6 +38,10 @@
 "Ends %@" = "Kết thúc %@";
 "Pro · renews %@" = "Chuyên nghiệp · gia hạn %@";
 "Pro · ends %@" = "Chuyên nghiệp · kết thúc %@";
+"Free includes %@ of cleanup each month. It resets on %@." = "Miễn phí bao gồm %@ dọn dẹp mỗi tháng. Nó đặt lại vào %@.";
+"Your selection is %@. You can free %@ more on Free." = "Lựa chọn của bạn là %@. Bạn có thể giải phóng thêm %@ trên Miễn phí.";
+"%@ of %@ used this month · Resets %@" = "%@ trong số %@ đã sử dụng trong tháng này · Đặt lại %@";
+"Delete %@ (safest first)" = "Xóa %@ (an toàn nhất trước tiên)";
 "Shopping" = "Mua sắm";
 "Receipts" = "Biên lai";
 "Chats" = "Trò chuyện";
@@ -72,6 +76,7 @@
 "Your favorite" = "yêu thích của bạn";
 "You marked this photo as a favorite." = "Bạn đã đánh dấu ảnh này là ảnh yêu thích.";
 "%@ of %@ used" = "%@ trong số %@ đã sử dụng";
+"%@ of %@ used this month · Resets %@" = "%@ trong số %@ đã sử dụng trong tháng này · Đặt lại %@";
 "%d days free" = "%d ngày miễn phí";
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d ngày miễn phí, sau đó là %@ mỗi năm. Tự động gia hạn cho đến khi bạn hủy trong cài đặt tài khoản của mình.";
 "%d of %d files used" = "%d trong số %d tệp được sử dụng";
@@ -175,6 +180,7 @@
 "Day" = "ngày";
 "Deeper cleanup for more space." = "Dọn dẹp sâu hơn để có nhiều không gian hơn.";
 "Delete" = "Xóa";
+"Delete %@ (safest first)" = "Xóa %@ (an toàn nhất trước tiên)";
 "Delete Rule" = "Xóa quy tắc";
 "Delete this rule?" = "Xóa quy tắc này?";
 "Deleted items can't be recovered on this Android version." = "Không thể khôi phục các mục đã xóa trên phiên bản Android này.";
@@ -216,6 +222,7 @@
 "Forecast" = "Dự báo";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Hãy quên đi những gì KeepSpace đã biết về thư viện của bạn. Nó sẽ nhìn lại vào lần quét tiếp theo.";
 "Free" = "miễn phí";
+"Free includes %@ of cleanup each month. It resets on %@." = "Miễn phí bao gồm %@ dọn dẹp mỗi tháng. Nó đặt lại vào %@.";
 "Free trial ends %@, then renews." = "Thời gian dùng thử miễn phí kết thúc %@, sau đó gia hạn.";
 "Free trial ends %@." = "Thời gian dùng thử miễn phí kết thúc %@.";
 "Free Up Space" = "Giải phóng không gian";
@@ -291,11 +298,14 @@
 "No trips or events found yet. They appear as your library grows. Photos are never removed without your review." = "Chưa tìm thấy chuyến đi hoặc sự kiện nào. Chúng xuất hiện khi thư viện của bạn phát triển. Hình ảnh không bao giờ bị xóa nếu không có sự xem xét của bạn.";
 "No uploads to our servers" = "Không tải lên máy chủ của chúng tôi";
 "No videos here." = "Không có video ở đây.";
+"None of the selected items fit in what's left. Select fewer or smaller items, or unlock Pro." = "Không có mục nào được chọn phù hợp với những gì còn lại. Chọn ít mục hơn hoặc nhỏ hơn hoặc mở khóa Pro.";
 "Not connected" = "Không được kết nối";
 "Not found" = "Không tìm thấy";
+"Not now" = "Không phải bây giờ";
 "Not set" = "Chưa đặt";
 "Not set yet" = "Chưa đặt";
 "Nothing is deleted silently" = "Không có gì bị xóa một cách âm thầm";
+"Nothing is deleted without your confirmation." = "Không có gì bị xóa mà không có xác nhận của bạn.";
 "Nothing left to review here." = "Không còn gì để xem xét ở đây.";
 "Nothing to clean up right now. Your library is in good shape." = "Không có gì để dọn dẹp ngay bây giờ. Thư viện của bạn đang ở trạng thái tốt.";
 "Notifications" = "Thông báo";
@@ -449,6 +459,7 @@
 "Unknown merchant" = "Người bán không xác định";
 "Unlimited Backup & Rules" = "Sao lưu và quy tắc không giới hạn";
 "Unlimited Cleanup" = "Dọn dẹp không giới hạn";
+"Unlock Unlimited Cleanup" = "Mở khóa dọn dẹp không giới hạn";
 "Upgrade to Pro" = "Nâng cấp lên Pro";
 "Upload over Wi-Fi only" = "Chỉ tải lên qua Wi-Fi";
 "Used" = "đã qua sử dụng";
@@ -479,7 +490,9 @@
 "You review every cleanup, and important memories are protected by default." = "Bạn xem lại mọi lần dọn dẹp và những kỷ niệm quan trọng được bảo vệ theo mặc định.";
 "You'll confirm in the next step. Items stay in Recently Deleted for 30 days." = "Bạn sẽ xác nhận ở bước tiếp theo. Các mục sẽ ở trong mục Đã xóa gần đây trong 30 ngày.";
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "Bạn sẽ xác nhận ở bước tiếp theo. Các mục sẽ ở trong Thùng rác trong 30 ngày.";
+"You're close to this month's free limit" = "Bạn đã gần đạt đến giới hạn miễn phí của tháng này";
 "You're on the Free plan." = "Bạn đang sử dụng gói miễn phí.";
+"You've used this month's free cleanup" = "Bạn đã sử dụng dịch vụ dọn dẹp miễn phí của tháng này";
 "Your choice also teaches Best Shot your taste, on this device." = "Sự lựa chọn của bạn cũng dạy cho Best Shot sở thích của bạn trên thiết bị này.";
 "Your full photo library, with cloud backup status." = "Thư viện ảnh đầy đủ của bạn, với trạng thái sao lưu đám mây.";
 "Your photos are analyzed on this device only." = "Ảnh của bạn chỉ được phân tích trên thiết bị này.";
@@ -488,5 +501,6 @@
 "Your photos stay yours. Analysis stays on your device, and backups go only where you choose." = "Ảnh của bạn vẫn là của bạn. Phân tích vẫn còn trên thiết bị của bạn và các bản sao lưu chỉ được gửi đến nơi bạn chọn.";
 "Your photos, videos and extracted text are never sent to KeepSpace." = "Ảnh, video và văn bản được trích xuất của bạn không bao giờ được gửi tới KeepSpace.";
 "Your privacy" = "Quyền riêng tư của bạn";
+"Your selection is %@. You can free %@ more on Free." = "Lựa chọn của bạn là %@. Bạn có thể giải phóng thêm %@ trên Miễn phí.";
 "Your storage, organized intelligently." = "Kho lưu trữ của bạn được sắp xếp thông minh.";
 "≈ %@ / month" = "≈ %@ / tháng";

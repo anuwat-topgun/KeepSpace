@@ -40,6 +40,10 @@
     <string name="subscription_ends">Slutar %s</string>
     <string name="subscription_pro_renews">Pro · förnyar %s</string>
     <string name="subscription_pro_ends">Pro · slutar %s</string>
+    <string name="quota_gate_exhausted_message">Gratis inkluderar %s av städning varje månad. Den återställs på %s.</string>
+    <string name="quota_gate_partial_message">Ditt val är %s. Du kan gratis %s mer på Gratis.</string>
+    <string name="quota_gate_meter">%s av %s används den här månaden · Återställer %s</string>
+    <string name="quota_gate_delete_safest">Ta bort %s (säkrast först)</string>
     <string name="screenshot_shopping">Shopping</string>
     <string name="screenshot_receipts">Kvitton</string>
     <string name="screenshot_chats">Chattar</string>
@@ -74,6 +78,7 @@
     <string name="best_shot_your_favorite">Din favorit</string>
     <string name="best_shot_your_favorite_detail">Du har markerat det här fotot som en favorit.</string>
     <string name="subscription_of_used">%s av %s används</string>
+    <string name="quota_gate_sheet_of_used_this_month_resets">%s av %s används den här månaden · Återställer %s</string>
     <string name="paywall_d_days_free">%d dagar gratis</string>
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d dagar gratis, sedan %s per år. Förnyas automatiskt tills du avslutar i dina kontoinställningar.</string>
     <string name="subscription_d_of_d_files_used">%d av %d filer används</string>
@@ -177,6 +182,7 @@
     <string name="common_day">dag</string>
     <string name="common_deeper_cleanup_for_more_space">Djupare rengöring för mer utrymme.</string>
     <string name="common_delete">Ta bort</string>
+    <string name="quota_gate_sheet_delete_safest_first">Ta bort %s (säkrast först)</string>
     <string name="common_delete_rule">Ta bort regel</string>
     <string name="common_delete_this_rule">Vill du ta bort den här regeln?</string>
     <string name="review_deleted_items_can_t_be_recovered_on_this_android_version">Raderade objekt kan inte återställas på denna Android version.</string>
@@ -218,6 +224,7 @@
     <string name="common_forecast">Prognos</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Glöm vad KeepSpace lärde sig om ditt bibliotek. Det kommer att se ut igen vid nästa skanning.</string>
     <string name="subscription_free">Gratis</string>
+    <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Gratis inkluderar %s av städning varje månad. Den återställs på %s.</string>
     <string name="subscription_free_trial_ends_then_renews">Gratis provperiod slutar %s och förnyas sedan.</string>
     <string name="subscription_free_trial_ends">Gratis provperiod slutar %s.</string>
     <string name="common_free_up_space">Frigör utrymme</string>
@@ -293,11 +300,14 @@
     <string name="common_no_trips_or_events_found_yet_they_appear_as_your_library">Inga resor eller evenemang hittades ännu. De visas när ditt bibliotek växer. Foton tas aldrig bort utan din recension.</string>
     <string name="common_no_uploads_to_our_servers">Inga uppladdningar till våra servrar</string>
     <string name="common_no_videos_here">Inga videor här.</string>
+    <string name="quota_gate_sheet_none_of_the_selected_items_fit_in_what_s_left_select_few">Inget av de valda objekten passar i det som är kvar. Välj färre eller mindre föremål, eller lås upp Pro.</string>
     <string name="common_not_connected">Ej ansluten</string>
     <string name="common_not_found">Hittade inte</string>
+    <string name="quota_gate_sheet_not_now">Inte nu</string>
     <string name="common_not_set">Inte inställt</string>
     <string name="common_not_set_yet">Inte satt än</string>
     <string name="common_nothing_is_deleted_silently">Ingenting raderas tyst</string>
+    <string name="quota_gate_sheet_nothing_is_deleted_without_your_confirmation">Ingenting raderas utan din bekräftelse.</string>
     <string name="common_nothing_left_to_review_here">Inget kvar att recensera här.</string>
     <string name="common_nothing_to_clean_up_right_now_your_library_is_in_good_sh">Inget att städa upp just nu. Ditt bibliotek är i gott skick.</string>
     <string name="common_notifications">Aviseringar</string>
@@ -451,6 +461,7 @@
     <string name="common_unknown_merchant">Okänd köpman</string>
     <string name="common_unlimited_backup_rules">Obegränsad säkerhetskopiering och regler</string>
     <string name="common_unlimited_cleanup">Obegränsad rengöring</string>
+    <string name="quota_gate_sheet_unlock_unlimited_cleanup">Lås upp obegränsad rensning</string>
     <string name="subscription_upgrade_to_pro">Uppgradera till Pro</string>
     <string name="common_upload_over_wi_fi_only">Ladda upp endast över Wi-Fi</string>
     <string name="common_used">Används</string>
@@ -481,7 +492,9 @@
     <string name="common_you_review_every_cleanup_and_important_memories_are_prot">Du granskar varje rensning och viktiga minnen skyddas som standard.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_recently_d">Du bekräftar i nästa steg. Objekt stannar i Nyligen raderade i 30 dagar.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Du bekräftar i nästa steg. Föremål stannar i papperskorgen i 30 dagar.</string>
+    <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Du är nära den här månadens gratisgräns</string>
     <string name="subscription_you_re_on_the_free_plan">Du har gratisplanen.</string>
+    <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Du har använt den här månadens gratis städning</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Ditt val lär också Best Shot din smak, på den här enheten.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Ditt fullständiga fotobibliotek, med molnsäkerhetsstatus.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Dina foton analyseras endast på den här enheten.</string>
@@ -490,6 +503,7 @@
     <string name="paywall_your_photos_stay_yours_analysis_stays_on_your_device_and">Dina bilder förblir dina. Analysen stannar på din enhet och säkerhetskopieringar går bara där du vill.</string>
     <string name="common_your_photos_videos_and_extracted_text_are_never_sent_to">Dina foton, videor och extraherad text skickas aldrig till KeepSpace.</string>
     <string name="common_your_privacy">Din integritet</string>
+    <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Ditt val är %s. Du kan gratis %s mer på Gratis.</string>
     <string name="common_your_storage_organized_intelligently">Din lagring, organiserad på ett intelligent sätt.</string>
     <string name="paywall_month">≈ %s / månad</string>
 </resources>

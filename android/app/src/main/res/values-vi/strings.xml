@@ -40,6 +40,10 @@
     <string name="subscription_ends">Kết thúc %s</string>
     <string name="subscription_pro_renews">Chuyên nghiệp · gia hạn %s</string>
     <string name="subscription_pro_ends">Chuyên nghiệp · kết thúc %s</string>
+    <string name="quota_gate_exhausted_message">Miễn phí bao gồm %s dọn dẹp mỗi tháng. Nó đặt lại vào %s.</string>
+    <string name="quota_gate_partial_message">Lựa chọn của bạn là %s. Bạn có thể giải phóng thêm %s trên Miễn phí.</string>
+    <string name="quota_gate_meter">%s trong số %s đã sử dụng trong tháng này · Đặt lại %s</string>
+    <string name="quota_gate_delete_safest">Xóa %s (an toàn nhất trước tiên)</string>
     <string name="screenshot_shopping">Mua sắm</string>
     <string name="screenshot_receipts">Biên lai</string>
     <string name="screenshot_chats">Trò chuyện</string>
@@ -74,6 +78,7 @@
     <string name="best_shot_your_favorite">yêu thích của bạn</string>
     <string name="best_shot_your_favorite_detail">Bạn đã đánh dấu ảnh này là ảnh yêu thích.</string>
     <string name="subscription_of_used">%s trong số %s đã sử dụng</string>
+    <string name="quota_gate_sheet_of_used_this_month_resets">%s trong số %s đã sử dụng trong tháng này · Đặt lại %s</string>
     <string name="paywall_d_days_free">%d ngày miễn phí</string>
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d ngày miễn phí, sau đó là %s mỗi năm. Tự động gia hạn cho đến khi bạn hủy trong cài đặt tài khoản của mình.</string>
     <string name="subscription_d_of_d_files_used">%d trong số %d tệp được sử dụng</string>
@@ -177,6 +182,7 @@
     <string name="common_day">ngày</string>
     <string name="common_deeper_cleanup_for_more_space">Dọn dẹp sâu hơn để có nhiều không gian hơn.</string>
     <string name="common_delete">Xóa</string>
+    <string name="quota_gate_sheet_delete_safest_first">Xóa %s (an toàn nhất trước tiên)</string>
     <string name="common_delete_rule">Xóa quy tắc</string>
     <string name="common_delete_this_rule">Xóa quy tắc này?</string>
     <string name="review_deleted_items_can_t_be_recovered_on_this_android_version">Không thể khôi phục các mục đã xóa trên phiên bản Android này.</string>
@@ -218,6 +224,7 @@
     <string name="common_forecast">Dự báo</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Hãy quên đi những gì KeepSpace đã biết về thư viện của bạn. Nó sẽ nhìn lại vào lần quét tiếp theo.</string>
     <string name="subscription_free">miễn phí</string>
+    <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Miễn phí bao gồm %s dọn dẹp mỗi tháng. Nó đặt lại vào %s.</string>
     <string name="subscription_free_trial_ends_then_renews">Thời gian dùng thử miễn phí kết thúc %s, sau đó gia hạn.</string>
     <string name="subscription_free_trial_ends">Thời gian dùng thử miễn phí kết thúc %s.</string>
     <string name="common_free_up_space">Giải phóng không gian</string>
@@ -293,11 +300,14 @@
     <string name="common_no_trips_or_events_found_yet_they_appear_as_your_library">Chưa tìm thấy chuyến đi hoặc sự kiện nào. Chúng xuất hiện khi thư viện của bạn phát triển. Hình ảnh không bao giờ bị xóa nếu không có sự xem xét của bạn.</string>
     <string name="common_no_uploads_to_our_servers">Không tải lên máy chủ của chúng tôi</string>
     <string name="common_no_videos_here">Không có video ở đây.</string>
+    <string name="quota_gate_sheet_none_of_the_selected_items_fit_in_what_s_left_select_few">Không có mục nào được chọn phù hợp với những gì còn lại. Chọn ít mục hơn hoặc nhỏ hơn hoặc mở khóa Pro.</string>
     <string name="common_not_connected">Không được kết nối</string>
     <string name="common_not_found">Không tìm thấy</string>
+    <string name="quota_gate_sheet_not_now">Không phải bây giờ</string>
     <string name="common_not_set">Chưa đặt</string>
     <string name="common_not_set_yet">Chưa đặt</string>
     <string name="common_nothing_is_deleted_silently">Không có gì bị xóa một cách âm thầm</string>
+    <string name="quota_gate_sheet_nothing_is_deleted_without_your_confirmation">Không có gì bị xóa mà không có xác nhận của bạn.</string>
     <string name="common_nothing_left_to_review_here">Không còn gì để xem xét ở đây.</string>
     <string name="common_nothing_to_clean_up_right_now_your_library_is_in_good_sh">Không có gì để dọn dẹp ngay bây giờ. Thư viện của bạn đang ở trạng thái tốt.</string>
     <string name="common_notifications">Thông báo</string>
@@ -451,6 +461,7 @@
     <string name="common_unknown_merchant">Người bán không xác định</string>
     <string name="common_unlimited_backup_rules">Sao lưu và quy tắc không giới hạn</string>
     <string name="common_unlimited_cleanup">Dọn dẹp không giới hạn</string>
+    <string name="quota_gate_sheet_unlock_unlimited_cleanup">Mở khóa dọn dẹp không giới hạn</string>
     <string name="subscription_upgrade_to_pro">Nâng cấp lên Pro</string>
     <string name="common_upload_over_wi_fi_only">Chỉ tải lên qua Wi-Fi</string>
     <string name="common_used">đã qua sử dụng</string>
@@ -481,7 +492,9 @@
     <string name="common_you_review_every_cleanup_and_important_memories_are_prot">Bạn xem lại mọi lần dọn dẹp và những kỷ niệm quan trọng được bảo vệ theo mặc định.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_recently_d">Bạn sẽ xác nhận ở bước tiếp theo. Các mục sẽ ở trong mục Đã xóa gần đây trong 30 ngày.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Bạn sẽ xác nhận ở bước tiếp theo. Các mục sẽ ở trong Thùng rác trong 30 ngày.</string>
+    <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Bạn đã gần đạt đến giới hạn miễn phí của tháng này</string>
     <string name="subscription_you_re_on_the_free_plan">Bạn đang sử dụng gói miễn phí.</string>
+    <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Bạn đã sử dụng dịch vụ dọn dẹp miễn phí của tháng này</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Sự lựa chọn của bạn cũng dạy cho Best Shot sở thích của bạn trên thiết bị này.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Thư viện ảnh đầy đủ của bạn, với trạng thái sao lưu đám mây.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Ảnh của bạn chỉ được phân tích trên thiết bị này.</string>
@@ -490,6 +503,7 @@
     <string name="paywall_your_photos_stay_yours_analysis_stays_on_your_device_and">Ảnh của bạn vẫn là của bạn. Phân tích vẫn còn trên thiết bị của bạn và các bản sao lưu chỉ được gửi đến nơi bạn chọn.</string>
     <string name="common_your_photos_videos_and_extracted_text_are_never_sent_to">Ảnh, video và văn bản được trích xuất của bạn không bao giờ được gửi tới KeepSpace.</string>
     <string name="common_your_privacy">Quyền riêng tư của bạn</string>
+    <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Lựa chọn của bạn là %s. Bạn có thể giải phóng thêm %s trên Miễn phí.</string>
     <string name="common_your_storage_organized_intelligently">Kho lưu trữ của bạn được sắp xếp thông minh.</string>
     <string name="paywall_month">≈ %s / tháng</string>
 </resources>

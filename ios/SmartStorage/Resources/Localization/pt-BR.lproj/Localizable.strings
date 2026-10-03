@@ -38,6 +38,10 @@
 "Ends %@" = "Termina %@";
 "Pro · renews %@" = "Pró · renova %@";
 "Pro · ends %@" = "Pró · termina %@";
+"Free includes %@ of cleanup each month. It resets on %@." = "Gratuito inclui %@ de limpeza a cada mês. Ele reinicia em %@.";
+"Your selection is %@. You can free %@ more on Free." = "Sua seleção é %@. Você pode liberar %@ mais no Grátis.";
+"%@ of %@ used this month · Resets %@" = "%@ de %@ usado este mês · Reinicia %@";
+"Delete %@ (safest first)" = "Excluir %@ (o mais seguro primeiro)";
 "Shopping" = "Compras";
 "Receipts" = "Recibos";
 "Chats" = "Bate-papos";
@@ -72,6 +76,7 @@
 "Your favorite" = "Seu favorito";
 "You marked this photo as a favorite." = "Você marcou esta foto como favorita.";
 "%@ of %@ used" = "%@ de %@ usado";
+"%@ of %@ used this month · Resets %@" = "%@ de %@ usado este mês · Reinicia %@";
 "%d days free" = "%d dias grátis";
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d dias grátis e depois %@ por ano. Renova automaticamente até você cancelar nas configurações da sua conta.";
 "%d of %d files used" = "%d de %d arquivos usados";
@@ -175,6 +180,7 @@
 "Day" = "Dia";
 "Deeper cleanup for more space." = "Limpeza mais profunda para mais espaço.";
 "Delete" = "Excluir";
+"Delete %@ (safest first)" = "Excluir %@ (o mais seguro primeiro)";
 "Delete Rule" = "Excluir regra";
 "Delete this rule?" = "Excluir esta regra?";
 "Deleted items can't be recovered on this Android version." = "Itens excluídos não podem ser recuperados nesta versão Android.";
@@ -216,6 +222,7 @@
 "Forecast" = "Previsão";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Esqueça o que KeepSpace aprendeu sobre sua biblioteca. Ele aparecerá novamente na próxima varredura.";
 "Free" = "Grátis";
+"Free includes %@ of cleanup each month. It resets on %@." = "Gratuito inclui %@ de limpeza a cada mês. Ele reinicia em %@.";
 "Free trial ends %@, then renews." = "A avaliação gratuita termina em %@ e depois é renovada.";
 "Free trial ends %@." = "A avaliação gratuita termina em %@.";
 "Free Up Space" = "Libere espaço";
@@ -291,11 +298,14 @@
 "No trips or events found yet. They appear as your library grows. Photos are never removed without your review." = "Nenhuma viagem ou evento encontrado ainda. Eles aparecem conforme sua biblioteca cresce. As fotos nunca são removidas sem a sua revisão.";
 "No uploads to our servers" = "Não há uploads para nossos servidores";
 "No videos here." = "Não há vídeos aqui.";
+"None of the selected items fit in what's left. Select fewer or smaller items, or unlock Pro." = "Nenhum dos itens selecionados cabe no que sobrou. Selecione menos itens ou itens menores ou desbloqueie o Pro.";
 "Not connected" = "Não conectado";
 "Not found" = "Não encontrado";
+"Not now" = "Agora não";
 "Not set" = "Não definido";
 "Not set yet" = "Ainda não definido";
 "Nothing is deleted silently" = "Nada é excluído silenciosamente";
+"Nothing is deleted without your confirmation." = "Nada é excluído sem a sua confirmação.";
 "Nothing left to review here." = "Não há mais nada para revisar aqui.";
 "Nothing to clean up right now. Your library is in good shape." = "Nada para limpar agora. Sua biblioteca está em boa forma.";
 "Notifications" = "Notificações";
@@ -449,6 +459,7 @@
 "Unknown merchant" = "Comerciante desconhecido";
 "Unlimited Backup & Rules" = "Backup e regras ilimitadas";
 "Unlimited Cleanup" = "Limpeza Ilimitada";
+"Unlock Unlimited Cleanup" = "Desbloqueie limpeza ilimitada";
 "Upgrade to Pro" = "Atualizar para Pro";
 "Upload over Wi-Fi only" = "Fazer upload somente por Wi-Fi";
 "Used" = "Usado";
@@ -479,7 +490,9 @@
 "You review every cleanup, and important memories are protected by default." = "Você revisa cada limpeza e as memórias importantes são protegidas por padrão.";
 "You'll confirm in the next step. Items stay in Recently Deleted for 30 days." = "Você confirmará na próxima etapa. Os itens permanecem em Excluídos recentemente por 30 dias.";
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "Você confirmará na próxima etapa. Os itens ficam na Lixeira por 30 dias.";
+"You're close to this month's free limit" = "Você está perto do limite gratuito deste mês";
 "You're on the Free plan." = "Você está no plano Gratuito.";
+"You've used this month's free cleanup" = "Você usou a limpeza gratuita deste mês";
 "Your choice also teaches Best Shot your taste, on this device." = "Sua escolha também ensina ao Best Shot o seu gosto, neste dispositivo.";
 "Your full photo library, with cloud backup status." = "Sua biblioteca de fotos completa, com status de backup na nuvem.";
 "Your photos are analyzed on this device only." = "Suas fotos são analisadas apenas neste dispositivo.";
@@ -488,5 +501,6 @@
 "Your photos stay yours. Analysis stays on your device, and backups go only where you choose." = "Suas fotos permanecem suas. A análise permanece no seu dispositivo e os backups vão apenas para onde você escolher.";
 "Your photos, videos and extracted text are never sent to KeepSpace." = "Suas fotos, vídeos e textos extraídos nunca são enviados para KeepSpace.";
 "Your privacy" = "Sua privacidade";
+"Your selection is %@. You can free %@ more on Free." = "Sua seleção é %@. Você pode liberar %@ mais no Grátis.";
 "Your storage, organized intelligently." = "Seu armazenamento organizado de forma inteligente.";
 "≈ %@ / month" = "≈ %@ / mês";

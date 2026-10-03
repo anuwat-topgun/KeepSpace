@@ -38,6 +38,10 @@
 "Ends %@" = "Se termină %@";
 "Pro · renews %@" = "Pro · reînnoiește %@";
 "Pro · ends %@" = "Pro · se termină %@";
+"Free includes %@ of cleanup each month. It resets on %@." = "Gratuit include %@ de curățare în fiecare lună. Se resetează pe %@.";
+"Your selection is %@. You can free %@ more on Free." = "Selecția dvs. este %@. Puteți elibera %@ mai multe pe Free.";
+"%@ of %@ used this month · Resets %@" = "%@ din %@ utilizat în această lună · Resetează %@";
+"Delete %@ (safest first)" = "Șterge %@ (cel mai sigur mai întâi)";
 "Shopping" = "Cumpărături";
 "Receipts" = "Chitanțe";
 "Chats" = "Chaturi";
@@ -72,6 +76,7 @@
 "Your favorite" = "Preferatul tău";
 "You marked this photo as a favorite." = "Ai marcat această fotografie ca preferată.";
 "%@ of %@ used" = "%@ din %@ utilizate";
+"%@ of %@ used this month · Resets %@" = "%@ din %@ utilizat în această lună · Resetează %@";
 "%d days free" = "%d zile gratuite";
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d zile gratuite, apoi %@ pe an. Se reînnoiește automat până când anulați din setările contului.";
 "%d of %d files used" = "%d din %d fișiere utilizate";
@@ -175,6 +180,7 @@
 "Day" = "Ziua";
 "Deeper cleanup for more space." = "Curățare mai profundă pentru mai mult spațiu.";
 "Delete" = "Ștergeți";
+"Delete %@ (safest first)" = "Șterge %@ (cel mai sigur mai întâi)";
 "Delete Rule" = "Ștergeți regula";
 "Delete this rule?" = "Ștergeți această regulă?";
 "Deleted items can't be recovered on this Android version." = "Elementele șterse nu pot fi recuperate pe această versiune Android.";
@@ -216,6 +222,7 @@
 "Forecast" = "Prognoza";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Uitați ce a învățat KeepSpace despre biblioteca dvs. Va arăta din nou la următoarea scanare.";
 "Free" = "Gratuit";
+"Free includes %@ of cleanup each month. It resets on %@." = "Gratuit include %@ de curățare în fiecare lună. Se resetează pe %@.";
 "Free trial ends %@, then renews." = "Perioada de încercare gratuită se încheie %@, apoi se reînnoiește.";
 "Free trial ends %@." = "Perioada de încercare gratuită se încheie %@.";
 "Free Up Space" = "Eliberați spațiu";
@@ -291,11 +298,14 @@
 "No trips or events found yet. They appear as your library grows. Photos are never removed without your review." = "Nu au fost găsite încă călătorii sau evenimente. Ele apar pe măsură ce biblioteca dvs. crește. Fotografiile nu sunt niciodată eliminate fără recenzia dvs.";
 "No uploads to our servers" = "Fără încărcări pe serverele noastre";
 "No videos here." = "Nu există videoclipuri aici.";
+"None of the selected items fit in what's left. Select fewer or smaller items, or unlock Pro." = "Niciunul dintre elementele selectate nu se potrivește în ceea ce a mai rămas. Selectați mai puține articole sau mai mici sau deblocați Pro.";
 "Not connected" = "Nu este conectat";
 "Not found" = "Nu a fost găsit";
+"Not now" = "Nu acum";
 "Not set" = "Nu setat";
 "Not set yet" = "Nu setat încă";
 "Nothing is deleted silently" = "Nimic nu este șters în tăcere";
+"Nothing is deleted without your confirmation." = "Nimic nu este șters fără confirmarea dvs.";
 "Nothing left to review here." = "Nu a mai rămas nimic de revizuit aici.";
 "Nothing to clean up right now. Your library is in good shape." = "Nimic de curățat acum. Biblioteca ta este în stare bună.";
 "Notifications" = "Notificări";
@@ -449,6 +459,7 @@
 "Unknown merchant" = "Comerciant necunoscut";
 "Unlimited Backup & Rules" = "Backup și reguli nelimitate";
 "Unlimited Cleanup" = "Curățare nelimitată";
+"Unlock Unlimited Cleanup" = "Deblocați curățarea nelimitată";
 "Upgrade to Pro" = "Faceți upgrade la Pro";
 "Upload over Wi-Fi only" = "Încărcați numai prin Wi-Fi";
 "Used" = "Folosit";
@@ -479,7 +490,9 @@
 "You review every cleanup, and important memories are protected by default." = "Examinați fiecare curățare, iar amintirile importante sunt protejate implicit.";
 "You'll confirm in the next step. Items stay in Recently Deleted for 30 days." = "Veți confirma în pasul următor. Articolele rămân în Șterse recent timp de 30 de zile.";
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "Veți confirma în pasul următor. Articolele rămân în Coșul de gunoi timp de 30 de zile.";
+"You're close to this month's free limit" = "Ești aproape de limita gratuită a acestei luni";
 "You're on the Free plan." = "Ești în planul Free.";
+"You've used this month's free cleanup" = "Ați folosit curățarea gratuită din această lună";
 "Your choice also teaches Best Shot your taste, on this device." = "Alegerea dvs. vă învață și gustul Best Shot pe acest dispozitiv.";
 "Your full photo library, with cloud backup status." = "Biblioteca dvs. completă de fotografii, cu starea de rezervă în cloud.";
 "Your photos are analyzed on this device only." = "Fotografiile dvs. sunt analizate numai pe acest dispozitiv.";
@@ -488,5 +501,6 @@
 "Your photos stay yours. Analysis stays on your device, and backups go only where you choose." = "Fotografiile tale rămân ale tale. Analiza rămâne pe dispozitivul dvs., iar copiile de rezervă sunt efectuate numai acolo unde doriți.";
 "Your photos, videos and extracted text are never sent to KeepSpace." = "Fotografiile, videoclipurile și textul extras nu sunt niciodată trimise către KeepSpace.";
 "Your privacy" = "Intimitatea ta";
+"Your selection is %@. You can free %@ more on Free." = "Selecția dvs. este %@. Puteți elibera %@ mai multe pe Free.";
 "Your storage, organized intelligently." = "Depozitarea ta, organizată inteligent.";
 "≈ %@ / month" = "≈ %@ / lună";

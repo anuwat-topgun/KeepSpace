@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "Foto Anda tetap menjadi milik Anda. Analisis tetap ada di perangkat Anda, dan pencadangan hanya dilakukan di tempat yang Anda pilih.",
     "paywall.month": "≈ %@ / bulan",
     "subscription.ends_at_the_end_of_the_current_period": "Berakhir pada akhir periode berjalan.",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "Diperpanjang secara otomatis hingga Anda membatalkan di Google Play."
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "Diperpanjang secara otomatis hingga Anda membatalkan di Google Play.",
+    "quota_gate.exhausted_message": "Gratis termasuk %@ pembersihan setiap bulan. Ini disetel ulang pada %@.",
+    "quota_gate.partial_message": "Pilihan Anda adalah %@. Anda dapat membebaskan %@ lebih banyak secara Gratis.",
+    "quota_gate.meter": "%@ dari %@ digunakan bulan ini · Reset %@",
+    "quota_gate.delete_safest": "Hapus %@ (yang paling aman dulu)",
+    "quota_gate_sheet.of_used_this_month_resets": "%@ dari %@ digunakan bulan ini · Reset %@",
+    "quota_gate_sheet.delete_safest_first": "Hapus %@ (yang paling aman dulu)",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "Gratis termasuk %@ pembersihan setiap bulan. Ini disetel ulang pada %@.",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "Tak satu pun dari item yang dipilih cocok dengan item yang tersisa. Pilih item yang lebih sedikit atau lebih kecil, atau buka kunci Pro.",
+    "quota_gate_sheet.not_now": "Tidak sekarang",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "Tidak ada yang dihapus tanpa konfirmasi Anda.",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "Buka Kunci Pembersihan Tanpa Batas",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Anda hampir mencapai batas gratis bulan ini",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Anda telah menggunakan pembersihan gratis bulan ini",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Pilihan Anda adalah %@. Anda dapat membebaskan %@ lebih banyak secara Gratis."
   }
 }

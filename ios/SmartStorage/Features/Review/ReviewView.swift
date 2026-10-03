@@ -11,9 +11,11 @@ struct ReviewView: View {
     let source: Source
 
     @Environment(LibraryStore.self) private var library
+    @Environment(MonetizationStore.self) private var monetization
     /// nil until the user changes it, so the default follows the current items.
     @State private var selection: Set<String>?
     @State private var isDeleting = false
+    @State private var quotaPrompt: QuotaGatePrompt?
 
     private var items: [ReviewItem] {
         switch source {
@@ -78,6 +80,45 @@ struct ReviewView: View {
         .safeAreaInset(edge: .bottom) {
             if !items.isEmpty { deleteBar(items: items, selected: selected) }
         }
+        #if DEBUG
+        .task {
+            // `-debugQuotaGate YES`: shows the quota gate with sample numbers (screenshots; demo data has no real sizes).
+            guard UserDefaults.standard.bool(forKey: "debugQuotaGate") else { return }
+            let sample = [CleanupItem(id: "a", bytes: 600_000_000, safety: .verySafe), CleanupItem(id: "b", bytes: 700_000_000, safety: .safe)]
+            let allowances = Allowances(status: .free, ledger: UsageLedger(month: UsageLedger.monthKey(for: .now), cleanupBytes: 100_000_000), now: .now)
+            quotaPrompt = QuotaGatePrompt(allowances.gate(cleanup: sample), selection: sample, allowances: allowances)
+        }
+        #endif
+        .quotaGate($quotaPrompt) { ids in
+            // The safest part that fits the free allowance: narrow the selection to it, then the usual system confirmation follows.
+            selection = Set(ids)
+            Task { await delete(Set(ids)) }
+        }
+    }
+
+    /// Safety of what's being deleted, for ordering a partial delete: the kind's own, or "similar" for a burst group.
+    private var itemSafety: SafetyLevel {
+        if case .kind(let kind) = source { return kind.safety }
+        return ReviewKind.similar.safety
+    }
+
+    /// Checks the free monthly allowance first; over it, the quota gate is offered instead of deleting.
+    private func requestDelete(items: [ReviewItem], selected: Set<String>) {
+        let candidates = items.filter { selected.contains($0.id) }.map { CleanupItem(id: $0.id, bytes: $0.bytes, safety: itemSafety) }
+        let allowances = monetization.allowances
+        if let prompt = QuotaGatePrompt(allowances.gate(cleanup: candidates), selection: candidates, allowances: allowances) {
+            quotaPrompt = prompt
+        } else {
+            Task { await delete(selected) }
+        }
+    }
+
+    private func delete(_ ids: Set<String>) async {
+        isDeleting = true
+        let outcome = await library.delete(ids)
+        isDeleting = false
+        // Everything selected is gone; what's left was deliberately unselected, so keep it that way.
+        if case .deleted = outcome { selection = [] }
     }
 
     private func selectionBar(items: [ReviewItem], selected: Set<String>) -> some View {
@@ -98,13 +139,7 @@ struct ReviewView: View {
     private func deleteBar(items: [ReviewItem], selected: Set<String>) -> some View {
         VStack(spacing: 6) {
             Button {
-                Task {
-                    isDeleting = true
-                    let outcome = await library.delete(selected)
-                    isDeleting = false
-                    // Everything selected is gone; what's left was deliberately unselected, so keep it that way.
-                    if case .deleted = outcome { selection = [] }
-                }
+                requestDelete(items: items, selected: selected)
             } label: {
                 if isDeleting {
                     ProgressView().tint(.white)

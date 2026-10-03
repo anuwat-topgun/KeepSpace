@@ -38,6 +38,10 @@
 "Ends %@" = "สิ้นสุด %@";
 "Pro · renews %@" = "มือโปร · ต่ออายุ %@";
 "Pro · ends %@" = "มือโปร · สิ้นสุด %@";
+"Free includes %@ of cleanup each month. It resets on %@." = "ฟรีรวม %@ ของการล้างข้อมูลในแต่ละเดือน จะรีเซ็ตเมื่อ %@";
+"Your selection is %@. You can free %@ more on Free." = "การเลือกของคุณคือ %@ คุณสามารถฟรี %@ เพิ่มเติมได้ฟรี";
+"%@ of %@ used this month · Resets %@" = "%@ ของ %@ ใช้ไปแล้วในเดือนนี้ · รีเซ็ต %@";
+"Delete %@ (safest first)" = "ลบ %@ (ปลอดภัยที่สุดก่อน)";
 "Shopping" = "ช้อปปิ้ง";
 "Receipts" = "ใบเสร็จรับเงิน";
 "Chats" = "แชท";
@@ -72,6 +76,7 @@
 "Your favorite" = "ที่คุณชื่นชอบ";
 "You marked this photo as a favorite." = "คุณทำเครื่องหมายรูปภาพนี้เป็นรายการโปรด";
 "%@ of %@ used" = "%@ จาก %@ ใช้แล้ว";
+"%@ of %@ used this month · Resets %@" = "%@ ของ %@ ใช้ไปแล้วในเดือนนี้ · รีเซ็ต %@";
 "%d days free" = "ฟรี %d วัน";
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "ฟรี %d วัน จากนั้น %@ ต่อปี ต่ออายุโดยอัตโนมัติจนกว่าคุณจะยกเลิกในการตั้งค่าบัญชีของคุณ";
 "%d of %d files used" = "%d จาก %d ไฟล์ที่ใช้ไป";
@@ -175,6 +180,7 @@
 "Day" = "วัน";
 "Deeper cleanup for more space." = "ทำความสะอาดอย่างล้ำลึกเพื่อพื้นที่ที่มากขึ้น";
 "Delete" = "ลบ";
+"Delete %@ (safest first)" = "ลบ %@ (ปลอดภัยที่สุดก่อน)";
 "Delete Rule" = "ลบกฎ";
 "Delete this rule?" = "ลบกฎนี้ใช่ไหม";
 "Deleted items can't be recovered on this Android version." = "รายการที่ลบไม่สามารถกู้คืนได้ในเวอร์ชัน Android นี้";
@@ -216,6 +222,7 @@
 "Forecast" = "พยากรณ์";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "ลืมสิ่งที่ KeepSpace เรียนรู้เกี่ยวกับห้องสมุดของคุณไปได้เลย มันจะดูอีกครั้งในการสแกนครั้งถัดไป";
 "Free" = "ฟรี";
+"Free includes %@ of cleanup each month. It resets on %@." = "ฟรีรวม %@ ของการล้างข้อมูลในแต่ละเดือน จะรีเซ็ตเมื่อ %@";
 "Free trial ends %@, then renews." = "การทดลองใช้งานฟรีสิ้นสุด %@ จากนั้นต่ออายุ";
 "Free trial ends %@." = "ทดลองใช้ฟรีสิ้นสุด %@";
 "Free Up Space" = "เพิ่มพื้นที่ว่าง";
@@ -291,11 +298,14 @@
 "No trips or events found yet. They appear as your library grows. Photos are never removed without your review." = "ไม่พบการเดินทางหรือกิจกรรมใดๆ จะปรากฏเมื่อห้องสมุดของคุณเติบโตขึ้น รูปภาพจะไม่ถูกลบออกโดยปราศจากการตรวจสอบของคุณ";
 "No uploads to our servers" = "ไม่มีการอัปโหลดไปยังเซิร์ฟเวอร์ของเรา";
 "No videos here." = "ไม่มีวิดีโอที่นี่";
+"None of the selected items fit in what's left. Select fewer or smaller items, or unlock Pro." = "ไม่มีรายการที่เลือกพอดีกับสิ่งที่เหลืออยู่ เลือกรายการน้อยลงหรือเล็กลง หรือปลดล็อค Pro";
 "Not connected" = "ไม่ได้เชื่อมต่อ";
 "Not found" = "ไม่พบ";
+"Not now" = "ไม่ใช่ตอนนี้";
 "Not set" = "ไม่ได้ตั้งค่า";
 "Not set yet" = "ยังไม่ได้ตั้ง";
 "Nothing is deleted silently" = "ไม่มีอะไรถูกลบอย่างเงียบ ๆ";
+"Nothing is deleted without your confirmation." = "ไม่มีสิ่งใดถูกลบหากไม่มีการยืนยันจากคุณ";
 "Nothing left to review here." = "ไม่มีอะไรเหลือให้รีวิวที่นี่";
 "Nothing to clean up right now. Your library is in good shape." = "ไม่มีอะไรจะทำความสะอาดตอนนี้ ห้องสมุดของคุณอยู่ในสภาพดี";
 "Notifications" = "การแจ้งเตือน";
@@ -449,6 +459,7 @@
 "Unknown merchant" = "พ่อค้าที่ไม่รู้จัก";
 "Unlimited Backup & Rules" = "การสำรองข้อมูลและกฎไม่จำกัด";
 "Unlimited Cleanup" = "การล้างข้อมูลไม่จำกัด";
+"Unlock Unlimited Cleanup" = "ปลดล็อกการล้างข้อมูลแบบไม่จำกัด";
 "Upgrade to Pro" = "อัพเกรดเป็นโปร";
 "Upload over Wi-Fi only" = "อัปโหลดผ่าน Wi-Fi เท่านั้น";
 "Used" = "ใช้แล้ว";
@@ -479,7 +490,9 @@
 "You review every cleanup, and important memories are protected by default." = "คุณตรวจสอบการล้างข้อมูลทุกครั้ง และความทรงจำที่สำคัญจะได้รับการคุ้มครองตามค่าเริ่มต้น";
 "You'll confirm in the next step. Items stay in Recently Deleted for 30 days." = "คุณจะยืนยันได้ในขั้นตอนถัดไป รายการจะอยู่ใน \"ลบล่าสุด\" เป็นเวลา 30 วัน";
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "คุณจะยืนยันได้ในขั้นตอนถัดไป รายการจะอยู่ในถังขยะเป็นเวลา 30 วัน";
+"You're close to this month's free limit" = "คุณใกล้จะถึงขีดจำกัดการใช้งานฟรีของเดือนนี้แล้ว";
 "You're on the Free plan." = "คุณใช้แผนฟรี";
+"You've used this month's free cleanup" = "คุณได้ใช้การล้างข้อมูลฟรีของเดือนนี้แล้ว";
 "Your choice also teaches Best Shot your taste, on this device." = "ตัวเลือกของคุณยังสอน Best Shot ให้กับรสนิยมของคุณบนอุปกรณ์นี้ด้วย";
 "Your full photo library, with cloud backup status." = "คลังภาพเต็มรูปแบบของคุณพร้อมสถานะการสำรองข้อมูลบนคลาวด์";
 "Your photos are analyzed on this device only." = "รูปภาพของคุณได้รับการวิเคราะห์บนอุปกรณ์นี้เท่านั้น";
@@ -488,5 +501,6 @@
 "Your photos stay yours. Analysis stays on your device, and backups go only where you choose." = "รูปภาพของคุณยังคงเป็นของคุณ การวิเคราะห์จะคงอยู่ในอุปกรณ์ของคุณ และการสำรองข้อมูลจะไปเฉพาะจุดที่คุณเลือกเท่านั้น";
 "Your photos, videos and extracted text are never sent to KeepSpace." = "รูปภาพ วิดีโอ และข้อความที่แยกออกมาจะไม่ถูกส่งไปยัง KeepSpace";
 "Your privacy" = "ความเป็นส่วนตัวของคุณ";
+"Your selection is %@. You can free %@ more on Free." = "การเลือกของคุณคือ %@ คุณสามารถฟรี %@ เพิ่มเติมได้ฟรี";
 "Your storage, organized intelligently." = "พื้นที่เก็บข้อมูลของคุณได้รับการจัดระเบียบอย่างชาญฉลาด";
 "≈ %@ / month" = "อยู่ที่ %@/เดือน";

@@ -40,6 +40,10 @@
     <string name="subscription_ends">Berakhir %s</string>
     <string name="subscription_pro_renews">Pro · memperbarui %s</string>
     <string name="subscription_pro_ends">Pro · berakhir %s</string>
+    <string name="quota_gate_exhausted_message">Gratis termasuk %s pembersihan setiap bulan. Ini disetel ulang pada %s.</string>
+    <string name="quota_gate_partial_message">Pilihan Anda adalah %s. Anda dapat membebaskan %s lebih banyak secara Gratis.</string>
+    <string name="quota_gate_meter">%s dari %s digunakan bulan ini · Reset %s</string>
+    <string name="quota_gate_delete_safest">Hapus %s (yang paling aman dulu)</string>
     <string name="screenshot_shopping">Belanja</string>
     <string name="screenshot_receipts">Tanda terima</string>
     <string name="screenshot_chats">Obrolan</string>
@@ -74,6 +78,7 @@
     <string name="best_shot_your_favorite">Favoritmu</string>
     <string name="best_shot_your_favorite_detail">Anda menandai foto ini sebagai favorit.</string>
     <string name="subscription_of_used">%s dari %s digunakan</string>
+    <string name="quota_gate_sheet_of_used_this_month_resets">%s dari %s digunakan bulan ini · Reset %s</string>
     <string name="paywall_d_days_free">%d hari gratis</string>
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d hari gratis, lalu %s per tahun. Diperpanjang secara otomatis hingga Anda membatalkan di pengaturan akun Anda.</string>
     <string name="subscription_d_of_d_files_used">%d dari %d file digunakan</string>
@@ -177,6 +182,7 @@
     <string name="common_day">Hari</string>
     <string name="common_deeper_cleanup_for_more_space">Pembersihan lebih dalam untuk lebih banyak ruang.</string>
     <string name="common_delete">Hapus</string>
+    <string name="quota_gate_sheet_delete_safest_first">Hapus %s (yang paling aman dulu)</string>
     <string name="common_delete_rule">Hapus Aturan</string>
     <string name="common_delete_this_rule">Hapus aturan ini?</string>
     <string name="review_deleted_items_can_t_be_recovered_on_this_android_version">Item yang dihapus tidak dapat dipulihkan pada versi Android ini.</string>
@@ -218,6 +224,7 @@
     <string name="common_forecast">Ramalan cuaca</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Lupakan apa yang KeepSpace pelajari tentang perpustakaan Anda. Ini akan terlihat lagi pada pemindaian berikutnya.</string>
     <string name="subscription_free">Gratis</string>
+    <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Gratis termasuk %s pembersihan setiap bulan. Ini disetel ulang pada %s.</string>
     <string name="subscription_free_trial_ends_then_renews">Uji coba gratis berakhir %s, lalu diperpanjang.</string>
     <string name="subscription_free_trial_ends">Uji coba gratis berakhir %s.</string>
     <string name="common_free_up_space">Kosongkan Ruang</string>
@@ -293,11 +300,14 @@
     <string name="common_no_trips_or_events_found_yet_they_appear_as_your_library">Belum ada perjalanan atau acara yang ditemukan. Mereka muncul seiring pertumbuhan perpustakaan Anda. Foto tidak akan pernah dihapus tanpa ulasan Anda.</string>
     <string name="common_no_uploads_to_our_servers">Tidak ada unggahan ke server kami</string>
     <string name="common_no_videos_here">Tidak ada video di sini.</string>
+    <string name="quota_gate_sheet_none_of_the_selected_items_fit_in_what_s_left_select_few">Tak satu pun dari item yang dipilih cocok dengan item yang tersisa. Pilih item yang lebih sedikit atau lebih kecil, atau buka kunci Pro.</string>
     <string name="common_not_connected">Tidak terhubung</string>
     <string name="common_not_found">Tidak ditemukan</string>
+    <string name="quota_gate_sheet_not_now">Tidak sekarang</string>
     <string name="common_not_set">Tidak disetel</string>
     <string name="common_not_set_yet">Belum disetel</string>
     <string name="common_nothing_is_deleted_silently">Tidak ada yang dihapus secara diam-diam</string>
+    <string name="quota_gate_sheet_nothing_is_deleted_without_your_confirmation">Tidak ada yang dihapus tanpa konfirmasi Anda.</string>
     <string name="common_nothing_left_to_review_here">Tidak ada lagi yang perlu diulas di sini.</string>
     <string name="common_nothing_to_clean_up_right_now_your_library_is_in_good_sh">Tidak ada yang perlu dibersihkan saat ini. Perpustakaan Anda dalam kondisi baik.</string>
     <string name="common_notifications">Pemberitahuan</string>
@@ -451,6 +461,7 @@
     <string name="common_unknown_merchant">Pedagang tak dikenal</string>
     <string name="common_unlimited_backup_rules">Cadangan &amp; Aturan Tidak Terbatas</string>
     <string name="common_unlimited_cleanup">Pembersihan Tanpa Batas</string>
+    <string name="quota_gate_sheet_unlock_unlimited_cleanup">Buka Kunci Pembersihan Tanpa Batas</string>
     <string name="subscription_upgrade_to_pro">Tingkatkan ke Pro</string>
     <string name="common_upload_over_wi_fi_only">Unggah melalui Wi-Fi saja</string>
     <string name="common_used">Digunakan</string>
@@ -481,7 +492,9 @@
     <string name="common_you_review_every_cleanup_and_important_memories_are_prot">Anda meninjau setiap pembersihan, dan kenangan penting dilindungi secara default.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_recently_d">Anda akan mengonfirmasinya di langkah berikutnya. Item tetap berada di Baru Dihapus selama 30 hari.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Anda akan mengonfirmasinya di langkah berikutnya. Item tetap berada di Sampah selama 30 hari.</string>
+    <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Anda hampir mencapai batas gratis bulan ini</string>
     <string name="subscription_you_re_on_the_free_plan">Anda menggunakan paket Gratis.</string>
+    <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Anda telah menggunakan pembersihan gratis bulan ini</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Pilihan Anda juga mengajarkan Best Shot selera Anda, di perangkat ini.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Perpustakaan foto lengkap Anda, dengan status cadangan cloud.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Foto Anda hanya dianalisis di perangkat ini.</string>
@@ -490,6 +503,7 @@
     <string name="paywall_your_photos_stay_yours_analysis_stays_on_your_device_and">Foto Anda tetap menjadi milik Anda. Analisis tetap ada di perangkat Anda, dan pencadangan hanya dilakukan di tempat yang Anda pilih.</string>
     <string name="common_your_photos_videos_and_extracted_text_are_never_sent_to">Foto, video, dan teks yang diekstraksi tidak pernah dikirim ke KeepSpace.</string>
     <string name="common_your_privacy">Privasi Anda</string>
+    <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Pilihan Anda adalah %s. Anda dapat membebaskan %s lebih banyak secara Gratis.</string>
     <string name="common_your_storage_organized_intelligently">Penyimpanan Anda, diatur dengan cerdas.</string>
     <string name="paywall_month">≈ %s / bulan</string>
 </resources>

@@ -40,6 +40,10 @@
     <string name="subscription_ends">Se termină %s</string>
     <string name="subscription_pro_renews">Pro · reînnoiește %s</string>
     <string name="subscription_pro_ends">Pro · se termină %s</string>
+    <string name="quota_gate_exhausted_message">Gratuit include %s de curățare în fiecare lună. Se resetează pe %s.</string>
+    <string name="quota_gate_partial_message">Selecția dvs. este %s. Puteți elibera %s mai multe pe Free.</string>
+    <string name="quota_gate_meter">%s din %s utilizat în această lună · Resetează %s</string>
+    <string name="quota_gate_delete_safest">Șterge %s (cel mai sigur mai întâi)</string>
     <string name="screenshot_shopping">Cumpărături</string>
     <string name="screenshot_receipts">Chitanțe</string>
     <string name="screenshot_chats">Chaturi</string>
@@ -74,6 +78,7 @@
     <string name="best_shot_your_favorite">Preferatul tău</string>
     <string name="best_shot_your_favorite_detail">Ai marcat această fotografie ca preferată.</string>
     <string name="subscription_of_used">%s din %s utilizate</string>
+    <string name="quota_gate_sheet_of_used_this_month_resets">%s din %s utilizat în această lună · Resetează %s</string>
     <string name="paywall_d_days_free">%d zile gratuite</string>
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d zile gratuite, apoi %s pe an. Se reînnoiește automat până când anulați din setările contului.</string>
     <string name="subscription_d_of_d_files_used">%d din %d fișiere utilizate</string>
@@ -177,6 +182,7 @@
     <string name="common_day">Ziua</string>
     <string name="common_deeper_cleanup_for_more_space">Curățare mai profundă pentru mai mult spațiu.</string>
     <string name="common_delete">Ștergeți</string>
+    <string name="quota_gate_sheet_delete_safest_first">Șterge %s (cel mai sigur mai întâi)</string>
     <string name="common_delete_rule">Ștergeți regula</string>
     <string name="common_delete_this_rule">Ștergeți această regulă?</string>
     <string name="review_deleted_items_can_t_be_recovered_on_this_android_version">Elementele șterse nu pot fi recuperate pe această versiune Android.</string>
@@ -218,6 +224,7 @@
     <string name="common_forecast">Prognoza</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Uitați ce a învățat KeepSpace despre biblioteca dvs. Va arăta din nou la următoarea scanare.</string>
     <string name="subscription_free">Gratuit</string>
+    <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Gratuit include %s de curățare în fiecare lună. Se resetează pe %s.</string>
     <string name="subscription_free_trial_ends_then_renews">Perioada de încercare gratuită se încheie %s, apoi se reînnoiește.</string>
     <string name="subscription_free_trial_ends">Perioada de încercare gratuită se încheie %s.</string>
     <string name="common_free_up_space">Eliberați spațiu</string>
@@ -293,11 +300,14 @@
     <string name="common_no_trips_or_events_found_yet_they_appear_as_your_library">Nu au fost găsite încă călătorii sau evenimente. Ele apar pe măsură ce biblioteca dvs. crește. Fotografiile nu sunt niciodată eliminate fără recenzia dvs.</string>
     <string name="common_no_uploads_to_our_servers">Fără încărcări pe serverele noastre</string>
     <string name="common_no_videos_here">Nu există videoclipuri aici.</string>
+    <string name="quota_gate_sheet_none_of_the_selected_items_fit_in_what_s_left_select_few">Niciunul dintre elementele selectate nu se potrivește în ceea ce a mai rămas. Selectați mai puține articole sau mai mici sau deblocați Pro.</string>
     <string name="common_not_connected">Nu este conectat</string>
     <string name="common_not_found">Nu a fost găsit</string>
+    <string name="quota_gate_sheet_not_now">Nu acum</string>
     <string name="common_not_set">Nu setat</string>
     <string name="common_not_set_yet">Nu setat încă</string>
     <string name="common_nothing_is_deleted_silently">Nimic nu este șters în tăcere</string>
+    <string name="quota_gate_sheet_nothing_is_deleted_without_your_confirmation">Nimic nu este șters fără confirmarea dvs.</string>
     <string name="common_nothing_left_to_review_here">Nu a mai rămas nimic de revizuit aici.</string>
     <string name="common_nothing_to_clean_up_right_now_your_library_is_in_good_sh">Nimic de curățat acum. Biblioteca ta este în stare bună.</string>
     <string name="common_notifications">Notificări</string>
@@ -451,6 +461,7 @@
     <string name="common_unknown_merchant">Comerciant necunoscut</string>
     <string name="common_unlimited_backup_rules">Backup și reguli nelimitate</string>
     <string name="common_unlimited_cleanup">Curățare nelimitată</string>
+    <string name="quota_gate_sheet_unlock_unlimited_cleanup">Deblocați curățarea nelimitată</string>
     <string name="subscription_upgrade_to_pro">Faceți upgrade la Pro</string>
     <string name="common_upload_over_wi_fi_only">Încărcați numai prin Wi-Fi</string>
     <string name="common_used">Folosit</string>
@@ -481,7 +492,9 @@
     <string name="common_you_review_every_cleanup_and_important_memories_are_prot">Examinați fiecare curățare, iar amintirile importante sunt protejate implicit.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_recently_d">Veți confirma în pasul următor. Articolele rămân în Șterse recent timp de 30 de zile.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Veți confirma în pasul următor. Articolele rămân în Coșul de gunoi timp de 30 de zile.</string>
+    <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Ești aproape de limita gratuită a acestei luni</string>
     <string name="subscription_you_re_on_the_free_plan">Ești în planul Free.</string>
+    <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Ați folosit curățarea gratuită din această lună</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Alegerea dvs. vă învață și gustul Best Shot pe acest dispozitiv.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Biblioteca dvs. completă de fotografii, cu starea de rezervă în cloud.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Fotografiile dvs. sunt analizate numai pe acest dispozitiv.</string>
@@ -490,6 +503,7 @@
     <string name="paywall_your_photos_stay_yours_analysis_stays_on_your_device_and">Fotografiile tale rămân ale tale. Analiza rămâne pe dispozitivul dvs., iar copiile de rezervă sunt efectuate numai acolo unde doriți.</string>
     <string name="common_your_photos_videos_and_extracted_text_are_never_sent_to">Fotografiile, videoclipurile și textul extras nu sunt niciodată trimise către KeepSpace.</string>
     <string name="common_your_privacy">Intimitatea ta</string>
+    <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Selecția dvs. este %s. Puteți elibera %s mai multe pe Free.</string>
     <string name="common_your_storage_organized_intelligently">Depozitarea ta, organizată inteligent.</string>
     <string name="paywall_month">≈ %s / lună</string>
 </resources>

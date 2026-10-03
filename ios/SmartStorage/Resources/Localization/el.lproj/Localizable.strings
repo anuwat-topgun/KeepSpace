@@ -38,6 +38,10 @@
 "Ends %@" = "Λήγει %@";
 "Pro · renews %@" = "Επαγγελματίας · ανανεώνει το %@";
 "Pro · ends %@" = "Pro · τελειώνει %@";
+"Free includes %@ of cleanup each month. It resets on %@." = "Το δωρεάν περιλαμβάνει %@ καθαρισμού κάθε μήνα. Επαναφέρεται στο %@.";
+"Your selection is %@. You can free %@ more on Free." = "Η επιλογή σας είναι %@. Μπορείτε να ελευθερώσετε %@ περισσότερα στο Δωρεάν.";
+"%@ of %@ used this month · Resets %@" = "%@ από %@ χρησιμοποιήθηκε αυτόν τον μήνα · Επαναφέρει το %@";
+"Delete %@ (safest first)" = "Διαγραφή %@ (πρώτα το ασφαλέστερο)";
 "Shopping" = "Ψώνια";
 "Receipts" = "Αποδείξεις";
 "Chats" = "Συνομιλίες";
@@ -72,6 +76,7 @@
 "Your favorite" = "Το αγαπημένο σας";
 "You marked this photo as a favorite." = "Επισημάνατε αυτή τη φωτογραφία ως αγαπημένη.";
 "%@ of %@ used" = "Χρησιμοποιείται το %@ του %@";
+"%@ of %@ used this month · Resets %@" = "%@ από %@ χρησιμοποιήθηκε αυτόν τον μήνα · Επαναφέρει το %@";
 "%d days free" = "%d ημέρες δωρεάν";
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d ημέρες δωρεάν, μετά %@ ανά έτος. Ανανεώνεται αυτόματα μέχρι να ακυρώσετε τις ρυθμίσεις του λογαριασμού σας.";
 "%d of %d files used" = "Χρησιμοποιήθηκαν %d από %d αρχεία";
@@ -175,6 +180,7 @@
 "Day" = "Ημέρα";
 "Deeper cleanup for more space." = "Βαθύτερος καθαρισμός για περισσότερο χώρο.";
 "Delete" = "Διαγραφή";
+"Delete %@ (safest first)" = "Διαγραφή %@ (πρώτα το ασφαλέστερο)";
 "Delete Rule" = "Διαγραφή κανόνα";
 "Delete this rule?" = "Διαγραφή αυτού του κανόνα;";
 "Deleted items can't be recovered on this Android version." = "Δεν είναι δυνατή η ανάκτηση των διαγραμμένων στοιχείων σε αυτήν την έκδοση Android.";
@@ -216,6 +222,7 @@
 "Forecast" = "Πρόβλεψη";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Ξεχάστε όσα έμαθε η KeepSpace για τη βιβλιοθήκη σας. Θα εμφανιστεί ξανά στην επόμενη σάρωση.";
 "Free" = "Δωρεάν";
+"Free includes %@ of cleanup each month. It resets on %@." = "Το δωρεάν περιλαμβάνει %@ καθαρισμού κάθε μήνα. Επαναφέρεται στο %@.";
 "Free trial ends %@, then renews." = "Η δωρεάν δοκιμή λήγει %@ και μετά ανανεώνεται.";
 "Free trial ends %@." = "Η δωρεάν δοκιμή λήγει %@.";
 "Free Up Space" = "Ελευθερώστε χώρο";
@@ -291,11 +298,14 @@
 "No trips or events found yet. They appear as your library grows. Photos are never removed without your review." = "Δεν βρέθηκαν ακόμη ταξίδια ή εκδηλώσεις. Εμφανίζονται καθώς μεγαλώνει η βιβλιοθήκη σας. Οι φωτογραφίες δεν αφαιρούνται ποτέ χωρίς την κριτική σας.";
 "No uploads to our servers" = "Δεν υπάρχουν μεταφορτώσεις στους διακομιστές μας";
 "No videos here." = "Δεν υπάρχουν βίντεο εδώ.";
+"None of the selected items fit in what's left. Select fewer or smaller items, or unlock Pro." = "Κανένα από τα επιλεγμένα στοιχεία δεν χωράει σε αυτό που έχει απομείνει. Επιλέξτε λιγότερα ή μικρότερα στοιχεία ή ξεκλειδώστε το Pro.";
 "Not connected" = "Δεν είναι συνδεδεμένο";
 "Not found" = "Δεν βρέθηκε";
+"Not now" = "Όχι τώρα";
 "Not set" = "Δεν έχει οριστεί";
 "Not set yet" = "Δεν έχει οριστεί ακόμα";
 "Nothing is deleted silently" = "Τίποτα δεν διαγράφεται σιωπηλά";
+"Nothing is deleted without your confirmation." = "Τίποτα δεν διαγράφεται χωρίς την επιβεβαίωσή σας.";
 "Nothing left to review here." = "Δεν υπάρχει τίποτα για κριτική εδώ.";
 "Nothing to clean up right now. Your library is in good shape." = "Δεν υπάρχει τίποτα για καθαρισμό αυτή τη στιγμή. Η βιβλιοθήκη σας είναι σε καλή κατάσταση.";
 "Notifications" = "Ειδοποιήσεις";
@@ -449,6 +459,7 @@
 "Unknown merchant" = "Άγνωστος έμπορος";
 "Unlimited Backup & Rules" = "Απεριόριστα αντίγραφα ασφαλείας και κανόνες";
 "Unlimited Cleanup" = "Απεριόριστος καθαρισμός";
+"Unlock Unlimited Cleanup" = "Ξεκλειδώστε την Απεριόριστη Εκκαθάριση";
 "Upgrade to Pro" = "Αναβάθμιση σε Pro";
 "Upload over Wi-Fi only" = "Μεταφόρτωση μόνο μέσω Wi-Fi";
 "Used" = "Μεταχειρισμένο";
@@ -479,7 +490,9 @@
 "You review every cleanup, and important memories are protected by default." = "Ελέγχετε κάθε εκκαθάριση και οι σημαντικές αναμνήσεις προστατεύονται από προεπιλογή.";
 "You'll confirm in the next step. Items stay in Recently Deleted for 30 days." = "Θα επιβεβαιώσετε στο επόμενο βήμα. Τα στοιχεία παραμένουν στο Πρόσφατα διαγραμμένα για 30 ημέρες.";
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "Θα επιβεβαιώσετε στο επόμενο βήμα. Τα αντικείμενα παραμένουν στον Κάδο απορριμμάτων για 30 ημέρες.";
+"You're close to this month's free limit" = "Είστε κοντά στο δωρεάν όριο αυτού του μήνα";
 "You're on the Free plan." = "Είστε στο δωρεάν πρόγραμμα.";
+"You've used this month's free cleanup" = "Χρησιμοποιήσατε τη δωρεάν εκκαθάριση αυτού του μήνα";
 "Your choice also teaches Best Shot your taste, on this device." = "Η επιλογή σας διδάσκει επίσης το Best Shot το γούστο σας, σε αυτήν τη συσκευή.";
 "Your full photo library, with cloud backup status." = "Η πλήρης βιβλιοθήκη φωτογραφιών σας, με κατάσταση δημιουργίας αντιγράφων ασφαλείας στο cloud.";
 "Your photos are analyzed on this device only." = "Οι φωτογραφίες σας αναλύονται μόνο σε αυτήν τη συσκευή.";
@@ -488,5 +501,6 @@
 "Your photos stay yours. Analysis stays on your device, and backups go only where you choose." = "Οι φωτογραφίες σας παραμένουν δικές σας. Η ανάλυση παραμένει στη συσκευή σας και τα αντίγραφα ασφαλείας διατίθενται μόνο όπου επιλέγετε.";
 "Your photos, videos and extracted text are never sent to KeepSpace." = "Οι φωτογραφίες, τα βίντεό σας και το εξαγόμενο κείμενο δεν αποστέλλονται ποτέ στη KeepSpace.";
 "Your privacy" = "Το απόρρητό σας";
+"Your selection is %@. You can free %@ more on Free." = "Η επιλογή σας είναι %@. Μπορείτε να ελευθερώσετε %@ περισσότερα στο Δωρεάν.";
 "Your storage, organized intelligently." = "Ο αποθηκευτικός σας χώρος, οργανωμένος έξυπνα.";
 "≈ %@ / month" = "≈ %@ / μήνα";

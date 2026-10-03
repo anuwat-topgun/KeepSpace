@@ -22,6 +22,8 @@ final class LibraryStore {
     /// Short confirmation shown after a delete/compress; the UI clears it when dismissed.
     var notice: String?
     let isDemo: Bool
+    /// Called with the bytes of every deletion the person confirmed (a cancelled system dialog never calls it). The app uses it to count the free monthly allowance.
+    var onDeleted: (@MainActor (Int64) -> Void)?
 
     // Last scan inputs, so deletions update the screens without a full rescan.
     private var lastItems: [MediaItem] = []
@@ -97,6 +99,12 @@ final class LibraryStore {
 
     // MARK: - Actions
 
+    /// The size of each of `ids`, for checking a deletion against the free allowance.
+    func cleanupItems(_ ids: some Collection<String>, safety: SafetyLevel) -> [CleanupItem] {
+        let wanted = Set(ids)
+        return lastItems.filter { wanted.contains($0.id) }.map { CleanupItem(id: $0.id, bytes: $0.bytes, safety: safety) }
+    }
+
     /// Deletes after the system confirmation. Items go to Recently Deleted, so the space is only
     /// reclaimed when that album is emptied (or after 30 days) — the notice says so.
     @discardableResult
@@ -107,6 +115,7 @@ final class LibraryStore {
         switch outcome {
         case .deleted(let count, let bytes):
             removeFromResults(ids)
+            onDeleted?(bytes)
             notice = "\(count) \(count == 1 ? "item" : "items") (\(bytes.formattedBytes)) moved to Recently Deleted. Empty it in Photos to free the space now."
         case .failed(let message):
             notice = "Couldn't delete: \(message)"
@@ -119,8 +128,9 @@ final class LibraryStore {
     /// Keeps the photo at `keeperIndex` and deletes the rest of the group (after the system confirmation).
     /// A confirmed choice is what Best Shot learns from; a cancelled one teaches nothing.
     @discardableResult
-    func keep(_ group: PhotoGroup, keeperIndex: Int) async -> DeletionOutcome {
-        let others = Set(group.assetIDs.enumerated().filter { $0.offset != keeperIndex }.map(\.element))
+    func keep(_ group: PhotoGroup, keeperIndex: Int, limitingTo allowed: Set<String>? = nil) async -> DeletionOutcome {
+        var others = Set(group.assetIDs.enumerated().filter { $0.offset != keeperIndex }.map(\.element))
+        if let allowed { others.formIntersection(allowed) } // free allowance: delete only what fits
         let outcome = await delete(others)
         if case .deleted = outcome, !group.scoreFeatures.isEmpty {
             taste.learn(chosen: keeperIndex, among: group.scoreFeatures)

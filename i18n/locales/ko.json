@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "귀하의 사진은 귀하의 것입니다. 분석은 장치에 유지되며 백업은 선택한 위치에만 저장됩니다.",
     "paywall.month": "≒ %@/월",
     "subscription.ends_at_the_end_of_the_current_period": "현재 기간이 끝나면 종료됩니다.",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "Google Play에서 취소할 때까지 자동으로 갱신됩니다."
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "Google Play에서 취소할 때까지 자동으로 갱신됩니다.",
+    "quota_gate.exhausted_message": "무료에는 매월 %@ 청소가 포함됩니다. %@에 재설정됩니다.",
+    "quota_gate.partial_message": "귀하의 선택은 %@입니다. 무료에서는 %@ 이상을 무료로 이용할 수 있습니다.",
+    "quota_gate.meter": "이번 달에 %@ 중 %@ 사용 · %@ 재설정",
+    "quota_gate.delete_safest": "%@ 삭제(가장 안전한 것부터)",
+    "quota_gate_sheet.of_used_this_month_resets": "이번 달에 %@ 중 %@ 사용 · %@ 재설정",
+    "quota_gate_sheet.delete_safest_first": "%@ 삭제(가장 안전한 것부터)",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "무료에는 매월 %@ 청소가 포함됩니다. %@에 재설정됩니다.",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "선택한 항목 중 남은 항목에 맞는 항목이 없습니다. 더 적거나 작은 항목을 선택하거나 Pro를 잠금 해제하세요.",
+    "quota_gate_sheet.not_now": "지금은 아님",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "귀하의 확인 없이는 아무것도 삭제되지 않습니다.",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "무제한 정리 잠금 해제",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "이번 달 무료 한도에 거의 도달했습니다.",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "이번 달 무료 청소를 사용하셨습니다.",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "귀하의 선택은 %@입니다. 무료에서는 %@ 이상을 무료로 이용할 수 있습니다."
   }
 }

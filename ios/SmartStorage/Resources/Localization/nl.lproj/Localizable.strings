@@ -38,6 +38,10 @@
 "Ends %@" = "Eindigt %@";
 "Pro · renews %@" = "Pro · verlengt %@";
 "Pro · ends %@" = "Pro · eindigt %@";
+"Free includes %@ of cleanup each month. It resets on %@." = "Gratis omvat %@ schoonmaakkosten per maand. Het wordt gereset op %@.";
+"Your selection is %@. You can free %@ more on Free." = "Uw selectie is %@. Je kunt %@ meer gratis gebruiken.";
+"%@ of %@ used this month · Resets %@" = "%@ van %@ gebruikt deze maand · Reset %@";
+"Delete %@ (safest first)" = "%@ verwijderen (veiligste eerst)";
 "Shopping" = "Winkelen";
 "Receipts" = "Ontvangsten";
 "Chats" = "Chats";
@@ -72,6 +76,7 @@
 "Your favorite" = "Jouw favoriet";
 "You marked this photo as a favorite." = "Je hebt deze foto als favoriet gemarkeerd.";
 "%@ of %@ used" = "%@ van %@ gebruikt";
+"%@ of %@ used this month · Resets %@" = "%@ van %@ gebruikt deze maand · Reset %@";
 "%d days free" = "%d dagen gratis";
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d dagen gratis, daarna %@ per jaar. Wordt automatisch verlengd totdat u opzegt in uw accountinstellingen.";
 "%d of %d files used" = "%d van %d gebruikte bestanden";
@@ -175,6 +180,7 @@
 "Day" = "Dag";
 "Deeper cleanup for more space." = "Diepere schoonmaak voor meer ruimte.";
 "Delete" = "Verwijderen";
+"Delete %@ (safest first)" = "%@ verwijderen (veiligste eerst)";
 "Delete Rule" = "Regel verwijderen";
 "Delete this rule?" = "Deze regel verwijderen?";
 "Deleted items can't be recovered on this Android version." = "Verwijderde items kunnen niet worden hersteld in deze Android-versie.";
@@ -216,6 +222,7 @@
 "Forecast" = "Voorspelling";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Vergeet wat KeepSpace over uw bibliotheek heeft geleerd. Bij de volgende scan zal het opnieuw worden bekeken.";
 "Free" = "Gratis";
+"Free includes %@ of cleanup each month. It resets on %@." = "Gratis omvat %@ schoonmaakkosten per maand. Het wordt gereset op %@.";
 "Free trial ends %@, then renews." = "De gratis proefperiode eindigt %@ en wordt vervolgens verlengd.";
 "Free trial ends %@." = "Gratis proefperiode eindigt %@.";
 "Free Up Space" = "Maak ruimte vrij";
@@ -291,11 +298,14 @@
 "No trips or events found yet. They appear as your library grows. Photos are never removed without your review." = "Er zijn nog geen reizen of evenementen gevonden. Ze verschijnen naarmate uw bibliotheek groeit. Foto's worden nooit verwijderd zonder uw beoordeling.";
 "No uploads to our servers" = "Geen uploads naar onze servers";
 "No videos here." = "Geen video's hier.";
+"None of the selected items fit in what's left. Select fewer or smaller items, or unlock Pro." = "Geen van de geselecteerde items past in wat er nog over is. Selecteer minder of kleinere items, of ontgrendel Pro.";
 "Not connected" = "Niet verbonden";
 "Not found" = "Niet gevonden";
+"Not now" = "Niet nu";
 "Not set" = "Niet ingesteld";
 "Not set yet" = "Nog niet ingesteld";
 "Nothing is deleted silently" = "Niets wordt stilzwijgend verwijderd";
+"Nothing is deleted without your confirmation." = "Er wordt niets verwijderd zonder uw bevestiging.";
 "Nothing left to review here." = "Er valt hier niets meer te beoordelen.";
 "Nothing to clean up right now. Your library is in good shape." = "Er valt nu niets op te ruimen. Uw bibliotheek verkeert in goede staat.";
 "Notifications" = "Meldingen";
@@ -449,6 +459,7 @@
 "Unknown merchant" = "Onbekende handelaar";
 "Unlimited Backup & Rules" = "Onbeperkte back-up en regels";
 "Unlimited Cleanup" = "Onbeperkt opruimen";
+"Unlock Unlimited Cleanup" = "Ontgrendel onbeperkt opruimen";
 "Upgrade to Pro" = "Upgrade naar Pro";
 "Upload over Wi-Fi only" = "Alleen uploaden via Wi-Fi";
 "Used" = "Gebruikt";
@@ -479,7 +490,9 @@
 "You review every cleanup, and important memories are protected by default." = "Je beoordeelt elke opruiming en belangrijke herinneringen worden standaard beschermd.";
 "You'll confirm in the next step. Items stay in Recently Deleted for 30 days." = "Je bevestigt dit in de volgende stap. Items blijven 30 dagen in Recent verwijderd.";
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "Je bevestigt dit in de volgende stap. Items blijven 30 dagen in de prullenbak.";
+"You're close to this month's free limit" = "Je hebt bijna de gratis limiet van deze maand bereikt";
 "You're on the Free plan." = "Je hebt het gratis abonnement.";
+"You've used this month's free cleanup" = "Je hebt gebruik gemaakt van de gratis opschoonservice van deze maand";
 "Your choice also teaches Best Shot your taste, on this device." = "Door jouw keuze leert Best Shot ook jouw smaak, op dit apparaat.";
 "Your full photo library, with cloud backup status." = "Uw volledige fotobibliotheek, met cloudback-upstatus.";
 "Your photos are analyzed on this device only." = "Uw foto's worden alleen op dit apparaat geanalyseerd.";
@@ -488,5 +501,6 @@
 "Your photos stay yours. Analysis stays on your device, and backups go only where you choose." = "Je foto's blijven van jou. Analyse blijft op uw apparaat staan ​​en back-ups gaan alleen naar de plek waar u dat wilt.";
 "Your photos, videos and extracted text are never sent to KeepSpace." = "Uw foto's, video's en geëxtraheerde tekst worden nooit naar KeepSpace verzonden.";
 "Your privacy" = "Uw privacy";
+"Your selection is %@. You can free %@ more on Free." = "Uw selectie is %@. Je kunt %@ meer gratis gebruiken.";
 "Your storage, organized intelligently." = "Uw opslag, intelligent georganiseerd.";
 "≈ %@ / month" = "≈ %@ / maand";

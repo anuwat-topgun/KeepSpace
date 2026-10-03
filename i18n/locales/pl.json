@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "Twoje zdjęcia pozostają Twoje. Analiza pozostaje na Twoim urządzeniu, a kopie zapasowe trafiają tylko tam, gdzie wybierzesz.",
     "paywall.month": "≈ %@ / miesiąc",
     "subscription.ends_at_the_end_of_the_current_period": "Kończy się z końcem bieżącego okresu.",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "Odnawia się automatycznie, dopóki nie anulujesz subskrypcji w Google Play."
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "Odnawia się automatycznie, dopóki nie anulujesz subskrypcji w Google Play.",
+    "quota_gate.exhausted_message": "Bezpłatna obejmuje %@ sprzątania co miesiąc. Resetuje się %@.",
+    "quota_gate.partial_message": "Twój wybór to %@. Możesz uwolnić %@ więcej za darmo.",
+    "quota_gate.meter": "%@ z %@ użyte w tym miesiącu · Resetuje %@",
+    "quota_gate.delete_safest": "Usuń %@ (najpierw najbezpieczniejsze)",
+    "quota_gate_sheet.of_used_this_month_resets": "%@ z %@ użyte w tym miesiącu · Resetuje %@",
+    "quota_gate_sheet.delete_safest_first": "Usuń %@ (najpierw najbezpieczniejsze)",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "Bezpłatna obejmuje %@ sprzątania co miesiąc. Resetuje się %@.",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "Żaden z wybranych elementów nie pasuje do tego, co zostało. Wybierz mniej lub mniejsze elementy lub odblokuj wersję Pro.",
+    "quota_gate_sheet.not_now": "Nie teraz",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "Bez Twojego potwierdzenia nic nie zostanie usunięte.",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "Odblokuj nieograniczone czyszczenie",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Zbliżasz się do bezpłatnego limitu na ten miesiąc",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Wykorzystałeś bezpłatne sprzątanie w tym miesiącu",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Twój wybór to %@. Możesz uwolnić %@ więcej za darmo."
   }
 }

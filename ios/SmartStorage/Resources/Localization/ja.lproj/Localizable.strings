@@ -38,6 +38,10 @@
 "Ends %@" = "%@ を終了します";
 "Pro · renews %@" = "Pro · %@ を更新します";
 "Pro · ends %@" = "プロ · 終了 %@";
+"Free includes %@ of cleanup each month. It resets on %@." = "無料には毎月のクリーンアップ %@ が含まれます。 %@ でリセットされます。";
+"Your selection is %@. You can free %@ more on Free." = "選択内容は %@ です。無料ではさらに %@ を無料で利用できます。";
+"%@ of %@ used this month · Resets %@" = "%@/%@ が今月使用されました · %@ をリセットします";
+"Delete %@ (safest first)" = "%@ を削除します (安全なものから順に)";
 "Shopping" = "ショッピング";
 "Receipts" = "領収書";
 "Chats" = "チャット";
@@ -72,6 +76,7 @@
 "Your favorite" = "あなたのお気に入り";
 "You marked this photo as a favorite." = "この写真をお気に入りとしてマークしました。";
 "%@ of %@ used" = "%@/%@ が使用されました";
+"%@ of %@ used this month · Resets %@" = "%@/%@ が今月使用されました · %@ をリセットします";
 "%d days free" = "%d 日間無料";
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d 日間無料、その後は %@ 年あたり。アカウント設定でキャンセルするまで自動的に更新されます。";
 "%d of %d files used" = "%d/%d ファイルが使用されました";
@@ -175,6 +180,7 @@
 "Day" = "日";
 "Deeper cleanup for more space." = "より多くのスペースを確保するための徹底的なクリーンアップ。";
 "Delete" = "削除";
+"Delete %@ (safest first)" = "%@ を削除します (安全なものから順に)";
 "Delete Rule" = "ルールの削除";
 "Delete this rule?" = "このルールを削除しますか?";
 "Deleted items can't be recovered on this Android version." = "この Android バージョンでは、削除されたアイテムを復元できません。";
@@ -216,6 +222,7 @@
 "Forecast" = "予報";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "KeepSpace があなたのライブラリについて学んだことは忘れてください。次回のスキャン時に再度検索されます。";
 "Free" = "無料";
+"Free includes %@ of cleanup each month. It resets on %@." = "無料には毎月のクリーンアップ %@ が含まれます。 %@ でリセットされます。";
 "Free trial ends %@, then renews." = "無料トライアルは %@ で終了し、その後更新されます。";
 "Free trial ends %@." = "無料トライアルは %@ で終了します。";
 "Free Up Space" = "スペースを解放する";
@@ -291,11 +298,14 @@
 "No trips or events found yet. They appear as your library grows. Photos are never removed without your review." = "旅行やイベントはまだ見つかりません。ライブラリが増えるとそれらが表示されます。写真はあなたのレビューなしに削除されることはありません。";
 "No uploads to our servers" = "当社のサーバーへのアップロードはありません";
 "No videos here." = "ここにはビデオはありません。";
+"None of the selected items fit in what's left. Select fewer or smaller items, or unlock Pro." = "選択した項目はどれも残りの項目に収まりません。選択するアイテムの数を減らすか、小さくするか、Pro のロックを解除します。";
 "Not connected" = "接続されていません";
 "Not found" = "見つかりません";
+"Not now" = "今ではありません";
 "Not set" = "未設定";
 "Not set yet" = "まだ設定されていません";
 "Nothing is deleted silently" = "サイレントに削除されるものはありません";
+"Nothing is deleted without your confirmation." = "あなたの確認なしに何も削除されません。";
 "Nothing left to review here." = "ここでレビューするものは何もありません。";
 "Nothing to clean up right now. Your library is in good shape." = "今すぐ掃除するものは何もありません。あなたのライブラリは良好な状態です。";
 "Notifications" = "通知";
@@ -449,6 +459,7 @@
 "Unknown merchant" = "不明な商人";
 "Unlimited Backup & Rules" = "無制限のバックアップとルール";
 "Unlimited Cleanup" = "無制限のクリーンアップ";
+"Unlock Unlimited Cleanup" = "無制限のクリーンアップのロックを解除する";
 "Upgrade to Pro" = "プロにアップグレード";
 "Upload over Wi-Fi only" = "Wi-Fi 経由でのみアップロードする";
 "Used" = "中古品";
@@ -479,7 +490,9 @@
 "You review every cleanup, and important memories are protected by default." = "すべてのクリーンアップを確認すると、重要な思い出がデフォルトで保護されます。";
 "You'll confirm in the next step. Items stay in Recently Deleted for 30 days." = "次のステップで確認します。アイテムは「最近削除した項目」に 30 日間残ります。";
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "次のステップで確認します。アイテムは 30 日間ゴミ箱に残ります。";
+"You're close to this month's free limit" = "今月の無料制限に近づいています";
 "You're on the Free plan." = "無料プランをご利用中です。";
+"You've used this month's free cleanup" = "今月の無料クリーンアップを利用しました";
 "Your choice also teaches Best Shot your taste, on this device." = "このデバイスでは、あなたの選択がベストショットにあなたの好みを教えてくれます。";
 "Your full photo library, with cloud backup status." = "完全な写真ライブラリとクラウド バックアップ ステータス。";
 "Your photos are analyzed on this device only." = "あなたの写真はこのデバイスでのみ分析されます。";
@@ -488,5 +501,6 @@
 "Your photos stay yours. Analysis stays on your device, and backups go only where you choose." = "あなたの写真はあなたのもののままです。分析はデバイス上に残り、バックアップは選択した場所にのみ保存されます。";
 "Your photos, videos and extracted text are never sent to KeepSpace." = "写真、ビデオ、抽出されたテキストが KeepSpace に送信されることはありません。";
 "Your privacy" = "あなたのプライバシー";
+"Your selection is %@. You can free %@ more on Free." = "選択内容は %@ です。無料ではさらに %@ を無料で利用できます。";
 "Your storage, organized intelligently." = "ストレージをインテリジェントに整理します。";
 "≈ %@ / month" = "≈ %@ / 月";

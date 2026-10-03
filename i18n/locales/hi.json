@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "आपकी तस्वीरें आपकी ही रहेंगी. विश्लेषण आपके डिवाइस पर रहता है, और बैकअप केवल वहीं जाता है जहां आप चुनते हैं।",
     "paywall.month": "≈ %@/माह",
     "subscription.ends_at_the_end_of_the_current_period": "वर्तमान अवधि के अंत में समाप्त होता है.",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "जब तक आप Google Play में रद्द नहीं करते तब तक स्वचालित रूप से नवीनीकृत हो जाता है।"
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "जब तक आप Google Play में रद्द नहीं करते तब तक स्वचालित रूप से नवीनीकृत हो जाता है।",
+    "quota_gate.exhausted_message": "निःशुल्क में प्रत्येक माह %@ सफ़ाई शामिल है। यह %@ पर रीसेट होता है.",
+    "quota_gate.partial_message": "आपका चयन %@ है. आप निःशुल्क पर %@ अधिक निःशुल्क प्राप्त कर सकते हैं.",
+    "quota_gate.meter": "इस महीने %@ में से %@ का उपयोग किया गया · रीसेट %@",
+    "quota_gate.delete_safest": "%@ हटाएं (सबसे पहले सबसे सुरक्षित)",
+    "quota_gate_sheet.of_used_this_month_resets": "इस महीने %@ में से %@ का उपयोग किया गया · रीसेट %@",
+    "quota_gate_sheet.delete_safest_first": "%@ हटाएं (सबसे पहले सबसे सुरक्षित)",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "निःशुल्क में प्रत्येक माह %@ सफ़ाई शामिल है। यह %@ पर रीसेट होता है.",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "जो कुछ बचा है उसमें कोई भी चयनित आइटम फिट नहीं बैठता। कम या छोटे आइटम चुनें, या प्रो अनलॉक करें।",
+    "quota_gate_sheet.not_now": "अभी नहीं",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "आपकी पुष्टि के बिना कुछ भी नहीं हटाया जाएगा.",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "असीमित सफाई अनलॉक करें",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "आप इस महीने की मुफ़्त सीमा के करीब हैं",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "आपने इस महीने की निःशुल्क सफ़ाई का उपयोग किया है",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "आपका चयन %@ है. आप निःशुल्क पर %@ अधिक निःशुल्क प्राप्त कर सकते हैं."
   }
 }

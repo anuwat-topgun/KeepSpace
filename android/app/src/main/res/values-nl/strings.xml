@@ -40,6 +40,10 @@
     <string name="subscription_ends">Eindigt %s</string>
     <string name="subscription_pro_renews">Pro · verlengt %s</string>
     <string name="subscription_pro_ends">Pro · eindigt %s</string>
+    <string name="quota_gate_exhausted_message">Gratis omvat %s schoonmaakkosten per maand. Het wordt gereset op %s.</string>
+    <string name="quota_gate_partial_message">Uw selectie is %s. Je kunt %s meer gratis gebruiken.</string>
+    <string name="quota_gate_meter">%s van %s gebruikt deze maand · Reset %s</string>
+    <string name="quota_gate_delete_safest">%s verwijderen (veiligste eerst)</string>
     <string name="screenshot_shopping">Winkelen</string>
     <string name="screenshot_receipts">Ontvangsten</string>
     <string name="screenshot_chats">Chats</string>
@@ -74,6 +78,7 @@
     <string name="best_shot_your_favorite">Jouw favoriet</string>
     <string name="best_shot_your_favorite_detail">Je hebt deze foto als favoriet gemarkeerd.</string>
     <string name="subscription_of_used">%s van %s gebruikt</string>
+    <string name="quota_gate_sheet_of_used_this_month_resets">%s van %s gebruikt deze maand · Reset %s</string>
     <string name="paywall_d_days_free">%d dagen gratis</string>
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d dagen gratis, daarna %s per jaar. Wordt automatisch verlengd totdat u opzegt in uw accountinstellingen.</string>
     <string name="subscription_d_of_d_files_used">%d van %d gebruikte bestanden</string>
@@ -177,6 +182,7 @@
     <string name="common_day">Dag</string>
     <string name="common_deeper_cleanup_for_more_space">Diepere schoonmaak voor meer ruimte.</string>
     <string name="common_delete">Verwijderen</string>
+    <string name="quota_gate_sheet_delete_safest_first">%s verwijderen (veiligste eerst)</string>
     <string name="common_delete_rule">Regel verwijderen</string>
     <string name="common_delete_this_rule">Deze regel verwijderen?</string>
     <string name="review_deleted_items_can_t_be_recovered_on_this_android_version">Verwijderde items kunnen niet worden hersteld in deze Android-versie.</string>
@@ -218,6 +224,7 @@
     <string name="common_forecast">Voorspelling</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Vergeet wat KeepSpace over uw bibliotheek heeft geleerd. Bij de volgende scan zal het opnieuw worden bekeken.</string>
     <string name="subscription_free">Gratis</string>
+    <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Gratis omvat %s schoonmaakkosten per maand. Het wordt gereset op %s.</string>
     <string name="subscription_free_trial_ends_then_renews">De gratis proefperiode eindigt %s en wordt vervolgens verlengd.</string>
     <string name="subscription_free_trial_ends">Gratis proefperiode eindigt %s.</string>
     <string name="common_free_up_space">Maak ruimte vrij</string>
@@ -293,11 +300,14 @@
     <string name="common_no_trips_or_events_found_yet_they_appear_as_your_library">Er zijn nog geen reizen of evenementen gevonden. Ze verschijnen naarmate uw bibliotheek groeit. Foto\'s worden nooit verwijderd zonder uw beoordeling.</string>
     <string name="common_no_uploads_to_our_servers">Geen uploads naar onze servers</string>
     <string name="common_no_videos_here">Geen video\'s hier.</string>
+    <string name="quota_gate_sheet_none_of_the_selected_items_fit_in_what_s_left_select_few">Geen van de geselecteerde items past in wat er nog over is. Selecteer minder of kleinere items, of ontgrendel Pro.</string>
     <string name="common_not_connected">Niet verbonden</string>
     <string name="common_not_found">Niet gevonden</string>
+    <string name="quota_gate_sheet_not_now">Niet nu</string>
     <string name="common_not_set">Niet ingesteld</string>
     <string name="common_not_set_yet">Nog niet ingesteld</string>
     <string name="common_nothing_is_deleted_silently">Niets wordt stilzwijgend verwijderd</string>
+    <string name="quota_gate_sheet_nothing_is_deleted_without_your_confirmation">Er wordt niets verwijderd zonder uw bevestiging.</string>
     <string name="common_nothing_left_to_review_here">Er valt hier niets meer te beoordelen.</string>
     <string name="common_nothing_to_clean_up_right_now_your_library_is_in_good_sh">Er valt nu niets op te ruimen. Uw bibliotheek verkeert in goede staat.</string>
     <string name="common_notifications">Meldingen</string>
@@ -451,6 +461,7 @@
     <string name="common_unknown_merchant">Onbekende handelaar</string>
     <string name="common_unlimited_backup_rules">Onbeperkte back-up en regels</string>
     <string name="common_unlimited_cleanup">Onbeperkt opruimen</string>
+    <string name="quota_gate_sheet_unlock_unlimited_cleanup">Ontgrendel onbeperkt opruimen</string>
     <string name="subscription_upgrade_to_pro">Upgrade naar Pro</string>
     <string name="common_upload_over_wi_fi_only">Alleen uploaden via Wi-Fi</string>
     <string name="common_used">Gebruikt</string>
@@ -481,7 +492,9 @@
     <string name="common_you_review_every_cleanup_and_important_memories_are_prot">Je beoordeelt elke opruiming en belangrijke herinneringen worden standaard beschermd.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_recently_d">Je bevestigt dit in de volgende stap. Items blijven 30 dagen in Recent verwijderd.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Je bevestigt dit in de volgende stap. Items blijven 30 dagen in de prullenbak.</string>
+    <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Je hebt bijna de gratis limiet van deze maand bereikt</string>
     <string name="subscription_you_re_on_the_free_plan">Je hebt het gratis abonnement.</string>
+    <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Je hebt gebruik gemaakt van de gratis opschoonservice van deze maand</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Door jouw keuze leert Best Shot ook jouw smaak, op dit apparaat.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Uw volledige fotobibliotheek, met cloudback-upstatus.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Uw foto\'s worden alleen op dit apparaat geanalyseerd.</string>
@@ -490,6 +503,7 @@
     <string name="paywall_your_photos_stay_yours_analysis_stays_on_your_device_and">Je foto\'s blijven van jou. Analyse blijft op uw apparaat staan ​​en back-ups gaan alleen naar de plek waar u dat wilt.</string>
     <string name="common_your_photos_videos_and_extracted_text_are_never_sent_to">Uw foto\'s, video\'s en geëxtraheerde tekst worden nooit naar KeepSpace verzonden.</string>
     <string name="common_your_privacy">Uw privacy</string>
+    <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Uw selectie is %s. Je kunt %s meer gratis gebruiken.</string>
     <string name="common_your_storage_organized_intelligently">Uw opslag, intelligent georganiseerd.</string>
     <string name="paywall_month">≈ %s / maand</string>
 </resources>

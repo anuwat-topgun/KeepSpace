@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "Ihre Fotos bleiben Ihr Eigentum. Die Analyse bleibt auf Ihrem Gerät und Backups werden nur dort gespeichert, wo Sie möchten.",
     "paywall.month": "≈ %@ / Monat",
     "subscription.ends_at_the_end_of_the_current_period": "Endet am Ende der aktuellen Periode.",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "Verlängert sich automatisch, bis Sie bei Google Play kündigen."
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "Verlängert sich automatisch, bis Sie bei Google Play kündigen.",
+    "quota_gate.exhausted_message": "Kostenlos beinhaltet jeden Monat %@ der Aufräumarbeiten. Es wird am %@ zurückgesetzt.",
+    "quota_gate.partial_message": "Ihre Auswahl ist %@. Bei Free können Sie %@ mehr kostenlos erhalten.",
+    "quota_gate.meter": "%@ von %@ diesen Monat verwendet · Setzt %@ zurück",
+    "quota_gate.delete_safest": "%@ löschen (am sichersten zuerst)",
+    "quota_gate_sheet.of_used_this_month_resets": "%@ von %@ diesen Monat verwendet · Setzt %@ zurück",
+    "quota_gate_sheet.delete_safest_first": "%@ löschen (am sichersten zuerst)",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "Kostenlos beinhaltet jeden Monat %@ der Aufräumarbeiten. Es wird am %@ zurückgesetzt.",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "Keines der ausgewählten Elemente passt in den Rest. Wählen Sie weniger oder kleinere Artikel aus oder entsperren Sie Pro.",
+    "quota_gate_sheet.not_now": "Nicht jetzt",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "Ohne Ihre Bestätigung wird nichts gelöscht.",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "Schalten Sie die unbegrenzte Bereinigung frei",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Sie haben das Gratislimit dieses Monats fast erreicht",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Sie haben die kostenlose Bereinigung dieses Monats genutzt",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Ihre Auswahl ist %@. Bei Free können Sie %@ mehr kostenlos erhalten."
   }
 }

@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "Dina bilder förblir dina. Analysen stannar på din enhet och säkerhetskopieringar går bara där du vill.",
     "paywall.month": "≈ %@ / månad",
     "subscription.ends_at_the_end_of_the_current_period": "Slutar i slutet av den aktuella perioden.",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "Förnyas automatiskt tills du avbryter i Google Play."
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "Förnyas automatiskt tills du avbryter i Google Play.",
+    "quota_gate.exhausted_message": "Gratis inkluderar %@ av städning varje månad. Den återställs på %@.",
+    "quota_gate.partial_message": "Ditt val är %@. Du kan gratis %@ mer på Gratis.",
+    "quota_gate.meter": "%@ av %@ används den här månaden · Återställer %@",
+    "quota_gate.delete_safest": "Ta bort %@ (säkrast först)",
+    "quota_gate_sheet.of_used_this_month_resets": "%@ av %@ används den här månaden · Återställer %@",
+    "quota_gate_sheet.delete_safest_first": "Ta bort %@ (säkrast först)",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "Gratis inkluderar %@ av städning varje månad. Den återställs på %@.",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "Inget av de valda objekten passar i det som är kvar. Välj färre eller mindre föremål, eller lås upp Pro.",
+    "quota_gate_sheet.not_now": "Inte nu",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "Ingenting raderas utan din bekräftelse.",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "Lås upp obegränsad rensning",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Du är nära den här månadens gratisgräns",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Du har använt den här månadens gratis städning",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Ditt val är %@. Du kan gratis %@ mer på Gratis."
   }
 }

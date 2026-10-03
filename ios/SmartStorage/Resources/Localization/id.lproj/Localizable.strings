@@ -38,6 +38,10 @@
 "Ends %@" = "Berakhir %@";
 "Pro · renews %@" = "Pro · memperbarui %@";
 "Pro · ends %@" = "Pro · berakhir %@";
+"Free includes %@ of cleanup each month. It resets on %@." = "Gratis termasuk %@ pembersihan setiap bulan. Ini disetel ulang pada %@.";
+"Your selection is %@. You can free %@ more on Free." = "Pilihan Anda adalah %@. Anda dapat membebaskan %@ lebih banyak secara Gratis.";
+"%@ of %@ used this month · Resets %@" = "%@ dari %@ digunakan bulan ini · Reset %@";
+"Delete %@ (safest first)" = "Hapus %@ (yang paling aman dulu)";
 "Shopping" = "Belanja";
 "Receipts" = "Tanda terima";
 "Chats" = "Obrolan";
@@ -72,6 +76,7 @@
 "Your favorite" = "Favoritmu";
 "You marked this photo as a favorite." = "Anda menandai foto ini sebagai favorit.";
 "%@ of %@ used" = "%@ dari %@ digunakan";
+"%@ of %@ used this month · Resets %@" = "%@ dari %@ digunakan bulan ini · Reset %@";
 "%d days free" = "%d hari gratis";
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d hari gratis, lalu %@ per tahun. Diperpanjang secara otomatis hingga Anda membatalkan di pengaturan akun Anda.";
 "%d of %d files used" = "%d dari %d file digunakan";
@@ -175,6 +180,7 @@
 "Day" = "Hari";
 "Deeper cleanup for more space." = "Pembersihan lebih dalam untuk lebih banyak ruang.";
 "Delete" = "Hapus";
+"Delete %@ (safest first)" = "Hapus %@ (yang paling aman dulu)";
 "Delete Rule" = "Hapus Aturan";
 "Delete this rule?" = "Hapus aturan ini?";
 "Deleted items can't be recovered on this Android version." = "Item yang dihapus tidak dapat dipulihkan pada versi Android ini.";
@@ -216,6 +222,7 @@
 "Forecast" = "Ramalan cuaca";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Lupakan apa yang KeepSpace pelajari tentang perpustakaan Anda. Ini akan terlihat lagi pada pemindaian berikutnya.";
 "Free" = "Gratis";
+"Free includes %@ of cleanup each month. It resets on %@." = "Gratis termasuk %@ pembersihan setiap bulan. Ini disetel ulang pada %@.";
 "Free trial ends %@, then renews." = "Uji coba gratis berakhir %@, lalu diperpanjang.";
 "Free trial ends %@." = "Uji coba gratis berakhir %@.";
 "Free Up Space" = "Kosongkan Ruang";
@@ -291,11 +298,14 @@
 "No trips or events found yet. They appear as your library grows. Photos are never removed without your review." = "Belum ada perjalanan atau acara yang ditemukan. Mereka muncul seiring pertumbuhan perpustakaan Anda. Foto tidak akan pernah dihapus tanpa ulasan Anda.";
 "No uploads to our servers" = "Tidak ada unggahan ke server kami";
 "No videos here." = "Tidak ada video di sini.";
+"None of the selected items fit in what's left. Select fewer or smaller items, or unlock Pro." = "Tak satu pun dari item yang dipilih cocok dengan item yang tersisa. Pilih item yang lebih sedikit atau lebih kecil, atau buka kunci Pro.";
 "Not connected" = "Tidak terhubung";
 "Not found" = "Tidak ditemukan";
+"Not now" = "Tidak sekarang";
 "Not set" = "Tidak disetel";
 "Not set yet" = "Belum disetel";
 "Nothing is deleted silently" = "Tidak ada yang dihapus secara diam-diam";
+"Nothing is deleted without your confirmation." = "Tidak ada yang dihapus tanpa konfirmasi Anda.";
 "Nothing left to review here." = "Tidak ada lagi yang perlu diulas di sini.";
 "Nothing to clean up right now. Your library is in good shape." = "Tidak ada yang perlu dibersihkan saat ini. Perpustakaan Anda dalam kondisi baik.";
 "Notifications" = "Pemberitahuan";
@@ -449,6 +459,7 @@
 "Unknown merchant" = "Pedagang tak dikenal";
 "Unlimited Backup & Rules" = "Cadangan & Aturan Tidak Terbatas";
 "Unlimited Cleanup" = "Pembersihan Tanpa Batas";
+"Unlock Unlimited Cleanup" = "Buka Kunci Pembersihan Tanpa Batas";
 "Upgrade to Pro" = "Tingkatkan ke Pro";
 "Upload over Wi-Fi only" = "Unggah melalui Wi-Fi saja";
 "Used" = "Digunakan";
@@ -479,7 +490,9 @@
 "You review every cleanup, and important memories are protected by default." = "Anda meninjau setiap pembersihan, dan kenangan penting dilindungi secara default.";
 "You'll confirm in the next step. Items stay in Recently Deleted for 30 days." = "Anda akan mengonfirmasinya di langkah berikutnya. Item tetap berada di Baru Dihapus selama 30 hari.";
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "Anda akan mengonfirmasinya di langkah berikutnya. Item tetap berada di Sampah selama 30 hari.";
+"You're close to this month's free limit" = "Anda hampir mencapai batas gratis bulan ini";
 "You're on the Free plan." = "Anda menggunakan paket Gratis.";
+"You've used this month's free cleanup" = "Anda telah menggunakan pembersihan gratis bulan ini";
 "Your choice also teaches Best Shot your taste, on this device." = "Pilihan Anda juga mengajarkan Best Shot selera Anda, di perangkat ini.";
 "Your full photo library, with cloud backup status." = "Perpustakaan foto lengkap Anda, dengan status cadangan cloud.";
 "Your photos are analyzed on this device only." = "Foto Anda hanya dianalisis di perangkat ini.";
@@ -488,5 +501,6 @@
 "Your photos stay yours. Analysis stays on your device, and backups go only where you choose." = "Foto Anda tetap menjadi milik Anda. Analisis tetap ada di perangkat Anda, dan pencadangan hanya dilakukan di tempat yang Anda pilih.";
 "Your photos, videos and extracted text are never sent to KeepSpace." = "Foto, video, dan teks yang diekstraksi tidak pernah dikirim ke KeepSpace.";
 "Your privacy" = "Privasi Anda";
+"Your selection is %@. You can free %@ more on Free." = "Pilihan Anda adalah %@. Anda dapat membebaskan %@ lebih banyak secara Gratis.";
 "Your storage, organized intelligently." = "Penyimpanan Anda, diatur dengan cerdas.";
 "≈ %@ / month" = "≈ %@ / bulan";

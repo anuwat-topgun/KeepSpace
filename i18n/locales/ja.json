@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "あなたの写真はあなたのもののままです。分析はデバイス上に残り、バックアップは選択した場所にのみ保存されます。",
     "paywall.month": "≈ %@ / 月",
     "subscription.ends_at_the_end_of_the_current_period": "現在の期間の終わりに終了します。",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "Google Play でキャンセルするまで自動的に更新されます。"
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "Google Play でキャンセルするまで自動的に更新されます。",
+    "quota_gate.exhausted_message": "無料には毎月のクリーンアップ %@ が含まれます。 %@ でリセットされます。",
+    "quota_gate.partial_message": "選択内容は %@ です。無料ではさらに %@ を無料で利用できます。",
+    "quota_gate.meter": "%@/%@ が今月使用されました · %@ をリセットします",
+    "quota_gate.delete_safest": "%@ を削除します (安全なものから順に)",
+    "quota_gate_sheet.of_used_this_month_resets": "%@/%@ が今月使用されました · %@ をリセットします",
+    "quota_gate_sheet.delete_safest_first": "%@ を削除します (安全なものから順に)",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "無料には毎月のクリーンアップ %@ が含まれます。 %@ でリセットされます。",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "選択した項目はどれも残りの項目に収まりません。選択するアイテムの数を減らすか、小さくするか、Pro のロックを解除します。",
+    "quota_gate_sheet.not_now": "今ではありません",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "あなたの確認なしに何も削除されません。",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "無制限のクリーンアップのロックを解除する",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "今月の無料制限に近づいています",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "今月の無料クリーンアップを利用しました",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "選択内容は %@ です。無料ではさらに %@ を無料で利用できます。"
   }
 }

@@ -38,6 +38,10 @@
 "Ends %@" = "结束%@";
 "Pro · renews %@" = "亲·续订%@";
 "Pro · ends %@" = "亲 · 结束 %@";
+"Free includes %@ of cleanup each month. It resets on %@." = "免费包括每月 %@ 的清理工作。它在 %@ 重置。";
+"Your selection is %@. You can free %@ more on Free." = "您的选择是%@。您可以通过免费免费获得 %@ 更多内容。";
+"%@ of %@ used this month · Resets %@" = "本月已使用 %@（共 %@） · 重置 %@";
+"Delete %@ (safest first)" = "删除%@（最安全的优先）";
 "Shopping" = "购物";
 "Receipts" = "收据";
 "Chats" = "聊天记录";
@@ -72,6 +76,7 @@
 "Your favorite" = "你最喜欢的";
 "You marked this photo as a favorite." = "您已将这张照片标记为最喜欢的。";
 "%@ of %@ used" = "已使用 %@（共 %@）";
+"%@ of %@ used this month · Resets %@" = "本月已使用 %@（共 %@） · 重置 %@";
 "%d days free" = "%d 天免费";
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "免费 %d 天，然后每年 %@。自动续订，直到您在帐户设置中取消为止。";
 "%d of %d files used" = "使用了 %d 个文件（共 %d 个）";
@@ -175,6 +180,7 @@
 "Day" = "日";
 "Deeper cleanup for more space." = "更深入的清理以获得更多空间。";
 "Delete" = "删除";
+"Delete %@ (safest first)" = "删除%@（最安全的优先）";
 "Delete Rule" = "删除规则";
 "Delete this rule?" = "删除这条规则？";
 "Deleted items can't be recovered on this Android version." = "在此 Android 版本上无法恢复已删除的项目。";
@@ -216,6 +222,7 @@
 "Forecast" = "预测";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "忘记 KeepSpace 对您的图书馆的了解。下次扫描时它将再次查看。";
 "Free" = "免费";
+"Free includes %@ of cleanup each month. It resets on %@." = "免费包括每月 %@ 的清理工作。它在 %@ 重置。";
 "Free trial ends %@, then renews." = "免费试用结束%@，然后续订。";
 "Free trial ends %@." = "免费试用结束%@。";
 "Free Up Space" = "释放空间";
@@ -291,11 +298,14 @@
 "No trips or events found yet. They appear as your library grows. Photos are never removed without your review." = "尚未找到旅行或活动。它们随着您的图书馆的增长而出现。未经您的审核，照片绝不会被删除。";
 "No uploads to our servers" = "没有上传到我们的服务器";
 "No videos here." = "这里没有视频。";
+"None of the selected items fit in what's left. Select fewer or smaller items, or unlock Pro." = "所选项目都不适合剩下的项目。选择更少或更小的项目，或者解锁 Pro。";
 "Not connected" = "未连接";
 "Not found" = "未找到";
+"Not now" = "现在不行";
 "Not set" = "未设置";
 "Not set yet" = "尚未设定";
 "Nothing is deleted silently" = "没有什么会被悄悄删除";
+"Nothing is deleted without your confirmation." = "未经您的确认，不会删除任何内容。";
 "Nothing left to review here." = "这里没有什么可评论的了。";
 "Nothing to clean up right now. Your library is in good shape." = "现在没有什么需要清理的。您的图书馆状况良好。";
 "Notifications" = "通知";
@@ -449,6 +459,7 @@
 "Unknown merchant" = "未知商人";
 "Unlimited Backup & Rules" = "无限备份和规则";
 "Unlimited Cleanup" = "无限清理";
+"Unlock Unlimited Cleanup" = "解锁无限清理";
 "Upgrade to Pro" = "升级到专业版";
 "Upload over Wi-Fi only" = "仅通过 Wi-Fi 上传";
 "Used" = "二手";
@@ -479,7 +490,9 @@
 "You review every cleanup, and important memories are protected by default." = "您检查每一次清理工作，重要的记忆默认受到保护。";
 "You'll confirm in the next step. Items stay in Recently Deleted for 30 days." = "您将在下一步中确认。项目在“最近删除”中保留 30 天。";
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "您将在下一步中确认。项目会在垃圾箱中保留 30 天。";
+"You're close to this month's free limit" = "您已接近本月的免费限额";
 "You're on the Free plan." = "您使用的是免费计划。";
+"You've used this month's free cleanup" = "您已使用本月的免费清理服务";
 "Your choice also teaches Best Shot your taste, on this device." = "您的选择也会让 Best Shot 了解您在此设备上的品味。";
 "Your full photo library, with cloud backup status." = "您的完整照片库，具有云备份状态。";
 "Your photos are analyzed on this device only." = "仅在此设备上分析您的照片。";
@@ -488,5 +501,6 @@
 "Your photos stay yours. Analysis stays on your device, and backups go only where you choose." = "您的照片归您所有。分析保留在您的设备上，备份仅保存在您选择的位置。";
 "Your photos, videos and extracted text are never sent to KeepSpace." = "您的照片、视频和提取的文本永远不会发送到 KeepSpace。";
 "Your privacy" = "您的隐私";
+"Your selection is %@. You can free %@ more on Free." = "您的选择是%@。您可以通过免费免费获得 %@ 更多内容。";
 "Your storage, organized intelligently." = "您的存储空间被智能地组织起来。";
 "≈ %@ / month" = "≈ %@ / 月";

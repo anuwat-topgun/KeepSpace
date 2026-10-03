@@ -40,6 +40,10 @@
     <string name="subscription_ends">Λήγει %s</string>
     <string name="subscription_pro_renews">Επαγγελματίας · ανανεώνει το %s</string>
     <string name="subscription_pro_ends">Pro · τελειώνει %s</string>
+    <string name="quota_gate_exhausted_message">Το δωρεάν περιλαμβάνει %s καθαρισμού κάθε μήνα. Επαναφέρεται στο %s.</string>
+    <string name="quota_gate_partial_message">Η επιλογή σας είναι %s. Μπορείτε να ελευθερώσετε %s περισσότερα στο Δωρεάν.</string>
+    <string name="quota_gate_meter">%s από %s χρησιμοποιήθηκε αυτόν τον μήνα · Επαναφέρει το %s</string>
+    <string name="quota_gate_delete_safest">Διαγραφή %s (πρώτα το ασφαλέστερο)</string>
     <string name="screenshot_shopping">Ψώνια</string>
     <string name="screenshot_receipts">Αποδείξεις</string>
     <string name="screenshot_chats">Συνομιλίες</string>
@@ -74,6 +78,7 @@
     <string name="best_shot_your_favorite">Το αγαπημένο σας</string>
     <string name="best_shot_your_favorite_detail">Επισημάνατε αυτή τη φωτογραφία ως αγαπημένη.</string>
     <string name="subscription_of_used">Χρησιμοποιείται το %s του %s</string>
+    <string name="quota_gate_sheet_of_used_this_month_resets">%s από %s χρησιμοποιήθηκε αυτόν τον μήνα · Επαναφέρει το %s</string>
     <string name="paywall_d_days_free">%d ημέρες δωρεάν</string>
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d ημέρες δωρεάν, μετά %s ανά έτος. Ανανεώνεται αυτόματα μέχρι να ακυρώσετε τις ρυθμίσεις του λογαριασμού σας.</string>
     <string name="subscription_d_of_d_files_used">Χρησιμοποιήθηκαν %d από %d αρχεία</string>
@@ -177,6 +182,7 @@
     <string name="common_day">Ημέρα</string>
     <string name="common_deeper_cleanup_for_more_space">Βαθύτερος καθαρισμός για περισσότερο χώρο.</string>
     <string name="common_delete">Διαγραφή</string>
+    <string name="quota_gate_sheet_delete_safest_first">Διαγραφή %s (πρώτα το ασφαλέστερο)</string>
     <string name="common_delete_rule">Διαγραφή κανόνα</string>
     <string name="common_delete_this_rule">Διαγραφή αυτού του κανόνα;</string>
     <string name="review_deleted_items_can_t_be_recovered_on_this_android_version">Δεν είναι δυνατή η ανάκτηση των διαγραμμένων στοιχείων σε αυτήν την έκδοση Android.</string>
@@ -218,6 +224,7 @@
     <string name="common_forecast">Πρόβλεψη</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Ξεχάστε όσα έμαθε η KeepSpace για τη βιβλιοθήκη σας. Θα εμφανιστεί ξανά στην επόμενη σάρωση.</string>
     <string name="subscription_free">Δωρεάν</string>
+    <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Το δωρεάν περιλαμβάνει %s καθαρισμού κάθε μήνα. Επαναφέρεται στο %s.</string>
     <string name="subscription_free_trial_ends_then_renews">Η δωρεάν δοκιμή λήγει %s και μετά ανανεώνεται.</string>
     <string name="subscription_free_trial_ends">Η δωρεάν δοκιμή λήγει %s.</string>
     <string name="common_free_up_space">Ελευθερώστε χώρο</string>
@@ -293,11 +300,14 @@
     <string name="common_no_trips_or_events_found_yet_they_appear_as_your_library">Δεν βρέθηκαν ακόμη ταξίδια ή εκδηλώσεις. Εμφανίζονται καθώς μεγαλώνει η βιβλιοθήκη σας. Οι φωτογραφίες δεν αφαιρούνται ποτέ χωρίς την κριτική σας.</string>
     <string name="common_no_uploads_to_our_servers">Δεν υπάρχουν μεταφορτώσεις στους διακομιστές μας</string>
     <string name="common_no_videos_here">Δεν υπάρχουν βίντεο εδώ.</string>
+    <string name="quota_gate_sheet_none_of_the_selected_items_fit_in_what_s_left_select_few">Κανένα από τα επιλεγμένα στοιχεία δεν χωράει σε αυτό που έχει απομείνει. Επιλέξτε λιγότερα ή μικρότερα στοιχεία ή ξεκλειδώστε το Pro.</string>
     <string name="common_not_connected">Δεν είναι συνδεδεμένο</string>
     <string name="common_not_found">Δεν βρέθηκε</string>
+    <string name="quota_gate_sheet_not_now">Όχι τώρα</string>
     <string name="common_not_set">Δεν έχει οριστεί</string>
     <string name="common_not_set_yet">Δεν έχει οριστεί ακόμα</string>
     <string name="common_nothing_is_deleted_silently">Τίποτα δεν διαγράφεται σιωπηλά</string>
+    <string name="quota_gate_sheet_nothing_is_deleted_without_your_confirmation">Τίποτα δεν διαγράφεται χωρίς την επιβεβαίωσή σας.</string>
     <string name="common_nothing_left_to_review_here">Δεν υπάρχει τίποτα για κριτική εδώ.</string>
     <string name="common_nothing_to_clean_up_right_now_your_library_is_in_good_sh">Δεν υπάρχει τίποτα για καθαρισμό αυτή τη στιγμή. Η βιβλιοθήκη σας είναι σε καλή κατάσταση.</string>
     <string name="common_notifications">Ειδοποιήσεις</string>
@@ -451,6 +461,7 @@
     <string name="common_unknown_merchant">Άγνωστος έμπορος</string>
     <string name="common_unlimited_backup_rules">Απεριόριστα αντίγραφα ασφαλείας και κανόνες</string>
     <string name="common_unlimited_cleanup">Απεριόριστος καθαρισμός</string>
+    <string name="quota_gate_sheet_unlock_unlimited_cleanup">Ξεκλειδώστε την Απεριόριστη Εκκαθάριση</string>
     <string name="subscription_upgrade_to_pro">Αναβάθμιση σε Pro</string>
     <string name="common_upload_over_wi_fi_only">Μεταφόρτωση μόνο μέσω Wi-Fi</string>
     <string name="common_used">Μεταχειρισμένο</string>
@@ -481,7 +492,9 @@
     <string name="common_you_review_every_cleanup_and_important_memories_are_prot">Ελέγχετε κάθε εκκαθάριση και οι σημαντικές αναμνήσεις προστατεύονται από προεπιλογή.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_recently_d">Θα επιβεβαιώσετε στο επόμενο βήμα. Τα στοιχεία παραμένουν στο Πρόσφατα διαγραμμένα για 30 ημέρες.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Θα επιβεβαιώσετε στο επόμενο βήμα. Τα αντικείμενα παραμένουν στον Κάδο απορριμμάτων για 30 ημέρες.</string>
+    <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Είστε κοντά στο δωρεάν όριο αυτού του μήνα</string>
     <string name="subscription_you_re_on_the_free_plan">Είστε στο δωρεάν πρόγραμμα.</string>
+    <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Χρησιμοποιήσατε τη δωρεάν εκκαθάριση αυτού του μήνα</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Η επιλογή σας διδάσκει επίσης το Best Shot το γούστο σας, σε αυτήν τη συσκευή.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Η πλήρης βιβλιοθήκη φωτογραφιών σας, με κατάσταση δημιουργίας αντιγράφων ασφαλείας στο cloud.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Οι φωτογραφίες σας αναλύονται μόνο σε αυτήν τη συσκευή.</string>
@@ -490,6 +503,7 @@
     <string name="paywall_your_photos_stay_yours_analysis_stays_on_your_device_and">Οι φωτογραφίες σας παραμένουν δικές σας. Η ανάλυση παραμένει στη συσκευή σας και τα αντίγραφα ασφαλείας διατίθενται μόνο όπου επιλέγετε.</string>
     <string name="common_your_photos_videos_and_extracted_text_are_never_sent_to">Οι φωτογραφίες, τα βίντεό σας και το εξαγόμενο κείμενο δεν αποστέλλονται ποτέ στη KeepSpace.</string>
     <string name="common_your_privacy">Το απόρρητό σας</string>
+    <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Η επιλογή σας είναι %s. Μπορείτε να ελευθερώσετε %s περισσότερα στο Δωρεάν.</string>
     <string name="common_your_storage_organized_intelligently">Ο αποθηκευτικός σας χώρος, οργανωμένος έξυπνα.</string>
     <string name="paywall_month">≈ %s / μήνα</string>
 </resources>

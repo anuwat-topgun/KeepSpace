@@ -323,3 +323,40 @@ class PlayBillingMappingTest {
         assertNull(billingPeriodDays("P0D"))
     }
 }
+
+class QuotaGatePromptTest {
+    private fun prompt(a: Allowances, selection: List<CleanupItem>) = QuotaGatePrompt.of(a.gate(selection), selection, a)
+
+    @Test fun noSheetWhenTheDeletionFits() {
+        assertNull(prompt(allowances(), listOf(item("a", 400, SafetyLevel.Safe))))
+        assertNull(prompt(allowances(pro), listOf(item("a", 50_000, SafetyLevel.Safe))))
+    }
+
+    @Test fun partialOffersTheSafestItemsThatFit() {
+        val p = prompt(allowances(usedBytes = 500_000_000), listOf(item("a", 400, SafetyLevel.ReviewFirst), item("b", 300, SafetyLevel.VerySafe), item("c", 400, SafetyLevel.Safe)))!!
+        // 500 MB left: b (300, very safe) fits; c and a (400 each) no longer do.
+        assertEquals(listOf("b"), p.partialIds)
+        assertEquals(300_000_000L, p.partialBytes)
+        assertEquals(1_100_000_000L, p.selectionBytes)
+        assertEquals(500_000_000L, p.remaining)
+        assertEquals(500_000_000L, p.used)
+        assertEquals(1_000_000_000L, p.limit)
+    }
+
+    @Test fun exhaustedAndNoneFitOfferNoPartialDelete() {
+        val exhausted = prompt(allowances(usedBytes = 1_000_000_000), listOf(item("a", 10, SafetyLevel.Safe)))!!
+        assertEquals(QuotaGateKind.Exhausted, exhausted.kind)
+        assertNull(exhausted.partialIds)
+        assertEquals(0L, exhausted.remaining)
+        val none = prompt(allowances(usedBytes = 900_000_000), listOf(item("big", 500, SafetyLevel.VerySafe)))!!
+        assertEquals(QuotaGateKind.NoneFit, none.kind)
+        assertNull(none.partialIds)
+        assertEquals(100_000_000L, none.remaining)
+    }
+
+    @Test fun usedIsNeverShownAboveTheLimitAndResetIsNextMonth() {
+        val p = prompt(allowances(usedBytes = 5_000_000_000), listOf(item("a", 10, SafetyLevel.Safe)))!!
+        assertEquals(p.limit, p.used)
+        assertEquals(date(2026, 11, 1, 0), p.resetDate)
+    }
+}

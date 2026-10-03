@@ -3,7 +3,7 @@
 Design spec for the Free/Pro split and paywall, ready to implement. Decisions and the build checklist live in
 [`todo.md`](../todo.md) §3.5; this document is the screen-level design.
 
-**Status: the paywall (§3.1) and the Subscription screen (§3.3) are implemented on iOS and Android; the quota gate (§3.2), locks in context (§3.4) and the entry points (§4) are not wired yet.** Visuals: [`paywall/paywall-overview.png`](paywall/paywall-overview.png)
+**Status: the paywall (§3.1) and the Subscription screen (§3.3) are implemented on iOS and Android; the quota gate (§3.2) is wired into Review (every category and group) and Best Shot; locks in context (§3.4) and the other entry points (§4) are not wired yet.** Visuals: [`paywall/paywall-overview.png`](paywall/paywall-overview.png)
 (source: [`paywall/paywall-mockup.html`](paywall/paywall-mockup.html), colours are the app's own tokens). The mockups are static HTML:
 icons are stand-ins for SF Symbols / Material icons, and prices are the launch defaults — **the real app must read price,
 currency, trial length and eligibility from the store, never hard-code them.**

@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "Vaše fotografie zůstanou vaše. Analýza zůstává na vašem zařízení a zálohy se ukládají pouze tam, kde si vyberete.",
     "paywall.month": "≈ %@ / měsíc",
     "subscription.ends_at_the_end_of_the_current_period": "Končí na konci aktuálního období.",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "Obnovuje se automaticky, dokud nezrušíte na Google Play."
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "Obnovuje se automaticky, dokud nezrušíte na Google Play.",
+    "quota_gate.exhausted_message": "Zdarma zahrnuje %@ úklidu každý měsíc. Resetuje se na %@.",
+    "quota_gate.partial_message": "Váš výběr je %@. Můžete zdarma %@ více na Free.",
+    "quota_gate.meter": "%@ z %@ použité tento měsíc · Resetuje %@",
+    "quota_gate.delete_safest": "Smazat %@ (nejbezpečnější první)",
+    "quota_gate_sheet.of_used_this_month_resets": "%@ z %@ použité tento měsíc · Resetuje %@",
+    "quota_gate_sheet.delete_safest_first": "Smazat %@ (nejbezpečnější první)",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "Zdarma zahrnuje %@ úklidu každý měsíc. Resetuje se na %@.",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "Žádná z vybraných položek se nevejde do toho, co zbylo. Vyberte méně nebo menší položky nebo odemkněte Pro.",
+    "quota_gate_sheet.not_now": "Teď ne",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "Bez vašeho potvrzení se nic nesmaže.",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "Odemkněte neomezené čištění",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Blížíte se k limitu zdarma pro tento měsíc",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Využili jste bezplatný úklid tohoto měsíce",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Váš výběr je %@. Můžete zdarma %@ více na Free."
   }
 }

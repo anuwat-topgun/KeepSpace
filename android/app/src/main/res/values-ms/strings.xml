@@ -40,6 +40,10 @@
     <string name="subscription_ends">Tamat %s</string>
     <string name="subscription_pro_renews">Pro · memperbaharui %s</string>
     <string name="subscription_pro_ends">Pro · tamat %s</string>
+    <string name="quota_gate_exhausted_message">Percuma termasuk %s pembersihan setiap bulan. Ia ditetapkan semula pada %s.</string>
+    <string name="quota_gate_partial_message">Pilihan anda ialah %s. Anda boleh membebaskan %s lagi pada Percuma.</string>
+    <string name="quota_gate_meter">%s daripada %s digunakan bulan ini · Tetapkan semula %s</string>
+    <string name="quota_gate_delete_safest">Padam %s (paling selamat dahulu)</string>
     <string name="screenshot_shopping">Membeli-belah</string>
     <string name="screenshot_receipts">resit</string>
     <string name="screenshot_chats">Sembang</string>
@@ -74,6 +78,7 @@
     <string name="best_shot_your_favorite">kegemaran anda</string>
     <string name="best_shot_your_favorite_detail">Anda menandai foto ini sebagai kegemaran.</string>
     <string name="subscription_of_used">%s daripada %s digunakan</string>
+    <string name="quota_gate_sheet_of_used_this_month_resets">%s daripada %s digunakan bulan ini · Tetapkan semula %s</string>
     <string name="paywall_d_days_free">%d hari percuma</string>
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d hari percuma, kemudian %s setahun. Dibaharui secara automatik sehingga anda membatalkan dalam tetapan akaun anda.</string>
     <string name="subscription_d_of_d_files_used">%d daripada %d fail digunakan</string>
@@ -177,6 +182,7 @@
     <string name="common_day">Hari</string>
     <string name="common_deeper_cleanup_for_more_space">Pembersihan lebih mendalam untuk lebih banyak ruang.</string>
     <string name="common_delete">Padam</string>
+    <string name="quota_gate_sheet_delete_safest_first">Padam %s (paling selamat dahulu)</string>
     <string name="common_delete_rule">Padamkan Peraturan</string>
     <string name="common_delete_this_rule">Padamkan peraturan ini?</string>
     <string name="review_deleted_items_can_t_be_recovered_on_this_android_version">Item yang dipadamkan tidak boleh dipulihkan pada versi Android ini.</string>
@@ -218,6 +224,7 @@
     <string name="common_forecast">Ramalan</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Lupakan apa yang KeepSpace pelajari tentang perpustakaan anda. Ia akan kelihatan semula pada imbasan seterusnya.</string>
     <string name="subscription_free">Percuma</string>
+    <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Percuma termasuk %s pembersihan setiap bulan. Ia ditetapkan semula pada %s.</string>
     <string name="subscription_free_trial_ends_then_renews">Percubaan percuma tamat %s, kemudian diperbaharui.</string>
     <string name="subscription_free_trial_ends">Percubaan percuma tamat %s.</string>
     <string name="common_free_up_space">Kosongkan Ruang</string>
@@ -293,11 +300,14 @@
     <string name="common_no_trips_or_events_found_yet_they_appear_as_your_library">Tiada perjalanan atau acara ditemui lagi. Ia muncul apabila perpustakaan anda berkembang. Foto tidak akan dialih keluar tanpa semakan anda.</string>
     <string name="common_no_uploads_to_our_servers">Tiada muat naik ke pelayan kami</string>
     <string name="common_no_videos_here">Tiada video di sini.</string>
+    <string name="quota_gate_sheet_none_of_the_selected_items_fit_in_what_s_left_select_few">Tiada satu pun daripada item yang dipilih sesuai dengan apa yang tinggal. Pilih item yang lebih sedikit atau lebih kecil, atau buka kunci Pro.</string>
     <string name="common_not_connected">Tidak bersambung</string>
     <string name="common_not_found">Tidak dijumpai</string>
+    <string name="quota_gate_sheet_not_now">bukan sekarang</string>
     <string name="common_not_set">Tidak ditetapkan</string>
     <string name="common_not_set_yet">Belum ditetapkan lagi</string>
     <string name="common_nothing_is_deleted_silently">Tiada apa-apa yang dipadamkan secara senyap</string>
+    <string name="quota_gate_sheet_nothing_is_deleted_without_your_confirmation">Tiada apa-apa yang dipadamkan tanpa pengesahan anda.</string>
     <string name="common_nothing_left_to_review_here">Tiada apa-apa lagi untuk disemak di sini.</string>
     <string name="common_nothing_to_clean_up_right_now_your_library_is_in_good_sh">Tiada apa yang perlu dibersihkan sekarang. Perpustakaan anda berada dalam keadaan baik.</string>
     <string name="common_notifications">Pemberitahuan</string>
@@ -451,6 +461,7 @@
     <string name="common_unknown_merchant">Pedagang tidak dikenali</string>
     <string name="common_unlimited_backup_rules">Sandaran &amp; Peraturan Tanpa Had</string>
     <string name="common_unlimited_cleanup">Pembersihan Tanpa Had</string>
+    <string name="quota_gate_sheet_unlock_unlimited_cleanup">Buka kunci Pembersihan Tanpa Had</string>
     <string name="subscription_upgrade_to_pro">Naik taraf kepada Pro</string>
     <string name="common_upload_over_wi_fi_only">Muat naik melalui Wi-Fi sahaja</string>
     <string name="common_used">terpakai</string>
@@ -481,7 +492,9 @@
     <string name="common_you_review_every_cleanup_and_important_memories_are_prot">Anda menyemak setiap pembersihan dan kenangan penting dilindungi secara lalai.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_recently_d">Anda akan mengesahkan dalam langkah seterusnya. Item kekal dalam Dipadam Baru-baru ini selama 30 hari.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Anda akan mengesahkan dalam langkah seterusnya. Item kekal dalam Sampah selama 30 hari.</string>
+    <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Anda hampir mencapai had percuma bulan ini</string>
     <string name="subscription_you_re_on_the_free_plan">Anda menggunakan pelan Percuma.</string>
+    <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Anda telah menggunakan pembersihan percuma bulan ini</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Pilihan anda juga mengajar Best Shot citarasa anda, pada peranti ini.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Pustaka foto penuh anda, dengan status sandaran awan.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Foto anda dianalisis pada peranti ini sahaja.</string>
@@ -490,6 +503,7 @@
     <string name="paywall_your_photos_stay_yours_analysis_stays_on_your_device_and">Foto anda kekal milik anda. Analisis kekal pada peranti anda dan sandaran hanya pergi ke tempat yang anda pilih.</string>
     <string name="common_your_photos_videos_and_extracted_text_are_never_sent_to">Foto, video dan teks yang diekstrak anda tidak pernah dihantar ke KeepSpace.</string>
     <string name="common_your_privacy">Privasi anda</string>
+    <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Pilihan anda ialah %s. Anda boleh membebaskan %s lagi pada Percuma.</string>
     <string name="common_your_storage_organized_intelligently">Storan anda, disusun dengan bijak.</string>
     <string name="paywall_month">≈ %s / bulan</string>
 </resources>

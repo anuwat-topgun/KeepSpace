@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "صورك تبقى لك. يبقى التحليل على جهازك، ولا تذهب النسخ الاحتياطية إلا إلى المكان الذي تختاره.",
     "paywall.month": "≈ %@ / شهر",
     "subscription.ends_at_the_end_of_the_current_period": "وينتهي بنهاية الفترة الحالية.",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "يتم تجديده تلقائيًا حتى تقوم بالإلغاء في Google Play."
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "يتم تجديده تلقائيًا حتى تقوم بالإلغاء في Google Play.",
+    "quota_gate.exhausted_message": "مجانًا يتضمن %@ من عمليات التنظيف كل شهر. تتم إعادة التعيين على %@.",
+    "quota_gate.partial_message": "اختيارك هو %@. يمكنك تحرير %@ المزيد مجانًا.",
+    "quota_gate.meter": "%@ من %@ تم استخدامه هذا الشهر · إعادة تعيين %@",
+    "quota_gate.delete_safest": "احذف %@ (الأكثر أمانًا أولاً)",
+    "quota_gate_sheet.of_used_this_month_resets": "%@ من %@ تم استخدامه هذا الشهر · إعادة تعيين %@",
+    "quota_gate_sheet.delete_safest_first": "احذف %@ (الأكثر أمانًا أولاً)",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "مجانًا يتضمن %@ من عمليات التنظيف كل شهر. تتم إعادة التعيين على %@.",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "لا يتناسب أي من العناصر المحددة مع ما تبقى. حدد عناصر أقل أو أصغر، أو افتح Pro.",
+    "quota_gate_sheet.not_now": "ليس الآن",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "لا يتم حذف أي شيء دون تأكيدك.",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "فتح تنظيف غير محدود",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "لقد اقتربت من الحد المجاني لهذا الشهر",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "لقد استخدمت التنظيف المجاني لهذا الشهر",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "اختيارك هو %@. يمكنك تحرير %@ المزيد مجانًا."
   }
 }

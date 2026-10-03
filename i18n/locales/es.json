@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "Tus fotos siguen siendo tuyas. El análisis permanece en su dispositivo y las copias de seguridad se realizan solo donde usted elija.",
     "paywall.month": "≈ %@ / mes",
     "subscription.ends_at_the_end_of_the_current_period": "Finaliza al final del período actual.",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "Se renueva automáticamente hasta que canceles en Google Play."
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "Se renueva automáticamente hasta que canceles en Google Play.",
+    "quota_gate.exhausted_message": "Gratis incluye %@ de limpieza cada mes. Se reinicia en %@.",
+    "quota_gate.partial_message": "Su selección es %@. Puedes liberar %@ más de forma gratuita.",
+    "quota_gate.meter": "%@ de %@ usado este mes · Restablece %@",
+    "quota_gate.delete_safest": "Eliminar %@ (el más seguro primero)",
+    "quota_gate_sheet.of_used_this_month_resets": "%@ de %@ usado este mes · Restablece %@",
+    "quota_gate_sheet.delete_safest_first": "Eliminar %@ (el más seguro primero)",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "Gratis incluye %@ de limpieza cada mes. Se reinicia en %@.",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "Ninguno de los elementos seleccionados encaja en lo que queda. Seleccione menos elementos o más pequeños, o desbloquee Pro.",
+    "quota_gate_sheet.not_now": "Ahora no",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "No se elimina nada sin su confirmación.",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "Desbloquear limpieza ilimitada",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Estás cerca del límite gratuito de este mes",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Has utilizado la limpieza gratuita de este mes.",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Su selección es %@. Puedes liberar %@ más de forma gratuita."
   }
 }

@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "Fotografiile tale rămân ale tale. Analiza rămâne pe dispozitivul dvs., iar copiile de rezervă sunt efectuate numai acolo unde doriți.",
     "paywall.month": "≈ %@ / lună",
     "subscription.ends_at_the_end_of_the_current_period": "Se încheie la sfârșitul perioadei curente.",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "Se reînnoiește automat până când anulați în Google Play."
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "Se reînnoiește automat până când anulați în Google Play.",
+    "quota_gate.exhausted_message": "Gratuit include %@ de curățare în fiecare lună. Se resetează pe %@.",
+    "quota_gate.partial_message": "Selecția dvs. este %@. Puteți elibera %@ mai multe pe Free.",
+    "quota_gate.meter": "%@ din %@ utilizat în această lună · Resetează %@",
+    "quota_gate.delete_safest": "Șterge %@ (cel mai sigur mai întâi)",
+    "quota_gate_sheet.of_used_this_month_resets": "%@ din %@ utilizat în această lună · Resetează %@",
+    "quota_gate_sheet.delete_safest_first": "Șterge %@ (cel mai sigur mai întâi)",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "Gratuit include %@ de curățare în fiecare lună. Se resetează pe %@.",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "Niciunul dintre elementele selectate nu se potrivește în ceea ce a mai rămas. Selectați mai puține articole sau mai mici sau deblocați Pro.",
+    "quota_gate_sheet.not_now": "Nu acum",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "Nimic nu este șters fără confirmarea dvs.",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "Deblocați curățarea nelimitată",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Ești aproape de limita gratuită a acestei luni",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Ați folosit curățarea gratuită din această lună",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Selecția dvs. este %@. Puteți elibera %@ mai multe pe Free."
   }
 }

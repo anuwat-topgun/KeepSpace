@@ -40,6 +40,10 @@
     <string name="subscription_ends">Ends %s</string>
     <string name="subscription_pro_renews">Pro · renews %s</string>
     <string name="subscription_pro_ends">Pro · ends %s</string>
+    <string name="quota_gate_exhausted_message">Free includes %s of cleanup each month. It resets on %s.</string>
+    <string name="quota_gate_partial_message">Your selection is %s. You can free %s more on Free.</string>
+    <string name="quota_gate_meter">%s of %s used this month · Resets %s</string>
+    <string name="quota_gate_delete_safest">Delete %s (safest first)</string>
     <string name="screenshot_shopping">Shopping</string>
     <string name="screenshot_receipts">Receipts</string>
     <string name="screenshot_chats">Chats</string>
@@ -74,6 +78,7 @@
     <string name="best_shot_your_favorite">Your favorite</string>
     <string name="best_shot_your_favorite_detail">You marked this photo as a favorite.</string>
     <string name="subscription_of_used">%s of %s used</string>
+    <string name="quota_gate_sheet_of_used_this_month_resets">%s of %s used this month · Resets %s</string>
     <string name="paywall_d_days_free">%d days free</string>
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d days free, then %s per year. Renews automatically until you cancel in your account settings.</string>
     <string name="subscription_d_of_d_files_used">%d of %d files used</string>
@@ -177,6 +182,7 @@
     <string name="common_day">Day</string>
     <string name="common_deeper_cleanup_for_more_space">Deeper cleanup for more space.</string>
     <string name="common_delete">Delete</string>
+    <string name="quota_gate_sheet_delete_safest_first">Delete %s (safest first)</string>
     <string name="common_delete_rule">Delete Rule</string>
     <string name="common_delete_this_rule">Delete this rule?</string>
     <string name="review_deleted_items_can_t_be_recovered_on_this_android_version">Deleted items can\'t be recovered on this Android version.</string>
@@ -218,6 +224,7 @@
     <string name="common_forecast">Forecast</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Forget what KeepSpace learned about your library. It will look again on the next scan.</string>
     <string name="subscription_free">Free</string>
+    <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Free includes %s of cleanup each month. It resets on %s.</string>
     <string name="subscription_free_trial_ends_then_renews">Free trial ends %s, then renews.</string>
     <string name="subscription_free_trial_ends">Free trial ends %s.</string>
     <string name="common_free_up_space">Free Up Space</string>
@@ -293,11 +300,14 @@
     <string name="common_no_trips_or_events_found_yet_they_appear_as_your_library">No trips or events found yet. They appear as your library grows. Photos are never removed without your review.</string>
     <string name="common_no_uploads_to_our_servers">No uploads to our servers</string>
     <string name="common_no_videos_here">No videos here.</string>
+    <string name="quota_gate_sheet_none_of_the_selected_items_fit_in_what_s_left_select_few">None of the selected items fit in what\'s left. Select fewer or smaller items, or unlock Pro.</string>
     <string name="common_not_connected">Not connected</string>
     <string name="common_not_found">Not found</string>
+    <string name="quota_gate_sheet_not_now">Not now</string>
     <string name="common_not_set">Not set</string>
     <string name="common_not_set_yet">Not set yet</string>
     <string name="common_nothing_is_deleted_silently">Nothing is deleted silently</string>
+    <string name="quota_gate_sheet_nothing_is_deleted_without_your_confirmation">Nothing is deleted without your confirmation.</string>
     <string name="common_nothing_left_to_review_here">Nothing left to review here.</string>
     <string name="common_nothing_to_clean_up_right_now_your_library_is_in_good_sh">Nothing to clean up right now. Your library is in good shape.</string>
     <string name="common_notifications">Notifications</string>
@@ -451,6 +461,7 @@
     <string name="common_unknown_merchant">Unknown merchant</string>
     <string name="common_unlimited_backup_rules">Unlimited Backup &amp; Rules</string>
     <string name="common_unlimited_cleanup">Unlimited Cleanup</string>
+    <string name="quota_gate_sheet_unlock_unlimited_cleanup">Unlock Unlimited Cleanup</string>
     <string name="subscription_upgrade_to_pro">Upgrade to Pro</string>
     <string name="common_upload_over_wi_fi_only">Upload over Wi-Fi only</string>
     <string name="common_used">Used</string>
@@ -481,7 +492,9 @@
     <string name="common_you_review_every_cleanup_and_important_memories_are_prot">You review every cleanup, and important memories are protected by default.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_recently_d">You\'ll confirm in the next step. Items stay in Recently Deleted for 30 days.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">You\'ll confirm in the next step. Items stay in Trash for 30 days.</string>
+    <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">You\'re close to this month\'s free limit</string>
     <string name="subscription_you_re_on_the_free_plan">You\'re on the Free plan.</string>
+    <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">You\'ve used this month\'s free cleanup</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Your choice also teaches Best Shot your taste, on this device.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Your full photo library, with cloud backup status.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Your photos are analyzed on this device only.</string>
@@ -490,6 +503,7 @@
     <string name="paywall_your_photos_stay_yours_analysis_stays_on_your_device_and">Your photos stay yours. Analysis stays on your device, and backups go only where you choose.</string>
     <string name="common_your_photos_videos_and_extracted_text_are_never_sent_to">Your photos, videos and extracted text are never sent to KeepSpace.</string>
     <string name="common_your_privacy">Your privacy</string>
+    <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Your selection is %s. You can free %s more on Free.</string>
     <string name="common_your_storage_organized_intelligently">Your storage, organized intelligently.</string>
     <string name="paywall_month">≈ %s / month</string>
 </resources>

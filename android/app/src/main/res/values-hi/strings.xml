@@ -40,6 +40,10 @@
     <string name="subscription_ends">समाप्त %s</string>
     <string name="subscription_pro_renews">प्रो · नवीनीकरण %s</string>
     <string name="subscription_pro_ends">प्रो · समाप्त होता है %s</string>
+    <string name="quota_gate_exhausted_message">निःशुल्क में प्रत्येक माह %s सफ़ाई शामिल है। यह %s पर रीसेट होता है.</string>
+    <string name="quota_gate_partial_message">आपका चयन %s है. आप निःशुल्क पर %s अधिक निःशुल्क प्राप्त कर सकते हैं.</string>
+    <string name="quota_gate_meter">इस महीने %s में से %s का उपयोग किया गया · रीसेट %s</string>
+    <string name="quota_gate_delete_safest">%s हटाएं (सबसे पहले सबसे सुरक्षित)</string>
     <string name="screenshot_shopping">खरीदारी</string>
     <string name="screenshot_receipts">रसीदें</string>
     <string name="screenshot_chats">चैट</string>
@@ -74,6 +78,7 @@
     <string name="best_shot_your_favorite">आपका पसंदीदा</string>
     <string name="best_shot_your_favorite_detail">आपने इस फ़ोटो को पसंदीदा के रूप में चिह्नित किया है.</string>
     <string name="subscription_of_used">%s में से %s का उपयोग किया गया</string>
+    <string name="quota_gate_sheet_of_used_this_month_resets">इस महीने %s में से %s का उपयोग किया गया · रीसेट %s</string>
     <string name="paywall_d_days_free">%d दिन मुफ़्त</string>
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d दिन मुफ़्त, फिर %s प्रति वर्ष। जब तक आप अपनी खाता सेटिंग में रद्द नहीं करते तब तक स्वचालित रूप से नवीनीकृत हो जाता है।</string>
     <string name="subscription_d_of_d_files_used">%d फ़ाइलों में से %d का उपयोग किया गया</string>
@@ -177,6 +182,7 @@
     <string name="common_day">दिन</string>
     <string name="common_deeper_cleanup_for_more_space">अधिक स्थान के लिए गहन सफ़ाई.</string>
     <string name="common_delete">हटाएँ</string>
+    <string name="quota_gate_sheet_delete_safest_first">%s हटाएं (सबसे पहले सबसे सुरक्षित)</string>
     <string name="common_delete_rule">नियम हटाएँ</string>
     <string name="common_delete_this_rule">यह नियम हटाएँ?</string>
     <string name="review_deleted_items_can_t_be_recovered_on_this_android_version">इस Android संस्करण पर हटाए गए आइटम पुनर्प्राप्त नहीं किए जा सकते।</string>
@@ -218,6 +224,7 @@
     <string name="common_forecast">पूर्वानुमान</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">भूल जाइए कि KeepSpace ने आपकी लाइब्रेरी के बारे में क्या सीखा। यह अगले स्कैन पर फिर से दिखाई देगा।</string>
     <string name="subscription_free">निःशुल्क</string>
+    <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">निःशुल्क में प्रत्येक माह %s सफ़ाई शामिल है। यह %s पर रीसेट होता है.</string>
     <string name="subscription_free_trial_ends_then_renews">नि:शुल्क परीक्षण %s समाप्त होता है, फिर नवीनीकृत होता है।</string>
     <string name="subscription_free_trial_ends">नि:शुल्क परीक्षण %s समाप्त होता है.</string>
     <string name="common_free_up_space">जगह खाली करें</string>
@@ -293,11 +300,14 @@
     <string name="common_no_trips_or_events_found_yet_they_appear_as_your_library">अभी तक कोई यात्रा या कार्यक्रम नहीं मिला. जैसे-जैसे आपकी लाइब्रेरी बढ़ती है, वे प्रकट होते हैं। आपकी समीक्षा के बिना तस्वीरें कभी नहीं हटाई जातीं।</string>
     <string name="common_no_uploads_to_our_servers">हमारे सर्वर पर कोई अपलोड नहीं</string>
     <string name="common_no_videos_here">यहां कोई वीडियो नहीं है.</string>
+    <string name="quota_gate_sheet_none_of_the_selected_items_fit_in_what_s_left_select_few">जो कुछ बचा है उसमें कोई भी चयनित आइटम फिट नहीं बैठता। कम या छोटे आइटम चुनें, या प्रो अनलॉक करें।</string>
     <string name="common_not_connected">जुड़ा नहीं</string>
     <string name="common_not_found">नहीं मिला</string>
+    <string name="quota_gate_sheet_not_now">अभी नहीं</string>
     <string name="common_not_set">सेट नहीं</string>
     <string name="common_not_set_yet">अभी सेट नहीं है</string>
     <string name="common_nothing_is_deleted_silently">चुपचाप कुछ भी नहीं हटाया जाता</string>
+    <string name="quota_gate_sheet_nothing_is_deleted_without_your_confirmation">आपकी पुष्टि के बिना कुछ भी नहीं हटाया जाएगा.</string>
     <string name="common_nothing_left_to_review_here">यहां समीक्षा करने के लिए कुछ भी नहीं बचा है।</string>
     <string name="common_nothing_to_clean_up_right_now_your_library_is_in_good_sh">अभी साफ़ करने के लिए कुछ भी नहीं है। आपकी लाइब्रेरी अच्छी स्थिति में है.</string>
     <string name="common_notifications">सूचनाएं</string>
@@ -451,6 +461,7 @@
     <string name="common_unknown_merchant">अज्ञात व्यापारी</string>
     <string name="common_unlimited_backup_rules">असीमित बैकअप और नियम</string>
     <string name="common_unlimited_cleanup">असीमित सफ़ाई</string>
+    <string name="quota_gate_sheet_unlock_unlimited_cleanup">असीमित सफाई अनलॉक करें</string>
     <string name="subscription_upgrade_to_pro">प्रो में अपग्रेड करें</string>
     <string name="common_upload_over_wi_fi_only">केवल Wi-Fi पर अपलोड करें</string>
     <string name="common_used">प्रयुक्त</string>
@@ -481,7 +492,9 @@
     <string name="common_you_review_every_cleanup_and_important_memories_are_prot">आप प्रत्येक सफ़ाई की समीक्षा करते हैं, और महत्वपूर्ण यादें डिफ़ॉल्ट रूप से सुरक्षित रहती हैं।</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_recently_d">आप अगले चरण में पुष्टि करेंगे. आइटम हाल ही में हटाए गए में 30 दिनों तक रहते हैं।</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">आप अगले चरण में पुष्टि करेंगे. आइटम 30 दिनों तक कूड़ेदान में रहते हैं।</string>
+    <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">आप इस महीने की मुफ़्त सीमा के करीब हैं</string>
     <string name="subscription_you_re_on_the_free_plan">आप निःशुल्क योजना पर हैं.</string>
+    <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">आपने इस महीने की निःशुल्क सफ़ाई का उपयोग किया है</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">आपकी पसंद इस डिवाइस पर बेस्ट शॉट को आपका स्वाद भी सिखाती है।</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">क्लाउड बैकअप स्थिति के साथ आपकी पूरी फोटो लाइब्रेरी।</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">आपकी तस्वीरों का विश्लेषण इसी डिवाइस पर किया जाता है.</string>
@@ -490,6 +503,7 @@
     <string name="paywall_your_photos_stay_yours_analysis_stays_on_your_device_and">आपकी तस्वीरें आपकी ही रहेंगी. विश्लेषण आपके डिवाइस पर रहता है, और बैकअप केवल वहीं जाता है जहां आप चुनते हैं।</string>
     <string name="common_your_photos_videos_and_extracted_text_are_never_sent_to">आपकी फ़ोटो, वीडियो और निकाला गया टेक्स्ट कभी भी KeepSpace को नहीं भेजा जाता है।</string>
     <string name="common_your_privacy">आपकी गोपनीयता</string>
+    <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">आपका चयन %s है. आप निःशुल्क पर %s अधिक निःशुल्क प्राप्त कर सकते हैं.</string>
     <string name="common_your_storage_organized_intelligently">आपका भंडारण, समझदारी से व्यवस्थित किया गया।</string>
     <string name="paywall_month">≈ %s/माह</string>
 </resources>

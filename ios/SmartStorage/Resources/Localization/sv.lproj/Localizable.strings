@@ -38,6 +38,10 @@
 "Ends %@" = "Slutar %@";
 "Pro · renews %@" = "Pro · förnyar %@";
 "Pro · ends %@" = "Pro · slutar %@";
+"Free includes %@ of cleanup each month. It resets on %@." = "Gratis inkluderar %@ av städning varje månad. Den återställs på %@.";
+"Your selection is %@. You can free %@ more on Free." = "Ditt val är %@. Du kan gratis %@ mer på Gratis.";
+"%@ of %@ used this month · Resets %@" = "%@ av %@ används den här månaden · Återställer %@";
+"Delete %@ (safest first)" = "Ta bort %@ (säkrast först)";
 "Shopping" = "Shopping";
 "Receipts" = "Kvitton";
 "Chats" = "Chattar";
@@ -72,6 +76,7 @@
 "Your favorite" = "Din favorit";
 "You marked this photo as a favorite." = "Du har markerat det här fotot som en favorit.";
 "%@ of %@ used" = "%@ av %@ används";
+"%@ of %@ used this month · Resets %@" = "%@ av %@ används den här månaden · Återställer %@";
 "%d days free" = "%d dagar gratis";
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d dagar gratis, sedan %@ per år. Förnyas automatiskt tills du avslutar i dina kontoinställningar.";
 "%d of %d files used" = "%d av %d filer används";
@@ -175,6 +180,7 @@
 "Day" = "dag";
 "Deeper cleanup for more space." = "Djupare rengöring för mer utrymme.";
 "Delete" = "Ta bort";
+"Delete %@ (safest first)" = "Ta bort %@ (säkrast först)";
 "Delete Rule" = "Ta bort regel";
 "Delete this rule?" = "Vill du ta bort den här regeln?";
 "Deleted items can't be recovered on this Android version." = "Raderade objekt kan inte återställas på denna Android version.";
@@ -216,6 +222,7 @@
 "Forecast" = "Prognos";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Glöm vad KeepSpace lärde sig om ditt bibliotek. Det kommer att se ut igen vid nästa skanning.";
 "Free" = "Gratis";
+"Free includes %@ of cleanup each month. It resets on %@." = "Gratis inkluderar %@ av städning varje månad. Den återställs på %@.";
 "Free trial ends %@, then renews." = "Gratis provperiod slutar %@ och förnyas sedan.";
 "Free trial ends %@." = "Gratis provperiod slutar %@.";
 "Free Up Space" = "Frigör utrymme";
@@ -291,11 +298,14 @@
 "No trips or events found yet. They appear as your library grows. Photos are never removed without your review." = "Inga resor eller evenemang hittades ännu. De visas när ditt bibliotek växer. Foton tas aldrig bort utan din recension.";
 "No uploads to our servers" = "Inga uppladdningar till våra servrar";
 "No videos here." = "Inga videor här.";
+"None of the selected items fit in what's left. Select fewer or smaller items, or unlock Pro." = "Inget av de valda objekten passar i det som är kvar. Välj färre eller mindre föremål, eller lås upp Pro.";
 "Not connected" = "Ej ansluten";
 "Not found" = "Hittade inte";
+"Not now" = "Inte nu";
 "Not set" = "Inte inställt";
 "Not set yet" = "Inte satt än";
 "Nothing is deleted silently" = "Ingenting raderas tyst";
+"Nothing is deleted without your confirmation." = "Ingenting raderas utan din bekräftelse.";
 "Nothing left to review here." = "Inget kvar att recensera här.";
 "Nothing to clean up right now. Your library is in good shape." = "Inget att städa upp just nu. Ditt bibliotek är i gott skick.";
 "Notifications" = "Aviseringar";
@@ -449,6 +459,7 @@
 "Unknown merchant" = "Okänd köpman";
 "Unlimited Backup & Rules" = "Obegränsad säkerhetskopiering och regler";
 "Unlimited Cleanup" = "Obegränsad rengöring";
+"Unlock Unlimited Cleanup" = "Lås upp obegränsad rensning";
 "Upgrade to Pro" = "Uppgradera till Pro";
 "Upload over Wi-Fi only" = "Ladda upp endast över Wi-Fi";
 "Used" = "Används";
@@ -479,7 +490,9 @@
 "You review every cleanup, and important memories are protected by default." = "Du granskar varje rensning och viktiga minnen skyddas som standard.";
 "You'll confirm in the next step. Items stay in Recently Deleted for 30 days." = "Du bekräftar i nästa steg. Objekt stannar i Nyligen raderade i 30 dagar.";
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "Du bekräftar i nästa steg. Föremål stannar i papperskorgen i 30 dagar.";
+"You're close to this month's free limit" = "Du är nära den här månadens gratisgräns";
 "You're on the Free plan." = "Du har gratisplanen.";
+"You've used this month's free cleanup" = "Du har använt den här månadens gratis städning";
 "Your choice also teaches Best Shot your taste, on this device." = "Ditt val lär också Best Shot din smak, på den här enheten.";
 "Your full photo library, with cloud backup status." = "Ditt fullständiga fotobibliotek, med molnsäkerhetsstatus.";
 "Your photos are analyzed on this device only." = "Dina foton analyseras endast på den här enheten.";
@@ -488,5 +501,6 @@
 "Your photos stay yours. Analysis stays on your device, and backups go only where you choose." = "Dina bilder förblir dina. Analysen stannar på din enhet och säkerhetskopieringar går bara där du vill.";
 "Your photos, videos and extracted text are never sent to KeepSpace." = "Dina foton, videor och extraherad text skickas aldrig till KeepSpace.";
 "Your privacy" = "Din integritet";
+"Your selection is %@. You can free %@ more on Free." = "Ditt val är %@. Du kan gratis %@ mer på Gratis.";
 "Your storage, organized intelligently." = "Din lagring, organiserad på ett intelligent sätt.";
 "≈ %@ / month" = "≈ %@ / månad";

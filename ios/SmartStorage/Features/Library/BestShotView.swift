@@ -8,10 +8,12 @@ struct BestShotView: View {
     var isEmbedded = false
     @Environment(AppRouter.self) private var router
     @Environment(LibraryStore.self) private var library
+    @Environment(MonetizationStore.self) private var monetization
     @Environment(\.dismiss) private var dismiss
     @State private var selectedIndex: Int
     @State private var kept = false
     @State private var isDeleting = false
+    @State private var quotaPrompt: QuotaGatePrompt?
 
     private let maxStrip = 4
 
@@ -62,6 +64,7 @@ struct BestShotView: View {
             actions
         }
         .sensoryFeedback(.success, trigger: kept)
+        .quotaGate($quotaPrompt) { ids in Task { await performKeep(limitingTo: Set(ids)) } }
     }
 
     private var strip: some View {
@@ -177,8 +180,20 @@ struct BestShotView: View {
     /// The selected photo is the recommended one unless the person picked another in the strip.
     private func keepSelected() async {
         guard !group.assetIDs.isEmpty else { kept = true; return } // demo content
+        // The free monthly allowance first; over it, the quota gate is offered instead of deleting.
+        let others = group.assetIDs.enumerated().filter { $0.offset != selectedIndex }.map(\.element)
+        let candidates = library.cleanupItems(others, safety: ReviewKind.similar.safety)
+        let allowances = monetization.allowances
+        if let prompt = QuotaGatePrompt(allowances.gate(cleanup: candidates), selection: candidates, allowances: allowances) {
+            quotaPrompt = prompt
+            return
+        }
+        await performKeep(limitingTo: nil)
+    }
+
+    private func performKeep(limitingTo allowed: Set<String>?) async {
         isDeleting = true
-        let outcome = await library.keep(group, keeperIndex: selectedIndex)
+        let outcome = await library.keep(group, keeperIndex: selectedIndex, limitingTo: allowed)
         isDeleting = false
         if case .deleted = outcome {
             kept = true

@@ -55,7 +55,11 @@ struct RootView: View {
                 Task { await weekly.recordScan(potentialBytes: library.content.storage.potentialCleanupBytes) }
             }
         }
-        .task { proStore.start() }
+        .task {
+            proStore.start()
+            // Count confirmed deletions against the free monthly allowance.
+            library.onDeleted = { [monetization] bytes in monetization.recordCleanup(bytes: bytes) }
+        }
         .task { await weekly.refreshPermission(); openFromNotificationIfPending() }
         .onReceive(NotificationCenter.default.publisher(for: .openFromNotification)) { _ in openFromNotificationIfPending() }
         #if DEBUG

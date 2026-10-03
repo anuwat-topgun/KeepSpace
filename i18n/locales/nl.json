@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "Je foto's blijven van jou. Analyse blijft op uw apparaat staan ​​en back-ups gaan alleen naar de plek waar u dat wilt.",
     "paywall.month": "≈ %@ / maand",
     "subscription.ends_at_the_end_of_the_current_period": "Eindigt aan het einde van de huidige periode.",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "Wordt automatisch verlengd totdat u opzegt in Google Play."
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "Wordt automatisch verlengd totdat u opzegt in Google Play.",
+    "quota_gate.exhausted_message": "Gratis omvat %@ schoonmaakkosten per maand. Het wordt gereset op %@.",
+    "quota_gate.partial_message": "Uw selectie is %@. Je kunt %@ meer gratis gebruiken.",
+    "quota_gate.meter": "%@ van %@ gebruikt deze maand · Reset %@",
+    "quota_gate.delete_safest": "%@ verwijderen (veiligste eerst)",
+    "quota_gate_sheet.of_used_this_month_resets": "%@ van %@ gebruikt deze maand · Reset %@",
+    "quota_gate_sheet.delete_safest_first": "%@ verwijderen (veiligste eerst)",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "Gratis omvat %@ schoonmaakkosten per maand. Het wordt gereset op %@.",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "Geen van de geselecteerde items past in wat er nog over is. Selecteer minder of kleinere items, of ontgrendel Pro.",
+    "quota_gate_sheet.not_now": "Niet nu",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "Er wordt niets verwijderd zonder uw bevestiging.",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "Ontgrendel onbeperkt opruimen",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Je hebt bijna de gratis limiet van deze maand bereikt",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Je hebt gebruik gemaakt van de gratis opschoonservice van deze maand",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Uw selectie is %@. Je kunt %@ meer gratis gebruiken."
   }
 }

@@ -38,6 +38,10 @@
 "Ends %@" = "%@'de sona eriyor";
 "Pro · renews %@" = "Pro · %@'yi yeniliyor";
 "Pro · ends %@" = "Profesyonel · %@ sona eriyor";
+"Free includes %@ of cleanup each month. It resets on %@." = "Ücretsiz, her ay %@ temizliği içerir. %@ tarihinde sıfırlanır.";
+"Your selection is %@. You can free %@ more on Free." = "Seçiminiz %@. Ücretsiz olarak %@ daha fazlasını ücretsiz yapabilirsiniz.";
+"%@ of %@ used this month · Resets %@" = "Bu ay %@ / %@ kullanıldı · %@'ı sıfırladı";
+"Delete %@ (safest first)" = "%@'yi sil (önce en güvenli)";
 "Shopping" = "Alışveriş";
 "Receipts" = "Makbuzlar";
 "Chats" = "Sohbetler";
@@ -72,6 +76,7 @@
 "Your favorite" = "Favorin";
 "You marked this photo as a favorite." = "Bu fotoğrafı favori olarak işaretlediniz.";
 "%@ of %@ used" = "%@ / %@ kullanıldı";
+"%@ of %@ used this month · Resets %@" = "Bu ay %@ / %@ kullanıldı · %@'ı sıfırladı";
 "%d days free" = "%d gün ücretsiz";
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d gün ücretsiz, ardından yılda %@. Hesap ayarlarınızda iptal edene kadar otomatik olarak yenilenir.";
 "%d of %d files used" = "%d dosyadan %d tanesi kullanıldı";
@@ -175,6 +180,7 @@
 "Day" = "Gün";
 "Deeper cleanup for more space." = "Daha fazla alan için daha derin temizlik.";
 "Delete" = "Sil";
+"Delete %@ (safest first)" = "%@'yi sil (önce en güvenli)";
 "Delete Rule" = "Kuralı Sil";
 "Delete this rule?" = "Bu kural silinsin mi?";
 "Deleted items can't be recovered on this Android version." = "Silinen öğeler bu Android sürümünde kurtarılamaz.";
@@ -216,6 +222,7 @@
 "Forecast" = "Tahmin";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "KeepSpace'nin kitaplığınız hakkında öğrendiklerini unutun. Bir sonraki taramada tekrar görünecektir.";
 "Free" = "Ücretsiz";
+"Free includes %@ of cleanup each month. It resets on %@." = "Ücretsiz, her ay %@ temizliği içerir. %@ tarihinde sıfırlanır.";
 "Free trial ends %@, then renews." = "Ücretsiz deneme süresi %@ sona erer ve ardından yenilenir.";
 "Free trial ends %@." = "Ücretsiz deneme %@ sona eriyor.";
 "Free Up Space" = "Boş Alan Aç";
@@ -291,11 +298,14 @@
 "No trips or events found yet. They appear as your library grows. Photos are never removed without your review." = "Henüz bir gezi veya etkinlik bulunamadı. Kitaplığınız büyüdükçe görünürler. Fotoğraflar sizin incelemeniz olmadan asla kaldırılmaz.";
 "No uploads to our servers" = "Sunucularımıza yükleme yapılmaz";
 "No videos here." = "Burada video yok.";
+"None of the selected items fit in what's left. Select fewer or smaller items, or unlock Pro." = "Seçilen öğelerin hiçbiri geriye kalanlara uymuyor. Daha az veya daha küçük öğe seçin veya Pro'nun kilidini açın.";
 "Not connected" = "Bağlı değil";
 "Not found" = "Bulunamadı";
+"Not now" = "Şimdi değil";
 "Not set" = "Ayarlanmadı";
 "Not set yet" = "Henüz ayarlanmadı";
 "Nothing is deleted silently" = "Hiçbir şey sessizce silinmez";
+"Nothing is deleted without your confirmation." = "Onayınız olmadan hiçbir şey silinmez.";
 "Nothing left to review here." = "Burada incelenecek bir şey kalmadı.";
 "Nothing to clean up right now. Your library is in good shape." = "Şu anda temizlenecek bir şey yok. Kitaplığınız iyi durumda.";
 "Notifications" = "Bildirimler";
@@ -449,6 +459,7 @@
 "Unknown merchant" = "Bilinmeyen satıcı";
 "Unlimited Backup & Rules" = "Sınırsız Yedekleme ve Kurallar";
 "Unlimited Cleanup" = "Sınırsız Temizleme";
+"Unlock Unlimited Cleanup" = "Sınırsız Temizlemenin Kilidini Açın";
 "Upgrade to Pro" = "Pro'ya yükseltin";
 "Upload over Wi-Fi only" = "Yalnızca Wi-Fi üzerinden yükleme yapın";
 "Used" = "Kullanılmış";
@@ -479,7 +490,9 @@
 "You review every cleanup, and important memories are protected by default." = "Her temizliği gözden geçirirsiniz ve önemli anılar varsayılan olarak korunur.";
 "You'll confirm in the next step. Items stay in Recently Deleted for 30 days." = "Bir sonraki adımda onaylayacaksınız. Öğeler 30 gün boyunca Son Silinenler klasöründe kalır.";
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "Bir sonraki adımda onaylayacaksınız. Öğeler 30 gün boyunca Çöp Kutusu'nda kalır.";
+"You're close to this month's free limit" = "Bu ayın ücretsiz sınırına yaklaştınız";
 "You're on the Free plan." = "Ücretsiz plandasınız.";
+"You've used this month's free cleanup" = "Bu ayın ücretsiz temizliğini kullandınız";
 "Your choice also teaches Best Shot your taste, on this device." = "Seçiminiz aynı zamanda bu cihazda Best Shot zevkinizi de öğretir.";
 "Your full photo library, with cloud backup status." = "Bulut yedekleme durumuyla birlikte tam fotoğraf kitaplığınız.";
 "Your photos are analyzed on this device only." = "Fotoğraflarınız yalnızca bu cihazda analiz edilir.";
@@ -488,5 +501,6 @@
 "Your photos stay yours. Analysis stays on your device, and backups go only where you choose." = "Fotoğraflarınız sizin kalsın. Analiz cihazınızda kalır ve yedeklemeler yalnızca seçtiğiniz yere gider.";
 "Your photos, videos and extracted text are never sent to KeepSpace." = "Fotoğraflarınız, videolarınız ve çıkarılan metinleriniz asla KeepSpace adresine gönderilmez.";
 "Your privacy" = "Gizliliğiniz";
+"Your selection is %@. You can free %@ more on Free." = "Seçiminiz %@. Ücretsiz olarak %@ daha fazlasını ücretsiz yapabilirsiniz.";
 "Your storage, organized intelligently." = "Akıllıca organize edilen depolama alanınız.";
 "≈ %@ / month" = "≈ %@ / ay";

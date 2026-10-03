@@ -40,6 +40,10 @@
     <string name="subscription_ends">Закінчується %s</string>
     <string name="subscription_pro_renews">Pro · поновлює %s</string>
     <string name="subscription_pro_ends">Pro · закінчується %s</string>
+    <string name="quota_gate_exhausted_message">Безкоштовно включає %s очищення кожного місяця. Він скидається на %s.</string>
+    <string name="quota_gate_partial_message">Ви вибрали %s. Ви можете звільнити ще %s на Free.</string>
+    <string name="quota_gate_meter">%s з %s використано цього місяця · Скидає %s</string>
+    <string name="quota_gate_delete_safest">Видалити %s (спочатку найбезпечніше)</string>
     <string name="screenshot_shopping">Шопінг</string>
     <string name="screenshot_receipts">Квитанції</string>
     <string name="screenshot_chats">Чати</string>
@@ -74,6 +78,7 @@
     <string name="best_shot_your_favorite">Ваш улюблений</string>
     <string name="best_shot_your_favorite_detail">Ви позначили це фото як вибране.</string>
     <string name="subscription_of_used">%s з %s використано</string>
+    <string name="quota_gate_sheet_of_used_this_month_resets">%s з %s використано цього місяця · Скидає %s</string>
     <string name="paywall_d_days_free">%d днів безкоштовно</string>
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d днів безкоштовно, потім %s на рік. Автоматично поновлюється, доки ви не скасуєте в налаштуваннях облікового запису.</string>
     <string name="subscription_d_of_d_files_used">Використано %d з %d файлів</string>
@@ -177,6 +182,7 @@
     <string name="common_day">День</string>
     <string name="common_deeper_cleanup_for_more_space">Глибоке очищення для більшого простору.</string>
     <string name="common_delete">Видалити</string>
+    <string name="quota_gate_sheet_delete_safest_first">Видалити %s (спочатку найбезпечніше)</string>
     <string name="common_delete_rule">Видалити правило</string>
     <string name="common_delete_this_rule">Видалити це правило?</string>
     <string name="review_deleted_items_can_t_be_recovered_on_this_android_version">Видалені елементи не можна відновити в цій версії Android.</string>
@@ -218,6 +224,7 @@
     <string name="common_forecast">Прогноз</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Забудьте, що KeepSpace дізнався про вашу бібліотеку. Під час наступного сканування він знову перегляне.</string>
     <string name="subscription_free">безкоштовно</string>
+    <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Безкоштовно включає %s очищення кожного місяця. Він скидається на %s.</string>
     <string name="subscription_free_trial_ends_then_renews">Безкоштовна пробна версія закінчується %s, а потім поновлюється.</string>
     <string name="subscription_free_trial_ends">Безкоштовна пробна версія закінчується %s.</string>
     <string name="common_free_up_space">Звільнити місце</string>
@@ -293,11 +300,14 @@
     <string name="common_no_trips_or_events_found_yet_they_appear_as_your_library">Мандрівок чи подій ще не знайдено. Вони з’являються, коли ваша бібліотека зростає. Фотографії ніколи не видаляються без вашого перегляду.</string>
     <string name="common_no_uploads_to_our_servers">Немає завантажень на наші сервери</string>
     <string name="common_no_videos_here">Тут немає відео.</string>
+    <string name="quota_gate_sheet_none_of_the_selected_items_fit_in_what_s_left_select_few">Жоден із вибраних елементів не вписується в те, що залишилося. Виберіть менше або менші елементи або розблокуйте Pro.</string>
     <string name="common_not_connected">Не підключено</string>
     <string name="common_not_found">Не знайдено</string>
+    <string name="quota_gate_sheet_not_now">Не зараз</string>
     <string name="common_not_set">Не встановлено</string>
     <string name="common_not_set_yet">Ще не встановлено</string>
     <string name="common_nothing_is_deleted_silently">Нічого не видаляється мовчки</string>
+    <string name="quota_gate_sheet_nothing_is_deleted_without_your_confirmation">Без вашого підтвердження нічого не видаляється.</string>
     <string name="common_nothing_left_to_review_here">Тут немає нічого для перегляду.</string>
     <string name="common_nothing_to_clean_up_right_now_your_library_is_in_good_sh">Зараз нічого прибирати. Ваша бібліотека в хорошому стані.</string>
     <string name="common_notifications">Сповіщення</string>
@@ -451,6 +461,7 @@
     <string name="common_unknown_merchant">Невідомий купець</string>
     <string name="common_unlimited_backup_rules">Необмежене резервне копіювання та правила</string>
     <string name="common_unlimited_cleanup">Необмежене очищення</string>
+    <string name="quota_gate_sheet_unlock_unlimited_cleanup">Розблокуйте Unlimited Cleanup</string>
     <string name="subscription_upgrade_to_pro">Оновлення до Pro</string>
     <string name="common_upload_over_wi_fi_only">Завантажувати лише через Wi-Fi</string>
     <string name="common_used">б/в</string>
@@ -481,7 +492,9 @@
     <string name="common_you_review_every_cleanup_and_important_memories_are_prot">Ви переглядаєте кожне очищення, а важливі спогади захищені за умовчанням.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_recently_d">Ви підтвердите на наступному кроці. Елементи залишаються в розділі «Нещодавно видалені» протягом 30 днів.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Ви підтвердите на наступному кроці. Елементи залишаються в кошику протягом 30 днів.</string>
+    <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Ви майже вичерпали безкоштовний ліміт цього місяця</string>
     <string name="subscription_you_re_on_the_free_plan">Ви використовуєте безкоштовний план.</string>
+    <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Ви використали безкоштовне прибирання цього місяця</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Ваш вибір також навчає Best Shot вашому смаку на цьому пристрої.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Ваша повна бібліотека фотографій із статусом резервного копіювання в хмарі.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Ваші фотографії аналізуються лише на цьому пристрої.</string>
@@ -490,6 +503,7 @@
     <string name="paywall_your_photos_stay_yours_analysis_stays_on_your_device_and">Ваші фотографії залишаються вашими. Аналіз залишається на вашому пристрої, а резервні копії – лише туди, куди ви виберете.</string>
     <string name="common_your_photos_videos_and_extracted_text_are_never_sent_to">Ваші фотографії, відео та витягнутий текст ніколи не надсилаються до KeepSpace.</string>
     <string name="common_your_privacy">Ваша конфіденційність</string>
+    <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Ви вибрали %s. Ви можете звільнити ще %s на Free.</string>
     <string name="common_your_storage_organized_intelligently">Ваше сховище, організоване розумно.</string>
     <string name="paywall_month">≈ %s / місяць</string>
 </resources>

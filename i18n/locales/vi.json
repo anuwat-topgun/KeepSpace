@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "Ảnh của bạn vẫn là của bạn. Phân tích vẫn còn trên thiết bị của bạn và các bản sao lưu chỉ được gửi đến nơi bạn chọn.",
     "paywall.month": "≈ %@ / tháng",
     "subscription.ends_at_the_end_of_the_current_period": "Kết thúc vào cuối giai đoạn hiện tại.",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "Tự động gia hạn cho đến khi bạn hủy trong Google Play."
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "Tự động gia hạn cho đến khi bạn hủy trong Google Play.",
+    "quota_gate.exhausted_message": "Miễn phí bao gồm %@ dọn dẹp mỗi tháng. Nó đặt lại vào %@.",
+    "quota_gate.partial_message": "Lựa chọn của bạn là %@. Bạn có thể giải phóng thêm %@ trên Miễn phí.",
+    "quota_gate.meter": "%@ trong số %@ đã sử dụng trong tháng này · Đặt lại %@",
+    "quota_gate.delete_safest": "Xóa %@ (an toàn nhất trước tiên)",
+    "quota_gate_sheet.of_used_this_month_resets": "%@ trong số %@ đã sử dụng trong tháng này · Đặt lại %@",
+    "quota_gate_sheet.delete_safest_first": "Xóa %@ (an toàn nhất trước tiên)",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "Miễn phí bao gồm %@ dọn dẹp mỗi tháng. Nó đặt lại vào %@.",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "Không có mục nào được chọn phù hợp với những gì còn lại. Chọn ít mục hơn hoặc nhỏ hơn hoặc mở khóa Pro.",
+    "quota_gate_sheet.not_now": "Không phải bây giờ",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "Không có gì bị xóa mà không có xác nhận của bạn.",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "Mở khóa dọn dẹp không giới hạn",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Bạn đã gần đạt đến giới hạn miễn phí của tháng này",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Bạn đã sử dụng dịch vụ dọn dẹp miễn phí của tháng này",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Lựa chọn của bạn là %@. Bạn có thể giải phóng thêm %@ trên Miễn phí."
   }
 }

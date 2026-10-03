@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "รูปภาพของคุณยังคงเป็นของคุณ การวิเคราะห์จะคงอยู่ในอุปกรณ์ของคุณ และการสำรองข้อมูลจะไปเฉพาะจุดที่คุณเลือกเท่านั้น",
     "paywall.month": "อยู่ที่ %@/เดือน",
     "subscription.ends_at_the_end_of_the_current_period": "สิ้นสุดเมื่อสิ้นสุดงวดปัจจุบัน",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "ต่ออายุโดยอัตโนมัติจนกว่าคุณจะยกเลิกใน Google Play"
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "ต่ออายุโดยอัตโนมัติจนกว่าคุณจะยกเลิกใน Google Play",
+    "quota_gate.exhausted_message": "ฟรีรวม %@ ของการล้างข้อมูลในแต่ละเดือน จะรีเซ็ตเมื่อ %@",
+    "quota_gate.partial_message": "การเลือกของคุณคือ %@ คุณสามารถฟรี %@ เพิ่มเติมได้ฟรี",
+    "quota_gate.meter": "%@ ของ %@ ใช้ไปแล้วในเดือนนี้ · รีเซ็ต %@",
+    "quota_gate.delete_safest": "ลบ %@ (ปลอดภัยที่สุดก่อน)",
+    "quota_gate_sheet.of_used_this_month_resets": "%@ ของ %@ ใช้ไปแล้วในเดือนนี้ · รีเซ็ต %@",
+    "quota_gate_sheet.delete_safest_first": "ลบ %@ (ปลอดภัยที่สุดก่อน)",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "ฟรีรวม %@ ของการล้างข้อมูลในแต่ละเดือน จะรีเซ็ตเมื่อ %@",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "ไม่มีรายการที่เลือกพอดีกับสิ่งที่เหลืออยู่ เลือกรายการน้อยลงหรือเล็กลง หรือปลดล็อค Pro",
+    "quota_gate_sheet.not_now": "ไม่ใช่ตอนนี้",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "ไม่มีสิ่งใดถูกลบหากไม่มีการยืนยันจากคุณ",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "ปลดล็อกการล้างข้อมูลแบบไม่จำกัด",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "คุณใกล้จะถึงขีดจำกัดการใช้งานฟรีของเดือนนี้แล้ว",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "คุณได้ใช้การล้างข้อมูลฟรีของเดือนนี้แล้ว",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "การเลือกของคุณคือ %@ คุณสามารถฟรี %@ เพิ่มเติมได้ฟรี"
   }
 }

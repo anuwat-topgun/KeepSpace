@@ -38,6 +38,10 @@
 "Ends %@" = "Končí %@";
 "Pro · renews %@" = "Pro · obnovuje %@";
 "Pro · ends %@" = "Pro · končí %@";
+"Free includes %@ of cleanup each month. It resets on %@." = "Zdarma zahrnuje %@ úklidu každý měsíc. Resetuje se na %@.";
+"Your selection is %@. You can free %@ more on Free." = "Váš výběr je %@. Můžete zdarma %@ více na Free.";
+"%@ of %@ used this month · Resets %@" = "%@ z %@ použité tento měsíc · Resetuje %@";
+"Delete %@ (safest first)" = "Smazat %@ (nejbezpečnější první)";
 "Shopping" = "Nakupování";
 "Receipts" = "účtenky";
 "Chats" = "Chaty";
@@ -72,6 +76,7 @@
 "Your favorite" = "Váš oblíbený";
 "You marked this photo as a favorite." = "Tuto fotku jste označili jako oblíbenou.";
 "%@ of %@ used" = "%@ z %@ použité";
+"%@ of %@ used this month · Resets %@" = "%@ z %@ použité tento měsíc · Resetuje %@";
 "%d days free" = "%d dní zdarma";
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d dní zdarma, poté %@ za rok. Obnovuje se automaticky, dokud nezrušíte v nastavení účtu.";
 "%d of %d files used" = "Použito %d z %d souborů";
@@ -175,6 +180,7 @@
 "Day" = "den";
 "Deeper cleanup for more space." = "Hlubší čištění pro více místa.";
 "Delete" = "Smazat";
+"Delete %@ (safest first)" = "Smazat %@ (nejbezpečnější první)";
 "Delete Rule" = "Smazat pravidlo";
 "Delete this rule?" = "Smazat toto pravidlo?";
 "Deleted items can't be recovered on this Android version." = "Smazané položky nelze v této verzi Android obnovit.";
@@ -216,6 +222,7 @@
 "Forecast" = "Předpověď";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Zapomeňte, co se KeepSpace dozvěděla o vaší knihovně. Při dalším skenování se podívá znovu.";
 "Free" = "Zdarma";
+"Free includes %@ of cleanup each month. It resets on %@." = "Zdarma zahrnuje %@ úklidu každý měsíc. Resetuje se na %@.";
 "Free trial ends %@, then renews." = "Bezplatné zkušební období končí %@ a poté se obnoví.";
 "Free trial ends %@." = "Bezplatné zkušební období končí %@.";
 "Free Up Space" = "Uvolněte místo";
@@ -291,11 +298,14 @@
 "No trips or events found yet. They appear as your library grows. Photos are never removed without your review." = "Zatím nebyly nalezeny žádné výlety ani akce. Objevují se, jak se vaše knihovna rozrůstá. Fotografie nejsou nikdy odstraněny bez vaší kontroly.";
 "No uploads to our servers" = "Žádné nahrávání na naše servery";
 "No videos here." = "Nejsou zde žádná videa.";
+"None of the selected items fit in what's left. Select fewer or smaller items, or unlock Pro." = "Žádná z vybraných položek se nevejde do toho, co zbylo. Vyberte méně nebo menší položky nebo odemkněte Pro.";
 "Not connected" = "Nepřipojeno";
 "Not found" = "Nenalezeno";
+"Not now" = "Teď ne";
 "Not set" = "Nenastaveno";
 "Not set yet" = "Zatím není nastaveno";
 "Nothing is deleted silently" = "Nic se tiše nesmaže";
+"Nothing is deleted without your confirmation." = "Bez vašeho potvrzení se nic nesmaže.";
 "Nothing left to review here." = "Zde již není co hodnotit.";
 "Nothing to clean up right now. Your library is in good shape." = "Momentálně není co uklízet. Vaše knihovna je v dobrém stavu.";
 "Notifications" = "Oznámení";
@@ -449,6 +459,7 @@
 "Unknown merchant" = "Neznámý obchodník";
 "Unlimited Backup & Rules" = "Neomezené zálohování a pravidla";
 "Unlimited Cleanup" = "Neomezené čištění";
+"Unlock Unlimited Cleanup" = "Odemkněte neomezené čištění";
 "Upgrade to Pro" = "Upgradujte na Pro";
 "Upload over Wi-Fi only" = "Nahrávejte pouze přes Wi-Fi";
 "Used" = "Použité";
@@ -479,7 +490,9 @@
 "You review every cleanup, and important memories are protected by default." = "Kontrolujete každé čištění a důležité vzpomínky jsou ve výchozím nastavení chráněny.";
 "You'll confirm in the next step. Items stay in Recently Deleted for 30 days." = "V dalším kroku potvrdíte. Položky zůstávají ve složce Nedávno smazané po dobu 30 dnů.";
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "V dalším kroku potvrdíte. Položky zůstanou v koši 30 dní.";
+"You're close to this month's free limit" = "Blížíte se k limitu zdarma pro tento měsíc";
 "You're on the Free plan." = "Jste na bezplatném plánu.";
+"You've used this month's free cleanup" = "Využili jste bezplatný úklid tohoto měsíce";
 "Your choice also teaches Best Shot your taste, on this device." = "Vaše volba také naučí Best Shot vašemu vkusu na tomto zařízení.";
 "Your full photo library, with cloud backup status." = "Vaše úplná knihovna fotografií se stavem zálohování v cloudu.";
 "Your photos are analyzed on this device only." = "Vaše fotografie jsou analyzovány pouze na tomto zařízení.";
@@ -488,5 +501,6 @@
 "Your photos stay yours. Analysis stays on your device, and backups go only where you choose." = "Vaše fotografie zůstanou vaše. Analýza zůstává na vašem zařízení a zálohy se ukládají pouze tam, kde si vyberete.";
 "Your photos, videos and extracted text are never sent to KeepSpace." = "Vaše fotografie, videa a extrahovaný text se nikdy neodesílají do KeepSpace.";
 "Your privacy" = "Vaše soukromí";
+"Your selection is %@. You can free %@ more on Free." = "Váš výběr je %@. Můžete zdarma %@ více na Free.";
 "Your storage, organized intelligently." = "Vaše úložiště, inteligentně organizované.";
 "≈ %@ / month" = "≈ %@ / měsíc";

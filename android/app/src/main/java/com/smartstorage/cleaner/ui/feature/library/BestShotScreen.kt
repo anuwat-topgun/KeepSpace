@@ -4,6 +4,12 @@ import kotlinx.coroutines.launch
 import androidx.compose.runtime.rememberCoroutineScope
 import com.smartstorage.cleaner.media.DeletionOutcome
 import com.smartstorage.cleaner.media.LocalMediaActions
+import com.smartstorage.cleaner.media.ReviewKind
+import com.smartstorage.cleaner.monetization.LocalMonetization
+import com.smartstorage.cleaner.monetization.LocalPresentPaywall
+import com.smartstorage.cleaner.monetization.ProFeature
+import com.smartstorage.cleaner.monetization.QuotaGatePrompt
+import com.smartstorage.cleaner.ui.feature.paywall.QuotaGateSheet
 import com.smartstorage.cleaner.media.LocalLibraryStore
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.animateFloatAsState
@@ -34,6 +40,7 @@ import com.smartstorage.cleaner.ui.i18n.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -94,6 +101,32 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?, onReviewGroup: (Str
     var kept by rememberSaveable(group.id) { mutableStateOf(false) }
     val haptics = LocalHapticFeedback.current
     val tasteOn = store.taste.state.collectAsState().value.enabled
+    val monetization = LocalMonetization.current
+    val presentPaywall = LocalPresentPaywall.current
+    var quotaPrompt by remember { mutableStateOf<QuotaGatePrompt?>(null) }
+
+    fun performKeep(allowed: Set<String>?) {
+        val act = actions ?: return
+        scope.launch {
+            deleting = true
+            val outcome = store.keep(group, selected, act, allowed)
+            deleting = false
+            if (outcome is DeletionOutcome.Deleted) {
+                kept = true
+                haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+                onBack?.invoke()
+            }
+        }
+    }
+
+    quotaPrompt?.let { prompt ->
+        QuotaGateSheet(
+            prompt = prompt,
+            onUnlock = { quotaPrompt = null; presentPaywall(ProFeature.UnlimitedCleanup) },
+            onDeletePartial = { ids -> quotaPrompt = null; performKeep(ids.toSet()) },
+            onNotNow = { quotaPrompt = null },
+        )
+    }
 
     ScreenScaffold(maxWidth = SmartMetrics.wideContentWidth, onBack = onBack) {
         ScreenHeader("Best Shot", "AI selected the best photo in this group.", Modifier.padding(bottom = 4.dp))
@@ -135,19 +168,15 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?, onReviewGroup: (Str
                 },
                 onClick = {
                     if (group.assetUris.isEmpty()) { kept = true; return@PrimaryButton } // demo content
-                    val act = actions ?: return@PrimaryButton
                     // Deletes every photo in the group except the selected one (system confirmation first).
                     // The selected photo is the recommended one unless the person picked another in the strip.
-                    scope.launch {
-                        deleting = true
-                        val outcome = store.keep(group, selected, act)
-                        deleting = false
-                        if (outcome is DeletionOutcome.Deleted) {
-                            kept = true
-                            haptics.performHapticFeedback(HapticFeedbackType.LongPress)
-                            onBack?.invoke()
-                        }
-                    }
+                    // The free monthly allowance first; over it, the quota gate is offered instead of deleting.
+                    val others = group.assetUris.filterIndexed { i, _ -> i != selected }
+                    val candidates = store.cleanupItems(others, ReviewKind.Similar.safety)
+                    val allowances = monetization.allowances()
+                    val prompt = QuotaGatePrompt.of(allowances.gate(candidates), candidates, allowances)
+                    if (prompt != null) { quotaPrompt = prompt; return@PrimaryButton }
+                    performKeep(null)
                 },
                 modifier = Modifier.fillMaxWidth(),
                 showsArrow = false,

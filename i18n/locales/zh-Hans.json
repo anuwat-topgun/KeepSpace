@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "您的照片归您所有。分析保留在您的设备上，备份仅保存在您选择的位置。",
     "paywall.month": "≈ %@ / 月",
     "subscription.ends_at_the_end_of_the_current_period": "在当前期间结束时结束。",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "自动续订，直至您在 Google Play 中取消。"
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "自动续订，直至您在 Google Play 中取消。",
+    "quota_gate.exhausted_message": "免费包括每月 %@ 的清理工作。它在 %@ 重置。",
+    "quota_gate.partial_message": "您的选择是%@。您可以通过免费免费获得 %@ 更多内容。",
+    "quota_gate.meter": "本月已使用 %@（共 %@） · 重置 %@",
+    "quota_gate.delete_safest": "删除%@（最安全的优先）",
+    "quota_gate_sheet.of_used_this_month_resets": "本月已使用 %@（共 %@） · 重置 %@",
+    "quota_gate_sheet.delete_safest_first": "删除%@（最安全的优先）",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "免费包括每月 %@ 的清理工作。它在 %@ 重置。",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "所选项目都不适合剩下的项目。选择更少或更小的项目，或者解锁 Pro。",
+    "quota_gate_sheet.not_now": "现在不行",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "未经您的确认，不会删除任何内容。",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "解锁无限清理",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "您已接近本月的免费限额",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "您已使用本月的免费清理服务",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "您的选择是%@。您可以通过免费免费获得 %@ 更多内容。"
   }
 }

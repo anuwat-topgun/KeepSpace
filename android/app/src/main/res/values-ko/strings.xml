@@ -40,6 +40,10 @@
     <string name="subscription_ends">%s 종료</string>
     <string name="subscription_pro_renews">Pro · %s 갱신</string>
     <string name="subscription_pro_ends">프로 · %s 종료</string>
+    <string name="quota_gate_exhausted_message">무료에는 매월 %s 청소가 포함됩니다. %s에 재설정됩니다.</string>
+    <string name="quota_gate_partial_message">귀하의 선택은 %s입니다. 무료에서는 %s 이상을 무료로 이용할 수 있습니다.</string>
+    <string name="quota_gate_meter">이번 달에 %s 중 %s 사용 · %s 재설정</string>
+    <string name="quota_gate_delete_safest">%s 삭제(가장 안전한 것부터)</string>
     <string name="screenshot_shopping">쇼핑</string>
     <string name="screenshot_receipts">영수증</string>
     <string name="screenshot_chats">채팅</string>
@@ -74,6 +78,7 @@
     <string name="best_shot_your_favorite">당신이 가장 좋아하는</string>
     <string name="best_shot_your_favorite_detail">이 사진을 즐겨찾기로 표시했습니다.</string>
     <string name="subscription_of_used">%s 중 %s 사용됨</string>
+    <string name="quota_gate_sheet_of_used_this_month_resets">이번 달에 %s 중 %s 사용 · %s 재설정</string>
     <string name="paywall_d_days_free">%d일 무료</string>
     <string name="paywall_d_days_free_then_per_year_renews_automatically_until_you">%d일간 무료이고 이후에는 연간 %s입니다. 계정 설정에서 취소할 때까지 자동으로 갱신됩니다.</string>
     <string name="subscription_d_of_d_files_used">%d개 중 %d개의 파일이 사용됨</string>
@@ -177,6 +182,7 @@
     <string name="common_day">일</string>
     <string name="common_deeper_cleanup_for_more_space">더 많은 공간을 위한 심층적인 정리.</string>
     <string name="common_delete">삭제</string>
+    <string name="quota_gate_sheet_delete_safest_first">%s 삭제(가장 안전한 것부터)</string>
     <string name="common_delete_rule">규칙 삭제</string>
     <string name="common_delete_this_rule">이 규칙을 삭제하시겠습니까?</string>
     <string name="review_deleted_items_can_t_be_recovered_on_this_android_version">이 Android 버전에서는 삭제된 항목을 복구할 수 없습니다.</string>
@@ -218,6 +224,7 @@
     <string name="common_forecast">예측</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">KeepSpace이(가) 귀하의 도서관에 대해 배운 것을 잊어버리세요. 다음 스캔에서 다시 살펴보겠습니다.</string>
     <string name="subscription_free">무료</string>
+    <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">무료에는 매월 %s 청소가 포함됩니다. %s에 재설정됩니다.</string>
     <string name="subscription_free_trial_ends_then_renews">무료 평가판은 %s 종료된 후 갱신됩니다.</string>
     <string name="subscription_free_trial_ends">무료 평가판이 %s 종료됩니다.</string>
     <string name="common_free_up_space">여유 공간 확보</string>
@@ -293,11 +300,14 @@
     <string name="common_no_trips_or_events_found_yet_they_appear_as_your_library">아직 여행이나 이벤트를 찾을 수 없습니다. 라이브러리가 성장함에 따라 나타납니다. 귀하의 검토 없이는 사진이 절대 제거되지 않습니다.</string>
     <string name="common_no_uploads_to_our_servers">우리 서버에 업로드가 없습니다</string>
     <string name="common_no_videos_here">여기에는 동영상이 없습니다.</string>
+    <string name="quota_gate_sheet_none_of_the_selected_items_fit_in_what_s_left_select_few">선택한 항목 중 남은 항목에 맞는 항목이 없습니다. 더 적거나 작은 항목을 선택하거나 Pro를 잠금 해제하세요.</string>
     <string name="common_not_connected">연결되지 않음</string>
     <string name="common_not_found">찾을 수 없음</string>
+    <string name="quota_gate_sheet_not_now">지금은 아님</string>
     <string name="common_not_set">설정되지 않음</string>
     <string name="common_not_set_yet">아직 설정되지 않음</string>
     <string name="common_nothing_is_deleted_silently">아무것도 자동으로 삭제되지 않습니다</string>
+    <string name="quota_gate_sheet_nothing_is_deleted_without_your_confirmation">귀하의 확인 없이는 아무것도 삭제되지 않습니다.</string>
     <string name="common_nothing_left_to_review_here">여기서는 검토할 항목이 없습니다.</string>
     <string name="common_nothing_to_clean_up_right_now_your_library_is_in_good_sh">지금은 정리할 것이 없습니다. 귀하의 도서관 상태는 양호합니다.</string>
     <string name="common_notifications">알림</string>
@@ -451,6 +461,7 @@
     <string name="common_unknown_merchant">알 수 없는 판매자</string>
     <string name="common_unlimited_backup_rules">무제한 백업 및 규칙</string>
     <string name="common_unlimited_cleanup">무제한 정리</string>
+    <string name="quota_gate_sheet_unlock_unlimited_cleanup">무제한 정리 잠금 해제</string>
     <string name="subscription_upgrade_to_pro">프로로 업그레이드</string>
     <string name="common_upload_over_wi_fi_only">Wi-Fi를 통해서만 업로드</string>
     <string name="common_used">중고</string>
@@ -481,7 +492,9 @@
     <string name="common_you_review_every_cleanup_and_important_memories_are_prot">모든 정리 작업을 검토하고 중요한 추억은 기본적으로 보호됩니다.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_recently_d">다음 단계에서 확인하게 됩니다. 항목은 최근 삭제된 항목에 30일 동안 유지됩니다.</string>
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">다음 단계에서 확인하게 됩니다. 항목은 30일 동안 휴지통에 보관됩니다.</string>
+    <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">이번 달 무료 한도에 거의 도달했습니다.</string>
     <string name="subscription_you_re_on_the_free_plan">무료 요금제를 사용 중입니다.</string>
+    <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">이번 달 무료 청소를 사용하셨습니다.</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">귀하의 선택은 또한 이 장치에서 Best Shot의 취향을 알려줍니다.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">클라우드 백업 상태가 포함된 전체 사진 라이브러리.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">귀하의 사진은 이 장치에서만 분석됩니다.</string>
@@ -490,6 +503,7 @@
     <string name="paywall_your_photos_stay_yours_analysis_stays_on_your_device_and">귀하의 사진은 귀하의 것입니다. 분석은 장치에 유지되며 백업은 선택한 위치에만 저장됩니다.</string>
     <string name="common_your_photos_videos_and_extracted_text_are_never_sent_to">귀하의 사진, 비디오 및 추출된 텍스트는 KeepSpace로 전송되지 않습니다.</string>
     <string name="common_your_privacy">귀하의 개인 정보</string>
+    <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">귀하의 선택은 %s입니다. 무료에서는 %s 이상을 무료로 이용할 수 있습니다.</string>
     <string name="common_your_storage_organized_intelligently">지능적으로 정리된 스토리지.</string>
     <string name="paywall_month">≒ %s/월</string>
 </resources>

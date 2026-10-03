@@ -489,6 +489,20 @@
     "paywall.your_photos_stay_yours_analysis_stays_on_your_device_and": "Suas fotos permanecem suas. A análise permanece no seu dispositivo e os backups vão apenas para onde você escolher.",
     "paywall.month": "≈ %@ / mês",
     "subscription.ends_at_the_end_of_the_current_period": "Termina no final do período atual.",
-    "subscription.renews_automatically_until_you_cancel_in_google_play": "Renova automaticamente até você cancelar no Google Play."
+    "subscription.renews_automatically_until_you_cancel_in_google_play": "Renova automaticamente até você cancelar no Google Play.",
+    "quota_gate.exhausted_message": "Gratuito inclui %@ de limpeza a cada mês. Ele reinicia em %@.",
+    "quota_gate.partial_message": "Sua seleção é %@. Você pode liberar %@ mais no Grátis.",
+    "quota_gate.meter": "%@ de %@ usado este mês · Reinicia %@",
+    "quota_gate.delete_safest": "Excluir %@ (o mais seguro primeiro)",
+    "quota_gate_sheet.of_used_this_month_resets": "%@ de %@ usado este mês · Reinicia %@",
+    "quota_gate_sheet.delete_safest_first": "Excluir %@ (o mais seguro primeiro)",
+    "quota_gate_sheet.free_includes_of_cleanup_each_month_it_resets_on": "Gratuito inclui %@ de limpeza a cada mês. Ele reinicia em %@.",
+    "quota_gate_sheet.none_of_the_selected_items_fit_in_what_s_left_select_few": "Nenhum dos itens selecionados cabe no que sobrou. Selecione menos itens ou itens menores ou desbloqueie o Pro.",
+    "quota_gate_sheet.not_now": "Agora não",
+    "quota_gate_sheet.nothing_is_deleted_without_your_confirmation": "Nada é excluído sem a sua confirmação.",
+    "quota_gate_sheet.unlock_unlimited_cleanup": "Desbloqueie limpeza ilimitada",
+    "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Você está perto do limite gratuito deste mês",
+    "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Você usou a limpeza gratuita deste mês",
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Sua seleção é %@. Você pode liberar %@ mais no Grátis."
   }
 }

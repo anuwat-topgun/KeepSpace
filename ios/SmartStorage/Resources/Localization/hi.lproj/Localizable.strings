@@ -38,6 +38,10 @@
 "Ends %@" = "समाप्त %@";
 "Pro · renews %@" = "प्रो · नवीनीकरण %@";
 "Pro · ends %@" = "प्रो · समाप्त होता है %@";
+"Free includes %@ of cleanup each month. It resets on %@." = "निःशुल्क में प्रत्येक माह %@ सफ़ाई शामिल है। यह %@ पर रीसेट होता है.";
+"Your selection is %@. You can free %@ more on Free." = "आपका चयन %@ है. आप निःशुल्क पर %@ अधिक निःशुल्क प्राप्त कर सकते हैं.";
+"%@ of %@ used this month · Resets %@" = "इस महीने %@ में से %@ का उपयोग किया गया · रीसेट %@";
+"Delete %@ (safest first)" = "%@ हटाएं (सबसे पहले सबसे सुरक्षित)";
 "Shopping" = "खरीदारी";
 "Receipts" = "रसीदें";
 "Chats" = "चैट";
@@ -72,6 +76,7 @@
 "Your favorite" = "आपका पसंदीदा";
 "You marked this photo as a favorite." = "आपने इस फ़ोटो को पसंदीदा के रूप में चिह्नित किया है.";
 "%@ of %@ used" = "%@ में से %@ का उपयोग किया गया";
+"%@ of %@ used this month · Resets %@" = "इस महीने %@ में से %@ का उपयोग किया गया · रीसेट %@";
 "%d days free" = "%d दिन मुफ़्त";
 "%d days free, then %@ per year. Renews automatically until you cancel in your account settings." = "%d दिन मुफ़्त, फिर %@ प्रति वर्ष। जब तक आप अपनी खाता सेटिंग में रद्द नहीं करते तब तक स्वचालित रूप से नवीनीकृत हो जाता है।";
 "%d of %d files used" = "%d फ़ाइलों में से %d का उपयोग किया गया";
@@ -175,6 +180,7 @@
 "Day" = "दिन";
 "Deeper cleanup for more space." = "अधिक स्थान के लिए गहन सफ़ाई.";
 "Delete" = "हटाएँ";
+"Delete %@ (safest first)" = "%@ हटाएं (सबसे पहले सबसे सुरक्षित)";
 "Delete Rule" = "नियम हटाएँ";
 "Delete this rule?" = "यह नियम हटाएँ?";
 "Deleted items can't be recovered on this Android version." = "इस Android संस्करण पर हटाए गए आइटम पुनर्प्राप्त नहीं किए जा सकते।";
@@ -216,6 +222,7 @@
 "Forecast" = "पूर्वानुमान";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "भूल जाइए कि KeepSpace ने आपकी लाइब्रेरी के बारे में क्या सीखा। यह अगले स्कैन पर फिर से दिखाई देगा।";
 "Free" = "निःशुल्क";
+"Free includes %@ of cleanup each month. It resets on %@." = "निःशुल्क में प्रत्येक माह %@ सफ़ाई शामिल है। यह %@ पर रीसेट होता है.";
 "Free trial ends %@, then renews." = "नि:शुल्क परीक्षण %@ समाप्त होता है, फिर नवीनीकृत होता है।";
 "Free trial ends %@." = "नि:शुल्क परीक्षण %@ समाप्त होता है.";
 "Free Up Space" = "जगह खाली करें";
@@ -291,11 +298,14 @@
 "No trips or events found yet. They appear as your library grows. Photos are never removed without your review." = "अभी तक कोई यात्रा या कार्यक्रम नहीं मिला. जैसे-जैसे आपकी लाइब्रेरी बढ़ती है, वे प्रकट होते हैं। आपकी समीक्षा के बिना तस्वीरें कभी नहीं हटाई जातीं।";
 "No uploads to our servers" = "हमारे सर्वर पर कोई अपलोड नहीं";
 "No videos here." = "यहां कोई वीडियो नहीं है.";
+"None of the selected items fit in what's left. Select fewer or smaller items, or unlock Pro." = "जो कुछ बचा है उसमें कोई भी चयनित आइटम फिट नहीं बैठता। कम या छोटे आइटम चुनें, या प्रो अनलॉक करें।";
 "Not connected" = "जुड़ा नहीं";
 "Not found" = "नहीं मिला";
+"Not now" = "अभी नहीं";
 "Not set" = "सेट नहीं";
 "Not set yet" = "अभी सेट नहीं है";
 "Nothing is deleted silently" = "चुपचाप कुछ भी नहीं हटाया जाता";
+"Nothing is deleted without your confirmation." = "आपकी पुष्टि के बिना कुछ भी नहीं हटाया जाएगा.";
 "Nothing left to review here." = "यहां समीक्षा करने के लिए कुछ भी नहीं बचा है।";
 "Nothing to clean up right now. Your library is in good shape." = "अभी साफ़ करने के लिए कुछ भी नहीं है। आपकी लाइब्रेरी अच्छी स्थिति में है.";
 "Notifications" = "सूचनाएं";
@@ -449,6 +459,7 @@
 "Unknown merchant" = "अज्ञात व्यापारी";
 "Unlimited Backup & Rules" = "असीमित बैकअप और नियम";
 "Unlimited Cleanup" = "असीमित सफ़ाई";
+"Unlock Unlimited Cleanup" = "असीमित सफाई अनलॉक करें";
 "Upgrade to Pro" = "प्रो में अपग्रेड करें";
 "Upload over Wi-Fi only" = "केवल Wi-Fi पर अपलोड करें";
 "Used" = "प्रयुक्त";
@@ -479,7 +490,9 @@
 "You review every cleanup, and important memories are protected by default." = "आप प्रत्येक सफ़ाई की समीक्षा करते हैं, और महत्वपूर्ण यादें डिफ़ॉल्ट रूप से सुरक्षित रहती हैं।";
 "You'll confirm in the next step. Items stay in Recently Deleted for 30 days." = "आप अगले चरण में पुष्टि करेंगे. आइटम हाल ही में हटाए गए में 30 दिनों तक रहते हैं।";
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "आप अगले चरण में पुष्टि करेंगे. आइटम 30 दिनों तक कूड़ेदान में रहते हैं।";
+"You're close to this month's free limit" = "आप इस महीने की मुफ़्त सीमा के करीब हैं";
 "You're on the Free plan." = "आप निःशुल्क योजना पर हैं.";
+"You've used this month's free cleanup" = "आपने इस महीने की निःशुल्क सफ़ाई का उपयोग किया है";
 "Your choice also teaches Best Shot your taste, on this device." = "आपकी पसंद इस डिवाइस पर बेस्ट शॉट को आपका स्वाद भी सिखाती है।";
 "Your full photo library, with cloud backup status." = "क्लाउड बैकअप स्थिति के साथ आपकी पूरी फोटो लाइब्रेरी।";
 "Your photos are analyzed on this device only." = "आपकी तस्वीरों का विश्लेषण इसी डिवाइस पर किया जाता है.";
@@ -488,5 +501,6 @@
 "Your photos stay yours. Analysis stays on your device, and backups go only where you choose." = "आपकी तस्वीरें आपकी ही रहेंगी. विश्लेषण आपके डिवाइस पर रहता है, और बैकअप केवल वहीं जाता है जहां आप चुनते हैं।";
 "Your photos, videos and extracted text are never sent to KeepSpace." = "आपकी फ़ोटो, वीडियो और निकाला गया टेक्स्ट कभी भी KeepSpace को नहीं भेजा जाता है।";
 "Your privacy" = "आपकी गोपनीयता";
+"Your selection is %@. You can free %@ more on Free." = "आपका चयन %@ है. आप निःशुल्क पर %@ अधिक निःशुल्क प्राप्त कर सकते हैं.";
 "Your storage, organized intelligently." = "आपका भंडारण, समझदारी से व्यवस्थित किया गया।";
 "≈ %@ / month" = "≈ %@/माह";

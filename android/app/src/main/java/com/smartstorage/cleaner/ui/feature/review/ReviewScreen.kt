@@ -36,6 +36,7 @@ import com.smartstorage.cleaner.ui.i18n.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -58,6 +59,13 @@ import com.smartstorage.cleaner.media.LocalMediaActions
 import com.smartstorage.cleaner.media.ReviewItem
 import com.smartstorage.cleaner.media.ReviewKind
 import com.smartstorage.cleaner.media.bytesOf
+import com.smartstorage.cleaner.media.SafetyLevel
+import com.smartstorage.cleaner.monetization.CleanupItem
+import com.smartstorage.cleaner.monetization.LocalMonetization
+import com.smartstorage.cleaner.monetization.LocalPresentPaywall
+import com.smartstorage.cleaner.monetization.ProFeature
+import com.smartstorage.cleaner.monetization.QuotaGatePrompt
+import com.smartstorage.cleaner.ui.feature.paywall.QuotaGateSheet
 import com.smartstorage.cleaner.media.selectableIds
 import com.smartstorage.cleaner.media.validSelection
 import com.smartstorage.cleaner.media.libraryState
@@ -104,6 +112,9 @@ fun ReviewScreen(source: ReviewSource, onBack: () -> Unit) {
     val selected = items.validSelection(selection)
     var deleting by rememberSaveable { mutableStateOf(false) }
     var confirming by rememberSaveable { mutableStateOf(false) }
+    var quotaPrompt by remember { mutableStateOf<QuotaGatePrompt?>(null) }
+    val monetization = LocalMonetization.current
+    val presentPaywall = LocalPresentPaywall.current
 
     val title = when (source) {
         is ReviewSource.Kind -> source.kind.title
@@ -114,11 +125,14 @@ fun ReviewScreen(source: ReviewSource, onBack: () -> Unit) {
         is ReviewSource.Group -> "The best photo is kept. Select the others you don't need."
     }
 
-    fun runDelete() {
+    // Safety of what's being deleted, for ordering a partial delete: the kind's own, or "similar" for a burst group.
+    val itemSafety = (source as? ReviewSource.Kind)?.kind?.safety ?: ReviewKind.Similar.safety
+
+    fun runDelete(ids: Set<String> = selected) {
         val act = actions ?: return
         scope.launch {
             deleting = true
-            val outcome = store.delete(selected, act)
+            val outcome = store.delete(ids, act)
             deleting = false
             // Everything selected is gone; what's left was deliberately unselected, so keep it that way.
             if (outcome is DeletionOutcome.Deleted) selection = emptySet()
@@ -190,7 +204,17 @@ fun ReviewScreen(source: ReviewSource, onBack: () -> Unit) {
                     } else {
                         PrimaryButton(
                             "Delete ${selected.size} · ${items.bytesOf(selected).formattedBytes()}",
-                            onClick = { if (actions?.needsInAppConfirmation == true) confirming = true else runDelete() },
+                            onClick = {
+                                // The free monthly allowance first; over it, the quota gate is offered instead of deleting.
+                                val candidates = items.filter { it.id in selected }.map { CleanupItem(it.id, it.bytes, itemSafety) }
+                                val allowances = monetization.allowances()
+                                val prompt = QuotaGatePrompt.of(allowances.gate(candidates), candidates, allowances)
+                                when {
+                                    prompt != null -> quotaPrompt = prompt
+                                    actions?.needsInAppConfirmation == true -> confirming = true
+                                    else -> runDelete()
+                                }
+                            },
                             modifier = Modifier.fillMaxWidth(),
                             showsArrow = false,
                             enabled = selected.isNotEmpty(),
@@ -206,6 +230,20 @@ fun ReviewScreen(source: ReviewSource, onBack: () -> Unit) {
                 )
             }
         }
+    }
+
+    quotaPrompt?.let { prompt ->
+        QuotaGateSheet(
+            prompt = prompt,
+            onUnlock = { quotaPrompt = null; presentPaywall(ProFeature.UnlimitedCleanup) },
+            onDeletePartial = { ids ->
+                // The safest part that fits the free allowance: narrow the selection to it, then the usual confirmation follows.
+                quotaPrompt = null
+                selection = ids.toSet()
+                runDelete(ids.toSet())
+            },
+            onNotNow = { quotaPrompt = null },
+        )
     }
 
     if (confirming) {
