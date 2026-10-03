@@ -21,8 +21,27 @@ struct UsageLedger: Equatable, Codable, Sendable {
     var cleanupBytes: Int64 = 0
     var backupFiles = 0
 
+    /// Months are always counted in the Gregorian calendar, whatever calendar the person's region uses. (Thai devices
+    /// default to Buddhist years, "2569", which would sort after every Gregorian key and stop the monthly reset.)
+    static func gregorian(_ calendar: Calendar) -> Calendar {
+        var gregorian = Calendar(identifier: .gregorian)
+        gregorian.timeZone = calendar.timeZone
+        gregorian.locale = calendar.locale
+        return gregorian
+    }
+
+    /// Repairs a ledger saved with a non-Gregorian year (e.g. 2569 → 2026) so it can roll over normally.
+    func normalized(now: Date, calendar: Calendar = .current) -> UsageLedger {
+        let nowYear = Self.gregorian(calendar).component(.year, from: now)
+        let parts = month.split(separator: "-")
+        guard parts.count == 2, let year = Int(parts[0]), year > nowYear + 1 else { return self }
+        var fixed = self
+        fixed.month = String(format: "%04d-%@", year - 543, String(parts[1]))
+        return fixed
+    }
+
     static func monthKey(for date: Date, calendar: Calendar = .current) -> String {
-        let parts = calendar.dateComponents([.year, .month], from: date)
+        let parts = gregorian(calendar).dateComponents([.year, .month], from: date)
         return String(format: "%04d-%02d", parts.year ?? 0, parts.month ?? 0)
     }
 
@@ -79,9 +98,9 @@ struct Allowances: Sendable {
     init(status: ProStatus, limits: UsageLimits = .free, ledger: UsageLedger, now: Date, calendar: Calendar = .current) {
         self.status = status
         self.limits = limits
-        self.ledger = ledger.rolled(to: now, calendar: calendar)
+        self.calendar = UsageLedger.gregorian(calendar)
+        self.ledger = ledger.rolled(to: now, calendar: self.calendar)
         self.now = now
-        self.calendar = calendar
     }
 
     var isPro: Bool { status.isPro }

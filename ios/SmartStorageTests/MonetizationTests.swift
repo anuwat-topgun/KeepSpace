@@ -317,3 +317,30 @@ struct MonetizationStoreTests {
         #expect(store.allowances.cleanupRemaining == 1_000_000_000)
     }
 }
+
+// MARK: - Calendars
+
+struct LedgerCalendarTests {
+    private var buddhist: Calendar {
+        var calendar = Calendar(identifier: .buddhist)
+        calendar.timeZone = TimeZone(identifier: "Asia/Bangkok")!
+        return calendar
+    }
+
+    @Test func monthsAreKeyedInGregorianYearsOnABuddhistCalendar() {
+        // A Thai device reports 2569 for October 2026; the ledger must still say 2026.
+        #expect(UsageLedger.monthKey(for: now, calendar: buddhist) == "2026-10")
+        let a = Allowances(status: .free, ledger: UsageLedger(month: "2026-10", cleanupBytes: 5), now: now, calendar: buddhist)
+        #expect(a.resetDate == bangkok.date(from: DateComponents(year: 2026, month: 11, day: 1, hour: 0)))
+    }
+
+    @Test func aLedgerSavedWithABuddhistYearIsRepairedAndStillResets() {
+        let saved = UsageLedger(month: "2569-10", cleanupBytes: 51_000_000)
+        let repaired = saved.normalized(now: now, calendar: bangkok)
+        #expect(repaired.month == "2026-10" && repaired.cleanupBytes == 51_000_000)
+        // …and November then starts a fresh month instead of staying stuck on 2569.
+        #expect(repaired.rolled(to: date(2026, 11, 2), calendar: bangkok) == UsageLedger(month: "2026-11"))
+        // A normal ledger is left alone.
+        #expect(UsageLedger(month: "2026-10").normalized(now: now, calendar: bangkok).month == "2026-10")
+    }
+}

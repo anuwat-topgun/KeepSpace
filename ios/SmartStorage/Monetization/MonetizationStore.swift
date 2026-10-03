@@ -27,12 +27,12 @@ final class MonetizationStore {
          clock: @escaping @Sendable () -> Date = { Date() }) {
         self.limits = limits
         self.defaults = defaults
-        self.calendar = calendar
+        self.calendar = UsageLedger.gregorian(calendar)
         self.clock = clock
         let now = clock()
         status = defaults.data(forKey: Key.status).flatMap { try? JSONDecoder().decode(ProStatus.self, from: $0) } ?? .free
         ledger = (defaults.data(forKey: Key.ledger).flatMap { try? JSONDecoder().decode(UsageLedger.self, from: $0) }
-                  ?? .empty(at: now, calendar: calendar)).rolled(to: now, calendar: calendar)
+                  ?? .empty(at: now, calendar: calendar)).normalized(now: now, calendar: calendar).rolled(to: now, calendar: calendar)
     }
 
     /// The limits as of right now (re-evaluated each call, so it stays right across midnight on the 1st).
