@@ -115,7 +115,6 @@
     <string name="memory_detail_and_d_more">そしてさらに %,d</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android は、何かが削除される前に質問し、アイテムは 30 日間ゴミ箱に残ります。お気に入りや思い出が事前に選択されることはありません。</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision、写真、SwiftUI、SwiftData — すべて iOS の一部です。このバージョンにはサードパーティのライブラリは含まれていません。</string>
-    <string name="common_automation">自動化</string>
     <string name="common_back">戻る</string>
     <string name="manual_backup_back_up_d_files">%d ファイルをバックアップする</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">すべてのルールとクラウド アカウントで必要なだけバックアップします。</string>

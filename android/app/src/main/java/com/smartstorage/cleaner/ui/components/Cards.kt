@@ -88,7 +88,7 @@ fun IconTile(icon: ImageVector, tint: Tint = Tint.Teal, size: Dp = 52.dp) {
 /** Uppercase letter-spaced caption ("DEVICE STORAGE"). */
 @Composable
 fun SectionLabel(text: String) {
-    Text(text.uppercase(), style = SmartType.sectionLabel, color = SmartTheme.colors.textSecondary)
+    Text(com.smartstorage.cleaner.ui.i18n.localized(text).uppercase(), style = SmartType.sectionLabel, color = SmartTheme.colors.textSecondary)
 }
 
 /** Large left-aligned screen title with optional subtitle. */

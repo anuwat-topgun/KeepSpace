@@ -113,7 +113,6 @@
 "and %,d more" = "そしてさらに %,d";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android は、何かが削除される前に質問し、アイテムは 30 日間ゴミ箱に残ります。お気に入りや思い出が事前に選択されることはありません。";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision、写真、SwiftUI、SwiftData — すべて iOS の一部です。このバージョンにはサードパーティのライブラリは含まれていません。";
-"Automation" = "自動化";
 "Back" = "戻る";
 "Back Up %d Files" = "%d ファイルをバックアップする";
 "Back up as much as you want, with every rule and cloud account." = "すべてのルールとクラウド アカウントで必要なだけバックアップします。";

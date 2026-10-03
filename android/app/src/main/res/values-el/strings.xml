@@ -115,7 +115,6 @@
     <string name="memory_detail_and_d_more">και %d περισσότερα</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Το Android ζητά πριν αφαιρεθεί οτιδήποτε και τα στοιχεία παραμένουν στον Κάδο απορριμμάτων για 30 ημέρες. Τα αγαπημένα και οι αναμνήσεις δεν προεπιλέγονται ποτέ.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Photos, SwiftUI και SwiftData — όλα μέρος του iOS. Δεν περιλαμβάνονται βιβλιοθήκες τρίτων σε αυτήν την έκδοση.</string>
-    <string name="common_automation">Αυτοματοποίηση</string>
     <string name="common_back">Πίσω</string>
     <string name="manual_backup_back_up_d_files">Δημιουργία αντιγράφων ασφαλείας %d αρχείων</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Δημιουργήστε αντίγραφα ασφαλείας όσο θέλετε, με κάθε κανόνα και λογαριασμό cloud.</string>

@@ -113,7 +113,6 @@
 "and %,d more" = "ve %,d tane daha";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android herhangi bir şey kaldırılmadan önce sorar ve öğeler 30 gün boyunca Çöp Kutusu'nda kalır. Favoriler ve anılar hiçbir zaman önceden seçilmez.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision, Fotoğraflar, SwiftUI ve SwiftData — hepsi iOS'un parçaları. Bu sürümde hiçbir üçüncü taraf kitaplığı bulunmamaktadır.";
-"Automation" = "Otomasyon";
 "Back" = "Geri";
 "Back Up %d Files" = "%d Dosyayı Yedekle";
 "Back up as much as you want, with every rule and cloud account." = "Her kural ve bulut hesabıyla istediğiniz kadar yedekleyin.";

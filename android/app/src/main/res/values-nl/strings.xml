@@ -115,7 +115,6 @@
     <string name="memory_detail_and_d_more">en %,d meer</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android vraagt voordat er iets wordt verwijderd en items blijven 30 dagen in de prullenbak. Favorieten en herinneringen zijn nooit vooraf geselecteerd.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Photos, SwiftUI en SwiftData: allemaal onderdeel van iOS. In deze versie zijn geen bibliotheken van derden opgenomen.</string>
-    <string name="common_automation">Automatisering</string>
     <string name="common_back">Terug</string>
     <string name="manual_backup_back_up_d_files">Maak een back-up van %d bestanden</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Maak zoveel back-ups als u wilt, met elke regel en elk cloudaccount.</string>

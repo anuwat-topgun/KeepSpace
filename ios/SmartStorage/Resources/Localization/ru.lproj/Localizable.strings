@@ -113,7 +113,6 @@
 "and %,d more" = "и еще %,d";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android спрашивает, прежде чем что-либо будет удалено, и элементы останутся в корзине в течение 30 дней. Избранное и воспоминания никогда не выбираются заранее.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision, Photos, SwiftUI и SwiftData — все это часть iOS. В эту версию не включены сторонние библиотеки.";
-"Automation" = "Автоматизация";
 "Back" = "Назад";
 "Back Up %d Files" = "Резервное копирование %d файлов";
 "Back up as much as you want, with every rule and cloud account." = "Создавайте резервные копии любого количества данных для каждого правила и облачной учетной записи.";

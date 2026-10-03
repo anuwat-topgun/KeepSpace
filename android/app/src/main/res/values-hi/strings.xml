@@ -115,7 +115,6 @@
     <string name="memory_detail_and_d_more">और %,d अधिक</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android कुछ भी हटाने से पहले पूछता है, और आइटम 30 दिनों तक कूड़ेदान में रहते हैं। पसंदीदा और यादें कभी भी पूर्व-चयनित नहीं होती हैं।</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple विज़न, फ़ोटो, स्विफ्टयूआई और स्विफ्टडेटा - सभी iOS के भाग। इस संस्करण में कोई तृतीय-पक्ष लाइब्रेरी शामिल नहीं है।</string>
-    <string name="common_automation">स्वचालन</string>
     <string name="common_back">वापस</string>
     <string name="manual_backup_back_up_d_files">%d फ़ाइलों का बैकअप लें</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">प्रत्येक नियम और क्लाउड खाते के साथ, जितना चाहें उतना बैकअप लें।</string>

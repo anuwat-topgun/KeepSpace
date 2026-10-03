@@ -115,7 +115,6 @@
     <string name="memory_detail_and_d_more">і ще %,d</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android запитує, перш ніж щось буде видалено, і елементи залишаються в кошику протягом 30 днів. Улюблені та спогади ніколи не вибираються заздалегідь.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Photos, SwiftUI та SwiftData — усе це частина iOS. У цій версії немає сторонніх бібліотек.</string>
-    <string name="common_automation">автоматизація</string>
     <string name="common_back">Назад</string>
     <string name="manual_backup_back_up_d_files">Резервне копіювання %d файлів</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Створюйте резервні копії скільки завгодно з кожним правилом і хмарним обліковим записом.</string>

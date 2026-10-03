@@ -115,7 +115,6 @@
     <string name="memory_detail_and_d_more">dan %,d lainnya</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android bertanya sebelum sesuatu dihapus, dan item tetap berada di Sampah selama 30 hari. Favorit dan kenangan tidak pernah dipilih sebelumnya.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Foto, SwiftUI, dan SwiftData — semuanya bagian dari iOS. Tidak ada perpustakaan pihak ketiga yang disertakan dalam versi ini.</string>
-    <string name="common_automation">Otomatisasi</string>
     <string name="common_back">Kembali</string>
     <string name="manual_backup_back_up_d_files">Cadangkan %d File</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Cadangkan sebanyak yang Anda inginkan, dengan setiap aturan dan akun cloud.</string>

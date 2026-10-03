@@ -115,7 +115,6 @@
     <string name="memory_detail_and_d_more">och %,d mer</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android frågar innan något tas bort, och objekt stannar i papperskorgen i 30 dagar. Favoriter och minnen är aldrig förvalda.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Photos, SwiftUI och SwiftData — allt en del av iOS. Inga tredjepartsbibliotek ingår i den här versionen.</string>
-    <string name="common_automation">Automation</string>
     <string name="common_back">Tillbaka</string>
     <string name="manual_backup_back_up_d_files">Säkerhetskopiera %d filer</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Säkerhetskopiera så mycket du vill, med varje regel och molnkonto.</string>

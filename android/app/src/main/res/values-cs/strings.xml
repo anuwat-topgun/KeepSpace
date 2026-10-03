@@ -115,7 +115,6 @@
     <string name="memory_detail_and_d_more">a %d více</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android se zeptá, než bude cokoli odstraněno, a položky zůstanou v koši 30 dní. Oblíbené a vzpomínky nejsou nikdy předem vybrány.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Photos, SwiftUI a SwiftData – to vše je součástí iOS. V této verzi nejsou zahrnuty žádné knihovny třetích stran.</string>
-    <string name="common_automation">automatizace</string>
     <string name="common_back">Zpět</string>
     <string name="manual_backup_back_up_d_files">Zálohujte %d souborů</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Zálohujte, kolik chcete, s každým pravidlem a cloudovým účtem.</string>

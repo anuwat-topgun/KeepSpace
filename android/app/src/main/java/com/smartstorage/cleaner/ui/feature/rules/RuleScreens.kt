@@ -128,7 +128,7 @@ fun StorageRulesScreen(onAdd: () -> Unit, onEdit: (String) -> Unit, onBack: () -
         SmartCard(style = CardStyle.Hero) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    SectionLabel("Automation")
+                    SectionLabel("Rules")
                     val active = rules.count { it.isEnabled }
                     Text(localizedFormat(if (active == 1) "%d rule on" else "%d rules on", active), style = SmartType.metricLarge, color = colors.textPrimary)
                     // Honest until v1.1 lands: rules are ready but nothing uploads yet.

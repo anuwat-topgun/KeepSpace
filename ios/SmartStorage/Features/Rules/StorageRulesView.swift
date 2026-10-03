@@ -54,7 +54,7 @@ private struct AutomationHeroCard: View {
         Card(style: .hero) {
             HStack(alignment: .center, spacing: 16) {
                 VStack(alignment: .leading, spacing: 8) {
-                    SectionLabel("Automation")
+                    SectionLabel("Rules")
                     Text(localizedFormat(active == 1 ? "%d rule on" : "%d rules on", active))
                         .font(Typography.metricLarge)
                         .foregroundStyle(Palette.textPrimary)

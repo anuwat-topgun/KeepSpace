@@ -115,7 +115,6 @@
     <string name="memory_detail_and_d_more">还有 %,d 个</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android 在删除任何内容之前会进行询问，并且项目会在垃圾箱中保留 30 天。最喜欢的东西和回忆从来都不是预先选择的。</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision、Photos、SwiftUI 和 SwiftData — 都是 iOS 的一部分。此版本不包含任何第三方库。</string>
-    <string name="common_automation">自动化</string>
     <string name="common_back">返回</string>
     <string name="manual_backup_back_up_d_files">备份 %d 个文件</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">使用每条规则和云帐户备份尽可能多的数据。</string>

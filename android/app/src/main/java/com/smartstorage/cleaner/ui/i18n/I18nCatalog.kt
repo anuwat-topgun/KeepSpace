@@ -118,7 +118,6 @@ internal object I18nCatalog {
         "and %,d more" to R.string.memory_detail_and_d_more,
         "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." to R.string.settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i,
         "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." to R.string.about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io,
-        "Automation" to R.string.common_automation,
         "Back" to R.string.common_back,
         "Back Up %d Files" to R.string.manual_backup_back_up_d_files,
         "Back up as much as you want, with every rule and cloud account." to R.string.paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac,

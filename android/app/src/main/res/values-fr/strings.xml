@@ -115,7 +115,6 @@
     <string name="memory_detail_and_d_more">et %d plus</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android demande avant que quoi que ce soit ne soit supprimé et les éléments restent dans la corbeille pendant 30 jours. Les favoris et les souvenirs ne sont jamais présélectionnés.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Photos, SwiftUI et SwiftData — tous font partie de iOS. Aucune bibliothèque tierce n\'est incluse dans cette version.</string>
-    <string name="common_automation">Automatisation</string>
     <string name="common_back">Retour</string>
     <string name="manual_backup_back_up_d_files">Sauvegarder %d fichiers</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Sauvegardez autant que vous le souhaitez, avec chaque règle et chaque compte cloud.</string>

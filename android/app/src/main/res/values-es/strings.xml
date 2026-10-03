@@ -115,7 +115,6 @@
     <string name="memory_detail_and_d_more">y %d más</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android pregunta antes de eliminar algo y los elementos permanecen en la Papelera durante 30 días. Los favoritos y recuerdos nunca se preseleccionan.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Photos, SwiftUI y SwiftData, todos parte de iOS. No se incluyen bibliotecas de terceros en esta versión.</string>
-    <string name="common_automation">Automatización</string>
     <string name="common_back">Atrás</string>
     <string name="manual_backup_back_up_d_files">Realizar una copia de seguridad de %d archivos</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Realice copias de seguridad de todo lo que desee, con cada regla y cuenta en la nube.</string>

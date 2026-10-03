@@ -115,7 +115,6 @@
     <string name="memory_detail_and_d_more">และ %,d เพิ่มเติม</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android ถามก่อนที่จะนำสิ่งใดออก และรายการต่างๆ จะอยู่ในถังขยะเป็นเวลา 30 วัน รายการโปรดและความทรงจำไม่เคยถูกเลือกไว้ล่วงหน้า</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, รูปภาพ, SwiftUI และ SwiftData — ทั้งหมดนี้เป็นส่วนหนึ่งของ iOS ไม่มีไลบรารีของบุคคลที่สามรวมอยู่ในเวอร์ชันนี้</string>
-    <string name="common_automation">ระบบอัตโนมัติ</string>
     <string name="common_back">กลับ</string>
     <string name="manual_backup_back_up_d_files">สำรองข้อมูล %d ไฟล์</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">สำรองข้อมูลได้มากเท่าที่คุณต้องการด้วยทุกกฎและบัญชีคลาวด์</string>

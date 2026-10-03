@@ -113,7 +113,6 @@
 "and %,d more" = "還有 %,d 個";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "Android 在刪除任何內容之前會先詢問，並且項目會在垃圾箱中保留 30 天。最喜歡的東西和回憶從來都不是預先選擇的。";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision、Photos、SwiftUI 和 SwiftData — 都是 iOS 的一部分。此版本不包含任何第三方程式庫。";
-"Automation" = "自動化";
 "Back" = "返回";
 "Back Up %d Files" = "備份 %d 個文件";
 "Back up as much as you want, with every rule and cloud account." = "使用每条规则和云帐户备份尽可能多的数据。";

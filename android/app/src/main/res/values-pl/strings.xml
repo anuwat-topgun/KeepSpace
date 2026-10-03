@@ -115,7 +115,6 @@
     <string name="memory_detail_and_d_more">i%,d więcej</string>
     <string name="settings_detail_screens_android_asks_before_anything_is_removed_and_items_stay_i">Android pyta, zanim cokolwiek zostanie usunięte, a elementy pozostaną w Koszu przez 30 dni. Ulubione i wspomnienia nigdy nie są wybierane z góry.</string>
     <string name="about_apple_vision_photos_swiftui_and_swiftdata_all_part_of_io">Apple Vision, Photos, SwiftUI i SwiftData — wszystkie są częścią iOS. Ta wersja nie zawiera żadnych bibliotek innych firm.</string>
-    <string name="common_automation">Automatyzacja</string>
     <string name="common_back">Powrót</string>
     <string name="manual_backup_back_up_d_files">Utwórz kopię zapasową %d plików</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Twórz kopie zapasowe, ile chcesz, z każdą regułą i kontem w chmurze.</string>
