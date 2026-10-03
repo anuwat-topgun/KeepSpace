@@ -503,6 +503,21 @@
     "quota_gate_sheet.unlock_unlimited_cleanup": "Sblocca la pulizia illimitata",
     "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Sei vicino al limite gratuito di questo mese",
     "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Hai utilizzato la pulizia gratuita di questo mese",
-    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "La tua selezione è %@. Puoi liberare %@ in più su Gratis."
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "La tua selezione è %@. Puoi liberare %@ in più su Gratis.",
+    "manual_backup.back_up_d_files": "Esegui il backup di %d file",
+    "pro_explainer.best_shot_learns_from_the_photos_you_keep_and_starts_rec": "Best Shot impara dalle foto che conservi e inizia a consigliare il tipo di scatto che ti piace. Impara su questo dispositivo e nulla lo lascia.",
+    "pro_explainer.finds_receipts_in_your_screenshots_and_photos_reads_the": "Trova le ricevute nei tuoi screenshot e nelle tue foto, legge il commerciante, la data e l'importo su questo dispositivo e mostra dove verrebbero archiviate ciascuna.",
+    "manual_backup.free_backs_up_d_more_files_this_month_the_first_d_will_g": "Backup gratuito di %d file in più questo mese. Il primo %d andrà; La versione Pro non ha limiti.",
+    "a_i_taste.learning_is_paused_on_the_free_plan_what_best_shot_learn": "L'apprendimento è sospeso nel piano gratuito. Ciò che Best Shot ha appreso viene mantenuto.",
+    "pro_explainer.on_free_you_can_still_see_which_videos_take_the_most_spa": "Su Free puoi comunque vedere quali video occupano più spazio e rivederli per l'eliminazione.",
+    "pro_explainer.on_free_your_receipts_stay_where_they_are_and_you_can_st": "Su Gratis le tue ricevute rimangono dove sono e puoi comunque rivedere i vecchi screenshot.",
+    "pro_explainer.on_free_best_shot_still_picks_the_best_photo_in_every_gr": "Su Free, Best Shot sceglie comunque la foto migliore in ogni gruppo.",
+    "pro_chip.pro": "PRO",
+    "pro_explainer.scanning_the_safety_score_and_review_stay_free": "La scansione, il punteggio di sicurezza e la revisione sono gratuiti.",
+    "pro_explainer.shrinks_a_big_video_on_your_device_and_keeps_the_quality": "Rimpicciolisce un grande video sul tuo dispositivo e ne mantiene la qualità. Rivedi il risultato prima che l'originale venga rimosso.",
+    "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Pulizia illimitata, compressione video, screenshot intelligenti, archiviazione di ricevute, AI Taste e backup e regole illimitati.",
+    "common.unlock_keepspace_pro": "Sblocca KeepSpace Pro",
+    "manual_backup.unlock_unlimited_backup": "Sblocca backup illimitato",
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Hai utilizzato i backup gratuiti di questo mese."
   }
 }

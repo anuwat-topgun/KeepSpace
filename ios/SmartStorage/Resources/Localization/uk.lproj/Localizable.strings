@@ -114,6 +114,7 @@
 "Automatically file content where it belongs." = "Автоматично зберігати вміст там, де він належить.";
 "Automation" = "автоматизація";
 "Back" = "Назад";
+"Back Up %d Files" = "Резервне копіювання %d файлів";
 "Back up as much as you want, with every rule and cloud account." = "Створюйте резервні копії скільки завгодно з кожним правилом і хмарним обліковим записом.";
 "Back Up More" = "Резервне копіювання більше";
 "Back Up Now" = "Резервне копіювання зараз";
@@ -127,6 +128,7 @@
 "Best" = "Найкращий";
 "Best Shot" = "Кращий постріл";
 "Best Shot goes back to its standard mix." = "Best Shot повертається до свого стандартного міксу.";
+"Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it." = "Best Shot вивчає фотографії, які ви зберігаєте, і починає рекомендувати той тип знімка, який вам подобається. Він навчається на цьому пристрої, і нічого не залишає його.";
 "Best Shot learns what you like to keep." = "Best Shot дізнається, що ви хочете зберегти.";
 "Best value" = "Найкраще значення";
 "Billed monthly" = "Рахунок виставляється щомісяця";
@@ -217,11 +219,13 @@
 "Find and remove unnecessary files." = "Знайдіть і видаліть непотрібні файли.";
 "Find duplicates" = "Знайти дублікати";
 "Find receipts and file them in the right place." = "Знайдіть квитанції та зберігайте їх у потрібному місці.";
+"Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Знаходить квитанції на ваших знімках екрана та фотографіях, зчитує продавця, дату та суму на цьому пристрої та показує, куди потрібно помістити кожну з них.";
 "Folder" = "Папка";
 "Folder inside KeepSpace" = "Папка всередині KeepSpace";
 "Forecast" = "Прогноз";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Забудьте, що KeepSpace дізнався про вашу бібліотеку. Під час наступного сканування він знову перегляне.";
 "Free" = "безкоштовно";
+"Free backs up %d more files this month. The first %d will go; Pro has no limit." = "Безкоштовне резервне копіювання ще %d файлів цього місяця. Піде перший %d; Профі не має обмежень.";
 "Free includes %@ of cleanup each month. It resets on %@." = "Безкоштовно включає %@ очищення кожного місяця. Він скидається на %@.";
 "Free trial ends %@, then renews." = "Безкоштовна пробна версія закінчується %@, а потім поновлюється.";
 "Free trial ends %@." = "Безкоштовна пробна версія закінчується %@.";
@@ -263,6 +267,7 @@
 "Large Videos" = "Великі відео";
 "Learn from my choices" = "Вчіться на моїх виборах";
 "Learn More" = "Дізнайтеся більше";
+"Learning is paused on the Free plan. What Best Shot learned is kept." = "Навчання призупинено на безкоштовному плані. Те, про що дізнався Best Shot, зберігається.";
 "Learns as you choose" = "Навчається за вашим вибором";
 "Library" = "Бібліотека";
 "Lifetime" = "Тривалість життя";
@@ -314,6 +319,9 @@
 "OAuth setup required" = "Потрібне налаштування OAuth";
 "Off" = "Вимкнено";
 "OK" = "добре";
+"On Free you can still see which videos take the most space and review them for deletion." = "У Free ви все ще можете бачити, які відео займають найбільше місця, і переглядати їх для видалення.";
+"On Free your receipts stay where they are, and you can still review old screenshots." = "У режимі «Безкоштовно» ваші квитанції залишаються там, де вони є, і ви можете переглядати старі знімки екрана.";
+"On Free, Best Shot still picks the best photo in every group." = "На Free, Best Shot все ще вибирає найкраще фото в кожній групі.";
 "On-device AI only" = "Лише на пристрої AI";
 "One-time payment" = "Одноразова оплата";
 "One-time purchase. No subscription, no renewal." = "Одноразова покупка. Без підписки, без поновлення.";
@@ -347,6 +355,7 @@
 "Privacy & Security" = "Конфіденційність і безпека";
 "Privacy Policy" = "Політика конфіденційності";
 "Pro" = "Pro";
+"PRO" = "PRO";
 "Pro adds" = "Pro додає";
 "Pro unlocks by itself once the purchase is approved." = "Pro розблоковується самостійно після схвалення покупки.";
 "Pro · ends %@" = "Pro · закінчується %@";
@@ -396,6 +405,7 @@
 "Save %d%%" = "Зекономте %d%%";
 "Save Rule" = "Зберегти правило";
 "Save to" = "Зберегти в";
+"Scanning, the Safety Score and review stay free." = "Сканування, оцінка безпеки та перегляд залишаються безкоштовними.";
 "Screen Recordings" = "Записи екрана";
 "Screenshot" = "Скріншот";
 "Screenshots" = "Скріншоти";
@@ -410,6 +420,7 @@
 "Settings" = "Налаштування";
 "Sharpness" = "Різкість";
 "Shrink big videos on your device and keep the quality." = "Зменшуйте великі відео на своєму пристрої та зберігайте якість.";
+"Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Зменшує велике відео на вашому пристрої та зберігає якість. Ви переглядаєте результат перед видаленням оригіналу.";
 "Similar Photos" = "Схожі фото";
 "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server." = "Подібні фотографії, найкращі знімки, текст на знімках екрана та квитанції можна знайти на моделях, вбудованих у iOS. На сервер нічого не надсилається.";
 "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server." = "Подібні фотографії, обличчя та текст на скріншотах і квитанціях можна знайти разом із моделями всередині програми. На сервер нічого не надсилається.";
@@ -459,6 +470,9 @@
 "Unknown merchant" = "Невідомий купець";
 "Unlimited Backup & Rules" = "Необмежене резервне копіювання та правила";
 "Unlimited Cleanup" = "Необмежене очищення";
+"Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules." = "Необмежене очищення, стиснення відео, інтелектуальні скріншоти, реєстрація квитанцій, AI смак, необмежене резервне копіювання та правила.";
+"Unlock KeepSpace Pro" = "Розблокуйте KeepSpace Pro";
+"Unlock Unlimited Backup" = "Розблокуйте необмежену резервну копію";
 "Unlock Unlimited Cleanup" = "Розблокуйте Unlimited Cleanup";
 "Upgrade to Pro" = "Оновлення до Pro";
 "Upload over Wi-Fi only" = "Завантажувати лише через Wi-Fi";
@@ -492,6 +506,7 @@
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "Ви підтвердите на наступному кроці. Елементи залишаються в кошику протягом 30 днів.";
 "You're close to this month's free limit" = "Ви майже вичерпали безкоштовний ліміт цього місяця";
 "You're on the Free plan." = "Ви використовуєте безкоштовний план.";
+"You've used this month's free backups." = "Ви використали безкоштовні резервні копії цього місяця.";
 "You've used this month's free cleanup" = "Ви використали безкоштовне прибирання цього місяця";
 "Your choice also teaches Best Shot your taste, on this device." = "Ваш вибір також навчає Best Shot вашому смаку на цьому пристрої.";
 "Your full photo library, with cloud backup status." = "Ваша повна бібліотека фотографій із статусом резервного копіювання в хмарі.";

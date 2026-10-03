@@ -67,6 +67,8 @@ class MainActivity : ComponentActivity() {
         handleOpenIntent(intent)
         // Count confirmed deletions against the free monthly allowance.
         store.onDeleted = { bytes -> monetization.recordCleanup(bytes) }
+        // AI Taste is Pro: Free keeps what was learned but stops learning.
+        store.canLearnTaste = { monetization.isPro }
         if (BuildConfig.DEBUG && intent.getBooleanExtra(EXTRA_DEBUG_PAYWALL, false)) {
             proBilling.useDemoOffers()
             paywall = PaywallRequest(intent.getStringExtra(EXTRA_DEBUG_FOCUS)?.let { name -> ProFeature.entries.firstOrNull { it.name == name } })

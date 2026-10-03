@@ -25,6 +25,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.smartstorage.cleaner.ui.feature.settings.SubscriptionScreen
+import com.smartstorage.cleaner.monetization.ProFeature
+import com.smartstorage.cleaner.ui.feature.paywall.ProGate
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.navigation
@@ -152,7 +154,7 @@ private fun AppNavHost(navController: NavHostController) {
                             onBack = back,
                         )
                         Screen.NewRule -> RuleEditorScreen(ruleId = null, onDone = back)
-                        Screen.Receipts -> ReceiptsScreen(onOpen = { navController.navigate(tab.receiptRoute(it)) }, onBack = back)
+                        Screen.Receipts -> ProGate(ProFeature.ReceiptFiling, back) { ReceiptsScreen(onOpen = { navController.navigate(tab.receiptRoute(it)) }, onBack = back) }
                         Screen.PhotoAccess -> PhotoAccessScreen(onBack = back)
                         Screen.Notifications -> NotificationsScreen(onBack = back)
                         Screen.CloudOverview -> CloudOverviewScreen(onBackUpNow = { push(Screen.ManualBackup) }, onBack = back)
@@ -189,12 +191,14 @@ private fun AppNavHost(navController: NavHostController) {
                     )
                 }
                 composable(tab.receiptPattern) { entry ->
-                    ReceiptFilingScreen(
-                        receiptId = entry.arguments?.getString(AppTab.RECEIPT_ARG).orEmpty(),
-                        onConnectCloud = { push(Screen.CloudOverview) },
-                        onReviewRule = { push(Screen.StorageRules) },
-                        onBack = back,
-                    )
+                    ProGate(ProFeature.ReceiptFiling, back) {
+                        ReceiptFilingScreen(
+                            receiptId = entry.arguments?.getString(AppTab.RECEIPT_ARG).orEmpty(),
+                            onConnectCloud = { push(Screen.CloudOverview) },
+                            onReviewRule = { push(Screen.StorageRules) },
+                            onBack = back,
+                        )
+                    }
                 }
                 composable(tab.bestShotPattern) { entry ->
                     val id = entry.arguments?.getString(AppTab.GROUP_ARG)

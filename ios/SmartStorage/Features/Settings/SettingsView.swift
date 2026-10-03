@@ -28,7 +28,7 @@ struct SettingsView: View {
 
             row(.subscription, icon: "sparkle", tint: .teal, subtitle: SubscriptionView.settingsSubtitle(monetization.status), title: "Subscription · KeepSpace Pro")
             row(.memories, icon: "heart.fill", tint: .coral, subtitle: "Protected by default")
-            row(.aiTaste, icon: "wand.and.stars", tint: .purple, subtitle: taste.isEnabled ? (taste.decisions == 0 ? "Learns as you choose" : "Learned from \(taste.decisions) \(taste.decisions == 1 ? "choice" : "choices")") : "Off")
+            row(.aiTaste, icon: "wand.and.stars", tint: .purple, locked: !monetization.isPro && taste.decisions == 0, subtitle: taste.isEnabled ? (taste.decisions == 0 ? "Learns as you choose" : "Learned from \(taste.decisions) \(taste.decisions == 1 ? "choice" : "choices")") : "Off")
             row(.cloudOverview, icon: "icloud.fill", tint: .blue,
                 subtitle: cloud.connections.filter(\.isConnected).isEmpty ? "Connect Google Drive or OneDrive" : "\(cloud.connections.filter(\.isConnected).count) connected")
 
@@ -39,11 +39,11 @@ struct SettingsView: View {
         }
     }
 
-    private func row(_ route: Route, icon: String, tint: Tint, subtitle: String?, title: String? = nil) -> some View {
+    private func row(_ route: Route, icon: String, tint: Tint, locked: Bool = false, subtitle: String?, title: String? = nil) -> some View {
         Button {
             router.push(route)
         } label: {
-            CardRow(systemImage: icon, tint: tint, title: title ?? route.title, subtitle: subtitle)
+            CardRow(systemImage: icon, tint: tint, title: title ?? route.title, subtitle: subtitle, isProLocked: locked)
         }
         .buttonStyle(.plain)
     }

@@ -3,6 +3,8 @@ import SwiftUI
 /// AI Taste: what Best Shot has learned from the photos kept, with an off switch and a reset.
 struct AITasteView: View {
     @Environment(TasteStore.self) private var taste
+    @Environment(MonetizationStore.self) private var monetization
+    @Environment(AppRouter.self) private var router
     @State private var confirmingReset = false
 
     private var progress: String {
@@ -13,9 +15,29 @@ struct AITasteView: View {
     }
 
     var body: some View {
+        // Free with nothing learned: explain it. Free with something learned (a lapsed Pro) keeps seeing, switching off and resetting it.
+        if !monetization.isPro && taste.decisions == 0 {
+            ProExplainerView(feature: .aiTaste) { router.presentPaywall(focus: .aiTaste) }
+        } else {
+            tasteScreen
+        }
+    }
+
+    private var tasteScreen: some View {
         ScreenScaffold {
             ScreenHeader(title: "AI Taste", subtitle: "Best Shot learns what you like to keep.")
                 .padding(.bottom, 8)
+
+            if !monetization.isPro {
+                Card(style: .info) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Label("Learning is paused on the Free plan. What Best Shot learned is kept.", systemImage: "pause.circle")
+                            .font(Typography.metadata).foregroundStyle(Palette.textSecondary)
+                        Button("Unlock KeepSpace Pro") { router.presentPaywall(focus: .aiTaste) }
+                            .buttonStyle(InlinePillButtonStyle())
+                    }
+                }
+            }
 
             Card(padding: 16) {
                 Toggle(isOn: Binding(get: { taste.isEnabled }, set: { taste.setEnabled($0) })) {

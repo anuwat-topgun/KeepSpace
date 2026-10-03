@@ -114,6 +114,7 @@
 "Automatically file content where it belongs." = "콘텐츠가 속한 곳에 자동으로 파일을 보관합니다.";
 "Automation" = "자동화";
 "Back" = "뒤로";
+"Back Up %d Files" = "%d개의 파일 백업";
 "Back up as much as you want, with every rule and cloud account." = "모든 규칙과 클라우드 계정을 사용하여 원하는 만큼 백업하세요.";
 "Back Up More" = "더 많이 백업하세요";
 "Back Up Now" = "지금 백업";
@@ -127,6 +128,7 @@
 "Best" = "최고";
 "Best Shot" = "베스트샷";
 "Best Shot goes back to its standard mix." = "Best Shot은 표준 믹스로 돌아갑니다.";
+"Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it." = "Best Shot은 당신이 보관하고 있는 사진을 학습하여 당신이 좋아하는 사진을 추천하기 시작합니다. 이 장치에서 학습하고 아무것도 남기지 않습니다.";
 "Best Shot learns what you like to keep." = "Best Shot은 당신이 무엇을 간직하고 싶은지 학습합니다.";
 "Best value" = "최고의 가치";
 "Billed monthly" = "매월 청구됨";
@@ -217,11 +219,13 @@
 "Find and remove unnecessary files." = "불필요한 파일을 찾아서 제거하세요.";
 "Find duplicates" = "중복 찾기";
 "Find receipts and file them in the right place." = "영수증을 찾아 올바른 장소에 보관하세요.";
+"Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "스크린샷과 사진에서 영수증을 찾고, 이 기기의 판매자, 날짜, 금액을 읽고, 각 영수증이 보관되는 위치를 표시합니다.";
 "Folder" = "폴더";
 "Folder inside KeepSpace" = "KeepSpace 내의 폴더";
 "Forecast" = "예측";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "KeepSpace이(가) 귀하의 도서관에 대해 배운 것을 잊어버리세요. 다음 스캔에서 다시 살펴보겠습니다.";
 "Free" = "무료";
+"Free backs up %d more files this month. The first %d will go; Pro has no limit." = "이번 달에는 %d개 더 많은 파일을 무료로 백업할 수 있습니다. 처음 %d는 갈 것입니다; 프로에는 제한이 없습니다.";
 "Free includes %@ of cleanup each month. It resets on %@." = "무료에는 매월 %@ 청소가 포함됩니다. %@에 재설정됩니다.";
 "Free trial ends %@, then renews." = "무료 평가판은 %@ 종료된 후 갱신됩니다.";
 "Free trial ends %@." = "무료 평가판이 %@ 종료됩니다.";
@@ -263,6 +267,7 @@
 "Large Videos" = "대형 비디오";
 "Learn from my choices" = "나의 선택으로부터 배워라";
 "Learn More" = "자세히 알아보기";
+"Learning is paused on the Free plan. What Best Shot learned is kept." = "무료 플랜에서는 학습이 일시 중지되었습니다. Best Shot이 학습한 내용이 유지됩니다.";
 "Learns as you choose" = "선택하는 대로 학습";
 "Library" = "도서관";
 "Lifetime" = "평생";
@@ -314,6 +319,9 @@
 "OAuth setup required" = "OAuth 설정이 필요합니다";
 "Off" = "끄기";
 "OK" = "알았어";
+"On Free you can still see which videos take the most space and review them for deletion." = "무료에서는 어떤 동영상이 가장 많은 공간을 차지하는지 확인하고 삭제 여부를 검토할 수 있습니다.";
+"On Free your receipts stay where they are, and you can still review old screenshots." = "무료에서는 영수증이 그대로 유지되며 이전 스크린샷을 계속 검토할 수 있습니다.";
+"On Free, Best Shot still picks the best photo in every group." = "무료에서는 Best Shot이 모든 그룹에서 최고의 사진을 선택합니다.";
 "On-device AI only" = "기기 내 AI 전용";
 "One-time payment" = "일회성 결제";
 "One-time purchase. No subscription, no renewal." = "일회성 구매. 구독이나 갱신이 없습니다.";
@@ -347,6 +355,7 @@
 "Privacy & Security" = "개인 정보 보호 및 보안";
 "Privacy Policy" = "개인 정보 보호 정책";
 "Pro" = "프로";
+"PRO" = "프로";
 "Pro adds" = "프로는 추가";
 "Pro unlocks by itself once the purchase is approved." = "구매가 승인되면 Pro가 자동으로 잠금 해제됩니다.";
 "Pro · ends %@" = "프로 · %@ 종료";
@@ -396,6 +405,7 @@
 "Save %d%%" = "%d%% 저장";
 "Save Rule" = "규칙 저장";
 "Save to" = "다음에 저장";
+"Scanning, the Safety Score and review stay free." = "스캔, 안전 점수 및 리뷰는 무료입니다.";
 "Screen Recordings" = "화면 녹화";
 "Screenshot" = "스크린샷";
 "Screenshots" = "스크린샷";
@@ -410,6 +420,7 @@
 "Settings" = "설정";
 "Sharpness" = "선명도";
 "Shrink big videos on your device and keep the quality." = "장치에서 큰 비디오를 축소하고 품질을 유지하십시오.";
+"Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "장치에서 큰 비디오를 축소하고 품질을 유지합니다. 원본을 제거하기 전에 결과를 검토합니다.";
 "Similar Photos" = "비슷한 사진";
 "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server." = "유사한 사진, 베스트 샷, 스크린샷의 텍스트 및 영수증은 모두 iOS에 내장된 모델에서 찾을 수 있습니다. 아무것도 서버로 전송되지 않습니다.";
 "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server." = "스크린샷과 영수증의 유사한 사진, 얼굴, 텍스트는 앱 내에 번들로 포함된 모델에서 발견됩니다. 아무것도 서버로 전송되지 않습니다.";
@@ -459,6 +470,9 @@
 "Unknown merchant" = "알 수 없는 판매자";
 "Unlimited Backup & Rules" = "무제한 백업 및 규칙";
 "Unlimited Cleanup" = "무제한 정리";
+"Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules." = "무제한 정리, 비디오 압축, 스마트 스크린샷, 영수증 파일링, AI Taste, 무제한 백업 및 규칙.";
+"Unlock KeepSpace Pro" = "KeepSpace Pro 잠금 해제";
+"Unlock Unlimited Backup" = "무제한 백업 잠금 해제";
 "Unlock Unlimited Cleanup" = "무제한 정리 잠금 해제";
 "Upgrade to Pro" = "프로로 업그레이드";
 "Upload over Wi-Fi only" = "Wi-Fi를 통해서만 업로드";
@@ -492,6 +506,7 @@
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "다음 단계에서 확인하게 됩니다. 항목은 30일 동안 휴지통에 보관됩니다.";
 "You're close to this month's free limit" = "이번 달 무료 한도에 거의 도달했습니다.";
 "You're on the Free plan." = "무료 요금제를 사용 중입니다.";
+"You've used this month's free backups." = "이번 달의 무료 백업을 사용하셨습니다.";
 "You've used this month's free cleanup" = "이번 달 무료 청소를 사용하셨습니다.";
 "Your choice also teaches Best Shot your taste, on this device." = "귀하의 선택은 또한 이 장치에서 Best Shot의 취향을 알려줍니다.";
 "Your full photo library, with cloud backup status." = "클라우드 백업 상태가 포함된 전체 사진 라이브러리.";

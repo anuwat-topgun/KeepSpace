@@ -24,6 +24,8 @@ final class LibraryStore {
     let isDemo: Bool
     /// Called with the bytes of every deletion the person confirmed (a cancelled system dialog never calls it). The app uses it to count the free monthly allowance.
     var onDeleted: (@MainActor (Int64) -> Void)?
+    /// Whether a confirmed Best Shot choice may teach AI Taste (a Pro feature). Free keeps what was learned but stops learning.
+    var canLearnTaste: @MainActor () -> Bool = { true }
 
     // Last scan inputs, so deletions update the screens without a full rescan.
     private var lastItems: [MediaItem] = []
@@ -132,7 +134,7 @@ final class LibraryStore {
         var others = Set(group.assetIDs.enumerated().filter { $0.offset != keeperIndex }.map(\.element))
         if let allowed { others.formIntersection(allowed) } // free allowance: delete only what fits
         let outcome = await delete(others)
-        if case .deleted = outcome, !group.scoreFeatures.isEmpty {
+        if case .deleted = outcome, !group.scoreFeatures.isEmpty, canLearnTaste() {
             taste.learn(chosen: keeperIndex, among: group.scoreFeatures)
             rebuild()
         }

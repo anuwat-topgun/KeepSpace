@@ -116,6 +116,7 @@
     <string name="common_automatically_file_content_where_it_belongs">Αυτόματη αρχειοθέτηση περιεχομένου όπου ανήκει.</string>
     <string name="common_automation">Αυτοματοποίηση</string>
     <string name="common_back">Πίσω</string>
+    <string name="manual_backup_back_up_d_files">Δημιουργία αντιγράφων ασφαλείας %d αρχείων</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Δημιουργήστε αντίγραφα ασφαλείας όσο θέλετε, με κάθε κανόνα και λογαριασμό cloud.</string>
     <string name="common_back_up_more">Δημιουργία αντιγράφων ασφαλείας περισσότερων</string>
     <string name="common_back_up_now">Δημιουργία αντιγράφων ασφαλείας τώρα</string>
@@ -129,6 +130,7 @@
     <string name="common_best">Καλύτερο</string>
     <string name="common_best_shot">Καλύτερη βολή</string>
     <string name="common_best_shot_goes_back_to_its_standard_mix">Το Best Shot επιστρέφει στην τυπική του μίξη.</string>
+    <string name="pro_explainer_best_shot_learns_from_the_photos_you_keep_and_starts_rec">Το Best Shot μαθαίνει από τις φωτογραφίες που κρατάτε και αρχίζει να προτείνει το είδος της λήψης που σας αρέσει. Μαθαίνει σε αυτή τη συσκευή και τίποτα δεν την αφήνει.</string>
     <string name="common_best_shot_learns_what_you_like_to_keep">Το Best Shot μαθαίνει τι σας αρέσει να κρατάτε.</string>
     <string name="paywall_best_value">Καλύτερη αξία</string>
     <string name="paywall_billed_monthly">Τιμολογείται μηνιαία</string>
@@ -219,11 +221,13 @@
     <string name="common_find_and_remove_unnecessary_files">Βρείτε και αφαιρέστε τα περιττά αρχεία.</string>
     <string name="common_find_duplicates">Βρείτε διπλότυπα</string>
     <string name="paywall_find_receipts_and_file_them_in_the_right_place">Βρείτε τις αποδείξεις και αρχειοθετήστε τις στο σωστό μέρος.</string>
+    <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Βρίσκει αποδείξεις στα στιγμιότυπα οθόνης και τις φωτογραφίες σας, διαβάζει τον έμπορο, την ημερομηνία και το ποσό σε αυτήν τη συσκευή και δείχνει πού θα κατατεθεί το καθένα.</string>
     <string name="common_folder">Φάκελος</string>
     <string name="common_folder_inside_keepspace">Φάκελος μέσα στο KeepSpace</string>
     <string name="common_forecast">Πρόβλεψη</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Ξεχάστε όσα έμαθε η KeepSpace για τη βιβλιοθήκη σας. Θα εμφανιστεί ξανά στην επόμενη σάρωση.</string>
     <string name="subscription_free">Δωρεάν</string>
+    <string name="manual_backup_free_backs_up_d_more_files_this_month_the_first_d_will_g">Δωρεάν δημιουργία αντιγράφων ασφαλείας %d ακόμη αρχείων αυτόν τον μήνα. Το πρώτο %d θα πάει. Το Pro δεν έχει όριο.</string>
     <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Το δωρεάν περιλαμβάνει %s καθαρισμού κάθε μήνα. Επαναφέρεται στο %s.</string>
     <string name="subscription_free_trial_ends_then_renews">Η δωρεάν δοκιμή λήγει %s και μετά ανανεώνεται.</string>
     <string name="subscription_free_trial_ends">Η δωρεάν δοκιμή λήγει %s.</string>
@@ -265,6 +269,7 @@
     <string name="common_large_videos">Μεγάλα βίντεο</string>
     <string name="common_learn_from_my_choices">Μάθετε από τις επιλογές μου</string>
     <string name="common_learn_more">Μάθετε περισσότερα</string>
+    <string name="a_i_taste_learning_is_paused_on_the_free_plan_what_best_shot_learn">Η εκμάθηση έχει τεθεί σε παύση στο δωρεάν πρόγραμμα. Ό,τι έμαθε το Best Shot διατηρείται.</string>
     <string name="common_learns_as_you_choose">Μαθαίνει όπως επιλέγετε</string>
     <string name="common_library">Βιβλιοθήκη</string>
     <string name="paywall_lifetime">Διάρκεια ζωής</string>
@@ -316,6 +321,9 @@
     <string name="common_oauth_setup_required">Απαιτείται ρύθμιση OAuth</string>
     <string name="common_off">Απενεργοποίηση</string>
     <string name="common_ok">ΟΚ</string>
+    <string name="pro_explainer_on_free_you_can_still_see_which_videos_take_the_most_spa">Στο Δωρεάν, μπορείτε ακόμα να δείτε ποια βίντεο καταλαμβάνουν τον περισσότερο χώρο και να τα ελέγξετε για διαγραφή.</string>
+    <string name="pro_explainer_on_free_your_receipts_stay_where_they_are_and_you_can_st">Στο Δωρεάν οι αποδείξεις σας παραμένουν εκεί που είναι και μπορείτε ακόμα να ελέγξετε παλιά στιγμιότυπα οθόνης.</string>
+    <string name="pro_explainer_on_free_best_shot_still_picks_the_best_photo_in_every_gr">Στο Δωρεάν, το Best Shot εξακολουθεί να επιλέγει την καλύτερη φωτογραφία σε κάθε ομάδα.</string>
     <string name="common_on_device_ai_only">Μόνο στη συσκευή AI</string>
     <string name="paywall_one_time_payment">Εφάπαξ πληρωμή</string>
     <string name="paywall_one_time_purchase_no_subscription_no_renewal">Εφάπαξ αγορά. Χωρίς συνδρομή, χωρίς ανανέωση.</string>
@@ -349,6 +357,7 @@
     <string name="common_privacy_security">Απόρρητο και ασφάλεια</string>
     <string name="common_privacy_policy">Πολιτική Απορρήτου</string>
     <string name="subscription_pro">Pro</string>
+    <string name="pro_chip_pro">PRO</string>
     <string name="subscription_pro_adds">Ο Pro προσθέτει</string>
     <string name="paywall_pro_unlocks_by_itself_once_the_purchase_is_approved">Το Pro ξεκλειδώνει μόνο του μόλις εγκριθεί η αγορά.</string>
     <string name="subscription_pro_ends_71525627">Pro · τελειώνει %s</string>
@@ -398,6 +407,7 @@
     <string name="paywall_save_d">Εξοικονόμηση %d%%</string>
     <string name="common_save_rule">Αποθήκευση κανόνα</string>
     <string name="common_save_to">Αποθήκευση σε</string>
+    <string name="pro_explainer_scanning_the_safety_score_and_review_stay_free">Η σάρωση, η βαθμολογία ασφαλείας και η κριτική παραμένουν δωρεάν.</string>
     <string name="common_screen_recordings">Εγγραφές οθόνης</string>
     <string name="common_screenshot">Στιγμιότυπο οθόνης</string>
     <string name="common_screenshots">Στιγμιότυπα οθόνης</string>
@@ -412,6 +422,7 @@
     <string name="common_settings">Ρυθμίσεις</string>
     <string name="common_sharpness">Ευκρίνεια</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Μειώστε τα μεγάλα βίντεο στη συσκευή σας και διατηρήστε την ποιότητα.</string>
+    <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Συρρικνώνει ένα μεγάλο βίντεο στη συσκευή σας και διατηρεί την ποιότητα. Ελέγχετε το αποτέλεσμα πριν αφαιρεθεί το πρωτότυπο.</string>
     <string name="common_similar_photos">Παρόμοιες Φωτογραφίες</string>
     <string name="privacy_similar_photos_best_shots_text_in_screenshots_and_receip">Παρόμοιες φωτογραφίες, καλύτερες λήψεις, κείμενο σε στιγμιότυπα οθόνης και αποδείξεις βρίσκονται όλα με μοντέλα ενσωματωμένα στο iOS. Τίποτα δεν αποστέλλεται σε διακομιστή.</string>
     <string name="settings_detail_screens_similar_photos_faces_and_text_in_screenshots_and_receipt">Παρόμοιες φωτογραφίες, πρόσωπα και κείμενο σε στιγμιότυπα οθόνης και αποδείξεις βρίσκονται με μοντέλα ομαδοποιημένα μέσα στην εφαρμογή. Τίποτα δεν αποστέλλεται σε διακομιστή.</string>
@@ -461,6 +472,9 @@
     <string name="common_unknown_merchant">Άγνωστος έμπορος</string>
     <string name="common_unlimited_backup_rules">Απεριόριστα αντίγραφα ασφαλείας και κανόνες</string>
     <string name="common_unlimited_cleanup">Απεριόριστος καθαρισμός</string>
+    <string name="pro_explainer_unlimited_cleanup_video_compression_smart_screenshots_re">Απεριόριστος καθαρισμός, συμπίεση βίντεο, έξυπνα στιγμιότυπα οθόνης, Αρχειοθέτηση αποδείξεων, AI Taste και απεριόριστο αντίγραφο ασφαλείας και κανόνες.</string>
+    <string name="common_unlock_keepspace_pro">Ξεκλειδώστε KeepSpace Pro</string>
+    <string name="manual_backup_unlock_unlimited_backup">Ξεκλείδωμα Unlimited Backup</string>
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Ξεκλειδώστε την Απεριόριστη Εκκαθάριση</string>
     <string name="subscription_upgrade_to_pro">Αναβάθμιση σε Pro</string>
     <string name="common_upload_over_wi_fi_only">Μεταφόρτωση μόνο μέσω Wi-Fi</string>
@@ -494,6 +508,7 @@
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Θα επιβεβαιώσετε στο επόμενο βήμα. Τα αντικείμενα παραμένουν στον Κάδο απορριμμάτων για 30 ημέρες.</string>
     <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Είστε κοντά στο δωρεάν όριο αυτού του μήνα</string>
     <string name="subscription_you_re_on_the_free_plan">Είστε στο δωρεάν πρόγραμμα.</string>
+    <string name="manual_backup_you_ve_used_this_month_s_free_backups">Έχετε χρησιμοποιήσει τα δωρεάν αντίγραφα ασφαλείας αυτού του μήνα.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Χρησιμοποιήσατε τη δωρεάν εκκαθάριση αυτού του μήνα</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Η επιλογή σας διδάσκει επίσης το Best Shot το γούστο σας, σε αυτήν τη συσκευή.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Η πλήρης βιβλιοθήκη φωτογραφιών σας, με κατάσταση δημιουργίας αντιγράφων ασφαλείας στο cloud.</string>

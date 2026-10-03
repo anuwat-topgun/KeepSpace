@@ -116,6 +116,7 @@
     <string name="common_automatically_file_content_where_it_belongs">自動將內容歸檔到所屬的位置。</string>
     <string name="common_automation">自動化</string>
     <string name="common_back">返回</string>
+    <string name="manual_backup_back_up_d_files">備份 %d 個文件</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">使用每条规则和云帐户备份尽可能多的数据。</string>
     <string name="common_back_up_more">備份更多</string>
     <string name="common_back_up_now">立即備份</string>
@@ -129,6 +130,7 @@
     <string name="common_best">最佳</string>
     <string name="common_best_shot">最佳拍攝</string>
     <string name="common_best_shot_goes_back_to_its_standard_mix">Best Shot 回歸其標準組合。</string>
+    <string name="pro_explainer_best_shot_learns_from_the_photos_you_keep_and_starts_rec">Best Shot 會從您保存的照片中學習，並開始推薦您喜歡的照片類型。它在這個設備上學習，什麼都沒有留下。</string>
     <string name="common_best_shot_learns_what_you_like_to_keep">Best Shot 會了解您喜歡保留什麼。</string>
     <string name="paywall_best_value">最超值</string>
     <string name="paywall_billed_monthly">按月計費</string>
@@ -219,11 +221,13 @@
     <string name="common_find_and_remove_unnecessary_files">尋找並刪除不需要的文件。</string>
     <string name="common_find_duplicates">尋找重複項</string>
     <string name="paywall_find_receipts_and_file_them_in_the_right_place">找到收據並將其歸檔在正確的位置。</string>
+    <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">在您的螢幕截圖和照片中找到收據，讀取此裝置上的商家、日期和金額，並顯示每張收據的歸檔位置。</string>
     <string name="common_folder">資料夾</string>
     <string name="common_folder_inside_keepspace">KeepSpace 內的資料夾</string>
     <string name="common_forecast">預測</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">忘記 KeepSpace 對您的圖書館的了解。下次掃描時它將再次查看。</string>
     <string name="subscription_free">免費</string>
+    <string name="manual_backup_free_backs_up_d_more_files_this_month_the_first_d_will_g">本月免費備份了 %d 個檔案。第一個 %d 將消失；專業版沒有限制。</string>
     <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">免費包括每月 %s 的清理工作。它在 %s 重置。</string>
     <string name="subscription_free_trial_ends_then_renews">免費試用結束%s，然後續訂。</string>
     <string name="subscription_free_trial_ends">免費試用結束%s。</string>
@@ -265,6 +269,7 @@
     <string name="common_large_videos">大影片</string>
     <string name="common_learn_from_my_choices">從我的選擇中學習</string>
     <string name="common_learn_more">了解更多</string>
+    <string name="a_i_taste_learning_is_paused_on_the_free_plan_what_best_shot_learn">免費計劃的學習已暫停。 Best Shot 所學到的知識都會被保留。</string>
     <string name="common_learns_as_you_choose">隨你選擇學習</string>
     <string name="common_library">圖書館</string>
     <string name="paywall_lifetime">終身</string>
@@ -316,6 +321,9 @@
     <string name="common_oauth_setup_required">需要 OAuth 設定</string>
     <string name="common_off">關閉</string>
     <string name="common_ok">好的</string>
+    <string name="pro_explainer_on_free_you_can_still_see_which_videos_take_the_most_spa">在免費版中，您仍然可以查看哪些影片佔用最多空間並檢查它們是否刪除。</string>
+    <string name="pro_explainer_on_free_your_receipts_stay_where_they_are_and_you_can_st">在免費版中，您的收據保留在原處，您仍然可以查看舊的螢幕截圖。</string>
+    <string name="pro_explainer_on_free_best_shot_still_picks_the_best_photo_in_every_gr">在「免費」模式下，「最佳拍攝」仍然會挑選每組中最好的照片。</string>
     <string name="common_on_device_ai_only">僅限裝置上 AI</string>
     <string name="paywall_one_time_payment">一次付款</string>
     <string name="paywall_one_time_purchase_no_subscription_no_renewal">一次性購買。沒有訂閱，沒有續訂。</string>
@@ -349,6 +357,7 @@
     <string name="common_privacy_security">隱私與安全</string>
     <string name="common_privacy_policy">隱私權政策</string>
     <string name="subscription_pro">專業版</string>
+    <string name="pro_chip_pro">專業版</string>
     <string name="subscription_pro_adds">專業人士補充道</string>
     <string name="paywall_pro_unlocks_by_itself_once_the_purchase_is_approved">一旦购买获得批准，Pro 就会自行解锁。</string>
     <string name="subscription_pro_ends_71525627">親 · 結束 %s</string>
@@ -398,6 +407,7 @@
     <string name="paywall_save_d">保存%d%%</string>
     <string name="common_save_rule">保存規則</string>
     <string name="common_save_to">保存到</string>
+    <string name="pro_explainer_scanning_the_safety_score_and_review_stay_free">掃描、安全評分和審查都是免費的。</string>
     <string name="common_screen_recordings">螢幕錄製</string>
     <string name="common_screenshot">截圖</string>
     <string name="common_screenshots">截圖</string>
@@ -412,6 +422,7 @@
     <string name="common_settings">設定</string>
     <string name="common_sharpness">清晰度</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">縮小設備上的大視頻並保持品質。</string>
+    <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">縮小設備上的大視頻並保持品質。您在刪除原始結果之前查看結果。</string>
     <string name="common_similar_photos">類似照片</string>
     <string name="privacy_similar_photos_best_shots_text_in_screenshots_and_receip">類似的照片、最佳照片、螢幕截圖中的文字和收據都可以在 iOS 中內建的模型中找到。沒有任何內容發送到伺服器。</string>
     <string name="settings_detail_screens_similar_photos_faces_and_text_in_screenshots_and_receipt">在應用程式內捆綁的模型中可以找到螢幕截圖和收據中類似的照片、臉孔和文字。沒有任何內容發送到伺服器。</string>
@@ -461,6 +472,9 @@
     <string name="common_unknown_merchant">未知商人</string>
     <string name="common_unlimited_backup_rules">無限備份和規則</string>
     <string name="common_unlimited_cleanup">無限清理</string>
+    <string name="pro_explainer_unlimited_cleanup_video_compression_smart_screenshots_re">無限清理、視訊壓縮、智慧截圖、收據歸檔、AI 品味以及無限備份和規則。</string>
+    <string name="common_unlock_keepspace_pro">解鎖 KeepSpace 專業版</string>
+    <string name="manual_backup_unlock_unlimited_backup">解鎖無限備份</string>
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">解鎖無限清理</string>
     <string name="subscription_upgrade_to_pro">升級到專業版</string>
     <string name="common_upload_over_wi_fi_only">僅透過 Wi-Fi 上傳</string>
@@ -494,6 +508,7 @@
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">您將在下一步中確認。物品會在垃圾箱中保留 30 天。</string>
     <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">您已接近本月的免費限額</string>
     <string name="subscription_you_re_on_the_free_plan">您使用的是免費方案。</string>
+    <string name="manual_backup_you_ve_used_this_month_s_free_backups">您已使用本月的免費備份。</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">您已使用本月的免費清理服務</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">您的選擇也會讓 Best Shot 了解您在此裝置上的品味。</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">您的完整照片庫，具有雲端備份狀態。</string>

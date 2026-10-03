@@ -114,6 +114,7 @@
 "Automatically file content where it belongs." = "सामग्री को स्वचालित रूप से वहीं फ़ाइल करें जहां वह है।";
 "Automation" = "स्वचालन";
 "Back" = "वापस";
+"Back Up %d Files" = "%d फ़ाइलों का बैकअप लें";
 "Back up as much as you want, with every rule and cloud account." = "प्रत्येक नियम और क्लाउड खाते के साथ, जितना चाहें उतना बैकअप लें।";
 "Back Up More" = "अधिक बैकअप लें";
 "Back Up Now" = "अभी बैकअप लें";
@@ -127,6 +128,7 @@
 "Best" = "सर्वोत्तम";
 "Best Shot" = "सर्वश्रेष्ठ शॉट";
 "Best Shot goes back to its standard mix." = "बेस्ट शॉट अपने मानक मिश्रण पर वापस जाता है।";
+"Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it." = "बेस्ट शॉट आपके द्वारा रखी गई तस्वीरों से सीखता है और आपको जिस तरह का शॉट पसंद है उसकी अनुशंसा करना शुरू कर देता है। यह इस डिवाइस पर सीखता है और कुछ भी नहीं छोड़ता है।";
 "Best Shot learns what you like to keep." = "बेस्ट शॉट सीखता है कि आप क्या रखना पसंद करते हैं।";
 "Best value" = "सर्वोत्तम मूल्य";
 "Billed monthly" = "मासिक बिल भेजा गया";
@@ -217,11 +219,13 @@
 "Find and remove unnecessary files." = "अनावश्यक फ़ाइलें ढूंढें और हटाएं.";
 "Find duplicates" = "डुप्लिकेट खोजें";
 "Find receipts and file them in the right place." = "रसीदें ढूंढें और उन्हें सही जगह पर दाखिल करें।";
+"Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "आपके स्क्रीनशॉट और फ़ोटो में रसीदें ढूंढता है, इस डिवाइस पर व्यापारी, तारीख और राशि पढ़ता है, और दिखाता है कि प्रत्येक को कहां दाखिल किया जाएगा।";
 "Folder" = "फ़ोल्डर";
 "Folder inside KeepSpace" = "KeepSpace के अंदर फ़ोल्डर";
 "Forecast" = "पूर्वानुमान";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "भूल जाइए कि KeepSpace ने आपकी लाइब्रेरी के बारे में क्या सीखा। यह अगले स्कैन पर फिर से दिखाई देगा।";
 "Free" = "निःशुल्क";
+"Free backs up %d more files this month. The first %d will go; Pro has no limit." = "इस माह %d अधिक फ़ाइलों का निःशुल्क बैकअप। पहला %d जाएगा; प्रो की कोई सीमा नहीं है.";
 "Free includes %@ of cleanup each month. It resets on %@." = "निःशुल्क में प्रत्येक माह %@ सफ़ाई शामिल है। यह %@ पर रीसेट होता है.";
 "Free trial ends %@, then renews." = "नि:शुल्क परीक्षण %@ समाप्त होता है, फिर नवीनीकृत होता है।";
 "Free trial ends %@." = "नि:शुल्क परीक्षण %@ समाप्त होता है.";
@@ -263,6 +267,7 @@
 "Large Videos" = "बड़े वीडियो";
 "Learn from my choices" = "मेरी पसंद से सीखें";
 "Learn More" = "और जानें";
+"Learning is paused on the Free plan. What Best Shot learned is kept." = "मुफ़्त योजना पर सीखना रोक दिया गया है। बेस्ट शॉट ने जो सीखा उसे रखा जाता है।";
 "Learns as you choose" = "जैसा आप चुनते हैं वैसा ही सीखता है";
 "Library" = "पुस्तकालय";
 "Lifetime" = "जीवनकाल";
@@ -314,6 +319,9 @@
 "OAuth setup required" = "OAuth सेटअप आवश्यक है";
 "Off" = "बंद";
 "OK" = "ठीक है";
+"On Free you can still see which videos take the most space and review them for deletion." = "निःशुल्क पर आप अभी भी देख सकते हैं कि कौन से वीडियो सबसे अधिक स्थान लेते हैं और हटाने के लिए उनकी समीक्षा कर सकते हैं।";
+"On Free your receipts stay where they are, and you can still review old screenshots." = "मुफ़्त में आपकी रसीदें वहीं रहेंगी जहां वे थीं, और आप अभी भी पुराने स्क्रीनशॉट की समीक्षा कर सकते हैं।";
+"On Free, Best Shot still picks the best photo in every group." = "मुफ़्त में, बेस्ट शॉट अभी भी प्रत्येक समूह में सर्वश्रेष्ठ फ़ोटो चुनता है।";
 "On-device AI only" = "केवल ऑन-डिवाइस AI";
 "One-time payment" = "एकमुश्त भुगतान";
 "One-time purchase. No subscription, no renewal." = "एकमुश्त खरीदारी. कोई सदस्यता नहीं, कोई नवीनीकरण नहीं.";
@@ -347,6 +355,7 @@
 "Privacy & Security" = "गोपनीयता एवं सुरक्षा";
 "Privacy Policy" = "गोपनीयता नीति";
 "Pro" = "प्रो";
+"PRO" = "प्रो";
 "Pro adds" = "प्रो कहते हैं";
 "Pro unlocks by itself once the purchase is approved." = "खरीदारी स्वीकृत होते ही प्रो अपने आप अनलॉक हो जाता है।";
 "Pro · ends %@" = "प्रो · समाप्त होता है %@";
@@ -396,6 +405,7 @@
 "Save %d%%" = "%d%% बचाएं";
 "Save Rule" = "नियम सहेजें";
 "Save to" = "को सहेजें";
+"Scanning, the Safety Score and review stay free." = "स्कैनिंग, सुरक्षा स्कोर और समीक्षा निःशुल्क रहें।";
 "Screen Recordings" = "स्क्रीन रिकॉर्डिंग";
 "Screenshot" = "स्क्रीनशॉट";
 "Screenshots" = "स्क्रीनशॉट";
@@ -410,6 +420,7 @@
 "Settings" = "सेटिंग्स";
 "Sharpness" = "कुशाग्रता";
 "Shrink big videos on your device and keep the quality." = "अपने डिवाइस पर बड़े वीडियो सिकोड़ें और गुणवत्ता बनाए रखें।";
+"Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "आपके डिवाइस पर एक बड़े वीडियो को सिकोड़ता है और गुणवत्ता बनाए रखता है। मूल को हटाने से पहले आप परिणाम की समीक्षा करें।";
 "Similar Photos" = "समान तस्वीरें";
 "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server." = "समान तस्वीरें, सर्वोत्तम शॉट्स, स्क्रीनशॉट में टेक्स्ट और रसीदें सभी iOS में निर्मित मॉडल के साथ पाए जाते हैं। सर्वर पर कुछ भी नहीं भेजा जाता है.";
 "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server." = "स्क्रीनशॉट और रसीदों में समान तस्वीरें, चेहरे और टेक्स्ट ऐप के अंदर बंडल किए गए मॉडल के साथ पाए जाते हैं। सर्वर पर कुछ भी नहीं भेजा जाता है.";
@@ -459,6 +470,9 @@
 "Unknown merchant" = "अज्ञात व्यापारी";
 "Unlimited Backup & Rules" = "असीमित बैकअप और नियम";
 "Unlimited Cleanup" = "असीमित सफ़ाई";
+"Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules." = "असीमित सफाई, वीडियो संपीड़न, स्मार्ट स्क्रीनशॉट, रसीद फाइलिंग, AI स्वाद, और असीमित बैकअप और नियम।";
+"Unlock KeepSpace Pro" = "KeepSpace प्रो अनलॉक करें";
+"Unlock Unlimited Backup" = "असीमित बैकअप अनलॉक करें";
 "Unlock Unlimited Cleanup" = "असीमित सफाई अनलॉक करें";
 "Upgrade to Pro" = "प्रो में अपग्रेड करें";
 "Upload over Wi-Fi only" = "केवल Wi-Fi पर अपलोड करें";
@@ -492,6 +506,7 @@
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "आप अगले चरण में पुष्टि करेंगे. आइटम 30 दिनों तक कूड़ेदान में रहते हैं।";
 "You're close to this month's free limit" = "आप इस महीने की मुफ़्त सीमा के करीब हैं";
 "You're on the Free plan." = "आप निःशुल्क योजना पर हैं.";
+"You've used this month's free backups." = "आपने इस महीने के निःशुल्क बैकअप का उपयोग कर लिया है।";
 "You've used this month's free cleanup" = "आपने इस महीने की निःशुल्क सफ़ाई का उपयोग किया है";
 "Your choice also teaches Best Shot your taste, on this device." = "आपकी पसंद इस डिवाइस पर बेस्ट शॉट को आपका स्वाद भी सिखाती है।";
 "Your full photo library, with cloud backup status." = "क्लाउड बैकअप स्थिति के साथ आपकी पूरी फोटो लाइब्रेरी।";

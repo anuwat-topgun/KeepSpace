@@ -114,6 +114,7 @@
 "Automatically file content where it belongs." = "จัดเก็บเนื้อหาโดยอัตโนมัติในตำแหน่งที่เนื้อหานั้นอยู่";
 "Automation" = "ระบบอัตโนมัติ";
 "Back" = "กลับ";
+"Back Up %d Files" = "สำรองข้อมูล %d ไฟล์";
 "Back up as much as you want, with every rule and cloud account." = "สำรองข้อมูลได้มากเท่าที่คุณต้องการด้วยทุกกฎและบัญชีคลาวด์";
 "Back Up More" = "สำรองข้อมูลเพิ่มเติม";
 "Back Up Now" = "สำรองข้อมูลตอนนี้";
@@ -127,6 +128,7 @@
 "Best" = "ดีที่สุด";
 "Best Shot" = "ลูกยิงที่ดีที่สุด";
 "Best Shot goes back to its standard mix." = "Best Shot กลับไปใช้มิกซ์มาตรฐาน";
+"Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it." = "Best Shot เรียนรู้จากรูปภาพที่คุณเก็บไว้ และเริ่มแนะนำประเภทช็อตที่คุณชอบ มันเรียนรู้บนอุปกรณ์นี้และไม่มีอะไรเหลืออยู่";
 "Best Shot learns what you like to keep." = "Best Shot เรียนรู้สิ่งที่คุณต้องการเก็บไว้";
 "Best value" = "คุ้มค่าที่สุด";
 "Billed monthly" = "เรียกเก็บเงินเป็นรายเดือน";
@@ -217,11 +219,13 @@
 "Find and remove unnecessary files." = "ค้นหาและลบไฟล์ที่ไม่จำเป็น";
 "Find duplicates" = "ค้นหารายการที่ซ้ำกัน";
 "Find receipts and file them in the right place." = "ค้นหาใบเสร็จรับเงินและยื่นให้ถูกที่";
+"Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "ค้นหาใบเสร็จในภาพหน้าจอและรูปถ่ายของคุณ อ่านผู้ขาย วันที่และจำนวนเงินบนอุปกรณ์นี้ และแสดงตำแหน่งที่จะยื่นแต่ละรายการ";
 "Folder" = "โฟลเดอร์";
 "Folder inside KeepSpace" = "โฟลเดอร์ภายใน KeepSpace";
 "Forecast" = "พยากรณ์";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "ลืมสิ่งที่ KeepSpace เรียนรู้เกี่ยวกับห้องสมุดของคุณไปได้เลย มันจะดูอีกครั้งในการสแกนครั้งถัดไป";
 "Free" = "ฟรี";
+"Free backs up %d more files this month. The first %d will go; Pro has no limit." = "สำรองข้อมูลฟรีอีก %d ไฟล์ในเดือนนี้ %d แรกจะไป; โปรไม่มีขีดจำกัด";
 "Free includes %@ of cleanup each month. It resets on %@." = "ฟรีรวม %@ ของการล้างข้อมูลในแต่ละเดือน จะรีเซ็ตเมื่อ %@";
 "Free trial ends %@, then renews." = "การทดลองใช้งานฟรีสิ้นสุด %@ จากนั้นต่ออายุ";
 "Free trial ends %@." = "ทดลองใช้ฟรีสิ้นสุด %@";
@@ -263,6 +267,7 @@
 "Large Videos" = "วิดีโอขนาดใหญ่";
 "Learn from my choices" = "เรียนรู้จากตัวเลือกของฉัน";
 "Learn More" = "เรียนรู้เพิ่มเติม";
+"Learning is paused on the Free plan. What Best Shot learned is kept." = "การเรียนรู้หยุดชั่วคราวในแผนฟรี ระบบจะเก็บสิ่งที่ Best Shot เรียนรู้ไว้";
 "Learns as you choose" = "เรียนรู้ตามที่คุณเลือก";
 "Library" = "ห้องสมุด";
 "Lifetime" = "ตลอดชีวิต";
@@ -314,6 +319,9 @@
 "OAuth setup required" = "ต้องตั้งค่า OAuth";
 "Off" = "ปิด";
 "OK" = "ตกลง";
+"On Free you can still see which videos take the most space and review them for deletion." = "ในโหมดฟรี คุณยังสามารถดูว่าวิดีโอใดใช้พื้นที่มากที่สุดและตรวจสอบเพื่อลบออก";
+"On Free your receipts stay where they are, and you can still review old screenshots." = "ใบเสร็จรับเงินของคุณจะยังคงอยู่ที่เดิม และคุณยังสามารถตรวจสอบภาพหน้าจอเก่าๆ ได้";
+"On Free, Best Shot still picks the best photo in every group." = "ในโหมดฟรี Best Shot ยังคงเลือกภาพถ่ายที่ดีที่สุดในทุกกลุ่ม";
 "On-device AI only" = "AI บนอุปกรณ์เท่านั้น";
 "One-time payment" = "ชำระเงินครั้งเดียว";
 "One-time purchase. No subscription, no renewal." = "ซื้อครั้งเดียว. ไม่มีการสมัครสมาชิกไม่มีการต่ออายุ";
@@ -347,6 +355,7 @@
 "Privacy & Security" = "ความเป็นส่วนตัวและความปลอดภัย";
 "Privacy Policy" = "นโยบายความเป็นส่วนตัว";
 "Pro" = "โปร";
+"PRO" = "โปร";
 "Pro adds" = "โปรเสริม";
 "Pro unlocks by itself once the purchase is approved." = "Pro จะปลดล็อคด้วยตัวเองเมื่อการซื้อได้รับการอนุมัติ";
 "Pro · ends %@" = "มือโปร · สิ้นสุด %@";
@@ -396,6 +405,7 @@
 "Save %d%%" = "บันทึก %d%%";
 "Save Rule" = "บันทึกกฎ";
 "Save to" = "บันทึกไปที่";
+"Scanning, the Safety Score and review stay free." = "สแกน คะแนนความปลอดภัย และรีวิวได้ฟรี";
 "Screen Recordings" = "การบันทึกหน้าจอ";
 "Screenshot" = "ภาพหน้าจอ";
 "Screenshots" = "ภาพหน้าจอ";
@@ -410,6 +420,7 @@
 "Settings" = "การตั้งค่า";
 "Sharpness" = "ความคม";
 "Shrink big videos on your device and keep the quality." = "ย่อขนาดวิดีโอขนาดใหญ่บนอุปกรณ์ของคุณและรักษาคุณภาพไว้";
+"Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "ย่อขนาดวิดีโอขนาดใหญ่บนอุปกรณ์ของคุณและรักษาคุณภาพไว้ คุณตรวจสอบผลลัพธ์ก่อนที่จะลบต้นฉบับ";
 "Similar Photos" = "ภาพถ่ายที่คล้ายกัน";
 "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server." = "ภาพถ่าย ภาพที่ดีที่สุด ข้อความในภาพหน้าจอ และใบเสร็จที่คล้ายกัน ทั้งหมดนี้พบได้ในโมเดลที่สร้างไว้ใน iOS ไม่มีสิ่งใดถูกส่งไปยังเซิร์ฟเวอร์";
 "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server." = "พบรูปภาพ ใบหน้า และข้อความที่คล้ายกันในภาพหน้าจอและใบเสร็จรับเงินพร้อมกับโมเดลที่รวมอยู่ในแอป ไม่มีสิ่งใดถูกส่งไปยังเซิร์ฟเวอร์";
@@ -459,6 +470,9 @@
 "Unknown merchant" = "พ่อค้าที่ไม่รู้จัก";
 "Unlimited Backup & Rules" = "การสำรองข้อมูลและกฎไม่จำกัด";
 "Unlimited Cleanup" = "การล้างข้อมูลไม่จำกัด";
+"Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules." = "การล้างข้อมูลแบบไม่จำกัด การบีบอัดวิดีโอ ภาพหน้าจออัจฉริยะ การยื่นใบเสร็จรับเงิน AI Taste และการสำรองข้อมูลและกฎแบบไม่จำกัด";
+"Unlock KeepSpace Pro" = "ปลดล็อค KeepSpace มือโปร";
+"Unlock Unlimited Backup" = "ปลดล็อกการสำรองข้อมูลไม่จำกัด";
 "Unlock Unlimited Cleanup" = "ปลดล็อกการล้างข้อมูลแบบไม่จำกัด";
 "Upgrade to Pro" = "อัพเกรดเป็นโปร";
 "Upload over Wi-Fi only" = "อัปโหลดผ่าน Wi-Fi เท่านั้น";
@@ -492,6 +506,7 @@
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "คุณจะยืนยันได้ในขั้นตอนถัดไป รายการจะอยู่ในถังขยะเป็นเวลา 30 วัน";
 "You're close to this month's free limit" = "คุณใกล้จะถึงขีดจำกัดการใช้งานฟรีของเดือนนี้แล้ว";
 "You're on the Free plan." = "คุณใช้แผนฟรี";
+"You've used this month's free backups." = "คุณได้ใช้การสำรองข้อมูลฟรีของเดือนนี้แล้ว";
 "You've used this month's free cleanup" = "คุณได้ใช้การล้างข้อมูลฟรีของเดือนนี้แล้ว";
 "Your choice also teaches Best Shot your taste, on this device." = "ตัวเลือกของคุณยังสอน Best Shot ให้กับรสนิยมของคุณบนอุปกรณ์นี้ด้วย";
 "Your full photo library, with cloud backup status." = "คลังภาพเต็มรูปแบบของคุณพร้อมสถานะการสำรองข้อมูลบนคลาวด์";

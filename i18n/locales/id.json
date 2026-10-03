@@ -503,6 +503,21 @@
     "quota_gate_sheet.unlock_unlimited_cleanup": "Buka Kunci Pembersihan Tanpa Batas",
     "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Anda hampir mencapai batas gratis bulan ini",
     "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Anda telah menggunakan pembersihan gratis bulan ini",
-    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Pilihan Anda adalah %@. Anda dapat membebaskan %@ lebih banyak secara Gratis."
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Pilihan Anda adalah %@. Anda dapat membebaskan %@ lebih banyak secara Gratis.",
+    "manual_backup.back_up_d_files": "Cadangkan %d File",
+    "pro_explainer.best_shot_learns_from_the_photos_you_keep_and_starts_rec": "Best Shot belajar dari foto yang Anda simpan dan mulai merekomendasikan jenis foto yang Anda sukai. Ia belajar di perangkat ini dan tidak ada yang meninggalkannya.",
+    "pro_explainer.finds_receipts_in_your_screenshots_and_photos_reads_the": "Menemukan tanda terima di tangkapan layar dan foto Anda, membaca pedagang, tanggal dan jumlah di perangkat ini, dan menunjukkan di mana masing-masing tanda terima akan disimpan.",
+    "manual_backup.free_backs_up_d_more_files_this_month_the_first_d_will_g": "Cadangan gratis %d lebih banyak file bulan ini. %d pertama akan hilang; Pro tidak memiliki batas.",
+    "a_i_taste.learning_is_paused_on_the_free_plan_what_best_shot_learn": "Pembelajaran dijeda pada paket Gratis. Apa yang dipelajari oleh Best Shot disimpan.",
+    "pro_explainer.on_free_you_can_still_see_which_videos_take_the_most_spa": "Di Gratis, Anda masih dapat melihat video mana yang paling banyak memakan ruang dan meninjaunya untuk dihapus.",
+    "pro_explainer.on_free_your_receipts_stay_where_they_are_and_you_can_st": "Di Gratis, tanda terima Anda tetap di tempatnya, dan Anda masih dapat meninjau tangkapan layar lama.",
+    "pro_explainer.on_free_best_shot_still_picks_the_best_photo_in_every_gr": "Di Gratis, Best Shot tetap memilih foto terbaik di setiap grup.",
+    "pro_chip.pro": "PRO",
+    "pro_explainer.scanning_the_safety_score_and_review_stay_free": "Pemindaian, Skor Keamanan, dan ulasan tetap gratis.",
+    "pro_explainer.shrinks_a_big_video_on_your_device_and_keeps_the_quality": "Menyusut video besar di perangkat Anda dan menjaga kualitasnya. Anda meninjau hasilnya sebelum yang asli dihapus.",
+    "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Pembersihan tanpa batas, kompresi video, tangkapan layar cerdas, Pengarsipan Tanda Terima, AI Rasa, serta pencadangan dan aturan tanpa batas.",
+    "common.unlock_keepspace_pro": "Buka kunci KeepSpace Pro",
+    "manual_backup.unlock_unlimited_backup": "Buka Kunci Cadangan Tanpa Batas",
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Anda telah menggunakan cadangan gratis bulan ini."
   }
 }

@@ -116,6 +116,7 @@
     <string name="common_automatically_file_content_where_it_belongs">Archiva automáticamente el contenido donde pertenece.</string>
     <string name="common_automation">Automatización</string>
     <string name="common_back">Atrás</string>
+    <string name="manual_backup_back_up_d_files">Realizar una copia de seguridad de %d archivos</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Realice copias de seguridad de todo lo que desee, con cada regla y cuenta en la nube.</string>
     <string name="common_back_up_more">Hacer una copia de seguridad más</string>
     <string name="common_back_up_now">Hacer copia de seguridad ahora</string>
@@ -129,6 +130,7 @@
     <string name="common_best">mejor</string>
     <string name="common_best_shot">Mejor tiro</string>
     <string name="common_best_shot_goes_back_to_its_standard_mix">Best Shot vuelve a su mezcla estándar.</string>
+    <string name="pro_explainer_best_shot_learns_from_the_photos_you_keep_and_starts_rec">Best Shot aprende de las fotos que guardas y comienza a recomendar el tipo de toma que te gusta. Aprende en este dispositivo y no sale nada.</string>
     <string name="common_best_shot_learns_what_you_like_to_keep">Best Shot aprende lo que le gusta conservar.</string>
     <string name="paywall_best_value">Mejor valor</string>
     <string name="paywall_billed_monthly">Facturado mensualmente</string>
@@ -219,11 +221,13 @@
     <string name="common_find_and_remove_unnecessary_files">Busque y elimine archivos innecesarios.</string>
     <string name="common_find_duplicates">encontrar duplicados</string>
     <string name="paywall_find_receipts_and_file_them_in_the_right_place">Encuentre recibos y archívelos en el lugar correcto.</string>
+    <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Encuentra recibos en tus capturas de pantalla y fotografías, lee el comerciante, la fecha y el monto en este dispositivo y muestra dónde se archivaría cada uno.</string>
     <string name="common_folder">Carpeta</string>
     <string name="common_folder_inside_keepspace">Carpeta dentro de KeepSpace</string>
     <string name="common_forecast">Pronóstico</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Olvídese de lo que KeepSpace aprendió sobre su biblioteca. Se volverá a mirar en el siguiente escaneo.</string>
     <string name="subscription_free">Gratis</string>
+    <string name="manual_backup_free_backs_up_d_more_files_this_month_the_first_d_will_g">Realiza copias de seguridad gratuitas de %d archivos más este mes. El primer %d irá; Pro no tiene límite.</string>
     <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Gratis incluye %s de limpieza cada mes. Se reinicia en %s.</string>
     <string name="subscription_free_trial_ends_then_renews">La prueba gratuita finaliza %s y luego se renueva.</string>
     <string name="subscription_free_trial_ends">La prueba gratuita finaliza %s.</string>
@@ -265,6 +269,7 @@
     <string name="common_large_videos">Vídeos grandes</string>
     <string name="common_learn_from_my_choices">Aprende de mis elecciones</string>
     <string name="common_learn_more">Más información</string>
+    <string name="a_i_taste_learning_is_paused_on_the_free_plan_what_best_shot_learn">El aprendizaje está en pausa en el plan gratuito. Lo que Best Shot aprendió se conserva.</string>
     <string name="common_learns_as_you_choose">Aprende como tú eliges</string>
     <string name="common_library">Biblioteca</string>
     <string name="paywall_lifetime">Toda la vida</string>
@@ -316,6 +321,9 @@
     <string name="common_oauth_setup_required">Se requiere configuración de OAuth</string>
     <string name="common_off">Apagado</string>
     <string name="common_ok">bien</string>
+    <string name="pro_explainer_on_free_you_can_still_see_which_videos_take_the_most_spa">En Gratis aún puedes ver qué videos ocupan más espacio y revisarlos para eliminarlos.</string>
+    <string name="pro_explainer_on_free_your_receipts_stay_where_they_are_and_you_can_st">En Free, tus recibos permanecen donde están y aún puedes revisar capturas de pantalla antiguas.</string>
+    <string name="pro_explainer_on_free_best_shot_still_picks_the_best_photo_in_every_gr">En Gratis, Best Shot sigue seleccionando la mejor foto de cada grupo.</string>
     <string name="common_on_device_ai_only">Solo AI en el dispositivo</string>
     <string name="paywall_one_time_payment">Pago único</string>
     <string name="paywall_one_time_purchase_no_subscription_no_renewal">Compra única. Sin suscripción, sin renovación.</string>
@@ -349,6 +357,7 @@
     <string name="common_privacy_security">Privacidad y seguridad</string>
     <string name="common_privacy_policy">Política de privacidad</string>
     <string name="subscription_pro">profesional</string>
+    <string name="pro_chip_pro">PROFESIONAL</string>
     <string name="subscription_pro_adds">añadidos profesionales</string>
     <string name="paywall_pro_unlocks_by_itself_once_the_purchase_is_approved">Pro se desbloquea solo una vez que se aprueba la compra.</string>
     <string name="subscription_pro_ends_71525627">Pro · termina %s</string>
@@ -398,6 +407,7 @@
     <string name="paywall_save_d">Ahorra %d%%</string>
     <string name="common_save_rule">Guardar regla</string>
     <string name="common_save_to">Guardar en</string>
+    <string name="pro_explainer_scanning_the_safety_score_and_review_stay_free">El escaneo, la puntuación de seguridad y la revisión son gratuitos.</string>
     <string name="common_screen_recordings">Grabaciones de pantalla</string>
     <string name="common_screenshot">Captura de pantalla</string>
     <string name="common_screenshots">Capturas de pantalla</string>
@@ -412,6 +422,7 @@
     <string name="common_settings">Configuración</string>
     <string name="common_sharpness">Nitidez</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Reduzca videos grandes en su dispositivo y mantenga la calidad.</string>
+    <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Reduce un video grande en su dispositivo y mantiene la calidad. Revisa el resultado antes de eliminar el original.</string>
     <string name="common_similar_photos">Fotos similares</string>
     <string name="privacy_similar_photos_best_shots_text_in_screenshots_and_receip">Se encuentran fotografías similares, mejores tomas, texto en capturas de pantalla y recibos con los modelos integrados en iOS. No se envía nada a un servidor.</string>
     <string name="settings_detail_screens_similar_photos_faces_and_text_in_screenshots_and_receipt">Se encuentran fotos, rostros y texto similares en capturas de pantalla y recibos con los modelos incluidos dentro de la aplicación. No se envía nada a un servidor.</string>
@@ -461,6 +472,9 @@
     <string name="common_unknown_merchant">Comerciante desconocido</string>
     <string name="common_unlimited_backup_rules">Copias de seguridad y reglas ilimitadas</string>
     <string name="common_unlimited_cleanup">Limpieza ilimitada</string>
+    <string name="pro_explainer_unlimited_cleanup_video_compression_smart_screenshots_re">Limpieza ilimitada, compresión de video, capturas de pantalla inteligentes, archivo de recibos, AI Taste y copias de seguridad y reglas ilimitadas.</string>
+    <string name="common_unlock_keepspace_pro">Desbloquear KeepSpace Pro</string>
+    <string name="manual_backup_unlock_unlimited_backup">Desbloquear copia de seguridad ilimitada</string>
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Desbloquear limpieza ilimitada</string>
     <string name="subscription_upgrade_to_pro">Actualízate a Pro</string>
     <string name="common_upload_over_wi_fi_only">Subir solo a través de Wi-Fi</string>
@@ -494,6 +508,7 @@
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Lo confirmarás en el siguiente paso. Los artículos permanecen en la Papelera durante 30 días.</string>
     <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Estás cerca del límite gratuito de este mes</string>
     <string name="subscription_you_re_on_the_free_plan">Estás en el plan gratuito.</string>
+    <string name="manual_backup_you_ve_used_this_month_s_free_backups">Has utilizado las copias de seguridad gratuitas de este mes.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Has utilizado la limpieza gratuita de este mes.</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Su elección también le enseña a Best Shot sus gustos en este dispositivo.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Tu biblioteca de fotos completa, con estado de copia de seguridad en la nube.</string>

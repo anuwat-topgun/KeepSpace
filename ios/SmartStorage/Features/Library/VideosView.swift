@@ -65,7 +65,10 @@ struct VideosView: View {
 private struct VideoRow: View {
     let video: VideoItem
     @Environment(AppRouter.self) private var router
+    @Environment(MonetizationStore.self) private var monetization
     @State private var compressing: VideoItem?
+    @State private var explaining = false
+    @State private var wantsPaywall = false
 
     var body: some View {
         Card(padding: 12) {
@@ -93,10 +96,26 @@ private struct VideoRow: View {
                     Button("Review") { router.push(.review(.largeVideos)) }
                         .buttonStyle(InlinePillButtonStyle(tint: .mint))
                 } else {
-                    Button("Compress") { compressing = video }
-                        .buttonStyle(InlinePillButtonStyle(tint: .teal))
+                    Button {
+                        if monetization.isPro { compressing = video } else { explaining = true }
+                    } label: {
+                        HStack(spacing: 6) {
+                            Text("Compress")
+                            if !monetization.isPro { ProChip() }
+                        }
+                    }
+                    .buttonStyle(InlinePillButtonStyle(tint: .teal))
                 }
             }
+        }
+        .sheet(isPresented: $explaining, onDismiss: {
+            // The paywall is a full-screen cover, which SwiftUI can't show while this sheet is still up.
+            if wantsPaywall { wantsPaywall = false; router.presentPaywall(focus: .videoCompression) }
+        }) {
+            NavigationStack {
+                ProExplainerView(feature: .videoCompression) { wantsPaywall = true; explaining = false }
+            }
+            .presentationDetents([.medium, .large])
         }
         .sheet(item: $compressing) { video in
             CompressSheet(video: video)

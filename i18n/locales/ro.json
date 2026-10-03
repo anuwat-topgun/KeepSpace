@@ -503,6 +503,21 @@
     "quota_gate_sheet.unlock_unlimited_cleanup": "Deblocați curățarea nelimitată",
     "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Ești aproape de limita gratuită a acestei luni",
     "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Ați folosit curățarea gratuită din această lună",
-    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Selecția dvs. este %@. Puteți elibera %@ mai multe pe Free."
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Selecția dvs. este %@. Puteți elibera %@ mai multe pe Free.",
+    "manual_backup.back_up_d_files": "Faceți backup pentru %d fișiere",
+    "pro_explainer.best_shot_learns_from_the_photos_you_keep_and_starts_rec": "Best Shot învață din fotografiile pe care le păstrați și începe să vă recomande tipul de fotografie care vă place. Învață pe acest dispozitiv și nimic nu-l părăsește.",
+    "pro_explainer.finds_receipts_in_your_screenshots_and_photos_reads_the": "Găsește chitanțe în capturile de ecran și fotografiile tale, citește comerciantul, data și suma de pe acest dispozitiv și arată unde ar fi depuse fiecare.",
+    "manual_backup.free_backs_up_d_more_files_this_month_the_first_d_will_g": "Free face backup pentru încă %d fișiere luna aceasta. Primul %d va merge; Pro nu are limită.",
+    "a_i_taste.learning_is_paused_on_the_free_plan_what_best_shot_learn": "Învățarea este întreruptă în planul gratuit. Ceea ce a învățat Best Shot este păstrat.",
+    "pro_explainer.on_free_you_can_still_see_which_videos_take_the_most_spa": "Pe Free puteți vedea în continuare care videoclipuri ocupă cel mai mult spațiu și le puteți examina pentru ștergere.",
+    "pro_explainer.on_free_your_receipts_stay_where_they_are_and_you_can_st": "Pe Free, chitanțele rămân acolo unde sunt și poți să revizuiești în continuare capturi de ecran vechi.",
+    "pro_explainer.on_free_best_shot_still_picks_the_best_photo_in_every_gr": "Pe Free, Best Shot alege în continuare cea mai bună fotografie din fiecare grup.",
+    "pro_chip.pro": "PRO",
+    "pro_explainer.scanning_the_safety_score_and_review_stay_free": "Scanarea, scorul de siguranță și recenzia rămân gratuite.",
+    "pro_explainer.shrinks_a_big_video_on_your_device_and_keeps_the_quality": "Reduce un videoclip mare pe dispozitiv și păstrează calitatea. Examinați rezultatul înainte ca originalul să fie eliminat.",
+    "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Curățare nelimitată, compresie video, capturi de ecran inteligente, depunere a chitanțelor, AI Gust și backup și reguli nelimitate.",
+    "common.unlock_keepspace_pro": "Deblocați KeepSpace Pro",
+    "manual_backup.unlock_unlimited_backup": "Deblocați backup nelimitat",
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Ați folosit backup-urile gratuite din această lună."
   }
 }

@@ -3,6 +3,7 @@ import SwiftUI
 struct CloudOverviewView: View {
     @Environment(CloudStore.self) private var cloud
     @Environment(AppRouter.self) private var router
+    @Environment(MonetizationStore.self) private var monetization
 
     var body: some View {
         ScreenScaffold {
@@ -21,8 +22,15 @@ struct CloudOverviewView: View {
                             Button("Disconnect") { cloud.disconnect(connection.provider) }
                                 .buttonStyle(.secondaryOutlined)
                         } else {
-                            Button(connection.isConfigured ? "Connect \(connection.provider.title)" : "Setup required") {
-                                cloud.connect(connection.provider)
+                            // One cloud account is free; connecting another opens the paywall. Connected accounts are never disconnected.
+                            let canConnect = monetization.allowances.canConnectCloudAccount(existing: cloud.connections.filter(\.isConnected).count)
+                            Button {
+                                if canConnect { cloud.connect(connection.provider) } else { router.presentPaywall(focus: .multipleCloudAccounts) }
+                            } label: {
+                                HStack(spacing: 8) {
+                                    Text(connection.isConfigured ? "Connect \(connection.provider.title)" : "Setup required")
+                                    if !canConnect { ProChip() }
+                                }
                             }
                             .buttonStyle(PrimaryButtonStyle(showsArrow: false))
                             .disabled(!connection.isConfigured)

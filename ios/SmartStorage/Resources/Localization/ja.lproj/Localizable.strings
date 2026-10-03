@@ -114,6 +114,7 @@
 "Automatically file content where it belongs." = "コンテンツを自動的に適切な場所にファイルします。";
 "Automation" = "自動化";
 "Back" = "戻る";
+"Back Up %d Files" = "%d ファイルをバックアップする";
 "Back up as much as you want, with every rule and cloud account." = "すべてのルールとクラウド アカウントで必要なだけバックアップします。";
 "Back Up More" = "さらにバックアップ";
 "Back Up Now" = "今すぐバックアップ";
@@ -127,6 +128,7 @@
 "Best" = "ベスト";
 "Best Shot" = "ベストショット";
 "Best Shot goes back to its standard mix." = "ベストショットは標準ミックスに戻ります。";
+"Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it." = "Best Shot は、保存されている写真から学習し、好みの種類のショットを推奨し始めます。このデバイス上で学習し、そこからは何も残りません。";
 "Best Shot learns what you like to keep." = "Best Shot は、ユーザーが保存したいものを学習します。";
 "Best value" = "最高の価値";
 "Billed monthly" = "毎月請求される";
@@ -217,11 +219,13 @@
 "Find and remove unnecessary files." = "不要なファイルを見つけて削除します。";
 "Find duplicates" = "重複の検索";
 "Find receipts and file them in the right place." = "領収書を見つけて、適切な場所に保管してください。";
+"Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "スクリーンショットや写真から領収書を検索し、このデバイス上の販売者、日付、金額を読み取り、それぞれの領収書が保管される場所を示します。";
 "Folder" = "フォルダー";
 "Folder inside KeepSpace" = "KeepSpace 内のフォルダー";
 "Forecast" = "予報";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "KeepSpace があなたのライブラリについて学んだことは忘れてください。次回のスキャン時に再度検索されます。";
 "Free" = "無料";
+"Free backs up %d more files this month. The first %d will go; Pro has no limit." = "今月はさらに %d ファイルを無料でバックアップします。最初の %d が表示されます。プロには制限がありません。";
 "Free includes %@ of cleanup each month. It resets on %@." = "無料には毎月のクリーンアップ %@ が含まれます。 %@ でリセットされます。";
 "Free trial ends %@, then renews." = "無料トライアルは %@ で終了し、その後更新されます。";
 "Free trial ends %@." = "無料トライアルは %@ で終了します。";
@@ -263,6 +267,7 @@
 "Large Videos" = "大きなビデオ";
 "Learn from my choices" = "私の選択から学ぶ";
 "Learn More" = "さらに詳しく";
+"Learning is paused on the Free plan. What Best Shot learned is kept." = "無料プランでは学習が一時停止されます。 Best Shot が学んだことは保持されます。";
 "Learns as you choose" = "選択に応じて学習します";
 "Library" = "図書館";
 "Lifetime" = "生涯";
@@ -314,6 +319,9 @@
 "OAuth setup required" = "OAuth設定が必要です";
 "Off" = "オフ";
 "OK" = "OK";
+"On Free you can still see which videos take the most space and review them for deletion." = "無料でも、どの動画が最も多くのスペースを占有しているかを確認し、削除するかどうかを確認できます。";
+"On Free your receipts stay where they are, and you can still review old screenshots." = "Free ではレシートはそのまま残り、古いスクリーンショットを確認することもできます。";
+"On Free, Best Shot still picks the best photo in every group." = "無料でも、ベストショットは依然としてすべてのグループで最高の写真を選択します。";
 "On-device AI only" = "オンデバイス AI のみ";
 "One-time payment" = "1回払い";
 "One-time purchase. No subscription, no renewal." = "1回限りの購入。サブスクリプションも更新もありません。";
@@ -347,6 +355,7 @@
 "Privacy & Security" = "プライバシーとセキュリティ";
 "Privacy Policy" = "プライバシーポリシー";
 "Pro" = "プロ";
+"PRO" = "プロ";
 "Pro adds" = "プロは追加します";
 "Pro unlocks by itself once the purchase is approved." = "購入が承認されると、Pro は自動的にロックを解除します。";
 "Pro · ends %@" = "プロ · 終了 %@";
@@ -396,6 +405,7 @@
 "Save %d%%" = "%d%% を節約";
 "Save Rule" = "ルールの保存";
 "Save to" = "保存先";
+"Scanning, the Safety Score and review stay free." = "スキャン、安全スコア、レビューは無料のままです。";
 "Screen Recordings" = "画面録画";
 "Screenshot" = "スクリーンショット";
 "Screenshots" = "スクリーンショット";
@@ -410,6 +420,7 @@
 "Settings" = "設定";
 "Sharpness" = "切れ味";
 "Shrink big videos on your device and keep the quality." = "大きなビデオをデバイス上で縮小して品質を保ちます。";
+"Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "大きなビデオをデバイス上で縮小し、品質を保ちます。オリジナルを削除する前に結果を確認します。";
 "Similar Photos" = "類似の写真";
 "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server." = "同様の写真、ベストショット、スクリーンショット内のテキスト、領収書はすべて、iOS に組み込まれたモデルで見つかります。サーバーには何も送信されません。";
 "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server." = "スクリーンショットやレシートに類似の写真、顔、テキストがアプリ内にバンドルされているモデルで見つかります。サーバーには何も送信されません。";
@@ -459,6 +470,9 @@
 "Unknown merchant" = "不明な商人";
 "Unlimited Backup & Rules" = "無制限のバックアップとルール";
 "Unlimited Cleanup" = "無制限のクリーンアップ";
+"Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules." = "無制限のクリーンアップ、ビデオ圧縮、スマート スクリーンショット、レシート ファイリング、AI テイスト、無制限のバックアップとルール。";
+"Unlock KeepSpace Pro" = "KeepSpace プロのロックを解除する";
+"Unlock Unlimited Backup" = "無制限のバックアップのロックを解除する";
 "Unlock Unlimited Cleanup" = "無制限のクリーンアップのロックを解除する";
 "Upgrade to Pro" = "プロにアップグレード";
 "Upload over Wi-Fi only" = "Wi-Fi 経由でのみアップロードする";
@@ -492,6 +506,7 @@
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "次のステップで確認します。アイテムは 30 日間ゴミ箱に残ります。";
 "You're close to this month's free limit" = "今月の無料制限に近づいています";
 "You're on the Free plan." = "無料プランをご利用中です。";
+"You've used this month's free backups." = "今月の無料バックアップを使用しました。";
 "You've used this month's free cleanup" = "今月の無料クリーンアップを利用しました";
 "Your choice also teaches Best Shot your taste, on this device." = "このデバイスでは、あなたの選択がベストショットにあなたの好みを教えてくれます。";
 "Your full photo library, with cloud backup status." = "完全な写真ライブラリとクラウド バックアップ ステータス。";

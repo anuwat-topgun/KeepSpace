@@ -41,6 +41,11 @@ import com.smartstorage.cleaner.media.LocalLibraryStore
 import com.smartstorage.cleaner.media.ScoreWeights
 import com.smartstorage.cleaner.media.TasteProfile
 import com.smartstorage.cleaner.ui.components.CardStyle
+import com.smartstorage.cleaner.ui.components.InlinePillButton
+import com.smartstorage.cleaner.monetization.LocalMonetization
+import com.smartstorage.cleaner.monetization.LocalPresentPaywall
+import com.smartstorage.cleaner.monetization.ProFeature
+import com.smartstorage.cleaner.ui.feature.paywall.ProExplainerScreen
 import com.smartstorage.cleaner.ui.components.ListTile
 import com.smartstorage.cleaner.ui.components.ScreenHeader
 import com.smartstorage.cleaner.ui.components.ScreenScaffold
@@ -56,6 +61,7 @@ import kotlin.math.roundToInt
 /** AI Taste: what Best Shot has learned from the photos kept, with an off switch and a reset. */
 @Composable
 fun AiTasteScreen(onBack: () -> Unit) {
+    // (hooks below keep this screen's state; the explainer replaces it only while nothing is learned on Free)
     val taste = LocalLibraryStore.current.taste
     val state by taste.state.collectAsState()
     val colors = SmartTheme.colors
@@ -67,8 +73,25 @@ fun AiTasteScreen(onBack: () -> Unit) {
         else -> "Learning from $decisions ${if (decisions == 1) "choice" else "choices"}. Best Shot leans further your way after ${TasteProfile.FULL_TRUST_AFTER}."
     }
 
+    val proStatus by LocalMonetization.current.status.collectAsState()
+    val presentPaywall = LocalPresentPaywall.current
+    // Free with nothing learned: explain it. Free with something learned (a lapsed Pro) keeps seeing, switching off and resetting it.
+    if (!proStatus.isPro && decisions == 0) {
+        ProExplainerScreen(ProFeature.AiTaste, onBack)
+        return
+    }
+
     ScreenScaffold(onBack = onBack) {
         ScreenHeader("AI Taste", "Best Shot learns what you like to keep.", Modifier.padding(bottom = 8.dp))
+
+        if (!proStatus.isPro) {
+            SmartCard(style = CardStyle.Info) {
+                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Text("Learning is paused on the Free plan. What Best Shot learned is kept.", style = SmartType.metadata, color = colors.textSecondary)
+                    InlinePillButton("Unlock KeepSpace Pro", onClick = { presentPaywall(ProFeature.AiTaste) })
+                }
+            }
+        }
 
         SmartCard(contentPadding = PaddingValues(16.dp)) {
             ListTile(Icons.Rounded.AutoFixHigh, "Learn from my choices", tint = Tint.Purple, showsChevron = false,

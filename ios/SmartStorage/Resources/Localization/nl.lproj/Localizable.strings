@@ -114,6 +114,7 @@
 "Automatically file content where it belongs." = "Bewaar inhoud automatisch waar deze thuishoort.";
 "Automation" = "Automatisering";
 "Back" = "Terug";
+"Back Up %d Files" = "Maak een back-up van %d bestanden";
 "Back up as much as you want, with every rule and cloud account." = "Maak zoveel back-ups als u wilt, met elke regel en elk cloudaccount.";
 "Back Up More" = "Maak meer back-ups";
 "Back Up Now" = "Maak nu een back-up";
@@ -127,6 +128,7 @@
 "Best" = "Beste";
 "Best Shot" = "Beste schot";
 "Best Shot goes back to its standard mix." = "Best Shot keert terug naar de standaardmix.";
+"Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it." = "Best Shot leert van de foto's die u bewaart en adviseert het soort opname dat u leuk vindt. Het leert op dit apparaat en niets verlaat het.";
 "Best Shot learns what you like to keep." = "Best Shot leert wat u graag bewaart.";
 "Best value" = "Beste waarde";
 "Billed monthly" = "Maandelijks gefactureerd";
@@ -217,11 +219,13 @@
 "Find and remove unnecessary files." = "Zoek en verwijder onnodige bestanden.";
 "Find duplicates" = "Vind duplicaten";
 "Find receipts and file them in the right place." = "Zoek bonnen en archiveer ze op de juiste plaats.";
+"Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Vindt bonnen in uw schermafbeeldingen en foto's, leest de verkoper, de datum en het bedrag op dit apparaat en laat zien waar ze allemaal worden bewaard.";
 "Folder" = "Map";
 "Folder inside KeepSpace" = "Map binnen KeepSpace";
 "Forecast" = "Voorspelling";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Vergeet wat KeepSpace over uw bibliotheek heeft geleerd. Bij de volgende scan zal het opnieuw worden bekeken.";
 "Free" = "Gratis";
+"Free backs up %d more files this month. The first %d will go; Pro has no limit." = "Gratis back-ups van %d extra bestanden deze maand. De eerste %d gaat; Pro kent geen limiet.";
 "Free includes %@ of cleanup each month. It resets on %@." = "Gratis omvat %@ schoonmaakkosten per maand. Het wordt gereset op %@.";
 "Free trial ends %@, then renews." = "De gratis proefperiode eindigt %@ en wordt vervolgens verlengd.";
 "Free trial ends %@." = "Gratis proefperiode eindigt %@.";
@@ -263,6 +267,7 @@
 "Large Videos" = "Grote video's";
 "Learn from my choices" = "Leer van mijn keuzes";
 "Learn More" = "Meer informatie";
+"Learning is paused on the Free plan. What Best Shot learned is kept." = "Het leren is gepauzeerd in het gratis abonnement. Wat Best Shot heeft geleerd, wordt bewaard.";
 "Learns as you choose" = "Leert zoals u kiest";
 "Library" = "Bibliotheek";
 "Lifetime" = "Levenslang";
@@ -314,6 +319,9 @@
 "OAuth setup required" = "OAuth-installatie vereist";
 "Off" = "Uit";
 "OK" = "Oké";
+"On Free you can still see which videos take the most space and review them for deletion." = "Op Gratis kun je nog steeds zien welke video's de meeste ruimte in beslag nemen en deze bekijken voor verwijdering.";
+"On Free your receipts stay where they are, and you can still review old screenshots." = "Bij Gratis blijven uw bonnen waar ze zijn en kunt u nog steeds oude schermafbeeldingen bekijken.";
+"On Free, Best Shot still picks the best photo in every group." = "Bij Free kiest Best Shot nog steeds de beste foto in elke groep.";
 "On-device AI only" = "Alleen AI op het apparaat";
 "One-time payment" = "Eenmalige betaling";
 "One-time purchase. No subscription, no renewal." = "Eenmalige aankoop. Geen abonnement, geen verlenging.";
@@ -347,6 +355,7 @@
 "Privacy & Security" = "Privacy en veiligheid";
 "Privacy Policy" = "Privacybeleid";
 "Pro" = "Pro";
+"PRO" = "PRO";
 "Pro adds" = "Pro voegt toe";
 "Pro unlocks by itself once the purchase is approved." = "Pro wordt vanzelf ontgrendeld zodra de aankoop is goedgekeurd.";
 "Pro · ends %@" = "Pro · eindigt %@";
@@ -396,6 +405,7 @@
 "Save %d%%" = "Bespaar %d%%";
 "Save Rule" = "Regel opslaan";
 "Save to" = "Opslaan naar";
+"Scanning, the Safety Score and review stay free." = "Scannen, de veiligheidsscore en beoordeling blijven gratis.";
 "Screen Recordings" = "Schermopnamen";
 "Screenshot" = "Schermafbeelding";
 "Screenshots" = "Schermafbeeldingen";
@@ -410,6 +420,7 @@
 "Settings" = "Instellingen";
 "Sharpness" = "Scherpte";
 "Shrink big videos on your device and keep the quality." = "Verklein grote video's op uw apparaat en behoud de kwaliteit.";
+"Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Verkleint een grote video op uw apparaat en behoudt de kwaliteit. U beoordeelt het resultaat voordat het origineel wordt verwijderd.";
 "Similar Photos" = "Soortgelijke foto's";
 "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server." = "Vergelijkbare foto's, beste foto's, tekst in schermafbeeldingen en bonnen zijn allemaal te vinden met modellen die zijn ingebouwd in iOS. Er wordt niets naar een server verzonden.";
 "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server." = "Soortgelijke foto's, gezichten en tekst in schermafbeeldingen en bonnen zijn te vinden bij modellen die in de app zijn gebundeld. Er wordt niets naar een server verzonden.";
@@ -459,6 +470,9 @@
 "Unknown merchant" = "Onbekende handelaar";
 "Unlimited Backup & Rules" = "Onbeperkte back-up en regels";
 "Unlimited Cleanup" = "Onbeperkt opruimen";
+"Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules." = "Onbeperkt opschonen, videocompressie, slimme schermafbeeldingen, ontvangstbevestiging, AI Taste en onbeperkte back-up en regels.";
+"Unlock KeepSpace Pro" = "Ontgrendel KeepSpace Pro";
+"Unlock Unlimited Backup" = "Ontgrendel onbeperkte back-up";
 "Unlock Unlimited Cleanup" = "Ontgrendel onbeperkt opruimen";
 "Upgrade to Pro" = "Upgrade naar Pro";
 "Upload over Wi-Fi only" = "Alleen uploaden via Wi-Fi";
@@ -492,6 +506,7 @@
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "Je bevestigt dit in de volgende stap. Items blijven 30 dagen in de prullenbak.";
 "You're close to this month's free limit" = "Je hebt bijna de gratis limiet van deze maand bereikt";
 "You're on the Free plan." = "Je hebt het gratis abonnement.";
+"You've used this month's free backups." = "U heeft de gratis back-ups van deze maand gebruikt.";
 "You've used this month's free cleanup" = "Je hebt gebruik gemaakt van de gratis opschoonservice van deze maand";
 "Your choice also teaches Best Shot your taste, on this device." = "Door jouw keuze leert Best Shot ook jouw smaak, op dit apparaat.";
 "Your full photo library, with cloud backup status." = "Uw volledige fotobibliotheek, met cloudback-upstatus.";

@@ -116,6 +116,7 @@
     <string name="common_automatically_file_content_where_it_belongs">Arhivați automat conținutul acolo unde îi aparține.</string>
     <string name="common_automation">Automatizare</string>
     <string name="common_back">Înapoi</string>
+    <string name="manual_backup_back_up_d_files">Faceți backup pentru %d fișiere</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Faceți backup cât doriți, cu fiecare regulă și cont în cloud.</string>
     <string name="common_back_up_more">Mai multe copii de rezervă</string>
     <string name="common_back_up_now">Faceți backup acum</string>
@@ -129,6 +130,7 @@
     <string name="common_best">Cel mai bun</string>
     <string name="common_best_shot">Cea mai bună lovitură</string>
     <string name="common_best_shot_goes_back_to_its_standard_mix">Best Shot revine la mixul său standard.</string>
+    <string name="pro_explainer_best_shot_learns_from_the_photos_you_keep_and_starts_rec">Best Shot învață din fotografiile pe care le păstrați și începe să vă recomande tipul de fotografie care vă place. Învață pe acest dispozitiv și nimic nu-l părăsește.</string>
     <string name="common_best_shot_learns_what_you_like_to_keep">Best Shot învață ceea ce îți place să păstrezi.</string>
     <string name="paywall_best_value">Cea mai bună valoare</string>
     <string name="paywall_billed_monthly">Facturat lunar</string>
@@ -219,11 +221,13 @@
     <string name="common_find_and_remove_unnecessary_files">Găsiți și eliminați fișierele inutile.</string>
     <string name="common_find_duplicates">Găsiți duplicate</string>
     <string name="paywall_find_receipts_and_file_them_in_the_right_place">Găsiți chitanțele și depuneți-le la locul potrivit.</string>
+    <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Găsește chitanțe în capturile de ecran și fotografiile tale, citește comerciantul, data și suma de pe acest dispozitiv și arată unde ar fi depuse fiecare.</string>
     <string name="common_folder">Folder</string>
     <string name="common_folder_inside_keepspace">Dosar în interiorul KeepSpace</string>
     <string name="common_forecast">Prognoza</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Uitați ce a învățat KeepSpace despre biblioteca dvs. Va arăta din nou la următoarea scanare.</string>
     <string name="subscription_free">Gratuit</string>
+    <string name="manual_backup_free_backs_up_d_more_files_this_month_the_first_d_will_g">Free face backup pentru încă %d fișiere luna aceasta. Primul %d va merge; Pro nu are limită.</string>
     <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Gratuit include %s de curățare în fiecare lună. Se resetează pe %s.</string>
     <string name="subscription_free_trial_ends_then_renews">Perioada de încercare gratuită se încheie %s, apoi se reînnoiește.</string>
     <string name="subscription_free_trial_ends">Perioada de încercare gratuită se încheie %s.</string>
@@ -265,6 +269,7 @@
     <string name="common_large_videos">Videoclipuri mari</string>
     <string name="common_learn_from_my_choices">Învață din alegerile mele</string>
     <string name="common_learn_more">Aflați mai multe</string>
+    <string name="a_i_taste_learning_is_paused_on_the_free_plan_what_best_shot_learn">Învățarea este întreruptă în planul gratuit. Ceea ce a învățat Best Shot este păstrat.</string>
     <string name="common_learns_as_you_choose">Învață așa cum alegi</string>
     <string name="common_library">Biblioteca</string>
     <string name="paywall_lifetime">Toată viața</string>
@@ -316,6 +321,9 @@
     <string name="common_oauth_setup_required">Este necesară configurarea OAuth</string>
     <string name="common_off">Oprit</string>
     <string name="common_ok">OK</string>
+    <string name="pro_explainer_on_free_you_can_still_see_which_videos_take_the_most_spa">Pe Free puteți vedea în continuare care videoclipuri ocupă cel mai mult spațiu și le puteți examina pentru ștergere.</string>
+    <string name="pro_explainer_on_free_your_receipts_stay_where_they_are_and_you_can_st">Pe Free, chitanțele rămân acolo unde sunt și poți să revizuiești în continuare capturi de ecran vechi.</string>
+    <string name="pro_explainer_on_free_best_shot_still_picks_the_best_photo_in_every_gr">Pe Free, Best Shot alege în continuare cea mai bună fotografie din fiecare grup.</string>
     <string name="common_on_device_ai_only">Numai pe dispozitiv AI</string>
     <string name="paywall_one_time_payment">Plată unică</string>
     <string name="paywall_one_time_purchase_no_subscription_no_renewal">Achiziție unică. Fără abonament, fără reînnoire.</string>
@@ -349,6 +357,7 @@
     <string name="common_privacy_security">Confidențialitate și securitate</string>
     <string name="common_privacy_policy">Politica de confidențialitate</string>
     <string name="subscription_pro">Pro</string>
+    <string name="pro_chip_pro">PRO</string>
     <string name="subscription_pro_adds">adaugă Pro</string>
     <string name="paywall_pro_unlocks_by_itself_once_the_purchase_is_approved">Pro se deblochează de la sine odată ce achiziția este aprobată.</string>
     <string name="subscription_pro_ends_71525627">Pro · se termină %s</string>
@@ -398,6 +407,7 @@
     <string name="paywall_save_d">Salvați %d%%</string>
     <string name="common_save_rule">Salvați regula</string>
     <string name="common_save_to">Salvați în</string>
+    <string name="pro_explainer_scanning_the_safety_score_and_review_stay_free">Scanarea, scorul de siguranță și recenzia rămân gratuite.</string>
     <string name="common_screen_recordings">Înregistrări pe ecran</string>
     <string name="common_screenshot">Captură de ecran</string>
     <string name="common_screenshots">Capturi de ecran</string>
@@ -412,6 +422,7 @@
     <string name="common_settings">Setări</string>
     <string name="common_sharpness">Claritate</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Reduceți videoclipurile mari de pe dispozitiv și păstrați calitatea.</string>
+    <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Reduce un videoclip mare pe dispozitiv și păstrează calitatea. Examinați rezultatul înainte ca originalul să fie eliminat.</string>
     <string name="common_similar_photos">Fotografii similare</string>
     <string name="privacy_similar_photos_best_shots_text_in_screenshots_and_receip">Fotografii similare, cele mai bune fotografii, text în capturi de ecran și chitanțe sunt toate găsite cu modelele încorporate în iOS. Nimic nu este trimis la un server.</string>
     <string name="settings_detail_screens_similar_photos_faces_and_text_in_screenshots_and_receipt">Fotografii, chipuri și text similare din capturi de ecran și chitanțe sunt găsite cu modelele incluse în aplicație. Nimic nu este trimis la un server.</string>
@@ -461,6 +472,9 @@
     <string name="common_unknown_merchant">Comerciant necunoscut</string>
     <string name="common_unlimited_backup_rules">Backup și reguli nelimitate</string>
     <string name="common_unlimited_cleanup">Curățare nelimitată</string>
+    <string name="pro_explainer_unlimited_cleanup_video_compression_smart_screenshots_re">Curățare nelimitată, compresie video, capturi de ecran inteligente, depunere a chitanțelor, AI Gust și backup și reguli nelimitate.</string>
+    <string name="common_unlock_keepspace_pro">Deblocați KeepSpace Pro</string>
+    <string name="manual_backup_unlock_unlimited_backup">Deblocați backup nelimitat</string>
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Deblocați curățarea nelimitată</string>
     <string name="subscription_upgrade_to_pro">Faceți upgrade la Pro</string>
     <string name="common_upload_over_wi_fi_only">Încărcați numai prin Wi-Fi</string>
@@ -494,6 +508,7 @@
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Veți confirma în pasul următor. Articolele rămân în Coșul de gunoi timp de 30 de zile.</string>
     <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Ești aproape de limita gratuită a acestei luni</string>
     <string name="subscription_you_re_on_the_free_plan">Ești în planul Free.</string>
+    <string name="manual_backup_you_ve_used_this_month_s_free_backups">Ați folosit backup-urile gratuite din această lună.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Ați folosit curățarea gratuită din această lună</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Alegerea dvs. vă învață și gustul Best Shot pe acest dispozitiv.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Biblioteca dvs. completă de fotografii, cu starea de rezervă în cloud.</string>

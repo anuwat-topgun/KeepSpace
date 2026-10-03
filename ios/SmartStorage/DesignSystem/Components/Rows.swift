@@ -50,10 +50,14 @@ struct CardRow: View {
     var tint: Tint = .teal
     let title: String
     var subtitle: String?
+    /// Shows a PRO chip: the row stays visible and tappable, but what it opens is a Pro feature.
+    var isProLocked = false
 
     var body: some View {
         Card(padding: 16) {
-            ListTile(systemImage: systemImage, tint: tint, title: title, subtitle: subtitle)
+            ListTile(systemImage: systemImage, tint: tint, title: title, subtitle: subtitle) {
+                if isProLocked { ProChip() }
+            }
         }
     }
 }

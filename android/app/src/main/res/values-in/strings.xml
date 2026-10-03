@@ -116,6 +116,7 @@
     <string name="common_automatically_file_content_where_it_belongs">Secara otomatis mengarsipkan konten pada tempatnya.</string>
     <string name="common_automation">Otomatisasi</string>
     <string name="common_back">Kembali</string>
+    <string name="manual_backup_back_up_d_files">Cadangkan %d File</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Cadangkan sebanyak yang Anda inginkan, dengan setiap aturan dan akun cloud.</string>
     <string name="common_back_up_more">Cadangkan Lebih Banyak</string>
     <string name="common_back_up_now">Cadangkan Sekarang</string>
@@ -129,6 +130,7 @@
     <string name="common_best">Terbaik</string>
     <string name="common_best_shot">Tembakan Terbaik</string>
     <string name="common_best_shot_goes_back_to_its_standard_mix">Best Shot kembali ke campuran standarnya.</string>
+    <string name="pro_explainer_best_shot_learns_from_the_photos_you_keep_and_starts_rec">Best Shot belajar dari foto yang Anda simpan dan mulai merekomendasikan jenis foto yang Anda sukai. Ia belajar di perangkat ini dan tidak ada yang meninggalkannya.</string>
     <string name="common_best_shot_learns_what_you_like_to_keep">Best Shot mempelajari apa yang ingin Anda simpan.</string>
     <string name="paywall_best_value">Nilai terbaik</string>
     <string name="paywall_billed_monthly">Ditagih setiap bulan</string>
@@ -219,11 +221,13 @@
     <string name="common_find_and_remove_unnecessary_files">Temukan dan hapus file yang tidak diperlukan.</string>
     <string name="common_find_duplicates">Temukan duplikat</string>
     <string name="paywall_find_receipts_and_file_them_in_the_right_place">Temukan tanda terima dan arsipkan di tempat yang tepat.</string>
+    <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Menemukan tanda terima di tangkapan layar dan foto Anda, membaca pedagang, tanggal dan jumlah di perangkat ini, dan menunjukkan di mana masing-masing tanda terima akan disimpan.</string>
     <string name="common_folder">Map</string>
     <string name="common_folder_inside_keepspace">Folder di dalam KeepSpace</string>
     <string name="common_forecast">Ramalan cuaca</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Lupakan apa yang KeepSpace pelajari tentang perpustakaan Anda. Ini akan terlihat lagi pada pemindaian berikutnya.</string>
     <string name="subscription_free">Gratis</string>
+    <string name="manual_backup_free_backs_up_d_more_files_this_month_the_first_d_will_g">Cadangan gratis %d lebih banyak file bulan ini. %d pertama akan hilang; Pro tidak memiliki batas.</string>
     <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Gratis termasuk %s pembersihan setiap bulan. Ini disetel ulang pada %s.</string>
     <string name="subscription_free_trial_ends_then_renews">Uji coba gratis berakhir %s, lalu diperpanjang.</string>
     <string name="subscription_free_trial_ends">Uji coba gratis berakhir %s.</string>
@@ -265,6 +269,7 @@
     <string name="common_large_videos">Video Besar</string>
     <string name="common_learn_from_my_choices">Belajar dari pilihan saya</string>
     <string name="common_learn_more">Pelajari Lebih Lanjut</string>
+    <string name="a_i_taste_learning_is_paused_on_the_free_plan_what_best_shot_learn">Pembelajaran dijeda pada paket Gratis. Apa yang dipelajari oleh Best Shot disimpan.</string>
     <string name="common_learns_as_you_choose">Belajar sesuai pilihan Anda</string>
     <string name="common_library">Perpustakaan</string>
     <string name="paywall_lifetime">Seumur hidup</string>
@@ -316,6 +321,9 @@
     <string name="common_oauth_setup_required">Diperlukan penyiapan OAuth</string>
     <string name="common_off">Mati</string>
     <string name="common_ok">Oke</string>
+    <string name="pro_explainer_on_free_you_can_still_see_which_videos_take_the_most_spa">Di Gratis, Anda masih dapat melihat video mana yang paling banyak memakan ruang dan meninjaunya untuk dihapus.</string>
+    <string name="pro_explainer_on_free_your_receipts_stay_where_they_are_and_you_can_st">Di Gratis, tanda terima Anda tetap di tempatnya, dan Anda masih dapat meninjau tangkapan layar lama.</string>
+    <string name="pro_explainer_on_free_best_shot_still_picks_the_best_photo_in_every_gr">Di Gratis, Best Shot tetap memilih foto terbaik di setiap grup.</string>
     <string name="common_on_device_ai_only">Hanya AI di perangkat</string>
     <string name="paywall_one_time_payment">Pembayaran satu kali</string>
     <string name="paywall_one_time_purchase_no_subscription_no_renewal">Pembelian satu kali. Tanpa berlangganan, tanpa perpanjangan.</string>
@@ -349,6 +357,7 @@
     <string name="common_privacy_security">Privasi &amp; Keamanan</string>
     <string name="common_privacy_policy">Kebijakan Privasi</string>
     <string name="subscription_pro">Pro</string>
+    <string name="pro_chip_pro">PRO</string>
     <string name="subscription_pro_adds">Pro menambahkan</string>
     <string name="paywall_pro_unlocks_by_itself_once_the_purchase_is_approved">Pro terbuka dengan sendirinya setelah pembelian disetujui.</string>
     <string name="subscription_pro_ends_71525627">Pro · berakhir %s</string>
@@ -398,6 +407,7 @@
     <string name="paywall_save_d">Hemat %d%%</string>
     <string name="common_save_rule">Simpan Aturan</string>
     <string name="common_save_to">Simpan ke</string>
+    <string name="pro_explainer_scanning_the_safety_score_and_review_stay_free">Pemindaian, Skor Keamanan, dan ulasan tetap gratis.</string>
     <string name="common_screen_recordings">Rekaman Layar</string>
     <string name="common_screenshot">Tangkapan layar</string>
     <string name="common_screenshots">Tangkapan layar</string>
@@ -412,6 +422,7 @@
     <string name="common_settings">Pengaturan</string>
     <string name="common_sharpness">Ketajaman</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Kecilkan video berukuran besar di perangkat Anda dan pertahankan kualitasnya.</string>
+    <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Menyusut video besar di perangkat Anda dan menjaga kualitasnya. Anda meninjau hasilnya sebelum yang asli dihapus.</string>
     <string name="common_similar_photos">Foto Serupa</string>
     <string name="privacy_similar_photos_best_shots_text_in_screenshots_and_receip">Foto serupa, foto terbaik, teks di tangkapan layar, dan tanda terima semuanya ditemukan dengan model bawaan iOS. Tidak ada yang dikirim ke server.</string>
     <string name="settings_detail_screens_similar_photos_faces_and_text_in_screenshots_and_receipt">Foto, wajah, dan teks serupa dalam tangkapan layar dan tanda terima ditemukan pada model yang disertakan dalam aplikasi. Tidak ada yang dikirim ke server.</string>
@@ -461,6 +472,9 @@
     <string name="common_unknown_merchant">Pedagang tak dikenal</string>
     <string name="common_unlimited_backup_rules">Cadangan &amp; Aturan Tidak Terbatas</string>
     <string name="common_unlimited_cleanup">Pembersihan Tanpa Batas</string>
+    <string name="pro_explainer_unlimited_cleanup_video_compression_smart_screenshots_re">Pembersihan tanpa batas, kompresi video, tangkapan layar cerdas, Pengarsipan Tanda Terima, AI Rasa, serta pencadangan dan aturan tanpa batas.</string>
+    <string name="common_unlock_keepspace_pro">Buka kunci KeepSpace Pro</string>
+    <string name="manual_backup_unlock_unlimited_backup">Buka Kunci Cadangan Tanpa Batas</string>
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Buka Kunci Pembersihan Tanpa Batas</string>
     <string name="subscription_upgrade_to_pro">Tingkatkan ke Pro</string>
     <string name="common_upload_over_wi_fi_only">Unggah melalui Wi-Fi saja</string>
@@ -494,6 +508,7 @@
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Anda akan mengonfirmasinya di langkah berikutnya. Item tetap berada di Sampah selama 30 hari.</string>
     <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Anda hampir mencapai batas gratis bulan ini</string>
     <string name="subscription_you_re_on_the_free_plan">Anda menggunakan paket Gratis.</string>
+    <string name="manual_backup_you_ve_used_this_month_s_free_backups">Anda telah menggunakan cadangan gratis bulan ini.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Anda telah menggunakan pembersihan gratis bulan ini</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Pilihan Anda juga mengajarkan Best Shot selera Anda, di perangkat ini.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Perpustakaan foto lengkap Anda, dengan status cadangan cloud.</string>

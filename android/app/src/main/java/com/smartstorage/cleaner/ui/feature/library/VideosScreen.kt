@@ -2,6 +2,12 @@ package com.smartstorage.cleaner.ui.feature.library
 
 import com.smartstorage.cleaner.media.LocalMediaActions
 import com.smartstorage.cleaner.media.CompressionPreset
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import com.smartstorage.cleaner.monetization.LocalMonetization
+import com.smartstorage.cleaner.monetization.ProFeature
+import com.smartstorage.cleaner.ui.components.ProChip
+import com.smartstorage.cleaner.ui.feature.paywall.ProExplainerSheet
 import com.smartstorage.cleaner.media.ReviewKind
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
@@ -106,6 +112,9 @@ private fun Metric(icon: ImageVector, tint: Tint, title: String, value: String, 
 private fun VideoRow(video: VideoItem, onReview: (ReviewKind) -> Unit) {
     val colors = SmartTheme.colors
     var compressing by rememberSaveable(video.id) { mutableStateOf(false) }
+    var explaining by rememberSaveable(video.id) { mutableStateOf(false) }
+    val proStatus by LocalMonetization.current.status.collectAsState()
+    val isPro = proStatus.isPro
     val canCompress = LocalMediaActions.current?.canCompress == true &&
         CompressionPreset.entries.any { video.estimatedSavings(it) != null }
     SmartCard(contentPadding = PaddingValues(12.dp)) {
@@ -123,9 +132,13 @@ private fun VideoRow(video: VideoItem, onReview: (ReviewKind) -> Unit) {
             if (video.isMeaningful || !canCompress) {
                 InlinePillButton("Review", onClick = { onReview(ReviewKind.LargeVideos) }, tint = Tint.Mint)
             } else {
-                InlinePillButton("Compress", onClick = { compressing = true }, tint = Tint.Teal)
+                Row(horizontalArrangement = Arrangement.spacedBy(6.dp), verticalAlignment = Alignment.CenterVertically) {
+                    InlinePillButton("Compress", onClick = { if (isPro) compressing = true else explaining = true }, tint = Tint.Teal)
+                    if (!isPro) ProChip()
+                }
             }
         }
     }
     if (compressing) CompressSheet(video, onDismiss = { compressing = false })
+    if (explaining) ProExplainerSheet(ProFeature.VideoCompression, onDismiss = { explaining = false })
 }

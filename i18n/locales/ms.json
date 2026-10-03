@@ -503,6 +503,21 @@
     "quota_gate_sheet.unlock_unlimited_cleanup": "Buka kunci Pembersihan Tanpa Had",
     "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Anda hampir mencapai had percuma bulan ini",
     "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Anda telah menggunakan pembersihan percuma bulan ini",
-    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Pilihan anda ialah %@. Anda boleh membebaskan %@ lagi pada Percuma."
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Pilihan anda ialah %@. Anda boleh membebaskan %@ lagi pada Percuma.",
+    "manual_backup.back_up_d_files": "Sandarkan %d Fail",
+    "pro_explainer.best_shot_learns_from_the_photos_you_keep_and_starts_rec": "Syot Terbaik belajar daripada foto yang anda simpan dan mula mengesyorkan jenis syot yang anda suka. Ia belajar pada peranti ini dan tiada apa yang meninggalkannya.",
+    "pro_explainer.finds_receipts_in_your_screenshots_and_photos_reads_the": "Mencari resit dalam tangkapan skrin dan foto anda, membaca pedagang, tarikh dan jumlah pada peranti ini dan menunjukkan tempat setiap satu akan difailkan.",
+    "manual_backup.free_backs_up_d_more_files_this_month_the_first_d_will_g": "Sandaran percuma %d lagi fail bulan ini. %d pertama akan pergi; Pro tiada had.",
+    "a_i_taste.learning_is_paused_on_the_free_plan_what_best_shot_learn": "Pembelajaran dijeda pada pelan Percuma. Apa yang dipelajari oleh Best Shot disimpan.",
+    "pro_explainer.on_free_you_can_still_see_which_videos_take_the_most_spa": "Secara Percuma, anda masih boleh melihat video yang paling banyak menggunakan ruang dan menyemaknya untuk dipadamkan.",
+    "pro_explainer.on_free_your_receipts_stay_where_they_are_and_you_can_st": "Secara Percuma, resit anda kekal di tempatnya dan anda masih boleh menyemak tangkapan skrin lama.",
+    "pro_explainer.on_free_best_shot_still_picks_the_best_photo_in_every_gr": "Secara Percuma, Syot Terbaik masih memilih foto terbaik dalam setiap kumpulan.",
+    "pro_chip.pro": "PRO",
+    "pro_explainer.scanning_the_safety_score_and_review_stay_free": "Mengimbas, Skor Keselamatan dan ulasan kekal percuma.",
+    "pro_explainer.shrinks_a_big_video_on_your_device_and_keeps_the_quality": "Mengecilkan video besar pada peranti anda dan mengekalkan kualitinya. Anda menyemak keputusan sebelum yang asal dialih keluar.",
+    "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Pembersihan tanpa had, pemampatan video, tangkapan skrin pintar, Pemfailan Resit, AI Rasa dan sandaran dan peraturan tanpa had.",
+    "common.unlock_keepspace_pro": "Buka kunci KeepSpace Pro",
+    "manual_backup.unlock_unlimited_backup": "Buka Kunci Sandaran Tanpa Had",
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Anda telah menggunakan sandaran percuma bulan ini."
   }
 }

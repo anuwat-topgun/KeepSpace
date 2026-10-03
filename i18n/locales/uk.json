@@ -503,6 +503,21 @@
     "quota_gate_sheet.unlock_unlimited_cleanup": "Розблокуйте Unlimited Cleanup",
     "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Ви майже вичерпали безкоштовний ліміт цього місяця",
     "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Ви використали безкоштовне прибирання цього місяця",
-    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Ви вибрали %@. Ви можете звільнити ще %@ на Free."
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Ви вибрали %@. Ви можете звільнити ще %@ на Free.",
+    "manual_backup.back_up_d_files": "Резервне копіювання %d файлів",
+    "pro_explainer.best_shot_learns_from_the_photos_you_keep_and_starts_rec": "Best Shot вивчає фотографії, які ви зберігаєте, і починає рекомендувати той тип знімка, який вам подобається. Він навчається на цьому пристрої, і нічого не залишає його.",
+    "pro_explainer.finds_receipts_in_your_screenshots_and_photos_reads_the": "Знаходить квитанції на ваших знімках екрана та фотографіях, зчитує продавця, дату та суму на цьому пристрої та показує, куди потрібно помістити кожну з них.",
+    "manual_backup.free_backs_up_d_more_files_this_month_the_first_d_will_g": "Безкоштовне резервне копіювання ще %d файлів цього місяця. Піде перший %d; Профі не має обмежень.",
+    "a_i_taste.learning_is_paused_on_the_free_plan_what_best_shot_learn": "Навчання призупинено на безкоштовному плані. Те, про що дізнався Best Shot, зберігається.",
+    "pro_explainer.on_free_you_can_still_see_which_videos_take_the_most_spa": "У Free ви все ще можете бачити, які відео займають найбільше місця, і переглядати їх для видалення.",
+    "pro_explainer.on_free_your_receipts_stay_where_they_are_and_you_can_st": "У режимі «Безкоштовно» ваші квитанції залишаються там, де вони є, і ви можете переглядати старі знімки екрана.",
+    "pro_explainer.on_free_best_shot_still_picks_the_best_photo_in_every_gr": "На Free, Best Shot все ще вибирає найкраще фото в кожній групі.",
+    "pro_chip.pro": "PRO",
+    "pro_explainer.scanning_the_safety_score_and_review_stay_free": "Сканування, оцінка безпеки та перегляд залишаються безкоштовними.",
+    "pro_explainer.shrinks_a_big_video_on_your_device_and_keeps_the_quality": "Зменшує велике відео на вашому пристрої та зберігає якість. Ви переглядаєте результат перед видаленням оригіналу.",
+    "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Необмежене очищення, стиснення відео, інтелектуальні скріншоти, реєстрація квитанцій, AI смак, необмежене резервне копіювання та правила.",
+    "common.unlock_keepspace_pro": "Розблокуйте KeepSpace Pro",
+    "manual_backup.unlock_unlimited_backup": "Розблокуйте необмежену резервну копію",
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Ви використали безкоштовні резервні копії цього місяця."
   }
 }

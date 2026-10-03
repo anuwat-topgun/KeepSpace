@@ -116,6 +116,7 @@
     <string name="common_automatically_file_content_where_it_belongs">Automatically file content where it belongs.</string>
     <string name="common_automation">Automation</string>
     <string name="common_back">Back</string>
+    <string name="manual_backup_back_up_d_files">Back Up %d Files</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Back up as much as you want, with every rule and cloud account.</string>
     <string name="common_back_up_more">Back Up More</string>
     <string name="common_back_up_now">Back Up Now</string>
@@ -129,6 +130,7 @@
     <string name="common_best">Best</string>
     <string name="common_best_shot">Best Shot</string>
     <string name="common_best_shot_goes_back_to_its_standard_mix">Best Shot goes back to its standard mix.</string>
+    <string name="pro_explainer_best_shot_learns_from_the_photos_you_keep_and_starts_rec">Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it.</string>
     <string name="common_best_shot_learns_what_you_like_to_keep">Best Shot learns what you like to keep.</string>
     <string name="paywall_best_value">Best value</string>
     <string name="paywall_billed_monthly">Billed monthly</string>
@@ -219,11 +221,13 @@
     <string name="common_find_and_remove_unnecessary_files">Find and remove unnecessary files.</string>
     <string name="common_find_duplicates">Find duplicates</string>
     <string name="paywall_find_receipts_and_file_them_in_the_right_place">Find receipts and file them in the right place.</string>
+    <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed.</string>
     <string name="common_folder">Folder</string>
     <string name="common_folder_inside_keepspace">Folder inside KeepSpace</string>
     <string name="common_forecast">Forecast</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Forget what KeepSpace learned about your library. It will look again on the next scan.</string>
     <string name="subscription_free">Free</string>
+    <string name="manual_backup_free_backs_up_d_more_files_this_month_the_first_d_will_g">Free backs up %d more files this month. The first %d will go; Pro has no limit.</string>
     <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Free includes %s of cleanup each month. It resets on %s.</string>
     <string name="subscription_free_trial_ends_then_renews">Free trial ends %s, then renews.</string>
     <string name="subscription_free_trial_ends">Free trial ends %s.</string>
@@ -265,6 +269,7 @@
     <string name="common_large_videos">Large Videos</string>
     <string name="common_learn_from_my_choices">Learn from my choices</string>
     <string name="common_learn_more">Learn More</string>
+    <string name="a_i_taste_learning_is_paused_on_the_free_plan_what_best_shot_learn">Learning is paused on the Free plan. What Best Shot learned is kept.</string>
     <string name="common_learns_as_you_choose">Learns as you choose</string>
     <string name="common_library">Library</string>
     <string name="paywall_lifetime">Lifetime</string>
@@ -316,6 +321,9 @@
     <string name="common_oauth_setup_required">OAuth setup required</string>
     <string name="common_off">Off</string>
     <string name="common_ok">OK</string>
+    <string name="pro_explainer_on_free_you_can_still_see_which_videos_take_the_most_spa">On Free you can still see which videos take the most space and review them for deletion.</string>
+    <string name="pro_explainer_on_free_your_receipts_stay_where_they_are_and_you_can_st">On Free your receipts stay where they are, and you can still review old screenshots.</string>
+    <string name="pro_explainer_on_free_best_shot_still_picks_the_best_photo_in_every_gr">On Free, Best Shot still picks the best photo in every group.</string>
     <string name="common_on_device_ai_only">On-device AI only</string>
     <string name="paywall_one_time_payment">One-time payment</string>
     <string name="paywall_one_time_purchase_no_subscription_no_renewal">One-time purchase. No subscription, no renewal.</string>
@@ -349,6 +357,7 @@
     <string name="common_privacy_security">Privacy &amp; Security</string>
     <string name="common_privacy_policy">Privacy Policy</string>
     <string name="subscription_pro">Pro</string>
+    <string name="pro_chip_pro">PRO</string>
     <string name="subscription_pro_adds">Pro adds</string>
     <string name="paywall_pro_unlocks_by_itself_once_the_purchase_is_approved">Pro unlocks by itself once the purchase is approved.</string>
     <string name="subscription_pro_ends_71525627">Pro · ends %s</string>
@@ -398,6 +407,7 @@
     <string name="paywall_save_d">Save %d%%</string>
     <string name="common_save_rule">Save Rule</string>
     <string name="common_save_to">Save to</string>
+    <string name="pro_explainer_scanning_the_safety_score_and_review_stay_free">Scanning, the Safety Score and review stay free.</string>
     <string name="common_screen_recordings">Screen Recordings</string>
     <string name="common_screenshot">Screenshot</string>
     <string name="common_screenshots">Screenshots</string>
@@ -412,6 +422,7 @@
     <string name="common_settings">Settings</string>
     <string name="common_sharpness">Sharpness</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Shrink big videos on your device and keep the quality.</string>
+    <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Shrinks a big video on your device and keeps the quality. You review the result before the original is removed.</string>
     <string name="common_similar_photos">Similar Photos</string>
     <string name="privacy_similar_photos_best_shots_text_in_screenshots_and_receip">Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server.</string>
     <string name="settings_detail_screens_similar_photos_faces_and_text_in_screenshots_and_receipt">Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server.</string>
@@ -461,6 +472,9 @@
     <string name="common_unknown_merchant">Unknown merchant</string>
     <string name="common_unlimited_backup_rules">Unlimited Backup &amp; Rules</string>
     <string name="common_unlimited_cleanup">Unlimited Cleanup</string>
+    <string name="pro_explainer_unlimited_cleanup_video_compression_smart_screenshots_re">Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules.</string>
+    <string name="common_unlock_keepspace_pro">Unlock KeepSpace Pro</string>
+    <string name="manual_backup_unlock_unlimited_backup">Unlock Unlimited Backup</string>
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Unlock Unlimited Cleanup</string>
     <string name="subscription_upgrade_to_pro">Upgrade to Pro</string>
     <string name="common_upload_over_wi_fi_only">Upload over Wi-Fi only</string>
@@ -494,6 +508,7 @@
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">You\'ll confirm in the next step. Items stay in Trash for 30 days.</string>
     <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">You\'re close to this month\'s free limit</string>
     <string name="subscription_you_re_on_the_free_plan">You\'re on the Free plan.</string>
+    <string name="manual_backup_you_ve_used_this_month_s_free_backups">You\'ve used this month\'s free backups.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">You\'ve used this month\'s free cleanup</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Your choice also teaches Best Shot your taste, on this device.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Your full photo library, with cloud backup status.</string>

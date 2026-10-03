@@ -1,5 +1,9 @@
 package com.smartstorage.cleaner.ui.feature.rules
 
+import com.smartstorage.cleaner.monetization.LocalMonetization
+import com.smartstorage.cleaner.monetization.LocalPresentPaywall
+import com.smartstorage.cleaner.monetization.ProFeature
+import com.smartstorage.cleaner.ui.components.ProChip
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -144,7 +148,16 @@ fun StorageRulesScreen(onAdd: () -> Unit, onEdit: (String) -> Unit, onBack: () -
 
         AdaptiveGrid(rules, minColumnWidth = 400.dp) { rule -> RuleRow(rule, onOpen = { onEdit(rule.id) }) }
 
-        PrimaryButton("+  Add Rule", onClick = onAdd, modifier = Modifier.fillMaxWidth().padding(top = 4.dp), showsArrow = false)
+        // The first rule is free; a second opens the paywall. Existing rules are never removed.
+        val monetization = LocalMonetization.current
+        val proStatus by monetization.status.collectAsState()
+        val presentPaywall = LocalPresentPaywall.current
+        val canAdd = remember(proStatus, rules.size) { monetization.allowances().canCreateRule(rules.size) }
+        Box(contentAlignment = Alignment.Center) {
+            PrimaryButton("+  Add Rule", onClick = { if (canAdd) onAdd() else presentPaywall(ProFeature.UnlimitedRules) },
+                modifier = Modifier.fillMaxWidth().padding(top = 4.dp), showsArrow = false)
+            if (!canAdd) ProChip(Modifier.align(Alignment.CenterEnd).padding(end = 20.dp, top = 4.dp))
+        }
     }
 }
 

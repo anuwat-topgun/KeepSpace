@@ -116,6 +116,7 @@
     <string name="common_automatically_file_content_where_it_belongs">Arkivera automatiskt innehåll där det hör hemma.</string>
     <string name="common_automation">Automation</string>
     <string name="common_back">Tillbaka</string>
+    <string name="manual_backup_back_up_d_files">Säkerhetskopiera %d filer</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Säkerhetskopiera så mycket du vill, med varje regel och molnkonto.</string>
     <string name="common_back_up_more">Säkerhetskopiera mer</string>
     <string name="common_back_up_now">Säkerhetskopiera nu</string>
@@ -129,6 +130,7 @@
     <string name="common_best">Bästa</string>
     <string name="common_best_shot">Bästa skottet</string>
     <string name="common_best_shot_goes_back_to_its_standard_mix">Best Shot går tillbaka till sin standardmix.</string>
+    <string name="pro_explainer_best_shot_learns_from_the_photos_you_keep_and_starts_rec">Best Shot lär sig av de foton du sparar och börjar rekommendera vilken typ av bild du gillar. Den lär sig på den här enheten och ingenting lämnar den.</string>
     <string name="common_best_shot_learns_what_you_like_to_keep">Best Shot lär sig vad du gillar att behålla.</string>
     <string name="paywall_best_value">Bästa värde</string>
     <string name="paywall_billed_monthly">Faktureras månadsvis</string>
@@ -219,11 +221,13 @@
     <string name="common_find_and_remove_unnecessary_files">Hitta och ta bort onödiga filer.</string>
     <string name="common_find_duplicates">Hitta dubbletter</string>
     <string name="paywall_find_receipts_and_file_them_in_the_right_place">Hitta kvitton och spara dem på rätt plats.</string>
+    <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Hittar kvitton i dina skärmdumpar och foton, läser säljaren, datum och belopp på den här enheten och visar var var och en skulle arkiveras.</string>
     <string name="common_folder">Mapp</string>
     <string name="common_folder_inside_keepspace">Mapp inuti KeepSpace</string>
     <string name="common_forecast">Prognos</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Glöm vad KeepSpace lärde sig om ditt bibliotek. Det kommer att se ut igen vid nästa skanning.</string>
     <string name="subscription_free">Gratis</string>
+    <string name="manual_backup_free_backs_up_d_more_files_this_month_the_first_d_will_g">Gratis säkerhetskopierar %d filer till denna månad. Den första %d kommer att gå; Pro har ingen gräns.</string>
     <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Gratis inkluderar %s av städning varje månad. Den återställs på %s.</string>
     <string name="subscription_free_trial_ends_then_renews">Gratis provperiod slutar %s och förnyas sedan.</string>
     <string name="subscription_free_trial_ends">Gratis provperiod slutar %s.</string>
@@ -265,6 +269,7 @@
     <string name="common_large_videos">Stora videor</string>
     <string name="common_learn_from_my_choices">Lär dig av mina val</string>
     <string name="common_learn_more">Läs mer</string>
+    <string name="a_i_taste_learning_is_paused_on_the_free_plan_what_best_shot_learn">Lärandet pausas på gratisplanen. Det som Best Shot lärt sig bevaras.</string>
     <string name="common_learns_as_you_choose">Lär dig som du väljer</string>
     <string name="common_library">Bibliotek</string>
     <string name="paywall_lifetime">Livstid</string>
@@ -316,6 +321,9 @@
     <string name="common_oauth_setup_required">OAuth-konfiguration krävs</string>
     <string name="common_off">Av</string>
     <string name="common_ok">OK</string>
+    <string name="pro_explainer_on_free_you_can_still_see_which_videos_take_the_most_spa">På Gratis kan du fortfarande se vilka videor som tar mest plats och granska dem för radering.</string>
+    <string name="pro_explainer_on_free_your_receipts_stay_where_they_are_and_you_can_st">På Gratis stannar dina kvitton där de är, och du kan fortfarande granska gamla skärmdumpar.</string>
+    <string name="pro_explainer_on_free_best_shot_still_picks_the_best_photo_in_every_gr">På Gratis väljer Best Shot fortfarande det bästa fotot i varje grupp.</string>
     <string name="common_on_device_ai_only">Endast på enheten AI</string>
     <string name="paywall_one_time_payment">Engångsbetalning</string>
     <string name="paywall_one_time_purchase_no_subscription_no_renewal">Engångsköp. Ingen prenumeration, ingen förnyelse.</string>
@@ -349,6 +357,7 @@
     <string name="common_privacy_security">Sekretess och säkerhet</string>
     <string name="common_privacy_policy">Sekretesspolicy</string>
     <string name="subscription_pro">Pro</string>
+    <string name="pro_chip_pro">PRO</string>
     <string name="subscription_pro_adds">Pro tillägger</string>
     <string name="paywall_pro_unlocks_by_itself_once_the_purchase_is_approved">Pro låser upp av sig själv när köpet är godkänt.</string>
     <string name="subscription_pro_ends_71525627">Pro · slutar %s</string>
@@ -398,6 +407,7 @@
     <string name="paywall_save_d">Spara %d%%</string>
     <string name="common_save_rule">Spara regel</string>
     <string name="common_save_to">Spara till</string>
+    <string name="pro_explainer_scanning_the_safety_score_and_review_stay_free">Skanning, säkerhetspoäng och recension är gratis.</string>
     <string name="common_screen_recordings">Skärminspelningar</string>
     <string name="common_screenshot">Skärmdump</string>
     <string name="common_screenshots">Skärmdumpar</string>
@@ -412,6 +422,7 @@
     <string name="common_settings">Inställningar</string>
     <string name="common_sharpness">Skärpa</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Förminska stora videor på din enhet och behåll kvaliteten.</string>
+    <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Krymper en stor video på din enhet och behåller kvaliteten. Du granskar resultatet innan originalet tas bort.</string>
     <string name="common_similar_photos">Liknande foton</string>
     <string name="privacy_similar_photos_best_shots_text_in_screenshots_and_receip">Liknande bilder, bästa bilder, text i skärmdumpar och kvitton finns alla med modeller inbyggda i iOS. Ingenting skickas till en server.</string>
     <string name="settings_detail_screens_similar_photos_faces_and_text_in_screenshots_and_receipt">Liknande foton, ansikten och text i skärmdumpar och kvitton finns med modeller inkluderade i appen. Ingenting skickas till en server.</string>
@@ -461,6 +472,9 @@
     <string name="common_unknown_merchant">Okänd köpman</string>
     <string name="common_unlimited_backup_rules">Obegränsad säkerhetskopiering och regler</string>
     <string name="common_unlimited_cleanup">Obegränsad rengöring</string>
+    <string name="pro_explainer_unlimited_cleanup_video_compression_smart_screenshots_re">Obegränsad rensning, videokomprimering, smarta skärmdumpar, kvittoarkivering, AI Taste och obegränsad säkerhetskopiering och regler.</string>
+    <string name="common_unlock_keepspace_pro">Lås upp KeepSpace Pro</string>
+    <string name="manual_backup_unlock_unlimited_backup">Lås upp obegränsad säkerhetskopiering</string>
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Lås upp obegränsad rensning</string>
     <string name="subscription_upgrade_to_pro">Uppgradera till Pro</string>
     <string name="common_upload_over_wi_fi_only">Ladda upp endast över Wi-Fi</string>
@@ -494,6 +508,7 @@
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Du bekräftar i nästa steg. Föremål stannar i papperskorgen i 30 dagar.</string>
     <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Du är nära den här månadens gratisgräns</string>
     <string name="subscription_you_re_on_the_free_plan">Du har gratisplanen.</string>
+    <string name="manual_backup_you_ve_used_this_month_s_free_backups">Du har använt denna månads kostnadsfria säkerhetskopior.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Du har använt den här månadens gratis städning</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Ditt val lär också Best Shot din smak, på den här enheten.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Ditt fullständiga fotobibliotek, med molnsäkerhetsstatus.</string>

@@ -114,6 +114,7 @@
 "Automatically file content where it belongs." = "Automatically file content where it belongs.";
 "Automation" = "Automation";
 "Back" = "Back";
+"Back Up %d Files" = "Back Up %d Files";
 "Back up as much as you want, with every rule and cloud account." = "Back up as much as you want, with every rule and cloud account.";
 "Back Up More" = "Back Up More";
 "Back Up Now" = "Back Up Now";
@@ -127,6 +128,7 @@
 "Best" = "Best";
 "Best Shot" = "Best Shot";
 "Best Shot goes back to its standard mix." = "Best Shot goes back to its standard mix.";
+"Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it." = "Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it.";
 "Best Shot learns what you like to keep." = "Best Shot learns what you like to keep.";
 "Best value" = "Best value";
 "Billed monthly" = "Billed monthly";
@@ -217,11 +219,13 @@
 "Find and remove unnecessary files." = "Find and remove unnecessary files.";
 "Find duplicates" = "Find duplicates";
 "Find receipts and file them in the right place." = "Find receipts and file them in the right place.";
+"Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed.";
 "Folder" = "Folder";
 "Folder inside KeepSpace" = "Folder inside KeepSpace";
 "Forecast" = "Forecast";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Forget what KeepSpace learned about your library. It will look again on the next scan.";
 "Free" = "Free";
+"Free backs up %d more files this month. The first %d will go; Pro has no limit." = "Free backs up %d more files this month. The first %d will go; Pro has no limit.";
 "Free includes %@ of cleanup each month. It resets on %@." = "Free includes %@ of cleanup each month. It resets on %@.";
 "Free trial ends %@, then renews." = "Free trial ends %@, then renews.";
 "Free trial ends %@." = "Free trial ends %@.";
@@ -263,6 +267,7 @@
 "Large Videos" = "Large Videos";
 "Learn from my choices" = "Learn from my choices";
 "Learn More" = "Learn More";
+"Learning is paused on the Free plan. What Best Shot learned is kept." = "Learning is paused on the Free plan. What Best Shot learned is kept.";
 "Learns as you choose" = "Learns as you choose";
 "Library" = "Library";
 "Lifetime" = "Lifetime";
@@ -314,6 +319,9 @@
 "OAuth setup required" = "OAuth setup required";
 "Off" = "Off";
 "OK" = "OK";
+"On Free you can still see which videos take the most space and review them for deletion." = "On Free you can still see which videos take the most space and review them for deletion.";
+"On Free your receipts stay where they are, and you can still review old screenshots." = "On Free your receipts stay where they are, and you can still review old screenshots.";
+"On Free, Best Shot still picks the best photo in every group." = "On Free, Best Shot still picks the best photo in every group.";
 "On-device AI only" = "On-device AI only";
 "One-time payment" = "One-time payment";
 "One-time purchase. No subscription, no renewal." = "One-time purchase. No subscription, no renewal.";
@@ -347,6 +355,7 @@
 "Privacy & Security" = "Privacy & Security";
 "Privacy Policy" = "Privacy Policy";
 "Pro" = "Pro";
+"PRO" = "PRO";
 "Pro adds" = "Pro adds";
 "Pro unlocks by itself once the purchase is approved." = "Pro unlocks by itself once the purchase is approved.";
 "Pro · ends %@" = "Pro · ends %@";
@@ -396,6 +405,7 @@
 "Save %d%%" = "Save %d%%";
 "Save Rule" = "Save Rule";
 "Save to" = "Save to";
+"Scanning, the Safety Score and review stay free." = "Scanning, the Safety Score and review stay free.";
 "Screen Recordings" = "Screen Recordings";
 "Screenshot" = "Screenshot";
 "Screenshots" = "Screenshots";
@@ -410,6 +420,7 @@
 "Settings" = "Settings";
 "Sharpness" = "Sharpness";
 "Shrink big videos on your device and keep the quality." = "Shrink big videos on your device and keep the quality.";
+"Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed.";
 "Similar Photos" = "Similar Photos";
 "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server." = "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server.";
 "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server." = "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server.";
@@ -459,6 +470,9 @@
 "Unknown merchant" = "Unknown merchant";
 "Unlimited Backup & Rules" = "Unlimited Backup & Rules";
 "Unlimited Cleanup" = "Unlimited Cleanup";
+"Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules." = "Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules.";
+"Unlock KeepSpace Pro" = "Unlock KeepSpace Pro";
+"Unlock Unlimited Backup" = "Unlock Unlimited Backup";
 "Unlock Unlimited Cleanup" = "Unlock Unlimited Cleanup";
 "Upgrade to Pro" = "Upgrade to Pro";
 "Upload over Wi-Fi only" = "Upload over Wi-Fi only";
@@ -492,6 +506,7 @@
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "You'll confirm in the next step. Items stay in Trash for 30 days.";
 "You're close to this month's free limit" = "You're close to this month's free limit";
 "You're on the Free plan." = "You're on the Free plan.";
+"You've used this month's free backups." = "You've used this month's free backups.";
 "You've used this month's free cleanup" = "You've used this month's free cleanup";
 "Your choice also teaches Best Shot your taste, on this device." = "Your choice also teaches Best Shot your taste, on this device.";
 "Your full photo library, with cloud backup status." = "Your full photo library, with cloud backup status.";

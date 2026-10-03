@@ -67,6 +67,7 @@ fun SettingsScreen(onOpen: (Screen) -> Unit) {
             subtitle = if (connectedClouds == 0) "Connect Google Drive or OneDrive" else "$connectedClouds connected") { onOpen(Screen.CloudOverview) }
         val taste by LocalLibraryStore.current.taste.state.collectAsState()
         CardRow(Icons.Rounded.AutoFixHigh, Screen.AiTaste.title, tint = Tint.Purple,
+            isProLocked = !proStatus.isPro && taste.profile.decisions == 0,
             subtitle = when {
                 !taste.enabled -> "Off"
                 taste.profile.decisions == 0 -> "Learns as you choose"

@@ -503,6 +503,21 @@
     "quota_gate_sheet.unlock_unlimited_cleanup": "ปลดล็อกการล้างข้อมูลแบบไม่จำกัด",
     "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "คุณใกล้จะถึงขีดจำกัดการใช้งานฟรีของเดือนนี้แล้ว",
     "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "คุณได้ใช้การล้างข้อมูลฟรีของเดือนนี้แล้ว",
-    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "การเลือกของคุณคือ %@ คุณสามารถฟรี %@ เพิ่มเติมได้ฟรี"
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "การเลือกของคุณคือ %@ คุณสามารถฟรี %@ เพิ่มเติมได้ฟรี",
+    "manual_backup.back_up_d_files": "สำรองข้อมูล %d ไฟล์",
+    "pro_explainer.best_shot_learns_from_the_photos_you_keep_and_starts_rec": "Best Shot เรียนรู้จากรูปภาพที่คุณเก็บไว้ และเริ่มแนะนำประเภทช็อตที่คุณชอบ มันเรียนรู้บนอุปกรณ์นี้และไม่มีอะไรเหลืออยู่",
+    "pro_explainer.finds_receipts_in_your_screenshots_and_photos_reads_the": "ค้นหาใบเสร็จในภาพหน้าจอและรูปถ่ายของคุณ อ่านผู้ขาย วันที่และจำนวนเงินบนอุปกรณ์นี้ และแสดงตำแหน่งที่จะยื่นแต่ละรายการ",
+    "manual_backup.free_backs_up_d_more_files_this_month_the_first_d_will_g": "สำรองข้อมูลฟรีอีก %d ไฟล์ในเดือนนี้ %d แรกจะไป; โปรไม่มีขีดจำกัด",
+    "a_i_taste.learning_is_paused_on_the_free_plan_what_best_shot_learn": "การเรียนรู้หยุดชั่วคราวในแผนฟรี ระบบจะเก็บสิ่งที่ Best Shot เรียนรู้ไว้",
+    "pro_explainer.on_free_you_can_still_see_which_videos_take_the_most_spa": "ในโหมดฟรี คุณยังสามารถดูว่าวิดีโอใดใช้พื้นที่มากที่สุดและตรวจสอบเพื่อลบออก",
+    "pro_explainer.on_free_your_receipts_stay_where_they_are_and_you_can_st": "ใบเสร็จรับเงินของคุณจะยังคงอยู่ที่เดิม และคุณยังสามารถตรวจสอบภาพหน้าจอเก่าๆ ได้",
+    "pro_explainer.on_free_best_shot_still_picks_the_best_photo_in_every_gr": "ในโหมดฟรี Best Shot ยังคงเลือกภาพถ่ายที่ดีที่สุดในทุกกลุ่ม",
+    "pro_chip.pro": "โปร",
+    "pro_explainer.scanning_the_safety_score_and_review_stay_free": "สแกน คะแนนความปลอดภัย และรีวิวได้ฟรี",
+    "pro_explainer.shrinks_a_big_video_on_your_device_and_keeps_the_quality": "ย่อขนาดวิดีโอขนาดใหญ่บนอุปกรณ์ของคุณและรักษาคุณภาพไว้ คุณตรวจสอบผลลัพธ์ก่อนที่จะลบต้นฉบับ",
+    "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "การล้างข้อมูลแบบไม่จำกัด การบีบอัดวิดีโอ ภาพหน้าจออัจฉริยะ การยื่นใบเสร็จรับเงิน AI Taste และการสำรองข้อมูลและกฎแบบไม่จำกัด",
+    "common.unlock_keepspace_pro": "ปลดล็อค KeepSpace มือโปร",
+    "manual_backup.unlock_unlimited_backup": "ปลดล็อกการสำรองข้อมูลไม่จำกัด",
+    "manual_backup.you_ve_used_this_month_s_free_backups": "คุณได้ใช้การสำรองข้อมูลฟรีของเดือนนี้แล้ว"
   }
 }

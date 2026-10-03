@@ -1,5 +1,11 @@
 package com.smartstorage.cleaner.ui.feature.cloud
 
+import com.smartstorage.cleaner.monetization.LocalMonetization
+import com.smartstorage.cleaner.monetization.LocalPresentPaywall
+import com.smartstorage.cleaner.monetization.ProFeature
+import com.smartstorage.cleaner.ui.components.ProChip
+import com.smartstorage.cleaner.ui.components.CardStyle
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import android.app.Activity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -68,6 +74,9 @@ fun CloudOverviewScreen(onBackUpNow: () -> Unit, onBack: () -> Unit) {
         authorizing = null
     }
     val completed = state.uploads.count { it.status == CloudUploadStatus.BackedUp }
+    val monetization = LocalMonetization.current
+    val proStatus by monetization.status.collectAsState()
+    val presentPaywall = LocalPresentPaywall.current
     ScreenScaffold(onBack = onBack) {
         ScreenHeader("Cloud Backup", "Direct from this device to your account. KeepSpace never receives your files.", Modifier.padding(bottom = 8.dp))
         state.connections.forEach { connection ->
@@ -81,7 +90,10 @@ fun CloudOverviewScreen(onBackUpNow: () -> Unit, onBack: () -> Unit) {
                 if (connection.connected) {
                     SecondaryButton("Disconnect", { cloud.disconnect(connection.provider) }, Modifier.fillMaxWidth(), outlined = true)
                 } else {
+                    // One cloud account is free; connecting another opens the paywall. Connected accounts are never disconnected.
+                    val canConnect = monetization.allowances().canConnectCloudAccount(state.connections.count { it.connected })
                     PrimaryButton(if (connection.configured) "Connect ${connection.provider.title}" else "Setup required", {
+                        if (!canConnect) { presentPaywall(ProFeature.MultipleCloudAccounts); return@PrimaryButton }
                         authorizing = connection.provider
                         if (connection.provider == CloudProvider.GoogleDrive) {
                             cloud.authorizeGoogle(activity, googleLauncher::launch)
@@ -89,6 +101,7 @@ fun CloudOverviewScreen(onBackUpNow: () -> Unit, onBack: () -> Unit) {
                             cloud.authorizationIntent(connection.provider)?.let(browserLauncher::launch)
                         }
                     }, Modifier.fillMaxWidth(), showsArrow = false, enabled = connection.configured)
+                    if (!canConnect) Row(Modifier.fillMaxWidth().padding(top = 6.dp), horizontalArrangement = Arrangement.Center) { ProChip() }
                 }
             }
         }
@@ -161,7 +174,36 @@ fun ManualBackupScreen(onBack: () -> Unit) {
         if (connected.isEmpty()) {
             CardRow(Icons.Rounded.Cloud, "Connect a cloud account first", tint = Tint.Blue, subtitle = "Open Cloud in Settings")
         }
-        PrimaryButton("Start Backup", { cloud.enqueue(provider, scope, folder, candidates) }, Modifier.fillMaxWidth(),
-            enabled = connected.any { it.provider == provider } && candidates.isNotEmpty() && folder.isNotBlank())
+        // Free backs up about 100 files a month. Over that, the first files that fit go; the rest wait for next month or Pro.
+        val monetization = LocalMonetization.current
+        val proStatus by monetization.status.collectAsState()
+        val presentPaywall = LocalPresentPaywall.current
+        val allowed = remember(proStatus, candidates.size) { monetization.allowances().backupAllowedCount(candidates.size) }
+        val exhausted = candidates.isNotEmpty() && allowed == 0
+        if (allowed < candidates.size) {
+            SmartCard(style = CardStyle.Info) {
+                Text(
+                    if (exhausted) "You've used this month's free backups."
+                    else localizedFormat("Free backs up %d more files this month. The first %d will go; Pro has no limit.", allowed, allowed),
+                    style = SmartType.metadata, color = SmartTheme.colors.textSecondary,
+                )
+            }
+        }
+        PrimaryButton(
+            when {
+                exhausted -> "Unlock Unlimited Backup"
+                allowed < candidates.size -> localizedFormat("Back Up %d Files", allowed)
+                else -> "Start Backup"
+            },
+            {
+                if (exhausted) presentPaywall(ProFeature.UnlimitedBackup)
+                else {
+                    cloud.enqueue(provider, scope, folder, candidates.take(allowed))
+                    monetization.recordBackups(allowed)
+                }
+            },
+            Modifier.fillMaxWidth(),
+            enabled = exhausted || (connected.any { it.provider == provider } && candidates.isNotEmpty() && folder.isNotBlank()),
+        )
     }
 }

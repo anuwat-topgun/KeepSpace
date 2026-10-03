@@ -116,6 +116,7 @@
     <string name="common_automatically_file_content_where_it_belongs">Automaticky ukládat obsah tam, kam patří.</string>
     <string name="common_automation">automatizace</string>
     <string name="common_back">Zpět</string>
+    <string name="manual_backup_back_up_d_files">Zálohujte %d souborů</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Zálohujte, kolik chcete, s každým pravidlem a cloudovým účtem.</string>
     <string name="common_back_up_more">Zálohujte více</string>
     <string name="common_back_up_now">Zálohujte nyní</string>
@@ -129,6 +130,7 @@
     <string name="common_best">Nejlepší</string>
     <string name="common_best_shot">Nejlepší střela</string>
     <string name="common_best_shot_goes_back_to_its_standard_mix">Best Shot se vrací ke svému standardnímu mixu.</string>
+    <string name="pro_explainer_best_shot_learns_from_the_photos_you_keep_and_starts_rec">Best Shot se učí z fotografií, které si ponecháte, a začne doporučovat druh záběru, který se vám líbí. Na tomto zařízení se učí a nic ho neopouští.</string>
     <string name="common_best_shot_learns_what_you_like_to_keep">Best Shot se naučí, co si chcete nechat.</string>
     <string name="paywall_best_value">Nejlepší hodnota</string>
     <string name="paywall_billed_monthly">Účtováno měsíčně</string>
@@ -219,11 +221,13 @@
     <string name="common_find_and_remove_unnecessary_files">Najděte a odstraňte nepotřebné soubory.</string>
     <string name="common_find_duplicates">Najděte duplikáty</string>
     <string name="paywall_find_receipts_and_file_them_in_the_right_place">Najděte účtenky a uložte je na správné místo.</string>
+    <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Vyhledá účtenky na snímcích obrazovky a fotografiích, přečte obchodníka, datum a částku na tomto zařízení a ukáže, kde by byly jednotlivé položky uloženy.</string>
     <string name="common_folder">Složka</string>
     <string name="common_folder_inside_keepspace">Složka uvnitř KeepSpace</string>
     <string name="common_forecast">Předpověď</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Zapomeňte, co se KeepSpace dozvěděla o vaší knihovně. Při dalším skenování se podívá znovu.</string>
     <string name="subscription_free">Zdarma</string>
+    <string name="manual_backup_free_backs_up_d_more_files_this_month_the_first_d_will_g">Tento měsíc zdarma zálohuje %d dalších souborů. První %d půjde; Pro nemá žádné omezení.</string>
     <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Zdarma zahrnuje %s úklidu každý měsíc. Resetuje se na %s.</string>
     <string name="subscription_free_trial_ends_then_renews">Bezplatné zkušební období končí %s a poté se obnoví.</string>
     <string name="subscription_free_trial_ends">Bezplatné zkušební období končí %s.</string>
@@ -265,6 +269,7 @@
     <string name="common_large_videos">Velká videa</string>
     <string name="common_learn_from_my_choices">Učte se z mých voleb</string>
     <string name="common_learn_more">Další informace</string>
+    <string name="a_i_taste_learning_is_paused_on_the_free_plan_what_best_shot_learn">Učení je u bezplatného plánu pozastaveno. To, co se Best Shot naučil, je zachováno.</string>
     <string name="common_learns_as_you_choose">Učí se, jak si vyberete</string>
     <string name="common_library">Knihovna</string>
     <string name="paywall_lifetime">Celý život</string>
@@ -316,6 +321,9 @@
     <string name="common_oauth_setup_required">Je vyžadováno nastavení OAuth</string>
     <string name="common_off">Vypnuto</string>
     <string name="common_ok">OK</string>
+    <string name="pro_explainer_on_free_you_can_still_see_which_videos_take_the_most_spa">Ve službě Zdarma můžete stále vidět, která videa zabírají nejvíce místa, a zkontrolovat je, zda je chcete smazat.</string>
+    <string name="pro_explainer_on_free_your_receipts_stay_where_they_are_and_you_can_st">Na bezplatném účtu zůstanou vaše účtenky tam, kde jsou, a stále si můžete prohlédnout staré snímky obrazovky.</string>
+    <string name="pro_explainer_on_free_best_shot_still_picks_the_best_photo_in_every_gr">Bezplatně vybere nejlepší snímek v každé skupině nejlepší fotku.</string>
     <string name="common_on_device_ai_only">Pouze na zařízení AI</string>
     <string name="paywall_one_time_payment">Jednorázová platba</string>
     <string name="paywall_one_time_purchase_no_subscription_no_renewal">Jednorázový nákup. Žádné předplatné, žádné obnovení.</string>
@@ -349,6 +357,7 @@
     <string name="common_privacy_security">Ochrana osobních údajů a zabezpečení</string>
     <string name="common_privacy_policy">Zásady ochrany osobních údajů</string>
     <string name="subscription_pro">Pro</string>
+    <string name="pro_chip_pro">PRO</string>
     <string name="subscription_pro_adds">Pro dodává</string>
     <string name="paywall_pro_unlocks_by_itself_once_the_purchase_is_approved">Pro se odemkne sám, jakmile je nákup schválen.</string>
     <string name="subscription_pro_ends_71525627">Pro · končí %s</string>
@@ -398,6 +407,7 @@
     <string name="paywall_save_d">Ušetřete %d%%</string>
     <string name="common_save_rule">Uložit pravidlo</string>
     <string name="common_save_to">Uložit do</string>
+    <string name="pro_explainer_scanning_the_safety_score_and_review_stay_free">Skenování, skóre bezpečnosti a recenze zůstávají zdarma.</string>
     <string name="common_screen_recordings">Nahrávky obrazovky</string>
     <string name="common_screenshot">Snímek obrazovky</string>
     <string name="common_screenshots">Snímky obrazovky</string>
@@ -412,6 +422,7 @@
     <string name="common_settings">Nastavení</string>
     <string name="common_sharpness">Ostrost</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Zmenšete velká videa na svém zařízení a zachovejte kvalitu.</string>
+    <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Zmenší velké video na vašem zařízení a zachová kvalitu. Před odstraněním originálu zkontrolujete výsledek.</string>
     <string name="common_similar_photos">Podobné Fotografie</string>
     <string name="privacy_similar_photos_best_shots_text_in_screenshots_and_receip">Podobné fotografie, nejlepší snímky, text na snímcích obrazovky a účtenky – to vše lze nalézt u modelů zabudovaných do iOS. Na server se nic neposílá.</string>
     <string name="settings_detail_screens_similar_photos_faces_and_text_in_screenshots_and_receipt">Podobné fotky, obličeje a text na snímcích obrazovky a účtenek se nacházejí u modelů přibalených v aplikaci. Na server se nic neposílá.</string>
@@ -461,6 +472,9 @@
     <string name="common_unknown_merchant">Neznámý obchodník</string>
     <string name="common_unlimited_backup_rules">Neomezené zálohování a pravidla</string>
     <string name="common_unlimited_cleanup">Neomezené čištění</string>
+    <string name="pro_explainer_unlimited_cleanup_video_compression_smart_screenshots_re">Neomezené čištění, komprese videa, chytré snímky obrazovky, archivace účtenek, AI Taste a neomezené zálohování a pravidla.</string>
+    <string name="common_unlock_keepspace_pro">Odemkněte KeepSpace Pro</string>
+    <string name="manual_backup_unlock_unlimited_backup">Odemkněte neomezené zálohování</string>
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Odemkněte neomezené čištění</string>
     <string name="subscription_upgrade_to_pro">Upgradujte na Pro</string>
     <string name="common_upload_over_wi_fi_only">Nahrávejte pouze přes Wi-Fi</string>
@@ -494,6 +508,7 @@
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">V dalším kroku potvrdíte. Položky zůstanou v koši 30 dní.</string>
     <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Blížíte se k limitu zdarma pro tento měsíc</string>
     <string name="subscription_you_re_on_the_free_plan">Jste na bezplatném plánu.</string>
+    <string name="manual_backup_you_ve_used_this_month_s_free_backups">Využili jste bezplatné zálohy z tohoto měsíce.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Využili jste bezplatný úklid tohoto měsíce</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Vaše volba také naučí Best Shot vašemu vkusu na tomto zařízení.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Vaše úplná knihovna fotografií se stavem zálohování v cloudu.</string>

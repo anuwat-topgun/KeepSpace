@@ -52,6 +52,11 @@ import com.smartstorage.cleaner.media.ScreenshotKind
 import com.smartstorage.cleaner.model.formattedBytes
 import com.smartstorage.cleaner.ui.components.AdaptiveGrid
 import com.smartstorage.cleaner.ui.components.CardRow
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import com.smartstorage.cleaner.monetization.LocalMonetization
+import com.smartstorage.cleaner.monetization.LocalPresentPaywall
+import com.smartstorage.cleaner.monetization.ProFeature
 import com.smartstorage.cleaner.ui.components.CardStyle
 import com.smartstorage.cleaner.ui.components.ScreenHeader
 import com.smartstorage.cleaner.ui.components.ScreenScaffold
@@ -67,6 +72,9 @@ import com.smartstorage.cleaner.ui.theme.Tint
 fun ScreenshotsScreen(onReview: (ReviewKind) -> Unit, onBack: () -> Unit) {
     ScreenScaffold(maxWidth = SmartMetrics.wideContentWidth, onBack = onBack) {
         val state = libraryState()
+        val proStatus by LocalMonetization.current.status.collectAsState()
+        val isPro = proStatus.isPro
+        val presentPaywall = LocalPresentPaywall.current
         ScreenHeader("Screenshots", "${state.content.screenshotsBytes.formattedBytes()} recoverable", Modifier.padding(bottom = 8.dp))
         if (state.content.screenshotCategories.isEmpty()) {
             SmartCard(style = CardStyle.Info) {
@@ -83,7 +91,9 @@ fun ScreenshotsScreen(onReview: (ReviewKind) -> Unit, onBack: () -> Unit) {
                 category.title,
                 tint = category.kind.tint,
                 subtitle = if (category.count > 0) "${category.count} · ${category.bytes.formattedBytes()}" else category.bytes.formattedBytes(),
-                onClick = if (category.reviewable) ({ onReview(ReviewKind.Screenshots(category.kind)) }) else null,
+                isProLocked = category.reviewable && !isPro,
+                // Counts and sizes are free for everyone; opening a category's contents is Pro.
+                onClick = if (category.reviewable) ({ if (isPro) onReview(ReviewKind.Screenshots(category.kind)) else presentPaywall(ProFeature.ScreenshotCategories) }) else null,
             )
         }
         if (state.content.expiredScreenshots.isNotEmpty()) {

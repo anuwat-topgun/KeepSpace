@@ -503,6 +503,21 @@
     "quota_gate_sheet.unlock_unlimited_cleanup": "Ξεκλειδώστε την Απεριόριστη Εκκαθάριση",
     "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Είστε κοντά στο δωρεάν όριο αυτού του μήνα",
     "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Χρησιμοποιήσατε τη δωρεάν εκκαθάριση αυτού του μήνα",
-    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Η επιλογή σας είναι %@. Μπορείτε να ελευθερώσετε %@ περισσότερα στο Δωρεάν."
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Η επιλογή σας είναι %@. Μπορείτε να ελευθερώσετε %@ περισσότερα στο Δωρεάν.",
+    "manual_backup.back_up_d_files": "Δημιουργία αντιγράφων ασφαλείας %d αρχείων",
+    "pro_explainer.best_shot_learns_from_the_photos_you_keep_and_starts_rec": "Το Best Shot μαθαίνει από τις φωτογραφίες που κρατάτε και αρχίζει να προτείνει το είδος της λήψης που σας αρέσει. Μαθαίνει σε αυτή τη συσκευή και τίποτα δεν την αφήνει.",
+    "pro_explainer.finds_receipts_in_your_screenshots_and_photos_reads_the": "Βρίσκει αποδείξεις στα στιγμιότυπα οθόνης και τις φωτογραφίες σας, διαβάζει τον έμπορο, την ημερομηνία και το ποσό σε αυτήν τη συσκευή και δείχνει πού θα κατατεθεί το καθένα.",
+    "manual_backup.free_backs_up_d_more_files_this_month_the_first_d_will_g": "Δωρεάν δημιουργία αντιγράφων ασφαλείας %d ακόμη αρχείων αυτόν τον μήνα. Το πρώτο %d θα πάει. Το Pro δεν έχει όριο.",
+    "a_i_taste.learning_is_paused_on_the_free_plan_what_best_shot_learn": "Η εκμάθηση έχει τεθεί σε παύση στο δωρεάν πρόγραμμα. Ό,τι έμαθε το Best Shot διατηρείται.",
+    "pro_explainer.on_free_you_can_still_see_which_videos_take_the_most_spa": "Στο Δωρεάν, μπορείτε ακόμα να δείτε ποια βίντεο καταλαμβάνουν τον περισσότερο χώρο και να τα ελέγξετε για διαγραφή.",
+    "pro_explainer.on_free_your_receipts_stay_where_they_are_and_you_can_st": "Στο Δωρεάν οι αποδείξεις σας παραμένουν εκεί που είναι και μπορείτε ακόμα να ελέγξετε παλιά στιγμιότυπα οθόνης.",
+    "pro_explainer.on_free_best_shot_still_picks_the_best_photo_in_every_gr": "Στο Δωρεάν, το Best Shot εξακολουθεί να επιλέγει την καλύτερη φωτογραφία σε κάθε ομάδα.",
+    "pro_chip.pro": "PRO",
+    "pro_explainer.scanning_the_safety_score_and_review_stay_free": "Η σάρωση, η βαθμολογία ασφαλείας και η κριτική παραμένουν δωρεάν.",
+    "pro_explainer.shrinks_a_big_video_on_your_device_and_keeps_the_quality": "Συρρικνώνει ένα μεγάλο βίντεο στη συσκευή σας και διατηρεί την ποιότητα. Ελέγχετε το αποτέλεσμα πριν αφαιρεθεί το πρωτότυπο.",
+    "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Απεριόριστος καθαρισμός, συμπίεση βίντεο, έξυπνα στιγμιότυπα οθόνης, Αρχειοθέτηση αποδείξεων, AI Taste και απεριόριστο αντίγραφο ασφαλείας και κανόνες.",
+    "common.unlock_keepspace_pro": "Ξεκλειδώστε KeepSpace Pro",
+    "manual_backup.unlock_unlimited_backup": "Ξεκλείδωμα Unlimited Backup",
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Έχετε χρησιμοποιήσει τα δωρεάν αντίγραφα ασφαλείας αυτού του μήνα."
   }
 }

@@ -114,6 +114,7 @@
 "Automatically file content where it belongs." = "Αυτόματη αρχειοθέτηση περιεχομένου όπου ανήκει.";
 "Automation" = "Αυτοματοποίηση";
 "Back" = "Πίσω";
+"Back Up %d Files" = "Δημιουργία αντιγράφων ασφαλείας %d αρχείων";
 "Back up as much as you want, with every rule and cloud account." = "Δημιουργήστε αντίγραφα ασφαλείας όσο θέλετε, με κάθε κανόνα και λογαριασμό cloud.";
 "Back Up More" = "Δημιουργία αντιγράφων ασφαλείας περισσότερων";
 "Back Up Now" = "Δημιουργία αντιγράφων ασφαλείας τώρα";
@@ -127,6 +128,7 @@
 "Best" = "Καλύτερο";
 "Best Shot" = "Καλύτερη βολή";
 "Best Shot goes back to its standard mix." = "Το Best Shot επιστρέφει στην τυπική του μίξη.";
+"Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it." = "Το Best Shot μαθαίνει από τις φωτογραφίες που κρατάτε και αρχίζει να προτείνει το είδος της λήψης που σας αρέσει. Μαθαίνει σε αυτή τη συσκευή και τίποτα δεν την αφήνει.";
 "Best Shot learns what you like to keep." = "Το Best Shot μαθαίνει τι σας αρέσει να κρατάτε.";
 "Best value" = "Καλύτερη αξία";
 "Billed monthly" = "Τιμολογείται μηνιαία";
@@ -217,11 +219,13 @@
 "Find and remove unnecessary files." = "Βρείτε και αφαιρέστε τα περιττά αρχεία.";
 "Find duplicates" = "Βρείτε διπλότυπα";
 "Find receipts and file them in the right place." = "Βρείτε τις αποδείξεις και αρχειοθετήστε τις στο σωστό μέρος.";
+"Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Βρίσκει αποδείξεις στα στιγμιότυπα οθόνης και τις φωτογραφίες σας, διαβάζει τον έμπορο, την ημερομηνία και το ποσό σε αυτήν τη συσκευή και δείχνει πού θα κατατεθεί το καθένα.";
 "Folder" = "Φάκελος";
 "Folder inside KeepSpace" = "Φάκελος μέσα στο KeepSpace";
 "Forecast" = "Πρόβλεψη";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Ξεχάστε όσα έμαθε η KeepSpace για τη βιβλιοθήκη σας. Θα εμφανιστεί ξανά στην επόμενη σάρωση.";
 "Free" = "Δωρεάν";
+"Free backs up %d more files this month. The first %d will go; Pro has no limit." = "Δωρεάν δημιουργία αντιγράφων ασφαλείας %d ακόμη αρχείων αυτόν τον μήνα. Το πρώτο %d θα πάει. Το Pro δεν έχει όριο.";
 "Free includes %@ of cleanup each month. It resets on %@." = "Το δωρεάν περιλαμβάνει %@ καθαρισμού κάθε μήνα. Επαναφέρεται στο %@.";
 "Free trial ends %@, then renews." = "Η δωρεάν δοκιμή λήγει %@ και μετά ανανεώνεται.";
 "Free trial ends %@." = "Η δωρεάν δοκιμή λήγει %@.";
@@ -263,6 +267,7 @@
 "Large Videos" = "Μεγάλα βίντεο";
 "Learn from my choices" = "Μάθετε από τις επιλογές μου";
 "Learn More" = "Μάθετε περισσότερα";
+"Learning is paused on the Free plan. What Best Shot learned is kept." = "Η εκμάθηση έχει τεθεί σε παύση στο δωρεάν πρόγραμμα. Ό,τι έμαθε το Best Shot διατηρείται.";
 "Learns as you choose" = "Μαθαίνει όπως επιλέγετε";
 "Library" = "Βιβλιοθήκη";
 "Lifetime" = "Διάρκεια ζωής";
@@ -314,6 +319,9 @@
 "OAuth setup required" = "Απαιτείται ρύθμιση OAuth";
 "Off" = "Απενεργοποίηση";
 "OK" = "ΟΚ";
+"On Free you can still see which videos take the most space and review them for deletion." = "Στο Δωρεάν, μπορείτε ακόμα να δείτε ποια βίντεο καταλαμβάνουν τον περισσότερο χώρο και να τα ελέγξετε για διαγραφή.";
+"On Free your receipts stay where they are, and you can still review old screenshots." = "Στο Δωρεάν οι αποδείξεις σας παραμένουν εκεί που είναι και μπορείτε ακόμα να ελέγξετε παλιά στιγμιότυπα οθόνης.";
+"On Free, Best Shot still picks the best photo in every group." = "Στο Δωρεάν, το Best Shot εξακολουθεί να επιλέγει την καλύτερη φωτογραφία σε κάθε ομάδα.";
 "On-device AI only" = "Μόνο στη συσκευή AI";
 "One-time payment" = "Εφάπαξ πληρωμή";
 "One-time purchase. No subscription, no renewal." = "Εφάπαξ αγορά. Χωρίς συνδρομή, χωρίς ανανέωση.";
@@ -347,6 +355,7 @@
 "Privacy & Security" = "Απόρρητο και ασφάλεια";
 "Privacy Policy" = "Πολιτική Απορρήτου";
 "Pro" = "Pro";
+"PRO" = "PRO";
 "Pro adds" = "Ο Pro προσθέτει";
 "Pro unlocks by itself once the purchase is approved." = "Το Pro ξεκλειδώνει μόνο του μόλις εγκριθεί η αγορά.";
 "Pro · ends %@" = "Pro · τελειώνει %@";
@@ -396,6 +405,7 @@
 "Save %d%%" = "Εξοικονόμηση %d%%";
 "Save Rule" = "Αποθήκευση κανόνα";
 "Save to" = "Αποθήκευση σε";
+"Scanning, the Safety Score and review stay free." = "Η σάρωση, η βαθμολογία ασφαλείας και η κριτική παραμένουν δωρεάν.";
 "Screen Recordings" = "Εγγραφές οθόνης";
 "Screenshot" = "Στιγμιότυπο οθόνης";
 "Screenshots" = "Στιγμιότυπα οθόνης";
@@ -410,6 +420,7 @@
 "Settings" = "Ρυθμίσεις";
 "Sharpness" = "Ευκρίνεια";
 "Shrink big videos on your device and keep the quality." = "Μειώστε τα μεγάλα βίντεο στη συσκευή σας και διατηρήστε την ποιότητα.";
+"Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Συρρικνώνει ένα μεγάλο βίντεο στη συσκευή σας και διατηρεί την ποιότητα. Ελέγχετε το αποτέλεσμα πριν αφαιρεθεί το πρωτότυπο.";
 "Similar Photos" = "Παρόμοιες Φωτογραφίες";
 "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server." = "Παρόμοιες φωτογραφίες, καλύτερες λήψεις, κείμενο σε στιγμιότυπα οθόνης και αποδείξεις βρίσκονται όλα με μοντέλα ενσωματωμένα στο iOS. Τίποτα δεν αποστέλλεται σε διακομιστή.";
 "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server." = "Παρόμοιες φωτογραφίες, πρόσωπα και κείμενο σε στιγμιότυπα οθόνης και αποδείξεις βρίσκονται με μοντέλα ομαδοποιημένα μέσα στην εφαρμογή. Τίποτα δεν αποστέλλεται σε διακομιστή.";
@@ -459,6 +470,9 @@
 "Unknown merchant" = "Άγνωστος έμπορος";
 "Unlimited Backup & Rules" = "Απεριόριστα αντίγραφα ασφαλείας και κανόνες";
 "Unlimited Cleanup" = "Απεριόριστος καθαρισμός";
+"Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules." = "Απεριόριστος καθαρισμός, συμπίεση βίντεο, έξυπνα στιγμιότυπα οθόνης, Αρχειοθέτηση αποδείξεων, AI Taste και απεριόριστο αντίγραφο ασφαλείας και κανόνες.";
+"Unlock KeepSpace Pro" = "Ξεκλειδώστε KeepSpace Pro";
+"Unlock Unlimited Backup" = "Ξεκλείδωμα Unlimited Backup";
 "Unlock Unlimited Cleanup" = "Ξεκλειδώστε την Απεριόριστη Εκκαθάριση";
 "Upgrade to Pro" = "Αναβάθμιση σε Pro";
 "Upload over Wi-Fi only" = "Μεταφόρτωση μόνο μέσω Wi-Fi";
@@ -492,6 +506,7 @@
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "Θα επιβεβαιώσετε στο επόμενο βήμα. Τα αντικείμενα παραμένουν στον Κάδο απορριμμάτων για 30 ημέρες.";
 "You're close to this month's free limit" = "Είστε κοντά στο δωρεάν όριο αυτού του μήνα";
 "You're on the Free plan." = "Είστε στο δωρεάν πρόγραμμα.";
+"You've used this month's free backups." = "Έχετε χρησιμοποιήσει τα δωρεάν αντίγραφα ασφαλείας αυτού του μήνα.";
 "You've used this month's free cleanup" = "Χρησιμοποιήσατε τη δωρεάν εκκαθάριση αυτού του μήνα";
 "Your choice also teaches Best Shot your taste, on this device." = "Η επιλογή σας διδάσκει επίσης το Best Shot το γούστο σας, σε αυτήν τη συσκευή.";
 "Your full photo library, with cloud backup status." = "Η πλήρης βιβλιοθήκη φωτογραφιών σας, με κατάσταση δημιουργίας αντιγράφων ασφαλείας στο cloud.";

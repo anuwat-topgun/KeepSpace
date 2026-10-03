@@ -116,6 +116,7 @@
     <string name="common_automatically_file_content_where_it_belongs">حفظ المحتوى تلقائيًا في المكان الذي ينتمي إليه.</string>
     <string name="common_automation">الأتمتة</string>
     <string name="common_back">العودة</string>
+    <string name="manual_backup_back_up_d_files">نسخ احتياطي لملفات %d</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">قم بالنسخ الاحتياطي بقدر ما تريد، مع كل قاعدة وحساب سحابي.</string>
     <string name="common_back_up_more">النسخ الاحتياطي أكثر</string>
     <string name="common_back_up_now">النسخ الاحتياطي الآن</string>
@@ -129,6 +130,7 @@
     <string name="common_best">الأفضل</string>
     <string name="common_best_shot">أفضل لقطة</string>
     <string name="common_best_shot_goes_back_to_its_standard_mix">تعود Best Shot إلى مزيجها القياسي.</string>
+    <string name="pro_explainer_best_shot_learns_from_the_photos_you_keep_and_starts_rec">تتعلم Best Shot من الصور التي تحتفظ بها وتبدأ في التوصية بنوع اللقطة التي تفضلها. يتعلم على هذا الجهاز ولا يتركه شيء.</string>
     <string name="common_best_shot_learns_what_you_like_to_keep">تتعلم Best Shot ما تريد الاحتفاظ به.</string>
     <string name="paywall_best_value">أفضل قيمة</string>
     <string name="paywall_billed_monthly">تدفع شهريا</string>
@@ -219,11 +221,13 @@
     <string name="common_find_and_remove_unnecessary_files">البحث عن الملفات غير الضرورية وإزالتها.</string>
     <string name="common_find_duplicates">البحث عن التكرارات</string>
     <string name="paywall_find_receipts_and_file_them_in_the_right_place">ابحث عن الإيصالات وقم بتقديمها في المكان المناسب.</string>
+    <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">يجد الإيصالات في لقطات الشاشة والصور الخاصة بك، ويقرأ التاجر والتاريخ والمبلغ على هذا الجهاز، ويعرض المكان الذي سيتم حفظ كل إيصال فيه.</string>
     <string name="common_folder">مجلد</string>
     <string name="common_folder_inside_keepspace">مجلد داخل KeepSpace</string>
     <string name="common_forecast">توقعات</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">انسَ ما تعلمته KeepSpace عن مكتبتك. وسوف ننظر مرة أخرى في الفحص التالي.</string>
     <string name="subscription_free">مجاني</string>
+    <string name="manual_backup_free_backs_up_d_more_files_this_month_the_first_d_will_g">يمكنك إجراء نسخ احتياطي مجاني لـ %d من الملفات الإضافية هذا الشهر. سوف يذهب أول %d؛ برو ليس له حدود.</string>
     <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">مجانًا يتضمن %s من عمليات التنظيف كل شهر. تتم إعادة التعيين على %s.</string>
     <string name="subscription_free_trial_ends_then_renews">تنتهي النسخة التجريبية المجانية %s، ثم يتم تجديدها.</string>
     <string name="subscription_free_trial_ends">تنتهي النسخة التجريبية المجانية %s.</string>
@@ -265,6 +269,7 @@
     <string name="common_large_videos">فيديوهات كبيرة</string>
     <string name="common_learn_from_my_choices">تعلم من اختياراتي</string>
     <string name="common_learn_more">تعرف على المزيد</string>
+    <string name="a_i_taste_learning_is_paused_on_the_free_plan_what_best_shot_learn">تم إيقاف التعلم مؤقتًا في الخطة المجانية. يتم الاحتفاظ بما تعلمته Best Shot.</string>
     <string name="common_learns_as_you_choose">يتعلم حسب اختيارك</string>
     <string name="common_library">مكتبة</string>
     <string name="paywall_lifetime">مدى الحياة</string>
@@ -316,6 +321,9 @@
     <string name="common_oauth_setup_required">مطلوب إعداد OAuth</string>
     <string name="common_off">إيقاف</string>
     <string name="common_ok">حسنًا</string>
+    <string name="pro_explainer_on_free_you_can_still_see_which_videos_take_the_most_spa">في الإصدار المجاني، لا يزال بإمكانك رؤية مقاطع الفيديو التي تشغل أكبر مساحة ومراجعتها لحذفها.</string>
+    <string name="pro_explainer_on_free_your_receipts_stay_where_they_are_and_you_can_st">في الوضع \"مجاني\"، تبقى إيصالاتك في مكانها، ولا يزال بإمكانك مراجعة لقطات الشاشة القديمة.</string>
+    <string name="pro_explainer_on_free_best_shot_still_picks_the_best_photo_in_every_gr">في الوضع المجاني، لا تزال ميزة Best Shot تختار أفضل صورة في كل مجموعة.</string>
     <string name="common_on_device_ai_only">على الجهاز AI فقط</string>
     <string name="paywall_one_time_payment">الدفع لمرة واحدة</string>
     <string name="paywall_one_time_purchase_no_subscription_no_renewal">شراء لمرة واحدة. لا اشتراك ولا تجديد.</string>
@@ -349,6 +357,7 @@
     <string name="common_privacy_security">الخصوصية والأمن</string>
     <string name="common_privacy_policy">سياسة الخصوصية</string>
     <string name="subscription_pro">برو</string>
+    <string name="pro_chip_pro">للمحترفين</string>
     <string name="subscription_pro_adds">يضيف برو</string>
     <string name="paywall_pro_unlocks_by_itself_once_the_purchase_is_approved">يتم فتح Pro من تلقاء نفسه بمجرد الموافقة على الشراء.</string>
     <string name="subscription_pro_ends_71525627">المحترفين · ينتهي %s</string>
@@ -398,6 +407,7 @@
     <string name="paywall_save_d">حفظ %d%%</string>
     <string name="common_save_rule">حفظ القاعدة</string>
     <string name="common_save_to">حفظ ل</string>
+    <string name="pro_explainer_scanning_the_safety_score_and_review_stay_free">المسح الضوئي ونقاط الأمان والمراجعة تبقى مجانية.</string>
     <string name="common_screen_recordings">تسجيلات الشاشة</string>
     <string name="common_screenshot">لقطة الشاشة</string>
     <string name="common_screenshots">لقطات الشاشة</string>
@@ -412,6 +422,7 @@
     <string name="common_settings">الإعدادات</string>
     <string name="common_sharpness">الحدة</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">قم بتقليص مقاطع الفيديو الكبيرة على جهازك وحافظ على الجودة.</string>
+    <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">يقوم بتصغير مقطع فيديو كبير على جهازك ويحافظ على جودته. يمكنك مراجعة النتيجة قبل إزالة الأصل.</string>
     <string name="common_similar_photos">صور مماثلة</string>
     <string name="privacy_similar_photos_best_shots_text_in_screenshots_and_receip">تم العثور على صور مماثلة وأفضل اللقطات والنصوص في لقطات الشاشة والإيصالات مع النماذج المضمنة في iOS. لا يتم إرسال أي شيء إلى الخادم.</string>
     <string name="settings_detail_screens_similar_photos_faces_and_text_in_screenshots_and_receipt">تم العثور على صور ووجوه ونصوص مماثلة في لقطات الشاشة والإيصالات مع النماذج المجمعة داخل التطبيق. لا يتم إرسال أي شيء إلى الخادم.</string>
@@ -461,6 +472,9 @@
     <string name="common_unknown_merchant">تاجر غير معروف</string>
     <string name="common_unlimited_backup_rules">نسخ احتياطي وقواعد غير محدودة</string>
     <string name="common_unlimited_cleanup">تنظيف غير محدود</string>
+    <string name="pro_explainer_unlimited_cleanup_video_compression_smart_screenshots_re">تنظيف غير محدود، وضغط الفيديو، ولقطات الشاشة الذكية، وحفظ الإيصالات، وذوق AI، والنسخ الاحتياطي والقواعد غير المحدودة.</string>
+    <string name="common_unlock_keepspace_pro">فتح KeepSpace برو</string>
+    <string name="manual_backup_unlock_unlimited_backup">فتح النسخ الاحتياطي غير المحدود</string>
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">فتح تنظيف غير محدود</string>
     <string name="subscription_upgrade_to_pro">الترقية إلى برو</string>
     <string name="common_upload_over_wi_fi_only">التحميل عبر Wi-Fi فقط</string>
@@ -494,6 +508,7 @@
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">ستؤكد في الخطوة التالية. تبقى العناصر في سلة المهملات لمدة 30 يومًا.</string>
     <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">لقد اقتربت من الحد المجاني لهذا الشهر</string>
     <string name="subscription_you_re_on_the_free_plan">أنت مشترك في الخطة المجانية.</string>
+    <string name="manual_backup_you_ve_used_this_month_s_free_backups">لقد استخدمت النسخ الاحتياطية المجانية لهذا الشهر.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">لقد استخدمت التنظيف المجاني لهذا الشهر</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">يؤدي اختيارك أيضًا إلى تعليم Best Shot ذوقك على هذا الجهاز.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">مكتبة الصور الكاملة الخاصة بك، مع حالة النسخ الاحتياطي السحابي.</string>

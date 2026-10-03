@@ -116,6 +116,7 @@
     <string name="common_automatically_file_content_where_it_belongs">Bewaar inhoud automatisch waar deze thuishoort.</string>
     <string name="common_automation">Automatisering</string>
     <string name="common_back">Terug</string>
+    <string name="manual_backup_back_up_d_files">Maak een back-up van %d bestanden</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Maak zoveel back-ups als u wilt, met elke regel en elk cloudaccount.</string>
     <string name="common_back_up_more">Maak meer back-ups</string>
     <string name="common_back_up_now">Maak nu een back-up</string>
@@ -129,6 +130,7 @@
     <string name="common_best">Beste</string>
     <string name="common_best_shot">Beste schot</string>
     <string name="common_best_shot_goes_back_to_its_standard_mix">Best Shot keert terug naar de standaardmix.</string>
+    <string name="pro_explainer_best_shot_learns_from_the_photos_you_keep_and_starts_rec">Best Shot leert van de foto\'s die u bewaart en adviseert het soort opname dat u leuk vindt. Het leert op dit apparaat en niets verlaat het.</string>
     <string name="common_best_shot_learns_what_you_like_to_keep">Best Shot leert wat u graag bewaart.</string>
     <string name="paywall_best_value">Beste waarde</string>
     <string name="paywall_billed_monthly">Maandelijks gefactureerd</string>
@@ -219,11 +221,13 @@
     <string name="common_find_and_remove_unnecessary_files">Zoek en verwijder onnodige bestanden.</string>
     <string name="common_find_duplicates">Vind duplicaten</string>
     <string name="paywall_find_receipts_and_file_them_in_the_right_place">Zoek bonnen en archiveer ze op de juiste plaats.</string>
+    <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Vindt bonnen in uw schermafbeeldingen en foto\'s, leest de verkoper, de datum en het bedrag op dit apparaat en laat zien waar ze allemaal worden bewaard.</string>
     <string name="common_folder">Map</string>
     <string name="common_folder_inside_keepspace">Map binnen KeepSpace</string>
     <string name="common_forecast">Voorspelling</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Vergeet wat KeepSpace over uw bibliotheek heeft geleerd. Bij de volgende scan zal het opnieuw worden bekeken.</string>
     <string name="subscription_free">Gratis</string>
+    <string name="manual_backup_free_backs_up_d_more_files_this_month_the_first_d_will_g">Gratis back-ups van %d extra bestanden deze maand. De eerste %d gaat; Pro kent geen limiet.</string>
     <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Gratis omvat %s schoonmaakkosten per maand. Het wordt gereset op %s.</string>
     <string name="subscription_free_trial_ends_then_renews">De gratis proefperiode eindigt %s en wordt vervolgens verlengd.</string>
     <string name="subscription_free_trial_ends">Gratis proefperiode eindigt %s.</string>
@@ -265,6 +269,7 @@
     <string name="common_large_videos">Grote video\'s</string>
     <string name="common_learn_from_my_choices">Leer van mijn keuzes</string>
     <string name="common_learn_more">Meer informatie</string>
+    <string name="a_i_taste_learning_is_paused_on_the_free_plan_what_best_shot_learn">Het leren is gepauzeerd in het gratis abonnement. Wat Best Shot heeft geleerd, wordt bewaard.</string>
     <string name="common_learns_as_you_choose">Leert zoals u kiest</string>
     <string name="common_library">Bibliotheek</string>
     <string name="paywall_lifetime">Levenslang</string>
@@ -316,6 +321,9 @@
     <string name="common_oauth_setup_required">OAuth-installatie vereist</string>
     <string name="common_off">Uit</string>
     <string name="common_ok">Oké</string>
+    <string name="pro_explainer_on_free_you_can_still_see_which_videos_take_the_most_spa">Op Gratis kun je nog steeds zien welke video\'s de meeste ruimte in beslag nemen en deze bekijken voor verwijdering.</string>
+    <string name="pro_explainer_on_free_your_receipts_stay_where_they_are_and_you_can_st">Bij Gratis blijven uw bonnen waar ze zijn en kunt u nog steeds oude schermafbeeldingen bekijken.</string>
+    <string name="pro_explainer_on_free_best_shot_still_picks_the_best_photo_in_every_gr">Bij Free kiest Best Shot nog steeds de beste foto in elke groep.</string>
     <string name="common_on_device_ai_only">Alleen AI op het apparaat</string>
     <string name="paywall_one_time_payment">Eenmalige betaling</string>
     <string name="paywall_one_time_purchase_no_subscription_no_renewal">Eenmalige aankoop. Geen abonnement, geen verlenging.</string>
@@ -349,6 +357,7 @@
     <string name="common_privacy_security">Privacy en veiligheid</string>
     <string name="common_privacy_policy">Privacybeleid</string>
     <string name="subscription_pro">Pro</string>
+    <string name="pro_chip_pro">PRO</string>
     <string name="subscription_pro_adds">Pro voegt toe</string>
     <string name="paywall_pro_unlocks_by_itself_once_the_purchase_is_approved">Pro wordt vanzelf ontgrendeld zodra de aankoop is goedgekeurd.</string>
     <string name="subscription_pro_ends_71525627">Pro · eindigt %s</string>
@@ -398,6 +407,7 @@
     <string name="paywall_save_d">Bespaar %d%%</string>
     <string name="common_save_rule">Regel opslaan</string>
     <string name="common_save_to">Opslaan naar</string>
+    <string name="pro_explainer_scanning_the_safety_score_and_review_stay_free">Scannen, de veiligheidsscore en beoordeling blijven gratis.</string>
     <string name="common_screen_recordings">Schermopnamen</string>
     <string name="common_screenshot">Schermafbeelding</string>
     <string name="common_screenshots">Schermafbeeldingen</string>
@@ -412,6 +422,7 @@
     <string name="common_settings">Instellingen</string>
     <string name="common_sharpness">Scherpte</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Verklein grote video\'s op uw apparaat en behoud de kwaliteit.</string>
+    <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Verkleint een grote video op uw apparaat en behoudt de kwaliteit. U beoordeelt het resultaat voordat het origineel wordt verwijderd.</string>
     <string name="common_similar_photos">Soortgelijke foto\'s</string>
     <string name="privacy_similar_photos_best_shots_text_in_screenshots_and_receip">Vergelijkbare foto\'s, beste foto\'s, tekst in schermafbeeldingen en bonnen zijn allemaal te vinden met modellen die zijn ingebouwd in iOS. Er wordt niets naar een server verzonden.</string>
     <string name="settings_detail_screens_similar_photos_faces_and_text_in_screenshots_and_receipt">Soortgelijke foto\'s, gezichten en tekst in schermafbeeldingen en bonnen zijn te vinden bij modellen die in de app zijn gebundeld. Er wordt niets naar een server verzonden.</string>
@@ -461,6 +472,9 @@
     <string name="common_unknown_merchant">Onbekende handelaar</string>
     <string name="common_unlimited_backup_rules">Onbeperkte back-up en regels</string>
     <string name="common_unlimited_cleanup">Onbeperkt opruimen</string>
+    <string name="pro_explainer_unlimited_cleanup_video_compression_smart_screenshots_re">Onbeperkt opschonen, videocompressie, slimme schermafbeeldingen, ontvangstbevestiging, AI Taste en onbeperkte back-up en regels.</string>
+    <string name="common_unlock_keepspace_pro">Ontgrendel KeepSpace Pro</string>
+    <string name="manual_backup_unlock_unlimited_backup">Ontgrendel onbeperkte back-up</string>
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Ontgrendel onbeperkt opruimen</string>
     <string name="subscription_upgrade_to_pro">Upgrade naar Pro</string>
     <string name="common_upload_over_wi_fi_only">Alleen uploaden via Wi-Fi</string>
@@ -494,6 +508,7 @@
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Je bevestigt dit in de volgende stap. Items blijven 30 dagen in de prullenbak.</string>
     <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Je hebt bijna de gratis limiet van deze maand bereikt</string>
     <string name="subscription_you_re_on_the_free_plan">Je hebt het gratis abonnement.</string>
+    <string name="manual_backup_you_ve_used_this_month_s_free_backups">U heeft de gratis back-ups van deze maand gebruikt.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Je hebt gebruik gemaakt van de gratis opschoonservice van deze maand</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Door jouw keuze leert Best Shot ook jouw smaak, op dit apparaat.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Uw volledige fotobibliotheek, met cloudback-upstatus.</string>

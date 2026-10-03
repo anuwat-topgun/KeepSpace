@@ -114,6 +114,7 @@
 "Automatically file content where it belongs." = "Archiva automáticamente el contenido donde pertenece.";
 "Automation" = "Automatización";
 "Back" = "Atrás";
+"Back Up %d Files" = "Realizar una copia de seguridad de %d archivos";
 "Back up as much as you want, with every rule and cloud account." = "Realice copias de seguridad de todo lo que desee, con cada regla y cuenta en la nube.";
 "Back Up More" = "Hacer una copia de seguridad más";
 "Back Up Now" = "Hacer copia de seguridad ahora";
@@ -127,6 +128,7 @@
 "Best" = "mejor";
 "Best Shot" = "Mejor tiro";
 "Best Shot goes back to its standard mix." = "Best Shot vuelve a su mezcla estándar.";
+"Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it." = "Best Shot aprende de las fotos que guardas y comienza a recomendar el tipo de toma que te gusta. Aprende en este dispositivo y no sale nada.";
 "Best Shot learns what you like to keep." = "Best Shot aprende lo que le gusta conservar.";
 "Best value" = "Mejor valor";
 "Billed monthly" = "Facturado mensualmente";
@@ -217,11 +219,13 @@
 "Find and remove unnecessary files." = "Busque y elimine archivos innecesarios.";
 "Find duplicates" = "encontrar duplicados";
 "Find receipts and file them in the right place." = "Encuentre recibos y archívelos en el lugar correcto.";
+"Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Encuentra recibos en tus capturas de pantalla y fotografías, lee el comerciante, la fecha y el monto en este dispositivo y muestra dónde se archivaría cada uno.";
 "Folder" = "Carpeta";
 "Folder inside KeepSpace" = "Carpeta dentro de KeepSpace";
 "Forecast" = "Pronóstico";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Olvídese de lo que KeepSpace aprendió sobre su biblioteca. Se volverá a mirar en el siguiente escaneo.";
 "Free" = "Gratis";
+"Free backs up %d more files this month. The first %d will go; Pro has no limit." = "Realiza copias de seguridad gratuitas de %d archivos más este mes. El primer %d irá; Pro no tiene límite.";
 "Free includes %@ of cleanup each month. It resets on %@." = "Gratis incluye %@ de limpieza cada mes. Se reinicia en %@.";
 "Free trial ends %@, then renews." = "La prueba gratuita finaliza %@ y luego se renueva.";
 "Free trial ends %@." = "La prueba gratuita finaliza %@.";
@@ -263,6 +267,7 @@
 "Large Videos" = "Vídeos grandes";
 "Learn from my choices" = "Aprende de mis elecciones";
 "Learn More" = "Más información";
+"Learning is paused on the Free plan. What Best Shot learned is kept." = "El aprendizaje está en pausa en el plan gratuito. Lo que Best Shot aprendió se conserva.";
 "Learns as you choose" = "Aprende como tú eliges";
 "Library" = "Biblioteca";
 "Lifetime" = "Toda la vida";
@@ -314,6 +319,9 @@
 "OAuth setup required" = "Se requiere configuración de OAuth";
 "Off" = "Apagado";
 "OK" = "bien";
+"On Free you can still see which videos take the most space and review them for deletion." = "En Gratis aún puedes ver qué videos ocupan más espacio y revisarlos para eliminarlos.";
+"On Free your receipts stay where they are, and you can still review old screenshots." = "En Free, tus recibos permanecen donde están y aún puedes revisar capturas de pantalla antiguas.";
+"On Free, Best Shot still picks the best photo in every group." = "En Gratis, Best Shot sigue seleccionando la mejor foto de cada grupo.";
 "On-device AI only" = "Solo AI en el dispositivo";
 "One-time payment" = "Pago único";
 "One-time purchase. No subscription, no renewal." = "Compra única. Sin suscripción, sin renovación.";
@@ -347,6 +355,7 @@
 "Privacy & Security" = "Privacidad y seguridad";
 "Privacy Policy" = "Política de privacidad";
 "Pro" = "profesional";
+"PRO" = "PROFESIONAL";
 "Pro adds" = "añadidos profesionales";
 "Pro unlocks by itself once the purchase is approved." = "Pro se desbloquea solo una vez que se aprueba la compra.";
 "Pro · ends %@" = "Pro · termina %@";
@@ -396,6 +405,7 @@
 "Save %d%%" = "Ahorra %d%%";
 "Save Rule" = "Guardar regla";
 "Save to" = "Guardar en";
+"Scanning, the Safety Score and review stay free." = "El escaneo, la puntuación de seguridad y la revisión son gratuitos.";
 "Screen Recordings" = "Grabaciones de pantalla";
 "Screenshot" = "Captura de pantalla";
 "Screenshots" = "Capturas de pantalla";
@@ -410,6 +420,7 @@
 "Settings" = "Configuración";
 "Sharpness" = "Nitidez";
 "Shrink big videos on your device and keep the quality." = "Reduzca videos grandes en su dispositivo y mantenga la calidad.";
+"Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Reduce un video grande en su dispositivo y mantiene la calidad. Revisa el resultado antes de eliminar el original.";
 "Similar Photos" = "Fotos similares";
 "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server." = "Se encuentran fotografías similares, mejores tomas, texto en capturas de pantalla y recibos con los modelos integrados en iOS. No se envía nada a un servidor.";
 "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server." = "Se encuentran fotos, rostros y texto similares en capturas de pantalla y recibos con los modelos incluidos dentro de la aplicación. No se envía nada a un servidor.";
@@ -459,6 +470,9 @@
 "Unknown merchant" = "Comerciante desconocido";
 "Unlimited Backup & Rules" = "Copias de seguridad y reglas ilimitadas";
 "Unlimited Cleanup" = "Limpieza ilimitada";
+"Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules." = "Limpieza ilimitada, compresión de video, capturas de pantalla inteligentes, archivo de recibos, AI Taste y copias de seguridad y reglas ilimitadas.";
+"Unlock KeepSpace Pro" = "Desbloquear KeepSpace Pro";
+"Unlock Unlimited Backup" = "Desbloquear copia de seguridad ilimitada";
 "Unlock Unlimited Cleanup" = "Desbloquear limpieza ilimitada";
 "Upgrade to Pro" = "Actualízate a Pro";
 "Upload over Wi-Fi only" = "Subir solo a través de Wi-Fi";
@@ -492,6 +506,7 @@
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "Lo confirmarás en el siguiente paso. Los artículos permanecen en la Papelera durante 30 días.";
 "You're close to this month's free limit" = "Estás cerca del límite gratuito de este mes";
 "You're on the Free plan." = "Estás en el plan gratuito.";
+"You've used this month's free backups." = "Has utilizado las copias de seguridad gratuitas de este mes.";
 "You've used this month's free cleanup" = "Has utilizado la limpieza gratuita de este mes.";
 "Your choice also teaches Best Shot your taste, on this device." = "Su elección también le enseña a Best Shot sus gustos en este dispositivo.";
 "Your full photo library, with cloud backup status." = "Tu biblioteca de fotos completa, con estado de copia de seguridad en la nube.";

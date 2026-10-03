@@ -114,6 +114,7 @@
 "Automatically file content where it belongs." = "Arhivați automat conținutul acolo unde îi aparține.";
 "Automation" = "Automatizare";
 "Back" = "Înapoi";
+"Back Up %d Files" = "Faceți backup pentru %d fișiere";
 "Back up as much as you want, with every rule and cloud account." = "Faceți backup cât doriți, cu fiecare regulă și cont în cloud.";
 "Back Up More" = "Mai multe copii de rezervă";
 "Back Up Now" = "Faceți backup acum";
@@ -127,6 +128,7 @@
 "Best" = "Cel mai bun";
 "Best Shot" = "Cea mai bună lovitură";
 "Best Shot goes back to its standard mix." = "Best Shot revine la mixul său standard.";
+"Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it." = "Best Shot învață din fotografiile pe care le păstrați și începe să vă recomande tipul de fotografie care vă place. Învață pe acest dispozitiv și nimic nu-l părăsește.";
 "Best Shot learns what you like to keep." = "Best Shot învață ceea ce îți place să păstrezi.";
 "Best value" = "Cea mai bună valoare";
 "Billed monthly" = "Facturat lunar";
@@ -217,11 +219,13 @@
 "Find and remove unnecessary files." = "Găsiți și eliminați fișierele inutile.";
 "Find duplicates" = "Găsiți duplicate";
 "Find receipts and file them in the right place." = "Găsiți chitanțele și depuneți-le la locul potrivit.";
+"Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Găsește chitanțe în capturile de ecran și fotografiile tale, citește comerciantul, data și suma de pe acest dispozitiv și arată unde ar fi depuse fiecare.";
 "Folder" = "Folder";
 "Folder inside KeepSpace" = "Dosar în interiorul KeepSpace";
 "Forecast" = "Prognoza";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Uitați ce a învățat KeepSpace despre biblioteca dvs. Va arăta din nou la următoarea scanare.";
 "Free" = "Gratuit";
+"Free backs up %d more files this month. The first %d will go; Pro has no limit." = "Free face backup pentru încă %d fișiere luna aceasta. Primul %d va merge; Pro nu are limită.";
 "Free includes %@ of cleanup each month. It resets on %@." = "Gratuit include %@ de curățare în fiecare lună. Se resetează pe %@.";
 "Free trial ends %@, then renews." = "Perioada de încercare gratuită se încheie %@, apoi se reînnoiește.";
 "Free trial ends %@." = "Perioada de încercare gratuită se încheie %@.";
@@ -263,6 +267,7 @@
 "Large Videos" = "Videoclipuri mari";
 "Learn from my choices" = "Învață din alegerile mele";
 "Learn More" = "Aflați mai multe";
+"Learning is paused on the Free plan. What Best Shot learned is kept." = "Învățarea este întreruptă în planul gratuit. Ceea ce a învățat Best Shot este păstrat.";
 "Learns as you choose" = "Învață așa cum alegi";
 "Library" = "Biblioteca";
 "Lifetime" = "Toată viața";
@@ -314,6 +319,9 @@
 "OAuth setup required" = "Este necesară configurarea OAuth";
 "Off" = "Oprit";
 "OK" = "OK";
+"On Free you can still see which videos take the most space and review them for deletion." = "Pe Free puteți vedea în continuare care videoclipuri ocupă cel mai mult spațiu și le puteți examina pentru ștergere.";
+"On Free your receipts stay where they are, and you can still review old screenshots." = "Pe Free, chitanțele rămân acolo unde sunt și poți să revizuiești în continuare capturi de ecran vechi.";
+"On Free, Best Shot still picks the best photo in every group." = "Pe Free, Best Shot alege în continuare cea mai bună fotografie din fiecare grup.";
 "On-device AI only" = "Numai pe dispozitiv AI";
 "One-time payment" = "Plată unică";
 "One-time purchase. No subscription, no renewal." = "Achiziție unică. Fără abonament, fără reînnoire.";
@@ -347,6 +355,7 @@
 "Privacy & Security" = "Confidențialitate și securitate";
 "Privacy Policy" = "Politica de confidențialitate";
 "Pro" = "Pro";
+"PRO" = "PRO";
 "Pro adds" = "adaugă Pro";
 "Pro unlocks by itself once the purchase is approved." = "Pro se deblochează de la sine odată ce achiziția este aprobată.";
 "Pro · ends %@" = "Pro · se termină %@";
@@ -396,6 +405,7 @@
 "Save %d%%" = "Salvați %d%%";
 "Save Rule" = "Salvați regula";
 "Save to" = "Salvați în";
+"Scanning, the Safety Score and review stay free." = "Scanarea, scorul de siguranță și recenzia rămân gratuite.";
 "Screen Recordings" = "Înregistrări pe ecran";
 "Screenshot" = "Captură de ecran";
 "Screenshots" = "Capturi de ecran";
@@ -410,6 +420,7 @@
 "Settings" = "Setări";
 "Sharpness" = "Claritate";
 "Shrink big videos on your device and keep the quality." = "Reduceți videoclipurile mari de pe dispozitiv și păstrați calitatea.";
+"Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Reduce un videoclip mare pe dispozitiv și păstrează calitatea. Examinați rezultatul înainte ca originalul să fie eliminat.";
 "Similar Photos" = "Fotografii similare";
 "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server." = "Fotografii similare, cele mai bune fotografii, text în capturi de ecran și chitanțe sunt toate găsite cu modelele încorporate în iOS. Nimic nu este trimis la un server.";
 "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server." = "Fotografii, chipuri și text similare din capturi de ecran și chitanțe sunt găsite cu modelele incluse în aplicație. Nimic nu este trimis la un server.";
@@ -459,6 +470,9 @@
 "Unknown merchant" = "Comerciant necunoscut";
 "Unlimited Backup & Rules" = "Backup și reguli nelimitate";
 "Unlimited Cleanup" = "Curățare nelimitată";
+"Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules." = "Curățare nelimitată, compresie video, capturi de ecran inteligente, depunere a chitanțelor, AI Gust și backup și reguli nelimitate.";
+"Unlock KeepSpace Pro" = "Deblocați KeepSpace Pro";
+"Unlock Unlimited Backup" = "Deblocați backup nelimitat";
 "Unlock Unlimited Cleanup" = "Deblocați curățarea nelimitată";
 "Upgrade to Pro" = "Faceți upgrade la Pro";
 "Upload over Wi-Fi only" = "Încărcați numai prin Wi-Fi";
@@ -492,6 +506,7 @@
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "Veți confirma în pasul următor. Articolele rămân în Coșul de gunoi timp de 30 de zile.";
 "You're close to this month's free limit" = "Ești aproape de limita gratuită a acestei luni";
 "You're on the Free plan." = "Ești în planul Free.";
+"You've used this month's free backups." = "Ați folosit backup-urile gratuite din această lună.";
 "You've used this month's free cleanup" = "Ați folosit curățarea gratuită din această lună";
 "Your choice also teaches Best Shot your taste, on this device." = "Alegerea dvs. vă învață și gustul Best Shot pe acest dispozitiv.";
 "Your full photo library, with cloud backup status." = "Biblioteca dvs. completă de fotografii, cu starea de rezervă în cloud.";

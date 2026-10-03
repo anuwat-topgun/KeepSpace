@@ -114,6 +114,7 @@
 "Automatically file content where it belongs." = "自动将内容归档到其所属的位置。";
 "Automation" = "自动化";
 "Back" = "返回";
+"Back Up %d Files" = "备份 %d 个文件";
 "Back up as much as you want, with every rule and cloud account." = "使用每条规则和云帐户备份尽可能多的数据。";
 "Back Up More" = "备份更多";
 "Back Up Now" = "立即备份";
@@ -127,6 +128,7 @@
 "Best" = "最佳";
 "Best Shot" = "最佳拍摄";
 "Best Shot goes back to its standard mix." = "Best Shot 回归其标准组合。";
+"Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it." = "Best Shot 会从您保存的照片中学习，并开始推荐您喜欢的照片类型。它在这个设备上学习，什么也没有留下。";
 "Best Shot learns what you like to keep." = "Best Shot 会了解您喜欢保留什么。";
 "Best value" = "最超值";
 "Billed monthly" = "按月计费";
@@ -217,11 +219,13 @@
 "Find and remove unnecessary files." = "查找并删除不需要的文件。";
 "Find duplicates" = "查找重复项";
 "Find receipts and file them in the right place." = "找到收据并将其归档在正确的位置。";
+"Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "在您的屏幕截图和照片中查找收据，读取此设备上的商家、日期和金额，并显示每张收据的归档位置。";
 "Folder" = "文件夹";
 "Folder inside KeepSpace" = "KeepSpace 内的文件夹";
 "Forecast" = "预测";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "忘记 KeepSpace 对您的图书馆的了解。下次扫描时它将再次查看。";
 "Free" = "免费";
+"Free backs up %d more files this month. The first %d will go; Pro has no limit." = "本月免费备份了 %d 个文件。第一个 %d 将消失；专业版没有限制。";
 "Free includes %@ of cleanup each month. It resets on %@." = "免费包括每月 %@ 的清理工作。它在 %@ 重置。";
 "Free trial ends %@, then renews." = "免费试用结束%@，然后续订。";
 "Free trial ends %@." = "免费试用结束%@。";
@@ -263,6 +267,7 @@
 "Large Videos" = "大视频";
 "Learn from my choices" = "从我的选择中学习";
 "Learn More" = "了解更多";
+"Learning is paused on the Free plan. What Best Shot learned is kept." = "免费计划的学习已暂停。 Best Shot 所学到的知识都会被保留。";
 "Learns as you choose" = "随你选择学习";
 "Library" = "图书馆";
 "Lifetime" = "终身";
@@ -314,6 +319,9 @@
 "OAuth setup required" = "需要 OAuth 设置";
 "Off" = "关闭";
 "OK" = "好的";
+"On Free you can still see which videos take the most space and review them for deletion." = "在免费版中，您仍然可以查看哪些视频占用最多空间并检查它们是否删除。";
+"On Free your receipts stay where they are, and you can still review old screenshots." = "在免费版中，您的收据保留在原处，并且您仍然可以查看旧的屏幕截图。";
+"On Free, Best Shot still picks the best photo in every group." = "在“免费”模式下，“最佳拍摄”仍然会挑选每组中最好的照片。";
 "On-device AI only" = "仅限设备上 AI";
 "One-time payment" = "一次性付款";
 "One-time purchase. No subscription, no renewal." = "一次性购买。没有订阅，没有续订。";
@@ -347,6 +355,7 @@
 "Privacy & Security" = "隐私与安全";
 "Privacy Policy" = "隐私政策";
 "Pro" = "专业版";
+"PRO" = "专业版";
 "Pro adds" = "专业人士补充道";
 "Pro unlocks by itself once the purchase is approved." = "一旦购买获得批准，Pro 就会自行解锁。";
 "Pro · ends %@" = "亲 · 结束 %@";
@@ -396,6 +405,7 @@
 "Save %d%%" = "保存%d%%";
 "Save Rule" = "保存规则";
 "Save to" = "保存到";
+"Scanning, the Safety Score and review stay free." = "扫描、安全评分和审查都是免费的。";
 "Screen Recordings" = "屏幕录制";
 "Screenshot" = "截图";
 "Screenshots" = "截图";
@@ -410,6 +420,7 @@
 "Settings" = "设置";
 "Sharpness" = "清晰度";
 "Shrink big videos on your device and keep the quality." = "缩小设备上的大视频并保持质量。";
+"Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "缩小设备上的大视频并保持质量。您在删除原始结果之前查看结果。";
 "Similar Photos" = "类似照片";
 "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server." = "类似的照片、最佳照片、屏幕截图中的文本和收据都可以在 iOS 中内置的模型中找到。没有任何内容发送到服务器。";
 "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server." = "在应用程序内捆绑的模型中可以找到屏幕截图和收据中类似的照片、面孔和文本。没有任何内容发送到服务器。";
@@ -459,6 +470,9 @@
 "Unknown merchant" = "未知商人";
 "Unlimited Backup & Rules" = "无限备份和规则";
 "Unlimited Cleanup" = "无限清理";
+"Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules." = "无限清理、视频压缩、智能截图、收据归档、AI 品味以及无限备份和规则。";
+"Unlock KeepSpace Pro" = "解锁 KeepSpace 专业版";
+"Unlock Unlimited Backup" = "解锁无限备份";
 "Unlock Unlimited Cleanup" = "解锁无限清理";
 "Upgrade to Pro" = "升级到专业版";
 "Upload over Wi-Fi only" = "仅通过 Wi-Fi 上传";
@@ -492,6 +506,7 @@
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "您将在下一步中确认。项目会在垃圾箱中保留 30 天。";
 "You're close to this month's free limit" = "您已接近本月的免费限额";
 "You're on the Free plan." = "您使用的是免费计划。";
+"You've used this month's free backups." = "您已使用本月的免费备份。";
 "You've used this month's free cleanup" = "您已使用本月的免费清理服务";
 "Your choice also teaches Best Shot your taste, on this device." = "您的选择也会让 Best Shot 了解您在此设备上的品味。";
 "Your full photo library, with cloud backup status." = "您的完整照片库，具有云备份状态。";

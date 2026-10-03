@@ -59,6 +59,8 @@ struct RootView: View {
             proStore.start()
             // Count confirmed deletions against the free monthly allowance.
             library.onDeleted = { [monetization] bytes in monetization.recordCleanup(bytes: bytes) }
+            // AI Taste is Pro: Free keeps what was learned but stops learning.
+            library.canLearnTaste = { [monetization] in monetization.isPro }
         }
         .task { await weekly.refreshPermission(); openFromNotificationIfPending() }
         .onReceive(NotificationCenter.default.publisher(for: .openFromNotification)) { _ in openFromNotificationIfPending() }
@@ -205,11 +207,11 @@ struct RouteDestination: View {
         case .cloudOverview: CloudOverviewView()
         case .manualBackup: ManualBackupView()
         case .review(let kind): ReviewView(source: .kind(kind))
-        case .receipts: ReceiptsView()
+        case .receipts: ProGate(feature: .receiptFiling) { ReceiptsView() }
         case .storageRules: StorageRulesView()
         case .newRule: RuleEditorView(ruleID: nil, existing: nil)
         case .editRule(let id): RuleEditorView(ruleID: id, existing: rules.rules.first { $0.id == id })
-        case .receiptFiling(let id): ReceiptFilingView(receiptID: id)
+        case .receiptFiling(let id): ProGate(feature: .receiptFiling) { ReceiptFilingView(receiptID: id) }
         case .reviewGroup(let id): ReviewView(source: .group(id))
         case .backupVerification: PlaceholderScreen(title: route.title)
         }

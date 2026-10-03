@@ -114,6 +114,7 @@
 "Automatically file content where it belongs." = "Arkivera automatiskt innehåll där det hör hemma.";
 "Automation" = "Automation";
 "Back" = "Tillbaka";
+"Back Up %d Files" = "Säkerhetskopiera %d filer";
 "Back up as much as you want, with every rule and cloud account." = "Säkerhetskopiera så mycket du vill, med varje regel och molnkonto.";
 "Back Up More" = "Säkerhetskopiera mer";
 "Back Up Now" = "Säkerhetskopiera nu";
@@ -127,6 +128,7 @@
 "Best" = "Bästa";
 "Best Shot" = "Bästa skottet";
 "Best Shot goes back to its standard mix." = "Best Shot går tillbaka till sin standardmix.";
+"Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it." = "Best Shot lär sig av de foton du sparar och börjar rekommendera vilken typ av bild du gillar. Den lär sig på den här enheten och ingenting lämnar den.";
 "Best Shot learns what you like to keep." = "Best Shot lär sig vad du gillar att behålla.";
 "Best value" = "Bästa värde";
 "Billed monthly" = "Faktureras månadsvis";
@@ -217,11 +219,13 @@
 "Find and remove unnecessary files." = "Hitta och ta bort onödiga filer.";
 "Find duplicates" = "Hitta dubbletter";
 "Find receipts and file them in the right place." = "Hitta kvitton och spara dem på rätt plats.";
+"Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Hittar kvitton i dina skärmdumpar och foton, läser säljaren, datum och belopp på den här enheten och visar var var och en skulle arkiveras.";
 "Folder" = "Mapp";
 "Folder inside KeepSpace" = "Mapp inuti KeepSpace";
 "Forecast" = "Prognos";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Glöm vad KeepSpace lärde sig om ditt bibliotek. Det kommer att se ut igen vid nästa skanning.";
 "Free" = "Gratis";
+"Free backs up %d more files this month. The first %d will go; Pro has no limit." = "Gratis säkerhetskopierar %d filer till denna månad. Den första %d kommer att gå; Pro har ingen gräns.";
 "Free includes %@ of cleanup each month. It resets on %@." = "Gratis inkluderar %@ av städning varje månad. Den återställs på %@.";
 "Free trial ends %@, then renews." = "Gratis provperiod slutar %@ och förnyas sedan.";
 "Free trial ends %@." = "Gratis provperiod slutar %@.";
@@ -263,6 +267,7 @@
 "Large Videos" = "Stora videor";
 "Learn from my choices" = "Lär dig av mina val";
 "Learn More" = "Läs mer";
+"Learning is paused on the Free plan. What Best Shot learned is kept." = "Lärandet pausas på gratisplanen. Det som Best Shot lärt sig bevaras.";
 "Learns as you choose" = "Lär dig som du väljer";
 "Library" = "Bibliotek";
 "Lifetime" = "Livstid";
@@ -314,6 +319,9 @@
 "OAuth setup required" = "OAuth-konfiguration krävs";
 "Off" = "Av";
 "OK" = "OK";
+"On Free you can still see which videos take the most space and review them for deletion." = "På Gratis kan du fortfarande se vilka videor som tar mest plats och granska dem för radering.";
+"On Free your receipts stay where they are, and you can still review old screenshots." = "På Gratis stannar dina kvitton där de är, och du kan fortfarande granska gamla skärmdumpar.";
+"On Free, Best Shot still picks the best photo in every group." = "På Gratis väljer Best Shot fortfarande det bästa fotot i varje grupp.";
 "On-device AI only" = "Endast på enheten AI";
 "One-time payment" = "Engångsbetalning";
 "One-time purchase. No subscription, no renewal." = "Engångsköp. Ingen prenumeration, ingen förnyelse.";
@@ -347,6 +355,7 @@
 "Privacy & Security" = "Sekretess och säkerhet";
 "Privacy Policy" = "Sekretesspolicy";
 "Pro" = "Pro";
+"PRO" = "PRO";
 "Pro adds" = "Pro tillägger";
 "Pro unlocks by itself once the purchase is approved." = "Pro låser upp av sig själv när köpet är godkänt.";
 "Pro · ends %@" = "Pro · slutar %@";
@@ -396,6 +405,7 @@
 "Save %d%%" = "Spara %d%%";
 "Save Rule" = "Spara regel";
 "Save to" = "Spara till";
+"Scanning, the Safety Score and review stay free." = "Skanning, säkerhetspoäng och recension är gratis.";
 "Screen Recordings" = "Skärminspelningar";
 "Screenshot" = "Skärmdump";
 "Screenshots" = "Skärmdumpar";
@@ -410,6 +420,7 @@
 "Settings" = "Inställningar";
 "Sharpness" = "Skärpa";
 "Shrink big videos on your device and keep the quality." = "Förminska stora videor på din enhet och behåll kvaliteten.";
+"Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Krymper en stor video på din enhet och behåller kvaliteten. Du granskar resultatet innan originalet tas bort.";
 "Similar Photos" = "Liknande foton";
 "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server." = "Liknande bilder, bästa bilder, text i skärmdumpar och kvitton finns alla med modeller inbyggda i iOS. Ingenting skickas till en server.";
 "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server." = "Liknande foton, ansikten och text i skärmdumpar och kvitton finns med modeller inkluderade i appen. Ingenting skickas till en server.";
@@ -459,6 +470,9 @@
 "Unknown merchant" = "Okänd köpman";
 "Unlimited Backup & Rules" = "Obegränsad säkerhetskopiering och regler";
 "Unlimited Cleanup" = "Obegränsad rengöring";
+"Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules." = "Obegränsad rensning, videokomprimering, smarta skärmdumpar, kvittoarkivering, AI Taste och obegränsad säkerhetskopiering och regler.";
+"Unlock KeepSpace Pro" = "Lås upp KeepSpace Pro";
+"Unlock Unlimited Backup" = "Lås upp obegränsad säkerhetskopiering";
 "Unlock Unlimited Cleanup" = "Lås upp obegränsad rensning";
 "Upgrade to Pro" = "Uppgradera till Pro";
 "Upload over Wi-Fi only" = "Ladda upp endast över Wi-Fi";
@@ -492,6 +506,7 @@
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "Du bekräftar i nästa steg. Föremål stannar i papperskorgen i 30 dagar.";
 "You're close to this month's free limit" = "Du är nära den här månadens gratisgräns";
 "You're on the Free plan." = "Du har gratisplanen.";
+"You've used this month's free backups." = "Du har använt denna månads kostnadsfria säkerhetskopior.";
 "You've used this month's free cleanup" = "Du har använt den här månadens gratis städning";
 "Your choice also teaches Best Shot your taste, on this device." = "Ditt val lär också Best Shot din smak, på den här enheten.";
 "Your full photo library, with cloud backup status." = "Ditt fullständiga fotobibliotek, med molnsäkerhetsstatus.";

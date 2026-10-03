@@ -120,6 +120,9 @@ class LibraryStore(context: Context, demo: Boolean) {
      */
     var onDeleted: ((Long) -> Unit)? = null
 
+    /** Whether a confirmed Best Shot choice may teach AI Taste (a Pro feature). Free keeps what was learned but stops learning. */
+    var canLearnTaste: () -> Boolean = { true }
+
     /** The size of each of [ids], for checking a deletion against the free allowance. */
     fun cleanupItems(ids: Collection<String>, safety: SafetyLevel): List<CleanupItem> {
         val wanted = ids.toSet()
@@ -180,7 +183,7 @@ class LibraryStore(context: Context, demo: Boolean) {
         var others = group.assetUris.filterIndexed { i, _ -> i != keeperIndex }.toSet()
         if (limitingTo != null) others = others intersect limitingTo // free allowance: delete only what fits
         val outcome = delete(others, actions)
-        if (outcome is DeletionOutcome.Deleted && group.scoreFeatures.isNotEmpty()) {
+        if (outcome is DeletionOutcome.Deleted && group.scoreFeatures.isNotEmpty() && canLearnTaste()) {
             taste.learn(keeperIndex, group.scoreFeatures)
             rebuild()
         }

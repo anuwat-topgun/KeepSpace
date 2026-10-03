@@ -4,6 +4,7 @@ import SwiftUI
 struct StorageRulesView: View {
     @Environment(RuleStore.self) private var store
     @Environment(AppRouter.self) private var router
+    @Environment(MonetizationStore.self) private var monetization
 
     var body: some View {
         ScreenScaffold(maxWidth: Metrics.wideContentWidth) {
@@ -30,10 +31,15 @@ struct StorageRulesView: View {
                 }
             }
 
+            // The first rule is free; a second opens the paywall. Existing rules are never removed.
+            let canAdd = monetization.allowances.canCreateRule(existing: store.rules.count)
             Button {
-                router.push(.newRule)
+                if canAdd { router.push(.newRule) } else { router.presentPaywall(focus: .unlimitedRules) }
             } label: {
-                Label("Add Rule", systemImage: "plus")
+                HStack(spacing: 8) {
+                    Label("Add Rule", systemImage: "plus")
+                    if !canAdd { ProChip() }
+                }
             }
             .buttonStyle(PrimaryButtonStyle(showsArrow: false))
             .padding(.top, 4)

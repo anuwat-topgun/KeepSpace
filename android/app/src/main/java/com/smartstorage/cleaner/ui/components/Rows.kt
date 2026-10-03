@@ -69,11 +69,15 @@ fun CardRow(
     modifier: Modifier = Modifier,
     tint: Tint = Tint.Teal,
     subtitle: String? = null,
+    /** Shows a PRO chip: the row stays visible and tappable, but what it opens is a Pro feature. */
+    isProLocked: Boolean = false,
     onClick: (() -> Unit)? = null,
 ) {
     val clickable = if (onClick != null) Modifier.clickable(role = Role.Button, onClick = onClick) else Modifier
     SmartCard(modifier = modifier, contentPadding = PaddingValues(16.dp)) {
-        ListTile(icon = icon, title = title, tint = tint, subtitle = subtitle, modifier = clickable)
+        ListTile(icon = icon, title = title, tint = tint, subtitle = subtitle, modifier = clickable) {
+            if (isProLocked) ProChip()
+        }
     }
 }
 

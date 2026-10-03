@@ -116,6 +116,7 @@
     <string name="common_automatically_file_content_where_it_belongs">Tự động lưu trữ nội dung ở nơi nó thuộc về.</string>
     <string name="common_automation">Tự động hóa</string>
     <string name="common_back">Quay lại</string>
+    <string name="manual_backup_back_up_d_files">Sao lưu các tập tin %d</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Sao lưu bao nhiêu tùy thích, với mọi quy tắc và tài khoản đám mây.</string>
     <string name="common_back_up_more">Sao lưu thêm</string>
     <string name="common_back_up_now">Sao lưu ngay</string>
@@ -129,6 +130,7 @@
     <string name="common_best">Tốt nhất</string>
     <string name="common_best_shot">Cú sút đẹp nhất</string>
     <string name="common_best_shot_goes_back_to_its_standard_mix">Best Shot quay lại chế độ kết hợp tiêu chuẩn của nó.</string>
+    <string name="pro_explainer_best_shot_learns_from_the_photos_you_keep_and_starts_rec">Best Shot học hỏi từ những bức ảnh bạn lưu giữ và bắt đầu đề xuất kiểu ảnh bạn thích. Nó học trên thiết bị này và không có gì rời khỏi nó.</string>
     <string name="common_best_shot_learns_what_you_like_to_keep">Best Shot tìm hiểu những gì bạn muốn giữ.</string>
     <string name="paywall_best_value">Giá trị tốt nhất</string>
     <string name="paywall_billed_monthly">Thanh toán hàng tháng</string>
@@ -219,11 +221,13 @@
     <string name="common_find_and_remove_unnecessary_files">Tìm và loại bỏ các tập tin không cần thiết.</string>
     <string name="common_find_duplicates">Tìm bản sao</string>
     <string name="paywall_find_receipts_and_file_them_in_the_right_place">Tìm biên lai và nộp chúng vào đúng nơi.</string>
+    <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Tìm biên lai trong ảnh chụp màn hình và ảnh của bạn, đọc thông tin người bán, ngày và số tiền trên thiết bị này, đồng thời hiển thị nơi mỗi biên nhận sẽ được nộp.</string>
     <string name="common_folder">Thư mục</string>
     <string name="common_folder_inside_keepspace">Thư mục bên trong KeepSpace</string>
     <string name="common_forecast">Dự báo</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">Hãy quên đi những gì KeepSpace đã biết về thư viện của bạn. Nó sẽ nhìn lại vào lần quét tiếp theo.</string>
     <string name="subscription_free">miễn phí</string>
+    <string name="manual_backup_free_backs_up_d_more_files_this_month_the_first_d_will_g">Sao lưu miễn phí thêm %d tệp trong tháng này. %d đầu tiên sẽ đi; Pro không có giới hạn.</string>
     <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Miễn phí bao gồm %s dọn dẹp mỗi tháng. Nó đặt lại vào %s.</string>
     <string name="subscription_free_trial_ends_then_renews">Thời gian dùng thử miễn phí kết thúc %s, sau đó gia hạn.</string>
     <string name="subscription_free_trial_ends">Thời gian dùng thử miễn phí kết thúc %s.</string>
@@ -265,6 +269,7 @@
     <string name="common_large_videos">Video lớn</string>
     <string name="common_learn_from_my_choices">Học hỏi từ những lựa chọn của tôi</string>
     <string name="common_learn_more">Tìm hiểu thêm</string>
+    <string name="a_i_taste_learning_is_paused_on_the_free_plan_what_best_shot_learn">Việc học bị tạm dừng ở gói Miễn phí. Những gì Best Shot đã học sẽ được giữ lại.</string>
     <string name="common_learns_as_you_choose">Học theo cách bạn chọn</string>
     <string name="common_library">Thư viện</string>
     <string name="paywall_lifetime">Trọn đời</string>
@@ -316,6 +321,9 @@
     <string name="common_oauth_setup_required">Yêu cầu thiết lập OAuth</string>
     <string name="common_off">Tắt</string>
     <string name="common_ok">được rồi</string>
+    <string name="pro_explainer_on_free_you_can_still_see_which_videos_take_the_most_spa">Ở chế độ Miễn phí, bạn vẫn có thể xem video nào chiếm nhiều dung lượng nhất và xem lại để xóa.</string>
+    <string name="pro_explainer_on_free_your_receipts_stay_where_they_are_and_you_can_st">Khi bật Miễn phí, biên lai của bạn vẫn giữ nguyên và bạn vẫn có thể xem lại ảnh chụp màn hình cũ.</string>
+    <string name="pro_explainer_on_free_best_shot_still_picks_the_best_photo_in_every_gr">Ở chế độ Free, Best Shot vẫn chọn ra bức ảnh đẹp nhất trong mỗi nhóm.</string>
     <string name="common_on_device_ai_only">Chỉ trên thiết bị AI</string>
     <string name="paywall_one_time_payment">Thanh toán một lần</string>
     <string name="paywall_one_time_purchase_no_subscription_no_renewal">Mua một lần. Không đăng ký, không gia hạn.</string>
@@ -349,6 +357,7 @@
     <string name="common_privacy_security">Quyền riêng tư &amp; Bảo mật</string>
     <string name="common_privacy_policy">Chính sách bảo mật</string>
     <string name="subscription_pro">chuyên nghiệp</string>
+    <string name="pro_chip_pro">CHUYÊN NGHIỆP</string>
     <string name="subscription_pro_adds">Chuyên nghiệp thêm</string>
     <string name="paywall_pro_unlocks_by_itself_once_the_purchase_is_approved">Pro sẽ tự mở khóa sau khi giao dịch mua được chấp thuận.</string>
     <string name="subscription_pro_ends_71525627">Chuyên nghiệp · kết thúc %s</string>
@@ -398,6 +407,7 @@
     <string name="paywall_save_d">Lưu %d%%</string>
     <string name="common_save_rule">Lưu quy tắc</string>
     <string name="common_save_to">Lưu vào</string>
+    <string name="pro_explainer_scanning_the_safety_score_and_review_stay_free">Quét, Điểm an toàn và đánh giá vẫn miễn phí.</string>
     <string name="common_screen_recordings">Bản ghi màn hình</string>
     <string name="common_screenshot">Ảnh chụp màn hình</string>
     <string name="common_screenshots">Ảnh chụp màn hình</string>
@@ -412,6 +422,7 @@
     <string name="common_settings">Cài đặt</string>
     <string name="common_sharpness">Độ sắc nét</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Thu nhỏ các video lớn trên thiết bị của bạn và giữ nguyên chất lượng.</string>
+    <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Thu nhỏ một video lớn trên thiết bị của bạn và giữ nguyên chất lượng. Bạn xem lại kết quả trước khi bản gốc bị xóa.</string>
     <string name="common_similar_photos">Ảnh tương tự</string>
     <string name="privacy_similar_photos_best_shots_text_in_screenshots_and_receip">Các ảnh tương tự, ảnh đẹp nhất, văn bản trong ảnh chụp màn hình và biên nhận đều được tìm thấy ở các mẫu được tích hợp trong iOS. Không có gì được gửi đến một máy chủ.</string>
     <string name="settings_detail_screens_similar_photos_faces_and_text_in_screenshots_and_receipt">Các ảnh, khuôn mặt và văn bản tương tự trong ảnh chụp màn hình và biên nhận được tìm thấy với các mẫu được tích hợp bên trong ứng dụng. Không có gì được gửi đến một máy chủ.</string>
@@ -461,6 +472,9 @@
     <string name="common_unknown_merchant">Người bán không xác định</string>
     <string name="common_unlimited_backup_rules">Sao lưu và quy tắc không giới hạn</string>
     <string name="common_unlimited_cleanup">Dọn dẹp không giới hạn</string>
+    <string name="pro_explainer_unlimited_cleanup_video_compression_smart_screenshots_re">Dọn dẹp không giới hạn, nén video, chụp ảnh màn hình thông minh, Gửi biên nhận, AI Taste cũng như các quy tắc và sao lưu không giới hạn.</string>
+    <string name="common_unlock_keepspace_pro">Mở khóa KeepSpace Pro</string>
+    <string name="manual_backup_unlock_unlimited_backup">Mở khóa sao lưu không giới hạn</string>
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Mở khóa dọn dẹp không giới hạn</string>
     <string name="subscription_upgrade_to_pro">Nâng cấp lên Pro</string>
     <string name="common_upload_over_wi_fi_only">Chỉ tải lên qua Wi-Fi</string>
@@ -494,6 +508,7 @@
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Bạn sẽ xác nhận ở bước tiếp theo. Các mục sẽ ở trong Thùng rác trong 30 ngày.</string>
     <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Bạn đã gần đạt đến giới hạn miễn phí của tháng này</string>
     <string name="subscription_you_re_on_the_free_plan">Bạn đang sử dụng gói miễn phí.</string>
+    <string name="manual_backup_you_ve_used_this_month_s_free_backups">Bạn đã sử dụng bản sao lưu miễn phí của tháng này.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Bạn đã sử dụng dịch vụ dọn dẹp miễn phí của tháng này</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Sự lựa chọn của bạn cũng dạy cho Best Shot sở thích của bạn trên thiết bị này.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Thư viện ảnh đầy đủ của bạn, với trạng thái sao lưu đám mây.</string>

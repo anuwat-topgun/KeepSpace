@@ -114,6 +114,7 @@
 "Automatically file content where it belongs." = "İçeriği ait olduğu yere otomatik olarak dosyalayın.";
 "Automation" = "Otomasyon";
 "Back" = "Geri";
+"Back Up %d Files" = "%d Dosyayı Yedekle";
 "Back up as much as you want, with every rule and cloud account." = "Her kural ve bulut hesabıyla istediğiniz kadar yedekleyin.";
 "Back Up More" = "Daha Fazla Yedekle";
 "Back Up Now" = "Şimdi Yedekle";
@@ -127,6 +128,7 @@
 "Best" = "En iyi";
 "Best Shot" = "En İyi Atış";
 "Best Shot goes back to its standard mix." = "Best Shot standart karışımına geri döner.";
+"Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it." = "Best Shot, sakladığınız fotoğraflardan öğrenir ve beğendiğiniz çekim türünü önermeye başlar. Bu cihazda öğrenir ve hiçbir şey onu terk etmez.";
 "Best Shot learns what you like to keep." = "Best Shot, neyi saklamak istediğinizi öğrenir.";
 "Best value" = "En iyi değer";
 "Billed monthly" = "Aylık faturalandırılır";
@@ -217,11 +219,13 @@
 "Find and remove unnecessary files." = "Gereksiz dosyaları bulun ve kaldırın.";
 "Find duplicates" = "Yinelenenleri bul";
 "Find receipts and file them in the right place." = "Makbuzları bulun ve doğru yere dosyalayın.";
+"Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Ekran görüntülerinizdeki ve fotoğraflarınızdaki makbuzları bulur, bu cihazdaki satıcıyı, tarihi ve tutarı okur ve her birinin nereye dosyalanacağını gösterir.";
 "Folder" = "Klasör";
 "Folder inside KeepSpace" = "KeepSpace içindeki klasör";
 "Forecast" = "Tahmin";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "KeepSpace'nin kitaplığınız hakkında öğrendiklerini unutun. Bir sonraki taramada tekrar görünecektir.";
 "Free" = "Ücretsiz";
+"Free backs up %d more files this month. The first %d will go; Pro has no limit." = "Bu ay %d dosya daha ücretsiz yedekleniyor. İlk %d gidecek; Pro'nun sınırı yoktur.";
 "Free includes %@ of cleanup each month. It resets on %@." = "Ücretsiz, her ay %@ temizliği içerir. %@ tarihinde sıfırlanır.";
 "Free trial ends %@, then renews." = "Ücretsiz deneme süresi %@ sona erer ve ardından yenilenir.";
 "Free trial ends %@." = "Ücretsiz deneme %@ sona eriyor.";
@@ -263,6 +267,7 @@
 "Large Videos" = "Büyük Videolar";
 "Learn from my choices" = "Seçimlerimden ders alın";
 "Learn More" = "Daha Fazla Bilgi Edinin";
+"Learning is paused on the Free plan. What Best Shot learned is kept." = "Ücretsiz planda öğrenim duraklatıldı. Best Shot'ın öğrendikleri saklanır.";
 "Learns as you choose" = "Seçtiğiniz gibi öğrenir";
 "Library" = "Kütüphane";
 "Lifetime" = "Ömür boyu";
@@ -314,6 +319,9 @@
 "OAuth setup required" = "OAuth kurulumu gerekli";
 "Off" = "Kapalı";
 "OK" = "tamam";
+"On Free you can still see which videos take the most space and review them for deletion." = "Ücretsiz'de hangi videoların en fazla alanı kapladığını görmeye devam edebilir ve bunları silinmek üzere inceleyebilirsiniz.";
+"On Free your receipts stay where they are, and you can still review old screenshots." = "Ücretsiz'de makbuzlarınız oldukları yerde kalır ve eski ekran görüntülerini incelemeye devam edebilirsiniz.";
+"On Free, Best Shot still picks the best photo in every group." = "Ücretsiz'de En İyi Çekim hâlâ her gruptaki en iyi fotoğrafı seçiyor.";
 "On-device AI only" = "Yalnızca cihazda AI";
 "One-time payment" = "Tek seferlik ödeme";
 "One-time purchase. No subscription, no renewal." = "Bir kerelik satın alma. Abonelik yok, yenileme yok.";
@@ -347,6 +355,7 @@
 "Privacy & Security" = "Gizlilik ve Güvenlik";
 "Privacy Policy" = "Gizlilik Politikası";
 "Pro" = "Profesyonel";
+"PRO" = "PRO";
 "Pro adds" = "Profesyonel ekler";
 "Pro unlocks by itself once the purchase is approved." = "Satın alma onaylandıktan sonra Pro'nun kilidi kendiliğinden açılır.";
 "Pro · ends %@" = "Profesyonel · %@ sona eriyor";
@@ -396,6 +405,7 @@
 "Save %d%%" = "%d%% tasarruf edin";
 "Save Rule" = "Kuralı Kaydet";
 "Save to" = "Kaydet";
+"Scanning, the Safety Score and review stay free." = "Tarama, Güvenlik Puanı ve inceleme ücretsiz kalır.";
 "Screen Recordings" = "Ekran Kayıtları";
 "Screenshot" = "Ekran görüntüsü";
 "Screenshots" = "Ekran görüntüleri";
@@ -410,6 +420,7 @@
 "Settings" = "Ayarlar";
 "Sharpness" = "Keskinlik";
 "Shrink big videos on your device and keep the quality." = "Cihazınızdaki büyük videoları küçültün ve kaliteyi koruyun.";
+"Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Cihazınızdaki büyük bir videoyu küçültür ve kaliteyi korur. Orijinali çıkarmadan önce sonucu gözden geçirirsiniz.";
 "Similar Photos" = "Benzer Fotoğraflar";
 "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server." = "Benzer fotoğraflar, en iyi çekimler, ekran görüntülerindeki metinler ve faturaların tümü iOS yerleşik modellerde bulunur. Sunucuya hiçbir şey gönderilmez.";
 "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server." = "Uygulamanın içinde paketlenmiş modellerde ekran görüntüleri ve faturalardaki benzer fotoğraflar, yüzler ve metinler bulunur. Sunucuya hiçbir şey gönderilmez.";
@@ -459,6 +470,9 @@
 "Unknown merchant" = "Bilinmeyen satıcı";
 "Unlimited Backup & Rules" = "Sınırsız Yedekleme ve Kurallar";
 "Unlimited Cleanup" = "Sınırsız Temizleme";
+"Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules." = "Sınırsız temizleme, video sıkıştırma, akıllı ekran görüntüleri, Makbuz Dosyalama, AI Tat ve sınırsız yedekleme ve kurallar.";
+"Unlock KeepSpace Pro" = "KeepSpace Pro'nun kilidini açın";
+"Unlock Unlimited Backup" = "Sınırsız Yedeklemenin Kilidini Açın";
 "Unlock Unlimited Cleanup" = "Sınırsız Temizlemenin Kilidini Açın";
 "Upgrade to Pro" = "Pro'ya yükseltin";
 "Upload over Wi-Fi only" = "Yalnızca Wi-Fi üzerinden yükleme yapın";
@@ -492,6 +506,7 @@
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "Bir sonraki adımda onaylayacaksınız. Öğeler 30 gün boyunca Çöp Kutusu'nda kalır.";
 "You're close to this month's free limit" = "Bu ayın ücretsiz sınırına yaklaştınız";
 "You're on the Free plan." = "Ücretsiz plandasınız.";
+"You've used this month's free backups." = "Bu ayın ücretsiz yedeklemelerini kullandınız.";
 "You've used this month's free cleanup" = "Bu ayın ücretsiz temizliğini kullandınız";
 "Your choice also teaches Best Shot your taste, on this device." = "Seçiminiz aynı zamanda bu cihazda Best Shot zevkinizi de öğretir.";
 "Your full photo library, with cloud backup status." = "Bulut yedekleme durumuyla birlikte tam fotoğraf kitaplığınız.";

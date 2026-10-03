@@ -114,6 +114,7 @@
 "Automatically file content where it belongs." = "حفظ المحتوى تلقائيًا في المكان الذي ينتمي إليه.";
 "Automation" = "الأتمتة";
 "Back" = "العودة";
+"Back Up %d Files" = "نسخ احتياطي لملفات %d";
 "Back up as much as you want, with every rule and cloud account." = "قم بالنسخ الاحتياطي بقدر ما تريد، مع كل قاعدة وحساب سحابي.";
 "Back Up More" = "النسخ الاحتياطي أكثر";
 "Back Up Now" = "النسخ الاحتياطي الآن";
@@ -127,6 +128,7 @@
 "Best" = "الأفضل";
 "Best Shot" = "أفضل لقطة";
 "Best Shot goes back to its standard mix." = "تعود Best Shot إلى مزيجها القياسي.";
+"Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it." = "تتعلم Best Shot من الصور التي تحتفظ بها وتبدأ في التوصية بنوع اللقطة التي تفضلها. يتعلم على هذا الجهاز ولا يتركه شيء.";
 "Best Shot learns what you like to keep." = "تتعلم Best Shot ما تريد الاحتفاظ به.";
 "Best value" = "أفضل قيمة";
 "Billed monthly" = "تدفع شهريا";
@@ -217,11 +219,13 @@
 "Find and remove unnecessary files." = "البحث عن الملفات غير الضرورية وإزالتها.";
 "Find duplicates" = "البحث عن التكرارات";
 "Find receipts and file them in the right place." = "ابحث عن الإيصالات وقم بتقديمها في المكان المناسب.";
+"Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "يجد الإيصالات في لقطات الشاشة والصور الخاصة بك، ويقرأ التاجر والتاريخ والمبلغ على هذا الجهاز، ويعرض المكان الذي سيتم حفظ كل إيصال فيه.";
 "Folder" = "مجلد";
 "Folder inside KeepSpace" = "مجلد داخل KeepSpace";
 "Forecast" = "توقعات";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "انسَ ما تعلمته KeepSpace عن مكتبتك. وسوف ننظر مرة أخرى في الفحص التالي.";
 "Free" = "مجاني";
+"Free backs up %d more files this month. The first %d will go; Pro has no limit." = "يمكنك إجراء نسخ احتياطي مجاني لـ %d من الملفات الإضافية هذا الشهر. سوف يذهب أول %d؛ برو ليس له حدود.";
 "Free includes %@ of cleanup each month. It resets on %@." = "مجانًا يتضمن %@ من عمليات التنظيف كل شهر. تتم إعادة التعيين على %@.";
 "Free trial ends %@, then renews." = "تنتهي النسخة التجريبية المجانية %@، ثم يتم تجديدها.";
 "Free trial ends %@." = "تنتهي النسخة التجريبية المجانية %@.";
@@ -263,6 +267,7 @@
 "Large Videos" = "فيديوهات كبيرة";
 "Learn from my choices" = "تعلم من اختياراتي";
 "Learn More" = "تعرف على المزيد";
+"Learning is paused on the Free plan. What Best Shot learned is kept." = "تم إيقاف التعلم مؤقتًا في الخطة المجانية. يتم الاحتفاظ بما تعلمته Best Shot.";
 "Learns as you choose" = "يتعلم حسب اختيارك";
 "Library" = "مكتبة";
 "Lifetime" = "مدى الحياة";
@@ -314,6 +319,9 @@
 "OAuth setup required" = "مطلوب إعداد OAuth";
 "Off" = "إيقاف";
 "OK" = "حسنًا";
+"On Free you can still see which videos take the most space and review them for deletion." = "في الإصدار المجاني، لا يزال بإمكانك رؤية مقاطع الفيديو التي تشغل أكبر مساحة ومراجعتها لحذفها.";
+"On Free your receipts stay where they are, and you can still review old screenshots." = "في الوضع \"مجاني\"، تبقى إيصالاتك في مكانها، ولا يزال بإمكانك مراجعة لقطات الشاشة القديمة.";
+"On Free, Best Shot still picks the best photo in every group." = "في الوضع المجاني، لا تزال ميزة Best Shot تختار أفضل صورة في كل مجموعة.";
 "On-device AI only" = "على الجهاز AI فقط";
 "One-time payment" = "الدفع لمرة واحدة";
 "One-time purchase. No subscription, no renewal." = "شراء لمرة واحدة. لا اشتراك ولا تجديد.";
@@ -347,6 +355,7 @@
 "Privacy & Security" = "الخصوصية والأمن";
 "Privacy Policy" = "سياسة الخصوصية";
 "Pro" = "برو";
+"PRO" = "للمحترفين";
 "Pro adds" = "يضيف برو";
 "Pro unlocks by itself once the purchase is approved." = "يتم فتح Pro من تلقاء نفسه بمجرد الموافقة على الشراء.";
 "Pro · ends %@" = "المحترفين · ينتهي %@";
@@ -396,6 +405,7 @@
 "Save %d%%" = "حفظ %d%%";
 "Save Rule" = "حفظ القاعدة";
 "Save to" = "حفظ ل";
+"Scanning, the Safety Score and review stay free." = "المسح الضوئي ونقاط الأمان والمراجعة تبقى مجانية.";
 "Screen Recordings" = "تسجيلات الشاشة";
 "Screenshot" = "لقطة الشاشة";
 "Screenshots" = "لقطات الشاشة";
@@ -410,6 +420,7 @@
 "Settings" = "الإعدادات";
 "Sharpness" = "الحدة";
 "Shrink big videos on your device and keep the quality." = "قم بتقليص مقاطع الفيديو الكبيرة على جهازك وحافظ على الجودة.";
+"Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "يقوم بتصغير مقطع فيديو كبير على جهازك ويحافظ على جودته. يمكنك مراجعة النتيجة قبل إزالة الأصل.";
 "Similar Photos" = "صور مماثلة";
 "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server." = "تم العثور على صور مماثلة وأفضل اللقطات والنصوص في لقطات الشاشة والإيصالات مع النماذج المضمنة في iOS. لا يتم إرسال أي شيء إلى الخادم.";
 "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server." = "تم العثور على صور ووجوه ونصوص مماثلة في لقطات الشاشة والإيصالات مع النماذج المجمعة داخل التطبيق. لا يتم إرسال أي شيء إلى الخادم.";
@@ -459,6 +470,9 @@
 "Unknown merchant" = "تاجر غير معروف";
 "Unlimited Backup & Rules" = "نسخ احتياطي وقواعد غير محدودة";
 "Unlimited Cleanup" = "تنظيف غير محدود";
+"Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules." = "تنظيف غير محدود، وضغط الفيديو، ولقطات الشاشة الذكية، وحفظ الإيصالات، وذوق AI، والنسخ الاحتياطي والقواعد غير المحدودة.";
+"Unlock KeepSpace Pro" = "فتح KeepSpace برو";
+"Unlock Unlimited Backup" = "فتح النسخ الاحتياطي غير المحدود";
 "Unlock Unlimited Cleanup" = "فتح تنظيف غير محدود";
 "Upgrade to Pro" = "الترقية إلى برو";
 "Upload over Wi-Fi only" = "التحميل عبر Wi-Fi فقط";
@@ -492,6 +506,7 @@
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "ستؤكد في الخطوة التالية. تبقى العناصر في سلة المهملات لمدة 30 يومًا.";
 "You're close to this month's free limit" = "لقد اقتربت من الحد المجاني لهذا الشهر";
 "You're on the Free plan." = "أنت مشترك في الخطة المجانية.";
+"You've used this month's free backups." = "لقد استخدمت النسخ الاحتياطية المجانية لهذا الشهر.";
 "You've used this month's free cleanup" = "لقد استخدمت التنظيف المجاني لهذا الشهر";
 "Your choice also teaches Best Shot your taste, on this device." = "يؤدي اختيارك أيضًا إلى تعليم Best Shot ذوقك على هذا الجهاز.";
 "Your full photo library, with cloud backup status." = "مكتبة الصور الكاملة الخاصة بك، مع حالة النسخ الاحتياطي السحابي.";

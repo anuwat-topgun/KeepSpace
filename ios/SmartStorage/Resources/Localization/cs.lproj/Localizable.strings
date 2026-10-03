@@ -114,6 +114,7 @@
 "Automatically file content where it belongs." = "Automaticky ukládat obsah tam, kam patří.";
 "Automation" = "automatizace";
 "Back" = "Zpět";
+"Back Up %d Files" = "Zálohujte %d souborů";
 "Back up as much as you want, with every rule and cloud account." = "Zálohujte, kolik chcete, s každým pravidlem a cloudovým účtem.";
 "Back Up More" = "Zálohujte více";
 "Back Up Now" = "Zálohujte nyní";
@@ -127,6 +128,7 @@
 "Best" = "Nejlepší";
 "Best Shot" = "Nejlepší střela";
 "Best Shot goes back to its standard mix." = "Best Shot se vrací ke svému standardnímu mixu.";
+"Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it." = "Best Shot se učí z fotografií, které si ponecháte, a začne doporučovat druh záběru, který se vám líbí. Na tomto zařízení se učí a nic ho neopouští.";
 "Best Shot learns what you like to keep." = "Best Shot se naučí, co si chcete nechat.";
 "Best value" = "Nejlepší hodnota";
 "Billed monthly" = "Účtováno měsíčně";
@@ -217,11 +219,13 @@
 "Find and remove unnecessary files." = "Najděte a odstraňte nepotřebné soubory.";
 "Find duplicates" = "Najděte duplikáty";
 "Find receipts and file them in the right place." = "Najděte účtenky a uložte je na správné místo.";
+"Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Vyhledá účtenky na snímcích obrazovky a fotografiích, přečte obchodníka, datum a částku na tomto zařízení a ukáže, kde by byly jednotlivé položky uloženy.";
 "Folder" = "Složka";
 "Folder inside KeepSpace" = "Složka uvnitř KeepSpace";
 "Forecast" = "Předpověď";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Zapomeňte, co se KeepSpace dozvěděla o vaší knihovně. Při dalším skenování se podívá znovu.";
 "Free" = "Zdarma";
+"Free backs up %d more files this month. The first %d will go; Pro has no limit." = "Tento měsíc zdarma zálohuje %d dalších souborů. První %d půjde; Pro nemá žádné omezení.";
 "Free includes %@ of cleanup each month. It resets on %@." = "Zdarma zahrnuje %@ úklidu každý měsíc. Resetuje se na %@.";
 "Free trial ends %@, then renews." = "Bezplatné zkušební období končí %@ a poté se obnoví.";
 "Free trial ends %@." = "Bezplatné zkušební období končí %@.";
@@ -263,6 +267,7 @@
 "Large Videos" = "Velká videa";
 "Learn from my choices" = "Učte se z mých voleb";
 "Learn More" = "Další informace";
+"Learning is paused on the Free plan. What Best Shot learned is kept." = "Učení je u bezplatného plánu pozastaveno. To, co se Best Shot naučil, je zachováno.";
 "Learns as you choose" = "Učí se, jak si vyberete";
 "Library" = "Knihovna";
 "Lifetime" = "Celý život";
@@ -314,6 +319,9 @@
 "OAuth setup required" = "Je vyžadováno nastavení OAuth";
 "Off" = "Vypnuto";
 "OK" = "OK";
+"On Free you can still see which videos take the most space and review them for deletion." = "Ve službě Zdarma můžete stále vidět, která videa zabírají nejvíce místa, a zkontrolovat je, zda je chcete smazat.";
+"On Free your receipts stay where they are, and you can still review old screenshots." = "Na bezplatném účtu zůstanou vaše účtenky tam, kde jsou, a stále si můžete prohlédnout staré snímky obrazovky.";
+"On Free, Best Shot still picks the best photo in every group." = "Bezplatně vybere nejlepší snímek v každé skupině nejlepší fotku.";
 "On-device AI only" = "Pouze na zařízení AI";
 "One-time payment" = "Jednorázová platba";
 "One-time purchase. No subscription, no renewal." = "Jednorázový nákup. Žádné předplatné, žádné obnovení.";
@@ -347,6 +355,7 @@
 "Privacy & Security" = "Ochrana osobních údajů a zabezpečení";
 "Privacy Policy" = "Zásady ochrany osobních údajů";
 "Pro" = "Pro";
+"PRO" = "PRO";
 "Pro adds" = "Pro dodává";
 "Pro unlocks by itself once the purchase is approved." = "Pro se odemkne sám, jakmile je nákup schválen.";
 "Pro · ends %@" = "Pro · končí %@";
@@ -396,6 +405,7 @@
 "Save %d%%" = "Ušetřete %d%%";
 "Save Rule" = "Uložit pravidlo";
 "Save to" = "Uložit do";
+"Scanning, the Safety Score and review stay free." = "Skenování, skóre bezpečnosti a recenze zůstávají zdarma.";
 "Screen Recordings" = "Nahrávky obrazovky";
 "Screenshot" = "Snímek obrazovky";
 "Screenshots" = "Snímky obrazovky";
@@ -410,6 +420,7 @@
 "Settings" = "Nastavení";
 "Sharpness" = "Ostrost";
 "Shrink big videos on your device and keep the quality." = "Zmenšete velká videa na svém zařízení a zachovejte kvalitu.";
+"Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Zmenší velké video na vašem zařízení a zachová kvalitu. Před odstraněním originálu zkontrolujete výsledek.";
 "Similar Photos" = "Podobné Fotografie";
 "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server." = "Podobné fotografie, nejlepší snímky, text na snímcích obrazovky a účtenky – to vše lze nalézt u modelů zabudovaných do iOS. Na server se nic neposílá.";
 "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server." = "Podobné fotky, obličeje a text na snímcích obrazovky a účtenek se nacházejí u modelů přibalených v aplikaci. Na server se nic neposílá.";
@@ -459,6 +470,9 @@
 "Unknown merchant" = "Neznámý obchodník";
 "Unlimited Backup & Rules" = "Neomezené zálohování a pravidla";
 "Unlimited Cleanup" = "Neomezené čištění";
+"Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules." = "Neomezené čištění, komprese videa, chytré snímky obrazovky, archivace účtenek, AI Taste a neomezené zálohování a pravidla.";
+"Unlock KeepSpace Pro" = "Odemkněte KeepSpace Pro";
+"Unlock Unlimited Backup" = "Odemkněte neomezené zálohování";
 "Unlock Unlimited Cleanup" = "Odemkněte neomezené čištění";
 "Upgrade to Pro" = "Upgradujte na Pro";
 "Upload over Wi-Fi only" = "Nahrávejte pouze přes Wi-Fi";
@@ -492,6 +506,7 @@
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "V dalším kroku potvrdíte. Položky zůstanou v koši 30 dní.";
 "You're close to this month's free limit" = "Blížíte se k limitu zdarma pro tento měsíc";
 "You're on the Free plan." = "Jste na bezplatném plánu.";
+"You've used this month's free backups." = "Využili jste bezplatné zálohy z tohoto měsíce.";
 "You've used this month's free cleanup" = "Využili jste bezplatný úklid tohoto měsíce";
 "Your choice also teaches Best Shot your taste, on this device." = "Vaše volba také naučí Best Shot vašemu vkusu na tomto zařízení.";
 "Your full photo library, with cloud backup status." = "Vaše úplná knihovna fotografií se stavem zálohování v cloudu.";

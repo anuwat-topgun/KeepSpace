@@ -4,6 +4,7 @@ import SwiftUI
 struct ScreenshotsView: View {
     @Environment(LibraryStore.self) private var library
     @Environment(AppRouter.self) private var router
+    @Environment(MonetizationStore.self) private var monetization
 
     var body: some View {
         ScreenScaffold(maxWidth: Metrics.wideContentWidth) {
@@ -13,13 +14,17 @@ struct ScreenshotsView: View {
             AdaptiveGrid {
                 ForEach(library.content.screenshotCategories) { category in
                     Button {
-                        if let kind = category.kind { router.push(.review(.screenshots(kind))) }
+                        guard let kind = category.kind else { return }
+                        // Counts and sizes are free for everyone; opening a category's contents is Pro.
+                        if monetization.allowances.allows(.screenshotCategories) { router.push(.review(.screenshots(kind))) }
+                        else { router.presentPaywall(focus: .screenshotCategories) }
                     } label: {
                         CardRow(
                             systemImage: category.systemImage,
                             tint: category.tint,
                             title: category.title,
-                            subtitle: category.count > 0 ? "\(category.count) · \(category.bytes.formattedBytes)" : category.bytes.formattedBytes
+                            subtitle: category.count > 0 ? "\(category.count) · \(category.bytes.formattedBytes)" : category.bytes.formattedBytes,
+                            isProLocked: category.kind != nil && !monetization.isPro
                         )
                     }
                     .buttonStyle(.plain)

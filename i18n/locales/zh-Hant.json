@@ -503,6 +503,21 @@
     "quota_gate_sheet.unlock_unlimited_cleanup": "解鎖無限清理",
     "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "您已接近本月的免費限額",
     "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "您已使用本月的免費清理服務",
-    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "您的選擇是%@。您可以透過免費免費獲得 %@ 更多內容。"
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "您的選擇是%@。您可以透過免費免費獲得 %@ 更多內容。",
+    "manual_backup.back_up_d_files": "備份 %d 個文件",
+    "pro_explainer.best_shot_learns_from_the_photos_you_keep_and_starts_rec": "Best Shot 會從您保存的照片中學習，並開始推薦您喜歡的照片類型。它在這個設備上學習，什麼都沒有留下。",
+    "pro_explainer.finds_receipts_in_your_screenshots_and_photos_reads_the": "在您的螢幕截圖和照片中找到收據，讀取此裝置上的商家、日期和金額，並顯示每張收據的歸檔位置。",
+    "manual_backup.free_backs_up_d_more_files_this_month_the_first_d_will_g": "本月免費備份了 %d 個檔案。第一個 %d 將消失；專業版沒有限制。",
+    "a_i_taste.learning_is_paused_on_the_free_plan_what_best_shot_learn": "免費計劃的學習已暫停。 Best Shot 所學到的知識都會被保留。",
+    "pro_explainer.on_free_you_can_still_see_which_videos_take_the_most_spa": "在免費版中，您仍然可以查看哪些影片佔用最多空間並檢查它們是否刪除。",
+    "pro_explainer.on_free_your_receipts_stay_where_they_are_and_you_can_st": "在免費版中，您的收據保留在原處，您仍然可以查看舊的螢幕截圖。",
+    "pro_explainer.on_free_best_shot_still_picks_the_best_photo_in_every_gr": "在「免費」模式下，「最佳拍攝」仍然會挑選每組中最好的照片。",
+    "pro_chip.pro": "專業版",
+    "pro_explainer.scanning_the_safety_score_and_review_stay_free": "掃描、安全評分和審查都是免費的。",
+    "pro_explainer.shrinks_a_big_video_on_your_device_and_keeps_the_quality": "縮小設備上的大視頻並保持品質。您在刪除原始結果之前查看結果。",
+    "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "無限清理、視訊壓縮、智慧截圖、收據歸檔、AI 品味以及無限備份和規則。",
+    "common.unlock_keepspace_pro": "解鎖 KeepSpace 專業版",
+    "manual_backup.unlock_unlimited_backup": "解鎖無限備份",
+    "manual_backup.you_ve_used_this_month_s_free_backups": "您已使用本月的免費備份。"
   }
 }

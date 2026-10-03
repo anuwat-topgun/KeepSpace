@@ -114,6 +114,7 @@
 "Automatically file content where it belongs." = "Failkan kandungan secara automatik di tempat yang sepatutnya.";
 "Automation" = "Automasi";
 "Back" = "belakang";
+"Back Up %d Files" = "Sandarkan %d Fail";
 "Back up as much as you want, with every rule and cloud account." = "Sandarkan seberapa banyak yang anda mahu, dengan setiap peraturan dan akaun awan.";
 "Back Up More" = "Sandarkan Lagi";
 "Back Up Now" = "Sandarkan Sekarang";
@@ -127,6 +128,7 @@
 "Best" = "terbaik";
 "Best Shot" = "Pukulan Terbaik";
 "Best Shot goes back to its standard mix." = "Best Shot kembali kepada campuran standardnya.";
+"Best Shot learns from the photos you keep and starts recommending the kind of shot you like. It learns on this device and nothing leaves it." = "Syot Terbaik belajar daripada foto yang anda simpan dan mula mengesyorkan jenis syot yang anda suka. Ia belajar pada peranti ini dan tiada apa yang meninggalkannya.";
 "Best Shot learns what you like to keep." = "Best Shot mempelajari perkara yang anda suka simpan.";
 "Best value" = "Nilai terbaik";
 "Billed monthly" = "Dibilkan setiap bulan";
@@ -217,11 +219,13 @@
 "Find and remove unnecessary files." = "Cari dan alih keluar fail yang tidak diperlukan.";
 "Find duplicates" = "Cari pendua";
 "Find receipts and file them in the right place." = "Cari resit dan failkannya di tempat yang betul.";
+"Finds receipts in your screenshots and photos, reads the merchant, date and amount on this device, and shows where each one would be filed." = "Mencari resit dalam tangkapan skrin dan foto anda, membaca pedagang, tarikh dan jumlah pada peranti ini dan menunjukkan tempat setiap satu akan difailkan.";
 "Folder" = "folder";
 "Folder inside KeepSpace" = "Folder di dalam KeepSpace";
 "Forecast" = "Ramalan";
 "Forget what KeepSpace learned about your library. It will look again on the next scan." = "Lupakan apa yang KeepSpace pelajari tentang perpustakaan anda. Ia akan kelihatan semula pada imbasan seterusnya.";
 "Free" = "Percuma";
+"Free backs up %d more files this month. The first %d will go; Pro has no limit." = "Sandaran percuma %d lagi fail bulan ini. %d pertama akan pergi; Pro tiada had.";
 "Free includes %@ of cleanup each month. It resets on %@." = "Percuma termasuk %@ pembersihan setiap bulan. Ia ditetapkan semula pada %@.";
 "Free trial ends %@, then renews." = "Percubaan percuma tamat %@, kemudian diperbaharui.";
 "Free trial ends %@." = "Percubaan percuma tamat %@.";
@@ -263,6 +267,7 @@
 "Large Videos" = "Video Besar";
 "Learn from my choices" = "Belajar dari pilihan saya";
 "Learn More" = "Ketahui Lebih Lanjut";
+"Learning is paused on the Free plan. What Best Shot learned is kept." = "Pembelajaran dijeda pada pelan Percuma. Apa yang dipelajari oleh Best Shot disimpan.";
 "Learns as you choose" = "Belajar mengikut pilihan anda";
 "Library" = "Perpustakaan";
 "Lifetime" = "seumur hidup";
@@ -314,6 +319,9 @@
 "OAuth setup required" = "Persediaan OAuth diperlukan";
 "Off" = "Mati";
 "OK" = "OK";
+"On Free you can still see which videos take the most space and review them for deletion." = "Secara Percuma, anda masih boleh melihat video yang paling banyak menggunakan ruang dan menyemaknya untuk dipadamkan.";
+"On Free your receipts stay where they are, and you can still review old screenshots." = "Secara Percuma, resit anda kekal di tempatnya dan anda masih boleh menyemak tangkapan skrin lama.";
+"On Free, Best Shot still picks the best photo in every group." = "Secara Percuma, Syot Terbaik masih memilih foto terbaik dalam setiap kumpulan.";
 "On-device AI only" = "Pada peranti AI sahaja";
 "One-time payment" = "Bayaran sekali sahaja";
 "One-time purchase. No subscription, no renewal." = "Belian sekali. Tiada langganan, tiada pembaharuan.";
@@ -347,6 +355,7 @@
 "Privacy & Security" = "Privasi & Keselamatan";
 "Privacy Policy" = "Dasar Privasi";
 "Pro" = "Pro";
+"PRO" = "PRO";
 "Pro adds" = "Pro menambah";
 "Pro unlocks by itself once the purchase is approved." = "Pro dibuka dengan sendirinya setelah pembelian diluluskan.";
 "Pro · ends %@" = "Pro · tamat %@";
@@ -396,6 +405,7 @@
 "Save %d%%" = "Jimat %d%%";
 "Save Rule" = "Simpan Peraturan";
 "Save to" = "Simpan ke";
+"Scanning, the Safety Score and review stay free." = "Mengimbas, Skor Keselamatan dan ulasan kekal percuma.";
 "Screen Recordings" = "Rakaman Skrin";
 "Screenshot" = "Tangkapan skrin";
 "Screenshots" = "Tangkapan skrin";
@@ -410,6 +420,7 @@
 "Settings" = "tetapan";
 "Sharpness" = "Ketajaman";
 "Shrink big videos on your device and keep the quality." = "Kecilkan video besar pada peranti anda dan kekalkan kualitinya.";
+"Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Mengecilkan video besar pada peranti anda dan mengekalkan kualitinya. Anda menyemak keputusan sebelum yang asal dialih keluar.";
 "Similar Photos" = "Foto Serupa";
 "Similar photos, best shots, text in screenshots and receipts are all found with models built into iOS. Nothing is sent to a server." = "Foto yang serupa, tangkapan terbaik, teks dalam tangkapan skrin dan resit semuanya ditemui dengan model terbina dalam iOS. Tiada apa-apa dihantar ke pelayan.";
 "Similar photos, faces, and text in screenshots and receipts are found with models bundled inside the app. Nothing is sent to a server." = "Foto, wajah dan teks yang serupa dalam tangkapan skrin dan resit ditemui dengan model yang digabungkan dalam apl. Tiada apa-apa dihantar ke pelayan.";
@@ -459,6 +470,9 @@
 "Unknown merchant" = "Pedagang tidak dikenali";
 "Unlimited Backup & Rules" = "Sandaran & Peraturan Tanpa Had";
 "Unlimited Cleanup" = "Pembersihan Tanpa Had";
+"Unlimited cleanup, video compression, smart screenshots, Receipt Filing, AI Taste, and unlimited backup and rules." = "Pembersihan tanpa had, pemampatan video, tangkapan skrin pintar, Pemfailan Resit, AI Rasa dan sandaran dan peraturan tanpa had.";
+"Unlock KeepSpace Pro" = "Buka kunci KeepSpace Pro";
+"Unlock Unlimited Backup" = "Buka Kunci Sandaran Tanpa Had";
 "Unlock Unlimited Cleanup" = "Buka kunci Pembersihan Tanpa Had";
 "Upgrade to Pro" = "Naik taraf kepada Pro";
 "Upload over Wi-Fi only" = "Muat naik melalui Wi-Fi sahaja";
@@ -492,6 +506,7 @@
 "You'll confirm in the next step. Items stay in Trash for 30 days." = "Anda akan mengesahkan dalam langkah seterusnya. Item kekal dalam Sampah selama 30 hari.";
 "You're close to this month's free limit" = "Anda hampir mencapai had percuma bulan ini";
 "You're on the Free plan." = "Anda menggunakan pelan Percuma.";
+"You've used this month's free backups." = "Anda telah menggunakan sandaran percuma bulan ini.";
 "You've used this month's free cleanup" = "Anda telah menggunakan pembersihan percuma bulan ini";
 "Your choice also teaches Best Shot your taste, on this device." = "Pilihan anda juga mengajar Best Shot citarasa anda, pada peranti ini.";
 "Your full photo library, with cloud backup status." = "Pustaka foto penuh anda, dengan status sandaran awan.";

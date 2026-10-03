@@ -503,6 +503,21 @@
     "quota_gate_sheet.unlock_unlimited_cleanup": "Lås upp obegränsad rensning",
     "quota_gate_sheet.you_re_close_to_this_month_s_free_limit": "Du är nära den här månadens gratisgräns",
     "quota_gate_sheet.you_ve_used_this_month_s_free_cleanup": "Du har använt den här månadens gratis städning",
-    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Ditt val är %@. Du kan gratis %@ mer på Gratis."
+    "quota_gate_sheet.your_selection_is_you_can_free_more_on_free": "Ditt val är %@. Du kan gratis %@ mer på Gratis.",
+    "manual_backup.back_up_d_files": "Säkerhetskopiera %d filer",
+    "pro_explainer.best_shot_learns_from_the_photos_you_keep_and_starts_rec": "Best Shot lär sig av de foton du sparar och börjar rekommendera vilken typ av bild du gillar. Den lär sig på den här enheten och ingenting lämnar den.",
+    "pro_explainer.finds_receipts_in_your_screenshots_and_photos_reads_the": "Hittar kvitton i dina skärmdumpar och foton, läser säljaren, datum och belopp på den här enheten och visar var var och en skulle arkiveras.",
+    "manual_backup.free_backs_up_d_more_files_this_month_the_first_d_will_g": "Gratis säkerhetskopierar %d filer till denna månad. Den första %d kommer att gå; Pro har ingen gräns.",
+    "a_i_taste.learning_is_paused_on_the_free_plan_what_best_shot_learn": "Lärandet pausas på gratisplanen. Det som Best Shot lärt sig bevaras.",
+    "pro_explainer.on_free_you_can_still_see_which_videos_take_the_most_spa": "På Gratis kan du fortfarande se vilka videor som tar mest plats och granska dem för radering.",
+    "pro_explainer.on_free_your_receipts_stay_where_they_are_and_you_can_st": "På Gratis stannar dina kvitton där de är, och du kan fortfarande granska gamla skärmdumpar.",
+    "pro_explainer.on_free_best_shot_still_picks_the_best_photo_in_every_gr": "På Gratis väljer Best Shot fortfarande det bästa fotot i varje grupp.",
+    "pro_chip.pro": "PRO",
+    "pro_explainer.scanning_the_safety_score_and_review_stay_free": "Skanning, säkerhetspoäng och recension är gratis.",
+    "pro_explainer.shrinks_a_big_video_on_your_device_and_keeps_the_quality": "Krymper en stor video på din enhet och behåller kvaliteten. Du granskar resultatet innan originalet tas bort.",
+    "pro_explainer.unlimited_cleanup_video_compression_smart_screenshots_re": "Obegränsad rensning, videokomprimering, smarta skärmdumpar, kvittoarkivering, AI Taste och obegränsad säkerhetskopiering och regler.",
+    "common.unlock_keepspace_pro": "Lås upp KeepSpace Pro",
+    "manual_backup.unlock_unlimited_backup": "Lås upp obegränsad säkerhetskopiering",
+    "manual_backup.you_ve_used_this_month_s_free_backups": "Du har använt denna månads kostnadsfria säkerhetskopior."
   }
 }

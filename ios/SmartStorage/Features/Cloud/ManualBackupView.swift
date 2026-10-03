@@ -3,6 +3,8 @@ import SwiftUI
 struct ManualBackupView: View {
     @Environment(CloudStore.self) private var cloud
     @Environment(LibraryStore.self) private var library
+    @Environment(MonetizationStore.self) private var monetization
+    @Environment(AppRouter.self) private var router
     @Environment(\.dismiss) private var dismiss
     @State private var provider: CloudProvider = .googleDrive
     @State private var scope: CloudBackupScope = .photos
@@ -51,12 +53,31 @@ struct ManualBackupView: View {
             if connectedProviders.isEmpty {
                 CardRow(systemImage: "icloud.slash", tint: .blue, title: "Connect a cloud account first", subtitle: "Open Cloud in Settings")
             }
-            Button("Start Backup") {
-                cloud.enqueue(provider: provider, scope: scope, folder: folder, items: candidates)
-                dismiss()
+            // Free backs up about 100 files a month. Over that, the first files that fit go; the rest wait for next month or Pro.
+            let allowed = monetization.allowances.backupAllowedCount(requested: candidates.count)
+            let exhausted = !candidates.isEmpty && allowed == 0
+            if allowed < candidates.count {
+                Card(style: .info) {
+                    Text(exhausted ? "You've used this month's free backups."
+                         : localizedFormat("Free backs up %d more files this month. The first %d will go; Pro has no limit.", allowed, allowed))
+                        .font(Typography.metadata).foregroundStyle(Palette.textSecondary)
+                }
+            }
+            Button {
+                if exhausted {
+                    router.presentPaywall(focus: .unlimitedBackup)
+                } else {
+                    cloud.enqueue(provider: provider, scope: scope, folder: folder, items: Array(candidates.prefix(allowed)))
+                    monetization.recordBackups(files: allowed)
+                    dismiss()
+                }
+            } label: {
+                if exhausted { Text("Unlock Unlimited Backup") }
+                else if allowed < candidates.count { Text(localizedFormat("Back Up %d Files", allowed)) }
+                else { Text("Start Backup") }
             }
             .buttonStyle(.primary)
-            .disabled(!connectedProviders.contains(provider) || candidates.isEmpty || folder.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+            .disabled(!exhausted && (!connectedProviders.contains(provider) || candidates.isEmpty || folder.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty))
         }
         .navigationTitle("Back Up Now")
         .onAppear { if let first = connectedProviders.first { provider = first } }

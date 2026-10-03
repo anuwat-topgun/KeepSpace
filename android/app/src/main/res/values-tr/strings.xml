@@ -116,6 +116,7 @@
     <string name="common_automatically_file_content_where_it_belongs">İçeriği ait olduğu yere otomatik olarak dosyalayın.</string>
     <string name="common_automation">Otomasyon</string>
     <string name="common_back">Geri</string>
+    <string name="manual_backup_back_up_d_files">%d Dosyayı Yedekle</string>
     <string name="paywall_back_up_as_much_as_you_want_with_every_rule_and_cloud_ac">Her kural ve bulut hesabıyla istediğiniz kadar yedekleyin.</string>
     <string name="common_back_up_more">Daha Fazla Yedekle</string>
     <string name="common_back_up_now">Şimdi Yedekle</string>
@@ -129,6 +130,7 @@
     <string name="common_best">En iyi</string>
     <string name="common_best_shot">En İyi Atış</string>
     <string name="common_best_shot_goes_back_to_its_standard_mix">Best Shot standart karışımına geri döner.</string>
+    <string name="pro_explainer_best_shot_learns_from_the_photos_you_keep_and_starts_rec">Best Shot, sakladığınız fotoğraflardan öğrenir ve beğendiğiniz çekim türünü önermeye başlar. Bu cihazda öğrenir ve hiçbir şey onu terk etmez.</string>
     <string name="common_best_shot_learns_what_you_like_to_keep">Best Shot, neyi saklamak istediğinizi öğrenir.</string>
     <string name="paywall_best_value">En iyi değer</string>
     <string name="paywall_billed_monthly">Aylık faturalandırılır</string>
@@ -219,11 +221,13 @@
     <string name="common_find_and_remove_unnecessary_files">Gereksiz dosyaları bulun ve kaldırın.</string>
     <string name="common_find_duplicates">Yinelenenleri bul</string>
     <string name="paywall_find_receipts_and_file_them_in_the_right_place">Makbuzları bulun ve doğru yere dosyalayın.</string>
+    <string name="pro_explainer_finds_receipts_in_your_screenshots_and_photos_reads_the">Ekran görüntülerinizdeki ve fotoğraflarınızdaki makbuzları bulur, bu cihazdaki satıcıyı, tarihi ve tutarı okur ve her birinin nereye dosyalanacağını gösterir.</string>
     <string name="common_folder">Klasör</string>
     <string name="common_folder_inside_keepspace">KeepSpace içindeki klasör</string>
     <string name="common_forecast">Tahmin</string>
     <string name="common_forget_what_keepspace_learned_about_your_library_it_will">KeepSpace\'nin kitaplığınız hakkında öğrendiklerini unutun. Bir sonraki taramada tekrar görünecektir.</string>
     <string name="subscription_free">Ücretsiz</string>
+    <string name="manual_backup_free_backs_up_d_more_files_this_month_the_first_d_will_g">Bu ay %d dosya daha ücretsiz yedekleniyor. İlk %d gidecek; Pro\'nun sınırı yoktur.</string>
     <string name="quota_gate_sheet_free_includes_of_cleanup_each_month_it_resets_on">Ücretsiz, her ay %s temizliği içerir. %s tarihinde sıfırlanır.</string>
     <string name="subscription_free_trial_ends_then_renews">Ücretsiz deneme süresi %s sona erer ve ardından yenilenir.</string>
     <string name="subscription_free_trial_ends">Ücretsiz deneme %s sona eriyor.</string>
@@ -265,6 +269,7 @@
     <string name="common_large_videos">Büyük Videolar</string>
     <string name="common_learn_from_my_choices">Seçimlerimden ders alın</string>
     <string name="common_learn_more">Daha Fazla Bilgi Edinin</string>
+    <string name="a_i_taste_learning_is_paused_on_the_free_plan_what_best_shot_learn">Ücretsiz planda öğrenim duraklatıldı. Best Shot\'ın öğrendikleri saklanır.</string>
     <string name="common_learns_as_you_choose">Seçtiğiniz gibi öğrenir</string>
     <string name="common_library">Kütüphane</string>
     <string name="paywall_lifetime">Ömür boyu</string>
@@ -316,6 +321,9 @@
     <string name="common_oauth_setup_required">OAuth kurulumu gerekli</string>
     <string name="common_off">Kapalı</string>
     <string name="common_ok">tamam</string>
+    <string name="pro_explainer_on_free_you_can_still_see_which_videos_take_the_most_spa">Ücretsiz\'de hangi videoların en fazla alanı kapladığını görmeye devam edebilir ve bunları silinmek üzere inceleyebilirsiniz.</string>
+    <string name="pro_explainer_on_free_your_receipts_stay_where_they_are_and_you_can_st">Ücretsiz\'de makbuzlarınız oldukları yerde kalır ve eski ekran görüntülerini incelemeye devam edebilirsiniz.</string>
+    <string name="pro_explainer_on_free_best_shot_still_picks_the_best_photo_in_every_gr">Ücretsiz\'de En İyi Çekim hâlâ her gruptaki en iyi fotoğrafı seçiyor.</string>
     <string name="common_on_device_ai_only">Yalnızca cihazda AI</string>
     <string name="paywall_one_time_payment">Tek seferlik ödeme</string>
     <string name="paywall_one_time_purchase_no_subscription_no_renewal">Bir kerelik satın alma. Abonelik yok, yenileme yok.</string>
@@ -349,6 +357,7 @@
     <string name="common_privacy_security">Gizlilik ve Güvenlik</string>
     <string name="common_privacy_policy">Gizlilik Politikası</string>
     <string name="subscription_pro">Profesyonel</string>
+    <string name="pro_chip_pro">PRO</string>
     <string name="subscription_pro_adds">Profesyonel ekler</string>
     <string name="paywall_pro_unlocks_by_itself_once_the_purchase_is_approved">Satın alma onaylandıktan sonra Pro\'nun kilidi kendiliğinden açılır.</string>
     <string name="subscription_pro_ends_71525627">Profesyonel · %s sona eriyor</string>
@@ -398,6 +407,7 @@
     <string name="paywall_save_d">%d%% tasarruf edin</string>
     <string name="common_save_rule">Kuralı Kaydet</string>
     <string name="common_save_to">Kaydet</string>
+    <string name="pro_explainer_scanning_the_safety_score_and_review_stay_free">Tarama, Güvenlik Puanı ve inceleme ücretsiz kalır.</string>
     <string name="common_screen_recordings">Ekran Kayıtları</string>
     <string name="common_screenshot">Ekran görüntüsü</string>
     <string name="common_screenshots">Ekran görüntüleri</string>
@@ -412,6 +422,7 @@
     <string name="common_settings">Ayarlar</string>
     <string name="common_sharpness">Keskinlik</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Cihazınızdaki büyük videoları küçültün ve kaliteyi koruyun.</string>
+    <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Cihazınızdaki büyük bir videoyu küçültür ve kaliteyi korur. Orijinali çıkarmadan önce sonucu gözden geçirirsiniz.</string>
     <string name="common_similar_photos">Benzer Fotoğraflar</string>
     <string name="privacy_similar_photos_best_shots_text_in_screenshots_and_receip">Benzer fotoğraflar, en iyi çekimler, ekran görüntülerindeki metinler ve faturaların tümü iOS yerleşik modellerde bulunur. Sunucuya hiçbir şey gönderilmez.</string>
     <string name="settings_detail_screens_similar_photos_faces_and_text_in_screenshots_and_receipt">Uygulamanın içinde paketlenmiş modellerde ekran görüntüleri ve faturalardaki benzer fotoğraflar, yüzler ve metinler bulunur. Sunucuya hiçbir şey gönderilmez.</string>
@@ -461,6 +472,9 @@
     <string name="common_unknown_merchant">Bilinmeyen satıcı</string>
     <string name="common_unlimited_backup_rules">Sınırsız Yedekleme ve Kurallar</string>
     <string name="common_unlimited_cleanup">Sınırsız Temizleme</string>
+    <string name="pro_explainer_unlimited_cleanup_video_compression_smart_screenshots_re">Sınırsız temizleme, video sıkıştırma, akıllı ekran görüntüleri, Makbuz Dosyalama, AI Tat ve sınırsız yedekleme ve kurallar.</string>
+    <string name="common_unlock_keepspace_pro">KeepSpace Pro\'nun kilidini açın</string>
+    <string name="manual_backup_unlock_unlimited_backup">Sınırsız Yedeklemenin Kilidini Açın</string>
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Sınırsız Temizlemenin Kilidini Açın</string>
     <string name="subscription_upgrade_to_pro">Pro\'ya yükseltin</string>
     <string name="common_upload_over_wi_fi_only">Yalnızca Wi-Fi üzerinden yükleme yapın</string>
@@ -494,6 +508,7 @@
     <string name="review_you_ll_confirm_in_the_next_step_items_stay_in_trash_for">Bir sonraki adımda onaylayacaksınız. Öğeler 30 gün boyunca Çöp Kutusu\'nda kalır.</string>
     <string name="quota_gate_sheet_you_re_close_to_this_month_s_free_limit">Bu ayın ücretsiz sınırına yaklaştınız</string>
     <string name="subscription_you_re_on_the_free_plan">Ücretsiz plandasınız.</string>
+    <string name="manual_backup_you_ve_used_this_month_s_free_backups">Bu ayın ücretsiz yedeklemelerini kullandınız.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Bu ayın ücretsiz temizliğini kullandınız</string>
     <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Seçiminiz aynı zamanda bu cihazda Best Shot zevkinizi de öğretir.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Bulut yedekleme durumuyla birlikte tam fotoğraf kitaplığınız.</string>
