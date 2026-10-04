@@ -217,6 +217,7 @@
 "Connected" = "متصل";
 "Content" = "المحتوى";
 "Continue" = "متابعة";
+"Couldn't share this item." = "تعذرت مشاركة هذا العنصر.";
 "Create an automatic filing rule." = "إنشاء قاعدة حفظ تلقائية.";
 "Date" = "التاريخ";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "يتم الاحتفاظ بالتاريخ والموقع والمفضلة. يتم نقل النسخة الأصلية إلى \"المحذوفة مؤخرًا\" لمدة 30 يومًا بعد التأكيد.";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "احتفظ بالنسخ المحلية";
 "Keep Recommended" = "إبقاء الموصى بها";
 "Keep Selected Photo" = "احتفظ بالصورة المحددة";
+"Keep Selected Photos" = "احتفظ بالصور المحددة";
 "Keep space. Keep what matters." = "احتفظ بالمساحة. احتفظ بما يهم.";
 "Keep your best photos and videos safe and organized." = "حافظ على أفضل الصور ومقاطع الفيديو الخاصة بك آمنة ومنظمة.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "يؤدي الاحتفاظ بـ %d من الصور إلى حذف %d الأخرى بعد التأكيد. ويبقون في \"المحذوفة مؤخرًا\" لمدة 30 يومًا.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "يؤدي الاحتفاظ بـ %d من الصور إلى حذف %d الأخرى بعد التأكيد. ويبقون في سلة المهملات لمدة 30 يومًا.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "الاحتفاظ بهذه الصورة يحذف الصور الأخرى (%d) بعد تأكيدك. تبقى 30 يومًا في المحذوفة مؤخرًا.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "الاحتفاظ بهذه الصورة يحذف الصور الأخرى (%d) بعد تأكيدك. تبقى 30 يومًا في سلة المهملات.";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "يقوم KeepSpace بتحليل مكتبتك على هذا الجهاز للعثور على المساحة التي يمكنك استعادتها بأمان.";
@@ -481,10 +485,13 @@
 "Select a group" = "حدد مجموعة";
 "Select All" = "حدد الكل";
 "Select More Photos" = "حدد المزيد من الصور";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "حدد صورة واحدة أو أكثر للاحتفاظ بها. اضغط على الصورة لإضافتها أو إزالتها.";
+"Selected" = "مختارة";
 "Send a Test Notification" = "إرسال إشعار الاختبار";
 "Series" = "سلسلة";
 "Settings" = "الإعدادات";
 "Setup required" = "الإعداد مطلوب";
+"Share" = "شارك";
 "Sharpness" = "الحدة";
 "Shrink big videos on your device and keep the quality." = "قم بتقليص مقاطع الفيديو الكبيرة على جهازك وحافظ على الجودة.";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "يقوم بتصغير مقطع فيديو كبير على جهازك ويحافظ على جودته. يمكنك مراجعة النتيجة قبل إزالة الأصل.";

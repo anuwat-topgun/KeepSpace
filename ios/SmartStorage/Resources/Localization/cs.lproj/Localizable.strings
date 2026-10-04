@@ -217,6 +217,7 @@
 "Connected" = "Připojeno";
 "Content" = "Obsah";
 "Continue" = "Pokračovat";
+"Couldn't share this item." = "Tuto položku se nepodařilo sdílet.";
 "Create an automatic filing rule." = "Vytvořte pravidlo automatického ukládání.";
 "Date" = "Datum";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "Datum, místo a oblíbená položka jsou uloženy. Originál se po potvrzení přesune na Nedávno smazané na 30 dní.";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "Uchovávejte místní kopie";
 "Keep Recommended" = "Udržujte doporučené";
 "Keep Selected Photo" = "Ponechat vybranou fotografii";
+"Keep Selected Photos" = "Ponechat vybrané fotografie";
 "Keep space. Keep what matters." = "Udržujte prostor. Nechte to, na čem záleží.";
 "Keep your best photos and videos safe and organized." = "Udržujte své nejlepší fotografie a videa v bezpečí a uspořádané.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Ponecháním %d fotek se po potvrzení smažou ostatní %d. Zůstanou ve složce Nedávno smazané po dobu 30 dnů.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "Ponecháním %d fotek se po potvrzení smažou ostatní %d. Zůstanou v Koši 30 dní.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Ponecháním této fotky se po vašem potvrzení smažou ostatní (%d). Zůstanou 30 dní v Nedávno smazaných.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Ponecháním této fotky se po vašem potvrzení smažou ostatní (%d). Zůstanou 30 dní v koši.";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "KeepSpace analyzuje vaši knihovnu na tomto zařízení a najde místo, které můžete bezpečně obnovit.";
@@ -481,10 +485,13 @@
 "Select a group" = "Vyberte skupinu";
 "Select All" = "Vyberte Vše";
 "Select More Photos" = "Vyberte Další fotografie";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "Vyberte jednu nebo více fotografií, které chcete zachovat. Klepnutím na fotku ji přidáte nebo odeberete.";
+"Selected" = "Vybráno";
 "Send a Test Notification" = "Odeslat testovací oznámení";
 "Series" = "série";
 "Settings" = "Nastavení";
 "Setup required" = "Je nutné nastavení";
+"Share" = "Sdílejte";
 "Sharpness" = "Ostrost";
 "Shrink big videos on your device and keep the quality." = "Zmenšete velká videa na svém zařízení a zachovejte kvalitu.";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Zmenší velké video na vašem zařízení a zachová kvalitu. Před odstraněním originálu zkontrolujete výsledek.";

@@ -590,6 +590,13 @@
     "common.language": "اللغة",
     "common.uploading": "جارٍ التحميل",
     "library.zoom": "تكبير",
-    "common.keep_selected_photo": "احتفظ بالصورة المحددة"
+    "common.keep_selected_photo": "احتفظ بالصورة المحددة",
+    "common.keep_selected_photos": "احتفظ بالصور المحددة",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t": "يؤدي الاحتفاظ بـ %d من الصور إلى حذف %d الأخرى بعد التأكيد. ويبقون في \"المحذوفة مؤخرًا\" لمدة 30 يومًا.",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734": "يؤدي الاحتفاظ بـ %d من الصور إلى حذف %d الأخرى بعد التأكيد. ويبقون في سلة المهملات لمدة 30 يومًا.",
+    "common.select_one_or_more_photos_to_keep_tap_a_photo_to_add_or": "حدد صورة واحدة أو أكثر للاحتفاظ بها. اضغط على الصورة لإضافتها أو إزالتها.",
+    "best_shot.selected": "مختارة",
+    "library.couldn_t_share_this_item": "تعذرت مشاركة هذا العنصر.",
+    "common.share": "شارك"
   }
 }

@@ -217,6 +217,7 @@
 "Connected" = "接続済み";
 "Content" = "内容";
 "Continue" = "続ける";
+"Couldn't share this item." = "このアイテムを共有できませんでした。";
 "Create an automatic filing rule." = "自動ファイリングルールを作成します。";
 "Date" = "日付";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "日付、場所、お気に入りが保存されます。確認後、オリジナルは 30 日間「最近削除した項目」に移動します。";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "ローカルコピーを保持する";
 "Keep Recommended" = "推奨を維持する";
 "Keep Selected Photo" = "選択した写真を保持";
+"Keep Selected Photos" = "選択した写真を保存する";
 "Keep space. Keep what matters." = "スペースを確保してください。大切なものは残しておいてください。";
 "Keep your best photos and videos safe and organized." = "最高の写真やビデオを安全に整理して保管しましょう。";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "%d 枚の写真を保持すると、確認後に残りの %d 枚が削除されます。これらは「最近削除した項目」に 30 日間残ります。";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "%d 枚の写真を保持すると、確認後に残りの %d 枚が削除されます。これらは 30 日間ゴミ箱に残ります。";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "この写真を残すと、確認後に他の%d枚が削除されます。「最近削除した項目」に30日間残ります。";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "この写真を残すと、確認後に他の%d枚が削除されます。ゴミ箱に30日間残ります。";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "KeepSpace は、このデバイス上のライブラリを分析して、安全に回復できるスペースを見つけます。";
@@ -481,10 +485,13 @@
 "Select a group" = "グループを選択してください";
 "Select All" = "すべて選択";
 "Select More Photos" = "さらに写真を選択";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "保存する写真を 1 つまたは複数選択します。写真をタップして追加または削除します。";
+"Selected" = "選択済み";
 "Send a Test Notification" = "テスト通知を送信する";
 "Series" = "シリーズ";
 "Settings" = "設定";
 "Setup required" = "設定が必要です";
+"Share" = "シェアする";
 "Sharpness" = "切れ味";
 "Shrink big videos on your device and keep the quality." = "大きなビデオをデバイス上で縮小して品質を保ちます。";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "大きなビデオをデバイス上で縮小し、品質を保ちます。オリジナルを削除する前に結果を確認します。";

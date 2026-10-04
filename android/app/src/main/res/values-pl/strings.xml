@@ -219,6 +219,7 @@
     <string name="common_connected">Połączono</string>
     <string name="common_content">Treść</string>
     <string name="paywall_continue">Kontynuuj</string>
+    <string name="library_couldn_t_share_this_item">Nie udało się udostępnić tego elementu.</string>
     <string name="common_create_an_automatic_filing_rule">Utwórz regułę automatycznego przesyłania.</string>
     <string name="common_date">Data</string>
     <string name="compress_sheet_date_location_and_favorite_are_kept_the_original_moves_t">Data, lokalizacja i ulubione zostaną zachowane. Oryginał zostanie przeniesiony do Ostatnio usunięte na 30 dni po potwierdzeniu.</string>
@@ -301,8 +302,11 @@
     <string name="common_keep_local_copies_8b296740">Zachowaj lokalne kopie</string>
     <string name="common_keep_recommended">Zachowaj polecane</string>
     <string name="common_keep_selected_photo">Zachowaj wybrane zdjęcie</string>
+    <string name="common_keep_selected_photos">Zachowaj wybrane zdjęcia</string>
     <string name="common_keep_space_keep_what_matters">Zachowaj przestrzeń. Zachowaj to, co ważne.</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Zadbaj o bezpieczeństwo i porządek swoich najlepszych zdjęć i filmów.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t">Zachowanie %d zdjęć powoduje usunięcie pozostałych %d po potwierdzeniu. Pozostają w sekcji Ostatnio usunięte przez 30 dni.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734">Zachowanie %d zdjęć powoduje usunięcie pozostałych %d po potwierdzeniu. Pozostają w Koszu przez 30 dni.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Zachowanie tego zdjęcia usunie pozostałe (%d) po Twoim potwierdzeniu. Zostają na 30 dni w Ostatnio usuniętych.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Zachowanie tego zdjęcia usunie pozostałe (%d) po Twoim potwierdzeniu. Zostają na 30 dni w koszu.</string>
     <string name="common_keepspace_analyzes_your_library_on_this_device_to_find_s">KeepSpace analizuje Twoją bibliotekę na tym urządzeniu, aby znaleźć miejsce, które możesz bezpiecznie odzyskać.</string>
@@ -483,10 +487,13 @@
     <string name="similar_photos_select_a_group">Wybierz grupę</string>
     <string name="common_select_all">Wybierz wszystko</string>
     <string name="common_select_more_photos">Wybierz Więcej zdjęć</string>
+    <string name="common_select_one_or_more_photos_to_keep_tap_a_photo_to_add_or">Wybierz jedno lub więcej zdjęć, które chcesz zachować. Stuknij zdjęcie, aby je dodać lub usunąć.</string>
+    <string name="best_shot_selected">Wybrane</string>
     <string name="common_send_a_test_notification">Wyślij powiadomienie testowe</string>
     <string name="insights_series">Seria</string>
     <string name="common_settings">Ustawienia</string>
     <string name="common_setup_required">Wymagana konfiguracja</string>
+    <string name="common_share">Udostępnij</string>
     <string name="common_sharpness">Ostrość</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Zmniejsz duże filmy na swoim urządzeniu i zachowaj jakość.</string>
     <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Zmniejsza duży plik wideo na urządzeniu i utrzymuje jakość. Przed usunięciem oryginału przeglądasz wynik.</string>

@@ -217,6 +217,7 @@
 "Connected" = "Terhubung";
 "Content" = "Konten";
 "Continue" = "Lanjutkan";
+"Couldn't share this item." = "Tidak dapat membagikan item ini.";
 "Create an automatic filing rule." = "Buat aturan pengarsipan otomatis.";
 "Date" = "Tanggal";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "Tanggal, lokasi dan favorit disimpan. Yang asli dipindahkan ke Baru Dihapus selama 30 hari setelah Anda mengonfirmasi.";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "Simpan Salinan Lokal";
 "Keep Recommended" = "Tetap Direkomendasikan";
 "Keep Selected Photo" = "Simpan Foto yang Dipilih";
+"Keep Selected Photos" = "Simpan Foto yang Dipilih";
 "Keep space. Keep what matters." = "Jaga ruang. Pertahankan hal yang penting.";
 "Keep your best photos and videos safe and organized." = "Jaga foto dan video terbaik Anda tetap aman dan teratur.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Menyimpan %d foto akan menghapus %d lainnya setelah Anda mengonfirmasi. Mereka tinggal di Baru Dihapus selama 30 hari.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "Menyimpan %d foto akan menghapus %d lainnya setelah Anda mengonfirmasi. Mereka tinggal di Sampah selama 30 hari.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Mempertahankan foto ini akan menghapus %d foto lainnya setelah Anda konfirmasi. Foto tersebut tetap ada 30 hari di Baru Dihapus.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Mempertahankan foto ini akan menghapus %d foto lainnya setelah Anda konfirmasi. Foto tersebut tetap ada 30 hari di Sampah.";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "KeepSpace menganalisis perpustakaan Anda di perangkat ini untuk menemukan ruang yang dapat Anda pulihkan dengan aman.";
@@ -481,10 +485,13 @@
 "Select a group" = "Pilih grup";
 "Select All" = "Pilih Semua";
 "Select More Photos" = "Pilih Lebih Banyak Foto";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "Pilih satu atau beberapa foto untuk disimpan. Ketuk foto untuk menambah atau menghapusnya.";
+"Selected" = "Dipilih";
 "Send a Test Notification" = "Kirim Pemberitahuan Tes";
 "Series" = "Seri";
 "Settings" = "Pengaturan";
 "Setup required" = "Perlu penyiapan";
+"Share" = "Bagikan";
 "Sharpness" = "Ketajaman";
 "Shrink big videos on your device and keep the quality." = "Kecilkan video berukuran besar di perangkat Anda dan pertahankan kualitasnya.";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Menyusut video besar di perangkat Anda dan menjaga kualitasnya. Anda meninjau hasilnya sebelum yang asli dihapus.";

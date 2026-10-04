@@ -133,18 +133,27 @@ final class LibraryStore {
         return outcome
     }
 
-    /// Keeps the photo at `keeperIndex` and deletes the rest of the group (after the system confirmation).
-    /// A confirmed choice is what Best Shot learns from; a cancelled one teaches nothing.
+    /// Keeps the photos at `keeperIndices` and deletes the rest of the group (after system confirmation).
+    /// Best Shot learns only from a confirmed single-photo choice because a multi-selection has no
+    /// single winning frame.
     @discardableResult
-    func keep(_ group: PhotoGroup, keeperIndex: Int, limitingTo allowed: Set<String>? = nil) async -> DeletionOutcome {
-        var others = Set(group.assetIDs.enumerated().filter { $0.offset != keeperIndex }.map(\.element))
+    func keep(_ group: PhotoGroup, keeperIndices: Set<Int>, limitingTo allowed: Set<String>? = nil) async -> DeletionOutcome {
+        guard !keeperIndices.isEmpty else { return .cancelled }
+        var others = Set(group.assetIDs.enumerated().filter { !keeperIndices.contains($0.offset) }.map(\.element))
         if let allowed { others.formIntersection(allowed) } // free allowance: delete only what fits
         let outcome = await delete(others)
-        if case .deleted = outcome, !group.scoreFeatures.isEmpty, canLearnTaste() {
+        if case .deleted = outcome, keeperIndices.count == 1, let keeperIndex = keeperIndices.first,
+           !group.scoreFeatures.isEmpty, canLearnTaste() {
             taste.learn(chosen: keeperIndex, among: group.scoreFeatures)
             rebuild()
         }
         return outcome
+    }
+
+    /// Compatibility helper for callers that intentionally keep exactly one photo.
+    @discardableResult
+    func keep(_ group: PhotoGroup, keeperIndex: Int, limitingTo allowed: Set<String>? = nil) async -> DeletionOutcome {
+        await keep(group, keeperIndices: [keeperIndex], limitingTo: allowed)
     }
 
     func compress(videoID: String, preset: CompressionPreset, progress: @escaping @Sendable (Double) -> Void) async -> String? {

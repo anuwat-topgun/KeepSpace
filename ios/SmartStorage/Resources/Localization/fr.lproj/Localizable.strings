@@ -217,6 +217,7 @@
 "Connected" = "Connecté";
 "Content" = "Contenu";
 "Continue" = "Continuer";
+"Couldn't share this item." = "Impossible de partager cet élément.";
 "Create an automatic filing rule." = "Créez une règle de dépôt automatique.";
 "Date" = "Date";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "La date, le lieu et le favori sont conservés. L'original est déplacé vers Récemment supprimé pendant 30 jours après votre confirmation.";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "Conserver des copies locales";
 "Keep Recommended" = "Garder recommandé";
 "Keep Selected Photo" = "Conserver la photo sélectionnée";
+"Keep Selected Photos" = "Conserver les photos sélectionnées";
 "Keep space. Keep what matters." = "Gardez de l'espace. Gardez ce qui compte.";
 "Keep your best photos and videos safe and organized." = "Gardez vos meilleures photos et vidéos en sécurité et organisées.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Conserver %d photos supprime les %d autres après confirmation. Ils restent dans Supprimés récemment pendant 30 jours.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "Conserver %d photos supprime les %d autres après confirmation. Ils restent dans la corbeille pendant 30 jours.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Conserver cette photo supprime les %d autres après votre confirmation. Elles restent 30 jours dans Supprimés récemment.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Conserver cette photo supprime les %d autres après votre confirmation. Elles restent 30 jours dans la corbeille.";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "KeepSpace analyse votre bibliothèque sur cet appareil pour trouver de l'espace que vous pouvez récupérer en toute sécurité.";
@@ -481,10 +485,13 @@
 "Select a group" = "Sélectionnez un groupe";
 "Select All" = "Sélectionner tout";
 "Select More Photos" = "Sélectionner plus de photos";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "Sélectionnez une ou plusieurs photos à conserver. Appuyez sur une photo pour l'ajouter ou la supprimer.";
+"Selected" = "Sélectionné";
 "Send a Test Notification" = "Envoyer une notification de test";
 "Series" = "Série";
 "Settings" = "Paramètres";
 "Setup required" = "Configuration requise";
+"Share" = "Partager";
 "Sharpness" = "Netteté";
 "Shrink big videos on your device and keep the quality." = "Réduisez les grosses vidéos sur votre appareil et conservez la qualité.";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Réduit une grosse vidéo sur votre appareil et conserve la qualité. Vous examinez le résultat avant de supprimer l'original.";

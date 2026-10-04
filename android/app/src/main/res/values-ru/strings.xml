@@ -219,6 +219,7 @@
     <string name="common_connected">Подключено</string>
     <string name="common_content">Содержание</string>
     <string name="paywall_continue">Продолжить</string>
+    <string name="library_couldn_t_share_this_item">Не удалось поделиться этим объектом.</string>
     <string name="common_create_an_automatic_filing_rule">Создайте правило автоматического хранения.</string>
     <string name="common_date">Дата</string>
     <string name="compress_sheet_date_location_and_favorite_are_kept_the_original_moves_t">Дата, местоположение и избранное сохраняются. Исходный файл перемещается в раздел «Недавно удаленные» на 30 дней после вашего подтверждения.</string>
@@ -301,8 +302,11 @@
     <string name="common_keep_local_copies_8b296740">Сохраняйте локальные копии</string>
     <string name="common_keep_recommended">Продолжайте рекомендовать</string>
     <string name="common_keep_selected_photo">Сохранить выбранное фото</string>
+    <string name="common_keep_selected_photos">Сохранить выбранные фотографии</string>
     <string name="common_keep_space_keep_what_matters">Сохраняйте пространство. Сохраняйте то, что важно.</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Храните свои лучшие фотографии и видео в безопасности и порядке.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t">При сохранении %d фотографий остальные %d удаляются после вашего подтверждения. Они остаются в категории «Недавно удаленные» в течение 30 дней.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734">При сохранении %d фотографий остальные %d удаляются после вашего подтверждения. Они остаются в корзине в течение 30 дней.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Если оставить это фото, остальные (%d) будут удалены после вашего подтверждения. Они хранятся 30 дней в «Недавно удалённых».</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Если оставить это фото, остальные (%d) будут удалены после вашего подтверждения. Они хранятся 30 дней в корзине.</string>
     <string name="common_keepspace_analyzes_your_library_on_this_device_to_find_s">KeepSpace анализирует вашу библиотеку на этом устройстве, чтобы найти место, которое можно безопасно восстановить.</string>
@@ -483,10 +487,13 @@
     <string name="similar_photos_select_a_group">Выберите группу</string>
     <string name="common_select_all">Выбрать все</string>
     <string name="common_select_more_photos">Выбрать больше фотографий</string>
+    <string name="common_select_one_or_more_photos_to_keep_tap_a_photo_to_add_or">Выберите одну или несколько фотографий, которые хотите сохранить. Коснитесь фотографии, чтобы добавить или удалить ее.</string>
+    <string name="best_shot_selected">Выбрано</string>
     <string name="common_send_a_test_notification">Отправить тестовое уведомление</string>
     <string name="insights_series">Серия</string>
     <string name="common_settings">Настройки</string>
     <string name="common_setup_required">Требуется настройка</string>
+    <string name="common_share">Поделиться</string>
     <string name="common_sharpness">Резкость</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Сжимайте большие видео на своем устройстве и сохраняйте качество.</string>
     <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Сжимает большое видео на вашем устройстве, сохраняя качество. Вы просматриваете результат до того, как оригинал будет удален.</string>

@@ -219,6 +219,7 @@
     <string name="common_connected">Conectat</string>
     <string name="common_content">Conținut</string>
     <string name="paywall_continue">Continuă</string>
+    <string name="library_couldn_t_share_this_item">Acest articol nu a putut fi distribuit.</string>
     <string name="common_create_an_automatic_filing_rule">Creați o regulă de depunere automată.</string>
     <string name="common_date">Data</string>
     <string name="compress_sheet_date_location_and_favorite_are_kept_the_original_moves_t">Data, locația și favoritul sunt păstrate. Originalul se mută la Șters recent timp de 30 de zile după ce confirmați.</string>
@@ -301,8 +302,11 @@
     <string name="common_keep_local_copies_8b296740">Păstrați copii locale</string>
     <string name="common_keep_recommended">Păstrați recomandat</string>
     <string name="common_keep_selected_photo">Păstrați fotografia selectată</string>
+    <string name="common_keep_selected_photos">Păstrați fotografiile selectate</string>
     <string name="common_keep_space_keep_what_matters">Păstrați spațiu. Păstrează ceea ce contează.</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Păstrează-ți cele mai bune fotografii și videoclipuri în siguranță și organizate.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t">Păstrarea %d fotografii șterge celelalte %d după ce confirmați. Ei rămân în Recent Deleted timp de 30 de zile.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734">Păstrarea %d fotografii șterge celelalte %d după ce confirmați. Ei stau la gunoi timp de 30 de zile.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Dacă păstrezi această fotografie, celelalte (%d) vor fi șterse după confirmare. Rămân 30 de zile în Șterse recent.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Dacă păstrezi această fotografie, celelalte (%d) vor fi șterse după confirmare. Rămân 30 de zile în Coșul de gunoi.</string>
     <string name="common_keepspace_analyzes_your_library_on_this_device_to_find_s">KeepSpace analizează biblioteca dvs. de pe acest dispozitiv pentru a găsi spațiu pe care îl puteți recupera în siguranță.</string>
@@ -483,10 +487,13 @@
     <string name="similar_photos_select_a_group">Selectați un grup</string>
     <string name="common_select_all">Selectați Toate</string>
     <string name="common_select_more_photos">Selectați Mai multe fotografii</string>
+    <string name="common_select_one_or_more_photos_to_keep_tap_a_photo_to_add_or">Selectați una sau mai multe fotografii de păstrat. Atingeți o fotografie pentru a o adăuga sau a o elimina.</string>
+    <string name="best_shot_selected">Selectat</string>
     <string name="common_send_a_test_notification">Trimiteți o notificare de testare</string>
     <string name="insights_series">Seria</string>
     <string name="common_settings">Setări</string>
     <string name="common_setup_required">Configurare necesară</string>
+    <string name="common_share">Distribuie</string>
     <string name="common_sharpness">Claritate</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Reduceți videoclipurile mari de pe dispozitiv și păstrați calitatea.</string>
     <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Reduce un videoclip mare pe dispozitiv și păstrează calitatea. Examinați rezultatul înainte ca originalul să fie eliminat.</string>

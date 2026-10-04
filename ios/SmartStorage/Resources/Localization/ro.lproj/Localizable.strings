@@ -217,6 +217,7 @@
 "Connected" = "Conectat";
 "Content" = "Conținut";
 "Continue" = "Continuă";
+"Couldn't share this item." = "Acest articol nu a putut fi distribuit.";
 "Create an automatic filing rule." = "Creați o regulă de depunere automată.";
 "Date" = "Data";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "Data, locația și favoritul sunt păstrate. Originalul se mută la Șters recent timp de 30 de zile după ce confirmați.";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "Păstrați copii locale";
 "Keep Recommended" = "Păstrați recomandat";
 "Keep Selected Photo" = "Păstrați fotografia selectată";
+"Keep Selected Photos" = "Păstrați fotografiile selectate";
 "Keep space. Keep what matters." = "Păstrați spațiu. Păstrează ceea ce contează.";
 "Keep your best photos and videos safe and organized." = "Păstrează-ți cele mai bune fotografii și videoclipuri în siguranță și organizate.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Păstrarea %d fotografii șterge celelalte %d după ce confirmați. Ei rămân în Recent Deleted timp de 30 de zile.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "Păstrarea %d fotografii șterge celelalte %d după ce confirmați. Ei stau la gunoi timp de 30 de zile.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Dacă păstrezi această fotografie, celelalte (%d) vor fi șterse după confirmare. Rămân 30 de zile în Șterse recent.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Dacă păstrezi această fotografie, celelalte (%d) vor fi șterse după confirmare. Rămân 30 de zile în Coșul de gunoi.";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "KeepSpace analizează biblioteca dvs. de pe acest dispozitiv pentru a găsi spațiu pe care îl puteți recupera în siguranță.";
@@ -481,10 +485,13 @@
 "Select a group" = "Selectați un grup";
 "Select All" = "Selectați Toate";
 "Select More Photos" = "Selectați Mai multe fotografii";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "Selectați una sau mai multe fotografii de păstrat. Atingeți o fotografie pentru a o adăuga sau a o elimina.";
+"Selected" = "Selectat";
 "Send a Test Notification" = "Trimiteți o notificare de testare";
 "Series" = "Seria";
 "Settings" = "Setări";
 "Setup required" = "Configurare necesară";
+"Share" = "Distribuie";
 "Sharpness" = "Claritate";
 "Shrink big videos on your device and keep the quality." = "Reduceți videoclipurile mari de pe dispozitiv și păstrați calitatea.";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Reduce un videoclip mare pe dispozitiv și păstrează calitatea. Examinați rezultatul înainte ca originalul să fie eliminat.";

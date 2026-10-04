@@ -590,6 +590,13 @@
     "common.language": "Язык",
     "common.uploading": "Загрузка",
     "library.zoom": "Увеличить",
-    "common.keep_selected_photo": "Сохранить выбранное фото"
+    "common.keep_selected_photo": "Сохранить выбранное фото",
+    "common.keep_selected_photos": "Сохранить выбранные фотографии",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t": "При сохранении %d фотографий остальные %d удаляются после вашего подтверждения. Они остаются в категории «Недавно удаленные» в течение 30 дней.",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734": "При сохранении %d фотографий остальные %d удаляются после вашего подтверждения. Они остаются в корзине в течение 30 дней.",
+    "common.select_one_or_more_photos_to_keep_tap_a_photo_to_add_or": "Выберите одну или несколько фотографий, которые хотите сохранить. Коснитесь фотографии, чтобы добавить или удалить ее.",
+    "best_shot.selected": "Выбрано",
+    "library.couldn_t_share_this_item": "Не удалось поделиться этим объектом.",
+    "common.share": "Поделиться"
   }
 }

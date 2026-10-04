@@ -217,6 +217,7 @@
 "Connected" = "연결됨";
 "Content" = "내용";
 "Continue" = "계속";
+"Couldn't share this item." = "이 항목을 공유할 수 없습니다.";
 "Create an automatic filing rule." = "자동 제출 규칙을 만듭니다.";
 "Date" = "날짜";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "날짜, 위치, 즐겨찾기가 유지됩니다. 원본은 확인 후 30일 동안 최근 삭제된 항목으로 이동됩니다.";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "로컬 복사본 보관";
 "Keep Recommended" = "추천 유지";
 "Keep Selected Photo" = "선택한 사진 유지";
+"Keep Selected Photos" = "선택한 사진 유지";
 "Keep space. Keep what matters." = "공간을 유지하세요. 중요한 것을 보관하세요.";
 "Keep your best photos and videos safe and organized." = "최고의 사진과 비디오를 안전하고 체계적으로 보관하세요.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "%d장의 사진을 보관하면 확인 후 나머지 %d장은 삭제됩니다. 최근 삭제된 항목에 30일 동안 유지됩니다.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "%d장의 사진을 보관하면 확인 후 나머지 %d장은 삭제됩니다. 해당 항목은 30일 동안 휴지통에 보관됩니다.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "이 사진을 유지하면 확인 후 나머지 %d장이 삭제됩니다. ‘최근 삭제된 항목’에 30일 동안 남아 있습니다.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "이 사진을 유지하면 확인 후 나머지 %d장이 삭제됩니다. 휴지통에 30일 동안 남아 있습니다.";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "KeepSpace는 이 장치의 라이브러리를 분석하여 안전하게 복구할 수 있는 공간을 찾습니다.";
@@ -481,10 +485,13 @@
 "Select a group" = "그룹 선택";
 "Select All" = "모두 선택";
 "Select More Photos" = "추가 사진 선택";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "보관할 사진을 하나 이상 선택하세요. 사진을 탭하여 추가하거나 제거하세요.";
+"Selected" = "선택됨";
 "Send a Test Notification" = "테스트 알림 보내기";
 "Series" = "시리즈";
 "Settings" = "설정";
 "Setup required" = "설정 필요";
+"Share" = "공유";
 "Sharpness" = "선명도";
 "Shrink big videos on your device and keep the quality." = "장치에서 큰 비디오를 축소하고 품질을 유지하십시오.";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "장치에서 큰 비디오를 축소하고 품질을 유지합니다. 원본을 제거하기 전에 결과를 검토합니다.";

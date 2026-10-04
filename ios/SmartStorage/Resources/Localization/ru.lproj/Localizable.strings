@@ -217,6 +217,7 @@
 "Connected" = "Подключено";
 "Content" = "Содержание";
 "Continue" = "Продолжить";
+"Couldn't share this item." = "Не удалось поделиться этим объектом.";
 "Create an automatic filing rule." = "Создайте правило автоматического хранения.";
 "Date" = "Дата";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "Дата, местоположение и избранное сохраняются. Исходный файл перемещается в раздел «Недавно удаленные» на 30 дней после вашего подтверждения.";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "Сохраняйте локальные копии";
 "Keep Recommended" = "Продолжайте рекомендовать";
 "Keep Selected Photo" = "Сохранить выбранное фото";
+"Keep Selected Photos" = "Сохранить выбранные фотографии";
 "Keep space. Keep what matters." = "Сохраняйте пространство. Сохраняйте то, что важно.";
 "Keep your best photos and videos safe and organized." = "Храните свои лучшие фотографии и видео в безопасности и порядке.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "При сохранении %d фотографий остальные %d удаляются после вашего подтверждения. Они остаются в категории «Недавно удаленные» в течение 30 дней.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "При сохранении %d фотографий остальные %d удаляются после вашего подтверждения. Они остаются в корзине в течение 30 дней.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Если оставить это фото, остальные (%d) будут удалены после вашего подтверждения. Они хранятся 30 дней в «Недавно удалённых».";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Если оставить это фото, остальные (%d) будут удалены после вашего подтверждения. Они хранятся 30 дней в корзине.";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "KeepSpace анализирует вашу библиотеку на этом устройстве, чтобы найти место, которое можно безопасно восстановить.";
@@ -481,10 +485,13 @@
 "Select a group" = "Выберите группу";
 "Select All" = "Выбрать все";
 "Select More Photos" = "Выбрать больше фотографий";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "Выберите одну или несколько фотографий, которые хотите сохранить. Коснитесь фотографии, чтобы добавить или удалить ее.";
+"Selected" = "Выбрано";
 "Send a Test Notification" = "Отправить тестовое уведомление";
 "Series" = "Серия";
 "Settings" = "Настройки";
 "Setup required" = "Требуется настройка";
+"Share" = "Поделиться";
 "Sharpness" = "Резкость";
 "Shrink big videos on your device and keep the quality." = "Сжимайте большие видео на своем устройстве и сохраняйте качество.";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Сжимает большое видео на вашем устройстве, сохраняя качество. Вы просматриваете результат до того, как оригинал будет удален.";

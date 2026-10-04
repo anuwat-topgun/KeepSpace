@@ -590,6 +590,13 @@
     "common.language": "Γλώσσα",
     "common.uploading": "Μεταφόρτωση",
     "library.zoom": "Ζουμ",
-    "common.keep_selected_photo": "Διατήρηση επιλεγμένης φωτογραφίας"
+    "common.keep_selected_photo": "Διατήρηση επιλεγμένης φωτογραφίας",
+    "common.keep_selected_photos": "Διατήρηση επιλεγμένων φωτογραφιών",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t": "Η διατήρηση %d φωτογραφιών διαγράφει τις άλλες %d μετά την επιβεβαίωση. Παραμένουν στο Πρόσφατα διαγραμμένα για 30 ημέρες.",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734": "Η διατήρηση %d φωτογραφιών διαγράφει τις άλλες %d μετά την επιβεβαίωση. Μένουν στα σκουπίδια για 30 ημέρες.",
+    "common.select_one_or_more_photos_to_keep_tap_a_photo_to_add_or": "Επιλέξτε μία ή περισσότερες φωτογραφίες για διατήρηση. Πατήστε μια φωτογραφία για να την προσθέσετε ή να την αφαιρέσετε.",
+    "best_shot.selected": "Επιλεγμένο",
+    "library.couldn_t_share_this_item": "Δεν ήταν δυνατή η κοινή χρήση αυτού του στοιχείου.",
+    "common.share": "Κοινή χρήση"
   }
 }

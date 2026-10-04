@@ -590,6 +590,13 @@
     "common.language": "Språk",
     "common.uploading": "Laddar upp",
     "library.zoom": "Zooma",
-    "common.keep_selected_photo": "Behåll det valda fotot"
+    "common.keep_selected_photo": "Behåll det valda fotot",
+    "common.keep_selected_photos": "Behåll valda foton",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t": "Om du behåller %d foton raderas de andra %d efter att du har bekräftat. De stannar i Nyligen raderade i 30 dagar.",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734": "Om du behåller %d foton raderas de andra %d efter att du har bekräftat. De stannar i papperskorgen i 30 dagar.",
+    "common.select_one_or_more_photos_to_keep_tap_a_photo_to_add_or": "Välj ett eller flera foton att behålla. Tryck på ett foto för att lägga till eller ta bort det.",
+    "best_shot.selected": "Vald",
+    "library.couldn_t_share_this_item": "Det gick inte att dela detta objekt.",
+    "common.share": "Dela"
   }
 }

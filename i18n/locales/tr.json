@@ -590,6 +590,13 @@
     "common.language": "Dil",
     "common.uploading": "Yükleniyor",
     "library.zoom": "Yakınlaştır",
-    "common.keep_selected_photo": "Seçilen Fotoğrafı Tut"
+    "common.keep_selected_photo": "Seçilen Fotoğrafı Tut",
+    "common.keep_selected_photos": "Seçilen Fotoğrafları Sakla",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t": "%d fotoğrafın saklanması, onayladıktan sonra diğer %d fotoğrafı siler. 30 gün boyunca Son Silinenler'de kalırlar.",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734": "%d fotoğrafın saklanması, onayladıktan sonra diğer %d fotoğrafı siler. 30 gün boyunca Çöp Kutusu'nda kalıyorlar.",
+    "common.select_one_or_more_photos_to_keep_tap_a_photo_to_add_or": "Saklanacak bir veya daha fazla fotoğraf seçin. Eklemek veya kaldırmak için bir fotoğrafa dokunun.",
+    "best_shot.selected": "Seçildi",
+    "library.couldn_t_share_this_item": "Bu öğe paylaşılamadı.",
+    "common.share": "Paylaş"
   }
 }

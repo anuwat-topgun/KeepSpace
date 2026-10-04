@@ -217,6 +217,7 @@
 "Connected" = "Bağlı";
 "Content" = "İçerik";
 "Continue" = "Devam et";
+"Couldn't share this item." = "Bu öğe paylaşılamadı.";
 "Create an automatic filing rule." = "Otomatik dosyalama kuralı oluşturun.";
 "Date" = "Tarih";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "Tarih, konum ve favori tutulur. Orijinal, siz onayladıktan sonra 30 gün boyunca Son Silinenler klasörüne taşınır.";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "Yerel Kopyaları Saklayın";
 "Keep Recommended" = "Tavsiye Edileni Koru";
 "Keep Selected Photo" = "Seçilen Fotoğrafı Tut";
+"Keep Selected Photos" = "Seçilen Fotoğrafları Sakla";
 "Keep space. Keep what matters." = "Yer tutun. Önemli olanı sakla.";
 "Keep your best photos and videos safe and organized." = "En iyi fotoğraflarınızı ve videolarınızı güvende ve düzenli tutun.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "%d fotoğrafın saklanması, onayladıktan sonra diğer %d fotoğrafı siler. 30 gün boyunca Son Silinenler'de kalırlar.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "%d fotoğrafın saklanması, onayladıktan sonra diğer %d fotoğrafı siler. 30 gün boyunca Çöp Kutusu'nda kalıyorlar.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Bu fotoğrafı tutarsanız onayınızdan sonra diğer %d fotoğraf silinir. Son Silinenler’de 30 gün kalırlar.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Bu fotoğrafı tutarsanız onayınızdan sonra diğer %d fotoğraf silinir. Çöp kutusunda 30 gün kalırlar.";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "KeepSpace, güvenli bir şekilde kurtarabileceğiniz alanı bulmak için bu cihazdaki kitaplığınızı analiz eder.";
@@ -481,10 +485,13 @@
 "Select a group" = "Bir grup seçin";
 "Select All" = "Tümünü Seç";
 "Select More Photos" = "Daha Fazla Fotoğraf Seçin";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "Saklanacak bir veya daha fazla fotoğraf seçin. Eklemek veya kaldırmak için bir fotoğrafa dokunun.";
+"Selected" = "Seçildi";
 "Send a Test Notification" = "Test Bildirimi Gönderin";
 "Series" = "Serisi";
 "Settings" = "Ayarlar";
 "Setup required" = "Kurulum gerekli";
+"Share" = "Paylaş";
 "Sharpness" = "Keskinlik";
 "Shrink big videos on your device and keep the quality." = "Cihazınızdaki büyük videoları küçültün ve kaliteyi koruyun.";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Cihazınızdaki büyük bir videoyu küçültür ve kaliteyi korur. Orijinali çıkarmadan önce sonucu gözden geçirirsiniz.";

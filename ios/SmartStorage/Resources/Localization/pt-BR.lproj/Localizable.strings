@@ -217,6 +217,7 @@
 "Connected" = "Conectado";
 "Content" = "Conteúdo";
 "Continue" = "Continuar";
+"Couldn't share this item." = "Não foi possível compartilhar este item.";
 "Create an automatic filing rule." = "Crie uma regra de arquivamento automático.";
 "Date" = "Data";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "Data, local e favorito são mantidos. O original é movido para Excluído recentemente por 30 dias após a confirmação.";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "Mantenha cópias locais";
 "Keep Recommended" = "Mantenha recomendado";
 "Keep Selected Photo" = "Manter a foto selecionada";
+"Keep Selected Photos" = "Manter fotos selecionadas";
 "Keep space. Keep what matters." = "Mantenha espaço. Mantenha o que importa.";
 "Keep your best photos and videos safe and organized." = "Mantenha suas melhores fotos e vídeos seguros e organizados.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Manter %d fotos exclui as outras %d após a confirmação. Eles permanecem em Excluídos recentemente por 30 dias.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "Manter %d fotos exclui as outras %d após a confirmação. Eles ficam na Lixeira por 30 dias.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Manter esta foto exclui as outras %d após sua confirmação. Elas ficam 30 dias em Excluídos recentemente.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Manter esta foto exclui as outras %d após sua confirmação. Elas ficam 30 dias na Lixeira.";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "KeepSpace analisa sua biblioteca neste dispositivo para encontrar espaço que você possa recuperar com segurança.";
@@ -481,10 +485,13 @@
 "Select a group" = "Selecione um grupo";
 "Select All" = "Selecionar tudo";
 "Select More Photos" = "Selecione mais fotos";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "Selecione uma ou mais fotos para manter. Toque em uma foto para adicioná-la ou removê-la.";
+"Selected" = "Selecionado";
 "Send a Test Notification" = "Envie uma notificação de teste";
 "Series" = "Série";
 "Settings" = "Configurações";
 "Setup required" = "Configuração necessária";
+"Share" = "Compartilhar";
 "Sharpness" = "Nitidez";
 "Shrink big videos on your device and keep the quality." = "Reduza vídeos grandes no seu dispositivo e mantenha a qualidade.";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Reduz um vídeo grande no seu dispositivo e mantém a qualidade. Você revisa o resultado antes que o original seja removido.";

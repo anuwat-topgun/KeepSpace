@@ -590,6 +590,13 @@
     "common.language": "语言",
     "common.uploading": "上传中",
     "library.zoom": "变焦",
-    "common.keep_selected_photo": "保留选定的照片"
+    "common.keep_selected_photo": "保留选定的照片",
+    "common.keep_selected_photos": "保留选定的照片",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t": "保留 %d 张照片会在您确认后删除另外 %d 张照片。它们会在“最近删除”中保留 30 天。",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734": "保留 %d 张照片会在您确认后删除另外 %d 张照片。它们会在垃圾箱中停留 30 天。",
+    "common.select_one_or_more_photos_to_keep_tap_a_photo_to_add_or": "选择要保留的一张或多张照片。点击照片即可添加或删除它。",
+    "best_shot.selected": "已选择",
+    "library.couldn_t_share_this_item": "无法分享此项目。",
+    "common.share": "分享"
   }
 }

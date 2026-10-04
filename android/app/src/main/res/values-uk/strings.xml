@@ -219,6 +219,7 @@
     <string name="common_connected">Підключено</string>
     <string name="common_content">Зміст</string>
     <string name="paywall_continue">Продовжити</string>
+    <string name="library_couldn_t_share_this_item">Не вдалося поділитися цим елементом.</string>
     <string name="common_create_an_automatic_filing_rule">Створіть правило автоматичного подання.</string>
     <string name="common_date">Дата</string>
     <string name="compress_sheet_date_location_and_favorite_are_kept_the_original_moves_t">Дата, місцезнаходження та улюблені зберігаються. Оригінал переміщується в розділ «Нещодавно видалені» протягом 30 днів після вашого підтвердження.</string>
@@ -301,8 +302,11 @@
     <string name="common_keep_local_copies_8b296740">Зберігайте локальні копії</string>
     <string name="common_keep_recommended">Залишити рекомендовано</string>
     <string name="common_keep_selected_photo">Зберегти вибране фото</string>
+    <string name="common_keep_selected_photos">Зберігайте вибрані фотографії</string>
     <string name="common_keep_space_keep_what_matters">Зберігайте простір. Зберігайте те, що має значення.</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Зберігайте свої найкращі фотографії та відео в безпеці та впорядкованості.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t">Зберігання %d фотографій видаляє інші %d після підтвердження. Вони залишаються в розділі «Нещодавно видалені» протягом 30 днів.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734">Зберігання %d фотографій видаляє інші %d після підтвердження. Вони залишаються у кошику 30 днів.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Якщо залишити це фото, решта (%d) буде видалена після вашого підтвердження. Вони зберігаються 30 днів у «Нещодавно видалених».</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Якщо залишити це фото, решта (%d) буде видалена після вашого підтвердження. Вони зберігаються 30 днів у кошику.</string>
     <string name="common_keepspace_analyzes_your_library_on_this_device_to_find_s">KeepSpace аналізує вашу бібліотеку на цьому пристрої, щоб знайти місце, яке можна безпечно відновити.</string>
@@ -483,10 +487,13 @@
     <string name="similar_photos_select_a_group">Виберіть групу</string>
     <string name="common_select_all">Виберіть усі</string>
     <string name="common_select_more_photos">Виберіть Більше фотографій</string>
+    <string name="common_select_one_or_more_photos_to_keep_tap_a_photo_to_add_or">Виберіть одну або кілька фотографій, які потрібно зберегти. Торкніться фотографії, щоб додати або видалити її.</string>
+    <string name="best_shot_selected">Вибране</string>
     <string name="common_send_a_test_notification">Надіслати тестове сповіщення</string>
     <string name="insights_series">Серія</string>
     <string name="common_settings">Налаштування</string>
     <string name="common_setup_required">Потрібне налаштування</string>
+    <string name="common_share">Поділіться</string>
     <string name="common_sharpness">Різкість</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Зменшуйте великі відео на своєму пристрої та зберігайте якість.</string>
     <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Зменшує велике відео на вашому пристрої та зберігає якість. Ви переглядаєте результат перед видаленням оригіналу.</string>

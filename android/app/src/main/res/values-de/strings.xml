@@ -219,6 +219,7 @@
     <string name="common_connected">Verbunden</string>
     <string name="common_content">Inhalt</string>
     <string name="paywall_continue">Weiter</string>
+    <string name="library_couldn_t_share_this_item">Dieser Artikel konnte nicht geteilt werden.</string>
     <string name="common_create_an_automatic_filing_rule">Erstellen Sie eine automatische Ablageregel.</string>
     <string name="common_date">Datum</string>
     <string name="compress_sheet_date_location_and_favorite_are_kept_the_original_moves_t">Datum, Ort und Favorit bleiben erhalten. Das Original wird nach Ihrer Bestätigung 30 Tage lang in den Ordner „Zuletzt gelöscht“ verschoben.</string>
@@ -301,8 +302,11 @@
     <string name="common_keep_local_copies_8b296740">Bewahren Sie lokale Kopien auf</string>
     <string name="common_keep_recommended">Empfehlenswert bleiben</string>
     <string name="common_keep_selected_photo">Ausgewähltes Foto behalten</string>
+    <string name="common_keep_selected_photos">Ausgewählte Fotos behalten</string>
     <string name="common_keep_space_keep_what_matters">Platz bewahren. Behalten Sie, was wichtig ist.</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Bewahren Sie Ihre besten Fotos und Videos sicher und organisiert auf.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t">Wenn Sie %d Fotos behalten, werden die anderen %d gelöscht, nachdem Sie dies bestätigt haben. Sie bleiben 30 Tage lang im Ordner „Zuletzt gelöscht“.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734">Wenn Sie %d Fotos behalten, werden die anderen %d gelöscht, nachdem Sie dies bestätigt haben. Sie bleiben 30 Tage lang im Papierkorb.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Wenn du dieses Foto behältst, werden die anderen %d nach deiner Bestätigung gelöscht. Sie bleiben 30 Tage in „Zuletzt gelöscht“.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Wenn du dieses Foto behältst, werden die anderen %d nach deiner Bestätigung gelöscht. Sie bleiben 30 Tage im Papierkorb.</string>
     <string name="common_keepspace_analyzes_your_library_on_this_device_to_find_s">KeepSpace analysiert Ihre Bibliothek auf diesem Gerät, um Speicherplatz zu finden, den Sie sicher wiederherstellen können.</string>
@@ -483,10 +487,13 @@
     <string name="similar_photos_select_a_group">Wählen Sie eine Gruppe aus</string>
     <string name="common_select_all">Wählen Sie „Alle“ aus</string>
     <string name="common_select_more_photos">Wählen Sie Weitere Fotos</string>
+    <string name="common_select_one_or_more_photos_to_keep_tap_a_photo_to_add_or">Wählen Sie ein oder mehrere Fotos aus, die Sie behalten möchten. Tippen Sie auf ein Foto, um es hinzuzufügen oder zu entfernen.</string>
+    <string name="best_shot_selected">Ausgewählt</string>
     <string name="common_send_a_test_notification">Senden Sie eine Testbenachrichtigung</string>
     <string name="insights_series">Serie</string>
     <string name="common_settings">Einstellungen</string>
     <string name="common_setup_required">Einrichtung erforderlich</string>
+    <string name="common_share">Teilen</string>
     <string name="common_sharpness">Schärfe</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Verkleinern Sie große Videos auf Ihrem Gerät und behalten Sie die Qualität bei.</string>
     <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Verkleinert ein großes Video auf Ihrem Gerät und behält die Qualität bei. Sie überprüfen das Ergebnis, bevor das Original entfernt wird.</string>

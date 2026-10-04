@@ -219,6 +219,7 @@
     <string name="common_connected">Ansluten</string>
     <string name="common_content">Innehåll</string>
     <string name="paywall_continue">Fortsätt</string>
+    <string name="library_couldn_t_share_this_item">Det gick inte att dela detta objekt.</string>
     <string name="common_create_an_automatic_filing_rule">Skapa en regel för automatisk arkivering.</string>
     <string name="common_date">Datum</string>
     <string name="compress_sheet_date_location_and_favorite_are_kept_the_original_moves_t">Datum, plats och favorit behålls. Originalet flyttas till Nyligen borttaget i 30 dagar efter att du har bekräftat.</string>
@@ -301,8 +302,11 @@
     <string name="common_keep_local_copies_8b296740">Behåll lokala kopior</string>
     <string name="common_keep_recommended">Behåll rekommenderat</string>
     <string name="common_keep_selected_photo">Behåll det valda fotot</string>
+    <string name="common_keep_selected_photos">Behåll valda foton</string>
     <string name="common_keep_space_keep_what_matters">Behåll utrymme. Behåll det som betyder något.</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Håll dina bästa foton och videor säkra och organiserade.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t">Om du behåller %d foton raderas de andra %d efter att du har bekräftat. De stannar i Nyligen raderade i 30 dagar.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734">Om du behåller %d foton raderas de andra %d efter att du har bekräftat. De stannar i papperskorgen i 30 dagar.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Om du behåller det här fotot raderas de andra %d efter din bekräftelse. De ligger kvar i 30 dagar i Nyligen raderade.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Om du behåller det här fotot raderas de andra %d efter din bekräftelse. De ligger kvar i 30 dagar i papperskorgen.</string>
     <string name="common_keepspace_analyzes_your_library_on_this_device_to_find_s">KeepSpace analyserar ditt bibliotek på den här enheten för att hitta utrymme som du säkert kan återställa.</string>
@@ -483,10 +487,13 @@
     <string name="similar_photos_select_a_group">Välj en grupp</string>
     <string name="common_select_all">Välj Alla</string>
     <string name="common_select_more_photos">Välj Fler foton</string>
+    <string name="common_select_one_or_more_photos_to_keep_tap_a_photo_to_add_or">Välj ett eller flera foton att behålla. Tryck på ett foto för att lägga till eller ta bort det.</string>
+    <string name="best_shot_selected">Vald</string>
     <string name="common_send_a_test_notification">Skicka ett testmeddelande</string>
     <string name="insights_series">Serie</string>
     <string name="common_settings">Inställningar</string>
     <string name="common_setup_required">Konfiguration krävs</string>
+    <string name="common_share">Dela</string>
     <string name="common_sharpness">Skärpa</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Förminska stora videor på din enhet och behåll kvaliteten.</string>
     <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Krymper en stor video på din enhet och behåller kvaliteten. Du granskar resultatet innan originalet tas bort.</string>

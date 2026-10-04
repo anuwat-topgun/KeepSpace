@@ -590,6 +590,13 @@
     "common.language": "Ngôn ngữ",
     "common.uploading": "Đang tải lên",
     "library.zoom": "Thu phóng",
-    "common.keep_selected_photo": "Giữ ảnh đã chọn"
+    "common.keep_selected_photo": "Giữ ảnh đã chọn",
+    "common.keep_selected_photos": "Giữ ảnh đã chọn",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t": "Việc giữ lại ảnh %d sẽ xóa %d khác sau khi bạn xác nhận. Họ ở lại Đã xóa gần đây trong 30 ngày.",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734": "Việc giữ lại ảnh %d sẽ xóa %d khác sau khi bạn xác nhận. Họ ở trong Thùng rác trong 30 ngày.",
+    "common.select_one_or_more_photos_to_keep_tap_a_photo_to_add_or": "Chọn một hoặc nhiều ảnh để giữ. Nhấn vào một ảnh để thêm hoặc xóa nó.",
+    "best_shot.selected": "Đã chọn",
+    "library.couldn_t_share_this_item": "Không thể chia sẻ mục này.",
+    "common.share": "Chia sẻ"
   }
 }

@@ -145,6 +145,8 @@ NON_TRANSLATABLE = {
     "ML Kit (text, face, barcode)", "Tesseract OCR (Thai text)",
     "Tesseract Thai & English models", "Tesseract4Android", "Apache 2.0",
     "Google APIs terms", "UTC", "5 GB", "10 GB", "20 GB",
+    # Runtime MIME types and fallback filenames used by the native share sheets.
+    "image/*", "video/*", "Photo.jpg", "Video.mov",
 }
 
 STRING = re.compile(r'"((?:[^"\\]|\\.)*)"')

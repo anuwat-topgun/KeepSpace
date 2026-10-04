@@ -217,6 +217,7 @@
 "Connected" = "Συνδεδεμένος";
 "Content" = "περιεχόμενο";
 "Continue" = "Συνέχεια";
+"Couldn't share this item." = "Δεν ήταν δυνατή η κοινή χρήση αυτού του στοιχείου.";
 "Create an automatic filing rule." = "Δημιουργήστε έναν κανόνα αυτόματης αρχειοθέτησης.";
 "Date" = "Ημερομηνία";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "Η ημερομηνία, η τοποθεσία και το αγαπημένο διατηρούνται. Το πρωτότυπο μετακινείται στο Πρόσφατα διαγράφηκε για 30 ημέρες μετά την επιβεβαίωση.";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "Διατηρήστε τοπικά αντίγραφα";
 "Keep Recommended" = "Κρατήστε το προτεινόμενο";
 "Keep Selected Photo" = "Διατήρηση επιλεγμένης φωτογραφίας";
+"Keep Selected Photos" = "Διατήρηση επιλεγμένων φωτογραφιών";
 "Keep space. Keep what matters." = "Κρατήστε χώρο. Κράτα αυτό που έχει σημασία.";
 "Keep your best photos and videos safe and organized." = "Διατηρήστε τις καλύτερες φωτογραφίες και τα βίντεό σας ασφαλή και οργανωμένα.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Η διατήρηση %d φωτογραφιών διαγράφει τις άλλες %d μετά την επιβεβαίωση. Παραμένουν στο Πρόσφατα διαγραμμένα για 30 ημέρες.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "Η διατήρηση %d φωτογραφιών διαγράφει τις άλλες %d μετά την επιβεβαίωση. Μένουν στα σκουπίδια για 30 ημέρες.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Αν κρατήσετε αυτή τη φωτογραφία, οι υπόλοιπες %d διαγράφονται μετά την επιβεβαίωσή σας. Παραμένουν 30 ημέρες στα Πρόσφατα διαγραμμένα.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Αν κρατήσετε αυτή τη φωτογραφία, οι υπόλοιπες %d διαγράφονται μετά την επιβεβαίωσή σας. Παραμένουν 30 ημέρες στον Κάδο.";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "Το KeepSpace αναλύει τη βιβλιοθήκη σας σε αυτήν τη συσκευή για να βρει χώρο που μπορείτε να ανακτήσετε με ασφάλεια.";
@@ -481,10 +485,13 @@
 "Select a group" = "Επιλέξτε μια ομάδα";
 "Select All" = "Επιλέξτε Όλα";
 "Select More Photos" = "Επιλέξτε Περισσότερες φωτογραφίες";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "Επιλέξτε μία ή περισσότερες φωτογραφίες για διατήρηση. Πατήστε μια φωτογραφία για να την προσθέσετε ή να την αφαιρέσετε.";
+"Selected" = "Επιλεγμένο";
 "Send a Test Notification" = "Στείλτε μια ειδοποίηση δοκιμής";
 "Series" = "Σειρά";
 "Settings" = "Ρυθμίσεις";
 "Setup required" = "Απαιτείται ρύθμιση";
+"Share" = "Κοινή χρήση";
 "Sharpness" = "Ευκρίνεια";
 "Shrink big videos on your device and keep the quality." = "Μειώστε τα μεγάλα βίντεο στη συσκευή σας και διατηρήστε την ποιότητα.";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Συρρικνώνει ένα μεγάλο βίντεο στη συσκευή σας και διατηρεί την ποιότητα. Ελέγχετε το αποτέλεσμα πριν αφαιρεθεί το πρωτότυπο.";

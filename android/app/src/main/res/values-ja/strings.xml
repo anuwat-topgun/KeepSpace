@@ -219,6 +219,7 @@
     <string name="common_connected">接続済み</string>
     <string name="common_content">内容</string>
     <string name="paywall_continue">続ける</string>
+    <string name="library_couldn_t_share_this_item">このアイテムを共有できませんでした。</string>
     <string name="common_create_an_automatic_filing_rule">自動ファイリングルールを作成します。</string>
     <string name="common_date">日付</string>
     <string name="compress_sheet_date_location_and_favorite_are_kept_the_original_moves_t">日付、場所、お気に入りが保存されます。確認後、オリジナルは 30 日間「最近削除した項目」に移動します。</string>
@@ -301,8 +302,11 @@
     <string name="common_keep_local_copies_8b296740">ローカルコピーを保持する</string>
     <string name="common_keep_recommended">推奨を維持する</string>
     <string name="common_keep_selected_photo">選択した写真を保持</string>
+    <string name="common_keep_selected_photos">選択した写真を保存する</string>
     <string name="common_keep_space_keep_what_matters">スペースを確保してください。大切なものは残しておいてください。</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">最高の写真やビデオを安全に整理して保管しましょう。</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t">%d 枚の写真を保持すると、確認後に残りの %d 枚が削除されます。これらは「最近削除した項目」に 30 日間残ります。</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734">%d 枚の写真を保持すると、確認後に残りの %d 枚が削除されます。これらは 30 日間ゴミ箱に残ります。</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">この写真を残すと、確認後に他の%d枚が削除されます。「最近削除した項目」に30日間残ります。</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">この写真を残すと、確認後に他の%d枚が削除されます。ゴミ箱に30日間残ります。</string>
     <string name="common_keepspace_analyzes_your_library_on_this_device_to_find_s">KeepSpace は、このデバイス上のライブラリを分析して、安全に回復できるスペースを見つけます。</string>
@@ -483,10 +487,13 @@
     <string name="similar_photos_select_a_group">グループを選択してください</string>
     <string name="common_select_all">すべて選択</string>
     <string name="common_select_more_photos">さらに写真を選択</string>
+    <string name="common_select_one_or_more_photos_to_keep_tap_a_photo_to_add_or">保存する写真を 1 つまたは複数選択します。写真をタップして追加または削除します。</string>
+    <string name="best_shot_selected">選択済み</string>
     <string name="common_send_a_test_notification">テスト通知を送信する</string>
     <string name="insights_series">シリーズ</string>
     <string name="common_settings">設定</string>
     <string name="common_setup_required">設定が必要です</string>
+    <string name="common_share">シェアする</string>
     <string name="common_sharpness">切れ味</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">大きなビデオをデバイス上で縮小して品質を保ちます。</string>
     <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">大きなビデオをデバイス上で縮小し、品質を保ちます。オリジナルを削除する前に結果を確認します。</string>

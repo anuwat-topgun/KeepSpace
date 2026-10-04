@@ -590,6 +590,13 @@
     "common.language": "Idioma",
     "common.uploading": "Subiendo",
     "library.zoom": "Ampliar",
-    "common.keep_selected_photo": "Mantener foto seleccionada"
+    "common.keep_selected_photo": "Mantener foto seleccionada",
+    "common.keep_selected_photos": "Mantener fotos seleccionadas",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t": "Al conservar %d fotos, se eliminan las otras %d después de confirmar. Permanecen en Eliminados recientemente durante 30 días.",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734": "Al conservar %d fotos, se eliminan las otras %d después de confirmar. Permanecen en la Papelera durante 30 días.",
+    "common.select_one_or_more_photos_to_keep_tap_a_photo_to_add_or": "Seleccione una o más fotos para conservar. Toca una foto para agregarla o eliminarla.",
+    "best_shot.selected": "Seleccionado",
+    "library.couldn_t_share_this_item": "No se pudo compartir este elemento.",
+    "common.share": "Compartir"
   }
 }

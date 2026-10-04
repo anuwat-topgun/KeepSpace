@@ -39,12 +39,14 @@ import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.CloudDone
 import androidx.compose.material.icons.rounded.CloudOff
 import androidx.compose.material.icons.rounded.CloudUpload
+import androidx.compose.material.icons.rounded.Delete
 import androidx.compose.material.icons.rounded.Error
 import androidx.compose.material.icons.rounded.Fullscreen
 import androidx.compose.material.icons.rounded.FullscreenExit
 import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.Schedule
+import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material.icons.rounded.Videocam
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -57,6 +59,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -71,6 +75,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.pointer.positionChanged
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.semantics
@@ -83,10 +88,15 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.viewinterop.AndroidView
 import android.widget.MediaController
 import android.widget.VideoView
+import android.content.Intent
+import android.net.Uri
 import com.smartstorage.cleaner.cloud.AssetCloudState
 import com.smartstorage.cleaner.cloud.CloudUploadStatus
 import com.smartstorage.cleaner.cloud.LocalCloudStore
 import com.smartstorage.cleaner.media.MediaItem
+import com.smartstorage.cleaner.media.DeletionOutcome
+import com.smartstorage.cleaner.media.LocalLibraryStore
+import com.smartstorage.cleaner.media.LocalMediaActions
 import com.smartstorage.cleaner.media.libraryState
 import com.smartstorage.cleaner.model.ThumbnailStyle
 import com.smartstorage.cleaner.ui.components.AssetImage
@@ -100,6 +110,7 @@ import com.smartstorage.cleaner.ui.theme.SmartMetrics
 import com.smartstorage.cleaner.ui.theme.SmartTheme
 import com.smartstorage.cleaner.ui.theme.SmartType
 import com.smartstorage.cleaner.ui.theme.Tint
+import kotlinx.coroutines.launch
 
 private enum class LibraryFilter(val label: String) {
     All("All"), Photos("Photos"), Videos("Videos"), BackedUp("Backed up")
@@ -300,16 +311,30 @@ private fun LibraryPreview(
     statuses: Map<String, AssetCloudState>,
     onDismiss: () -> Unit,
 ) {
-    val initialPage = items.indexOfFirst { it.id == initialId }.coerceAtLeast(0)
-    val pager = rememberPagerState(initialPage = initialPage) { items.size }
+    val store = LocalLibraryStore.current
+    val actions = LocalMediaActions.current
+    val scope = rememberCoroutineScope()
+    var remainingItems by remember(items) { mutableStateOf(items) }
+    // Reversed pager order makes a left swipe show the previous library item and a right swipe
+    // show the next one, while the grid itself keeps its chronological ordering.
+    val pages = remember(remainingItems) { remainingItems.asReversed() }
+    val initialPage = pages.indexOfFirst { it.id == initialId }.coerceAtLeast(0)
+    val pager = rememberPagerState(initialPage = initialPage) { pages.size }
     var immersive by rememberSaveable(initialId) { mutableStateOf(false) }
+    var deleting by remember { mutableStateOf(false) }
     var verticalDrag by remember { mutableStateOf(0f) }
     var zoomedPhotoId by remember { mutableStateOf<String?>(null) }
-    val item = items.getOrNull(pager.currentPage)
+    val item = pages.getOrNull(pager.currentPage)
     val state = item?.let { statuses[it.id] } ?: AssetCloudState()
+    val context = LocalContext.current
+    val shareLabel = localized("Share")
     LaunchedEffect(pager.currentPage) {
         immersive = false
         zoomedPhotoId = null
+    }
+    LaunchedEffect(pages.size) {
+        if (pages.isEmpty()) onDismiss()
+        else if (pager.currentPage > pages.lastIndex) pager.scrollToPage(pages.lastIndex)
     }
     Dialog(
         onDismissRequest = onDismiss,
@@ -333,11 +358,11 @@ private fun LibraryPreview(
         ) {
             HorizontalPager(
                 state = pager,
-                key = { items[it].id },
+                key = { pages[it].id },
                 userScrollEnabled = zoomedPhotoId == null,
                 modifier = Modifier.fillMaxSize(),
             ) { page ->
-                val pageItem = items[page]
+                val pageItem = pages[page]
                 if (pageItem.isVideo) {
                     PhotoLibraryVideoPlayer(
                         pageItem.id,
@@ -369,6 +394,21 @@ private fun LibraryPreview(
                     }
                 }
                 Box(Modifier.weight(1f))
+                if (item != null) {
+                    IconButton(
+                        onClick = {
+                            val intent = Intent(Intent.ACTION_SEND).apply {
+                                type = if (item.isVideo) "video/*" else "image/*"
+                                putExtra(Intent.EXTRA_STREAM, Uri.parse(item.id))
+                                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                            }
+                            context.startActivity(Intent.createChooser(intent, shareLabel))
+                        },
+                        modifier = Modifier.background(Color.Black.copy(alpha = 0.5f), CircleShape),
+                    ) {
+                        Icon(Icons.Rounded.Share, contentDescription = shareLabel, tint = Color.White)
+                    }
+                }
                 if (item?.isVideo == true) {
                     IconButton(
                         onClick = { immersive = !immersive },
@@ -385,9 +425,34 @@ private fun LibraryPreview(
                     StatusBadge(state.title, Icons.Rounded.CloudDone, if (state.isBackedUp) Tint.Mint else Tint.Gray, compact = true)
                 }
             }
-            if (items.isNotEmpty() && !immersive) {
+            if (remainingItems.isNotEmpty()) {
+                IconButton(
+                    onClick = {
+                        val current = item
+                        if (current != null && actions != null && !deleting) {
+                            scope.launch {
+                                deleting = true
+                                if (store.delete(setOf(current.id), actions) is DeletionOutcome.Deleted) {
+                                    remainingItems = remainingItems.filterNot { it.id == current.id }
+                                }
+                                deleting = false
+                            }
+                        }
+                    },
+                    enabled = actions != null && !deleting,
+                    modifier = Modifier
+                        .align(Alignment.BottomStart)
+                        .padding(WindowInsets.safeDrawing.asPaddingValues())
+                        .padding(16.dp)
+                        .background(Color.Red.copy(alpha = 0.88f), CircleShape),
+                ) {
+                    Icon(Icons.Rounded.Delete, contentDescription = localized("Delete"), tint = Color.White)
+                }
+            }
+            if (remainingItems.isNotEmpty() && !immersive) {
+                val originalPosition = item?.let { current -> remainingItems.indexOfFirst { it.id == current.id } + 1 } ?: 0
                 Text(
-                    "${pager.currentPage + 1} / ${items.size}",
+                    "$originalPosition / ${remainingItems.size}",
                     color = Color.White,
                     style = SmartType.metadata,
                     modifier = Modifier
@@ -475,9 +540,13 @@ private fun ZoomableLibraryPhoto(item: MediaItem, active: Boolean, onZoomChanged
 private fun PhotoLibraryVideoPlayer(uri: String, active: Boolean, onToggleFullscreen: () -> Unit) {
     var videoView by remember(uri) { mutableStateOf<VideoView?>(null) }
     var playing by remember(uri) { mutableStateOf(false) }
+    val currentActive by rememberUpdatedState(active)
 
     LaunchedEffect(active) {
-        if (!active) {
+        if (active) {
+            videoView?.start()
+            playing = videoView != null
+        } else {
             videoView?.pause()
             playing = false
         }
@@ -501,7 +570,13 @@ private fun PhotoLibraryVideoPlayer(uri: String, active: Boolean, onToggleFullsc
                 VideoView(context).apply {
                     setVideoURI(android.net.Uri.parse(uri))
                     setMediaController(MediaController(context).also { it.setAnchorView(this) })
-                    setOnPreparedListener { seekTo(1) }
+                    setOnPreparedListener {
+                        seekTo(1)
+                        if (currentActive) {
+                            start()
+                            playing = true
+                        }
+                    }
                     setOnCompletionListener { playing = false }
                     videoView = this
                 }

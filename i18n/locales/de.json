@@ -590,6 +590,13 @@
     "common.language": "Sprache",
     "common.uploading": "Hochladen",
     "library.zoom": "Zoomen",
-    "common.keep_selected_photo": "Ausgewähltes Foto behalten"
+    "common.keep_selected_photo": "Ausgewähltes Foto behalten",
+    "common.keep_selected_photos": "Ausgewählte Fotos behalten",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t": "Wenn Sie %d Fotos behalten, werden die anderen %d gelöscht, nachdem Sie dies bestätigt haben. Sie bleiben 30 Tage lang im Ordner „Zuletzt gelöscht“.",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734": "Wenn Sie %d Fotos behalten, werden die anderen %d gelöscht, nachdem Sie dies bestätigt haben. Sie bleiben 30 Tage lang im Papierkorb.",
+    "common.select_one_or_more_photos_to_keep_tap_a_photo_to_add_or": "Wählen Sie ein oder mehrere Fotos aus, die Sie behalten möchten. Tippen Sie auf ein Foto, um es hinzuzufügen oder zu entfernen.",
+    "best_shot.selected": "Ausgewählt",
+    "library.couldn_t_share_this_item": "Dieser Artikel konnte nicht geteilt werden.",
+    "common.share": "Teilen"
   }
 }

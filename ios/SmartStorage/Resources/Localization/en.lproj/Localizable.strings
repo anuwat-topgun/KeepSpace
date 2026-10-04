@@ -217,6 +217,7 @@
 "Connected" = "Connected";
 "Content" = "Content";
 "Continue" = "Continue";
+"Couldn't share this item." = "Couldn't share this item.";
 "Create an automatic filing rule." = "Create an automatic filing rule.";
 "Date" = "Date";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm.";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "Keep Local Copies";
 "Keep Recommended" = "Keep Recommended";
 "Keep Selected Photo" = "Keep Selected Photo";
+"Keep Selected Photos" = "Keep Selected Photos";
 "Keep space. Keep what matters." = "Keep space. Keep what matters.";
 "Keep your best photos and videos safe and organized." = "Keep your best photos and videos safe and organized.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days.";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "KeepSpace analyzes your library on this device to find space you can safely recover.";
@@ -481,10 +485,13 @@
 "Select a group" = "Select a group";
 "Select All" = "Select All";
 "Select More Photos" = "Select More Photos";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "Select one or more photos to keep. Tap a photo to add or remove it.";
+"Selected" = "Selected";
 "Send a Test Notification" = "Send a Test Notification";
 "Series" = "Series";
 "Settings" = "Settings";
 "Setup required" = "Setup required";
+"Share" = "Share";
 "Sharpness" = "Sharpness";
 "Shrink big videos on your device and keep the quality." = "Shrink big videos on your device and keep the quality.";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed.";

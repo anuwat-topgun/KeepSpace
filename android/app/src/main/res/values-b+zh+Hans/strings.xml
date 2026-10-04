@@ -219,6 +219,7 @@
     <string name="common_connected">已连接</string>
     <string name="common_content">内容</string>
     <string name="paywall_continue">继续</string>
+    <string name="library_couldn_t_share_this_item">无法分享此项目。</string>
     <string name="common_create_an_automatic_filing_rule">创建自动归档规则。</string>
     <string name="common_date">日期</string>
     <string name="compress_sheet_date_location_and_favorite_are_kept_the_original_moves_t">保留日期、地点和收藏夹。在您确认后，原件将移至“最近删除”，保留 30 天。</string>
@@ -301,8 +302,11 @@
     <string name="common_keep_local_copies_8b296740">保留本地副本</string>
     <string name="common_keep_recommended">保持推荐</string>
     <string name="common_keep_selected_photo">保留选定的照片</string>
+    <string name="common_keep_selected_photos">保留选定的照片</string>
     <string name="common_keep_space_keep_what_matters">保留空间。保留重要的东西。</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">确保您最好的照片和视频安全有序。</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t">保留 %d 张照片会在您确认后删除另外 %d 张照片。它们会在“最近删除”中保留 30 天。</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734">保留 %d 张照片会在您确认后删除另外 %d 张照片。它们会在垃圾箱中停留 30 天。</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">保留这张照片后，确认后将删除其余 %d 张。它们会在“最近删除”中保留 30 天。</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">保留这张照片后，确认后将删除其余 %d 张。它们会在回收站中保留 30 天。</string>
     <string name="common_keepspace_analyzes_your_library_on_this_device_to_find_s">KeepSpace 分析此设备上的库，以找到可以安全恢复的空间。</string>
@@ -483,10 +487,13 @@
     <string name="similar_photos_select_a_group">选择一个组</string>
     <string name="common_select_all">选择全部</string>
     <string name="common_select_more_photos">选择更多照片</string>
+    <string name="common_select_one_or_more_photos_to_keep_tap_a_photo_to_add_or">选择要保留的一张或多张照片。点击照片即可添加或删除它。</string>
+    <string name="best_shot_selected">已选择</string>
     <string name="common_send_a_test_notification">发送测试通知</string>
     <string name="insights_series">系列</string>
     <string name="common_settings">设置</string>
     <string name="common_setup_required">需要设置</string>
+    <string name="common_share">分享</string>
     <string name="common_sharpness">清晰度</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">缩小设备上的大视频并保持质量。</string>
     <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">缩小设备上的大视频并保持质量。您在删除原始结果之前查看结果。</string>

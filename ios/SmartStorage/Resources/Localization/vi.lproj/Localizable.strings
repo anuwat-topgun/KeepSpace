@@ -217,6 +217,7 @@
 "Connected" = "Đã kết nối";
 "Content" = "Nội dung";
 "Continue" = "Tiếp tục";
+"Couldn't share this item." = "Không thể chia sẻ mục này.";
 "Create an automatic filing rule." = "Tạo quy tắc nộp hồ sơ tự động.";
 "Date" = "Ngày";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "Ngày, địa điểm và yêu thích được lưu giữ. Bản gốc sẽ chuyển sang Đã xóa gần đây trong 30 ngày sau khi bạn xác nhận.";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "Giữ bản sao cục bộ";
 "Keep Recommended" = "Giữ đề xuất";
 "Keep Selected Photo" = "Giữ ảnh đã chọn";
+"Keep Selected Photos" = "Giữ ảnh đã chọn";
 "Keep space. Keep what matters." = "Giữ không gian. Giữ những gì quan trọng.";
 "Keep your best photos and videos safe and organized." = "Giữ những bức ảnh và video đẹp nhất của bạn an toàn và có tổ chức.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Việc giữ lại ảnh %d sẽ xóa %d khác sau khi bạn xác nhận. Họ ở lại Đã xóa gần đây trong 30 ngày.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "Việc giữ lại ảnh %d sẽ xóa %d khác sau khi bạn xác nhận. Họ ở trong Thùng rác trong 30 ngày.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Giữ ảnh này sẽ xóa %d ảnh còn lại sau khi bạn xác nhận. Chúng được lưu 30 ngày trong Đã xóa gần đây.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Giữ ảnh này sẽ xóa %d ảnh còn lại sau khi bạn xác nhận. Chúng được lưu 30 ngày trong Thùng rác.";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "KeepSpace phân tích thư viện của bạn trên thiết bị này để tìm dung lượng mà bạn có thể khôi phục một cách an toàn.";
@@ -481,10 +485,13 @@
 "Select a group" = "Chọn một nhóm";
 "Select All" = "Chọn tất cả";
 "Select More Photos" = "Chọn thêm ảnh";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "Chọn một hoặc nhiều ảnh để giữ. Nhấn vào một ảnh để thêm hoặc xóa nó.";
+"Selected" = "Đã chọn";
 "Send a Test Notification" = "Gửi thông báo kiểm tra";
 "Series" = "loạt";
 "Settings" = "Cài đặt";
 "Setup required" = "Cần thiết lập";
+"Share" = "Chia sẻ";
 "Sharpness" = "Độ sắc nét";
 "Shrink big videos on your device and keep the quality." = "Thu nhỏ các video lớn trên thiết bị của bạn và giữ nguyên chất lượng.";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Thu nhỏ một video lớn trên thiết bị của bạn và giữ nguyên chất lượng. Bạn xem lại kết quả trước khi bản gốc bị xóa.";

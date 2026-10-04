@@ -219,6 +219,7 @@
     <string name="common_connected">Connected</string>
     <string name="common_content">Content</string>
     <string name="paywall_continue">Continue</string>
+    <string name="library_couldn_t_share_this_item">Couldn\'t share this item.</string>
     <string name="common_create_an_automatic_filing_rule">Create an automatic filing rule.</string>
     <string name="common_date">Date</string>
     <string name="compress_sheet_date_location_and_favorite_are_kept_the_original_moves_t">Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm.</string>
@@ -301,8 +302,11 @@
     <string name="common_keep_local_copies_8b296740">Keep Local Copies</string>
     <string name="common_keep_recommended">Keep Recommended</string>
     <string name="common_keep_selected_photo">Keep Selected Photo</string>
+    <string name="common_keep_selected_photos">Keep Selected Photos</string>
     <string name="common_keep_space_keep_what_matters">Keep space. Keep what matters.</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Keep your best photos and videos safe and organized.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t">Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734">Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days.</string>
     <string name="common_keepspace_analyzes_your_library_on_this_device_to_find_s">KeepSpace analyzes your library on this device to find space you can safely recover.</string>
@@ -483,10 +487,13 @@
     <string name="similar_photos_select_a_group">Select a group</string>
     <string name="common_select_all">Select All</string>
     <string name="common_select_more_photos">Select More Photos</string>
+    <string name="common_select_one_or_more_photos_to_keep_tap_a_photo_to_add_or">Select one or more photos to keep. Tap a photo to add or remove it.</string>
+    <string name="best_shot_selected">Selected</string>
     <string name="common_send_a_test_notification">Send a Test Notification</string>
     <string name="insights_series">Series</string>
     <string name="common_settings">Settings</string>
     <string name="common_setup_required">Setup required</string>
+    <string name="common_share">Share</string>
     <string name="common_sharpness">Sharpness</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Shrink big videos on your device and keep the quality.</string>
     <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Shrinks a big video on your device and keeps the quality. You review the result before the original is removed.</string>

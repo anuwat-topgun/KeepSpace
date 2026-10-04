@@ -219,6 +219,7 @@
     <string name="common_connected">Connecté</string>
     <string name="common_content">Contenu</string>
     <string name="paywall_continue">Continuer</string>
+    <string name="library_couldn_t_share_this_item">Impossible de partager cet élément.</string>
     <string name="common_create_an_automatic_filing_rule">Créez une règle de dépôt automatique.</string>
     <string name="common_date">Date</string>
     <string name="compress_sheet_date_location_and_favorite_are_kept_the_original_moves_t">La date, le lieu et le favori sont conservés. L\'original est déplacé vers Récemment supprimé pendant 30 jours après votre confirmation.</string>
@@ -301,8 +302,11 @@
     <string name="common_keep_local_copies_8b296740">Conserver des copies locales</string>
     <string name="common_keep_recommended">Garder recommandé</string>
     <string name="common_keep_selected_photo">Conserver la photo sélectionnée</string>
+    <string name="common_keep_selected_photos">Conserver les photos sélectionnées</string>
     <string name="common_keep_space_keep_what_matters">Gardez de l\'espace. Gardez ce qui compte.</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Gardez vos meilleures photos et vidéos en sécurité et organisées.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t">Conserver %d photos supprime les %d autres après confirmation. Ils restent dans Supprimés récemment pendant 30 jours.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734">Conserver %d photos supprime les %d autres après confirmation. Ils restent dans la corbeille pendant 30 jours.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Conserver cette photo supprime les %d autres après votre confirmation. Elles restent 30 jours dans Supprimés récemment.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Conserver cette photo supprime les %d autres après votre confirmation. Elles restent 30 jours dans la corbeille.</string>
     <string name="common_keepspace_analyzes_your_library_on_this_device_to_find_s">KeepSpace analyse votre bibliothèque sur cet appareil pour trouver de l\'espace que vous pouvez récupérer en toute sécurité.</string>
@@ -483,10 +487,13 @@
     <string name="similar_photos_select_a_group">Sélectionnez un groupe</string>
     <string name="common_select_all">Sélectionner tout</string>
     <string name="common_select_more_photos">Sélectionner plus de photos</string>
+    <string name="common_select_one_or_more_photos_to_keep_tap_a_photo_to_add_or">Sélectionnez une ou plusieurs photos à conserver. Appuyez sur une photo pour l\'ajouter ou la supprimer.</string>
+    <string name="best_shot_selected">Sélectionné</string>
     <string name="common_send_a_test_notification">Envoyer une notification de test</string>
     <string name="insights_series">Série</string>
     <string name="common_settings">Paramètres</string>
     <string name="common_setup_required">Configuration requise</string>
+    <string name="common_share">Partager</string>
     <string name="common_sharpness">Netteté</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Réduisez les grosses vidéos sur votre appareil et conservez la qualité.</string>
     <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Réduit une grosse vidéo sur votre appareil et conserve la qualité. Vous examinez le résultat avant de supprimer l\'original.</string>

@@ -217,6 +217,7 @@
 "Connected" = "जुड़ा हुआ";
 "Content" = "सामग्री";
 "Continue" = "जारी रखें";
+"Couldn't share this item." = "यह आइटम साझा नहीं किया जा सका.";
 "Create an automatic filing rule." = "एक स्वचालित फाइलिंग नियम बनाएं.";
 "Date" = "दिनांक";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "दिनांक, स्थान और पसंदीदा रखा गया है। आपके पुष्टि करने के बाद मूल 30 दिनों के लिए हाल ही में हटा दिया गया पर चला जाता है।";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "स्थानीय प्रतियां रखें";
 "Keep Recommended" = "अनुशंसित रखें";
 "Keep Selected Photo" = "चयनित फोटो रखें";
+"Keep Selected Photos" = "चयनित फ़ोटो रखें";
 "Keep space. Keep what matters." = "जगह रखें. जो मायने रखता है उसे रखें.";
 "Keep your best photos and videos safe and organized." = "अपनी सर्वश्रेष्ठ फ़ोटो और वीडियो को सुरक्षित और व्यवस्थित रखें।";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "%d फ़ोटो रखने से आपके पुष्टि करने के बाद अन्य %d हट जाता है। वे हाल ही में हटाए गए में 30 दिनों तक रहते हैं।";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "%d फ़ोटो रखने से आपके पुष्टि करने के बाद अन्य %d हट जाता है। वे 30 दिनों तक कूड़ेदान में रहते हैं।";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "यह फ़ोटो रखने पर आपकी पुष्टि के बाद बाकी %d फ़ोटो हट जाएँगी। वे “हाल में हटाए गए” में 30 दिन रहती हैं।";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "यह फ़ोटो रखने पर आपकी पुष्टि के बाद बाकी %d फ़ोटो हट जाएँगी। वे ट्रैश में 30 दिन रहती हैं।";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "KeepSpace उस स्थान को ढूंढने के लिए इस डिवाइस पर आपकी लाइब्रेरी का विश्लेषण करता है जिसे आप सुरक्षित रूप से पुनर्प्राप्त कर सकते हैं।";
@@ -481,10 +485,13 @@
 "Select a group" = "एक समूह चुनें";
 "Select All" = "सभी का चयन करें";
 "Select More Photos" = "अधिक फ़ोटो चुनें";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "रखने के लिए एक या अधिक फ़ोटो चुनें. किसी फ़ोटो को जोड़ने या हटाने के लिए उस पर टैप करें।";
+"Selected" = "चयनित";
 "Send a Test Notification" = "एक परीक्षण अधिसूचना भेजें";
 "Series" = "शृंखला";
 "Settings" = "सेटिंग्स";
 "Setup required" = "सेटअप ज़रूरी है";
+"Share" = "साझा करें";
 "Sharpness" = "कुशाग्रता";
 "Shrink big videos on your device and keep the quality." = "अपने डिवाइस पर बड़े वीडियो सिकोड़ें और गुणवत्ता बनाए रखें।";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "आपके डिवाइस पर एक बड़े वीडियो को सिकोड़ता है और गुणवत्ता बनाए रखता है। मूल को हटाने से पहले आप परिणाम की समीक्षा करें।";

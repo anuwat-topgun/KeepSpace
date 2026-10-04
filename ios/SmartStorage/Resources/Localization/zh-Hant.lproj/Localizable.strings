@@ -217,6 +217,7 @@
 "Connected" = "已連接";
 "Content" = "內容";
 "Continue" = "繼續";
+"Couldn't share this item." = "無法分享此項目。";
 "Create an automatic filing rule." = "建立自動歸檔規則。";
 "Date" = "日期";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "保留日期、地點和收藏。在您確認後，原件將移至“最近刪除”，保留 30 天。";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "保留本地副本";
 "Keep Recommended" = "保持推薦";
 "Keep Selected Photo" = "保留選定的照片";
+"Keep Selected Photos" = "保留選定的照片";
 "Keep space. Keep what matters." = "保留空間。保留重要的東西。";
 "Keep your best photos and videos safe and organized." = "確保您最好的照片和影片安全有序。";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "保留 %d 張照片會在您確認後刪除另外 %d 張照片。它們會在「最近刪除」中保留 30 天。";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "保留 %d 張照片會在您確認後刪除另外 %d 張照片。它們會在垃圾箱中停留 30 天。";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "保留這張照片後，確認後將刪除其餘 %d 張。它們會在「最近刪除」中保留 30 天。";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "保留這張照片後，確認後將刪除其餘 %d 張。它們會在垃圾桶中保留 30 天。";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "KeepSpace 分析此裝置上的庫，以找到可以安全復原的空間。";
@@ -481,10 +485,13 @@
 "Select a group" = "選擇一個群組";
 "Select All" = "選擇全部";
 "Select More Photos" = "選擇更多照片";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "選擇要保留的一張或多張照片。點擊照片即可新增或刪除它。";
+"Selected" = "已選擇";
 "Send a Test Notification" = "發送測試通知";
 "Series" = "系列";
 "Settings" = "設定";
 "Setup required" = "需要設定";
+"Share" = "分享";
 "Sharpness" = "清晰度";
 "Shrink big videos on your device and keep the quality." = "縮小設備上的大視頻並保持品質。";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "縮小設備上的大視頻並保持品質。您在刪除原始結果之前查看結果。";

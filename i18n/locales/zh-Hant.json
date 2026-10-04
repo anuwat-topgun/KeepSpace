@@ -590,6 +590,13 @@
     "common.language": "語言",
     "common.uploading": "上傳中",
     "library.zoom": "變焦",
-    "common.keep_selected_photo": "保留選定的照片"
+    "common.keep_selected_photo": "保留選定的照片",
+    "common.keep_selected_photos": "保留選定的照片",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t": "保留 %d 張照片會在您確認後刪除另外 %d 張照片。它們會在「最近刪除」中保留 30 天。",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734": "保留 %d 張照片會在您確認後刪除另外 %d 張照片。它們會在垃圾箱中停留 30 天。",
+    "common.select_one_or_more_photos_to_keep_tap_a_photo_to_add_or": "選擇要保留的一張或多張照片。點擊照片即可新增或刪除它。",
+    "best_shot.selected": "已選擇",
+    "library.couldn_t_share_this_item": "無法分享此項目。",
+    "common.share": "分享"
   }
 }

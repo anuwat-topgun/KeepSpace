@@ -217,6 +217,7 @@
 "Connected" = "Підключено";
 "Content" = "Зміст";
 "Continue" = "Продовжити";
+"Couldn't share this item." = "Не вдалося поділитися цим елементом.";
 "Create an automatic filing rule." = "Створіть правило автоматичного подання.";
 "Date" = "Дата";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "Дата, місцезнаходження та улюблені зберігаються. Оригінал переміщується в розділ «Нещодавно видалені» протягом 30 днів після вашого підтвердження.";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "Зберігайте локальні копії";
 "Keep Recommended" = "Залишити рекомендовано";
 "Keep Selected Photo" = "Зберегти вибране фото";
+"Keep Selected Photos" = "Зберігайте вибрані фотографії";
 "Keep space. Keep what matters." = "Зберігайте простір. Зберігайте те, що має значення.";
 "Keep your best photos and videos safe and organized." = "Зберігайте свої найкращі фотографії та відео в безпеці та впорядкованості.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Зберігання %d фотографій видаляє інші %d після підтвердження. Вони залишаються в розділі «Нещодавно видалені» протягом 30 днів.";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "Зберігання %d фотографій видаляє інші %d після підтвердження. Вони залишаються у кошику 30 днів.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Якщо залишити це фото, решта (%d) буде видалена після вашого підтвердження. Вони зберігаються 30 днів у «Нещодавно видалених».";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Якщо залишити це фото, решта (%d) буде видалена після вашого підтвердження. Вони зберігаються 30 днів у кошику.";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "KeepSpace аналізує вашу бібліотеку на цьому пристрої, щоб знайти місце, яке можна безпечно відновити.";
@@ -481,10 +485,13 @@
 "Select a group" = "Виберіть групу";
 "Select All" = "Виберіть усі";
 "Select More Photos" = "Виберіть Більше фотографій";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "Виберіть одну або кілька фотографій, які потрібно зберегти. Торкніться фотографії, щоб додати або видалити її.";
+"Selected" = "Вибране";
 "Send a Test Notification" = "Надіслати тестове сповіщення";
 "Series" = "Серія";
 "Settings" = "Налаштування";
 "Setup required" = "Потрібне налаштування";
+"Share" = "Поділіться";
 "Sharpness" = "Різкість";
 "Shrink big videos on your device and keep the quality." = "Зменшуйте великі відео на своєму пристрої та зберігайте якість.";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "Зменшує велике відео на вашому пристрої та зберігає якість. Ви переглядаєте результат перед видаленням оригіналу.";

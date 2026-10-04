@@ -1,6 +1,7 @@
 import AVKit
 import Photos
 import SwiftUI
+import UIKit
 
 /// Photos-style library browser with per-asset cloud backup state.
 struct LibraryView: View {
@@ -247,19 +248,35 @@ private struct CloudStateIcon: View {
 }
 
 private struct LibraryPreview: View {
-    let items: [MediaItem]
+    @State private var items: [MediaItem]
+    @Environment(LibraryStore.self) private var library
     @Environment(CloudStore.self) private var cloud
     @Environment(\.dismiss) private var dismiss
     @State private var selectedIndex: Int
     @State private var isImmersive = false
+    @State private var isDeleting = false
+    @State private var isPreparingShare = false
+    @State private var shareItem: LibraryShareItem?
+    @State private var temporaryShareDirectory: URL?
+    @State private var shareError: String?
 
     init(items: [MediaItem], initialID: String) {
-        self.items = items
-        _selectedIndex = State(initialValue: items.firstIndex { $0.id == initialID } ?? 0)
+        _items = State(initialValue: items)
+        let pages = Array(items.reversed())
+        _selectedIndex = State(initialValue: pages.firstIndex { $0.id == initialID } ?? 0)
     }
 
+    /// Reversing the pager makes a left swipe show the previous library item and a right swipe
+    /// show the next one, while preserving the grid's original chronological ordering.
+    private var pages: [MediaItem] { Array(items.reversed()) }
+
     private var item: MediaItem? {
-        items.indices.contains(selectedIndex) ? items[selectedIndex] : items.first
+        pages.indices.contains(selectedIndex) ? pages[selectedIndex] : pages.first
+    }
+
+    private var originalPosition: Int {
+        guard let item, let index = items.firstIndex(where: { $0.id == item.id }) else { return 0 }
+        return index + 1
     }
 
     var body: some View {
@@ -267,8 +284,8 @@ private struct LibraryPreview: View {
             Color.black.ignoresSafeArea()
 
             TabView(selection: $selectedIndex) {
-                ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
-                    LibraryPreviewPage(item: item, isImmersive: $isImmersive)
+                ForEach(Array(pages.enumerated()), id: \.element.id) { index, item in
+                    LibraryPreviewPage(item: item, isActive: index == selectedIndex, isImmersive: $isImmersive)
                         .tag(index)
                 }
             }
@@ -284,6 +301,25 @@ private struct LibraryPreview: View {
                     }
                     Spacer()
                     if let item {
+                        Button {
+                            Task { await prepareShare(item) }
+                        } label: {
+                            Group {
+                                if isPreparingShare {
+                                    ProgressView().tint(.white)
+                                } else {
+                                    Image(systemName: "square.and.arrow.up")
+                                }
+                            }
+                            .font(.system(.body, weight: .semibold))
+                            .foregroundStyle(.white)
+                            .frame(width: 36, height: 36)
+                            .background(.black.opacity(0.5), in: Circle())
+                            .accessibilityLabel("Share")
+                        }
+                        .buttonStyle(.plain)
+                        .disabled(isPreparingShare)
+
                         if item.isVideo {
                             Button {
                                 withAnimation(.easeInOut(duration: 0.2)) { isImmersive.toggle() }
@@ -313,18 +349,56 @@ private struct LibraryPreview: View {
                 .padding()
                 .background(isImmersive ? .clear : .black.opacity(0.45))
                 Spacer()
-                if !items.isEmpty && !isImmersive {
-                    Text("\(selectedIndex + 1) / \(items.count)")
-                        .font(.footnote.monospacedDigit().weight(.semibold))
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 12)
-                        .padding(.vertical, 7)
-                        .background(.black.opacity(0.5), in: Capsule())
-                        .padding(.bottom, 16)
+                if !items.isEmpty {
+                    ZStack {
+                        HStack {
+                            Button(role: .destructive) {
+                                Task { await deleteCurrentItem() }
+                            } label: {
+                                Group {
+                                    if isDeleting {
+                                        ProgressView().tint(.white)
+                                    } else {
+                                        Image(systemName: "trash.fill")
+                                    }
+                                }
+                                .font(.system(.body, weight: .semibold))
+                                .foregroundStyle(.white)
+                                .frame(width: 44, height: 44)
+                                .background(Color.red.opacity(0.88), in: Circle())
+                            }
+                            .buttonStyle(.plain)
+                            .disabled(isDeleting)
+                            .accessibilityLabel("Delete")
+                            Spacer()
+                        }
+
+                        if !isImmersive {
+                            Text("\(originalPosition) / \(items.count)")
+                                .font(.footnote.monospacedDigit().weight(.semibold))
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 7)
+                                .background(.black.opacity(0.5), in: Capsule())
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 16)
                 }
             }
         }
         .onChange(of: selectedIndex) { _, _ in isImmersive = false }
+        .sheet(item: $shareItem, onDismiss: removeTemporaryShareFile) { item in
+            LibraryActivityView(items: [item.url])
+        }
+        .alert("Couldn't share this item.", isPresented: Binding(
+            get: { shareError != nil },
+            set: { if !$0 { shareError = nil } }
+        )) {
+            Button("OK", role: .cancel) { shareError = nil }
+        } message: {
+            Text(shareError ?? "")
+        }
         .simultaneousGesture(
             DragGesture(minimumDistance: 24).onEnded { value in
                 let vertical = value.translation.height
@@ -333,16 +407,59 @@ private struct LibraryPreview: View {
             }
         )
     }
+
+    @MainActor
+    private func deleteCurrentItem() async {
+        guard let item, !isDeleting else { return }
+        isDeleting = true
+        defer { isDeleting = false }
+
+        switch await library.delete([item.id]) {
+        case .deleted:
+            let pageAfterDeletion = selectedIndex
+            items.removeAll { $0.id == item.id }
+            guard !items.isEmpty else {
+                dismiss()
+                return
+            }
+            selectedIndex = min(pageAfterDeletion, items.count - 1)
+        case .failed(let message):
+            shareError = message
+        case .cancelled:
+            break
+        }
+    }
+
+    @MainActor
+    private func prepareShare(_ item: MediaItem) async {
+        isPreparingShare = true
+        defer { isPreparingShare = false }
+        do {
+            removeTemporaryShareFile()
+            let prepared = try await LibraryShareItem.export(item)
+            temporaryShareDirectory = prepared.url.deletingLastPathComponent()
+            shareItem = prepared
+        } catch {
+            shareError = error.localizedDescription
+        }
+    }
+
+    private func removeTemporaryShareFile() {
+        guard let directory = temporaryShareDirectory else { return }
+        try? FileManager.default.removeItem(at: directory)
+        temporaryShareDirectory = nil
+    }
 }
 
 private struct LibraryPreviewPage: View {
     let item: MediaItem
+    let isActive: Bool
     @Binding var isImmersive: Bool
 
     var body: some View {
         Group {
             if item.isVideo {
-                PhotoLibraryVideoPlayer(assetID: item.id) {
+                PhotoLibraryVideoPlayer(assetID: item.id, isActive: isActive) {
                     withAnimation(.easeInOut(duration: 0.2)) { isImmersive.toggle() }
                 }
             } else {
@@ -394,14 +511,16 @@ private struct ZoomableLibraryPhoto: View {
                 .simultaneousGesture(
                     DragGesture(minimumDistance: 8)
                         .onChanged { value in
-                            guard scale > 1 else { return }
                             let proposed = CGSize(
                                 width: settledOffset.width + value.translation.width,
                                 height: settledOffset.height + value.translation.height
                             )
                             offset = clamped(proposed, in: proxy.size, at: scale)
                         }
-                        .onEnded { _ in settledOffset = offset }
+                        .onEnded { _ in settledOffset = offset },
+                    // At 1× the page-style TabView must own horizontal drags so photos can
+                    // move to the adjacent item. Only install the pan recognizer while zoomed.
+                    including: scale > 1 ? .gesture : .none
                 )
         }
         .clipped()
@@ -432,6 +551,7 @@ private struct ZoomableLibraryPhoto: View {
 
 private struct PhotoLibraryVideoPlayer: View {
     let assetID: String
+    let isActive: Bool
     let toggleFullscreen: () -> Void
     @State private var player: AVPlayer?
 
@@ -447,6 +567,9 @@ private struct PhotoLibraryVideoPlayer: View {
         }
         .simultaneousGesture(TapGesture(count: 2).onEnded(toggleFullscreen))
         .task(id: assetID) { await load() }
+        .onChange(of: isActive) { _, active in
+            if active { player?.play() } else { player?.pause() }
+        }
         .onDisappear { player?.pause() }
     }
 
@@ -464,7 +587,58 @@ private struct PhotoLibraryVideoPlayer: View {
         }
         guard !Task.isCancelled, let item else { return }
         player = AVPlayer(playerItem: item)
+        if isActive { player?.play() }
     }
+}
+
+private struct LibraryShareItem: Identifiable {
+    let id = UUID()
+    let url: URL
+
+    static func export(_ item: MediaItem) async throws -> LibraryShareItem {
+        guard let asset = PHAsset.fetchAssets(withLocalIdentifiers: [item.id], options: nil).firstObject else {
+            throw CocoaError(.fileNoSuchFile)
+        }
+        let resources = PHAssetResource.assetResources(for: asset)
+        let preferredTypes: Set<PHAssetResourceType> = item.isVideo
+            ? [.video, .fullSizeVideo, .pairedVideo]
+            : [.photo, .fullSizePhoto, .alternatePhoto]
+        guard let resource = resources.first(where: { preferredTypes.contains($0.type) }) ?? resources.first else {
+            throw CocoaError(.fileReadUnknown)
+        }
+
+        let directory = FileManager.default.temporaryDirectory
+            .appendingPathComponent("KeepSpaceShare-\(UUID().uuidString)", isDirectory: true)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        let originalName = (resource.originalFilename as NSString).lastPathComponent
+        let fallbackName = item.isVideo ? "Video.mov" : "Photo.jpg"
+        let url = directory.appendingPathComponent(originalName.isEmpty ? fallbackName : originalName)
+        let options = PHAssetResourceRequestOptions()
+        options.isNetworkAccessAllowed = true
+
+        do {
+            try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+                PHAssetResourceManager.default().writeData(for: resource, toFile: url, options: options) { error in
+                    if let error { continuation.resume(throwing: error) }
+                    else { continuation.resume() }
+                }
+            }
+            return LibraryShareItem(url: url)
+        } catch {
+            try? FileManager.default.removeItem(at: directory)
+            throw error
+        }
+    }
+}
+
+private struct LibraryActivityView: UIViewControllerRepresentable {
+    let items: [Any]
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: items, applicationActivities: nil)
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
 
 private extension MediaItem {

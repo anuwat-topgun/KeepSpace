@@ -219,6 +219,7 @@
     <string name="common_connected">Conectado</string>
     <string name="common_content">Contenido</string>
     <string name="paywall_continue">Continuar</string>
+    <string name="library_couldn_t_share_this_item">No se pudo compartir este elemento.</string>
     <string name="common_create_an_automatic_filing_rule">Cree una regla de presentación automática.</string>
     <string name="common_date">Fecha</string>
     <string name="compress_sheet_date_location_and_favorite_are_kept_the_original_moves_t">Se mantienen la fecha, la ubicación y el favorito. El original pasa a Eliminado recientemente durante 30 días después de que lo confirmes.</string>
@@ -301,8 +302,11 @@
     <string name="common_keep_local_copies_8b296740">Mantenga copias locales</string>
     <string name="common_keep_recommended">Mantener recomendado</string>
     <string name="common_keep_selected_photo">Mantener foto seleccionada</string>
+    <string name="common_keep_selected_photos">Mantener fotos seleccionadas</string>
     <string name="common_keep_space_keep_what_matters">Mantenga el espacio. Conserva lo que importa.</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Mantén tus mejores fotos y vídeos seguros y organizados.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t">Al conservar %d fotos, se eliminan las otras %d después de confirmar. Permanecen en Eliminados recientemente durante 30 días.</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734">Al conservar %d fotos, se eliminan las otras %d después de confirmar. Permanecen en la Papelera durante 30 días.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Al conservar esta foto se eliminan las otras %d tras tu confirmación. Se quedan 30 días en Eliminados recientemente.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Al conservar esta foto se eliminan las otras %d tras tu confirmación. Se quedan 30 días en la papelera.</string>
     <string name="common_keepspace_analyzes_your_library_on_this_device_to_find_s">KeepSpace analiza su biblioteca en este dispositivo para encontrar espacio que pueda recuperar de forma segura.</string>
@@ -483,10 +487,13 @@
     <string name="similar_photos_select_a_group">Seleccione un grupo</string>
     <string name="common_select_all">Seleccionar todo</string>
     <string name="common_select_more_photos">Seleccionar más fotos</string>
+    <string name="common_select_one_or_more_photos_to_keep_tap_a_photo_to_add_or">Seleccione una o más fotos para conservar. Toca una foto para agregarla o eliminarla.</string>
+    <string name="best_shot_selected">Seleccionado</string>
     <string name="common_send_a_test_notification">Enviar una notificación de prueba</string>
     <string name="insights_series">Serie</string>
     <string name="common_settings">Configuración</string>
     <string name="common_setup_required">Configuración necesaria</string>
+    <string name="common_share">Compartir</string>
     <string name="common_sharpness">Nitidez</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">Reduzca videos grandes en su dispositivo y mantenga la calidad.</string>
     <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">Reduce un video grande en su dispositivo y mantiene la calidad. Revisa el resultado antes de eliminar el original.</string>

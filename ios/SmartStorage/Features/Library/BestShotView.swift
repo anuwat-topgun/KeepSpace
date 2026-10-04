@@ -9,7 +9,9 @@ struct BestShotView: View {
     @Environment(LibraryStore.self) private var library
     @Environment(MonetizationStore.self) private var monetization
     @Environment(\.dismiss) private var dismiss
-    @State private var selectedIndex: Int
+    @State private var selectedIndices: Set<Int>
+    /// The last photo the person tapped; drives the large preview while selection remains multi-value.
+    @State private var focusedIndex: Int
     @State private var kept = false
     @State private var isDeleting = false
     @State private var quotaPrompt: QuotaGatePrompt?
@@ -19,7 +21,8 @@ struct BestShotView: View {
     init(group: PhotoGroup, isEmbedded: Bool = false) {
         self.group = group
         self.isEmbedded = isEmbedded
-        _selectedIndex = State(initialValue: group.recommendedIndex)
+        _selectedIndices = State(initialValue: [group.recommendedIndex])
+        _focusedIndex = State(initialValue: group.recommendedIndex)
     }
 
     private var reasons: [BestShotReason] {
@@ -42,7 +45,7 @@ struct BestShotView: View {
             actions
             strip
 
-            if selectedIndex == group.recommendedIndex {
+            if focusedIndex == group.recommendedIndex {
                 ViewThatFits(in: .horizontal) {
                     HStack(alignment: .top, spacing: Metrics.stackSpacing) {
                         hero.frame(minWidth: 380)
@@ -59,7 +62,7 @@ struct BestShotView: View {
 
         }
         .sensoryFeedback(.success, trigger: kept)
-        .quotaGate($quotaPrompt) { ids in Task { await performKeep(keeperIndex: selectedIndex, limitingTo: Set(ids)) } }
+        .quotaGate($quotaPrompt) { ids in Task { await performKeep(keeperIndices: selectedIndices, limitingTo: Set(ids)) } }
     }
 
     private var strip: some View {
@@ -67,36 +70,46 @@ struct BestShotView: View {
             HStack(spacing: 12) {
                 ForEach(0..<photoCount, id: \.self) { index in
                     let isRecommended = index == group.recommendedIndex
-                    let isSelected = index == selectedIndex
+                    let isSelected = selectedIndices.contains(index)
                     Button {
-                        selectedIndex = index
+                        toggleSelection(index)
                     } label: {
-                        AssetImage(assetID: assetID(index), fallback: group.style, variant: index, cornerRadius: 14)
-                            .frame(width: 104)
-                            .aspectRatio(0.72, contentMode: .fit)
-                            .overlay(alignment: .top) {
-                                if isRecommended {
-                                    ViewThatFits(in: .horizontal) {
-                                        recommendedTag(Label("Recommended", systemImage: "sparkles"))
+                        VStack(spacing: 7) {
+                            AssetImage(assetID: assetID(index), fallback: group.style, variant: index, cornerRadius: 14)
+                                // AssetImage uses GeometryReader, so both dimensions must be explicit
+                                // inside a horizontal ScrollView or SwiftUI can collapse its height.
+                                .frame(width: 112, height: 148)
+                                .overlay(alignment: .topTrailing) {
+                                    if isRecommended {
                                         recommendedTag(Image(systemName: "sparkles"))
+                                            .padding(6)
                                     }
-                                    .padding(6)
                                 }
-                            }
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 16, style: .continuous)
-                                    .strokeBorder(isSelected ? Palette.accent : .clear, lineWidth: 3)
-                                    .padding(-4)
-                            )
-                            .overlay(alignment: .bottomTrailing) {
-                                if isSelected {
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .font(.title3)
-                                        .foregroundStyle(Palette.accent)
-                                        .background(Circle().fill(.white).padding(2))
-                                        .padding(6)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                        .strokeBorder(isSelected ? Palette.accent : .clear, lineWidth: 3)
+                                )
+                                .overlay(alignment: .bottomTrailing) {
+                                    if isSelected {
+                                        Image(systemName: "checkmark.circle.fill")
+                                            .font(.title3)
+                                            .foregroundStyle(Palette.accent)
+                                            .background(Circle().fill(.white).padding(2))
+                                            .padding(6)
+                                    }
                                 }
+
+                            Label {
+                                Text(isRecommended ? "Recommended".localizedUI : localizedFormat("Photo %d", index + 1))
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.7)
+                            } icon: {
+                                if isRecommended { Image(systemName: "sparkles") }
                             }
+                            .font(.system(.caption2, weight: isSelected ? .bold : .semibold))
+                            .foregroundStyle(isSelected ? Palette.accent : Palette.textSecondary)
+                            .frame(width: 112)
+                        }
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel(localizedFormat(isRecommended ? "Photo %d, recommended" : "Photo %d", index + 1))
@@ -105,6 +118,7 @@ struct BestShotView: View {
             }
             .padding(.horizontal, 4)
         }
+        .frame(minHeight: 177)
         .padding(.vertical, 6)
     }
 
@@ -120,7 +134,7 @@ struct BestShotView: View {
     }
 
     private var hero: some View {
-        AssetImage(assetID: assetID(selectedIndex), fallback: group.style, variant: selectedIndex,
+        AssetImage(assetID: assetID(focusedIndex), fallback: group.style, variant: focusedIndex,
                    cornerRadius: Metrics.cardRadius, symbolScale: 0.22, contentMode: .fit)
             .aspectRatio(4 / 3, contentMode: .fit)
     }
@@ -158,14 +172,19 @@ struct BestShotView: View {
                 if isDeleting {
                     ProgressView().tint(.white)
                 } else {
-                    Text((kept ? "Done" : selectedIndex == group.recommendedIndex ? "Keep Recommended" : "Keep Selected Photo").localizedUI)
+                    Text(keepButtonTitle.localizedUI)
                 }
             }
             .buttonStyle(PrimaryButtonStyle(showsArrow: false))
             .disabled(kept || isDeleting)
 
+            Text("Select one or more photos to keep. Tap a photo to add or remove it.".localizedUI)
+                .font(.subheadline.weight(.medium))
+                .foregroundStyle(Palette.textPrimary)
+                .multilineTextAlignment(.center)
+
             if !group.assetIDs.isEmpty {
-                Text(localizedFormat("Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days.", group.photoCount - 1))
+                Text(deletionExplanation)
                     .font(.caption)
                     .foregroundStyle(Palette.textSecondary)
                     .multilineTextAlignment(.center)
@@ -174,23 +193,54 @@ struct BestShotView: View {
         .padding(.top, 4)
     }
 
-    /// Deletes every photo in the group except the recommendation or the user's own selection.
+    private var keepButtonTitle: String {
+        if kept { return "Done" }
+        if selectedIndices == Set([group.recommendedIndex]) { return "Keep Recommended" }
+        return selectedIndices.count == 1 ? "Keep Selected Photo" : "Keep Selected Photos"
+    }
+
+    private var deletionExplanation: String {
+        let deleteCount = max(0, group.photoCount - selectedIndices.count)
+        if selectedIndices.count == 1 {
+            return localizedFormat("Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days.", deleteCount)
+        }
+        return localizedFormat("Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days.", selectedIndices.count, deleteCount)
+    }
+
+    private func toggleSelection(_ index: Int) {
+        focusedIndex = index
+        if selectedIndices.contains(index) {
+            // At least one keeper is required; tapping the last one only keeps it focused.
+            guard selectedIndices.count > 1 else { return }
+            selectedIndices.remove(index)
+            if focusedIndex == index { focusedIndex = selectedIndices.sorted().first ?? group.recommendedIndex }
+        } else {
+            selectedIndices.insert(index)
+        }
+    }
+
+    /// Deletes every photo in the group except the person's one or more selections.
     private func keepSelected() async {
         guard !group.assetIDs.isEmpty else { kept = true; return } // demo content
         // The free monthly allowance first; over it, the quota gate is offered instead of deleting.
-        let others = group.assetIDs.enumerated().filter { $0.offset != selectedIndex }.map(\.element)
+        let others = group.assetIDs.enumerated().filter { !selectedIndices.contains($0.offset) }.map(\.element)
+        if others.isEmpty {
+            kept = true
+            if !isEmbedded { dismiss() }
+            return
+        }
         let candidates = library.cleanupItems(others, safety: ReviewKind.similar.safety)
         let allowances = monetization.allowances
         if let prompt = QuotaGatePrompt(allowances.gate(cleanup: candidates), selection: candidates, allowances: allowances) {
             quotaPrompt = prompt
             return
         }
-        await performKeep(keeperIndex: selectedIndex, limitingTo: nil)
+        await performKeep(keeperIndices: selectedIndices, limitingTo: nil)
     }
 
-    private func performKeep(keeperIndex: Int, limitingTo allowed: Set<String>?) async {
+    private func performKeep(keeperIndices: Set<Int>, limitingTo allowed: Set<String>?) async {
         isDeleting = true
-        let outcome = await library.keep(group, keeperIndex: keeperIndex, limitingTo: allowed)
+        let outcome = await library.keep(group, keeperIndices: keeperIndices, limitingTo: allowed)
         isDeleting = false
         if case .deleted = outcome {
             kept = true

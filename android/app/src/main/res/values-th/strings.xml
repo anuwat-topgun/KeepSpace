@@ -219,6 +219,7 @@
     <string name="common_connected">เชื่อมต่อแล้ว</string>
     <string name="common_content">เนื้อหา</string>
     <string name="paywall_continue">ดำเนินการต่อ</string>
+    <string name="library_couldn_t_share_this_item">ไม่สามารถแชร์รายการนี้ได้</string>
     <string name="common_create_an_automatic_filing_rule">สร้างกฎการยื่นแบบอัตโนมัติ</string>
     <string name="common_date">วันที่</string>
     <string name="compress_sheet_date_location_and_favorite_are_kept_the_original_moves_t">วันที่ สถานที่ และรายการโปรดจะถูกเก็บไว้ ต้นฉบับจะย้ายไปที่ลบล่าสุดเป็นเวลา 30 วันหลังจากที่คุณยืนยัน</string>
@@ -301,8 +302,11 @@
     <string name="common_keep_local_copies_8b296740">เก็บสำเนาในเครื่อง</string>
     <string name="common_keep_recommended">เอาไว้แนะนำ</string>
     <string name="common_keep_selected_photo">เก็บรูปภาพที่เลือกไว้</string>
+    <string name="common_keep_selected_photos">เก็บรูปภาพที่เลือกไว้</string>
     <string name="common_keep_space_keep_what_matters">รักษาพื้นที่. เก็บสิ่งที่สำคัญไว้</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">เก็บรูปภาพและวิดีโอที่ดีที่สุดของคุณให้ปลอดภัยและเป็นระเบียบ</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t">การเก็บ %d รูปภาพจะเป็นการลบ %d อีกรูปหลังจากที่คุณยืนยัน โดยจะอยู่ใน \"ลบล่าสุด\" เป็นเวลา 30 วัน</string>
+    <string name="best_shot_keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734">การเก็บ %d รูปภาพจะเป็นการลบ %d อีกรูปหลังจากที่คุณยืนยัน พวกเขาอยู่ในถังขยะเป็นเวลา 30 วัน</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">การเก็บรูปนี้ไว้จะลบรูปอื่นอีก %d รูปหลังจากคุณยืนยัน รูปเหล่านั้นจะอยู่ใน “ลบล่าสุด” 30 วัน</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">การเก็บรูปนี้ไว้จะลบรูปอื่นอีก %d รูปหลังจากคุณยืนยัน รูปเหล่านั้นจะอยู่ในถังขยะ 30 วัน</string>
     <string name="common_keepspace_analyzes_your_library_on_this_device_to_find_s">KeepSpace วิเคราะห์ห้องสมุดของคุณบนอุปกรณ์นี้เพื่อค้นหาพื้นที่ที่คุณสามารถกู้คืนได้อย่างปลอดภัย</string>
@@ -483,10 +487,13 @@
     <string name="similar_photos_select_a_group">เลือกกลุ่ม</string>
     <string name="common_select_all">เลือกทั้งหมด</string>
     <string name="common_select_more_photos">เลือกรูปภาพเพิ่มเติม</string>
+    <string name="common_select_one_or_more_photos_to_keep_tap_a_photo_to_add_or">เลือกรูปภาพอย่างน้อย 1 รูปเพื่อเก็บไว้ แตะรูปภาพเพื่อเพิ่มหรือลบออก</string>
+    <string name="best_shot_selected">เลือกแล้ว</string>
     <string name="common_send_a_test_notification">ส่งการแจ้งเตือนการทดสอบ</string>
     <string name="insights_series">ซีรีส์</string>
     <string name="common_settings">การตั้งค่า</string>
     <string name="common_setup_required">ต้องตั้งค่า</string>
+    <string name="common_share">แบ่งปัน</string>
     <string name="common_sharpness">ความคม</string>
     <string name="paywall_shrink_big_videos_on_your_device_and_keep_the_quality">ย่อขนาดวิดีโอขนาดใหญ่บนอุปกรณ์ของคุณและรักษาคุณภาพไว้</string>
     <string name="pro_explainer_shrinks_a_big_video_on_your_device_and_keeps_the_quality">ย่อขนาดวิดีโอขนาดใหญ่บนอุปกรณ์ของคุณและรักษาคุณภาพไว้ คุณตรวจสอบผลลัพธ์ก่อนที่จะลบต้นฉบับ</string>

@@ -590,6 +590,13 @@
     "common.language": "언어",
     "common.uploading": "업로드 중",
     "library.zoom": "줌",
-    "common.keep_selected_photo": "선택한 사진 유지"
+    "common.keep_selected_photo": "선택한 사진 유지",
+    "common.keep_selected_photos": "선택한 사진 유지",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t": "%d장의 사진을 보관하면 확인 후 나머지 %d장은 삭제됩니다. 최근 삭제된 항목에 30일 동안 유지됩니다.",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734": "%d장의 사진을 보관하면 확인 후 나머지 %d장은 삭제됩니다. 해당 항목은 30일 동안 휴지통에 보관됩니다.",
+    "common.select_one_or_more_photos_to_keep_tap_a_photo_to_add_or": "보관할 사진을 하나 이상 선택하세요. 사진을 탭하여 추가하거나 제거하세요.",
+    "best_shot.selected": "선택됨",
+    "library.couldn_t_share_this_item": "이 항목을 공유할 수 없습니다.",
+    "common.share": "공유"
   }
 }

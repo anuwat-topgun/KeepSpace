@@ -590,6 +590,13 @@
     "common.language": "Jazyk",
     "common.uploading": "Nahrávání",
     "library.zoom": "Přiblížení",
-    "common.keep_selected_photo": "Ponechat vybranou fotografii"
+    "common.keep_selected_photo": "Ponechat vybranou fotografii",
+    "common.keep_selected_photos": "Ponechat vybrané fotografie",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t": "Ponecháním %d fotek se po potvrzení smažou ostatní %d. Zůstanou ve složce Nedávno smazané po dobu 30 dnů.",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734": "Ponecháním %d fotek se po potvrzení smažou ostatní %d. Zůstanou v Koši 30 dní.",
+    "common.select_one_or_more_photos_to_keep_tap_a_photo_to_add_or": "Vyberte jednu nebo více fotografií, které chcete zachovat. Klepnutím na fotku ji přidáte nebo odeberete.",
+    "best_shot.selected": "Vybráno",
+    "library.couldn_t_share_this_item": "Tuto položku se nepodařilo sdílet.",
+    "common.share": "Sdílejte"
   }
 }

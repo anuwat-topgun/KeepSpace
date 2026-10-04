@@ -177,20 +177,23 @@ class LibraryStore(context: Context, demo: Boolean) {
         }
     }
 
-    /**
-     * Keeps the photo at [keeperIndex] and deletes the rest of the group (after the system confirmation).
-     * A confirmed choice is what Best Shot learns from; a cancelled one teaches nothing.
-     */
-    suspend fun keep(group: PhotoGroup, keeperIndex: Int, actions: MediaActions, limitingTo: Set<String>? = null): DeletionOutcome {
-        var others = group.assetUris.filterIndexed { i, _ -> i != keeperIndex }.toSet()
+    /** Keeps [keeperIndices] and deletes the rest after system confirmation. AI Taste only learns
+     * from a single keeper because a multi-selection has no single winning frame. */
+    suspend fun keep(group: PhotoGroup, keeperIndices: Set<Int>, actions: MediaActions, limitingTo: Set<String>? = null): DeletionOutcome {
+        if (keeperIndices.isEmpty()) return DeletionOutcome.Cancelled
+        var others = group.assetUris.filterIndexed { i, _ -> i !in keeperIndices }.toSet()
         if (limitingTo != null) others = others intersect limitingTo // free allowance: delete only what fits
         val outcome = delete(others, actions)
-        if (outcome is DeletionOutcome.Deleted && group.scoreFeatures.isNotEmpty() && canLearnTaste()) {
-            taste.learn(keeperIndex, group.scoreFeatures)
+        if (outcome is DeletionOutcome.Deleted && keeperIndices.size == 1 && group.scoreFeatures.isNotEmpty() && canLearnTaste()) {
+            taste.learn(keeperIndices.first(), group.scoreFeatures)
             rebuild()
         }
         return outcome
     }
+
+    /** Compatibility helper for callers that intentionally keep exactly one photo. */
+    suspend fun keep(group: PhotoGroup, keeperIndex: Int, actions: MediaActions, limitingTo: Set<String>? = null): DeletionOutcome =
+        keep(group, setOf(keeperIndex), actions, limitingTo)
 
     private fun removeFromResults(ids: Set<String>) {
         lastItems = lastItems.filterNot { it.id in ids }

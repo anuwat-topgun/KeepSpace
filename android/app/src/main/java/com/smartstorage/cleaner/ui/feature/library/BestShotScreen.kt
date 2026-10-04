@@ -32,6 +32,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AutoAwesome
+import androidx.compose.material.icons.rounded.CheckCircle
 import androidx.compose.material.icons.rounded.CenterFocusStrong
 import androidx.compose.material.icons.automirrored.rounded.DirectionsRun
 import androidx.compose.material.icons.rounded.People
@@ -90,7 +91,8 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?) {
     val recommended = group.recommendedIndex
     val reasons = group.reasons.ifEmpty { LibraryMockData.bestShotReasons }
     val count = if (group.assetUris.isEmpty()) STRIP_COUNT else group.assetUris.size
-    var selected by rememberSaveable(group.id) { mutableIntStateOf(recommended) }
+    var selected by rememberSaveable(group.id) { mutableStateOf(listOf(recommended)) }
+    var focused by rememberSaveable(group.id) { mutableIntStateOf(recommended) }
     var kept by rememberSaveable(group.id) { mutableStateOf(false) }
     val haptics = LocalHapticFeedback.current
     val monetization = LocalMonetization.current
@@ -101,7 +103,7 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?) {
         val act = actions ?: return
         scope.launch {
             deleting = true
-            val outcome = store.keep(group, selected, act, allowed)
+            val outcome = store.keep(group, selected.toSet(), act, allowed)
             deleting = false
             if (outcome is DeletionOutcome.Deleted) {
                 kept = true
@@ -125,12 +127,18 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?) {
 
         Column(Modifier.padding(top = 4.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             PrimaryButton(
-                if (kept) "Done" else if (selected == recommended) "Keep Recommended" else "Keep Selected Photo",
+                when {
+                    kept -> "Done"
+                    selected.size == 1 && recommended in selected -> "Keep Recommended"
+                    selected.size == 1 -> "Keep Selected Photo"
+                    else -> "Keep Selected Photos"
+                },
                 onClick = {
                     if (group.assetUris.isEmpty()) { kept = true; return@PrimaryButton } // demo content
-                    // Deletes every photo except the recommendation or the user's own selection.
+                    // Deletes every photo except the person's one or more selections.
                     // The free monthly allowance first; over it, the quota gate is offered instead of deleting.
-                    val others = group.assetUris.filterIndexed { i, _ -> i != selected }
+                    val others = group.assetUris.filterIndexed { i, _ -> i !in selected }
+                    if (others.isEmpty()) { kept = true; onBack?.invoke(); return@PrimaryButton }
                     val candidates = store.cleanupItems(others, ReviewKind.Similar.safety)
                     val allowances = monetization.allowances()
                     val prompt = QuotaGatePrompt.of(allowances.gate(candidates), candidates, allowances)
@@ -141,9 +149,18 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?) {
                 showsArrow = false,
                 enabled = !kept && !deleting,
             )
+            Text(
+                "Select one or more photos to keep. Tap a photo to add or remove it.",
+                style = SmartType.body.copy(fontWeight = FontWeight.Medium),
+                color = SmartTheme.colors.textPrimary,
+            )
             if (group.assetUris.isNotEmpty()) {
                 Text(
-                    localizedFormat("Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days.", group.photoCount - 1),
+                    if (selected.size == 1) {
+                        localizedFormat("Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days.", group.photoCount - 1)
+                    } else {
+                        localizedFormat("Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days.", selected.size, group.photoCount - selected.size)
+                    },
                     style = TextStyle(fontSize = 12.sp),
                     color = SmartTheme.colors.textSecondary,
                 )
@@ -159,24 +176,34 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?) {
                     group = group,
                     index = index,
                     isRecommended = index == recommended,
-                    isSelected = index == selected,
-                    onSelect = { selected = index },
+                    isSelected = index in selected,
+                    onSelect = {
+                        focused = index
+                        if (index in selected) {
+                            if (selected.size > 1) {
+                                selected = selected - index
+                                focused = selected.firstOrNull() ?: recommended
+                            }
+                        } else {
+                            selected = selected + index
+                        }
+                    },
                     modifier = Modifier.width(104.dp),
                 )
             }
         }
 
         BoxWithConstraints {
-            if (selected != recommended) {
-                Hero(group, selected, Modifier.fillMaxWidth())
+            if (focused != recommended) {
+                Hero(group, focused, Modifier.fillMaxWidth())
             } else if (maxWidth >= 740.dp) {
                 Row(horizontalArrangement = Arrangement.spacedBy(SmartMetrics.stackSpacing)) {
-                    Hero(group, selected, Modifier.weight(1f))
+                    Hero(group, focused, Modifier.weight(1f))
                     Box(Modifier.width(340.dp)) { ReasonsCard(reasons) }
                 }
             } else {
                 Column(verticalArrangement = Arrangement.spacedBy(SmartMetrics.stackSpacing)) {
-                    Hero(group, selected, Modifier.fillMaxWidth())
+                    Hero(group, focused, Modifier.fillMaxWidth())
                     ReasonsCard(reasons)
                 }
             }
@@ -216,6 +243,14 @@ private fun StripItem(
                     }
                 }
             }
+        }
+        if (isSelected) {
+            Icon(
+                Icons.Rounded.CheckCircle,
+                contentDescription = com.smartstorage.cleaner.ui.i18n.localized("Selected"),
+                tint = colors.accent,
+                modifier = Modifier.align(Alignment.BottomEnd).padding(8.dp).size(24.dp).background(Color.White, CircleShape),
+            )
         }
     }
 }

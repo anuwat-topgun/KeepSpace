@@ -590,6 +590,13 @@
     "common.language": "Limba",
     "common.uploading": "Încărcare",
     "library.zoom": "Zoom",
-    "common.keep_selected_photo": "Păstrați fotografia selectată"
+    "common.keep_selected_photo": "Păstrați fotografia selectată",
+    "common.keep_selected_photos": "Păstrați fotografiile selectate",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t": "Păstrarea %d fotografii șterge celelalte %d după ce confirmați. Ei rămân în Recent Deleted timp de 30 de zile.",
+    "best_shot.keeping_d_photos_deletes_the_other_d_after_you_confirm_t_bf01f734": "Păstrarea %d fotografii șterge celelalte %d după ce confirmați. Ei stau la gunoi timp de 30 de zile.",
+    "common.select_one_or_more_photos_to_keep_tap_a_photo_to_add_or": "Selectați una sau mai multe fotografii de păstrat. Atingeți o fotografie pentru a o adăuga sau a o elimina.",
+    "best_shot.selected": "Selectat",
+    "library.couldn_t_share_this_item": "Acest articol nu a putut fi distribuit.",
+    "common.share": "Distribuie"
   }
 }

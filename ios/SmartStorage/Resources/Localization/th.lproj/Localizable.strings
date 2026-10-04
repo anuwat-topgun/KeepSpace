@@ -217,6 +217,7 @@
 "Connected" = "เชื่อมต่อแล้ว";
 "Content" = "เนื้อหา";
 "Continue" = "ดำเนินการต่อ";
+"Couldn't share this item." = "ไม่สามารถแชร์รายการนี้ได้";
 "Create an automatic filing rule." = "สร้างกฎการยื่นแบบอัตโนมัติ";
 "Date" = "วันที่";
 "Date, location and favorite are kept. The original moves to Recently Deleted for 30 days after you confirm." = "วันที่ สถานที่ และรายการโปรดจะถูกเก็บไว้ ต้นฉบับจะย้ายไปที่ลบล่าสุดเป็นเวลา 30 วันหลังจากที่คุณยืนยัน";
@@ -299,8 +300,11 @@
 "Keep Local Copies" = "เก็บสำเนาในเครื่อง";
 "Keep Recommended" = "เอาไว้แนะนำ";
 "Keep Selected Photo" = "เก็บรูปภาพที่เลือกไว้";
+"Keep Selected Photos" = "เก็บรูปภาพที่เลือกไว้";
 "Keep space. Keep what matters." = "รักษาพื้นที่. เก็บสิ่งที่สำคัญไว้";
 "Keep your best photos and videos safe and organized." = "เก็บรูปภาพและวิดีโอที่ดีที่สุดของคุณให้ปลอดภัยและเป็นระเบียบ";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "การเก็บ %d รูปภาพจะเป็นการลบ %d อีกรูปหลังจากที่คุณยืนยัน โดยจะอยู่ใน \"ลบล่าสุด\" เป็นเวลา 30 วัน";
+"Keeping %d photos deletes the other %d after you confirm. They stay in Trash for 30 days." = "การเก็บ %d รูปภาพจะเป็นการลบ %d อีกรูปหลังจากที่คุณยืนยัน พวกเขาอยู่ในถังขยะเป็นเวลา 30 วัน";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "การเก็บรูปนี้ไว้จะลบรูปอื่นอีก %d รูปหลังจากคุณยืนยัน รูปเหล่านั้นจะอยู่ใน “ลบล่าสุด” 30 วัน";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "การเก็บรูปนี้ไว้จะลบรูปอื่นอีก %d รูปหลังจากคุณยืนยัน รูปเหล่านั้นจะอยู่ในถังขยะ 30 วัน";
 "KeepSpace analyzes your library on this device to find space you can safely recover." = "KeepSpace วิเคราะห์ห้องสมุดของคุณบนอุปกรณ์นี้เพื่อค้นหาพื้นที่ที่คุณสามารถกู้คืนได้อย่างปลอดภัย";
@@ -481,10 +485,13 @@
 "Select a group" = "เลือกกลุ่ม";
 "Select All" = "เลือกทั้งหมด";
 "Select More Photos" = "เลือกรูปภาพเพิ่มเติม";
+"Select one or more photos to keep. Tap a photo to add or remove it." = "เลือกรูปภาพอย่างน้อย 1 รูปเพื่อเก็บไว้ แตะรูปภาพเพื่อเพิ่มหรือลบออก";
+"Selected" = "เลือกแล้ว";
 "Send a Test Notification" = "ส่งการแจ้งเตือนการทดสอบ";
 "Series" = "ซีรีส์";
 "Settings" = "การตั้งค่า";
 "Setup required" = "ต้องตั้งค่า";
+"Share" = "แบ่งปัน";
 "Sharpness" = "ความคม";
 "Shrink big videos on your device and keep the quality." = "ย่อขนาดวิดีโอขนาดใหญ่บนอุปกรณ์ของคุณและรักษาคุณภาพไว้";
 "Shrinks a big video on your device and keeps the quality. You review the result before the original is removed." = "ย่อขนาดวิดีโอขนาดใหญ่บนอุปกรณ์ของคุณและรักษาคุณภาพไว้ คุณตรวจสอบผลลัพธ์ก่อนที่จะลบต้นฉบับ";
