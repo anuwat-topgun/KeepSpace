@@ -88,6 +88,7 @@
     <string name="cloud_status_not_backed_up">Není zálohováno</string>
     <string name="cloud_status_failed">Nepodařilo se</string>
     <string name="cloud_status_cancelled">Zrušeno</string>
+    <string name="settings_use_device_language">Použít jazyk zařízení</string>
     <string name="best_shot_sharpest_image">Nejostřejší obraz</string>
     <string name="best_shot_sharpest_detail">Podrobnosti jsou v této skupině nejjasnější.</string>
     <string name="best_shot_best_faces">Nejlepší tváře</string>
@@ -299,8 +300,8 @@
     <string name="common_keep_local_copies">Uchovávejte místní kopie</string>
     <string name="common_keep_local_copies_8b296740">Uchovávejte místní kopie</string>
     <string name="common_keep_recommended">Udržujte doporučené</string>
+    <string name="common_keep_selected_photo">Ponechat vybranou fotografii</string>
     <string name="common_keep_space_keep_what_matters">Udržujte prostor. Nechte to, na čem záleží.</string>
-    <string name="common_keep_this_one">Nechte si tento</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Udržujte své nejlepší fotografie a videa v bezpečí a uspořádané.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Ponecháním této fotky se po vašem potvrzení smažou ostatní (%d). Zůstanou 30 dní v Nedávno smazaných.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Ponecháním této fotky se po vašem potvrzení smažou ostatní (%d). Zůstanou 30 dní v koši.</string>
@@ -313,6 +314,7 @@
     <string name="subscription_keepspace_pro_lifetime">KeepSpace Pro · Doživotní</string>
     <string name="subscription_keepspace_pro_monthly">KeepSpace Pro · Měsíčně</string>
     <string name="subscription_keepspace_pro_yearly">KeepSpace Pro · Ročně</string>
+    <string name="common_language">Jazyk</string>
     <string name="common_large_files_and_recordings_b445c9be">Velké soubory a nahrávky.</string>
     <string name="common_large_videos">Velká videa</string>
     <string name="common_learn_from_my_choices">Učte se z mých voleb</string>
@@ -399,7 +401,6 @@
     <string name="best_shot_photo_d_recommended">Fotka %d, doporučená</string>
     <string name="common_photo_access">Přístup k fotografiím</string>
     <string name="common_photo_access_is_off">Přístup k fotkám je vypnutý</string>
-    <string name="common_photo_kept">Foto Uchováno</string>
     <string name="common_photo_locations_are_used_on_this_device_to_tell_trips_fr">Umístění fotografií se v tomto zařízení používá k rozpoznání cest z domova. Nikdy nejsou vyhledány online ani sdíleny.</string>
     <string name="common_photos">Fotografie</string>
     <string name="common_photos_videos">Fotografie a videa</string>
@@ -437,7 +438,6 @@
     <string name="common_receipt_filing">Podání účtenky</string>
     <string name="common_recommended">Doporučeno</string>
     <string name="common_recommended_keep_selected">Doporučeno ponechat vybrané</string>
-    <string name="common_recommended_kept">Doporučeno Uchováno</string>
     <string name="common_recover_storage_safely">Obnovte úložiště bezpečně</string>
     <string name="common_rename_automatically">Přejmenovat automaticky</string>
     <string name="subscription_renews_5610efa5">Obnovuje %s</string>
@@ -547,6 +547,7 @@
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Odemkněte neomezené čištění</string>
     <string name="subscription_upgrade_to_pro">Upgradujte na Pro</string>
     <string name="common_upload_over_wi_fi_only">Nahrávejte pouze přes Wi-Fi</string>
+    <string name="common_uploading">Nahrávání</string>
     <string name="common_used">Použité</string>
     <string name="common_uses_date_and_a_stable_item_suffix">Používá datum a stabilní příponu položky</string>
     <string name="common_uses_the_photos_you_keep_to_fine_tune_recommendations">Použije fotografie, které si ponecháte, k doladění doporučení.</string>
@@ -581,7 +582,6 @@
     <string name="subscription_you_re_on_the_free_plan">Jste na bezplatném plánu.</string>
     <string name="manual_backup_you_ve_used_this_month_s_free_backups">Využili jste bezplatné zálohy z tohoto měsíce.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Využili jste bezplatný úklid tohoto měsíce</string>
-    <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Vaše volba také naučí Best Shot vašemu vkusu na tomto zařízení.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Vaše úplná knihovna fotografií se stavem zálohování v cloudu.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Vaše fotografie jsou analyzovány pouze na tomto zařízení.</string>
     <string name="common_your_photos_aren_t_touched_the_next_scan_takes_longer_wh">Vaše fotografie nejsou dotčeny. Další skenování trvá déle, než je KeepSpace znovu analyzuje.</string>
@@ -591,5 +591,6 @@
     <string name="common_your_privacy">Vaše soukromí</string>
     <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Váš výběr je %s. Můžete zdarma %s více na Free.</string>
     <string name="common_your_storage_organized_intelligently">Vaše úložiště, inteligentně organizované.</string>
+    <string name="library_zoom">Přiblížení</string>
     <string name="paywall_month">≈ %s / měsíc</string>
 </resources>

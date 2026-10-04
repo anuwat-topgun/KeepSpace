@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "로컬 복사본 보관",
     "common.keep_recommended": "추천 유지",
     "common.keep_space_keep_what_matters": "공간을 유지하세요. 중요한 것을 보관하세요.",
-    "common.keep_this_one": "이것을 보관하세요",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "최고의 사진과 비디오를 안전하고 체계적으로 보관하세요.",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "KeepSpace는 이 장치의 라이브러리를 분석하여 안전하게 복구할 수 있는 공간을 찾습니다.",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace는 한 번만 요청한 다음 이 기기에서 완전히 작동합니다.",
@@ -199,7 +198,6 @@
     "common.photo": "사진",
     "common.photo_access": "사진 액세스",
     "common.photo_access_is_off": "사진 액세스가 사용 중지되었습니다.",
-    "common.photo_kept": "사진 보관",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "이 기기에서는 사진 위치를 사용하여 집에서 출발하는 경로를 알려줍니다. 온라인에서 조회되거나 공유되지 않습니다.",
     "common.photos": "사진",
     "common.photos_videos": "사진 및 동영상",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "영수증 제출",
     "common.recommended": "추천",
     "common.recommended_keep_selected": "계속 선택하는 것이 좋습니다.",
-    "common.recommended_kept": "권장 유지",
     "common.recover_storage_safely": "안전하게 스토리지를 복구하세요",
     "common.rename_automatically": "자동으로 이름 바꾸기",
     "common.reset": "재설정",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "모든 정리 작업을 검토하고 중요한 추억은 기본적으로 보호됩니다.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "다음 단계에서 확인하게 됩니다. 항목은 최근 삭제된 항목에 30일 동안 유지됩니다.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "다음 단계에서 확인하게 됩니다. 항목은 30일 동안 휴지통에 보관됩니다.",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "귀하의 선택은 또한 이 장치에서 Best Shot의 취향을 알려줍니다.",
     "common.your_photos_are_analyzed_on_this_device_only": "귀하의 사진은 이 장치에서만 분석됩니다.",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "사진은 건드리지 않습니다. KeepSpace가 다시 분석하는 동안 다음 스캔은 더 오랜 시간이 걸립니다.",
     "common.your_photos_go_only_where_you_choose": "귀하의 사진은 귀하가 선택한 곳으로만 이동됩니다.",
@@ -589,6 +585,11 @@
     "badges.verified_in": "%@에서 확인됨",
     "about.version": "버전 %@",
     "insights.photos_added": "장의 사진 추가됨",
-    "insights.videos_added": "개의 동영상 추가됨"
+    "insights.videos_added": "개의 동영상 추가됨",
+    "settings.use_device_language": "장치 언어 사용",
+    "common.language": "언어",
+    "common.uploading": "업로드 중",
+    "library.zoom": "줌",
+    "common.keep_selected_photo": "선택한 사진 유지"
   }
 }

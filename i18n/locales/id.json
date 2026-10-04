@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "Simpan Salinan Lokal",
     "common.keep_recommended": "Tetap Direkomendasikan",
     "common.keep_space_keep_what_matters": "Jaga ruang. Pertahankan hal yang penting.",
-    "common.keep_this_one": "Simpan Yang Ini",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "Jaga foto dan video terbaik Anda tetap aman dan teratur.",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "KeepSpace menganalisis perpustakaan Anda di perangkat ini untuk menemukan ruang yang dapat Anda pulihkan dengan aman.",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace bertanya sekali, lalu berfungsi sepenuhnya di perangkat ini.",
@@ -199,7 +198,6 @@
     "common.photo": "Foto",
     "common.photo_access": "Akses Foto",
     "common.photo_access_is_off": "Akses foto tidak aktif",
-    "common.photo_kept": "Foto Disimpan",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "Lokasi foto digunakan pada perangkat ini untuk memberitahukan perjalanan dari rumah. Mereka tidak pernah dicari secara online atau dibagikan.",
     "common.photos": "Foto",
     "common.photos_videos": "Foto & video",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "Pengarsipan Tanda Terima",
     "common.recommended": "Direkomendasikan",
     "common.recommended_keep_selected": "Disarankan tetap dipilih",
-    "common.recommended_kept": "Direkomendasikan Disimpan",
     "common.recover_storage_safely": "Pulihkan penyimpanan dengan aman",
     "common.rename_automatically": "Ganti nama secara otomatis",
     "common.reset": "Setel ulang",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "Anda meninjau setiap pembersihan, dan kenangan penting dilindungi secara default.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "Anda akan mengonfirmasinya di langkah berikutnya. Item tetap berada di Baru Dihapus selama 30 hari.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "Anda akan mengonfirmasinya di langkah berikutnya. Item tetap berada di Sampah selama 30 hari.",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "Pilihan Anda juga mengajarkan Best Shot selera Anda, di perangkat ini.",
     "common.your_photos_are_analyzed_on_this_device_only": "Foto Anda hanya dianalisis di perangkat ini.",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "Foto Anda tidak disentuh. Pemindaian berikutnya memerlukan waktu lebih lama sementara KeepSpace menganalisis ulang.",
     "common.your_photos_go_only_where_you_choose": "Foto Anda hanya akan dikirim ke tempat yang Anda pilih.",
@@ -589,6 +585,11 @@
     "badges.verified_in": "Terverifikasi di %@",
     "about.version": "Versi %@",
     "insights.photos_added": "foto ditambahkan",
-    "insights.videos_added": "video ditambahkan"
+    "insights.videos_added": "video ditambahkan",
+    "settings.use_device_language": "Gunakan Bahasa Perangkat",
+    "common.language": "Bahasa",
+    "common.uploading": "Mengunggah",
+    "library.zoom": "Perbesar",
+    "common.keep_selected_photo": "Simpan Foto yang Dipilih"
   }
 }

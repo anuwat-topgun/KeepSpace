@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "Bewahren Sie lokale Kopien auf",
     "common.keep_recommended": "Empfehlenswert bleiben",
     "common.keep_space_keep_what_matters": "Platz bewahren. Behalten Sie, was wichtig ist.",
-    "common.keep_this_one": "Behalten Sie dieses",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "Bewahren Sie Ihre besten Fotos und Videos sicher und organisiert auf.",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "KeepSpace analysiert Ihre Bibliothek auf diesem Gerät, um Speicherplatz zu finden, den Sie sicher wiederherstellen können.",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace fragt einmal, funktioniert dann vollständig auf diesem Gerät.",
@@ -199,7 +198,6 @@
     "common.photo": "Foto",
     "common.photo_access": "Fotozugang",
     "common.photo_access_is_off": "Der Fotozugriff ist deaktiviert",
-    "common.photo_kept": "Foto aufbewahrt",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "Auf diesem Gerät werden Fotostandorte verwendet, um Fahrten von zu Hause aus zu erkennen. Sie werden niemals online nachgeschlagen oder weitergegeben.",
     "common.photos": "Fotos",
     "common.photos_videos": "Fotos und Videos",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "Archivierung von Quittungen",
     "common.recommended": "Empfohlen",
     "common.recommended_keep_selected": "Empfohlen ausgewählt behalten",
-    "common.recommended_kept": "Empfohlen. Aufbewahrt",
     "common.recover_storage_safely": "Speicher sicher wiederherstellen",
     "common.rename_automatically": "Automatisch umbenennen",
     "common.reset": "Zurücksetzen",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "Sie überprüfen jede Bereinigung und wichtige Erinnerungen sind standardmäßig geschützt.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "Die Bestätigung erfolgt im nächsten Schritt. Elemente bleiben 30 Tage lang im Status „Zuletzt gelöscht“.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "Die Bestätigung erfolgt im nächsten Schritt. Elemente bleiben 30 Tage lang im Papierkorb.",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "Ihre Wahl lehrt Best Shot auch Ihren Geschmack, auf diesem Gerät.",
     "common.your_photos_are_analyzed_on_this_device_only": "Ihre Fotos werden nur auf diesem Gerät analysiert.",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "Ihre Fotos werden nicht verändert. Der nächste Scan dauert länger, während KeepSpace sie erneut analysiert.",
     "common.your_photos_go_only_where_you_choose": "Ihre Fotos werden nur dort angezeigt, wo Sie möchten.",
@@ -589,6 +585,11 @@
     "badges.verified_in": "Verifiziert in %@",
     "about.version": "Version %@",
     "insights.photos_added": "Fotos hinzugefügt",
-    "insights.videos_added": "Videos hinzugefügt"
+    "insights.videos_added": "Videos hinzugefügt",
+    "settings.use_device_language": "Verwenden Sie die Gerätesprache",
+    "common.language": "Sprache",
+    "common.uploading": "Hochladen",
+    "library.zoom": "Zoomen",
+    "common.keep_selected_photo": "Ausgewähltes Foto behalten"
   }
 }

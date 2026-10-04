@@ -83,7 +83,7 @@ struct LibraryReportBuilder: Sendable {
             PlanItem(title: "Old Screen Recordings", systemImage: "record.circle", tint: .coral,
                      bytes: staleRecordings.totalBytes, route: .review(.oldRecordings), itemCount: staleRecordings.count),
             PlanItem(title: "Similar Photos", systemImage: "photo.on.rectangle.angled", tint: .coral,
-                     bytes: similarBytes, route: .review(.similar), itemCount: similarCount),
+                     bytes: similarBytes, route: .similarPhotos, itemCount: similarCount),
             PlanItem(title: "Expired Tickets", systemImage: "ticket.fill", tint: .purple,
                      bytes: expired.totalBytes, route: .review(.expired), itemCount: expired.count),
             PlanItem(title: "Old Screenshots", systemImage: "viewfinder", tint: .blue,

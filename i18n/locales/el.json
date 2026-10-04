@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "Διατηρήστε τοπικά αντίγραφα",
     "common.keep_recommended": "Κρατήστε το προτεινόμενο",
     "common.keep_space_keep_what_matters": "Κρατήστε χώρο. Κράτα αυτό που έχει σημασία.",
-    "common.keep_this_one": "Κρατήστε Αυτό",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "Διατηρήστε τις καλύτερες φωτογραφίες και τα βίντεό σας ασφαλή και οργανωμένα.",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "Το KeepSpace αναλύει τη βιβλιοθήκη σας σε αυτήν τη συσκευή για να βρει χώρο που μπορείτε να ανακτήσετε με ασφάλεια.",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "Το KeepSpace ζητά μία φορά και, στη συνέχεια, λειτουργεί εξ ολοκλήρου σε αυτήν τη συσκευή.",
@@ -199,7 +198,6 @@
     "common.photo": "Φωτογραφία",
     "common.photo_access": "Photo Access",
     "common.photo_access_is_off": "Η πρόσβαση στις φωτογραφίες είναι απενεργοποιημένη",
-    "common.photo_kept": "Φωτογραφία Κρατήθηκε",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "Οι τοποθεσίες φωτογραφιών χρησιμοποιούνται σε αυτήν τη συσκευή για την ενημέρωση των ταξιδιών από το σπίτι. Ποτέ δεν αναζητούνται στο διαδίκτυο ή κοινοποιούνται.",
     "common.photos": "Φωτογραφίες",
     "common.photos_videos": "Φωτογραφίες & βίντεο",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "Αρχειοθέτηση Απόδειξης",
     "common.recommended": "Συνιστάται",
     "common.recommended_keep_selected": "Προτεινόμενη διατήρηση επιλεγμένων",
-    "common.recommended_kept": "Συνιστώμενη Διατήρηση",
     "common.recover_storage_safely": "Ανακτήστε την αποθήκευση με ασφάλεια",
     "common.rename_automatically": "Μετονομασία αυτόματα",
     "common.reset": "Επαναφορά",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "Ελέγχετε κάθε εκκαθάριση και οι σημαντικές αναμνήσεις προστατεύονται από προεπιλογή.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "Θα επιβεβαιώσετε στο επόμενο βήμα. Τα στοιχεία παραμένουν στο Πρόσφατα διαγραμμένα για 30 ημέρες.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "Θα επιβεβαιώσετε στο επόμενο βήμα. Τα αντικείμενα παραμένουν στον Κάδο απορριμμάτων για 30 ημέρες.",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "Η επιλογή σας διδάσκει επίσης το Best Shot το γούστο σας, σε αυτήν τη συσκευή.",
     "common.your_photos_are_analyzed_on_this_device_only": "Οι φωτογραφίες σας αναλύονται μόνο σε αυτήν τη συσκευή.",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "Οι φωτογραφίες σας δεν αγγίζονται. Η επόμενη σάρωση διαρκεί περισσότερο, ενώ η KeepSpace τις αναλύει ξανά.",
     "common.your_photos_go_only_where_you_choose": "Οι φωτογραφίες σας πηγαίνουν μόνο όπου εσείς επιλέγετε.",
@@ -589,6 +585,11 @@
     "badges.verified_in": "Επαληθεύτηκε στο %@",
     "about.version": "Έκδοση %@",
     "insights.photos_added": "φωτογραφίες προστέθηκαν",
-    "insights.videos_added": "βίντεο προστέθηκαν"
+    "insights.videos_added": "βίντεο προστέθηκαν",
+    "settings.use_device_language": "Χρησιμοποιήστε τη γλώσσα συσκευής",
+    "common.language": "Γλώσσα",
+    "common.uploading": "Μεταφόρτωση",
+    "library.zoom": "Ζουμ",
+    "common.keep_selected_photo": "Διατήρηση επιλεγμένης φωτογραφίας"
   }
 }

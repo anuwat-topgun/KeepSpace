@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "保留本地副本",
     "common.keep_recommended": "保持推荐",
     "common.keep_space_keep_what_matters": "保留空间。保留重要的东西。",
-    "common.keep_this_one": "保留这个",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "确保您最好的照片和视频安全有序。",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "KeepSpace 分析此设备上的库，以找到可以安全恢复的空间。",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace 询问一次，然后完全在此设备上运行。",
@@ -199,7 +198,6 @@
     "common.photo": "照片",
     "common.photo_access": "照片访问",
     "common.photo_access_is_off": "照片访问已关闭",
-    "common.photo_kept": "照片保留",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "此设备上使用照片位置来告知从家出发的行程。它们永远不会在网上查找或共享。",
     "common.photos": "照片",
     "common.photos_videos": "照片和视频",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "收据归档",
     "common.recommended": "推荐",
     "common.recommended_keep_selected": "推荐保留选择",
-    "common.recommended_kept": "推荐保留",
     "common.recover_storage_safely": "安全地恢复存储",
     "common.rename_automatically": "自动重命名",
     "common.reset": "重置",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "您检查每一次清理工作，重要的记忆默认受到保护。",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "您将在下一步中确认。项目在“最近删除”中保留 30 天。",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "您将在下一步中确认。项目会在垃圾箱中保留 30 天。",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "您的选择也会让 Best Shot 了解您在此设备上的品味。",
     "common.your_photos_are_analyzed_on_this_device_only": "仅在此设备上分析您的照片。",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "你的照片没有被动过。下一次扫描需要更长的时间，而 KeepSpace 会重新分析它们。",
     "common.your_photos_go_only_where_you_choose": "您的照片仅存放在您选择的地方。",
@@ -589,6 +585,11 @@
     "badges.verified_in": "已在 %@ 验证",
     "about.version": "版本 %@",
     "insights.photos_added": "张照片已添加",
-    "insights.videos_added": "个视频已添加"
+    "insights.videos_added": "个视频已添加",
+    "settings.use_device_language": "使用设备语言",
+    "common.language": "语言",
+    "common.uploading": "上传中",
+    "library.zoom": "变焦",
+    "common.keep_selected_photo": "保留选定的照片"
   }
 }

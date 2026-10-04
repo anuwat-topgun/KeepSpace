@@ -86,6 +86,7 @@
 "Not backed up" = "Резервное копирование не выполнено";
 "Failed" = "Не удалось";
 "Cancelled" = "Отменено";
+"Use Device Language" = "Использовать язык устройства";
 "Sharpest image" = "Самое четкое изображение";
 "Details are the clearest in this group." = "Детали наиболее четкие в этой группе.";
 "Best faces" = "Лучшие лица";
@@ -297,8 +298,8 @@
 "Keep local copies" = "Храните локальные копии";
 "Keep Local Copies" = "Сохраняйте локальные копии";
 "Keep Recommended" = "Продолжайте рекомендовать";
+"Keep Selected Photo" = "Сохранить выбранное фото";
 "Keep space. Keep what matters." = "Сохраняйте пространство. Сохраняйте то, что важно.";
-"Keep This One" = "Держи это";
 "Keep your best photos and videos safe and organized." = "Храните свои лучшие фотографии и видео в безопасности и порядке.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Если оставить это фото, остальные (%d) будут удалены после вашего подтверждения. Они хранятся 30 дней в «Недавно удалённых».";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Если оставить это фото, остальные (%d) будут удалены после вашего подтверждения. Они хранятся 30 дней в корзине.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Про · На всю жизнь";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · Ежемесячно";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · Ежегодно";
+"Language" = "Язык";
 "Large files and recordings." = "Большие файлы и записи.";
 "Large Videos" = "Большие видео";
 "Learn from my choices" = "Учитесь на моем выборе";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "Фото %d, рекомендуется";
 "Photo Access" = "Доступ к фотографиям";
 "Photo access is off" = "Доступ к фотографиям закрыт";
-"Photo Kept" = "Фото сохранено";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "На этом устройстве используются фотографии мест, чтобы рассказать о поездках из дома. Их никогда не просматривают в Интернете и не публикуют.";
 "Photos" = "Фотографии";
 "Photos & videos" = "Фото и видео";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "Регистрация квитанций";
 "Recommended" = "Рекомендуется";
 "Recommended keep selected" = "Рекомендуется оставить выбранным";
-"Recommended Kept" = "Рекомендуется сохранить";
 "Recover storage safely" = "Безопасное восстановление памяти";
 "Rename automatically" = "Переименовывать автоматически";
 "Renews %@" = "Обновляет %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "Разблокируйте неограниченную очистку";
 "Upgrade to Pro" = "Обновите до Pro";
 "Upload over Wi-Fi only" = "Загружать только через Wi-Fi";
+"Uploading" = "Загрузка";
 "Used" = "Б/у";
 "Uses date and a stable item suffix" = "Использует дату и суффикс стабильного элемента.";
 "Uses the photos you keep to fine-tune recommendations." = "Использует сохраненные вами фотографии для уточнения рекомендаций.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "У вас бесплатный план.";
 "You've used this month's free backups." = "Вы использовали бесплатные резервные копии этого месяца.";
 "You've used this month's free cleanup" = "Вы использовали бесплатную очистку в этом месяце";
-"Your choice also teaches Best Shot your taste, on this device." = "Ваш выбор также учит Best Shot вашему вкусу на этом устройстве.";
 "Your full photo library, with cloud backup status." = "Ваша полная библиотека фотографий со статусом резервного копирования в облако.";
 "Your photos are analyzed on this device only." = "Ваши фотографии анализируются только на этом устройстве.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "Ваши фотографии не тронуты. Следующее сканирование занимает больше времени, пока KeepSpace повторно анализирует их.";
@@ -589,4 +589,5 @@
 "Your privacy" = "Ваша конфиденциальность";
 "Your selection is %@. You can free %@ more on Free." = "Ваш выбор: %@. Вы можете бесплатно получить ещё %@ на Free.";
 "Your storage, organized intelligently." = "Ваше хранилище, организованное с умом.";
+"Zoom" = "Увеличить";
 "≈ %@ / month" = "≈ %@ / месяц";

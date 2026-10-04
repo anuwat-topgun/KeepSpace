@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "Сохраняйте локальные копии",
     "common.keep_recommended": "Продолжайте рекомендовать",
     "common.keep_space_keep_what_matters": "Сохраняйте пространство. Сохраняйте то, что важно.",
-    "common.keep_this_one": "Держи это",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "Храните свои лучшие фотографии и видео в безопасности и порядке.",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "KeepSpace анализирует вашу библиотеку на этом устройстве, чтобы найти место, которое можно безопасно восстановить.",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace спрашивает один раз, потом полностью работает на этом устройстве.",
@@ -199,7 +198,6 @@
     "common.photo": "Фото",
     "common.photo_access": "Доступ к фотографиям",
     "common.photo_access_is_off": "Доступ к фотографиям закрыт",
-    "common.photo_kept": "Фото сохранено",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "На этом устройстве используются фотографии мест, чтобы рассказать о поездках из дома. Их никогда не просматривают в Интернете и не публикуют.",
     "common.photos": "Фотографии",
     "common.photos_videos": "Фото и видео",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "Регистрация квитанций",
     "common.recommended": "Рекомендуется",
     "common.recommended_keep_selected": "Рекомендуется оставить выбранным",
-    "common.recommended_kept": "Рекомендуется сохранить",
     "common.recover_storage_safely": "Безопасное восстановление памяти",
     "common.rename_automatically": "Переименовывать автоматически",
     "common.reset": "Сброс",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "Вы просматриваете каждую очистку, а важные воспоминания по умолчанию защищены.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "Вы подтвердите это на следующем шаге. Элементы остаются в списке «Недавно удаленные» в течение 30 дней.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "Вы подтвердите это на следующем шаге. Предметы остаются в корзине в течение 30 дней.",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "Ваш выбор также учит Best Shot вашему вкусу на этом устройстве.",
     "common.your_photos_are_analyzed_on_this_device_only": "Ваши фотографии анализируются только на этом устройстве.",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "Ваши фотографии не тронуты. Следующее сканирование занимает больше времени, пока KeepSpace повторно анализирует их.",
     "common.your_photos_go_only_where_you_choose": "Ваши фотографии отправляются только туда, куда вы выберете.",
@@ -589,6 +585,11 @@
     "badges.verified_in": "Проверено в %@",
     "about.version": "Версия %@",
     "insights.photos_added": "фото добавлено",
-    "insights.videos_added": "видео добавлено"
+    "insights.videos_added": "видео добавлено",
+    "settings.use_device_language": "Использовать язык устройства",
+    "common.language": "Язык",
+    "common.uploading": "Загрузка",
+    "library.zoom": "Увеличить",
+    "common.keep_selected_photo": "Сохранить выбранное фото"
   }
 }

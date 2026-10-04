@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "Uchovávejte místní kopie",
     "common.keep_recommended": "Udržujte doporučené",
     "common.keep_space_keep_what_matters": "Udržujte prostor. Nechte to, na čem záleží.",
-    "common.keep_this_one": "Nechte si tento",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "Udržujte své nejlepší fotografie a videa v bezpečí a uspořádané.",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "KeepSpace analyzuje vaši knihovnu na tomto zařízení a najde místo, které můžete bezpečně obnovit.",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace se jednou zeptá a poté na tomto zařízení funguje zcela.",
@@ -199,7 +198,6 @@
     "common.photo": "Foto",
     "common.photo_access": "Přístup k fotografiím",
     "common.photo_access_is_off": "Přístup k fotkám je vypnutý",
-    "common.photo_kept": "Foto Uchováno",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "Umístění fotografií se v tomto zařízení používá k rozpoznání cest z domova. Nikdy nejsou vyhledány online ani sdíleny.",
     "common.photos": "Fotografie",
     "common.photos_videos": "Fotografie a videa",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "Podání účtenky",
     "common.recommended": "Doporučeno",
     "common.recommended_keep_selected": "Doporučeno ponechat vybrané",
-    "common.recommended_kept": "Doporučeno Uchováno",
     "common.recover_storage_safely": "Obnovte úložiště bezpečně",
     "common.rename_automatically": "Přejmenovat automaticky",
     "common.reset": "Resetovat",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "Kontrolujete každé čištění a důležité vzpomínky jsou ve výchozím nastavení chráněny.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "V dalším kroku potvrdíte. Položky zůstávají ve složce Nedávno smazané po dobu 30 dnů.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "V dalším kroku potvrdíte. Položky zůstanou v koši 30 dní.",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "Vaše volba také naučí Best Shot vašemu vkusu na tomto zařízení.",
     "common.your_photos_are_analyzed_on_this_device_only": "Vaše fotografie jsou analyzovány pouze na tomto zařízení.",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "Vaše fotografie nejsou dotčeny. Další skenování trvá déle, než je KeepSpace znovu analyzuje.",
     "common.your_photos_go_only_where_you_choose": "Vaše fotografie se dostanou pouze tam, kde si vyberete.",
@@ -589,6 +585,11 @@
     "badges.verified_in": "Ověřeno v %@",
     "about.version": "Verze %@",
     "insights.photos_added": "přidaných fotek",
-    "insights.videos_added": "přidaných videí"
+    "insights.videos_added": "přidaných videí",
+    "settings.use_device_language": "Použít jazyk zařízení",
+    "common.language": "Jazyk",
+    "common.uploading": "Nahrávání",
+    "library.zoom": "Přiblížení",
+    "common.keep_selected_photo": "Ponechat vybranou fotografii"
   }
 }

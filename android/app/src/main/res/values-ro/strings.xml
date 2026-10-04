@@ -88,6 +88,7 @@
     <string name="cloud_status_not_backed_up">Fără backup</string>
     <string name="cloud_status_failed">A eșuat</string>
     <string name="cloud_status_cancelled">Anulat</string>
+    <string name="settings_use_device_language">Utilizați limba dispozitivului</string>
     <string name="best_shot_sharpest_image">Cea mai clară imagine</string>
     <string name="best_shot_sharpest_detail">Detaliile sunt cele mai clare din acest grup.</string>
     <string name="best_shot_best_faces">Cele mai bune fețe</string>
@@ -299,8 +300,8 @@
     <string name="common_keep_local_copies">Păstrați copii locale</string>
     <string name="common_keep_local_copies_8b296740">Păstrați copii locale</string>
     <string name="common_keep_recommended">Păstrați recomandat</string>
+    <string name="common_keep_selected_photo">Păstrați fotografia selectată</string>
     <string name="common_keep_space_keep_what_matters">Păstrați spațiu. Păstrează ceea ce contează.</string>
-    <string name="common_keep_this_one">Păstrează-l pe acesta</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Păstrează-ți cele mai bune fotografii și videoclipuri în siguranță și organizate.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Dacă păstrezi această fotografie, celelalte (%d) vor fi șterse după confirmare. Rămân 30 de zile în Șterse recent.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Dacă păstrezi această fotografie, celelalte (%d) vor fi șterse după confirmare. Rămân 30 de zile în Coșul de gunoi.</string>
@@ -313,6 +314,7 @@
     <string name="subscription_keepspace_pro_lifetime">KeepSpace Pro · Durată de viață</string>
     <string name="subscription_keepspace_pro_monthly">KeepSpace Pro · Lunar</string>
     <string name="subscription_keepspace_pro_yearly">KeepSpace Pro · Anual</string>
+    <string name="common_language">Limba</string>
     <string name="common_large_files_and_recordings_b445c9be">Fișiere și înregistrări mari.</string>
     <string name="common_large_videos">Videoclipuri mari</string>
     <string name="common_learn_from_my_choices">Învață din alegerile mele</string>
@@ -399,7 +401,6 @@
     <string name="best_shot_photo_d_recommended">Fotografia %d, recomandată</string>
     <string name="common_photo_access">Acces foto</string>
     <string name="common_photo_access_is_off">Accesul la fotografii este dezactivat</string>
-    <string name="common_photo_kept">Fotografie păstrată</string>
     <string name="common_photo_locations_are_used_on_this_device_to_tell_trips_fr">Locațiile fotografiilor sunt folosite pe acest dispozitiv pentru a spune călătoriile de acasă. Ele nu sunt niciodată căutate online sau partajate.</string>
     <string name="common_photos">Fotografii</string>
     <string name="common_photos_videos">Fotografii și videoclipuri</string>
@@ -437,7 +438,6 @@
     <string name="common_receipt_filing">Depunerea chitanței</string>
     <string name="common_recommended">Recomandat</string>
     <string name="common_recommended_keep_selected">Se recomandă păstrarea selectată</string>
-    <string name="common_recommended_kept">Recomandat Păstrat</string>
     <string name="common_recover_storage_safely">Recuperați spațiul de stocare în siguranță</string>
     <string name="common_rename_automatically">Redenumiți automat</string>
     <string name="subscription_renews_5610efa5">Reînnoiește %s</string>
@@ -547,6 +547,7 @@
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Deblocați curățarea nelimitată</string>
     <string name="subscription_upgrade_to_pro">Faceți upgrade la Pro</string>
     <string name="common_upload_over_wi_fi_only">Încărcați numai prin Wi-Fi</string>
+    <string name="common_uploading">Încărcare</string>
     <string name="common_used">Folosit</string>
     <string name="common_uses_date_and_a_stable_item_suffix">Utilizează data și un sufix de articol stabil</string>
     <string name="common_uses_the_photos_you_keep_to_fine_tune_recommendations">Folosește fotografiile pe care le păstrezi pentru a ajusta recomandările.</string>
@@ -581,7 +582,6 @@
     <string name="subscription_you_re_on_the_free_plan">Ești în planul Free.</string>
     <string name="manual_backup_you_ve_used_this_month_s_free_backups">Ați folosit backup-urile gratuite din această lună.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Ați folosit curățarea gratuită din această lună</string>
-    <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Alegerea dvs. vă învață și gustul Best Shot pe acest dispozitiv.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Biblioteca dvs. completă de fotografii, cu starea de rezervă în cloud.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Fotografiile dvs. sunt analizate numai pe acest dispozitiv.</string>
     <string name="common_your_photos_aren_t_touched_the_next_scan_takes_longer_wh">Fotografiile tale nu sunt atinse. Următoarea scanare durează mai mult timp în timp ce KeepSpace le reanalizează.</string>
@@ -591,5 +591,6 @@
     <string name="common_your_privacy">Intimitatea ta</string>
     <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Selecția dvs. este %s. Puteți elibera %s mai multe pe Free.</string>
     <string name="common_your_storage_organized_intelligently">Depozitarea ta, organizată inteligent.</string>
+    <string name="library_zoom">Zoom</string>
     <string name="paywall_month">≈ %s / lună</string>
 </resources>

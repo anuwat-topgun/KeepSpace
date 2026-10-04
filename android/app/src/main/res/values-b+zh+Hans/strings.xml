@@ -88,6 +88,7 @@
     <string name="cloud_status_not_backed_up">未备份</string>
     <string name="cloud_status_failed">失败</string>
     <string name="cloud_status_cancelled">取消</string>
+    <string name="settings_use_device_language">使用设备语言</string>
     <string name="best_shot_sharpest_image">最清晰的图像</string>
     <string name="best_shot_sharpest_detail">细节是这组中最清晰的。</string>
     <string name="best_shot_best_faces">最好的面孔</string>
@@ -299,8 +300,8 @@
     <string name="common_keep_local_copies">保留本地副本</string>
     <string name="common_keep_local_copies_8b296740">保留本地副本</string>
     <string name="common_keep_recommended">保持推荐</string>
+    <string name="common_keep_selected_photo">保留选定的照片</string>
     <string name="common_keep_space_keep_what_matters">保留空间。保留重要的东西。</string>
-    <string name="common_keep_this_one">保留这个</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">确保您最好的照片和视频安全有序。</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">保留这张照片后，确认后将删除其余 %d 张。它们会在“最近删除”中保留 30 天。</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">保留这张照片后，确认后将删除其余 %d 张。它们会在回收站中保留 30 天。</string>
@@ -313,6 +314,7 @@
     <string name="subscription_keepspace_pro_lifetime">KeepSpace 专业版 · 终身</string>
     <string name="subscription_keepspace_pro_monthly">KeepSpace 专业版 · 每月</string>
     <string name="subscription_keepspace_pro_yearly">KeepSpace Pro · 每年</string>
+    <string name="common_language">语言</string>
     <string name="common_large_files_and_recordings_b445c9be">大文件和录音。</string>
     <string name="common_large_videos">大视频</string>
     <string name="common_learn_from_my_choices">从我的选择中学习</string>
@@ -399,7 +401,6 @@
     <string name="best_shot_photo_d_recommended">照片 %d，推荐</string>
     <string name="common_photo_access">照片访问</string>
     <string name="common_photo_access_is_off">照片访问已关闭</string>
-    <string name="common_photo_kept">照片保留</string>
     <string name="common_photo_locations_are_used_on_this_device_to_tell_trips_fr">此设备上使用照片位置来告知从家出发的行程。它们永远不会在网上查找或共享。</string>
     <string name="common_photos">照片</string>
     <string name="common_photos_videos">照片和视频</string>
@@ -437,7 +438,6 @@
     <string name="common_receipt_filing">收据归档</string>
     <string name="common_recommended">推荐</string>
     <string name="common_recommended_keep_selected">推荐保留选择</string>
-    <string name="common_recommended_kept">推荐保留</string>
     <string name="common_recover_storage_safely">安全地恢复存储</string>
     <string name="common_rename_automatically">自动重命名</string>
     <string name="subscription_renews_5610efa5">续订%s</string>
@@ -547,6 +547,7 @@
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">解锁无限清理</string>
     <string name="subscription_upgrade_to_pro">升级到专业版</string>
     <string name="common_upload_over_wi_fi_only">仅通过 Wi-Fi 上传</string>
+    <string name="common_uploading">上传中</string>
     <string name="common_used">二手</string>
     <string name="common_uses_date_and_a_stable_item_suffix">使用日期和稳定的项目后缀</string>
     <string name="common_uses_the_photos_you_keep_to_fine_tune_recommendations">使用您保留的照片来微调推荐。</string>
@@ -581,7 +582,6 @@
     <string name="subscription_you_re_on_the_free_plan">您使用的是免费计划。</string>
     <string name="manual_backup_you_ve_used_this_month_s_free_backups">您已使用本月的免费备份。</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">您已使用本月的免费清理服务</string>
-    <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">您的选择也会让 Best Shot 了解您在此设备上的品味。</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">您的完整照片库，具有云备份状态。</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">仅在此设备上分析您的照片。</string>
     <string name="common_your_photos_aren_t_touched_the_next_scan_takes_longer_wh">你的照片没有被动过。下一次扫描需要更长的时间，而 KeepSpace 会重新分析它们。</string>
@@ -591,5 +591,6 @@
     <string name="common_your_privacy">您的隐私</string>
     <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">您的选择是%s。您可以通过免费免费获得 %s 更多内容。</string>
     <string name="common_your_storage_organized_intelligently">您的存储空间被智能地组织起来。</string>
+    <string name="library_zoom">变焦</string>
     <string name="paywall_month">≈ %s / 月</string>
 </resources>

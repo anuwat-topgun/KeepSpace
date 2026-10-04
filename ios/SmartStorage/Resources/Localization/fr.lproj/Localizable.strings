@@ -86,6 +86,7 @@
 "Not backed up" = "Non sauvegardé";
 "Failed" = "Échec";
 "Cancelled" = "Annulé";
+"Use Device Language" = "Utiliser la langue de l'appareil";
 "Sharpest image" = "Image la plus nette";
 "Details are the clearest in this group." = "Les détails sont les plus clairs dans ce groupe.";
 "Best faces" = "Meilleurs visages";
@@ -297,8 +298,8 @@
 "Keep local copies" = "Conserver des copies locales";
 "Keep Local Copies" = "Conserver des copies locales";
 "Keep Recommended" = "Garder recommandé";
+"Keep Selected Photo" = "Conserver la photo sélectionnée";
 "Keep space. Keep what matters." = "Gardez de l'espace. Gardez ce qui compte.";
-"Keep This One" = "Gardez celui-ci";
 "Keep your best photos and videos safe and organized." = "Gardez vos meilleures photos et vidéos en sécurité et organisées.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Conserver cette photo supprime les %d autres après votre confirmation. Elles restent 30 jours dans Supprimés récemment.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Conserver cette photo supprime les %d autres après votre confirmation. Elles restent 30 jours dans la corbeille.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Pro · À vie";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · Mensuel";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · Annuel";
+"Language" = "Langue";
 "Large files and recordings." = "Fichiers et enregistrements volumineux.";
 "Large Videos" = "Grandes vidéos";
 "Learn from my choices" = "Apprendre de mes choix";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "Photo %d, recommandée";
 "Photo Access" = "Accès aux photos";
 "Photo access is off" = "L'accès aux photos est désactivé";
-"Photo Kept" = "Photo conservée";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "Les emplacements de photos sont utilisés sur cet appareil pour indiquer les déplacements depuis le domicile. Ils ne sont jamais consultés en ligne ni partagés.";
 "Photos" = "Photos";
 "Photos & videos" = "Photos et vidéos";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "Dépôt des reçus";
 "Recommended" = "Recommandé";
 "Recommended keep selected" = "Il est recommandé de conserver la sélection";
-"Recommended Kept" = "Recommandé Gardé";
 "Recover storage safely" = "Récupérer le stockage en toute sécurité";
 "Rename automatically" = "Renommer automatiquement";
 "Renews %@" = "Renouvelle %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "Débloquez un nettoyage illimité";
 "Upgrade to Pro" = "Passer à Pro";
 "Upload over Wi-Fi only" = "Téléchargez via Wi-Fi uniquement";
+"Uploading" = "Téléchargement";
 "Used" = "Utilisé";
 "Uses date and a stable item suffix" = "Utilise la date et un suffixe d'élément stable";
 "Uses the photos you keep to fine-tune recommendations." = "Utilise les photos que vous conservez pour affiner les recommandations.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "Vous êtes sur le forfait Gratuit.";
 "You've used this month's free backups." = "Vous avez utilisé les sauvegardes gratuites de ce mois-ci.";
 "You've used this month's free cleanup" = "Vous avez utilisé le nettoyage gratuit de ce mois-ci";
-"Your choice also teaches Best Shot your taste, on this device." = "Votre choix apprend également à Best Shot vos goûts, sur cet appareil.";
 "Your full photo library, with cloud backup status." = "Votre photothèque complète, avec statut de sauvegarde dans le cloud.";
 "Your photos are analyzed on this device only." = "Vos photos sont analysées sur cet appareil uniquement.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "Vos photos ne sont pas touchées. L'analyse suivante prend plus de temps pendant que KeepSpace les réanalyse.";
@@ -589,4 +589,5 @@
 "Your privacy" = "Votre vie privée";
 "Your selection is %@. You can free %@ more on Free." = "Votre sélection est %@. Vous pouvez libérer %@ plus sur Free.";
 "Your storage, organized intelligently." = "Votre rangement, organisé intelligemment.";
+"Zoom" = "Zoomer";
 "≈ %@ / month" = "≈ %@ / mois";

@@ -86,6 +86,7 @@
 "Not backed up" = "Není zálohováno";
 "Failed" = "Nepodařilo se";
 "Cancelled" = "Zrušeno";
+"Use Device Language" = "Použít jazyk zařízení";
 "Sharpest image" = "Nejostřejší obraz";
 "Details are the clearest in this group." = "Podrobnosti jsou v této skupině nejjasnější.";
 "Best faces" = "Nejlepší tváře";
@@ -297,8 +298,8 @@
 "Keep local copies" = "Uchovávejte místní kopie";
 "Keep Local Copies" = "Uchovávejte místní kopie";
 "Keep Recommended" = "Udržujte doporučené";
+"Keep Selected Photo" = "Ponechat vybranou fotografii";
 "Keep space. Keep what matters." = "Udržujte prostor. Nechte to, na čem záleží.";
-"Keep This One" = "Nechte si tento";
 "Keep your best photos and videos safe and organized." = "Udržujte své nejlepší fotografie a videa v bezpečí a uspořádané.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Ponecháním této fotky se po vašem potvrzení smažou ostatní (%d). Zůstanou 30 dní v Nedávno smazaných.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Ponecháním této fotky se po vašem potvrzení smažou ostatní (%d). Zůstanou 30 dní v koši.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Pro · Doživotní";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · Měsíčně";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · Ročně";
+"Language" = "Jazyk";
 "Large files and recordings." = "Velké soubory a nahrávky.";
 "Large Videos" = "Velká videa";
 "Learn from my choices" = "Učte se z mých voleb";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "Fotka %d, doporučená";
 "Photo Access" = "Přístup k fotografiím";
 "Photo access is off" = "Přístup k fotkám je vypnutý";
-"Photo Kept" = "Foto Uchováno";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "Umístění fotografií se v tomto zařízení používá k rozpoznání cest z domova. Nikdy nejsou vyhledány online ani sdíleny.";
 "Photos" = "Fotografie";
 "Photos & videos" = "Fotografie a videa";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "Podání účtenky";
 "Recommended" = "Doporučeno";
 "Recommended keep selected" = "Doporučeno ponechat vybrané";
-"Recommended Kept" = "Doporučeno Uchováno";
 "Recover storage safely" = "Obnovte úložiště bezpečně";
 "Rename automatically" = "Přejmenovat automaticky";
 "Renews %@" = "Obnovuje %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "Odemkněte neomezené čištění";
 "Upgrade to Pro" = "Upgradujte na Pro";
 "Upload over Wi-Fi only" = "Nahrávejte pouze přes Wi-Fi";
+"Uploading" = "Nahrávání";
 "Used" = "Použité";
 "Uses date and a stable item suffix" = "Používá datum a stabilní příponu položky";
 "Uses the photos you keep to fine-tune recommendations." = "Použije fotografie, které si ponecháte, k doladění doporučení.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "Jste na bezplatném plánu.";
 "You've used this month's free backups." = "Využili jste bezplatné zálohy z tohoto měsíce.";
 "You've used this month's free cleanup" = "Využili jste bezplatný úklid tohoto měsíce";
-"Your choice also teaches Best Shot your taste, on this device." = "Vaše volba také naučí Best Shot vašemu vkusu na tomto zařízení.";
 "Your full photo library, with cloud backup status." = "Vaše úplná knihovna fotografií se stavem zálohování v cloudu.";
 "Your photos are analyzed on this device only." = "Vaše fotografie jsou analyzovány pouze na tomto zařízení.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "Vaše fotografie nejsou dotčeny. Další skenování trvá déle, než je KeepSpace znovu analyzuje.";
@@ -589,4 +589,5 @@
 "Your privacy" = "Vaše soukromí";
 "Your selection is %@. You can free %@ more on Free." = "Váš výběr je %@. Můžete zdarma %@ více na Free.";
 "Your storage, organized intelligently." = "Vaše úložiště, inteligentně organizované.";
+"Zoom" = "Přiblížení";
 "≈ %@ / month" = "≈ %@ / měsíc";

@@ -86,6 +86,7 @@
 "Not backed up" = "Brak kopii zapasowej";
 "Failed" = "Nie udało się";
 "Cancelled" = "Anulowano";
+"Use Device Language" = "Użyj języka urządzenia";
 "Sharpest image" = "Najostrzejszy obraz";
 "Details are the clearest in this group." = "W tej grupie szczegóły są najwyraźniejsze.";
 "Best faces" = "Najlepsze twarze";
@@ -297,8 +298,8 @@
 "Keep local copies" = "Zachowaj lokalne kopie";
 "Keep Local Copies" = "Zachowaj lokalne kopie";
 "Keep Recommended" = "Zachowaj polecane";
+"Keep Selected Photo" = "Zachowaj wybrane zdjęcie";
 "Keep space. Keep what matters." = "Zachowaj przestrzeń. Zachowaj to, co ważne.";
-"Keep This One" = "Zachowaj ten";
 "Keep your best photos and videos safe and organized." = "Zadbaj o bezpieczeństwo i porządek swoich najlepszych zdjęć i filmów.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Zachowanie tego zdjęcia usunie pozostałe (%d) po Twoim potwierdzeniu. Zostają na 30 dni w Ostatnio usuniętych.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Zachowanie tego zdjęcia usunie pozostałe (%d) po Twoim potwierdzeniu. Zostają na 30 dni w koszu.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Pro · Dożywotnia";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · Co miesiąc";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · Co roku";
+"Language" = "Język";
 "Large files and recordings." = "Duże pliki i nagrania.";
 "Large Videos" = "Duże filmy";
 "Learn from my choices" = "Ucz się na moich wyborach";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "Zdjęcie %d, zalecane";
 "Photo Access" = "Dostęp do zdjęć";
 "Photo access is off" = "Dostęp do zdjęć jest wyłączony";
-"Photo Kept" = "Zdjęcie zachowane";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "Lokalizacje zdjęć są używane na tym urządzeniu do informowania o podróżach z domu. Nigdy nie są one wyszukiwane w Internecie ani udostępniane.";
 "Photos" = "Zdjęcia";
 "Photos & videos" = "Zdjęcia i filmy";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "Złożenie pokwitowania";
 "Recommended" = "Zalecane";
 "Recommended keep selected" = "Zalecane pozostawienie wybranego";
-"Recommended Kept" = "Zalecane Zachowane";
 "Recover storage safely" = "Bezpiecznie odzyskaj pamięć";
 "Rename automatically" = "Zmień nazwę automatycznie";
 "Renews %@" = "Odnawia %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "Odblokuj nieograniczone czyszczenie";
 "Upgrade to Pro" = "Uaktualnij do wersji Pro";
 "Upload over Wi-Fi only" = "Przesyłaj tylko przez Wi-Fi";
+"Uploading" = "Przesyłanie";
 "Used" = "Używany";
 "Uses date and a stable item suffix" = "Używa daty i stabilnego przyrostka przedmiotu";
 "Uses the photos you keep to fine-tune recommendations." = "Wykorzystuje przechowywane przez Ciebie zdjęcia do dostosowywania rekomendacji.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "Korzystasz z planu bezpłatnego.";
 "You've used this month's free backups." = "Wykorzystałeś bezpłatne kopie zapasowe z tego miesiąca.";
 "You've used this month's free cleanup" = "Wykorzystałeś bezpłatne sprzątanie w tym miesiącu";
-"Your choice also teaches Best Shot your taste, on this device." = "Twój wybór uczy także gustu Best Shot na tym urządzeniu.";
 "Your full photo library, with cloud backup status." = "Twoja pełna biblioteka zdjęć ze statusem kopii zapasowej w chmurze.";
 "Your photos are analyzed on this device only." = "Twoje zdjęcia są analizowane tylko na tym urządzeniu.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "Twoje zdjęcia nie są dotykane. Następne skanowanie trwa dłużej, podczas gdy KeepSpace ponownie je analizuje.";
@@ -589,4 +589,5 @@
 "Your privacy" = "Twoja prywatność";
 "Your selection is %@. You can free %@ more on Free." = "Twój wybór to %@. Możesz uwolnić %@ więcej za darmo.";
 "Your storage, organized intelligently." = "Twoje przechowywanie, inteligentnie zorganizowane.";
+"Zoom" = "Powiększ";
 "≈ %@ / month" = "≈ %@ / miesiąc";

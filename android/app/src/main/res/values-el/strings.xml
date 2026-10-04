@@ -88,6 +88,7 @@
     <string name="cloud_status_not_backed_up">Δεν υπάρχει αντίγραφο ασφαλείας</string>
     <string name="cloud_status_failed">Απέτυχε</string>
     <string name="cloud_status_cancelled">Ακυρώθηκε</string>
+    <string name="settings_use_device_language">Χρησιμοποιήστε τη γλώσσα συσκευής</string>
     <string name="best_shot_sharpest_image">Η πιο ευκρινή εικόνα</string>
     <string name="best_shot_sharpest_detail">Οι λεπτομέρειες είναι οι πιο ξεκάθαρες σε αυτήν την ομάδα.</string>
     <string name="best_shot_best_faces">Τα καλύτερα πρόσωπα</string>
@@ -299,8 +300,8 @@
     <string name="common_keep_local_copies">Κρατήστε τοπικά αντίγραφα</string>
     <string name="common_keep_local_copies_8b296740">Διατηρήστε τοπικά αντίγραφα</string>
     <string name="common_keep_recommended">Κρατήστε το προτεινόμενο</string>
+    <string name="common_keep_selected_photo">Διατήρηση επιλεγμένης φωτογραφίας</string>
     <string name="common_keep_space_keep_what_matters">Κρατήστε χώρο. Κράτα αυτό που έχει σημασία.</string>
-    <string name="common_keep_this_one">Κρατήστε Αυτό</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Διατηρήστε τις καλύτερες φωτογραφίες και τα βίντεό σας ασφαλή και οργανωμένα.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Αν κρατήσετε αυτή τη φωτογραφία, οι υπόλοιπες %d διαγράφονται μετά την επιβεβαίωσή σας. Παραμένουν 30 ημέρες στα Πρόσφατα διαγραμμένα.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Αν κρατήσετε αυτή τη φωτογραφία, οι υπόλοιπες %d διαγράφονται μετά την επιβεβαίωσή σας. Παραμένουν 30 ημέρες στον Κάδο.</string>
@@ -313,6 +314,7 @@
     <string name="subscription_keepspace_pro_lifetime">KeepSpace Pro · Διάρκεια ζωής</string>
     <string name="subscription_keepspace_pro_monthly">KeepSpace Pro · Μηνιαία</string>
     <string name="subscription_keepspace_pro_yearly">KeepSpace Pro · Ετήσια</string>
+    <string name="common_language">Γλώσσα</string>
     <string name="common_large_files_and_recordings_b445c9be">Μεγάλα αρχεία και ηχογραφήσεις.</string>
     <string name="common_large_videos">Μεγάλα βίντεο</string>
     <string name="common_learn_from_my_choices">Μάθετε από τις επιλογές μου</string>
@@ -399,7 +401,6 @@
     <string name="best_shot_photo_d_recommended">Φωτογραφία %d, προτεινόμενη</string>
     <string name="common_photo_access">Photo Access</string>
     <string name="common_photo_access_is_off">Η πρόσβαση στις φωτογραφίες είναι απενεργοποιημένη</string>
-    <string name="common_photo_kept">Φωτογραφία Κρατήθηκε</string>
     <string name="common_photo_locations_are_used_on_this_device_to_tell_trips_fr">Οι τοποθεσίες φωτογραφιών χρησιμοποιούνται σε αυτήν τη συσκευή για την ενημέρωση των ταξιδιών από το σπίτι. Ποτέ δεν αναζητούνται στο διαδίκτυο ή κοινοποιούνται.</string>
     <string name="common_photos">Φωτογραφίες</string>
     <string name="common_photos_videos">Φωτογραφίες &amp; βίντεο</string>
@@ -437,7 +438,6 @@
     <string name="common_receipt_filing">Αρχειοθέτηση Απόδειξης</string>
     <string name="common_recommended">Συνιστάται</string>
     <string name="common_recommended_keep_selected">Προτεινόμενη διατήρηση επιλεγμένων</string>
-    <string name="common_recommended_kept">Συνιστώμενη Διατήρηση</string>
     <string name="common_recover_storage_safely">Ανακτήστε την αποθήκευση με ασφάλεια</string>
     <string name="common_rename_automatically">Μετονομασία αυτόματα</string>
     <string name="subscription_renews_5610efa5">Ανανεώνει %s</string>
@@ -547,6 +547,7 @@
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Ξεκλειδώστε την Απεριόριστη Εκκαθάριση</string>
     <string name="subscription_upgrade_to_pro">Αναβάθμιση σε Pro</string>
     <string name="common_upload_over_wi_fi_only">Μεταφόρτωση μόνο μέσω Wi-Fi</string>
+    <string name="common_uploading">Μεταφόρτωση</string>
     <string name="common_used">Μεταχειρισμένο</string>
     <string name="common_uses_date_and_a_stable_item_suffix">Χρησιμοποιεί ημερομηνία και επίθημα σταθερού στοιχείου</string>
     <string name="common_uses_the_photos_you_keep_to_fine_tune_recommendations">Χρησιμοποιεί τις φωτογραφίες που διατηρείτε για να βελτιώσει τις προτάσεις.</string>
@@ -581,7 +582,6 @@
     <string name="subscription_you_re_on_the_free_plan">Είστε στο δωρεάν πρόγραμμα.</string>
     <string name="manual_backup_you_ve_used_this_month_s_free_backups">Έχετε χρησιμοποιήσει τα δωρεάν αντίγραφα ασφαλείας αυτού του μήνα.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Χρησιμοποιήσατε τη δωρεάν εκκαθάριση αυτού του μήνα</string>
-    <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Η επιλογή σας διδάσκει επίσης το Best Shot το γούστο σας, σε αυτήν τη συσκευή.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Η πλήρης βιβλιοθήκη φωτογραφιών σας, με κατάσταση δημιουργίας αντιγράφων ασφαλείας στο cloud.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Οι φωτογραφίες σας αναλύονται μόνο σε αυτήν τη συσκευή.</string>
     <string name="common_your_photos_aren_t_touched_the_next_scan_takes_longer_wh">Οι φωτογραφίες σας δεν αγγίζονται. Η επόμενη σάρωση διαρκεί περισσότερο, ενώ η KeepSpace τις αναλύει ξανά.</string>
@@ -591,5 +591,6 @@
     <string name="common_your_privacy">Το απόρρητό σας</string>
     <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Η επιλογή σας είναι %s. Μπορείτε να ελευθερώσετε %s περισσότερα στο Δωρεάν.</string>
     <string name="common_your_storage_organized_intelligently">Ο αποθηκευτικός σας χώρος, οργανωμένος έξυπνα.</string>
+    <string name="library_zoom">Ζουμ</string>
     <string name="paywall_month">≈ %s / μήνα</string>
 </resources>

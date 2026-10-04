@@ -88,6 +88,7 @@
     <string name="cloud_status_not_backed_up">Chưa được sao lưu</string>
     <string name="cloud_status_failed">thất bại</string>
     <string name="cloud_status_cancelled">Đã hủy</string>
+    <string name="settings_use_device_language">Sử dụng ngôn ngữ thiết bị</string>
     <string name="best_shot_sharpest_image">Hình ảnh sắc nét nhất</string>
     <string name="best_shot_sharpest_detail">Chi tiết là rõ ràng nhất trong nhóm này.</string>
     <string name="best_shot_best_faces">Những gương mặt đẹp nhất</string>
@@ -299,8 +300,8 @@
     <string name="common_keep_local_copies">Giữ bản sao cục bộ</string>
     <string name="common_keep_local_copies_8b296740">Giữ bản sao cục bộ</string>
     <string name="common_keep_recommended">Giữ đề xuất</string>
+    <string name="common_keep_selected_photo">Giữ ảnh đã chọn</string>
     <string name="common_keep_space_keep_what_matters">Giữ không gian. Giữ những gì quan trọng.</string>
-    <string name="common_keep_this_one">Giữ cái này</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Giữ những bức ảnh và video đẹp nhất của bạn an toàn và có tổ chức.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Giữ ảnh này sẽ xóa %d ảnh còn lại sau khi bạn xác nhận. Chúng được lưu 30 ngày trong Đã xóa gần đây.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Giữ ảnh này sẽ xóa %d ảnh còn lại sau khi bạn xác nhận. Chúng được lưu 30 ngày trong Thùng rác.</string>
@@ -313,6 +314,7 @@
     <string name="subscription_keepspace_pro_lifetime">KeepSpace Chuyên nghiệp · Trọn đời</string>
     <string name="subscription_keepspace_pro_monthly">KeepSpace Pro · Hàng tháng</string>
     <string name="subscription_keepspace_pro_yearly">KeepSpace Pro · Hàng năm</string>
+    <string name="common_language">Ngôn ngữ</string>
     <string name="common_large_files_and_recordings_b445c9be">Các tập tin lớn và bản ghi âm.</string>
     <string name="common_large_videos">Video lớn</string>
     <string name="common_learn_from_my_choices">Học hỏi từ những lựa chọn của tôi</string>
@@ -399,7 +401,6 @@
     <string name="best_shot_photo_d_recommended">Ảnh %d, được đề xuất</string>
     <string name="common_photo_access">Truy cập ảnh</string>
     <string name="common_photo_access_is_off">Quyền truy cập ảnh bị tắt</string>
-    <string name="common_photo_kept">Ảnh đã được giữ</string>
     <string name="common_photo_locations_are_used_on_this_device_to_tell_trips_fr">Vị trí ảnh được sử dụng trên thiết bị này để thông báo các chuyến đi từ nhà. Chúng không bao giờ được tra cứu trực tuyến hoặc chia sẻ.</string>
     <string name="common_photos">Ảnh</string>
     <string name="common_photos_videos">Ảnh và video</string>
@@ -437,7 +438,6 @@
     <string name="common_receipt_filing">Nộp hồ sơ biên nhận</string>
     <string name="common_recommended">Được đề xuất</string>
     <string name="common_recommended_keep_selected">Khuyến nghị giữ nguyên lựa chọn</string>
-    <string name="common_recommended_kept">Đề xuất giữ lại</string>
     <string name="common_recover_storage_safely">Khôi phục lưu trữ một cách an toàn</string>
     <string name="common_rename_automatically">Đổi tên tự động</string>
     <string name="subscription_renews_5610efa5">Gia hạn %s</string>
@@ -547,6 +547,7 @@
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Mở khóa dọn dẹp không giới hạn</string>
     <string name="subscription_upgrade_to_pro">Nâng cấp lên Pro</string>
     <string name="common_upload_over_wi_fi_only">Chỉ tải lên qua Wi-Fi</string>
+    <string name="common_uploading">Đang tải lên</string>
     <string name="common_used">đã qua sử dụng</string>
     <string name="common_uses_date_and_a_stable_item_suffix">Ngày sử dụng và hậu tố mục ổn định</string>
     <string name="common_uses_the_photos_you_keep_to_fine_tune_recommendations">Sử dụng ảnh bạn lưu giữ để tinh chỉnh các đề xuất.</string>
@@ -581,7 +582,6 @@
     <string name="subscription_you_re_on_the_free_plan">Bạn đang sử dụng gói miễn phí.</string>
     <string name="manual_backup_you_ve_used_this_month_s_free_backups">Bạn đã sử dụng bản sao lưu miễn phí của tháng này.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Bạn đã sử dụng dịch vụ dọn dẹp miễn phí của tháng này</string>
-    <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Sự lựa chọn của bạn cũng dạy cho Best Shot sở thích của bạn trên thiết bị này.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Thư viện ảnh đầy đủ của bạn, với trạng thái sao lưu đám mây.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Ảnh của bạn chỉ được phân tích trên thiết bị này.</string>
     <string name="common_your_photos_aren_t_touched_the_next_scan_takes_longer_wh">Ảnh của bạn không được chạm vào. Lần quét tiếp theo sẽ mất nhiều thời gian hơn trong khi KeepSpace phân tích lại chúng.</string>
@@ -591,5 +591,6 @@
     <string name="common_your_privacy">Quyền riêng tư của bạn</string>
     <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Lựa chọn của bạn là %s. Bạn có thể giải phóng thêm %s trên Miễn phí.</string>
     <string name="common_your_storage_organized_intelligently">Kho lưu trữ của bạn được sắp xếp thông minh.</string>
+    <string name="library_zoom">Thu phóng</string>
     <string name="paywall_month">≈ %s / tháng</string>
 </resources>

@@ -86,6 +86,7 @@
 "Not backed up" = "No respaldado";
 "Failed" = "Fallido";
 "Cancelled" = "Cancelado";
+"Use Device Language" = "Usar idioma del dispositivo";
 "Sharpest image" = "Imagen más nítida";
 "Details are the clearest in this group." = "Los detalles son los más claros en este grupo.";
 "Best faces" = "mejores caras";
@@ -297,8 +298,8 @@
 "Keep local copies" = "Mantenga copias locales";
 "Keep Local Copies" = "Mantenga copias locales";
 "Keep Recommended" = "Mantener recomendado";
+"Keep Selected Photo" = "Mantener foto seleccionada";
 "Keep space. Keep what matters." = "Mantenga el espacio. Conserva lo que importa.";
-"Keep This One" = "Quédate con este";
 "Keep your best photos and videos safe and organized." = "Mantén tus mejores fotos y vídeos seguros y organizados.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Al conservar esta foto se eliminan las otras %d tras tu confirmación. Se quedan 30 días en Eliminados recientemente.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Al conservar esta foto se eliminan las otras %d tras tu confirmación. Se quedan 30 días en la papelera.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Pro · De por vida";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · Mensual";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · Anual";
+"Language" = "Idioma";
 "Large files and recordings." = "Archivos y grabaciones de gran tamaño.";
 "Large Videos" = "Vídeos grandes";
 "Learn from my choices" = "Aprende de mis elecciones";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "Foto %d, recomendada";
 "Photo Access" = "Acceso a fotos";
 "Photo access is off" = "El acceso a las fotos está desactivado";
-"Photo Kept" = "Foto guardada";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "Las ubicaciones de las fotografías se utilizan en este dispositivo para indicar viajes desde casa. Nunca se buscan en línea ni se comparten.";
 "Photos" = "Fotos";
 "Photos & videos" = "Fotos y vídeos";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "Presentación de recibos";
 "Recommended" = "Recomendado";
 "Recommended keep selected" = "Recomendado mantener seleccionado";
-"Recommended Kept" = "Recomendado mantenido";
 "Recover storage safely" = "Recuperar almacenamiento de forma segura";
 "Rename automatically" = "Cambiar nombre automáticamente";
 "Renews %@" = "Renueva %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "Desbloquear limpieza ilimitada";
 "Upgrade to Pro" = "Actualízate a Pro";
 "Upload over Wi-Fi only" = "Subir solo a través de Wi-Fi";
+"Uploading" = "Subiendo";
 "Used" = "Usado";
 "Uses date and a stable item suffix" = "Utiliza fecha y un sufijo de elemento estable";
 "Uses the photos you keep to fine-tune recommendations." = "Utiliza las fotos que conservas para afinar las recomendaciones.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "Estás en el plan gratuito.";
 "You've used this month's free backups." = "Has utilizado las copias de seguridad gratuitas de este mes.";
 "You've used this month's free cleanup" = "Has utilizado la limpieza gratuita de este mes.";
-"Your choice also teaches Best Shot your taste, on this device." = "Su elección también le enseña a Best Shot sus gustos en este dispositivo.";
 "Your full photo library, with cloud backup status." = "Tu biblioteca de fotos completa, con estado de copia de seguridad en la nube.";
 "Your photos are analyzed on this device only." = "Tus fotos se analizan únicamente en este dispositivo.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "Tus fotos no se tocan. El siguiente escaneo lleva más tiempo mientras KeepSpace los vuelve a analizar.";
@@ -589,4 +589,5 @@
 "Your privacy" = "Tu privacidad";
 "Your selection is %@. You can free %@ more on Free." = "Su selección es %@. Puedes liberar %@ más de forma gratuita.";
 "Your storage, organized intelligently." = "Tu almacenamiento, organizado de forma inteligente.";
+"Zoom" = "Ampliar";
 "≈ %@ / month" = "≈ %@ / mes";

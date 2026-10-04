@@ -9,15 +9,17 @@ struct BestShotView: View {
     @Environment(LibraryStore.self) private var library
     @Environment(MonetizationStore.self) private var monetization
     @Environment(\.dismiss) private var dismiss
+    @State private var selectedIndex: Int
     @State private var kept = false
     @State private var isDeleting = false
     @State private var quotaPrompt: QuotaGatePrompt?
 
-    private let maxStrip = 4
+    private let demoPhotoCount = 4
 
     init(group: PhotoGroup, isEmbedded: Bool = false) {
         self.group = group
         self.isEmbedded = isEmbedded
+        _selectedIndex = State(initialValue: group.recommendedIndex)
     }
 
     private var reasons: [BestShotReason] {
@@ -25,15 +27,7 @@ struct BestShotView: View {
     }
 
     private var photoCount: Int {
-        group.assetIDs.isEmpty ? maxStrip : group.assetIDs.count
-    }
-
-    /// Up to four photos, always including the recommended one.
-    private var stripIndices: [Int] {
-        let count = photoCount
-        guard count > maxStrip else { return Array(0..<count) }
-        let start = min(max(0, group.recommendedIndex - 1), count - maxStrip)
-        return Array(start..<(start + maxStrip))
+        group.assetIDs.isEmpty ? demoPhotoCount : group.assetIDs.count
     }
 
     private func assetID(_ index: Int) -> String? {
@@ -45,48 +39,71 @@ struct BestShotView: View {
             ScreenHeader(title: "Best Shot", subtitle: "AI selected the best photo in this group.")
                 .padding(.bottom, 4)
 
+            actions
             strip
 
-            ViewThatFits(in: .horizontal) {
-                HStack(alignment: .top, spacing: Metrics.stackSpacing) {
-                    hero.frame(minWidth: 380)
-                    reasonsCard.frame(width: 340)
+            if selectedIndex == group.recommendedIndex {
+                ViewThatFits(in: .horizontal) {
+                    HStack(alignment: .top, spacing: Metrics.stackSpacing) {
+                        hero.frame(minWidth: 380)
+                        reasonsCard.frame(width: 340)
+                    }
+                    VStack(spacing: Metrics.stackSpacing) {
+                        hero
+                        reasonsCard
+                    }
                 }
-                VStack(spacing: Metrics.stackSpacing) {
-                    hero
-                    reasonsCard
-                }
+            } else {
+                hero
             }
 
-            actions
         }
         .sensoryFeedback(.success, trigger: kept)
-        .quotaGate($quotaPrompt) { ids in Task { await performKeep(limitingTo: Set(ids)) } }
+        .quotaGate($quotaPrompt) { ids in Task { await performKeep(keeperIndex: selectedIndex, limitingTo: Set(ids)) } }
     }
 
     private var strip: some View {
-        HStack(spacing: 10) {
-            ForEach(stripIndices, id: \.self) { index in
-                let isRecommended = index == group.recommendedIndex
-                AssetImage(assetID: assetID(index), fallback: group.style, variant: index, cornerRadius: 14)
-                    .aspectRatio(0.72, contentMode: .fit)
-                    .overlay(alignment: .top) {
-                        if isRecommended {
-                            ViewThatFits(in: .horizontal) {
-                                recommendedTag(Label("Recommended", systemImage: "sparkles"))
-                                recommendedTag(Image(systemName: "sparkles"))
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 12) {
+                ForEach(0..<photoCount, id: \.self) { index in
+                    let isRecommended = index == group.recommendedIndex
+                    let isSelected = index == selectedIndex
+                    Button {
+                        selectedIndex = index
+                    } label: {
+                        AssetImage(assetID: assetID(index), fallback: group.style, variant: index, cornerRadius: 14)
+                            .frame(width: 104)
+                            .aspectRatio(0.72, contentMode: .fit)
+                            .overlay(alignment: .top) {
+                                if isRecommended {
+                                    ViewThatFits(in: .horizontal) {
+                                        recommendedTag(Label("Recommended", systemImage: "sparkles"))
+                                        recommendedTag(Image(systemName: "sparkles"))
+                                    }
+                                    .padding(6)
+                                }
                             }
-                            .padding(6)
-                        }
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 16, style: .continuous)
+                                    .strokeBorder(isSelected ? Palette.accent : .clear, lineWidth: 3)
+                                    .padding(-4)
+                            )
+                            .overlay(alignment: .bottomTrailing) {
+                                if isSelected {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .font(.title3)
+                                        .foregroundStyle(Palette.accent)
+                                        .background(Circle().fill(.white).padding(2))
+                                        .padding(6)
+                                }
+                            }
                     }
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16, style: .continuous)
-                            .strokeBorder(isRecommended ? Palette.accent : .clear, lineWidth: 3)
-                            .padding(-4)
-                    )
-                .accessibilityLabel(localizedFormat(isRecommended ? "Photo %d, recommended" : "Photo %d", index + 1))
-                .accessibilityAddTraits(isRecommended ? .isSelected : [])
+                    .buttonStyle(.plain)
+                    .accessibilityLabel(localizedFormat(isRecommended ? "Photo %d, recommended" : "Photo %d", index + 1))
+                    .accessibilityAddTraits(isSelected ? .isSelected : [])
+                }
             }
+            .padding(.horizontal, 4)
         }
         .padding(.vertical, 6)
     }
@@ -103,7 +120,7 @@ struct BestShotView: View {
     }
 
     private var hero: some View {
-        AssetImage(assetID: assetID(group.recommendedIndex), fallback: group.style, variant: group.recommendedIndex,
+        AssetImage(assetID: assetID(selectedIndex), fallback: group.style, variant: selectedIndex,
                    cornerRadius: Metrics.cardRadius, symbolScale: 0.22, contentMode: .fit)
             .aspectRatio(4 / 3, contentMode: .fit)
     }
@@ -136,9 +153,13 @@ struct BestShotView: View {
     private var actions: some View {
         VStack(spacing: 12) {
             Button {
-                Task { await keepRecommended() }
+                Task { await keepSelected() }
             } label: {
-                if isDeleting { ProgressView().tint(.white) } else { Text((kept ? "Recommended Kept" : "Keep Recommended").localizedUI) }
+                if isDeleting {
+                    ProgressView().tint(.white)
+                } else {
+                    Text((kept ? "Done" : selectedIndex == group.recommendedIndex ? "Keep Recommended" : "Keep Selected Photo").localizedUI)
+                }
             }
             .buttonStyle(PrimaryButtonStyle(showsArrow: false))
             .disabled(kept || isDeleting)
@@ -153,23 +174,23 @@ struct BestShotView: View {
         .padding(.top, 4)
     }
 
-    /// Deletes every photo in the group except Best Shot's recommendation (system confirmation first).
-    private func keepRecommended() async {
+    /// Deletes every photo in the group except the recommendation or the user's own selection.
+    private func keepSelected() async {
         guard !group.assetIDs.isEmpty else { kept = true; return } // demo content
         // The free monthly allowance first; over it, the quota gate is offered instead of deleting.
-        let others = group.assetIDs.enumerated().filter { $0.offset != group.recommendedIndex }.map(\.element)
+        let others = group.assetIDs.enumerated().filter { $0.offset != selectedIndex }.map(\.element)
         let candidates = library.cleanupItems(others, safety: ReviewKind.similar.safety)
         let allowances = monetization.allowances
         if let prompt = QuotaGatePrompt(allowances.gate(cleanup: candidates), selection: candidates, allowances: allowances) {
             quotaPrompt = prompt
             return
         }
-        await performKeep(limitingTo: nil)
+        await performKeep(keeperIndex: selectedIndex, limitingTo: nil)
     }
 
-    private func performKeep(limitingTo allowed: Set<String>?) async {
+    private func performKeep(keeperIndex: Int, limitingTo allowed: Set<String>?) async {
         isDeleting = true
-        let outcome = await library.keep(group, keeperIndex: group.recommendedIndex, limitingTo: allowed)
+        let outcome = await library.keep(group, keeperIndex: keeperIndex, limitingTo: allowed)
         isDeleting = false
         if case .deleted = outcome {
             kept = true

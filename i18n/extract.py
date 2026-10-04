@@ -27,7 +27,7 @@ SCAN_ROOTS = (
 
 # Generated catalogues must never be fed back into extraction. Debug routes are identifiers,
 # not visible copy.
-SKIP_FILES = {"I18nCatalog.kt", "DebugLaunch.swift"}
+SKIP_FILES = {"I18nCatalog.kt", "DebugLaunch.swift", "AppLanguage.kt"}
 
 # Permission prompts are defined in project.yml rather than in a view source file.
 EXTRA = {
@@ -120,6 +120,7 @@ EXTRA = {
     "Not backed up": "cloud_status.not_backed_up",
     "Failed": "cloud_status.failed",
     "Cancelled": "cloud_status.cancelled",
+    "Use Device Language": "settings.use_device_language",
     "Sharpest image": "best_shot.sharpest_image",
     "Details are the clearest in this group.": "best_shot.sharpest_detail",
     "Best faces": "best_shot.best_faces",

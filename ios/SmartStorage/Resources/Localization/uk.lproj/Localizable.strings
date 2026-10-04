@@ -86,6 +86,7 @@
 "Not backed up" = "Без резервного копіювання";
 "Failed" = "Не вдалося";
 "Cancelled" = "Скасовано";
+"Use Device Language" = "Використовувати мову пристрою";
 "Sharpest image" = "Найчіткіше зображення";
 "Details are the clearest in this group." = "У цій групі деталі найбільш чіткі.";
 "Best faces" = "Найкращі обличчя";
@@ -297,8 +298,8 @@
 "Keep local copies" = "Зберігайте локальні копії";
 "Keep Local Copies" = "Зберігайте локальні копії";
 "Keep Recommended" = "Залишити рекомендовано";
+"Keep Selected Photo" = "Зберегти вибране фото";
 "Keep space. Keep what matters." = "Зберігайте простір. Зберігайте те, що має значення.";
-"Keep This One" = "Тримайте цей";
 "Keep your best photos and videos safe and organized." = "Зберігайте свої найкращі фотографії та відео в безпеці та впорядкованості.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Якщо залишити це фото, решта (%d) буде видалена після вашого підтвердження. Вони зберігаються 30 днів у «Нещодавно видалених».";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Якщо залишити це фото, решта (%d) буде видалена після вашого підтвердження. Вони зберігаються 30 днів у кошику.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Pro · Термін служби";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · Щомісяця";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · Щорічно";
+"Language" = "Мова";
 "Large files and recordings." = "Великі файли та записи.";
 "Large Videos" = "Великі відео";
 "Learn from my choices" = "Вчіться на моїх виборах";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "Фото %d, рекомендовано";
 "Photo Access" = "Доступ до фотографій";
 "Photo access is off" = "Доступ до фото вимкнено";
-"Photo Kept" = "Фото збережено";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "Місцезнаходження фотографій використовуються на цьому пристрої, щоб визначити подорожі з дому. Їх ніколи не шукають в Інтернеті та не діляться ними.";
 "Photos" = "Фотографії";
 "Photos & videos" = "Фото та відео";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "Подання квитанцій";
 "Recommended" = "Рекомендовано";
 "Recommended keep selected" = "Рекомендовано залишити вибраним";
-"Recommended Kept" = "Рекомендовано Збережено";
 "Recover storage safely" = "Безпечно відновіть сховище";
 "Rename automatically" = "Перейменувати автоматично";
 "Renews %@" = "Оновлює %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "Розблокуйте Unlimited Cleanup";
 "Upgrade to Pro" = "Оновлення до Pro";
 "Upload over Wi-Fi only" = "Завантажувати лише через Wi-Fi";
+"Uploading" = "Завантаження";
 "Used" = "б/в";
 "Uses date and a stable item suffix" = "Використовує дату та стабільний суфікс елемента";
 "Uses the photos you keep to fine-tune recommendations." = "Використовує фотографії, які ви зберігаєте, для точного налаштування рекомендацій.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "Ви використовуєте безкоштовний план.";
 "You've used this month's free backups." = "Ви використали безкоштовні резервні копії цього місяця.";
 "You've used this month's free cleanup" = "Ви використали безкоштовне прибирання цього місяця";
-"Your choice also teaches Best Shot your taste, on this device." = "Ваш вибір також навчає Best Shot вашому смаку на цьому пристрої.";
 "Your full photo library, with cloud backup status." = "Ваша повна бібліотека фотографій із статусом резервного копіювання в хмарі.";
 "Your photos are analyzed on this device only." = "Ваші фотографії аналізуються лише на цьому пристрої.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "Ваші фотографії не чіпають. Наступне сканування займає більше часу, поки KeepSpace їх повторно аналізує.";
@@ -589,4 +589,5 @@
 "Your privacy" = "Ваша конфіденційність";
 "Your selection is %@. You can free %@ more on Free." = "Ви вибрали %@. Ви можете звільнити ще %@ на Free.";
 "Your storage, organized intelligently." = "Ваше сховище, організоване розумно.";
+"Zoom" = "Збільшити";
 "≈ %@ / month" = "≈ %@ / місяць";

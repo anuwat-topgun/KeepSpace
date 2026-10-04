@@ -86,6 +86,7 @@
 "Not backed up" = "Not backed up";
 "Failed" = "Failed";
 "Cancelled" = "Cancelled";
+"Use Device Language" = "Use Device Language";
 "Sharpest image" = "Sharpest image";
 "Details are the clearest in this group." = "Details are the clearest in this group.";
 "Best faces" = "Best faces";
@@ -297,8 +298,8 @@
 "Keep local copies" = "Keep local copies";
 "Keep Local Copies" = "Keep Local Copies";
 "Keep Recommended" = "Keep Recommended";
+"Keep Selected Photo" = "Keep Selected Photo";
 "Keep space. Keep what matters." = "Keep space. Keep what matters.";
-"Keep This One" = "Keep This One";
 "Keep your best photos and videos safe and organized." = "Keep your best photos and videos safe and organized.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Pro · Lifetime";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · Monthly";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · Yearly";
+"Language" = "Language";
 "Large files and recordings." = "Large files and recordings.";
 "Large Videos" = "Large Videos";
 "Learn from my choices" = "Learn from my choices";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "Photo %d, recommended";
 "Photo Access" = "Photo Access";
 "Photo access is off" = "Photo access is off";
-"Photo Kept" = "Photo Kept";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "Photo locations are used on this device to tell trips from home. They are never looked up online or shared.";
 "Photos" = "Photos";
 "Photos & videos" = "Photos & videos";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "Receipt Filing";
 "Recommended" = "Recommended";
 "Recommended keep selected" = "Recommended keep selected";
-"Recommended Kept" = "Recommended Kept";
 "Recover storage safely" = "Recover storage safely";
 "Rename automatically" = "Rename automatically";
 "Renews %@" = "Renews %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "Unlock Unlimited Cleanup";
 "Upgrade to Pro" = "Upgrade to Pro";
 "Upload over Wi-Fi only" = "Upload over Wi-Fi only";
+"Uploading" = "Uploading";
 "Used" = "Used";
 "Uses date and a stable item suffix" = "Uses date and a stable item suffix";
 "Uses the photos you keep to fine-tune recommendations." = "Uses the photos you keep to fine-tune recommendations.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "You're on the Free plan.";
 "You've used this month's free backups." = "You've used this month's free backups.";
 "You've used this month's free cleanup" = "You've used this month's free cleanup";
-"Your choice also teaches Best Shot your taste, on this device." = "Your choice also teaches Best Shot your taste, on this device.";
 "Your full photo library, with cloud backup status." = "Your full photo library, with cloud backup status.";
 "Your photos are analyzed on this device only." = "Your photos are analyzed on this device only.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them.";
@@ -589,4 +589,5 @@
 "Your privacy" = "Your privacy";
 "Your selection is %@. You can free %@ more on Free." = "Your selection is %@. You can free %@ more on Free.";
 "Your storage, organized intelligently." = "Your storage, organized intelligently.";
+"Zoom" = "Zoom";
 "≈ %@ / month" = "≈ %@ / month";

@@ -86,6 +86,7 @@
 "Not backed up" = "Er is geen back-up gemaakt";
 "Failed" = "Mislukt";
 "Cancelled" = "Geannuleerd";
+"Use Device Language" = "Gebruik apparaattaal";
 "Sharpest image" = "Scherpste beeld";
 "Details are the clearest in this group." = "Details zijn het duidelijkst in deze groep.";
 "Best faces" = "Beste gezichten";
@@ -297,8 +298,8 @@
 "Keep local copies" = "Bewaar lokale kopieën";
 "Keep Local Copies" = "Bewaar lokale kopieën";
 "Keep Recommended" = "Blijf aanbevolen";
+"Keep Selected Photo" = "Geselecteerde foto behouden";
 "Keep space. Keep what matters." = "Houd ruimte. Houd wat belangrijk is.";
-"Keep This One" = "Bewaar deze";
 "Keep your best photos and videos safe and organized." = "Bewaar uw beste foto's en video's veilig en georganiseerd.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Als je deze foto bewaart, worden de andere %d na je bevestiging verwijderd. Ze blijven 30 dagen in Recent verwijderd.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Als je deze foto bewaart, worden de andere %d na je bevestiging verwijderd. Ze blijven 30 dagen in de prullenbak.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Pro · Levenslang";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · Maandelijks";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · Jaarlijks";
+"Language" = "Taal";
 "Large files and recordings." = "Grote bestanden en opnames.";
 "Large Videos" = "Grote video's";
 "Learn from my choices" = "Leer van mijn keuzes";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "Foto %d, aanbevolen";
 "Photo Access" = "Fototoegang";
 "Photo access is off" = "Fototoegang is uitgeschakeld";
-"Photo Kept" = "Foto bewaard";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "Op dit apparaat worden fotolocaties gebruikt om reizen vanaf huis te vertellen. Ze worden nooit online opgezocht of gedeeld.";
 "Photos" = "Foto's";
 "Photos & videos" = "Foto's en video's";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "Ontvangstregistratie";
 "Recommended" = "Aanbevolen";
 "Recommended keep selected" = "Aanbevolen blijf geselecteerd";
-"Recommended Kept" = "Aanbevolen bewaard";
 "Recover storage safely" = "Herstel opslag veilig";
 "Rename automatically" = "Automatisch hernoemen";
 "Renews %@" = "Verlengt %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "Ontgrendel onbeperkt opruimen";
 "Upgrade to Pro" = "Upgrade naar Pro";
 "Upload over Wi-Fi only" = "Alleen uploaden via Wi-Fi";
+"Uploading" = "Uploaden";
 "Used" = "Gebruikt";
 "Uses date and a stable item suffix" = "Gebruikt datum en een stabiel itemachtervoegsel";
 "Uses the photos you keep to fine-tune recommendations." = "Gebruikt de foto's die u bewaart om aanbevelingen te verfijnen.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "Je hebt het gratis abonnement.";
 "You've used this month's free backups." = "U heeft de gratis back-ups van deze maand gebruikt.";
 "You've used this month's free cleanup" = "Je hebt gebruik gemaakt van de gratis opschoonservice van deze maand";
-"Your choice also teaches Best Shot your taste, on this device." = "Door jouw keuze leert Best Shot ook jouw smaak, op dit apparaat.";
 "Your full photo library, with cloud backup status." = "Uw volledige fotobibliotheek, met cloudback-upstatus.";
 "Your photos are analyzed on this device only." = "Uw foto's worden alleen op dit apparaat geanalyseerd.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "Uw foto's worden niet aangeraakt. De volgende scan duurt langer terwijl KeepSpace ze opnieuw analyseert.";
@@ -589,4 +589,5 @@
 "Your privacy" = "Uw privacy";
 "Your selection is %@. You can free %@ more on Free." = "Uw selectie is %@. Je kunt %@ meer gratis gebruiken.";
 "Your storage, organized intelligently." = "Uw opslag, intelligent georganiseerd.";
+"Zoom" = "Zoomen";
 "≈ %@ / month" = "≈ %@ / maand";

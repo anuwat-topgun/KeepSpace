@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "Bewaar lokale kopieën",
     "common.keep_recommended": "Blijf aanbevolen",
     "common.keep_space_keep_what_matters": "Houd ruimte. Houd wat belangrijk is.",
-    "common.keep_this_one": "Bewaar deze",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "Bewaar uw beste foto's en video's veilig en georganiseerd.",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "KeepSpace analyseert uw bibliotheek op dit apparaat om ruimte te vinden die u veilig kunt vrijmaken.",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace vraagt het één keer en werkt vervolgens volledig op dit apparaat.",
@@ -199,7 +198,6 @@
     "common.photo": "Foto",
     "common.photo_access": "Fototoegang",
     "common.photo_access_is_off": "Fototoegang is uitgeschakeld",
-    "common.photo_kept": "Foto bewaard",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "Op dit apparaat worden fotolocaties gebruikt om reizen vanaf huis te vertellen. Ze worden nooit online opgezocht of gedeeld.",
     "common.photos": "Foto's",
     "common.photos_videos": "Foto's en video's",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "Ontvangstregistratie",
     "common.recommended": "Aanbevolen",
     "common.recommended_keep_selected": "Aanbevolen blijf geselecteerd",
-    "common.recommended_kept": "Aanbevolen bewaard",
     "common.recover_storage_safely": "Herstel opslag veilig",
     "common.rename_automatically": "Automatisch hernoemen",
     "common.reset": "Opnieuw instellen",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "Je beoordeelt elke opruiming en belangrijke herinneringen worden standaard beschermd.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "Je bevestigt dit in de volgende stap. Items blijven 30 dagen in Recent verwijderd.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "Je bevestigt dit in de volgende stap. Items blijven 30 dagen in de prullenbak.",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "Door jouw keuze leert Best Shot ook jouw smaak, op dit apparaat.",
     "common.your_photos_are_analyzed_on_this_device_only": "Uw foto's worden alleen op dit apparaat geanalyseerd.",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "Uw foto's worden niet aangeraakt. De volgende scan duurt langer terwijl KeepSpace ze opnieuw analyseert.",
     "common.your_photos_go_only_where_you_choose": "Uw foto's gaan alleen waar u kiest.",
@@ -589,6 +585,11 @@
     "badges.verified_in": "Geverifieerd in %@",
     "about.version": "Versie %@",
     "insights.photos_added": "foto’s toegevoegd",
-    "insights.videos_added": "video’s toegevoegd"
+    "insights.videos_added": "video’s toegevoegd",
+    "settings.use_device_language": "Gebruik apparaattaal",
+    "common.language": "Taal",
+    "common.uploading": "Uploaden",
+    "library.zoom": "Zoomen",
+    "common.keep_selected_photo": "Geselecteerde foto behouden"
   }
 }

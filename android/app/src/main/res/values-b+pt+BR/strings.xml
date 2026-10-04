@@ -88,6 +88,7 @@
     <string name="cloud_status_not_backed_up">Sem backup</string>
     <string name="cloud_status_failed">Falha</string>
     <string name="cloud_status_cancelled">Cancelado</string>
+    <string name="settings_use_device_language">Usar idioma do dispositivo</string>
     <string name="best_shot_sharpest_image">Imagem mais nítida</string>
     <string name="best_shot_sharpest_detail">Os detalhes são os mais claros neste grupo.</string>
     <string name="best_shot_best_faces">Melhores rostos</string>
@@ -299,8 +300,8 @@
     <string name="common_keep_local_copies">Mantenha cópias locais</string>
     <string name="common_keep_local_copies_8b296740">Mantenha cópias locais</string>
     <string name="common_keep_recommended">Mantenha recomendado</string>
+    <string name="common_keep_selected_photo">Manter a foto selecionada</string>
     <string name="common_keep_space_keep_what_matters">Mantenha espaço. Mantenha o que importa.</string>
-    <string name="common_keep_this_one">Mantenha este</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Mantenha suas melhores fotos e vídeos seguros e organizados.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Manter esta foto exclui as outras %d após sua confirmação. Elas ficam 30 dias em Excluídos recentemente.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Manter esta foto exclui as outras %d após sua confirmação. Elas ficam 30 dias na Lixeira.</string>
@@ -313,6 +314,7 @@
     <string name="subscription_keepspace_pro_lifetime">KeepSpace Pro · Vitalício</string>
     <string name="subscription_keepspace_pro_monthly">KeepSpace Pro · Mensalmente</string>
     <string name="subscription_keepspace_pro_yearly">KeepSpace Pro · Anualmente</string>
+    <string name="common_language">Idioma</string>
     <string name="common_large_files_and_recordings_b445c9be">Arquivos e gravações grandes.</string>
     <string name="common_large_videos">Vídeos grandes</string>
     <string name="common_learn_from_my_choices">Aprenda com minhas escolhas</string>
@@ -399,7 +401,6 @@
     <string name="best_shot_photo_d_recommended">Foto %d, recomendada</string>
     <string name="common_photo_access">Acesso às fotos</string>
     <string name="common_photo_access_is_off">O acesso às fotos está desativado</string>
-    <string name="common_photo_kept">Foto mantida</string>
     <string name="common_photo_locations_are_used_on_this_device_to_tell_trips_fr">Os locais das fotos são usados neste dispositivo para contar viagens de casa. Eles nunca são pesquisados ​​online ou compartilhados.</string>
     <string name="common_photos">Fotos</string>
     <string name="common_photos_videos">Fotos e vídeos</string>
@@ -437,7 +438,6 @@
     <string name="common_receipt_filing">Arquivamento de recibo</string>
     <string name="common_recommended">Recomendado</string>
     <string name="common_recommended_keep_selected">Recomendado manter selecionado</string>
-    <string name="common_recommended_kept">Recomendado mantido</string>
     <string name="common_recover_storage_safely">Recupere o armazenamento com segurança</string>
     <string name="common_rename_automatically">Renomear automaticamente</string>
     <string name="subscription_renews_5610efa5">Renova %s</string>
@@ -547,6 +547,7 @@
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Desbloqueie limpeza ilimitada</string>
     <string name="subscription_upgrade_to_pro">Atualizar para Pro</string>
     <string name="common_upload_over_wi_fi_only">Fazer upload somente por Wi-Fi</string>
+    <string name="common_uploading">Enviando</string>
     <string name="common_used">Usado</string>
     <string name="common_uses_date_and_a_stable_item_suffix">Usa data e um sufixo de item estável</string>
     <string name="common_uses_the_photos_you_keep_to_fine_tune_recommendations">Usa as fotos que você guarda para ajustar as recomendações.</string>
@@ -581,7 +582,6 @@
     <string name="subscription_you_re_on_the_free_plan">Você está no plano Gratuito.</string>
     <string name="manual_backup_you_ve_used_this_month_s_free_backups">Você usou os backups gratuitos deste mês.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Você usou a limpeza gratuita deste mês</string>
-    <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Sua escolha também ensina ao Best Shot o seu gosto, neste dispositivo.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Sua biblioteca de fotos completa, com status de backup na nuvem.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Suas fotos são analisadas apenas neste dispositivo.</string>
     <string name="common_your_photos_aren_t_touched_the_next_scan_takes_longer_wh">Suas fotos não são tocadas. A próxima varredura leva mais tempo enquanto KeepSpace os analisa novamente.</string>
@@ -591,5 +591,6 @@
     <string name="common_your_privacy">Sua privacidade</string>
     <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Sua seleção é %s. Você pode liberar %s mais no Grátis.</string>
     <string name="common_your_storage_organized_intelligently">Seu armazenamento organizado de forma inteligente.</string>
+    <string name="library_zoom">Zoom</string>
     <string name="paywall_month">≈ %s / mês</string>
 </resources>

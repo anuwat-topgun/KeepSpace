@@ -1,6 +1,7 @@
 package com.smartstorage.cleaner
 
 import android.content.Intent
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -42,6 +43,7 @@ import com.smartstorage.cleaner.monetization.LocalPresentPaywall
 import com.smartstorage.cleaner.monetization.LocalProBilling
 import com.smartstorage.cleaner.monetization.ProFeature
 import com.smartstorage.cleaner.ui.feature.paywall.PaywallScreen
+import com.smartstorage.cleaner.ui.i18n.AppLanguage
 
 class MainActivity : ComponentActivity() {
     private val libraryViewModel: LibraryViewModel by viewModels()
@@ -61,6 +63,10 @@ class MainActivity : ComponentActivity() {
 
     /** `adb shell am start ... --ez demoData true` shows the mockup data set. */
     private val store: LibraryStore by lazy { libraryViewModel.store(demo = intent.getBooleanExtra(EXTRA_DEMO, false)) }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(AppLanguage.wrap(newBase))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()

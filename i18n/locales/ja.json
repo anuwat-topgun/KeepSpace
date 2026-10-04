@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "ローカルコピーを保持する",
     "common.keep_recommended": "推奨を維持する",
     "common.keep_space_keep_what_matters": "スペースを確保してください。大切なものは残しておいてください。",
-    "common.keep_this_one": "これを保管しておいてください",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "最高の写真やビデオを安全に整理して保管しましょう。",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "KeepSpace は、このデバイス上のライブラリを分析して、安全に回復できるスペースを見つけます。",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace は一度問い合わせると、その後は完全にこのデバイス上で動作します。",
@@ -199,7 +198,6 @@
     "common.photo": "写真",
     "common.photo_access": "写真へのアクセス",
     "common.photo_access_is_off": "写真へのアクセスはオフになっています",
-    "common.photo_kept": "写真保管",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "このデバイスでは、自宅からの旅行を伝えるために写真の場所が使用されます。オンラインで検索したり共有したりすることはありません。",
     "common.photos": "写真",
     "common.photos_videos": "写真とビデオ",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "領収書のファイリング",
     "common.recommended": "おすすめ",
     "common.recommended_keep_selected": "選択したままにすることをお勧めします",
-    "common.recommended_kept": "推奨保管",
     "common.recover_storage_safely": "ストレージを安全に回復する",
     "common.rename_automatically": "名前を自動的に変更する",
     "common.reset": "リセット",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "すべてのクリーンアップを確認すると、重要な思い出がデフォルトで保護されます。",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "次のステップで確認します。アイテムは「最近削除した項目」に 30 日間残ります。",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "次のステップで確認します。アイテムは 30 日間ゴミ箱に残ります。",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "このデバイスでは、あなたの選択がベストショットにあなたの好みを教えてくれます。",
     "common.your_photos_are_analyzed_on_this_device_only": "あなたの写真はこのデバイスでのみ分析されます。",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "あなたの写真は触られていません。 KeepSpace が再分析する間、次のスキャンにはさらに時間がかかります。",
     "common.your_photos_go_only_where_you_choose": "あなたの写真はあなたが選んだ場所にのみ保存されます。",
@@ -589,6 +585,11 @@
     "badges.verified_in": "%@で確認済み",
     "about.version": "バージョン %@",
     "insights.photos_added": "枚の写真を追加",
-    "insights.videos_added": "本の動画を追加"
+    "insights.videos_added": "本の動画を追加",
+    "settings.use_device_language": "デバイス言語を使用する",
+    "common.language": "言語",
+    "common.uploading": "アップロード中",
+    "library.zoom": "ズーム",
+    "common.keep_selected_photo": "選択した写真を保持"
   }
 }

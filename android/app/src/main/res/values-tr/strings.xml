@@ -88,6 +88,7 @@
     <string name="cloud_status_not_backed_up">Yedeklenmedi</string>
     <string name="cloud_status_failed">Başarısız</string>
     <string name="cloud_status_cancelled">İptal edildi</string>
+    <string name="settings_use_device_language">Cihaz Dilini Kullan</string>
     <string name="best_shot_sharpest_image">En keskin görüntü</string>
     <string name="best_shot_sharpest_detail">Bu grupta ayrıntılar en net olanıdır.</string>
     <string name="best_shot_best_faces">En iyi yüzler</string>
@@ -299,8 +300,8 @@
     <string name="common_keep_local_copies">Yerel kopyaları saklayın</string>
     <string name="common_keep_local_copies_8b296740">Yerel Kopyaları Saklayın</string>
     <string name="common_keep_recommended">Tavsiye Edileni Koru</string>
+    <string name="common_keep_selected_photo">Seçilen Fotoğrafı Tut</string>
     <string name="common_keep_space_keep_what_matters">Yer tutun. Önemli olanı sakla.</string>
-    <string name="common_keep_this_one">Bunu Sakla</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">En iyi fotoğraflarınızı ve videolarınızı güvende ve düzenli tutun.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Bu fotoğrafı tutarsanız onayınızdan sonra diğer %d fotoğraf silinir. Son Silinenler’de 30 gün kalırlar.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Bu fotoğrafı tutarsanız onayınızdan sonra diğer %d fotoğraf silinir. Çöp kutusunda 30 gün kalırlar.</string>
@@ -313,6 +314,7 @@
     <string name="subscription_keepspace_pro_lifetime">KeepSpace Pro · Ömür boyu</string>
     <string name="subscription_keepspace_pro_monthly">KeepSpace Profesyonel · Aylık</string>
     <string name="subscription_keepspace_pro_yearly">KeepSpace Profesyonel · Yıllık</string>
+    <string name="common_language">Dil</string>
     <string name="common_large_files_and_recordings_b445c9be">Büyük dosyalar ve kayıtlar.</string>
     <string name="common_large_videos">Büyük Videolar</string>
     <string name="common_learn_from_my_choices">Seçimlerimden ders alın</string>
@@ -399,7 +401,6 @@
     <string name="best_shot_photo_d_recommended">Fotoğraf %d, önerilen</string>
     <string name="common_photo_access">Fotoğraf Erişimi</string>
     <string name="common_photo_access_is_off">Fotoğraf erişimi kapalı</string>
-    <string name="common_photo_kept">Fotoğraf Saklandı</string>
     <string name="common_photo_locations_are_used_on_this_device_to_tell_trips_fr">Bu cihazda fotoğraf konumları evden yapılan gezileri anlatmak için kullanılıyor. Hiçbir zaman çevrimiçi olarak aranmaz veya paylaşılmazlar.</string>
     <string name="common_photos">Fotoğraflar</string>
     <string name="common_photos_videos">Fotoğraflar ve videolar</string>
@@ -437,7 +438,6 @@
     <string name="common_receipt_filing">Makbuz Dosyalama</string>
     <string name="common_recommended">Önerilen</string>
     <string name="common_recommended_keep_selected">Önerilen seçili tutma</string>
-    <string name="common_recommended_kept">Önerilen Saklama</string>
     <string name="common_recover_storage_safely">Depolama alanını güvenli bir şekilde kurtarın</string>
     <string name="common_rename_automatically">Otomatik olarak yeniden adlandır</string>
     <string name="subscription_renews_5610efa5">%s yenilenir</string>
@@ -547,6 +547,7 @@
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Sınırsız Temizlemenin Kilidini Açın</string>
     <string name="subscription_upgrade_to_pro">Pro\'ya yükseltin</string>
     <string name="common_upload_over_wi_fi_only">Yalnızca Wi-Fi üzerinden yükleme yapın</string>
+    <string name="common_uploading">Yükleniyor</string>
     <string name="common_used">Kullanılmış</string>
     <string name="common_uses_date_and_a_stable_item_suffix">Tarih ve sabit bir öğe son eki kullanır</string>
     <string name="common_uses_the_photos_you_keep_to_fine_tune_recommendations">Önerilere ince ayar yapmak için sakladığınız fotoğrafları kullanır.</string>
@@ -581,7 +582,6 @@
     <string name="subscription_you_re_on_the_free_plan">Ücretsiz plandasınız.</string>
     <string name="manual_backup_you_ve_used_this_month_s_free_backups">Bu ayın ücretsiz yedeklemelerini kullandınız.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Bu ayın ücretsiz temizliğini kullandınız</string>
-    <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Seçiminiz aynı zamanda bu cihazda Best Shot zevkinizi de öğretir.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Bulut yedekleme durumuyla birlikte tam fotoğraf kitaplığınız.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Fotoğraflarınız yalnızca bu cihazda analiz edilir.</string>
     <string name="common_your_photos_aren_t_touched_the_next_scan_takes_longer_wh">Fotoğraflarınıza dokunulmaz. KeepSpace bunları yeniden analiz ederken bir sonraki tarama daha uzun sürer.</string>
@@ -591,5 +591,6 @@
     <string name="common_your_privacy">Gizliliğiniz</string>
     <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Seçiminiz %s. Ücretsiz olarak %s daha fazlasını ücretsiz yapabilirsiniz.</string>
     <string name="common_your_storage_organized_intelligently">Akıllıca organize edilen depolama alanınız.</string>
+    <string name="library_zoom">Yakınlaştır</string>
     <string name="paywall_month">≈ %s / ay</string>
 </resources>

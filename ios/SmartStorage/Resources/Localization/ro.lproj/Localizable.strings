@@ -86,6 +86,7 @@
 "Not backed up" = "Fără backup";
 "Failed" = "A eșuat";
 "Cancelled" = "Anulat";
+"Use Device Language" = "Utilizați limba dispozitivului";
 "Sharpest image" = "Cea mai clară imagine";
 "Details are the clearest in this group." = "Detaliile sunt cele mai clare din acest grup.";
 "Best faces" = "Cele mai bune fețe";
@@ -297,8 +298,8 @@
 "Keep local copies" = "Păstrați copii locale";
 "Keep Local Copies" = "Păstrați copii locale";
 "Keep Recommended" = "Păstrați recomandat";
+"Keep Selected Photo" = "Păstrați fotografia selectată";
 "Keep space. Keep what matters." = "Păstrați spațiu. Păstrează ceea ce contează.";
-"Keep This One" = "Păstrează-l pe acesta";
 "Keep your best photos and videos safe and organized." = "Păstrează-ți cele mai bune fotografii și videoclipuri în siguranță și organizate.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Dacă păstrezi această fotografie, celelalte (%d) vor fi șterse după confirmare. Rămân 30 de zile în Șterse recent.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Dacă păstrezi această fotografie, celelalte (%d) vor fi șterse după confirmare. Rămân 30 de zile în Coșul de gunoi.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Pro · Durată de viață";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · Lunar";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · Anual";
+"Language" = "Limba";
 "Large files and recordings." = "Fișiere și înregistrări mari.";
 "Large Videos" = "Videoclipuri mari";
 "Learn from my choices" = "Învață din alegerile mele";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "Fotografia %d, recomandată";
 "Photo Access" = "Acces foto";
 "Photo access is off" = "Accesul la fotografii este dezactivat";
-"Photo Kept" = "Fotografie păstrată";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "Locațiile fotografiilor sunt folosite pe acest dispozitiv pentru a spune călătoriile de acasă. Ele nu sunt niciodată căutate online sau partajate.";
 "Photos" = "Fotografii";
 "Photos & videos" = "Fotografii și videoclipuri";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "Depunerea chitanței";
 "Recommended" = "Recomandat";
 "Recommended keep selected" = "Se recomandă păstrarea selectată";
-"Recommended Kept" = "Recomandat Păstrat";
 "Recover storage safely" = "Recuperați spațiul de stocare în siguranță";
 "Rename automatically" = "Redenumiți automat";
 "Renews %@" = "Reînnoiește %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "Deblocați curățarea nelimitată";
 "Upgrade to Pro" = "Faceți upgrade la Pro";
 "Upload over Wi-Fi only" = "Încărcați numai prin Wi-Fi";
+"Uploading" = "Încărcare";
 "Used" = "Folosit";
 "Uses date and a stable item suffix" = "Utilizează data și un sufix de articol stabil";
 "Uses the photos you keep to fine-tune recommendations." = "Folosește fotografiile pe care le păstrezi pentru a ajusta recomandările.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "Ești în planul Free.";
 "You've used this month's free backups." = "Ați folosit backup-urile gratuite din această lună.";
 "You've used this month's free cleanup" = "Ați folosit curățarea gratuită din această lună";
-"Your choice also teaches Best Shot your taste, on this device." = "Alegerea dvs. vă învață și gustul Best Shot pe acest dispozitiv.";
 "Your full photo library, with cloud backup status." = "Biblioteca dvs. completă de fotografii, cu starea de rezervă în cloud.";
 "Your photos are analyzed on this device only." = "Fotografiile dvs. sunt analizate numai pe acest dispozitiv.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "Fotografiile tale nu sunt atinse. Următoarea scanare durează mai mult timp în timp ce KeepSpace le reanalizează.";
@@ -589,4 +589,5 @@
 "Your privacy" = "Intimitatea ta";
 "Your selection is %@. You can free %@ more on Free." = "Selecția dvs. este %@. Puteți elibera %@ mai multe pe Free.";
 "Your storage, organized intelligently." = "Depozitarea ta, organizată inteligent.";
+"Zoom" = "Zoom";
 "≈ %@ / month" = "≈ %@ / lună";

@@ -39,6 +39,13 @@ final class CloudStore {
 
     var activeCount: Int { uploads.count { [.waiting, .uploading, .verifying].contains($0.status) } }
 
+    var activeProgress: Int {
+        let active = uploads.filter { [.waiting, .uploading, .verifying].contains($0.status) }
+        // Uploads run serially; waiting files stay at zero, so show the current file rather
+        // than averaging it with the queue (which would misleadingly remain near 0%).
+        return active.map(\.progress).max() ?? 0
+    }
+
     func connect(_ provider: CloudProvider) {
         guard CloudConfiguration.clientID(for: provider).isEmpty == false else {
             notice = CloudError.notConfigured(provider).localizedDescription

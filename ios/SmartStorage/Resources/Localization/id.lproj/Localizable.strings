@@ -86,6 +86,7 @@
 "Not backed up" = "Tidak dicadangkan";
 "Failed" = "Gagal";
 "Cancelled" = "Dibatalkan";
+"Use Device Language" = "Gunakan Bahasa Perangkat";
 "Sharpest image" = "Gambar paling tajam";
 "Details are the clearest in this group." = "Detailnya paling jelas di grup ini.";
 "Best faces" = "Wajah terbaik";
@@ -297,8 +298,8 @@
 "Keep local copies" = "Simpan salinan lokal";
 "Keep Local Copies" = "Simpan Salinan Lokal";
 "Keep Recommended" = "Tetap Direkomendasikan";
+"Keep Selected Photo" = "Simpan Foto yang Dipilih";
 "Keep space. Keep what matters." = "Jaga ruang. Pertahankan hal yang penting.";
-"Keep This One" = "Simpan Yang Ini";
 "Keep your best photos and videos safe and organized." = "Jaga foto dan video terbaik Anda tetap aman dan teratur.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Mempertahankan foto ini akan menghapus %d foto lainnya setelah Anda konfirmasi. Foto tersebut tetap ada 30 hari di Baru Dihapus.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Mempertahankan foto ini akan menghapus %d foto lainnya setelah Anda konfirmasi. Foto tersebut tetap ada 30 hari di Sampah.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Pro · Seumur Hidup";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · Bulanan";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · Tahunan";
+"Language" = "Bahasa";
 "Large files and recordings." = "File dan rekaman berukuran besar.";
 "Large Videos" = "Video Besar";
 "Learn from my choices" = "Belajar dari pilihan saya";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "Foto %d, disarankan";
 "Photo Access" = "Akses Foto";
 "Photo access is off" = "Akses foto tidak aktif";
-"Photo Kept" = "Foto Disimpan";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "Lokasi foto digunakan pada perangkat ini untuk memberitahukan perjalanan dari rumah. Mereka tidak pernah dicari secara online atau dibagikan.";
 "Photos" = "Foto";
 "Photos & videos" = "Foto & video";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "Pengarsipan Tanda Terima";
 "Recommended" = "Direkomendasikan";
 "Recommended keep selected" = "Disarankan tetap dipilih";
-"Recommended Kept" = "Direkomendasikan Disimpan";
 "Recover storage safely" = "Pulihkan penyimpanan dengan aman";
 "Rename automatically" = "Ganti nama secara otomatis";
 "Renews %@" = "Memperbarui %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "Buka Kunci Pembersihan Tanpa Batas";
 "Upgrade to Pro" = "Tingkatkan ke Pro";
 "Upload over Wi-Fi only" = "Unggah melalui Wi-Fi saja";
+"Uploading" = "Mengunggah";
 "Used" = "Digunakan";
 "Uses date and a stable item suffix" = "Menggunakan tanggal dan akhiran item yang stabil";
 "Uses the photos you keep to fine-tune recommendations." = "Menggunakan foto yang Anda simpan untuk menyempurnakan rekomendasi.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "Anda menggunakan paket Gratis.";
 "You've used this month's free backups." = "Anda telah menggunakan cadangan gratis bulan ini.";
 "You've used this month's free cleanup" = "Anda telah menggunakan pembersihan gratis bulan ini";
-"Your choice also teaches Best Shot your taste, on this device." = "Pilihan Anda juga mengajarkan Best Shot selera Anda, di perangkat ini.";
 "Your full photo library, with cloud backup status." = "Perpustakaan foto lengkap Anda, dengan status cadangan cloud.";
 "Your photos are analyzed on this device only." = "Foto Anda hanya dianalisis di perangkat ini.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "Foto Anda tidak disentuh. Pemindaian berikutnya memerlukan waktu lebih lama sementara KeepSpace menganalisis ulang.";
@@ -589,4 +589,5 @@
 "Your privacy" = "Privasi Anda";
 "Your selection is %@. You can free %@ more on Free." = "Pilihan Anda adalah %@. Anda dapat membebaskan %@ lebih banyak secara Gratis.";
 "Your storage, organized intelligently." = "Penyimpanan Anda, diatur dengan cerdas.";
+"Zoom" = "Perbesar";
 "≈ %@ / month" = "≈ %@ / bulan";

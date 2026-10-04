@@ -7,9 +7,10 @@ import Testing
 
 private let t0 = Date(timeIntervalSince1970: 1_790_000_000)
 
-private func item(_ id: String, _ kind: MediaItem.Kind = .photo, at seconds: TimeInterval = 0, bytes: Int64 = 1_000_000, favorite: Bool = false) -> MediaItem {
+private func item(_ id: String, _ kind: MediaItem.Kind = .photo, at seconds: TimeInterval = 0, bytes: Int64 = 1_000_000,
+                  favorite: Bool = false, width: Int = 4032, height: Int = 3024) -> MediaItem {
     MediaItem(id: id, kind: kind, creationDate: t0.addingTimeInterval(seconds), bytes: bytes,
-              pixelWidth: 4032, pixelHeight: 3024, duration: 0, isFavorite: favorite)
+              pixelWidth: width, pixelHeight: height, duration: 0, isFavorite: favorite)
 }
 
 private func features(_ print: [Float], sharpness: Double = 100, exposure: Double = 0.5, face: Double? = nil) -> ImageFeatures {
@@ -17,8 +18,9 @@ private func features(_ print: [Float], sharpness: Double = 100, exposure: Doubl
 }
 
 private func photo(_ id: String, at seconds: TimeInterval, print: [Float], sharpness: Double = 100, exposure: Double = 0.5,
-                   face: Double? = nil, favorite: Bool = false, bytes: Int64 = 1_000_000) -> AnalyzedPhoto {
-    AnalyzedPhoto(item: item(id, at: seconds, bytes: bytes, favorite: favorite),
+                   face: Double? = nil, favorite: Bool = false, bytes: Int64 = 1_000_000,
+                   width: Int = 4032, height: Int = 3024) -> AnalyzedPhoto {
+    AnalyzedPhoto(item: item(id, at: seconds, bytes: bytes, favorite: favorite, width: width, height: height),
                   features: features(print, sharpness: sharpness, exposure: exposure, face: face))
 }
 
@@ -61,6 +63,36 @@ private func photo(_ id: String, at seconds: TimeInterval, print: [Float], sharp
             photo("a", at: 0, print: [1, 0]),
         ])
         #expect(groups.map { $0.map(\.id) } == [["a", "b"]])
+    }
+
+    @Test func doesNotBridgeDissimilarEndpoints() {
+        let strict = SimilarityGrouper(maxGap: 120, maxDistance: 0.4)
+        let groups = strict.groups(from: [
+            photo("a", at: 0, print: [0, 0]),
+            photo("b", at: 5, print: [0.3, 0]),
+            photo("c", at: 10, print: [0.6, 0]),
+        ])
+        #expect(groups.map { $0.map(\.id) } == [["a", "b"]])
+    }
+
+    @Test func portraitAndLandscapeNeverMatch() {
+        let groups = grouper.groups(from: [
+            photo("landscape", at: 0, print: [1, 0], width: 4032, height: 3024),
+            photo("portrait", at: 5, print: [1, 0], width: 3024, height: 4032),
+        ])
+        #expect(groups.isEmpty)
+    }
+
+    @Test func defaultConfigurationRejectsLooseMatchesAndLongGaps() {
+        let defaultGrouper = SimilarityGrouper()
+        #expect(defaultGrouper.groups(from: [
+            photo("a", at: 0, print: [0, 0]),
+            photo("b", at: 5, print: [0.4, 0]),
+        ]).isEmpty)
+        #expect(defaultGrouper.groups(from: [
+            photo("c", at: 0, print: [1, 0]),
+            photo("d", at: 61, print: [1, 0]),
+        ]).isEmpty)
     }
 }
 
@@ -315,7 +347,9 @@ private func photo(_ id: String, at seconds: TimeInterval, print: [Float], sharp
         #expect(sets[.largeVideos]?.map(\.id) == ["big-video"])
         #expect(sets[.largeVideos]?.defaultSelection.isEmpty == true) // personal footage: opt-in only
         #expect(sets[.similar]?.defaultSelection == ["extra"])
-        #expect(content.cleanupCandidates.first { $0.title == "Similar Photos" }?.route == .review(.similar))
+        // Similar Photos always uses Best Shot's one-button "Keep Recommended" flow instead of
+        // the generic multi-select review grid.
+        #expect(content.cleanupCandidates.first { $0.title == "Similar Photos" }?.route == .similarPhotos)
     }
 
     @Test func selectionBytesAndKeeperRule() {

@@ -3,7 +3,18 @@ import Foundation
 extension String {
     /// Resolve model-driven English UI copy through the same source-keyed Localizable.strings
     /// catalogue used by SwiftUI literals. User content and technical values simply fall back.
-    var localizedUI: String { NSLocalizedString(self, bundle: .main, comment: "") }
+    var localizedUI: String { LocalizationBundle.current.localizedString(forKey: self, value: self, table: nil) }
+}
+
+private enum LocalizationBundle {
+    static var current: Bundle {
+        guard let language = UserDefaults.standard.string(forKey: AppLanguageStore.defaultsKey),
+              language != AppLanguageOption.system.id,
+              let path = Bundle.main.path(forResource: language, ofType: "lproj"),
+              let bundle = Bundle(path: path)
+        else { return .main }
+        return bundle
+    }
 }
 
 /// Localized format string with runtime values (prices, counts). The English source is the catalogue key, so every

@@ -88,6 +88,7 @@
     <string name="cloud_status_not_backed_up">لم يتم الاحتفاظ بنسخة احتياطية</string>
     <string name="cloud_status_failed">فشل</string>
     <string name="cloud_status_cancelled">تم الإلغاء</string>
+    <string name="settings_use_device_language">استخدم لغة الجهاز</string>
     <string name="best_shot_sharpest_image">أبشع صورة</string>
     <string name="best_shot_sharpest_detail">التفاصيل هي الأوضح في هذه المجموعة.</string>
     <string name="best_shot_best_faces">أفضل الوجوه</string>
@@ -299,8 +300,8 @@
     <string name="common_keep_local_copies">احتفظ بنسخ محلية</string>
     <string name="common_keep_local_copies_8b296740">احتفظ بالنسخ المحلية</string>
     <string name="common_keep_recommended">إبقاء الموصى بها</string>
+    <string name="common_keep_selected_photo">احتفظ بالصورة المحددة</string>
     <string name="common_keep_space_keep_what_matters">احتفظ بالمساحة. احتفظ بما يهم.</string>
-    <string name="common_keep_this_one">احتفظ بهذا</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">حافظ على أفضل الصور ومقاطع الفيديو الخاصة بك آمنة ومنظمة.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">الاحتفاظ بهذه الصورة يحذف الصور الأخرى (%d) بعد تأكيدك. تبقى 30 يومًا في المحذوفة مؤخرًا.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">الاحتفاظ بهذه الصورة يحذف الصور الأخرى (%d) بعد تأكيدك. تبقى 30 يومًا في سلة المهملات.</string>
@@ -313,6 +314,7 @@
     <string name="subscription_keepspace_pro_lifetime">KeepSpace Pro · مدى الحياة</string>
     <string name="subscription_keepspace_pro_monthly">KeepSpace Pro · شهريًا</string>
     <string name="subscription_keepspace_pro_yearly">KeepSpace Pro · سنويًا</string>
+    <string name="common_language">اللغة</string>
     <string name="common_large_files_and_recordings_b445c9be">ملفات وتسجيلات كبيرة.</string>
     <string name="common_large_videos">فيديوهات كبيرة</string>
     <string name="common_learn_from_my_choices">تعلم من اختياراتي</string>
@@ -399,7 +401,6 @@
     <string name="best_shot_photo_d_recommended">الصورة %d، موصى بها</string>
     <string name="common_photo_access">الوصول إلى الصور</string>
     <string name="common_photo_access_is_off">تم إيقاف الوصول إلى الصور</string>
-    <string name="common_photo_kept">تم الاحتفاظ بالصورة</string>
     <string name="common_photo_locations_are_used_on_this_device_to_tell_trips_fr">يتم استخدام مواقع الصور على هذا الجهاز لمعرفة الرحلات من المنزل. ولا يتم البحث عنها مطلقًا عبر الإنترنت أو مشاركتها.</string>
     <string name="common_photos">صور</string>
     <string name="common_photos_videos">الصور ومقاطع الفيديو</string>
@@ -437,7 +438,6 @@
     <string name="common_receipt_filing">إيداع الاستلام</string>
     <string name="common_recommended">موصى به</string>
     <string name="common_recommended_keep_selected">يوصى بالاحتفاظ بالاختيار</string>
-    <string name="common_recommended_kept">الموصى بها أبقى</string>
     <string name="common_recover_storage_safely">استعادة التخزين بأمان</string>
     <string name="common_rename_automatically">إعادة التسمية تلقائيًا</string>
     <string name="subscription_renews_5610efa5">التجديد %s</string>
@@ -547,6 +547,7 @@
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">فتح تنظيف غير محدود</string>
     <string name="subscription_upgrade_to_pro">الترقية إلى برو</string>
     <string name="common_upload_over_wi_fi_only">التحميل عبر Wi-Fi فقط</string>
+    <string name="common_uploading">جارٍ التحميل</string>
     <string name="common_used">مستعملة</string>
     <string name="common_uses_date_and_a_stable_item_suffix">يستخدم التاريخ ولاحقة عنصر ثابت</string>
     <string name="common_uses_the_photos_you_keep_to_fine_tune_recommendations">يستخدم الصور التي تحتفظ بها لتحسين التوصيات.</string>
@@ -581,7 +582,6 @@
     <string name="subscription_you_re_on_the_free_plan">أنت مشترك في الخطة المجانية.</string>
     <string name="manual_backup_you_ve_used_this_month_s_free_backups">لقد استخدمت النسخ الاحتياطية المجانية لهذا الشهر.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">لقد استخدمت التنظيف المجاني لهذا الشهر</string>
-    <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">يؤدي اختيارك أيضًا إلى تعليم Best Shot ذوقك على هذا الجهاز.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">مكتبة الصور الكاملة الخاصة بك، مع حالة النسخ الاحتياطي السحابي.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">يتم تحليل صورك على هذا الجهاز فقط.</string>
     <string name="common_your_photos_aren_t_touched_the_next_scan_takes_longer_wh">لا يتم لمس صورك. يستغرق الفحص التالي وقتًا أطول بينما يقوم KeepSpace بإعادة تحليلها.</string>
@@ -591,5 +591,6 @@
     <string name="common_your_privacy">خصوصيتك</string>
     <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">اختيارك هو %s. يمكنك تحرير %s المزيد مجانًا.</string>
     <string name="common_your_storage_organized_intelligently">تخزينك، منظم بذكاء.</string>
+    <string name="library_zoom">تكبير</string>
     <string name="paywall_month">≈ %s / شهر</string>
 </resources>

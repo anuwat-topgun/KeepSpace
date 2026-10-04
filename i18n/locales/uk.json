@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "Зберігайте локальні копії",
     "common.keep_recommended": "Залишити рекомендовано",
     "common.keep_space_keep_what_matters": "Зберігайте простір. Зберігайте те, що має значення.",
-    "common.keep_this_one": "Тримайте цей",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "Зберігайте свої найкращі фотографії та відео в безпеці та впорядкованості.",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "KeepSpace аналізує вашу бібліотеку на цьому пристрої, щоб знайти місце, яке можна безпечно відновити.",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace запитує один раз, а потім повністю працює на цьому пристрої.",
@@ -199,7 +198,6 @@
     "common.photo": "Фото",
     "common.photo_access": "Доступ до фотографій",
     "common.photo_access_is_off": "Доступ до фото вимкнено",
-    "common.photo_kept": "Фото збережено",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "Місцезнаходження фотографій використовуються на цьому пристрої, щоб визначити подорожі з дому. Їх ніколи не шукають в Інтернеті та не діляться ними.",
     "common.photos": "Фотографії",
     "common.photos_videos": "Фото та відео",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "Подання квитанцій",
     "common.recommended": "Рекомендовано",
     "common.recommended_keep_selected": "Рекомендовано залишити вибраним",
-    "common.recommended_kept": "Рекомендовано Збережено",
     "common.recover_storage_safely": "Безпечно відновіть сховище",
     "common.rename_automatically": "Перейменувати автоматично",
     "common.reset": "Скинути",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "Ви переглядаєте кожне очищення, а важливі спогади захищені за умовчанням.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "Ви підтвердите на наступному кроці. Елементи залишаються в розділі «Нещодавно видалені» протягом 30 днів.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "Ви підтвердите на наступному кроці. Елементи залишаються в кошику протягом 30 днів.",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "Ваш вибір також навчає Best Shot вашому смаку на цьому пристрої.",
     "common.your_photos_are_analyzed_on_this_device_only": "Ваші фотографії аналізуються лише на цьому пристрої.",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "Ваші фотографії не чіпають. Наступне сканування займає більше часу, поки KeepSpace їх повторно аналізує.",
     "common.your_photos_go_only_where_you_choose": "Ваші фотографії потраплять лише туди, куди ви захочете.",
@@ -589,6 +585,11 @@
     "badges.verified_in": "Перевірено в %@",
     "about.version": "Версія %@",
     "insights.photos_added": "фото додано",
-    "insights.videos_added": "відео додано"
+    "insights.videos_added": "відео додано",
+    "settings.use_device_language": "Використовувати мову пристрою",
+    "common.language": "Мова",
+    "common.uploading": "Завантаження",
+    "library.zoom": "Збільшити",
+    "common.keep_selected_photo": "Зберегти вибране фото"
   }
 }

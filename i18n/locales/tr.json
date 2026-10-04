@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "Yerel Kopyaları Saklayın",
     "common.keep_recommended": "Tavsiye Edileni Koru",
     "common.keep_space_keep_what_matters": "Yer tutun. Önemli olanı sakla.",
-    "common.keep_this_one": "Bunu Sakla",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "En iyi fotoğraflarınızı ve videolarınızı güvende ve düzenli tutun.",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "KeepSpace, güvenli bir şekilde kurtarabileceğiniz alanı bulmak için bu cihazdaki kitaplığınızı analiz eder.",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace bir kez sorar, ardından tamamen bu cihazda çalışır.",
@@ -199,7 +198,6 @@
     "common.photo": "Fotoğraf",
     "common.photo_access": "Fotoğraf Erişimi",
     "common.photo_access_is_off": "Fotoğraf erişimi kapalı",
-    "common.photo_kept": "Fotoğraf Saklandı",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "Bu cihazda fotoğraf konumları evden yapılan gezileri anlatmak için kullanılıyor. Hiçbir zaman çevrimiçi olarak aranmaz veya paylaşılmazlar.",
     "common.photos": "Fotoğraflar",
     "common.photos_videos": "Fotoğraflar ve videolar",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "Makbuz Dosyalama",
     "common.recommended": "Önerilen",
     "common.recommended_keep_selected": "Önerilen seçili tutma",
-    "common.recommended_kept": "Önerilen Saklama",
     "common.recover_storage_safely": "Depolama alanını güvenli bir şekilde kurtarın",
     "common.rename_automatically": "Otomatik olarak yeniden adlandır",
     "common.reset": "Sıfırla",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "Her temizliği gözden geçirirsiniz ve önemli anılar varsayılan olarak korunur.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "Bir sonraki adımda onaylayacaksınız. Öğeler 30 gün boyunca Son Silinenler klasöründe kalır.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "Bir sonraki adımda onaylayacaksınız. Öğeler 30 gün boyunca Çöp Kutusu'nda kalır.",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "Seçiminiz aynı zamanda bu cihazda Best Shot zevkinizi de öğretir.",
     "common.your_photos_are_analyzed_on_this_device_only": "Fotoğraflarınız yalnızca bu cihazda analiz edilir.",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "Fotoğraflarınıza dokunulmaz. KeepSpace bunları yeniden analiz ederken bir sonraki tarama daha uzun sürer.",
     "common.your_photos_go_only_where_you_choose": "Fotoğraflarınız yalnızca seçtiğiniz yere gider.",
@@ -589,6 +585,11 @@
     "badges.verified_in": "%@ içinde doğrulandı",
     "about.version": "Sürüm %@",
     "insights.photos_added": "fotoğraf eklendi",
-    "insights.videos_added": "video eklendi"
+    "insights.videos_added": "video eklendi",
+    "settings.use_device_language": "Cihaz Dilini Kullan",
+    "common.language": "Dil",
+    "common.uploading": "Yükleniyor",
+    "library.zoom": "Yakınlaştır",
+    "common.keep_selected_photo": "Seçilen Fotoğrafı Tut"
   }
 }

@@ -86,6 +86,7 @@
 "Not backed up" = "Tidak disandarkan";
 "Failed" = "gagal";
 "Cancelled" = "Dibatalkan";
+"Use Device Language" = "Gunakan Bahasa Peranti";
 "Sharpest image" = "Imej paling tajam";
 "Details are the clearest in this group." = "Butiran adalah yang paling jelas dalam kumpulan ini.";
 "Best faces" = "Wajah-wajah terbaik";
@@ -297,8 +298,8 @@
 "Keep local copies" = "Simpan salinan tempatan";
 "Keep Local Copies" = "Simpan Salinan Tempatan";
 "Keep Recommended" = "Simpan Disyorkan";
+"Keep Selected Photo" = "Simpan Foto Terpilih";
 "Keep space. Keep what matters." = "Kekalkan ruang. Simpan apa yang penting.";
-"Keep This One" = "Simpan Yang Ini";
 "Keep your best photos and videos safe and organized." = "Pastikan foto dan video terbaik anda selamat dan teratur.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Menyimpan foto ini akan memadam %d foto lain selepas anda mengesahkan. Foto tersebut kekal 30 hari dalam Dipadam Baru-baru Ini.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Menyimpan foto ini akan memadam %d foto lain selepas anda mengesahkan. Foto tersebut kekal 30 hari dalam Tong Sampah.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Pro · Sepanjang Hayat";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · Bulanan";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · Tahunan";
+"Language" = "Bahasa";
 "Large files and recordings." = "Fail dan rakaman yang besar.";
 "Large Videos" = "Video Besar";
 "Learn from my choices" = "Belajar dari pilihan saya";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "Foto %d, disyorkan";
 "Photo Access" = "Akses Foto";
 "Photo access is off" = "Akses foto dimatikan";
-"Photo Kept" = "Foto Disimpan";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "Lokasi foto digunakan pada peranti ini untuk memberitahu perjalanan dari rumah. Mereka tidak pernah dicari dalam talian atau dikongsi.";
 "Photos" = "Foto";
 "Photos & videos" = "Foto & video";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "Pemfailan Resit";
 "Recommended" = "Disyorkan";
 "Recommended keep selected" = "Disyorkan terus dipilih";
-"Recommended Kept" = "Disyorkan Disimpan";
 "Recover storage safely" = "Pulihkan storan dengan selamat";
 "Rename automatically" = "Namakan semula secara automatik";
 "Renews %@" = "Memperbaharui %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "Buka kunci Pembersihan Tanpa Had";
 "Upgrade to Pro" = "Naik taraf kepada Pro";
 "Upload over Wi-Fi only" = "Muat naik melalui Wi-Fi sahaja";
+"Uploading" = "Memuat naik";
 "Used" = "terpakai";
 "Uses date and a stable item suffix" = "Menggunakan tarikh dan akhiran item yang stabil";
 "Uses the photos you keep to fine-tune recommendations." = "Menggunakan foto yang anda simpan untuk memperhalusi pengesyoran.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "Anda menggunakan pelan Percuma.";
 "You've used this month's free backups." = "Anda telah menggunakan sandaran percuma bulan ini.";
 "You've used this month's free cleanup" = "Anda telah menggunakan pembersihan percuma bulan ini";
-"Your choice also teaches Best Shot your taste, on this device." = "Pilihan anda juga mengajar Best Shot citarasa anda, pada peranti ini.";
 "Your full photo library, with cloud backup status." = "Pustaka foto penuh anda, dengan status sandaran awan.";
 "Your photos are analyzed on this device only." = "Foto anda dianalisis pada peranti ini sahaja.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "Foto anda tidak disentuh. Imbasan seterusnya mengambil masa yang lebih lama sementara KeepSpace menganalisisnya semula.";
@@ -589,4 +589,5 @@
 "Your privacy" = "Privasi anda";
 "Your selection is %@. You can free %@ more on Free." = "Pilihan anda ialah %@. Anda boleh membebaskan %@ lagi pada Percuma.";
 "Your storage, organized intelligently." = "Storan anda, disusun dengan bijak.";
+"Zoom" = "Zum";
 "≈ %@ / month" = "≈ %@ / bulan";

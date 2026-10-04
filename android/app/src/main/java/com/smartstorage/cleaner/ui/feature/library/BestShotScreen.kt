@@ -15,6 +15,7 @@ import com.smartstorage.cleaner.media.LocalLibraryStore
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -25,6 +26,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -40,6 +43,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -85,12 +89,8 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?) {
     var deleting by rememberSaveable(group.id) { mutableStateOf(false) }
     val recommended = group.recommendedIndex
     val reasons = group.reasons.ifEmpty { LibraryMockData.bestShotReasons }
-    // Up to four photos, always including the recommended one.
     val count = if (group.assetUris.isEmpty()) STRIP_COUNT else group.assetUris.size
-    val stripIndices = if (count <= STRIP_COUNT) (0 until count).toList() else {
-        val start = (recommended - 1).coerceIn(0, count - STRIP_COUNT)
-        (start until start + STRIP_COUNT).toList()
-    }
+    var selected by rememberSaveable(group.id) { mutableIntStateOf(recommended) }
     var kept by rememberSaveable(group.id) { mutableStateOf(false) }
     val haptics = LocalHapticFeedback.current
     val monetization = LocalMonetization.current
@@ -101,7 +101,7 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?) {
         val act = actions ?: return
         scope.launch {
             deleting = true
-            val outcome = store.keep(group, recommended, act, allowed)
+            val outcome = store.keep(group, selected, act, allowed)
             deleting = false
             if (outcome is DeletionOutcome.Deleted) {
                 kept = true
@@ -123,39 +123,14 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?) {
     ScreenScaffold(maxWidth = SmartMetrics.wideContentWidth, onBack = onBack) {
         ScreenHeader("Best Shot", "AI selected the best photo in this group.", Modifier.padding(bottom = 4.dp))
 
-        Row(Modifier.fillMaxWidth().padding(vertical = 6.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            stripIndices.forEach { index ->
-                StripItem(
-                    group = group,
-                    index = index,
-                    isRecommended = index == recommended,
-                    modifier = Modifier.weight(1f),
-                )
-            }
-        }
-
-        BoxWithConstraints {
-            if (maxWidth >= 740.dp) {
-                Row(horizontalArrangement = Arrangement.spacedBy(SmartMetrics.stackSpacing)) {
-                    Hero(group, recommended, Modifier.weight(1f))
-                    Box(Modifier.width(340.dp)) { ReasonsCard(reasons) }
-                }
-            } else {
-                Column(verticalArrangement = Arrangement.spacedBy(SmartMetrics.stackSpacing)) {
-                    Hero(group, recommended, Modifier.fillMaxWidth())
-                    ReasonsCard(reasons)
-                }
-            }
-        }
-
         Column(Modifier.padding(top = 4.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             PrimaryButton(
-                if (kept) "Recommended Kept" else "Keep Recommended",
+                if (kept) "Done" else if (selected == recommended) "Keep Recommended" else "Keep Selected Photo",
                 onClick = {
                     if (group.assetUris.isEmpty()) { kept = true; return@PrimaryButton } // demo content
-                    // Deletes every photo in the group except Best Shot's recommendation (system confirmation first).
+                    // Deletes every photo except the recommendation or the user's own selection.
                     // The free monthly allowance first; over it, the quota gate is offered instead of deleting.
-                    val others = group.assetUris.filterIndexed { i, _ -> i != recommended }
+                    val others = group.assetUris.filterIndexed { i, _ -> i != selected }
                     val candidates = store.cleanupItems(others, ReviewKind.Similar.safety)
                     val allowances = monetization.allowances()
                     val prompt = QuotaGatePrompt.of(allowances.gate(candidates), candidates, allowances)
@@ -174,6 +149,38 @@ fun BestShotScreen(group: PhotoGroup, onBack: (() -> Unit)?) {
                 )
             }
         }
+
+        Row(
+            Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()).padding(vertical = 6.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            (0 until count).forEach { index ->
+                StripItem(
+                    group = group,
+                    index = index,
+                    isRecommended = index == recommended,
+                    isSelected = index == selected,
+                    onSelect = { selected = index },
+                    modifier = Modifier.width(104.dp),
+                )
+            }
+        }
+
+        BoxWithConstraints {
+            if (selected != recommended) {
+                Hero(group, selected, Modifier.fillMaxWidth())
+            } else if (maxWidth >= 740.dp) {
+                Row(horizontalArrangement = Arrangement.spacedBy(SmartMetrics.stackSpacing)) {
+                    Hero(group, selected, Modifier.weight(1f))
+                    Box(Modifier.width(340.dp)) { ReasonsCard(reasons) }
+                }
+            } else {
+                Column(verticalArrangement = Arrangement.spacedBy(SmartMetrics.stackSpacing)) {
+                    Hero(group, selected, Modifier.fillMaxWidth())
+                    ReasonsCard(reasons)
+                }
+            }
+        }
     }
 }
 
@@ -182,12 +189,15 @@ private fun StripItem(
     group: PhotoGroup,
     index: Int,
     isRecommended: Boolean,
+    isSelected: Boolean,
+    onSelect: () -> Unit,
     modifier: Modifier,
 ) {
     val colors = SmartTheme.colors
     Box(
         modifier
-            .border(3.dp, if (isRecommended) colors.accent else Color.Transparent, RoundedCornerShape(16.dp))
+            .clickable(role = androidx.compose.ui.semantics.Role.Button, onClick = onSelect)
+            .border(3.dp, if (isSelected) colors.accent else Color.Transparent, RoundedCornerShape(16.dp))
             .padding(4.dp),
     ) {
         AssetImage(group.assetUris.getOrNull(index), group.style, Modifier.fillMaxWidth().aspectRatio(0.72f), variant = index, cornerRadius = 12.dp)

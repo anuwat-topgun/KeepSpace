@@ -86,6 +86,7 @@
 "Not backed up" = "Chưa được sao lưu";
 "Failed" = "thất bại";
 "Cancelled" = "Đã hủy";
+"Use Device Language" = "Sử dụng ngôn ngữ thiết bị";
 "Sharpest image" = "Hình ảnh sắc nét nhất";
 "Details are the clearest in this group." = "Chi tiết là rõ ràng nhất trong nhóm này.";
 "Best faces" = "Những gương mặt đẹp nhất";
@@ -297,8 +298,8 @@
 "Keep local copies" = "Giữ bản sao cục bộ";
 "Keep Local Copies" = "Giữ bản sao cục bộ";
 "Keep Recommended" = "Giữ đề xuất";
+"Keep Selected Photo" = "Giữ ảnh đã chọn";
 "Keep space. Keep what matters." = "Giữ không gian. Giữ những gì quan trọng.";
-"Keep This One" = "Giữ cái này";
 "Keep your best photos and videos safe and organized." = "Giữ những bức ảnh và video đẹp nhất của bạn an toàn và có tổ chức.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Giữ ảnh này sẽ xóa %d ảnh còn lại sau khi bạn xác nhận. Chúng được lưu 30 ngày trong Đã xóa gần đây.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Giữ ảnh này sẽ xóa %d ảnh còn lại sau khi bạn xác nhận. Chúng được lưu 30 ngày trong Thùng rác.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Chuyên nghiệp · Trọn đời";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · Hàng tháng";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · Hàng năm";
+"Language" = "Ngôn ngữ";
 "Large files and recordings." = "Các tập tin lớn và bản ghi âm.";
 "Large Videos" = "Video lớn";
 "Learn from my choices" = "Học hỏi từ những lựa chọn của tôi";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "Ảnh %d, được đề xuất";
 "Photo Access" = "Truy cập ảnh";
 "Photo access is off" = "Quyền truy cập ảnh bị tắt";
-"Photo Kept" = "Ảnh đã được giữ";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "Vị trí ảnh được sử dụng trên thiết bị này để thông báo các chuyến đi từ nhà. Chúng không bao giờ được tra cứu trực tuyến hoặc chia sẻ.";
 "Photos" = "Ảnh";
 "Photos & videos" = "Ảnh và video";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "Nộp hồ sơ biên nhận";
 "Recommended" = "Được đề xuất";
 "Recommended keep selected" = "Khuyến nghị giữ nguyên lựa chọn";
-"Recommended Kept" = "Đề xuất giữ lại";
 "Recover storage safely" = "Khôi phục lưu trữ một cách an toàn";
 "Rename automatically" = "Đổi tên tự động";
 "Renews %@" = "Gia hạn %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "Mở khóa dọn dẹp không giới hạn";
 "Upgrade to Pro" = "Nâng cấp lên Pro";
 "Upload over Wi-Fi only" = "Chỉ tải lên qua Wi-Fi";
+"Uploading" = "Đang tải lên";
 "Used" = "đã qua sử dụng";
 "Uses date and a stable item suffix" = "Ngày sử dụng và hậu tố mục ổn định";
 "Uses the photos you keep to fine-tune recommendations." = "Sử dụng ảnh bạn lưu giữ để tinh chỉnh các đề xuất.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "Bạn đang sử dụng gói miễn phí.";
 "You've used this month's free backups." = "Bạn đã sử dụng bản sao lưu miễn phí của tháng này.";
 "You've used this month's free cleanup" = "Bạn đã sử dụng dịch vụ dọn dẹp miễn phí của tháng này";
-"Your choice also teaches Best Shot your taste, on this device." = "Sự lựa chọn của bạn cũng dạy cho Best Shot sở thích của bạn trên thiết bị này.";
 "Your full photo library, with cloud backup status." = "Thư viện ảnh đầy đủ của bạn, với trạng thái sao lưu đám mây.";
 "Your photos are analyzed on this device only." = "Ảnh của bạn chỉ được phân tích trên thiết bị này.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "Ảnh của bạn không được chạm vào. Lần quét tiếp theo sẽ mất nhiều thời gian hơn trong khi KeepSpace phân tích lại chúng.";
@@ -589,4 +589,5 @@
 "Your privacy" = "Quyền riêng tư của bạn";
 "Your selection is %@. You can free %@ more on Free." = "Lựa chọn của bạn là %@. Bạn có thể giải phóng thêm %@ trên Miễn phí.";
 "Your storage, organized intelligently." = "Kho lưu trữ của bạn được sắp xếp thông minh.";
+"Zoom" = "Thu phóng";
 "≈ %@ / month" = "≈ %@ / tháng";

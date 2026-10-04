@@ -86,6 +86,7 @@
 "Not backed up" = "Δεν υπάρχει αντίγραφο ασφαλείας";
 "Failed" = "Απέτυχε";
 "Cancelled" = "Ακυρώθηκε";
+"Use Device Language" = "Χρησιμοποιήστε τη γλώσσα συσκευής";
 "Sharpest image" = "Η πιο ευκρινή εικόνα";
 "Details are the clearest in this group." = "Οι λεπτομέρειες είναι οι πιο ξεκάθαρες σε αυτήν την ομάδα.";
 "Best faces" = "Τα καλύτερα πρόσωπα";
@@ -297,8 +298,8 @@
 "Keep local copies" = "Κρατήστε τοπικά αντίγραφα";
 "Keep Local Copies" = "Διατηρήστε τοπικά αντίγραφα";
 "Keep Recommended" = "Κρατήστε το προτεινόμενο";
+"Keep Selected Photo" = "Διατήρηση επιλεγμένης φωτογραφίας";
 "Keep space. Keep what matters." = "Κρατήστε χώρο. Κράτα αυτό που έχει σημασία.";
-"Keep This One" = "Κρατήστε Αυτό";
 "Keep your best photos and videos safe and organized." = "Διατηρήστε τις καλύτερες φωτογραφίες και τα βίντεό σας ασφαλή και οργανωμένα.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Αν κρατήσετε αυτή τη φωτογραφία, οι υπόλοιπες %d διαγράφονται μετά την επιβεβαίωσή σας. Παραμένουν 30 ημέρες στα Πρόσφατα διαγραμμένα.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Αν κρατήσετε αυτή τη φωτογραφία, οι υπόλοιπες %d διαγράφονται μετά την επιβεβαίωσή σας. Παραμένουν 30 ημέρες στον Κάδο.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Pro · Διάρκεια ζωής";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · Μηνιαία";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · Ετήσια";
+"Language" = "Γλώσσα";
 "Large files and recordings." = "Μεγάλα αρχεία και ηχογραφήσεις.";
 "Large Videos" = "Μεγάλα βίντεο";
 "Learn from my choices" = "Μάθετε από τις επιλογές μου";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "Φωτογραφία %d, προτεινόμενη";
 "Photo Access" = "Photo Access";
 "Photo access is off" = "Η πρόσβαση στις φωτογραφίες είναι απενεργοποιημένη";
-"Photo Kept" = "Φωτογραφία Κρατήθηκε";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "Οι τοποθεσίες φωτογραφιών χρησιμοποιούνται σε αυτήν τη συσκευή για την ενημέρωση των ταξιδιών από το σπίτι. Ποτέ δεν αναζητούνται στο διαδίκτυο ή κοινοποιούνται.";
 "Photos" = "Φωτογραφίες";
 "Photos & videos" = "Φωτογραφίες & βίντεο";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "Αρχειοθέτηση Απόδειξης";
 "Recommended" = "Συνιστάται";
 "Recommended keep selected" = "Προτεινόμενη διατήρηση επιλεγμένων";
-"Recommended Kept" = "Συνιστώμενη Διατήρηση";
 "Recover storage safely" = "Ανακτήστε την αποθήκευση με ασφάλεια";
 "Rename automatically" = "Μετονομασία αυτόματα";
 "Renews %@" = "Ανανεώνει %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "Ξεκλειδώστε την Απεριόριστη Εκκαθάριση";
 "Upgrade to Pro" = "Αναβάθμιση σε Pro";
 "Upload over Wi-Fi only" = "Μεταφόρτωση μόνο μέσω Wi-Fi";
+"Uploading" = "Μεταφόρτωση";
 "Used" = "Μεταχειρισμένο";
 "Uses date and a stable item suffix" = "Χρησιμοποιεί ημερομηνία και επίθημα σταθερού στοιχείου";
 "Uses the photos you keep to fine-tune recommendations." = "Χρησιμοποιεί τις φωτογραφίες που διατηρείτε για να βελτιώσει τις προτάσεις.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "Είστε στο δωρεάν πρόγραμμα.";
 "You've used this month's free backups." = "Έχετε χρησιμοποιήσει τα δωρεάν αντίγραφα ασφαλείας αυτού του μήνα.";
 "You've used this month's free cleanup" = "Χρησιμοποιήσατε τη δωρεάν εκκαθάριση αυτού του μήνα";
-"Your choice also teaches Best Shot your taste, on this device." = "Η επιλογή σας διδάσκει επίσης το Best Shot το γούστο σας, σε αυτήν τη συσκευή.";
 "Your full photo library, with cloud backup status." = "Η πλήρης βιβλιοθήκη φωτογραφιών σας, με κατάσταση δημιουργίας αντιγράφων ασφαλείας στο cloud.";
 "Your photos are analyzed on this device only." = "Οι φωτογραφίες σας αναλύονται μόνο σε αυτήν τη συσκευή.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "Οι φωτογραφίες σας δεν αγγίζονται. Η επόμενη σάρωση διαρκεί περισσότερο, ενώ η KeepSpace τις αναλύει ξανά.";
@@ -589,4 +589,5 @@
 "Your privacy" = "Το απόρρητό σας";
 "Your selection is %@. You can free %@ more on Free." = "Η επιλογή σας είναι %@. Μπορείτε να ελευθερώσετε %@ περισσότερα στο Δωρεάν.";
 "Your storage, organized intelligently." = "Ο αποθηκευτικός σας χώρος, οργανωμένος έξυπνα.";
+"Zoom" = "Ζουμ";
 "≈ %@ / month" = "≈ %@ / μήνα";

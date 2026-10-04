@@ -9,6 +9,8 @@ struct LibraryView: View {
     @Environment(AppRouter.self) private var router
     @State private var filter: LibraryFilter = .all
     @State private var previewRequest: LibraryPreviewRequest?
+    @State private var suppressesTileTap = false
+    @State private var filterGuardTask: Task<Void, Never>?
 
     private let columns = [GridItem(.adaptive(minimum: 104, maximum: 180), spacing: 3)]
 
@@ -59,8 +61,10 @@ struct LibraryView: View {
                 .foregroundStyle(Palette.textPrimary)
             }
 
-            LibraryFilterPicker(selection: $filter)
+            LibraryFilterPicker(selection: filter, onSelect: selectFilter)
                 .padding(.vertical, 2)
+                .background(Palette.background)
+                .zIndex(2)
 
             if items.isEmpty {
                 Card(style: .info) {
@@ -72,18 +76,37 @@ struct LibraryView: View {
                 LazyVGrid(columns: columns, spacing: 3) {
                     ForEach(items) { item in
                         LibraryTile(item: item, state: cloud.state(for: item)) {
+                            guard !suppressesTileTap else { return }
                             // Freeze the exact visible order at tap time. A library scan can otherwise
                             // reorder the live collection while the full-screen preview is opening.
                             previewRequest = LibraryPreviewRequest(items: items, initialID: item.id)
                         }
                     }
                 }
-                .animation(.easeInOut(duration: 0.2), value: filter)
+                .allowsHitTesting(!suppressesTileTap)
+                .zIndex(0)
             }
         }
         .fullScreenCover(item: $previewRequest) { request in
             LibraryPreview(items: request.items, initialID: request.initialID)
                 .environment(cloud)
+        }
+        .onDisappear { filterGuardTask?.cancel() }
+    }
+
+    /// Changing a filter rebuilds the grid. Briefly disabling tile hit-testing prevents the
+    /// same physical touch from being delivered to a thumbnail that moves under the finger.
+    private func selectFilter(_ option: LibraryFilter) {
+        filterGuardTask?.cancel()
+        previewRequest = nil
+        suppressesTileTap = true
+        var transaction = Transaction()
+        transaction.disablesAnimations = true
+        withTransaction(transaction) { filter = option }
+        filterGuardTask = Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(350))
+            guard !Task.isCancelled else { return }
+            suppressesTileTap = false
         }
     }
 }
@@ -109,14 +132,15 @@ private enum LibraryFilter: String, CaseIterable, Hashable {
 
 /// Four equal-width controls keep the cloud filter visible and tappable on compact phones.
 private struct LibraryFilterPicker: View {
-    @Binding var selection: LibraryFilter
+    let selection: LibraryFilter
+    let onSelect: (LibraryFilter) -> Void
 
     var body: some View {
         HStack(spacing: 6) {
             ForEach(LibraryFilter.allCases, id: \.self) { option in
                 let isSelected = option == selection
                 Button {
-                    withAnimation(.spring(duration: 0.3)) { selection = option }
+                    onSelect(option)
                 } label: {
                     Text(LocalizedStringKey(option.title))
                         .font(.system(.subheadline, weight: isSelected ? .semibold : .regular))
@@ -138,6 +162,7 @@ private struct LibraryFilterPicker: View {
                 .frame(maxWidth: .infinity)
                 .contentShape(Capsule())
                 .accessibilityAddTraits(isSelected ? .isSelected : [])
+                .accessibilityIdentifier("library.filter.\(option.rawValue)")
             }
         }
     }
@@ -149,9 +174,10 @@ private struct LibraryTile: View {
     let action: () -> Void
 
     var body: some View {
-        Button(action: action) {
-            AssetImage(assetID: item.id, fallback: item.fallbackStyle, cornerRadius: 2)
-                .aspectRatio(1, contentMode: .fit)
+        GeometryReader { proxy in
+            Button(action: action) {
+                AssetImage(assetID: item.id, fallback: item.fallbackStyle, cornerRadius: 2)
+                    .frame(width: proxy.size.width, height: proxy.size.height)
                 .overlay(alignment: .bottomTrailing) {
                     CloudStateIcon(state: state)
                         .padding(6)
@@ -165,9 +191,25 @@ private struct LibraryTile: View {
                             .padding(7)
                     }
                 }
+                .overlay(alignment: .bottom) {
+                    if let status = state.status, [.waiting, .uploading, .verifying].contains(status) {
+                        ProgressView(value: Double(state.progress), total: 100)
+                            .progressViewStyle(.linear)
+                            .tint(Palette.accent)
+                            .background(.black.opacity(0.32))
+                            .accessibilityLabel(state.title.localizedUI)
+                            .accessibilityValue("\(state.progress)%")
+                    }
+                }
+            }
+            .buttonStyle(.plain)
+            .frame(width: proxy.size.width, height: proxy.size.height)
+            .contentShape(Rectangle())
+            .clipped()
+            .accessibilityLabel("\(item.fileName ?? "Photo".localizedUI), \(state.title.localizedUI)")
         }
-        .buttonStyle(.plain)
-        .accessibilityLabel("\(item.fileName ?? "Photo".localizedUI), \(state.title.localizedUI)")
+        .aspectRatio(1, contentMode: .fit)
+        .clipped()
     }
 }
 

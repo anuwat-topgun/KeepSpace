@@ -86,6 +86,7 @@
 "Not backed up" = "Inte säkerhetskopierat";
 "Failed" = "Misslyckades";
 "Cancelled" = "Avbruten";
+"Use Device Language" = "Använd enhetsspråk";
 "Sharpest image" = "Skarpaste bilden";
 "Details are the clearest in this group." = "Detaljerna är tydligast i denna grupp.";
 "Best faces" = "Bästa ansikten";
@@ -297,8 +298,8 @@
 "Keep local copies" = "Behåll lokala kopior";
 "Keep Local Copies" = "Behåll lokala kopior";
 "Keep Recommended" = "Behåll rekommenderat";
+"Keep Selected Photo" = "Behåll det valda fotot";
 "Keep space. Keep what matters." = "Behåll utrymme. Behåll det som betyder något.";
-"Keep This One" = "Behåll denna";
 "Keep your best photos and videos safe and organized." = "Håll dina bästa foton och videor säkra och organiserade.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Om du behåller det här fotot raderas de andra %d efter din bekräftelse. De ligger kvar i 30 dagar i Nyligen raderade.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Om du behåller det här fotot raderas de andra %d efter din bekräftelse. De ligger kvar i 30 dagar i papperskorgen.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Pro · Livstid";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · Månadsvis";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · Årligen";
+"Language" = "Språk";
 "Large files and recordings." = "Stora filer och inspelningar.";
 "Large Videos" = "Stora videor";
 "Learn from my choices" = "Lär dig av mina val";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "Foto %d, rekommenderat";
 "Photo Access" = "Foto Access";
 "Photo access is off" = "Fotoåtkomst är avstängd";
-"Photo Kept" = "Foto bevarat";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "Fotoplatser används på den här enheten för att berätta om resor hemifrån. De slås aldrig upp på nätet eller delas.";
 "Photos" = "Foton";
 "Photos & videos" = "Foton och videor";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "Kvittoarkivering";
 "Recommended" = "Rekommenderas";
 "Recommended keep selected" = "Rekommenderas att behålla valt";
-"Recommended Kept" = "Rekommenderad bevarad";
 "Recover storage safely" = "Återställ lagring på ett säkert sätt";
 "Rename automatically" = "Byt namn automatiskt";
 "Renews %@" = "Förnyar %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "Lås upp obegränsad rensning";
 "Upgrade to Pro" = "Uppgradera till Pro";
 "Upload over Wi-Fi only" = "Ladda upp endast över Wi-Fi";
+"Uploading" = "Laddar upp";
 "Used" = "Används";
 "Uses date and a stable item suffix" = "Använder datum och ett stabilt artikelsuffix";
 "Uses the photos you keep to fine-tune recommendations." = "Använder de foton du behåller för att finjustera rekommendationer.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "Du har gratisplanen.";
 "You've used this month's free backups." = "Du har använt denna månads kostnadsfria säkerhetskopior.";
 "You've used this month's free cleanup" = "Du har använt den här månadens gratis städning";
-"Your choice also teaches Best Shot your taste, on this device." = "Ditt val lär också Best Shot din smak, på den här enheten.";
 "Your full photo library, with cloud backup status." = "Ditt fullständiga fotobibliotek, med molnsäkerhetsstatus.";
 "Your photos are analyzed on this device only." = "Dina foton analyseras endast på den här enheten.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "Dina foton berörs inte. Nästa skanning tar längre tid medan KeepSpace analyserar dem igen.";
@@ -589,4 +589,5 @@
 "Your privacy" = "Din integritet";
 "Your selection is %@. You can free %@ more on Free." = "Ditt val är %@. Du kan gratis %@ mer på Gratis.";
 "Your storage, organized intelligently." = "Din lagring, organiserad på ett intelligent sätt.";
+"Zoom" = "Zooma";
 "≈ %@ / month" = "≈ %@ / månad";

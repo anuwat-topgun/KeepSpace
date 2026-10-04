@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "स्थानीय प्रतियां रखें",
     "common.keep_recommended": "अनुशंसित रखें",
     "common.keep_space_keep_what_matters": "जगह रखें. जो मायने रखता है उसे रखें.",
-    "common.keep_this_one": "इसे रखो",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "अपनी सर्वश्रेष्ठ फ़ोटो और वीडियो को सुरक्षित और व्यवस्थित रखें।",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "KeepSpace उस स्थान को ढूंढने के लिए इस डिवाइस पर आपकी लाइब्रेरी का विश्लेषण करता है जिसे आप सुरक्षित रूप से पुनर्प्राप्त कर सकते हैं।",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace एक बार पूछता है, फिर पूरी तरह से इस डिवाइस पर काम करता है।",
@@ -199,7 +198,6 @@
     "common.photo": "फ़ोटो",
     "common.photo_access": "फोटो पहुंच",
     "common.photo_access_is_off": "फ़ोटो पहुंच बंद है",
-    "common.photo_kept": "फोटो रखा गया",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "घर से यात्राएं बताने के लिए इस डिवाइस पर फ़ोटो स्थानों का उपयोग किया जाता है। उन्हें कभी भी ऑनलाइन नहीं देखा जाता या साझा नहीं किया जाता।",
     "common.photos": "तस्वीरें",
     "common.photos_videos": "तस्वीरें और वीडियो",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "रसीद दाखिल करना",
     "common.recommended": "अनुशंसित",
     "common.recommended_keep_selected": "अनुशंसित चयनित रखें",
-    "common.recommended_kept": "अनुशंसित रखा गया",
     "common.recover_storage_safely": "भंडारण सुरक्षित रूप से पुनर्प्राप्त करें",
     "common.rename_automatically": "स्वचालित रूप से नाम बदलें",
     "common.reset": "रीसेट करें",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "आप प्रत्येक सफ़ाई की समीक्षा करते हैं, और महत्वपूर्ण यादें डिफ़ॉल्ट रूप से सुरक्षित रहती हैं।",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "आप अगले चरण में पुष्टि करेंगे. आइटम हाल ही में हटाए गए में 30 दिनों तक रहते हैं।",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "आप अगले चरण में पुष्टि करेंगे. आइटम 30 दिनों तक कूड़ेदान में रहते हैं।",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "आपकी पसंद इस डिवाइस पर बेस्ट शॉट को आपका स्वाद भी सिखाती है।",
     "common.your_photos_are_analyzed_on_this_device_only": "आपकी तस्वीरों का विश्लेषण इसी डिवाइस पर किया जाता है.",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "आपकी फ़ोटो को छुआ नहीं गया है. अगले स्कैन में अधिक समय लगता है जबकि KeepSpace उनका पुनः विश्लेषण करता है।",
     "common.your_photos_go_only_where_you_choose": "आपकी तस्वीरें केवल वहीं जाती हैं जहां आप चुनते हैं।",
@@ -589,6 +585,11 @@
     "badges.verified_in": "%@ में सत्यापित",
     "about.version": "संस्करण %@",
     "insights.photos_added": "फ़ोटो जोड़ी गईं",
-    "insights.videos_added": "वीडियो जोड़े गए"
+    "insights.videos_added": "वीडियो जोड़े गए",
+    "settings.use_device_language": "डिवाइस भाषा का प्रयोग करें",
+    "common.language": "भाषा",
+    "common.uploading": "अपलोड हो रहा है",
+    "library.zoom": "ज़ूम करें",
+    "common.keep_selected_photo": "चयनित फोटो रखें"
   }
 }

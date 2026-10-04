@@ -86,6 +86,7 @@
 "Not backed up" = "バックアップされていない";
 "Failed" = "失敗しました";
 "Cancelled" = "キャンセルされました";
+"Use Device Language" = "デバイス言語を使用する";
 "Sharpest image" = "最も鮮明な画像";
 "Details are the clearest in this group." = "このグループでは詳細が最も明確です。";
 "Best faces" = "最高の顔";
@@ -297,8 +298,8 @@
 "Keep local copies" = "ローカルコピーを保存しておく";
 "Keep Local Copies" = "ローカルコピーを保持する";
 "Keep Recommended" = "推奨を維持する";
+"Keep Selected Photo" = "選択した写真を保持";
 "Keep space. Keep what matters." = "スペースを確保してください。大切なものは残しておいてください。";
-"Keep This One" = "これを保管しておいてください";
 "Keep your best photos and videos safe and organized." = "最高の写真やビデオを安全に整理して保管しましょう。";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "この写真を残すと、確認後に他の%d枚が削除されます。「最近削除した項目」に30日間残ります。";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "この写真を残すと、確認後に他の%d枚が削除されます。ゴミ箱に30日間残ります。";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace プロ · ライフタイム";
 "KeepSpace Pro · Monthly" = "KeepSpace プロ · マンスリー";
 "KeepSpace Pro · Yearly" = "KeepSpace プロ · 年間";
+"Language" = "言語";
 "Large files and recordings." = "大きなファイルと録音。";
 "Large Videos" = "大きなビデオ";
 "Learn from my choices" = "私の選択から学ぶ";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "写真 %d、おすすめ";
 "Photo Access" = "写真へのアクセス";
 "Photo access is off" = "写真へのアクセスはオフになっています";
-"Photo Kept" = "写真保管";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "このデバイスでは、自宅からの旅行を伝えるために写真の場所が使用されます。オンラインで検索したり共有したりすることはありません。";
 "Photos" = "写真";
 "Photos & videos" = "写真とビデオ";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "領収書のファイリング";
 "Recommended" = "おすすめ";
 "Recommended keep selected" = "選択したままにすることをお勧めします";
-"Recommended Kept" = "推奨保管";
 "Recover storage safely" = "ストレージを安全に回復する";
 "Rename automatically" = "名前を自動的に変更する";
 "Renews %@" = "%@ を更新します";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "無制限のクリーンアップのロックを解除する";
 "Upgrade to Pro" = "プロにアップグレード";
 "Upload over Wi-Fi only" = "Wi-Fi 経由でのみアップロードする";
+"Uploading" = "アップロード中";
 "Used" = "中古品";
 "Uses date and a stable item suffix" = "日付と安定した項目の接尾辞を使用します";
 "Uses the photos you keep to fine-tune recommendations." = "保存した写真を使用して、おすすめを微調整します。";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "無料プランをご利用中です。";
 "You've used this month's free backups." = "今月の無料バックアップを使用しました。";
 "You've used this month's free cleanup" = "今月の無料クリーンアップを利用しました";
-"Your choice also teaches Best Shot your taste, on this device." = "このデバイスでは、あなたの選択がベストショットにあなたの好みを教えてくれます。";
 "Your full photo library, with cloud backup status." = "完全な写真ライブラリとクラウド バックアップ ステータス。";
 "Your photos are analyzed on this device only." = "あなたの写真はこのデバイスでのみ分析されます。";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "あなたの写真は触られていません。 KeepSpace が再分析する間、次のスキャンにはさらに時間がかかります。";
@@ -589,4 +589,5 @@
 "Your privacy" = "あなたのプライバシー";
 "Your selection is %@. You can free %@ more on Free." = "選択内容は %@ です。無料ではさらに %@ を無料で利用できます。";
 "Your storage, organized intelligently." = "ストレージをインテリジェントに整理します。";
+"Zoom" = "ズーム";
 "≈ %@ / month" = "≈ %@ / 月";

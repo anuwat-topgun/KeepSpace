@@ -86,6 +86,7 @@
 "Not backed up" = "未备份";
 "Failed" = "失败";
 "Cancelled" = "取消";
+"Use Device Language" = "使用设备语言";
 "Sharpest image" = "最清晰的图像";
 "Details are the clearest in this group." = "细节是这组中最清晰的。";
 "Best faces" = "最好的面孔";
@@ -297,8 +298,8 @@
 "Keep local copies" = "保留本地副本";
 "Keep Local Copies" = "保留本地副本";
 "Keep Recommended" = "保持推荐";
+"Keep Selected Photo" = "保留选定的照片";
 "Keep space. Keep what matters." = "保留空间。保留重要的东西。";
-"Keep This One" = "保留这个";
 "Keep your best photos and videos safe and organized." = "确保您最好的照片和视频安全有序。";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "保留这张照片后，确认后将删除其余 %d 张。它们会在“最近删除”中保留 30 天。";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "保留这张照片后，确认后将删除其余 %d 张。它们会在回收站中保留 30 天。";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace 专业版 · 终身";
 "KeepSpace Pro · Monthly" = "KeepSpace 专业版 · 每月";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · 每年";
+"Language" = "语言";
 "Large files and recordings." = "大文件和录音。";
 "Large Videos" = "大视频";
 "Learn from my choices" = "从我的选择中学习";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "照片 %d，推荐";
 "Photo Access" = "照片访问";
 "Photo access is off" = "照片访问已关闭";
-"Photo Kept" = "照片保留";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "此设备上使用照片位置来告知从家出发的行程。它们永远不会在网上查找或共享。";
 "Photos" = "照片";
 "Photos & videos" = "照片和视频";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "收据归档";
 "Recommended" = "推荐";
 "Recommended keep selected" = "推荐保留选择";
-"Recommended Kept" = "推荐保留";
 "Recover storage safely" = "安全地恢复存储";
 "Rename automatically" = "自动重命名";
 "Renews %@" = "续订%@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "解锁无限清理";
 "Upgrade to Pro" = "升级到专业版";
 "Upload over Wi-Fi only" = "仅通过 Wi-Fi 上传";
+"Uploading" = "上传中";
 "Used" = "二手";
 "Uses date and a stable item suffix" = "使用日期和稳定的项目后缀";
 "Uses the photos you keep to fine-tune recommendations." = "使用您保留的照片来微调推荐。";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "您使用的是免费计划。";
 "You've used this month's free backups." = "您已使用本月的免费备份。";
 "You've used this month's free cleanup" = "您已使用本月的免费清理服务";
-"Your choice also teaches Best Shot your taste, on this device." = "您的选择也会让 Best Shot 了解您在此设备上的品味。";
 "Your full photo library, with cloud backup status." = "您的完整照片库，具有云备份状态。";
 "Your photos are analyzed on this device only." = "仅在此设备上分析您的照片。";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "你的照片没有被动过。下一次扫描需要更长的时间，而 KeepSpace 会重新分析它们。";
@@ -589,4 +589,5 @@
 "Your privacy" = "您的隐私";
 "Your selection is %@. You can free %@ more on Free." = "您的选择是%@。您可以通过免费免费获得 %@ 更多内容。";
 "Your storage, organized intelligently." = "您的存储空间被智能地组织起来。";
+"Zoom" = "变焦";
 "≈ %@ / month" = "≈ %@ / 月";

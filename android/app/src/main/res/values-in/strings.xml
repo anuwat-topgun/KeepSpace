@@ -88,6 +88,7 @@
     <string name="cloud_status_not_backed_up">Tidak dicadangkan</string>
     <string name="cloud_status_failed">Gagal</string>
     <string name="cloud_status_cancelled">Dibatalkan</string>
+    <string name="settings_use_device_language">Gunakan Bahasa Perangkat</string>
     <string name="best_shot_sharpest_image">Gambar paling tajam</string>
     <string name="best_shot_sharpest_detail">Detailnya paling jelas di grup ini.</string>
     <string name="best_shot_best_faces">Wajah terbaik</string>
@@ -299,8 +300,8 @@
     <string name="common_keep_local_copies">Simpan salinan lokal</string>
     <string name="common_keep_local_copies_8b296740">Simpan Salinan Lokal</string>
     <string name="common_keep_recommended">Tetap Direkomendasikan</string>
+    <string name="common_keep_selected_photo">Simpan Foto yang Dipilih</string>
     <string name="common_keep_space_keep_what_matters">Jaga ruang. Pertahankan hal yang penting.</string>
-    <string name="common_keep_this_one">Simpan Yang Ini</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Jaga foto dan video terbaik Anda tetap aman dan teratur.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Mempertahankan foto ini akan menghapus %d foto lainnya setelah Anda konfirmasi. Foto tersebut tetap ada 30 hari di Baru Dihapus.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Mempertahankan foto ini akan menghapus %d foto lainnya setelah Anda konfirmasi. Foto tersebut tetap ada 30 hari di Sampah.</string>
@@ -313,6 +314,7 @@
     <string name="subscription_keepspace_pro_lifetime">KeepSpace Pro · Seumur Hidup</string>
     <string name="subscription_keepspace_pro_monthly">KeepSpace Pro · Bulanan</string>
     <string name="subscription_keepspace_pro_yearly">KeepSpace Pro · Tahunan</string>
+    <string name="common_language">Bahasa</string>
     <string name="common_large_files_and_recordings_b445c9be">File dan rekaman berukuran besar.</string>
     <string name="common_large_videos">Video Besar</string>
     <string name="common_learn_from_my_choices">Belajar dari pilihan saya</string>
@@ -399,7 +401,6 @@
     <string name="best_shot_photo_d_recommended">Foto %d, disarankan</string>
     <string name="common_photo_access">Akses Foto</string>
     <string name="common_photo_access_is_off">Akses foto tidak aktif</string>
-    <string name="common_photo_kept">Foto Disimpan</string>
     <string name="common_photo_locations_are_used_on_this_device_to_tell_trips_fr">Lokasi foto digunakan pada perangkat ini untuk memberitahukan perjalanan dari rumah. Mereka tidak pernah dicari secara online atau dibagikan.</string>
     <string name="common_photos">Foto</string>
     <string name="common_photos_videos">Foto &amp; video</string>
@@ -437,7 +438,6 @@
     <string name="common_receipt_filing">Pengarsipan Tanda Terima</string>
     <string name="common_recommended">Direkomendasikan</string>
     <string name="common_recommended_keep_selected">Disarankan tetap dipilih</string>
-    <string name="common_recommended_kept">Direkomendasikan Disimpan</string>
     <string name="common_recover_storage_safely">Pulihkan penyimpanan dengan aman</string>
     <string name="common_rename_automatically">Ganti nama secara otomatis</string>
     <string name="subscription_renews_5610efa5">Memperbarui %s</string>
@@ -547,6 +547,7 @@
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Buka Kunci Pembersihan Tanpa Batas</string>
     <string name="subscription_upgrade_to_pro">Tingkatkan ke Pro</string>
     <string name="common_upload_over_wi_fi_only">Unggah melalui Wi-Fi saja</string>
+    <string name="common_uploading">Mengunggah</string>
     <string name="common_used">Digunakan</string>
     <string name="common_uses_date_and_a_stable_item_suffix">Menggunakan tanggal dan akhiran item yang stabil</string>
     <string name="common_uses_the_photos_you_keep_to_fine_tune_recommendations">Menggunakan foto yang Anda simpan untuk menyempurnakan rekomendasi.</string>
@@ -581,7 +582,6 @@
     <string name="subscription_you_re_on_the_free_plan">Anda menggunakan paket Gratis.</string>
     <string name="manual_backup_you_ve_used_this_month_s_free_backups">Anda telah menggunakan cadangan gratis bulan ini.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Anda telah menggunakan pembersihan gratis bulan ini</string>
-    <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Pilihan Anda juga mengajarkan Best Shot selera Anda, di perangkat ini.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Perpustakaan foto lengkap Anda, dengan status cadangan cloud.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Foto Anda hanya dianalisis di perangkat ini.</string>
     <string name="common_your_photos_aren_t_touched_the_next_scan_takes_longer_wh">Foto Anda tidak disentuh. Pemindaian berikutnya memerlukan waktu lebih lama sementara KeepSpace menganalisis ulang.</string>
@@ -591,5 +591,6 @@
     <string name="common_your_privacy">Privasi Anda</string>
     <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Pilihan Anda adalah %s. Anda dapat membebaskan %s lebih banyak secara Gratis.</string>
     <string name="common_your_storage_organized_intelligently">Penyimpanan Anda, diatur dengan cerdas.</string>
+    <string name="library_zoom">Perbesar</string>
     <string name="paywall_month">≈ %s / bulan</string>
 </resources>

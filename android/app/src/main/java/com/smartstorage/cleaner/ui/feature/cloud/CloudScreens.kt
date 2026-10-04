@@ -30,6 +30,7 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.OutlinedTextField
 import com.smartstorage.cleaner.ui.i18n.Text
+import com.smartstorage.cleaner.ui.i18n.localized
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -37,6 +38,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalContext
@@ -110,6 +112,25 @@ fun CloudOverviewScreen(onBackUpNow: () -> Unit, onBack: () -> Unit) {
             }
         }
         if (state.notice != null) Text(state.notice.orEmpty(), style = SmartType.metadata, color = SmartTheme.colors.textSecondary)
+        if (state.activeCount > 0) {
+            SmartCard(style = CardStyle.Info) {
+                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Row(
+                        Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text("Uploading", style = SmartType.optionTitle, color = SmartTheme.colors.textPrimary)
+                        Text("${state.activeProgress}%", style = SmartType.optionTitle, color = SmartTheme.colors.accent)
+                    }
+                    LinearProgressIndicator(
+                        progress = { state.activeProgress / 100f },
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                    Text("${state.activeCount} ${localized("remaining")}", style = SmartType.metadata, color = SmartTheme.colors.textSecondary)
+                }
+            }
+        }
         if (state.uploads.isNotEmpty()) {
             SectionLabel("Backup Activity")
             state.uploads.takeLast(6).reversed().forEach { upload ->
@@ -119,12 +140,20 @@ fun CloudOverviewScreen(onBackUpNow: () -> Unit, onBack: () -> Unit) {
                     else -> Icons.Rounded.Schedule
                 }
                 SmartCard {
-                    ListTile(icon, upload.sourceName, tint = if (upload.status == CloudUploadStatus.Failed) Tint.Coral else Tint.Teal,
-                        subtitle = "${upload.provider.title} · ${upload.status.name} · ${upload.bytes.formattedBytes()}", showsChevron = false)
-                    if (upload.status in setOf(CloudUploadStatus.Uploading, CloudUploadStatus.Verifying)) {
-                        LinearProgressIndicator(progress = { upload.progress / 100f }, modifier = Modifier.fillMaxWidth())
+                    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                        ListTile(icon, upload.sourceName, tint = if (upload.status == CloudUploadStatus.Failed) Tint.Coral else Tint.Teal,
+                            subtitle = "${upload.provider.title} · ${localized(upload.status.title)} · ${upload.bytes.formattedBytes()}", showsChevron = false)
+                        if (upload.status in setOf(CloudUploadStatus.Waiting, CloudUploadStatus.Uploading, CloudUploadStatus.Verifying)) {
+                            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                                LinearProgressIndicator(
+                                    progress = { upload.progress / 100f },
+                                    modifier = Modifier.weight(1f),
+                                )
+                                Text("${upload.progress}%", style = SmartType.metadata, color = SmartTheme.colors.textSecondary)
+                            }
+                        }
+                        if (upload.error != null) Text(upload.error, style = SmartType.metadata, color = SmartTheme.colors.textSecondary)
                     }
-                    if (upload.error != null) Text(upload.error, style = SmartType.metadata, color = SmartTheme.colors.textSecondary)
                 }
             }
             if (state.uploads.any { it.status == CloudUploadStatus.Failed }) {
@@ -204,6 +233,7 @@ fun ManualBackupScreen(onBack: () -> Unit) {
                 else {
                     cloud.enqueue(provider, scope, folder, candidates.take(allowed))
                     monetization.recordBackups(allowed)
+                    onBack()
                 }
             },
             Modifier.fillMaxWidth(),

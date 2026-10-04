@@ -86,6 +86,7 @@
 "Not backed up" = "Yedeklenmedi";
 "Failed" = "Başarısız";
 "Cancelled" = "İptal edildi";
+"Use Device Language" = "Cihaz Dilini Kullan";
 "Sharpest image" = "En keskin görüntü";
 "Details are the clearest in this group." = "Bu grupta ayrıntılar en net olanıdır.";
 "Best faces" = "En iyi yüzler";
@@ -297,8 +298,8 @@
 "Keep local copies" = "Yerel kopyaları saklayın";
 "Keep Local Copies" = "Yerel Kopyaları Saklayın";
 "Keep Recommended" = "Tavsiye Edileni Koru";
+"Keep Selected Photo" = "Seçilen Fotoğrafı Tut";
 "Keep space. Keep what matters." = "Yer tutun. Önemli olanı sakla.";
-"Keep This One" = "Bunu Sakla";
 "Keep your best photos and videos safe and organized." = "En iyi fotoğraflarınızı ve videolarınızı güvende ve düzenli tutun.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Bu fotoğrafı tutarsanız onayınızdan sonra diğer %d fotoğraf silinir. Son Silinenler’de 30 gün kalırlar.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Bu fotoğrafı tutarsanız onayınızdan sonra diğer %d fotoğraf silinir. Çöp kutusunda 30 gün kalırlar.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Pro · Ömür boyu";
 "KeepSpace Pro · Monthly" = "KeepSpace Profesyonel · Aylık";
 "KeepSpace Pro · Yearly" = "KeepSpace Profesyonel · Yıllık";
+"Language" = "Dil";
 "Large files and recordings." = "Büyük dosyalar ve kayıtlar.";
 "Large Videos" = "Büyük Videolar";
 "Learn from my choices" = "Seçimlerimden ders alın";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "Fotoğraf %d, önerilen";
 "Photo Access" = "Fotoğraf Erişimi";
 "Photo access is off" = "Fotoğraf erişimi kapalı";
-"Photo Kept" = "Fotoğraf Saklandı";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "Bu cihazda fotoğraf konumları evden yapılan gezileri anlatmak için kullanılıyor. Hiçbir zaman çevrimiçi olarak aranmaz veya paylaşılmazlar.";
 "Photos" = "Fotoğraflar";
 "Photos & videos" = "Fotoğraflar ve videolar";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "Makbuz Dosyalama";
 "Recommended" = "Önerilen";
 "Recommended keep selected" = "Önerilen seçili tutma";
-"Recommended Kept" = "Önerilen Saklama";
 "Recover storage safely" = "Depolama alanını güvenli bir şekilde kurtarın";
 "Rename automatically" = "Otomatik olarak yeniden adlandır";
 "Renews %@" = "%@ yenilenir";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "Sınırsız Temizlemenin Kilidini Açın";
 "Upgrade to Pro" = "Pro'ya yükseltin";
 "Upload over Wi-Fi only" = "Yalnızca Wi-Fi üzerinden yükleme yapın";
+"Uploading" = "Yükleniyor";
 "Used" = "Kullanılmış";
 "Uses date and a stable item suffix" = "Tarih ve sabit bir öğe son eki kullanır";
 "Uses the photos you keep to fine-tune recommendations." = "Önerilere ince ayar yapmak için sakladığınız fotoğrafları kullanır.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "Ücretsiz plandasınız.";
 "You've used this month's free backups." = "Bu ayın ücretsiz yedeklemelerini kullandınız.";
 "You've used this month's free cleanup" = "Bu ayın ücretsiz temizliğini kullandınız";
-"Your choice also teaches Best Shot your taste, on this device." = "Seçiminiz aynı zamanda bu cihazda Best Shot zevkinizi de öğretir.";
 "Your full photo library, with cloud backup status." = "Bulut yedekleme durumuyla birlikte tam fotoğraf kitaplığınız.";
 "Your photos are analyzed on this device only." = "Fotoğraflarınız yalnızca bu cihazda analiz edilir.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "Fotoğraflarınıza dokunulmaz. KeepSpace bunları yeniden analiz ederken bir sonraki tarama daha uzun sürer.";
@@ -589,4 +589,5 @@
 "Your privacy" = "Gizliliğiniz";
 "Your selection is %@. You can free %@ more on Free." = "Seçiminiz %@. Ücretsiz olarak %@ daha fazlasını ücretsiz yapabilirsiniz.";
 "Your storage, organized intelligently." = "Akıllıca organize edilen depolama alanınız.";
+"Zoom" = "Yakınlaştır";
 "≈ %@ / month" = "≈ %@ / ay";

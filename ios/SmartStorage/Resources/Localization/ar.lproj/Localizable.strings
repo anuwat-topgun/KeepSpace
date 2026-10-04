@@ -86,6 +86,7 @@
 "Not backed up" = "لم يتم الاحتفاظ بنسخة احتياطية";
 "Failed" = "فشل";
 "Cancelled" = "تم الإلغاء";
+"Use Device Language" = "استخدم لغة الجهاز";
 "Sharpest image" = "أبشع صورة";
 "Details are the clearest in this group." = "التفاصيل هي الأوضح في هذه المجموعة.";
 "Best faces" = "أفضل الوجوه";
@@ -297,8 +298,8 @@
 "Keep local copies" = "احتفظ بنسخ محلية";
 "Keep Local Copies" = "احتفظ بالنسخ المحلية";
 "Keep Recommended" = "إبقاء الموصى بها";
+"Keep Selected Photo" = "احتفظ بالصورة المحددة";
 "Keep space. Keep what matters." = "احتفظ بالمساحة. احتفظ بما يهم.";
-"Keep This One" = "احتفظ بهذا";
 "Keep your best photos and videos safe and organized." = "حافظ على أفضل الصور ومقاطع الفيديو الخاصة بك آمنة ومنظمة.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "الاحتفاظ بهذه الصورة يحذف الصور الأخرى (%d) بعد تأكيدك. تبقى 30 يومًا في المحذوفة مؤخرًا.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "الاحتفاظ بهذه الصورة يحذف الصور الأخرى (%d) بعد تأكيدك. تبقى 30 يومًا في سلة المهملات.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Pro · مدى الحياة";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · شهريًا";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · سنويًا";
+"Language" = "اللغة";
 "Large files and recordings." = "ملفات وتسجيلات كبيرة.";
 "Large Videos" = "فيديوهات كبيرة";
 "Learn from my choices" = "تعلم من اختياراتي";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "الصورة %d، موصى بها";
 "Photo Access" = "الوصول إلى الصور";
 "Photo access is off" = "تم إيقاف الوصول إلى الصور";
-"Photo Kept" = "تم الاحتفاظ بالصورة";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "يتم استخدام مواقع الصور على هذا الجهاز لمعرفة الرحلات من المنزل. ولا يتم البحث عنها مطلقًا عبر الإنترنت أو مشاركتها.";
 "Photos" = "صور";
 "Photos & videos" = "الصور ومقاطع الفيديو";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "إيداع الاستلام";
 "Recommended" = "موصى به";
 "Recommended keep selected" = "يوصى بالاحتفاظ بالاختيار";
-"Recommended Kept" = "الموصى بها أبقى";
 "Recover storage safely" = "استعادة التخزين بأمان";
 "Rename automatically" = "إعادة التسمية تلقائيًا";
 "Renews %@" = "التجديد %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "فتح تنظيف غير محدود";
 "Upgrade to Pro" = "الترقية إلى برو";
 "Upload over Wi-Fi only" = "التحميل عبر Wi-Fi فقط";
+"Uploading" = "جارٍ التحميل";
 "Used" = "مستعملة";
 "Uses date and a stable item suffix" = "يستخدم التاريخ ولاحقة عنصر ثابت";
 "Uses the photos you keep to fine-tune recommendations." = "يستخدم الصور التي تحتفظ بها لتحسين التوصيات.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "أنت مشترك في الخطة المجانية.";
 "You've used this month's free backups." = "لقد استخدمت النسخ الاحتياطية المجانية لهذا الشهر.";
 "You've used this month's free cleanup" = "لقد استخدمت التنظيف المجاني لهذا الشهر";
-"Your choice also teaches Best Shot your taste, on this device." = "يؤدي اختيارك أيضًا إلى تعليم Best Shot ذوقك على هذا الجهاز.";
 "Your full photo library, with cloud backup status." = "مكتبة الصور الكاملة الخاصة بك، مع حالة النسخ الاحتياطي السحابي.";
 "Your photos are analyzed on this device only." = "يتم تحليل صورك على هذا الجهاز فقط.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "لا يتم لمس صورك. يستغرق الفحص التالي وقتًا أطول بينما يقوم KeepSpace بإعادة تحليلها.";
@@ -589,4 +589,5 @@
 "Your privacy" = "خصوصيتك";
 "Your selection is %@. You can free %@ more on Free." = "اختيارك هو %@. يمكنك تحرير %@ المزيد مجانًا.";
 "Your storage, organized intelligently." = "تخزينك، منظم بذكاء.";
+"Zoom" = "تكبير";
 "≈ %@ / month" = "≈ %@ / شهر";

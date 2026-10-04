@@ -88,6 +88,7 @@
     <string name="cloud_status_not_backed_up">Inte säkerhetskopierat</string>
     <string name="cloud_status_failed">Misslyckades</string>
     <string name="cloud_status_cancelled">Avbruten</string>
+    <string name="settings_use_device_language">Använd enhetsspråk</string>
     <string name="best_shot_sharpest_image">Skarpaste bilden</string>
     <string name="best_shot_sharpest_detail">Detaljerna är tydligast i denna grupp.</string>
     <string name="best_shot_best_faces">Bästa ansikten</string>
@@ -299,8 +300,8 @@
     <string name="common_keep_local_copies">Behåll lokala kopior</string>
     <string name="common_keep_local_copies_8b296740">Behåll lokala kopior</string>
     <string name="common_keep_recommended">Behåll rekommenderat</string>
+    <string name="common_keep_selected_photo">Behåll det valda fotot</string>
     <string name="common_keep_space_keep_what_matters">Behåll utrymme. Behåll det som betyder något.</string>
-    <string name="common_keep_this_one">Behåll denna</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Håll dina bästa foton och videor säkra och organiserade.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Om du behåller det här fotot raderas de andra %d efter din bekräftelse. De ligger kvar i 30 dagar i Nyligen raderade.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Om du behåller det här fotot raderas de andra %d efter din bekräftelse. De ligger kvar i 30 dagar i papperskorgen.</string>
@@ -313,6 +314,7 @@
     <string name="subscription_keepspace_pro_lifetime">KeepSpace Pro · Livstid</string>
     <string name="subscription_keepspace_pro_monthly">KeepSpace Pro · Månadsvis</string>
     <string name="subscription_keepspace_pro_yearly">KeepSpace Pro · Årligen</string>
+    <string name="common_language">Språk</string>
     <string name="common_large_files_and_recordings_b445c9be">Stora filer och inspelningar.</string>
     <string name="common_large_videos">Stora videor</string>
     <string name="common_learn_from_my_choices">Lär dig av mina val</string>
@@ -399,7 +401,6 @@
     <string name="best_shot_photo_d_recommended">Foto %d, rekommenderat</string>
     <string name="common_photo_access">Foto Access</string>
     <string name="common_photo_access_is_off">Fotoåtkomst är avstängd</string>
-    <string name="common_photo_kept">Foto bevarat</string>
     <string name="common_photo_locations_are_used_on_this_device_to_tell_trips_fr">Fotoplatser används på den här enheten för att berätta om resor hemifrån. De slås aldrig upp på nätet eller delas.</string>
     <string name="common_photos">Foton</string>
     <string name="common_photos_videos">Foton och videor</string>
@@ -437,7 +438,6 @@
     <string name="common_receipt_filing">Kvittoarkivering</string>
     <string name="common_recommended">Rekommenderas</string>
     <string name="common_recommended_keep_selected">Rekommenderas att behålla valt</string>
-    <string name="common_recommended_kept">Rekommenderad bevarad</string>
     <string name="common_recover_storage_safely">Återställ lagring på ett säkert sätt</string>
     <string name="common_rename_automatically">Byt namn automatiskt</string>
     <string name="subscription_renews_5610efa5">Förnyar %s</string>
@@ -547,6 +547,7 @@
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Lås upp obegränsad rensning</string>
     <string name="subscription_upgrade_to_pro">Uppgradera till Pro</string>
     <string name="common_upload_over_wi_fi_only">Ladda upp endast över Wi-Fi</string>
+    <string name="common_uploading">Laddar upp</string>
     <string name="common_used">Används</string>
     <string name="common_uses_date_and_a_stable_item_suffix">Använder datum och ett stabilt artikelsuffix</string>
     <string name="common_uses_the_photos_you_keep_to_fine_tune_recommendations">Använder de foton du behåller för att finjustera rekommendationer.</string>
@@ -581,7 +582,6 @@
     <string name="subscription_you_re_on_the_free_plan">Du har gratisplanen.</string>
     <string name="manual_backup_you_ve_used_this_month_s_free_backups">Du har använt denna månads kostnadsfria säkerhetskopior.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Du har använt den här månadens gratis städning</string>
-    <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Ditt val lär också Best Shot din smak, på den här enheten.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Ditt fullständiga fotobibliotek, med molnsäkerhetsstatus.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Dina foton analyseras endast på den här enheten.</string>
     <string name="common_your_photos_aren_t_touched_the_next_scan_takes_longer_wh">Dina foton berörs inte. Nästa skanning tar längre tid medan KeepSpace analyserar dem igen.</string>
@@ -591,5 +591,6 @@
     <string name="common_your_privacy">Din integritet</string>
     <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Ditt val är %s. Du kan gratis %s mer på Gratis.</string>
     <string name="common_your_storage_organized_intelligently">Din lagring, organiserad på ett intelligent sätt.</string>
+    <string name="library_zoom">Zooma</string>
     <string name="paywall_month">≈ %s / månad</string>
 </resources>

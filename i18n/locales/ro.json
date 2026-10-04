@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "Păstrați copii locale",
     "common.keep_recommended": "Păstrați recomandat",
     "common.keep_space_keep_what_matters": "Păstrați spațiu. Păstrează ceea ce contează.",
-    "common.keep_this_one": "Păstrează-l pe acesta",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "Păstrează-ți cele mai bune fotografii și videoclipuri în siguranță și organizate.",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "KeepSpace analizează biblioteca dvs. de pe acest dispozitiv pentru a găsi spațiu pe care îl puteți recupera în siguranță.",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace întreabă o dată, apoi funcționează în întregime pe acest dispozitiv.",
@@ -199,7 +198,6 @@
     "common.photo": "Fotografie",
     "common.photo_access": "Acces foto",
     "common.photo_access_is_off": "Accesul la fotografii este dezactivat",
-    "common.photo_kept": "Fotografie păstrată",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "Locațiile fotografiilor sunt folosite pe acest dispozitiv pentru a spune călătoriile de acasă. Ele nu sunt niciodată căutate online sau partajate.",
     "common.photos": "Fotografii",
     "common.photos_videos": "Fotografii și videoclipuri",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "Depunerea chitanței",
     "common.recommended": "Recomandat",
     "common.recommended_keep_selected": "Se recomandă păstrarea selectată",
-    "common.recommended_kept": "Recomandat Păstrat",
     "common.recover_storage_safely": "Recuperați spațiul de stocare în siguranță",
     "common.rename_automatically": "Redenumiți automat",
     "common.reset": "Resetați",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "Examinați fiecare curățare, iar amintirile importante sunt protejate implicit.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "Veți confirma în pasul următor. Articolele rămân în Șterse recent timp de 30 de zile.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "Veți confirma în pasul următor. Articolele rămân în Coșul de gunoi timp de 30 de zile.",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "Alegerea dvs. vă învață și gustul Best Shot pe acest dispozitiv.",
     "common.your_photos_are_analyzed_on_this_device_only": "Fotografiile dvs. sunt analizate numai pe acest dispozitiv.",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "Fotografiile tale nu sunt atinse. Următoarea scanare durează mai mult timp în timp ce KeepSpace le reanalizează.",
     "common.your_photos_go_only_where_you_choose": "Fotografiile tale merg doar acolo unde alegi tu.",
@@ -589,6 +585,11 @@
     "badges.verified_in": "Verificat în %@",
     "about.version": "Versiunea %@",
     "insights.photos_added": "fotografii adăugate",
-    "insights.videos_added": "videoclipuri adăugate"
+    "insights.videos_added": "videoclipuri adăugate",
+    "settings.use_device_language": "Utilizați limba dispozitivului",
+    "common.language": "Limba",
+    "common.uploading": "Încărcare",
+    "library.zoom": "Zoom",
+    "common.keep_selected_photo": "Păstrați fotografia selectată"
   }
 }

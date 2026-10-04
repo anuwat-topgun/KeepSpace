@@ -50,6 +50,7 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -122,6 +123,11 @@ fun LibraryScreen(onOpen: (Screen) -> Unit) {
         }
     }
     val colors = SmartTheme.colors
+
+    LaunchedEffect(filter) {
+        // A filter changes only the grid. Never carry a stale tile selection into preview.
+        selected = null
+    }
 
     BoxWithConstraints(Modifier.fillMaxSize().background(colors.background)) {
         val gutter = if (maxWidth >= SmartMetrics.tabletBreakpoint) SmartMetrics.gutterExpanded else SmartMetrics.gutterCompact
@@ -249,6 +255,12 @@ private fun LibraryTile(item: MediaItem, state: AssetCloudState, onClick: () -> 
     ) {
         AssetImage(item.id, item.fallbackStyle, Modifier.fillMaxSize(), cornerRadius = 2.dp)
         CloudStateIcon(state, Modifier.align(Alignment.BottomEnd).padding(6.dp))
+        if (state.status in setOf(CloudUploadStatus.Waiting, CloudUploadStatus.Uploading, CloudUploadStatus.Verifying)) {
+            LinearProgressIndicator(
+                progress = { state.progress / 100f },
+                modifier = Modifier.align(Alignment.BottomCenter).fillMaxWidth(),
+            )
+        }
         if (item.isVideo) {
             Icon(
                 Icons.Rounded.Videocam,

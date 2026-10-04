@@ -86,6 +86,7 @@
 "Not backed up" = "백업되지 않음";
 "Failed" = "실패";
 "Cancelled" = "취소됨";
+"Use Device Language" = "장치 언어 사용";
 "Sharpest image" = "가장 선명한 이미지";
 "Details are the clearest in this group." = "세부 사항은 이 그룹에서 가장 명확합니다.";
 "Best faces" = "최고의 얼굴";
@@ -297,8 +298,8 @@
 "Keep local copies" = "로컬 복사본 보관";
 "Keep Local Copies" = "로컬 복사본 보관";
 "Keep Recommended" = "추천 유지";
+"Keep Selected Photo" = "선택한 사진 유지";
 "Keep space. Keep what matters." = "공간을 유지하세요. 중요한 것을 보관하세요.";
-"Keep This One" = "이것을 보관하세요";
 "Keep your best photos and videos safe and organized." = "최고의 사진과 비디오를 안전하고 체계적으로 보관하세요.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "이 사진을 유지하면 확인 후 나머지 %d장이 삭제됩니다. ‘최근 삭제된 항목’에 30일 동안 남아 있습니다.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "이 사진을 유지하면 확인 후 나머지 %d장이 삭제됩니다. 휴지통에 30일 동안 남아 있습니다.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace 프로 · 평생";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · 월간";
 "KeepSpace Pro · Yearly" = "KeepSpace 프로 · 매년";
+"Language" = "언어";
 "Large files and recordings." = "대용량 파일 및 녹음.";
 "Large Videos" = "대형 비디오";
 "Learn from my choices" = "나의 선택으로부터 배워라";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "사진 %d, 추천";
 "Photo Access" = "사진 액세스";
 "Photo access is off" = "사진 액세스가 사용 중지되었습니다.";
-"Photo Kept" = "사진 보관";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "이 기기에서는 사진 위치를 사용하여 집에서 출발하는 경로를 알려줍니다. 온라인에서 조회되거나 공유되지 않습니다.";
 "Photos" = "사진";
 "Photos & videos" = "사진 및 동영상";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "영수증 제출";
 "Recommended" = "추천";
 "Recommended keep selected" = "계속 선택하는 것이 좋습니다.";
-"Recommended Kept" = "권장 유지";
 "Recover storage safely" = "안전하게 스토리지를 복구하세요";
 "Rename automatically" = "자동으로 이름 바꾸기";
 "Renews %@" = "%@ 갱신";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "무제한 정리 잠금 해제";
 "Upgrade to Pro" = "프로로 업그레이드";
 "Upload over Wi-Fi only" = "Wi-Fi를 통해서만 업로드";
+"Uploading" = "업로드 중";
 "Used" = "중고";
 "Uses date and a stable item suffix" = "날짜와 안정적인 항목 접미사를 사용합니다.";
 "Uses the photos you keep to fine-tune recommendations." = "보관 중인 사진을 사용하여 추천 항목을 세부적으로 조정합니다.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "무료 요금제를 사용 중입니다.";
 "You've used this month's free backups." = "이번 달의 무료 백업을 사용하셨습니다.";
 "You've used this month's free cleanup" = "이번 달 무료 청소를 사용하셨습니다.";
-"Your choice also teaches Best Shot your taste, on this device." = "귀하의 선택은 또한 이 장치에서 Best Shot의 취향을 알려줍니다.";
 "Your full photo library, with cloud backup status." = "클라우드 백업 상태가 포함된 전체 사진 라이브러리.";
 "Your photos are analyzed on this device only." = "귀하의 사진은 이 장치에서만 분석됩니다.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "사진은 건드리지 않습니다. KeepSpace가 다시 분석하는 동안 다음 스캔은 더 오랜 시간이 걸립니다.";
@@ -589,4 +589,5 @@
 "Your privacy" = "귀하의 개인 정보";
 "Your selection is %@. You can free %@ more on Free." = "귀하의 선택은 %@입니다. 무료에서는 %@ 이상을 무료로 이용할 수 있습니다.";
 "Your storage, organized intelligently." = "지능적으로 정리된 스토리지.";
+"Zoom" = "줌";
 "≈ %@ / month" = "≒ %@/월";

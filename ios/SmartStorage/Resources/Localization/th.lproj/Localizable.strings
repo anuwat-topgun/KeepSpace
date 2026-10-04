@@ -86,6 +86,7 @@
 "Not backed up" = "ไม่ได้สำรองข้อมูล";
 "Failed" = "ล้มเหลว";
 "Cancelled" = "ยกเลิกแล้ว";
+"Use Device Language" = "ใช้ภาษาของอุปกรณ์";
 "Sharpest image" = "ภาพที่คมชัดที่สุด";
 "Details are the clearest in this group." = "รายละเอียดชัดเจนที่สุดในกลุ่มนี้";
 "Best faces" = "ใบหน้าที่ดีที่สุด";
@@ -297,8 +298,8 @@
 "Keep local copies" = "เก็บสำเนาในเครื่อง";
 "Keep Local Copies" = "เก็บสำเนาในเครื่อง";
 "Keep Recommended" = "เอาไว้แนะนำ";
+"Keep Selected Photo" = "เก็บรูปภาพที่เลือกไว้";
 "Keep space. Keep what matters." = "รักษาพื้นที่. เก็บสิ่งที่สำคัญไว้";
-"Keep This One" = "เก็บอันนี้ไว้";
 "Keep your best photos and videos safe and organized." = "เก็บรูปภาพและวิดีโอที่ดีที่สุดของคุณให้ปลอดภัยและเป็นระเบียบ";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "การเก็บรูปนี้ไว้จะลบรูปอื่นอีก %d รูปหลังจากคุณยืนยัน รูปเหล่านั้นจะอยู่ใน “ลบล่าสุด” 30 วัน";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "การเก็บรูปนี้ไว้จะลบรูปอื่นอีก %d รูปหลังจากคุณยืนยัน รูปเหล่านั้นจะอยู่ในถังขยะ 30 วัน";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace มือโปร · อายุการใช้งาน";
 "KeepSpace Pro · Monthly" = "KeepSpace มือโปร · รายเดือน";
 "KeepSpace Pro · Yearly" = "KeepSpace มือโปร · รายปี";
+"Language" = "ภาษา";
 "Large files and recordings." = "ไฟล์ขนาดใหญ่และการบันทึก";
 "Large Videos" = "วิดีโอขนาดใหญ่";
 "Learn from my choices" = "เรียนรู้จากตัวเลือกของฉัน";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "รูปที่ %d แนะนำ";
 "Photo Access" = "การเข้าถึงภาพถ่าย";
 "Photo access is off" = "การเข้าถึงรูปภาพปิดอยู่";
-"Photo Kept" = "เก็บภาพไว้";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "อุปกรณ์นี้ใช้ตำแหน่งรูปภาพเพื่อบอกการเดินทางจากบ้าน พวกเขาไม่เคยถูกค้นหาทางออนไลน์หรือแชร์";
 "Photos" = "ภาพถ่าย";
 "Photos & videos" = "ภาพถ่ายและวิดีโอ";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "การยื่นใบเสร็จรับเงิน";
 "Recommended" = "แนะนำ";
 "Recommended keep selected" = "แนะนำให้เลือกเก็บไว้";
-"Recommended Kept" = "แนะนำให้เก็บไว้";
 "Recover storage safely" = "กู้คืนพื้นที่เก็บข้อมูลอย่างปลอดภัย";
 "Rename automatically" = "เปลี่ยนชื่อโดยอัตโนมัติ";
 "Renews %@" = "ต่ออายุ %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "ปลดล็อกการล้างข้อมูลแบบไม่จำกัด";
 "Upgrade to Pro" = "อัพเกรดเป็นโปร";
 "Upload over Wi-Fi only" = "อัปโหลดผ่าน Wi-Fi เท่านั้น";
+"Uploading" = "กำลังอัพโหลด";
 "Used" = "ใช้แล้ว";
 "Uses date and a stable item suffix" = "ใช้วันที่และส่วนต่อท้ายรายการที่มีเสถียรภาพ";
 "Uses the photos you keep to fine-tune recommendations." = "ใช้รูปภาพที่คุณเก็บไว้เพื่อปรับแต่งคำแนะนำ";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "คุณใช้แผนฟรี";
 "You've used this month's free backups." = "คุณได้ใช้การสำรองข้อมูลฟรีของเดือนนี้แล้ว";
 "You've used this month's free cleanup" = "คุณได้ใช้การล้างข้อมูลฟรีของเดือนนี้แล้ว";
-"Your choice also teaches Best Shot your taste, on this device." = "ตัวเลือกของคุณยังสอน Best Shot ให้กับรสนิยมของคุณบนอุปกรณ์นี้ด้วย";
 "Your full photo library, with cloud backup status." = "คลังภาพเต็มรูปแบบของคุณพร้อมสถานะการสำรองข้อมูลบนคลาวด์";
 "Your photos are analyzed on this device only." = "รูปภาพของคุณได้รับการวิเคราะห์บนอุปกรณ์นี้เท่านั้น";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "ภาพถ่ายของคุณไม่ได้ถูกแตะต้อง การสแกนครั้งถัดไปใช้เวลานานกว่าในขณะที่ KeepSpace วิเคราะห์อีกครั้ง";
@@ -589,4 +589,5 @@
 "Your privacy" = "ความเป็นส่วนตัวของคุณ";
 "Your selection is %@. You can free %@ more on Free." = "การเลือกของคุณคือ %@ คุณสามารถฟรี %@ เพิ่มเติมได้ฟรี";
 "Your storage, organized intelligently." = "พื้นที่เก็บข้อมูลของคุณได้รับการจัดระเบียบอย่างชาญฉลาด";
+"Zoom" = "ซูม";
 "≈ %@ / month" = "อยู่ที่ %@/เดือน";

@@ -6,7 +6,10 @@ import kotlin.math.abs
 
 enum class CloudProvider(val title: String) { GoogleDrive("Google Drive"), OneDrive("OneDrive") }
 enum class CloudBackupScope(val title: String) { Photos("Photos"), Screenshots("Screenshots"), Receipts("Receipts") }
-enum class CloudUploadStatus { Waiting, Uploading, Verifying, BackedUp, Failed, Cancelled }
+enum class CloudUploadStatus(val title: String) {
+    Waiting("Waiting"), Uploading("Uploading"), Verifying("Verifying"),
+    BackedUp("Backed up"), Failed("Failed"), Cancelled("Cancelled")
+}
 
 data class CloudConnection(
     val provider: CloudProvider,
@@ -71,5 +74,9 @@ data class CloudState(
     val uploads: List<CloudUploadItem>,
     val notice: String? = null,
 ) {
-    val activeCount: Int get() = uploads.count { it.status in setOf(CloudUploadStatus.Waiting, CloudUploadStatus.Uploading, CloudUploadStatus.Verifying) }
+    val activeCount: Int get() = activeUploads.size
+    // Uploads run serially. Waiting files remain at zero, so this is the current file's useful progress.
+    val activeProgress: Int get() = activeUploads.maxOfOrNull { it.progress } ?: 0
+    private val activeUploads: List<CloudUploadItem>
+        get() = uploads.filter { it.status in setOf(CloudUploadStatus.Waiting, CloudUploadStatus.Uploading, CloudUploadStatus.Verifying) }
 }

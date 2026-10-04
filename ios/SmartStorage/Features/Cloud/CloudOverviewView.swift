@@ -45,6 +45,29 @@ struct CloudOverviewView: View {
                     .foregroundStyle(Palette.textSecondary)
             }
 
+            if cloud.activeCount > 0 {
+                Card(style: .info) {
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack {
+                            Label("Uploading", systemImage: "icloud.and.arrow.up.fill")
+                                .font(.system(.headline, weight: .semibold))
+                                .foregroundStyle(Palette.textPrimary)
+                            Spacer()
+                            Text("\(cloud.activeProgress)%")
+                                .font(.system(.headline, design: .rounded, weight: .bold))
+                                .foregroundStyle(Palette.accent)
+                        }
+                        ProgressView(value: Double(cloud.activeProgress), total: 100)
+                            .tint(Palette.accent)
+                            .accessibilityLabel("Uploading")
+                            .accessibilityValue("\(cloud.activeProgress)%")
+                        Text("\(cloud.activeCount) \("remaining".localizedUI)")
+                            .font(Typography.metadata)
+                            .foregroundStyle(Palette.textSecondary)
+                    }
+                }
+            }
+
             if !cloud.uploads.isEmpty {
                 SectionLabel("Backup Activity")
                 ForEach(cloud.uploads.suffix(6).reversed()) { upload in
@@ -54,8 +77,14 @@ struct CloudOverviewView: View {
                                      title: upload.sourceName,
                                      subtitle: "\(upload.provider.title) · \(upload.status.title.localizedUI) · \(upload.bytes.formattedBytes)",
                                      showsChevron: false)
-                            if upload.status == .uploading || upload.status == .verifying {
-                                ProgressView(value: Double(upload.progress), total: 100).tint(Palette.accent)
+                            if [.waiting, .uploading, .verifying].contains(upload.status) {
+                                HStack(spacing: 10) {
+                                    ProgressView(value: Double(upload.progress), total: 100)
+                                        .tint(Palette.accent)
+                                    Text("\(upload.progress)%")
+                                        .font(Typography.metadata.monospacedDigit())
+                                        .foregroundStyle(Palette.textSecondary)
+                                }
                             }
                             if let error = upload.error { Text(error).font(Typography.metadata).foregroundStyle(Palette.textSecondary) }
                         }

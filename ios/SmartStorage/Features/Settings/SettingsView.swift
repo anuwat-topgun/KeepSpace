@@ -10,6 +10,8 @@ struct SettingsView: View {
     @Environment(CloudStore.self) private var cloud
     @Environment(RuleStore.self) private var rules
     @Environment(MonetizationStore.self) private var monetization
+    @Environment(AppLanguageStore.self) private var language
+    @State private var showsLanguagePicker = false
 
     private var accessText: String {
         switch library.access {
@@ -31,13 +33,26 @@ struct SettingsView: View {
             row(.memories, icon: "heart.fill", tint: .coral, subtitle: "Protected by default")
             row(.aiTaste, icon: "wand.and.stars", tint: .purple, locked: !monetization.isPro && taste.decisions == 0, subtitle: taste.isEnabled ? (taste.decisions == 0 ? "Learns as you choose" : localizedCount(taste.decisions, one: "Learned from %d choice", other: "Learned from %d choices")) : "Off")
             row(.cloudOverview, icon: "icloud.fill", tint: .blue,
-                subtitle: cloud.connections.filter(\.isConnected).isEmpty ? "Connect Google Drive or OneDrive" : localizedFormat("%d connected", cloud.connections.filter(\.isConnected).count))
+                subtitle: cloud.activeCount > 0
+                    ? "\("Uploading".localizedUI) · \(cloud.activeCount) · \(cloud.activeProgress)%"
+                    : (cloud.connections.filter(\.isConnected).isEmpty ? "Connect Google Drive or OneDrive" : localizedFormat("%d connected", cloud.connections.filter(\.isConnected).count)))
 
             row(.storageRules, icon: "arrow.triangle.branch", tint: .mint, subtitle: rules.activeCount == 0 ? "No rules on" : localizedFormat(rules.activeCount == 1 ? "%d rule on" : "%d rules on", rules.activeCount))
             row(.photoAccess, icon: "photo.fill", tint: .coral, subtitle: accessText)
             row(.notifications, icon: "bell.fill", tint: .purple, subtitle: weekly.isEnabled ? "Weekly Smart Clean · On" : "Weekly Smart Clean · Off")
+            Button {
+                showsLanguagePicker = true
+            } label: {
+                CardRow(systemImage: "globe", tint: .teal, title: "Language", subtitle: language.displayName.localizedUI)
+            }
+            .buttonStyle(.plain)
             row(.privacy, icon: "checkmark.shield.fill", tint: .blue, subtitle: nil)
             row(.about, icon: "info.circle.fill", tint: .gray, subtitle: nil)
+        }
+        .sheet(isPresented: $showsLanguagePicker) {
+            LanguagePickerSheet()
+                .environment(language)
+                .presentationDetents([.medium, .large])
         }
     }
 
@@ -48,6 +63,40 @@ struct SettingsView: View {
             CardRow(systemImage: icon, tint: tint, title: title ?? route.title, subtitle: subtitle, isProLocked: locked)
         }
         .buttonStyle(.plain)
+    }
+}
+
+private struct LanguagePickerSheet: View {
+    @Environment(AppLanguageStore.self) private var language
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            List(AppLanguageOption.supported) { option in
+                Button {
+                    language.selection = option.id
+                    dismiss()
+                } label: {
+                    HStack {
+                        Text(option.nativeName.localizedUI)
+                            .foregroundStyle(Palette.textPrimary)
+                        Spacer()
+                        if language.selection == option.id {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundStyle(Palette.accent)
+                        }
+                    }
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+            }
+            .navigationTitle("Language")
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { dismiss() }
+                }
+            }
+        }
     }
 }
 

@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "เก็บสำเนาในเครื่อง",
     "common.keep_recommended": "เอาไว้แนะนำ",
     "common.keep_space_keep_what_matters": "รักษาพื้นที่. เก็บสิ่งที่สำคัญไว้",
-    "common.keep_this_one": "เก็บอันนี้ไว้",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "เก็บรูปภาพและวิดีโอที่ดีที่สุดของคุณให้ปลอดภัยและเป็นระเบียบ",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "KeepSpace วิเคราะห์ห้องสมุดของคุณบนอุปกรณ์นี้เพื่อค้นหาพื้นที่ที่คุณสามารถกู้คืนได้อย่างปลอดภัย",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace ถามหนึ่งครั้ง จากนั้นจึงใช้งานได้บนอุปกรณ์นี้ทั้งหมด",
@@ -199,7 +198,6 @@
     "common.photo": "ภาพถ่าย",
     "common.photo_access": "การเข้าถึงภาพถ่าย",
     "common.photo_access_is_off": "การเข้าถึงรูปภาพปิดอยู่",
-    "common.photo_kept": "เก็บภาพไว้",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "อุปกรณ์นี้ใช้ตำแหน่งรูปภาพเพื่อบอกการเดินทางจากบ้าน พวกเขาไม่เคยถูกค้นหาทางออนไลน์หรือแชร์",
     "common.photos": "ภาพถ่าย",
     "common.photos_videos": "ภาพถ่ายและวิดีโอ",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "การยื่นใบเสร็จรับเงิน",
     "common.recommended": "แนะนำ",
     "common.recommended_keep_selected": "แนะนำให้เลือกเก็บไว้",
-    "common.recommended_kept": "แนะนำให้เก็บไว้",
     "common.recover_storage_safely": "กู้คืนพื้นที่เก็บข้อมูลอย่างปลอดภัย",
     "common.rename_automatically": "เปลี่ยนชื่อโดยอัตโนมัติ",
     "common.reset": "รีเซ็ต",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "คุณตรวจสอบการล้างข้อมูลทุกครั้ง และความทรงจำที่สำคัญจะได้รับการคุ้มครองตามค่าเริ่มต้น",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "คุณจะยืนยันได้ในขั้นตอนถัดไป รายการจะอยู่ใน \"ลบล่าสุด\" เป็นเวลา 30 วัน",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "คุณจะยืนยันได้ในขั้นตอนถัดไป รายการจะอยู่ในถังขยะเป็นเวลา 30 วัน",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "ตัวเลือกของคุณยังสอน Best Shot ให้กับรสนิยมของคุณบนอุปกรณ์นี้ด้วย",
     "common.your_photos_are_analyzed_on_this_device_only": "รูปภาพของคุณได้รับการวิเคราะห์บนอุปกรณ์นี้เท่านั้น",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "ภาพถ่ายของคุณไม่ได้ถูกแตะต้อง การสแกนครั้งถัดไปใช้เวลานานกว่าในขณะที่ KeepSpace วิเคราะห์อีกครั้ง",
     "common.your_photos_go_only_where_you_choose": "รูปภาพของคุณไปเฉพาะที่ที่คุณเลือกเท่านั้น",
@@ -589,6 +585,11 @@
     "badges.verified_in": "ยืนยันแล้วใน %@",
     "about.version": "เวอร์ชัน %@",
     "insights.photos_added": "รูปที่เพิ่ม",
-    "insights.videos_added": "วิดีโอที่เพิ่ม"
+    "insights.videos_added": "วิดีโอที่เพิ่ม",
+    "settings.use_device_language": "ใช้ภาษาของอุปกรณ์",
+    "common.language": "ภาษา",
+    "common.uploading": "กำลังอัพโหลด",
+    "library.zoom": "ซูม",
+    "common.keep_selected_photo": "เก็บรูปภาพที่เลือกไว้"
   }
 }

@@ -1,6 +1,7 @@
 import SwiftUI
 
 @MainActor private let previewMonetization = MonetizationStore(defaults: UserDefaults(suiteName: "preview.monetization") ?? .standard)
+@MainActor private let previewLanguage = AppLanguageStore(defaults: UserDefaults(suiteName: "preview.language") ?? .standard)
 
 extension View {
     /// Router + demo library, for SwiftUI previews of screens that read the environment.
@@ -13,5 +14,6 @@ extension View {
             .environment(CloudStore(defaults: UserDefaults(suiteName: "preview.cloud") ?? .standard))
             .environment(previewMonetization)
             .environment(ProStoreService(monetization: previewMonetization))
+            .environment(previewLanguage)
     }
 }

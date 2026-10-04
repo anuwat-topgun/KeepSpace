@@ -86,6 +86,7 @@
 "Not backed up" = "बैकअप नहीं लिया गया";
 "Failed" = "असफल";
 "Cancelled" = "रद्द कर दिया गया";
+"Use Device Language" = "डिवाइस भाषा का प्रयोग करें";
 "Sharpest image" = "सबसे तीव्र छवि";
 "Details are the clearest in this group." = "इस समूह में विवरण सबसे स्पष्ट हैं।";
 "Best faces" = "सर्वोत्तम चेहरे";
@@ -297,8 +298,8 @@
 "Keep local copies" = "स्थानीय प्रतियां रखें";
 "Keep Local Copies" = "स्थानीय प्रतियां रखें";
 "Keep Recommended" = "अनुशंसित रखें";
+"Keep Selected Photo" = "चयनित फोटो रखें";
 "Keep space. Keep what matters." = "जगह रखें. जो मायने रखता है उसे रखें.";
-"Keep This One" = "इसे रखो";
 "Keep your best photos and videos safe and organized." = "अपनी सर्वश्रेष्ठ फ़ोटो और वीडियो को सुरक्षित और व्यवस्थित रखें।";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "यह फ़ोटो रखने पर आपकी पुष्टि के बाद बाकी %d फ़ोटो हट जाएँगी। वे “हाल में हटाए गए” में 30 दिन रहती हैं।";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "यह फ़ोटो रखने पर आपकी पुष्टि के बाद बाकी %d फ़ोटो हट जाएँगी। वे ट्रैश में 30 दिन रहती हैं।";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "__KS_ब्रांड__ प्रो · लाइफटाइम";
 "KeepSpace Pro · Monthly" = "__KS_ब्रांड__ प्रो · मासिक";
 "KeepSpace Pro · Yearly" = "__KS_ब्रांड__ प्रो · वार्षिक";
+"Language" = "भाषा";
 "Large files and recordings." = "बड़ी फ़ाइलें और रिकॉर्डिंग.";
 "Large Videos" = "बड़े वीडियो";
 "Learn from my choices" = "मेरी पसंद से सीखें";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "फ़ोटो %d, अनुशंसित";
 "Photo Access" = "फोटो पहुंच";
 "Photo access is off" = "फ़ोटो पहुंच बंद है";
-"Photo Kept" = "फोटो रखा गया";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "घर से यात्राएं बताने के लिए इस डिवाइस पर फ़ोटो स्थानों का उपयोग किया जाता है। उन्हें कभी भी ऑनलाइन नहीं देखा जाता या साझा नहीं किया जाता।";
 "Photos" = "तस्वीरें";
 "Photos & videos" = "तस्वीरें और वीडियो";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "रसीद दाखिल करना";
 "Recommended" = "अनुशंसित";
 "Recommended keep selected" = "अनुशंसित चयनित रखें";
-"Recommended Kept" = "अनुशंसित रखा गया";
 "Recover storage safely" = "भंडारण सुरक्षित रूप से पुनर्प्राप्त करें";
 "Rename automatically" = "स्वचालित रूप से नाम बदलें";
 "Renews %@" = "नवीनीकरण %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "असीमित सफाई अनलॉक करें";
 "Upgrade to Pro" = "प्रो में अपग्रेड करें";
 "Upload over Wi-Fi only" = "केवल Wi-Fi पर अपलोड करें";
+"Uploading" = "अपलोड हो रहा है";
 "Used" = "प्रयुक्त";
 "Uses date and a stable item suffix" = "दिनांक और एक स्थिर आइटम प्रत्यय का उपयोग करता है";
 "Uses the photos you keep to fine-tune recommendations." = "अनुशंसाओं को बेहतर बनाने के लिए आपके द्वारा रखे गए फ़ोटो का उपयोग करता है।";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "आप निःशुल्क योजना पर हैं.";
 "You've used this month's free backups." = "आपने इस महीने के निःशुल्क बैकअप का उपयोग कर लिया है।";
 "You've used this month's free cleanup" = "आपने इस महीने की निःशुल्क सफ़ाई का उपयोग किया है";
-"Your choice also teaches Best Shot your taste, on this device." = "आपकी पसंद इस डिवाइस पर बेस्ट शॉट को आपका स्वाद भी सिखाती है।";
 "Your full photo library, with cloud backup status." = "क्लाउड बैकअप स्थिति के साथ आपकी पूरी फोटो लाइब्रेरी।";
 "Your photos are analyzed on this device only." = "आपकी तस्वीरों का विश्लेषण इसी डिवाइस पर किया जाता है.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "आपकी फ़ोटो को छुआ नहीं गया है. अगले स्कैन में अधिक समय लगता है जबकि KeepSpace उनका पुनः विश्लेषण करता है।";
@@ -589,4 +589,5 @@
 "Your privacy" = "आपकी गोपनीयता";
 "Your selection is %@. You can free %@ more on Free." = "आपका चयन %@ है. आप निःशुल्क पर %@ अधिक निःशुल्क प्राप्त कर सकते हैं.";
 "Your storage, organized intelligently." = "आपका भंडारण, समझदारी से व्यवस्थित किया गया।";
+"Zoom" = "ज़ूम करें";
 "≈ %@ / month" = "≈ %@/माह";

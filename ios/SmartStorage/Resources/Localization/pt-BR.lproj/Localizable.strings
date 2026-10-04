@@ -86,6 +86,7 @@
 "Not backed up" = "Sem backup";
 "Failed" = "Falha";
 "Cancelled" = "Cancelado";
+"Use Device Language" = "Usar idioma do dispositivo";
 "Sharpest image" = "Imagem mais nítida";
 "Details are the clearest in this group." = "Os detalhes são os mais claros neste grupo.";
 "Best faces" = "Melhores rostos";
@@ -297,8 +298,8 @@
 "Keep local copies" = "Mantenha cópias locais";
 "Keep Local Copies" = "Mantenha cópias locais";
 "Keep Recommended" = "Mantenha recomendado";
+"Keep Selected Photo" = "Manter a foto selecionada";
 "Keep space. Keep what matters." = "Mantenha espaço. Mantenha o que importa.";
-"Keep This One" = "Mantenha este";
 "Keep your best photos and videos safe and organized." = "Mantenha suas melhores fotos e vídeos seguros e organizados.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Recently Deleted for 30 days." = "Manter esta foto exclui as outras %d após sua confirmação. Elas ficam 30 dias em Excluídos recentemente.";
 "Keeping this photo deletes the other %d after you confirm. They stay in Trash for 30 days." = "Manter esta foto exclui as outras %d após sua confirmação. Elas ficam 30 dias na Lixeira.";
@@ -311,6 +312,7 @@
 "KeepSpace Pro · Lifetime" = "KeepSpace Pro · Vitalício";
 "KeepSpace Pro · Monthly" = "KeepSpace Pro · Mensalmente";
 "KeepSpace Pro · Yearly" = "KeepSpace Pro · Anualmente";
+"Language" = "Idioma";
 "Large files and recordings." = "Arquivos e gravações grandes.";
 "Large Videos" = "Vídeos grandes";
 "Learn from my choices" = "Aprenda com minhas escolhas";
@@ -397,7 +399,6 @@
 "Photo %d, recommended" = "Foto %d, recomendada";
 "Photo Access" = "Acesso às fotos";
 "Photo access is off" = "O acesso às fotos está desativado";
-"Photo Kept" = "Foto mantida";
 "Photo locations are used on this device to tell trips from home. They are never looked up online or shared." = "Os locais das fotos são usados neste dispositivo para contar viagens de casa. Eles nunca são pesquisados ​​online ou compartilhados.";
 "Photos" = "Fotos";
 "Photos & videos" = "Fotos e vídeos";
@@ -435,7 +436,6 @@
 "Receipt Filing" = "Arquivamento de recibo";
 "Recommended" = "Recomendado";
 "Recommended keep selected" = "Recomendado manter selecionado";
-"Recommended Kept" = "Recomendado mantido";
 "Recover storage safely" = "Recupere o armazenamento com segurança";
 "Rename automatically" = "Renomear automaticamente";
 "Renews %@" = "Renova %@";
@@ -545,6 +545,7 @@
 "Unlock Unlimited Cleanup" = "Desbloqueie limpeza ilimitada";
 "Upgrade to Pro" = "Atualizar para Pro";
 "Upload over Wi-Fi only" = "Fazer upload somente por Wi-Fi";
+"Uploading" = "Enviando";
 "Used" = "Usado";
 "Uses date and a stable item suffix" = "Usa data e um sufixo de item estável";
 "Uses the photos you keep to fine-tune recommendations." = "Usa as fotos que você guarda para ajustar as recomendações.";
@@ -579,7 +580,6 @@
 "You're on the Free plan." = "Você está no plano Gratuito.";
 "You've used this month's free backups." = "Você usou os backups gratuitos deste mês.";
 "You've used this month's free cleanup" = "Você usou a limpeza gratuita deste mês";
-"Your choice also teaches Best Shot your taste, on this device." = "Sua escolha também ensina ao Best Shot o seu gosto, neste dispositivo.";
 "Your full photo library, with cloud backup status." = "Sua biblioteca de fotos completa, com status de backup na nuvem.";
 "Your photos are analyzed on this device only." = "Suas fotos são analisadas apenas neste dispositivo.";
 "Your photos aren't touched. The next scan takes longer while KeepSpace re-analyzes them." = "Suas fotos não são tocadas. A próxima varredura leva mais tempo enquanto KeepSpace os analisa novamente.";
@@ -589,4 +589,5 @@
 "Your privacy" = "Sua privacidade";
 "Your selection is %@. You can free %@ more on Free." = "Sua seleção é %@. Você pode liberar %@ mais no Grátis.";
 "Your storage, organized intelligently." = "Seu armazenamento organizado de forma inteligente.";
+"Zoom" = "Zoom";
 "≈ %@ / month" = "≈ %@ / mês";

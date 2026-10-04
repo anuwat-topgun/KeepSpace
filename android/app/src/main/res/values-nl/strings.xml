@@ -88,6 +88,7 @@
     <string name="cloud_status_not_backed_up">Er is geen back-up gemaakt</string>
     <string name="cloud_status_failed">Mislukt</string>
     <string name="cloud_status_cancelled">Geannuleerd</string>
+    <string name="settings_use_device_language">Gebruik apparaattaal</string>
     <string name="best_shot_sharpest_image">Scherpste beeld</string>
     <string name="best_shot_sharpest_detail">Details zijn het duidelijkst in deze groep.</string>
     <string name="best_shot_best_faces">Beste gezichten</string>
@@ -299,8 +300,8 @@
     <string name="common_keep_local_copies">Bewaar lokale kopieën</string>
     <string name="common_keep_local_copies_8b296740">Bewaar lokale kopieën</string>
     <string name="common_keep_recommended">Blijf aanbevolen</string>
+    <string name="common_keep_selected_photo">Geselecteerde foto behouden</string>
     <string name="common_keep_space_keep_what_matters">Houd ruimte. Houd wat belangrijk is.</string>
-    <string name="common_keep_this_one">Bewaar deze</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">Bewaar uw beste foto\'s en video\'s veilig en georganiseerd.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">Als je deze foto bewaart, worden de andere %d na je bevestiging verwijderd. Ze blijven 30 dagen in Recent verwijderd.</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">Als je deze foto bewaart, worden de andere %d na je bevestiging verwijderd. Ze blijven 30 dagen in de prullenbak.</string>
@@ -313,6 +314,7 @@
     <string name="subscription_keepspace_pro_lifetime">KeepSpace Pro · Levenslang</string>
     <string name="subscription_keepspace_pro_monthly">KeepSpace Pro · Maandelijks</string>
     <string name="subscription_keepspace_pro_yearly">KeepSpace Pro · Jaarlijks</string>
+    <string name="common_language">Taal</string>
     <string name="common_large_files_and_recordings_b445c9be">Grote bestanden en opnames.</string>
     <string name="common_large_videos">Grote video\'s</string>
     <string name="common_learn_from_my_choices">Leer van mijn keuzes</string>
@@ -399,7 +401,6 @@
     <string name="best_shot_photo_d_recommended">Foto %d, aanbevolen</string>
     <string name="common_photo_access">Fototoegang</string>
     <string name="common_photo_access_is_off">Fototoegang is uitgeschakeld</string>
-    <string name="common_photo_kept">Foto bewaard</string>
     <string name="common_photo_locations_are_used_on_this_device_to_tell_trips_fr">Op dit apparaat worden fotolocaties gebruikt om reizen vanaf huis te vertellen. Ze worden nooit online opgezocht of gedeeld.</string>
     <string name="common_photos">Foto\'s</string>
     <string name="common_photos_videos">Foto\'s en video\'s</string>
@@ -437,7 +438,6 @@
     <string name="common_receipt_filing">Ontvangstregistratie</string>
     <string name="common_recommended">Aanbevolen</string>
     <string name="common_recommended_keep_selected">Aanbevolen blijf geselecteerd</string>
-    <string name="common_recommended_kept">Aanbevolen bewaard</string>
     <string name="common_recover_storage_safely">Herstel opslag veilig</string>
     <string name="common_rename_automatically">Automatisch hernoemen</string>
     <string name="subscription_renews_5610efa5">Verlengt %s</string>
@@ -547,6 +547,7 @@
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">Ontgrendel onbeperkt opruimen</string>
     <string name="subscription_upgrade_to_pro">Upgrade naar Pro</string>
     <string name="common_upload_over_wi_fi_only">Alleen uploaden via Wi-Fi</string>
+    <string name="common_uploading">Uploaden</string>
     <string name="common_used">Gebruikt</string>
     <string name="common_uses_date_and_a_stable_item_suffix">Gebruikt datum en een stabiel itemachtervoegsel</string>
     <string name="common_uses_the_photos_you_keep_to_fine_tune_recommendations">Gebruikt de foto\'s die u bewaart om aanbevelingen te verfijnen.</string>
@@ -581,7 +582,6 @@
     <string name="subscription_you_re_on_the_free_plan">Je hebt het gratis abonnement.</string>
     <string name="manual_backup_you_ve_used_this_month_s_free_backups">U heeft de gratis back-ups van deze maand gebruikt.</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">Je hebt gebruik gemaakt van de gratis opschoonservice van deze maand</string>
-    <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">Door jouw keuze leert Best Shot ook jouw smaak, op dit apparaat.</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">Uw volledige fotobibliotheek, met cloudback-upstatus.</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">Uw foto\'s worden alleen op dit apparaat geanalyseerd.</string>
     <string name="common_your_photos_aren_t_touched_the_next_scan_takes_longer_wh">Uw foto\'s worden niet aangeraakt. De volgende scan duurt langer terwijl KeepSpace ze opnieuw analyseert.</string>
@@ -591,5 +591,6 @@
     <string name="common_your_privacy">Uw privacy</string>
     <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">Uw selectie is %s. Je kunt %s meer gratis gebruiken.</string>
     <string name="common_your_storage_organized_intelligently">Uw opslag, intelligent georganiseerd.</string>
+    <string name="library_zoom">Zoomen</string>
     <string name="paywall_month">≈ %s / maand</string>
 </resources>

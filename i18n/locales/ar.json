@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "احتفظ بالنسخ المحلية",
     "common.keep_recommended": "إبقاء الموصى بها",
     "common.keep_space_keep_what_matters": "احتفظ بالمساحة. احتفظ بما يهم.",
-    "common.keep_this_one": "احتفظ بهذا",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "حافظ على أفضل الصور ومقاطع الفيديو الخاصة بك آمنة ومنظمة.",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "يقوم KeepSpace بتحليل مكتبتك على هذا الجهاز للعثور على المساحة التي يمكنك استعادتها بأمان.",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace يسأل مرة واحدة، ثم يعمل بالكامل على هذا الجهاز.",
@@ -199,7 +198,6 @@
     "common.photo": "الصورة",
     "common.photo_access": "الوصول إلى الصور",
     "common.photo_access_is_off": "تم إيقاف الوصول إلى الصور",
-    "common.photo_kept": "تم الاحتفاظ بالصورة",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "يتم استخدام مواقع الصور على هذا الجهاز لمعرفة الرحلات من المنزل. ولا يتم البحث عنها مطلقًا عبر الإنترنت أو مشاركتها.",
     "common.photos": "صور",
     "common.photos_videos": "الصور ومقاطع الفيديو",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "إيداع الاستلام",
     "common.recommended": "موصى به",
     "common.recommended_keep_selected": "يوصى بالاحتفاظ بالاختيار",
-    "common.recommended_kept": "الموصى بها أبقى",
     "common.recover_storage_safely": "استعادة التخزين بأمان",
     "common.rename_automatically": "إعادة التسمية تلقائيًا",
     "common.reset": "إعادة تعيين",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "تقوم بمراجعة كل عملية تنظيف، ويتم حماية الذكريات المهمة بشكل افتراضي.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "ستؤكد في الخطوة التالية. تبقى العناصر في \"المحذوفة مؤخرًا\" لمدة 30 يومًا.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "ستؤكد في الخطوة التالية. تبقى العناصر في سلة المهملات لمدة 30 يومًا.",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "يؤدي اختيارك أيضًا إلى تعليم Best Shot ذوقك على هذا الجهاز.",
     "common.your_photos_are_analyzed_on_this_device_only": "يتم تحليل صورك على هذا الجهاز فقط.",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "لا يتم لمس صورك. يستغرق الفحص التالي وقتًا أطول بينما يقوم KeepSpace بإعادة تحليلها.",
     "common.your_photos_go_only_where_you_choose": "صورك تذهب فقط إلى المكان الذي تختاره.",
@@ -589,6 +585,11 @@
     "badges.verified_in": "تم التحقق في %@",
     "about.version": "الإصدار %@",
     "insights.photos_added": "صور مضافة",
-    "insights.videos_added": "مقاطع فيديو مضافة"
+    "insights.videos_added": "مقاطع فيديو مضافة",
+    "settings.use_device_language": "استخدم لغة الجهاز",
+    "common.language": "اللغة",
+    "common.uploading": "جارٍ التحميل",
+    "library.zoom": "تكبير",
+    "common.keep_selected_photo": "احتفظ بالصورة المحددة"
   }
 }

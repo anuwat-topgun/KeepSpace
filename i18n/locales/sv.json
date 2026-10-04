@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "Behåll lokala kopior",
     "common.keep_recommended": "Behåll rekommenderat",
     "common.keep_space_keep_what_matters": "Behåll utrymme. Behåll det som betyder något.",
-    "common.keep_this_one": "Behåll denna",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "Håll dina bästa foton och videor säkra och organiserade.",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "KeepSpace analyserar ditt bibliotek på den här enheten för att hitta utrymme som du säkert kan återställa.",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace frågar en gång och fungerar sedan helt på den här enheten.",
@@ -199,7 +198,6 @@
     "common.photo": "Foto",
     "common.photo_access": "Foto Access",
     "common.photo_access_is_off": "Fotoåtkomst är avstängd",
-    "common.photo_kept": "Foto bevarat",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "Fotoplatser används på den här enheten för att berätta om resor hemifrån. De slås aldrig upp på nätet eller delas.",
     "common.photos": "Foton",
     "common.photos_videos": "Foton och videor",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "Kvittoarkivering",
     "common.recommended": "Rekommenderas",
     "common.recommended_keep_selected": "Rekommenderas att behålla valt",
-    "common.recommended_kept": "Rekommenderad bevarad",
     "common.recover_storage_safely": "Återställ lagring på ett säkert sätt",
     "common.rename_automatically": "Byt namn automatiskt",
     "common.reset": "Återställ",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "Du granskar varje rensning och viktiga minnen skyddas som standard.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "Du bekräftar i nästa steg. Objekt stannar i Nyligen raderade i 30 dagar.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "Du bekräftar i nästa steg. Föremål stannar i papperskorgen i 30 dagar.",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "Ditt val lär också Best Shot din smak, på den här enheten.",
     "common.your_photos_are_analyzed_on_this_device_only": "Dina foton analyseras endast på den här enheten.",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "Dina foton berörs inte. Nästa skanning tar längre tid medan KeepSpace analyserar dem igen.",
     "common.your_photos_go_only_where_you_choose": "Dina bilder kommer bara dit du väljer.",
@@ -589,6 +585,11 @@
     "badges.verified_in": "Verifierad i %@",
     "about.version": "Version %@",
     "insights.photos_added": "foton tillagda",
-    "insights.videos_added": "videor tillagda"
+    "insights.videos_added": "videor tillagda",
+    "settings.use_device_language": "Använd enhetsspråk",
+    "common.language": "Språk",
+    "common.uploading": "Laddar upp",
+    "library.zoom": "Zooma",
+    "common.keep_selected_photo": "Behåll det valda fotot"
   }
 }

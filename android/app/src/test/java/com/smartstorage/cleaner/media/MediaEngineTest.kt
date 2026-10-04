@@ -12,8 +12,15 @@ import org.junit.Test
 private const val T0 = 1_790_000_000_000L
 private const val DAY = 24L * 3600 * 1000
 
-private fun item(id: String, kind: MediaItem.Kind = MediaItem.Kind.Photo, atMs: Long = 0, bytes: Long = 1_000_000, favorite: Boolean = false) =
-    MediaItem(id, kind, T0 + atMs, bytes, 4032, 3024, 0, favorite)
+private fun item(
+    id: String,
+    kind: MediaItem.Kind = MediaItem.Kind.Photo,
+    atMs: Long = 0,
+    bytes: Long = 1_000_000,
+    favorite: Boolean = false,
+    width: Int = 4032,
+    height: Int = 3024,
+) = MediaItem(id, kind, T0 + atMs, bytes, width, height, 0, favorite)
 
 private fun photo(
     id: String,
@@ -24,8 +31,10 @@ private fun photo(
     face: Double? = null,
     favorite: Boolean = false,
     bytes: Long = 1_000_000,
+    width: Int = 4032,
+    height: Int = 3024,
 ) = AnalyzedPhoto(
-    item(id, atMs = atMs, bytes = bytes, favorite = favorite),
+    item(id, atMs = atMs, bytes = bytes, favorite = favorite, width = width, height = height),
     ImageFeatures(hash, sharpness, exposure, face, if (face == null) 0 else 1),
 )
 
@@ -49,6 +58,26 @@ class SimilarityGrouperTest {
     @Test fun ignoresInputOrder() {
         val groups = grouper.groups(listOf(photo("b", 5_000, 3), photo("a", 0, 3)))
         assertEquals(listOf(listOf("a", "b")), groups.map { g -> g.map { it.id } })
+    }
+
+    @Test fun doesNotBridgeDissimilarEndpoints() {
+        val strict = SimilarityGrouper(maxGapMs = 120_000, maxDistance = 2)
+        val groups = strict.groups(listOf(photo("a", 0, 0b0000), photo("b", 5_000, 0b0011), photo("c", 10_000, 0b1111)))
+        assertEquals(listOf(listOf("a", "b")), groups.map { group -> group.map { it.id } })
+    }
+
+    @Test fun portraitAndLandscapeNeverMatch() {
+        val groups = grouper.groups(listOf(
+            photo("landscape", 0, 7, width = 4032, height = 3024),
+            photo("portrait", 5_000, 7, width = 3024, height = 4032),
+        ))
+        assertTrue(groups.isEmpty())
+    }
+
+    @Test fun defaultConfigurationRejectsLooseMatchesAndLongGaps() {
+        val defaultGrouper = SimilarityGrouper()
+        assertTrue(defaultGrouper.groups(listOf(photo("a", 0, 0), photo("b", 5_000, 0x1ff))).isEmpty())
+        assertTrue(defaultGrouper.groups(listOf(photo("c", 0, 7), photo("d", 61_000, 7))).isEmpty())
     }
 }
 

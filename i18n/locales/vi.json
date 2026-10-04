@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "Giữ bản sao cục bộ",
     "common.keep_recommended": "Giữ đề xuất",
     "common.keep_space_keep_what_matters": "Giữ không gian. Giữ những gì quan trọng.",
-    "common.keep_this_one": "Giữ cái này",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "Giữ những bức ảnh và video đẹp nhất của bạn an toàn và có tổ chức.",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "KeepSpace phân tích thư viện của bạn trên thiết bị này để tìm dung lượng mà bạn có thể khôi phục một cách an toàn.",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace hỏi một lần rồi hoạt động hoàn toàn trên thiết bị này.",
@@ -199,7 +198,6 @@
     "common.photo": "Ảnh",
     "common.photo_access": "Truy cập ảnh",
     "common.photo_access_is_off": "Quyền truy cập ảnh bị tắt",
-    "common.photo_kept": "Ảnh đã được giữ",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "Vị trí ảnh được sử dụng trên thiết bị này để thông báo các chuyến đi từ nhà. Chúng không bao giờ được tra cứu trực tuyến hoặc chia sẻ.",
     "common.photos": "Ảnh",
     "common.photos_videos": "Ảnh và video",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "Nộp hồ sơ biên nhận",
     "common.recommended": "Được đề xuất",
     "common.recommended_keep_selected": "Khuyến nghị giữ nguyên lựa chọn",
-    "common.recommended_kept": "Đề xuất giữ lại",
     "common.recover_storage_safely": "Khôi phục lưu trữ một cách an toàn",
     "common.rename_automatically": "Đổi tên tự động",
     "common.reset": "Đặt lại",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "Bạn xem lại mọi lần dọn dẹp và những kỷ niệm quan trọng được bảo vệ theo mặc định.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "Bạn sẽ xác nhận ở bước tiếp theo. Các mục sẽ ở trong mục Đã xóa gần đây trong 30 ngày.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "Bạn sẽ xác nhận ở bước tiếp theo. Các mục sẽ ở trong Thùng rác trong 30 ngày.",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "Sự lựa chọn của bạn cũng dạy cho Best Shot sở thích của bạn trên thiết bị này.",
     "common.your_photos_are_analyzed_on_this_device_only": "Ảnh của bạn chỉ được phân tích trên thiết bị này.",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "Ảnh của bạn không được chạm vào. Lần quét tiếp theo sẽ mất nhiều thời gian hơn trong khi KeepSpace phân tích lại chúng.",
     "common.your_photos_go_only_where_you_choose": "Ảnh của bạn chỉ đi đến nơi bạn chọn.",
@@ -589,6 +585,11 @@
     "badges.verified_in": "Đã xác minh trong %@",
     "about.version": "Phiên bản %@",
     "insights.photos_added": "ảnh đã thêm",
-    "insights.videos_added": "video đã thêm"
+    "insights.videos_added": "video đã thêm",
+    "settings.use_device_language": "Sử dụng ngôn ngữ thiết bị",
+    "common.language": "Ngôn ngữ",
+    "common.uploading": "Đang tải lên",
+    "library.zoom": "Thu phóng",
+    "common.keep_selected_photo": "Giữ ảnh đã chọn"
   }
 }

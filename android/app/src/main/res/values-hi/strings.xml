@@ -88,6 +88,7 @@
     <string name="cloud_status_not_backed_up">बैकअप नहीं लिया गया</string>
     <string name="cloud_status_failed">असफल</string>
     <string name="cloud_status_cancelled">रद्द कर दिया गया</string>
+    <string name="settings_use_device_language">डिवाइस भाषा का प्रयोग करें</string>
     <string name="best_shot_sharpest_image">सबसे तीव्र छवि</string>
     <string name="best_shot_sharpest_detail">इस समूह में विवरण सबसे स्पष्ट हैं।</string>
     <string name="best_shot_best_faces">सर्वोत्तम चेहरे</string>
@@ -299,8 +300,8 @@
     <string name="common_keep_local_copies">स्थानीय प्रतियां रखें</string>
     <string name="common_keep_local_copies_8b296740">स्थानीय प्रतियां रखें</string>
     <string name="common_keep_recommended">अनुशंसित रखें</string>
+    <string name="common_keep_selected_photo">चयनित फोटो रखें</string>
     <string name="common_keep_space_keep_what_matters">जगह रखें. जो मायने रखता है उसे रखें.</string>
-    <string name="common_keep_this_one">इसे रखो</string>
     <string name="common_keep_your_best_photos_and_videos_safe_and_organized">अपनी सर्वश्रेष्ठ फ़ोटो और वीडियो को सुरक्षित और व्यवस्थित रखें।</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm">यह फ़ोटो रखने पर आपकी पुष्टि के बाद बाकी %d फ़ोटो हट जाएँगी। वे “हाल में हटाए गए” में 30 दिन रहती हैं।</string>
     <string name="best_shot_keeping_this_photo_deletes_the_other_d_after_you_confirm_58208440">यह फ़ोटो रखने पर आपकी पुष्टि के बाद बाकी %d फ़ोटो हट जाएँगी। वे ट्रैश में 30 दिन रहती हैं।</string>
@@ -313,6 +314,7 @@
     <string name="subscription_keepspace_pro_lifetime">__KS_ब्रांड__ प्रो · लाइफटाइम</string>
     <string name="subscription_keepspace_pro_monthly">__KS_ब्रांड__ प्रो · मासिक</string>
     <string name="subscription_keepspace_pro_yearly">__KS_ब्रांड__ प्रो · वार्षिक</string>
+    <string name="common_language">भाषा</string>
     <string name="common_large_files_and_recordings_b445c9be">बड़ी फ़ाइलें और रिकॉर्डिंग.</string>
     <string name="common_large_videos">बड़े वीडियो</string>
     <string name="common_learn_from_my_choices">मेरी पसंद से सीखें</string>
@@ -399,7 +401,6 @@
     <string name="best_shot_photo_d_recommended">फ़ोटो %d, अनुशंसित</string>
     <string name="common_photo_access">फोटो पहुंच</string>
     <string name="common_photo_access_is_off">फ़ोटो पहुंच बंद है</string>
-    <string name="common_photo_kept">फोटो रखा गया</string>
     <string name="common_photo_locations_are_used_on_this_device_to_tell_trips_fr">घर से यात्राएं बताने के लिए इस डिवाइस पर फ़ोटो स्थानों का उपयोग किया जाता है। उन्हें कभी भी ऑनलाइन नहीं देखा जाता या साझा नहीं किया जाता।</string>
     <string name="common_photos">तस्वीरें</string>
     <string name="common_photos_videos">तस्वीरें और वीडियो</string>
@@ -437,7 +438,6 @@
     <string name="common_receipt_filing">रसीद दाखिल करना</string>
     <string name="common_recommended">अनुशंसित</string>
     <string name="common_recommended_keep_selected">अनुशंसित चयनित रखें</string>
-    <string name="common_recommended_kept">अनुशंसित रखा गया</string>
     <string name="common_recover_storage_safely">भंडारण सुरक्षित रूप से पुनर्प्राप्त करें</string>
     <string name="common_rename_automatically">स्वचालित रूप से नाम बदलें</string>
     <string name="subscription_renews_5610efa5">नवीनीकरण %s</string>
@@ -547,6 +547,7 @@
     <string name="quota_gate_sheet_unlock_unlimited_cleanup">असीमित सफाई अनलॉक करें</string>
     <string name="subscription_upgrade_to_pro">प्रो में अपग्रेड करें</string>
     <string name="common_upload_over_wi_fi_only">केवल Wi-Fi पर अपलोड करें</string>
+    <string name="common_uploading">अपलोड हो रहा है</string>
     <string name="common_used">प्रयुक्त</string>
     <string name="common_uses_date_and_a_stable_item_suffix">दिनांक और एक स्थिर आइटम प्रत्यय का उपयोग करता है</string>
     <string name="common_uses_the_photos_you_keep_to_fine_tune_recommendations">अनुशंसाओं को बेहतर बनाने के लिए आपके द्वारा रखे गए फ़ोटो का उपयोग करता है।</string>
@@ -581,7 +582,6 @@
     <string name="subscription_you_re_on_the_free_plan">आप निःशुल्क योजना पर हैं.</string>
     <string name="manual_backup_you_ve_used_this_month_s_free_backups">आपने इस महीने के निःशुल्क बैकअप का उपयोग कर लिया है।</string>
     <string name="quota_gate_sheet_you_ve_used_this_month_s_free_cleanup">आपने इस महीने की निःशुल्क सफ़ाई का उपयोग किया है</string>
-    <string name="common_your_choice_also_teaches_best_shot_your_taste_on_this_de">आपकी पसंद इस डिवाइस पर बेस्ट शॉट को आपका स्वाद भी सिखाती है।</string>
     <string name="common_your_full_photo_library_with_cloud_backup_status">क्लाउड बैकअप स्थिति के साथ आपकी पूरी फोटो लाइब्रेरी।</string>
     <string name="common_your_photos_are_analyzed_on_this_device_only">आपकी तस्वीरों का विश्लेषण इसी डिवाइस पर किया जाता है.</string>
     <string name="common_your_photos_aren_t_touched_the_next_scan_takes_longer_wh">आपकी फ़ोटो को छुआ नहीं गया है. अगले स्कैन में अधिक समय लगता है जबकि KeepSpace उनका पुनः विश्लेषण करता है।</string>
@@ -591,5 +591,6 @@
     <string name="common_your_privacy">आपकी गोपनीयता</string>
     <string name="quota_gate_sheet_your_selection_is_you_can_free_more_on_free">आपका चयन %s है. आप निःशुल्क पर %s अधिक निःशुल्क प्राप्त कर सकते हैं.</string>
     <string name="common_your_storage_organized_intelligently">आपका भंडारण, समझदारी से व्यवस्थित किया गया।</string>
+    <string name="library_zoom">ज़ूम करें</string>
     <string name="paywall_month">≈ %s/माह</string>
 </resources>

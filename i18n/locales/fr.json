@@ -134,7 +134,6 @@
     "common.keep_local_copies_8b296740": "Conserver des copies locales",
     "common.keep_recommended": "Garder recommandé",
     "common.keep_space_keep_what_matters": "Gardez de l'espace. Gardez ce qui compte.",
-    "common.keep_this_one": "Gardez celui-ci",
     "common.keep_your_best_photos_and_videos_safe_and_organized": "Gardez vos meilleures photos et vidéos en sécurité et organisées.",
     "common.keepspace_analyzes_your_library_on_this_device_to_find_s": "KeepSpace analyse votre bibliothèque sur cet appareil pour trouver de l'espace que vous pouvez récupérer en toute sécurité.",
     "common.keepspace_asks_once_then_works_entirely_on_this_device": "KeepSpace demande une fois, puis fonctionne entièrement sur cet appareil.",
@@ -199,7 +198,6 @@
     "common.photo": "Photos",
     "common.photo_access": "Accès aux photos",
     "common.photo_access_is_off": "L'accès aux photos est désactivé",
-    "common.photo_kept": "Photo conservée",
     "common.photo_locations_are_used_on_this_device_to_tell_trips_fr": "Les emplacements de photos sont utilisés sur cet appareil pour indiquer les déplacements depuis le domicile. Ils ne sont jamais consultés en ligne ni partagés.",
     "common.photos": "Photos",
     "common.photos_videos": "Photos et vidéos",
@@ -222,7 +220,6 @@
     "common.receipt_filing": "Dépôt des reçus",
     "common.recommended": "Recommandé",
     "common.recommended_keep_selected": "Il est recommandé de conserver la sélection",
-    "common.recommended_kept": "Recommandé Gardé",
     "common.recover_storage_safely": "Récupérer le stockage en toute sécurité",
     "common.rename_automatically": "Renommer automatiquement",
     "common.reset": "Réinitialiser",
@@ -318,7 +315,6 @@
     "common.you_review_every_cleanup_and_important_memories_are_prot": "Vous examinez chaque nettoyage et les souvenirs importants sont protégés par défaut.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_recently_d": "Vous confirmerez à l’étape suivante. Les éléments restent dans Supprimés récemment pendant 30 jours.",
     "review.you_ll_confirm_in_the_next_step_items_stay_in_trash_for": "Vous confirmerez à l’étape suivante. Les éléments restent dans la corbeille pendant 30 jours.",
-    "common.your_choice_also_teaches_best_shot_your_taste_on_this_de": "Votre choix apprend également à Best Shot vos goûts, sur cet appareil.",
     "common.your_photos_are_analyzed_on_this_device_only": "Vos photos sont analysées sur cet appareil uniquement.",
     "common.your_photos_aren_t_touched_the_next_scan_takes_longer_wh": "Vos photos ne sont pas touchées. L'analyse suivante prend plus de temps pendant que KeepSpace les réanalyse.",
     "common.your_photos_go_only_where_you_choose": "Vos photos vont uniquement là où vous choisissez.",
@@ -589,6 +585,11 @@
     "badges.verified_in": "Vérifié sur %@",
     "about.version": "Version %@",
     "insights.photos_added": "photos ajoutées",
-    "insights.videos_added": "vidéos ajoutées"
+    "insights.videos_added": "vidéos ajoutées",
+    "settings.use_device_language": "Utiliser la langue de l'appareil",
+    "common.language": "Langue",
+    "common.uploading": "Téléchargement",
+    "library.zoom": "Zoomer",
+    "common.keep_selected_photo": "Conserver la photo sélectionnée"
   }
 }
