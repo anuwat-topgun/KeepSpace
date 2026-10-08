@@ -183,7 +183,7 @@ Release gates ที่ต้องใช้เจ้าของบัญชี
 - [ ] ปุ่ม "Connect Google Drive" ในหน้า Receipt Filing ให้ทำงานจริง
 - [ ] Acceptance (สเปก §14): uploaded files become verified / cleanup suggestion appears only after verification
 
-### 3.5 Monetization (สเปก §11) 🟡 ตัดสินใจและออกแบบแล้ว · ยังไม่ได้ implement
+### 3.5 Monetization (สเปก §11) 🟡 implement เสร็จทั้งสองแพลตฟอร์ม · รอส่งร้านค้าและทดสอบซื้อจริง
 
 ผู้ใช้อนุมัติแนวทางนี้แล้ว (3 ต.ค. 2026) ราคาเป็นราคาตั้งต้นจากการประเมิน **ยังไม่ได้ตรวจราคาคู่แข่งหรือวัด conversion จริง** → ต้องวัดผลหลังเปิดแล้วปรับ
 ดีไซน์หน้าจอ: `store/PAYWALL_DESIGN.md` + mockup `store/paywall/` (`store/paywall/paywall-mockup.html`, PNG ใน `store/paywall/*.png`)
@@ -220,7 +220,7 @@ Release gates ที่ต้องใช้เจ้าของบัญชี
 
 #### งานที่ต้องทำ (implement)
 - [ ] **ผู้ใช้ต้องทำก่อน:** ตั้ง subscription group + 3 products ใน App Store Connect และ Play Console, ข้อตกลง Paid Apps/ข้อมูลภาษี-ธนาคาร, สมัคร Small Business Program, ตอบ App Privacy/Data safety ให้ตรงกับที่แอปเก็บ (ไม่เก็บข้อมูล — IAP ไม่เปลี่ยนคำตอบ)
-  - [x] **App Store Connect ทำแล้ว (8 ต.ค. 2026):** กลุ่ม KeepSpace Pro + Yearly ($19.99, trial 1 สัปดาห์), Monthly ($2.99), Lifetime ($39.99 non-consumable), เปิด Family Sharing, Paid Apps Agreement/ธนาคาร/ภาษี Active — เหลือ: screenshot รีวิวของแต่ละ product + ส่งพร้อม build; **Play Console ยังไม่ได้สร้าง**
+  - [x] **App Store Connect ทำแล้ว (8 ต.ค. 2026):** กลุ่ม KeepSpace Pro + Yearly ($19.99, trial 1 สัปดาห์), Monthly ($2.99), Lifetime ($39.99 non-consumable), เปิด Family Sharing, Paid Apps Agreement/ธนาคาร/ภาษี Active — อัปโหลด build 4 (1.1.0) ขึ้น TestFlight แล้ว + กลุ่ม Internal Testing + screenshot รีวิวของทั้ง 3 product แล้ว; หน้าเวอร์ชัน iOS: promo/description/keywords/support URL/copyright/screenshots iPhone+iPad กรอกแล้ว (release แบบ manual) — **เหลือ: Privacy Policy URL, App Privacy, Age Rating, Content Rights, ข้อมูลติดต่อ+review notes, ผูก 3 products กับ 1.1.0 แล้ว Add for Review, ทดสอบซื้อ/restore ใน sandbox; Play Console ยังไม่ได้สร้าง**
 - [~] Entitlement layer — **pure logic + `MonetizationStore` เสร็จทั้งสองแพลตฟอร์ม พร้อม test (cache สิทธิ์ + grace 3 วัน)**; **ตัวต่อ StoreKit 2 (`ProStoreService`) และ Play Billing (`ProBillingService`) เขียนแล้ว เรียก `applyPurchases` ตอนเปิดแอป/กลับมา foreground** — ยังไม่ได้ทดสอบกับสินค้าจริง (ต้องสร้าง product ใน App Store Connect / Play Console ก่อน; iOS ทดสอบในเครื่องได้ด้วย `ios/StoreKit/KeepSpace.storekit` ผ่าน Xcode scheme) (ไม่มี backend, ไม่มีบัญชีผู้ใช้): iOS StoreKit 2 `Transaction.currentEntitlements` + `Transaction.updates` · Android Play Billing `queryPurchasesAsync` + acknowledge; cache สิทธิ์ในเครื่องให้ใช้ออฟไลน์ได้ (grace) ; `Entitlement` เป็น pure logic ใช้ร่วมกับ test
 - [x] `UsageLimits` — เสร็จ: ledger รายเดือน, gate ลบแบบ partial (ปลอดภัยสุดก่อน), โควตา backup/กฎ/บัญชี cloud; ต่อเข้า flow ลบแล้ว ยังไม่ต่อ backup (pure, มีคู่ Swift/Kotlin + unit test): โควตาลบต่อเดือน, โควตา backup, จำนวนกฎ — เก็บเป็นตัวเลขใน UserDefaults/SharedPreferences (ไม่เก็บรายการไฟล์)
 - [~] Paywall ตาม `store/PAYWALL_DESIGN.md` — **เสร็จแล้ว: full paywall + หน้า/แถว Subscription ใน Settings ทั้งสองแพลตฟอร์ม**; **quota gate sheet + ป้าย PRO เสร็จแล้ว** — ราคา/ทดลองฟรีดึงจาก store เท่านั้น
