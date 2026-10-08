@@ -23,7 +23,7 @@ Repository release baseline updated September 28, 2026.
 - [ ] Mark the Play app as containing in-app purchases; answer the Apple IAP questions; attach a review screenshot of the purchase screen to each iOS product.
 - [ ] Test purchase, free trial, cancel, refund and restore with a sandbox Apple ID / StoreKit config and Play license testers on physical devices.
 
-- [x] iOS Release archive of 1.1.0 build 3 (build 2 had already been uploaded earlier) uploaded to App Store Connect on October 8, 2026; it contains KeepSpace Pro, `PrivacyInfo.xcprivacy`, and is signed with Apple-managed distribution signing. Wait for processing, answer the export-compliance question, then add testers.
+- [x] iOS Release archive of 1.1.0 build 4 (builds 2–3 were uploaded earlier; build 4 adds `ITSAppUsesNonExemptEncryption = false` so App Store Connect no longer asks the export-compliance question — confirm that answer is right for your legal situation) uploaded to App Store Connect on October 8, 2026; it contains KeepSpace Pro, `PrivacyInfo.xcprivacy`, and is signed with Apple-managed distribution signing. Wait for processing, answer the export-compliance question, then add testers.
 
 ## Required owner/account actions
 

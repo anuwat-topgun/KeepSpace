@@ -30,10 +30,12 @@
 			</array>
 		</dict>
 	</array>
-	<key>GIDClientID</key>
-	<string>$(KEEP_SPACE_GOOGLE_CLIENT_ID)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>GIDClientID</key>
+	<string>$(KEEP_SPACE_GOOGLE_CLIENT_ID)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>KEEP_SPACE_GOOGLE_CLIENT_ID</key>
 	<string>$(KEEP_SPACE_GOOGLE_CLIENT_ID)</string>
 	<key>KEEP_SPACE_MICROSOFT_CLIENT_ID</key>
