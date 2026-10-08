@@ -34,7 +34,7 @@ KeepSpace is free to use: scan, see every category, and review with a Safety Sco
 
 Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period. Your Apple Account is charged at confirmation of purchase. Manage or cancel any time in your Apple Account settings. Photos and files are never deleted if Pro ends.
 
-Terms of Use: https://github.com/anuwat-topgun/KeepSpace/blob/main/legal/terms-of-use.md
-Privacy Policy: https://github.com/anuwat-topgun/KeepSpace/blob/main/legal/privacy-policy.md
+Terms of Use: https://keepspace.itston.com/terms/
+Privacy Policy: https://keepspace.itston.com/privacy/
 
 KeepSpace supports iPhone and iPad and works with limited photo-library access.
