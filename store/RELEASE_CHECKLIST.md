@@ -17,7 +17,9 @@ Repository release baseline updated September 28, 2026.
 
 - [x] Privacy policy, terms, store descriptions, review notes and App Privacy notes mention subscriptions, trial, renewal, restore and lifetime (October 8, 2026).
 - [ ] Mirror `legal/privacy-policy.md` and `legal/terms-of-use.md` on `keepspace.itston.com` (the privacy URL entered in the stores); have a lawyer/native speakers review the subscription wording and its translations.
-- [ ] Create the subscription group and three products in App Store Connect and Play Console (IDs in `store/review-notes.md`); set regional prices; enable Family Sharing for iOS unless there is a reason not to; accept Paid Apps agreement and enter tax/banking.
+- [x] App Store Connect (October 8, 2026): group "KeepSpace Pro" (22452960) with Pro Yearly `com.keepspace.app.pro.annual` (Apple ID 6820368694, $19.99, free 1-week intro offer, all 175 regions), Pro Monthly `com.keepspace.app.pro.monthly` (6820368728, $2.99), and non-consumable Pro Lifetime `com.keepspace.app.pro.lifetime` (6820369144, $39.99); en-US display names set; Family Sharing on (cannot be undone); Paid Apps Agreement, bank and tax forms Active. Prices for other regions use Apple's suggested conversion.
+- [ ] Still to do in App Store Connect: upload a review screenshot (the paywall) for each of the 3 products, then submit them together with the first build ("Add for Review"); the subscription group also needs the app version to be submitted with it.
+- [ ] Play Console: create the same 3 products (subscription with base plans + a free-trial offer, and a one-time product), then activate them; the app must be uploaded to a testing track first.
 - [ ] Mark the Play app as containing in-app purchases; answer the Apple IAP questions; attach a review screenshot of the purchase screen to each iOS product.
 - [ ] Test purchase, free trial, cancel, refund and restore with a sandbox Apple ID / StoreKit config and Play license testers on physical devices.
 
