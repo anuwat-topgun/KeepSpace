@@ -22,7 +22,7 @@ androidxTestRunner = "1.6.2"
 androidxTestExt = "1.2.1"
 androidxTestCore = "1.6.1"
 exifinterface = "1.4.2"
-playBilling = "7.1.1"
+playBilling = "8.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
