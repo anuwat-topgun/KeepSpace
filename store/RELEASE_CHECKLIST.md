@@ -13,6 +13,14 @@ Repository release baseline updated September 28, 2026.
 - [ ] Inspect the iOS archive for `PrivacyInfo.xcprivacy`, launch storyboard, version `1.1.0 (2)`, bundle ID `com.keepspace.app`, OAuth callback URL, and distribution signing.
 - [ ] Inspect the signed AAB with Play Console pre-launch report; verify version `1.1.0 (2)`, target API 36, package `com.keepspace.app`, OAuth redirect activity, and Play App Signing.
 
+## KeepSpace Pro (monetization) gates
+
+- [x] Privacy policy, terms, store descriptions, review notes and App Privacy notes mention subscriptions, trial, renewal, restore and lifetime (October 8, 2026).
+- [ ] Mirror `legal/privacy-policy.md` and `legal/terms-of-use.md` on `keepspace.itston.com` (the privacy URL entered in the stores); have a lawyer/native speakers review the subscription wording and its translations.
+- [ ] Create the subscription group and three products in App Store Connect and Play Console (IDs in `store/review-notes.md`); set regional prices; enable Family Sharing for iOS unless there is a reason not to; accept Paid Apps agreement and enter tax/banking.
+- [ ] Mark the Play app as containing in-app purchases; answer the Apple IAP questions; attach a review screenshot of the purchase screen to each iOS product.
+- [ ] Test purchase, free trial, cancel, refund and restore with a sandbox Apple ID / StoreKit config and Play license testers on physical devices.
+
 ## Required owner/account actions
 
 - [x] Create the Android upload keystore outside the repo and store its passwords in macOS Keychain. A signed release AAB was built and its upload certificate SHA-1 verified on September 29, 2026.

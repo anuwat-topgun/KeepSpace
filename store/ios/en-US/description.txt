@@ -29,4 +29,12 @@ Compress large videos and review the saved copy before deciding whether to remov
 SMART, NOT SILENT
 Nothing is deleted automatically. Items you approve go to Recently Deleted, where iOS controls the recovery period. Optional Weekly Smart Clean reminders are created locally from your latest scan.
 
+KEEPSPACE PRO (OPTIONAL)
+KeepSpace is free to use: scan, see every category, and review with a Safety Score, protected memories and Best Shot, with a monthly allowance for cleanup and backup. KeepSpace Pro removes the limits and adds video compression, screenshot categories, Receipt Filing, AI Taste, and unlimited backup and rules. Choose a yearly subscription (a free trial may be available), a monthly subscription, or a one-time lifetime purchase. Prices are shown in the app in your currency.
+
+Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period. Your Apple Account is charged at confirmation of purchase. Manage or cancel any time in your Apple Account settings. Photos and files are never deleted if Pro ends.
+
+Terms of Use: https://github.com/anuwat-topgun/KeepSpace/blob/main/legal/terms-of-use.md
+Privacy Policy: https://github.com/anuwat-topgun/KeepSpace/blob/main/legal/privacy-policy.md
+
 KeepSpace supports iPhone and iPad and works with limited photo-library access.

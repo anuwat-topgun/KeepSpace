@@ -228,7 +228,7 @@ Release gates ที่ต้องใช้เจ้าของบัญชี
 - [x] Restore Purchases (ปุ่มในหน้า paywall + Settings), จัดการ Subscription (ลิงก์ไปหน้าจัดการของระบบ), ข้อความ auto-renew/ยกเลิก — ทำแล้ว; **ข้อความ fine print แปลด้วยเครื่อง ต้องให้คนตรวจก่อนปล่อยจริง**
 - [ ] พฤติกรรมเมื่อ Pro หมดอายุ: **ไม่ลบข้อมูลของผู้ใช้เด็ดขาด** — กฎที่เกิน 1 ถูกปิดไว้ (ไม่ลบ), บัญชี cloud ที่สองยังเชื่อมอยู่แต่หยุดคิวใหม่, ของที่ backup ไปแล้วยังอยู่ในบัญชีผู้ใช้
 - [ ] Tests: entitlement state machine (ซื้อ/ทดลอง/หมดอายุ/refund/restore), โควตา (นับเฉพาะที่ลบสำเร็จ, รีเซ็ตต้นเดือน, ตัดรายการให้พอดีโควตาโดยเรียงจากปลอดภัยที่สุดก่อน), ไม่มีทางที่ gate ซ่อนฟีเจอร์ความปลอดภัย; ทดสอบจริงด้วย StoreKit configuration file (iOS) และ Play test tracks/license testers (Android)
-- [ ] อัปเดต `store/` (store copy, review notes: ให้ reviewer ทดลองซื้อ/restore ได้, App Privacy) และ privacy policy/terms ให้พูดถึงการสมัครสมาชิก
+- [x] อัปเดต `store/` (listing ทั้งสองร้านมีส่วน KeepSpace Pro + ข้อความต่ออายุอัตโนมัติ + ลิงก์ Terms/Privacy, review notes อธิบายวิธีซื้อ/restore, app-privacy: มี in-app purchases แต่คำตอบ Data collected ไม่เปลี่ยน) และ privacy policy/terms ที่พูดถึง subscription/lifetime/ยกเลิก/restore — เขียนเมื่อ 8 ต.ค. 2026; **เจ้าของ: ต้องคัดลอกข้อความ legal เดียวกันไปไว้ที่เว็บ `keepspace.itston.com` (privacy URL ที่ใส่ใน App Store Connect ชี้ไปที่นั่น) และให้ฝ่ายกฎหมายตรวจ**
 - [ ] วัดผลหลังเปิด (เมื่อมี analytics ตามข้อ 3.6 และได้รับความยินยอม): อัตรากดซื้อ, trial→paid, แล้วปรับโควตา/ราคา (Google Play ทดลองหลายราคาได้)
 - [x] ~~ถ้าต้องมี backend~~ ตัดสินใจ: **ไม่ต้องมี backend** — สิทธิ์ตรวจกับร้านค้าโดยตรง (สเปก §4.2 อนุญาต backend เฉพาะ entitlement/feature flags ซึ่งเรายังไม่ต้องใช้)
 

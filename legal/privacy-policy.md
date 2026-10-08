@@ -1,20 +1,24 @@
 # KeepSpace Privacy Policy
 
-Effective date: September 28, 2026
+Effective date: October 8, 2026
 
 KeepSpace is an on-device photo and video cleanup and direct cloud-backup app provided by the independent developer of KeepSpace ("KeepSpace," "we," "us," or "our"). This policy explains how version 1.1 of the KeepSpace iOS and Android apps handles information.
 
 ## Summary
 
-KeepSpace does not collect, sell, or use personal data for tracking or advertising. Photo analysis, duplicate detection, optical character recognition, recommendations, and storage calculations run on your device. If you explicitly start Cloud Backup, selected files are transmitted over HTTPS directly from your device to your own Google Drive or Microsoft OneDrive account. KeepSpace has no developer-operated media backend, analytics, advertising, or third-party tracking.
+KeepSpace does not collect, sell, or use personal data for tracking or advertising. Photo analysis, duplicate detection, optical character recognition, recommendations, and storage calculations run on your device. If you explicitly start Cloud Backup, selected files are transmitted over HTTPS directly from your device to your own Google Drive or Microsoft OneDrive account. KeepSpace has no developer-operated media backend, analytics, advertising, or third-party tracking. If you buy KeepSpace Pro, the purchase is handled entirely by Apple or Google Play; KeepSpace does not receive your payment details or identity.
 
 ## Information processed on your device
 
 With your permission, KeepSpace can access the photos and videos you select, or your full media library if you grant full access. The app may process image features, file hashes, file size, capture date, favorite status, coarse photo location metadata, recognized text, faces, and video metadata to provide cleanup suggestions, group memories, and compress videos.
 
-This processing happens on your device. Recognized text and face data are not retained. Regenerable analysis results, such as categories, similarity features, hashes, storage measurements, and receipt fields, may be cached locally so later scans are faster. Your preferences, cleanup rules, and reminder settings are also stored locally.
+This processing happens on your device. Recognized text and face data are not retained. Regenerable analysis results, such as categories, similarity features, hashes, storage measurements, and receipt fields, may be cached locally so later scans are faster. Your preferences, cleanup rules, reminder settings, Pro status, and monthly usage counters are also stored locally.
 
 KeepSpace does not upload your media or analysis results to a KeepSpace server. Cloud Backup is optional and user initiated. OAuth access and refresh tokens are stored in the iOS Keychain or encrypted with Android Keystore; the upload queue and preferences remain on your device.
+
+## KeepSpace Pro purchases
+
+Subscriptions and the lifetime purchase are processed by Apple (iOS) or Google Play (Android). KeepSpace does not see your card or payment details, name, or store account. To know whether Pro is active, the app asks the store on your device which purchases your store account owns. It keeps only the result (for example, "Pro, yearly, renews on a given date") and a few counters on your device: how much cleanup and backup you used in the current calendar month. These counters are numbers only; they contain no file names, photo content, or identifiers. Nothing about your purchases or usage is sent to a KeepSpace server, because there is none. Apple and Google handle store transactions under their own privacy policies.
 
 ## Optional Cloud Backup
 
@@ -32,13 +36,13 @@ You can change permissions in iOS or Android Settings. Limited or selected-photo
 
 ## Service providers and app stores
 
-KeepSpace uses Apple system frameworks on iOS and bundled Android libraries including AndroidX, AppAuth, ML Kit, Tesseract, Room, and Media3. Google and Microsoft process authentication and user-requested cloud files only when you connect or use their services. Apple and Google may independently process information when you download the app, make a store transaction, or use their operating-system services; their privacy policies govern that activity.
+KeepSpace uses Apple system frameworks on iOS and bundled Android libraries including AndroidX, AppAuth, ML Kit, Tesseract, Room, and Media3. Google and Microsoft process authentication and user-requested cloud files only when you connect or use their services. Apple and Google may independently process information when you download the app, buy or restore KeepSpace Pro, or use their operating-system services; their privacy policies govern that activity.
 
 ## Retention and deletion
 
 KeepSpace keeps local settings until you change them, clear them, or uninstall the app. You can clear the regenerable analysis cache from **Settings > Privacy & Security > Clear Cache**. Uninstalling KeepSpace removes its local app data. Media moved to Recently Deleted or Trash remains subject to the retention and recovery controls of iOS or Android.
 
-Because KeepSpace does not create an account or collect data on its servers, there is no KeepSpace server-side personal data to request or delete. Cloud copies are controlled through your Google or Microsoft account.
+Because KeepSpace does not create an account or collect data on its servers, there is no KeepSpace server-side personal data to request or delete. Purchase records are held by Apple or Google; manage or request deletion of them with your store account. Cloud copies are controlled through your Google or Microsoft account.
 
 ## Children
 

@@ -1,6 +1,6 @@
 # Store privacy declarations for KeepSpace 1.1
 
-Last reviewed: September 28, 2026
+Last reviewed: October 8, 2026
 
 These answers describe the code in this repository at version 1.1, including optional direct-to-provider Cloud Backup.
 
@@ -26,6 +26,10 @@ Reasoning: KeepSpace does not receive data and has no backend, and AI data remai
 
 Cloud Backup is a prominent, user-initiated transfer to the user's own external cloud account; KeepSpace never receives or later accesses the file. Google Play's current Data safety guidance explicitly says this external-drive case does not need to be declared as collection; the user-initiated-action exception also means it is not declared as sharing. Reconfirm in Play Console at submission time.
 
+## Purchases and privacy answers
+
+KeepSpace Pro uses StoreKit 2 (iOS) and Google Play Billing (Android) only to read which purchases the store account owns. KeepSpace has no server, so it does not receive, store, or share purchase history, payment details, or identity; Pro status and monthly usage counters (numbers only) stay on the device. The App Privacy and Data safety answers above therefore do not change. In Apple's questionnaire, do not declare "Purchases" as collected data (the developer receives none). In Play Console, mark the app as containing in-app purchases. Reconfirm both against the current questionnaires at submission time.
+
 ## Permissions reviewers should expect
 
 | Permission | Platform | Purpose |
@@ -39,6 +43,6 @@ Cloud Backup is a prominent, user-initiated transfer to the user's own external 
 ## Content and account declarations
 
 - No KeepSpace account creation. Optional Google/Microsoft OAuth connection is used only for direct cloud backup.
-- No user-generated content sharing, social features, ads, purchases, gambling, health claims, or location tracking.
+- Contains in-app purchases (KeepSpace Pro subscriptions and a one-time lifetime purchase) handled by Apple/Google Play. No user-generated content sharing, social features, ads, gambling, health claims, or location tracking.
 - The app reads user-owned media but does not expose it to other users.
 - Encryption export: the app uses standard HTTPS plus Keychain/Android Keystore and CryptoKit hashing; confirm the final App Store export-compliance answer against the signed binary.
