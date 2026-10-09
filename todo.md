@@ -158,7 +158,7 @@
 
 Release gates ที่ต้องใช้เจ้าของบัญชี/เครื่องจริง (รายละเอียด `store/CLOUD_SETUP.md`):
 - [x] Production website: Home, Privacy, Terms, Support และ health check เปิดผ่าน `https://keepspace.itston.com/`
-- [ ] Google Cloud: iOS client และ Android debug/release clients สร้างแล้ว; ยังต้องเข้าสู่ `keepspace-production` ด้วยบัญชี ITSTON.COM ที่ถูกต้องเพื่อยืนยัน consent/app ownership, สร้าง client จาก Play App Signing SHA-1 และทดสอบ Drive API บนเครื่องจริง (session ล่าสุดเป็นบัญชี Google อื่น)
+- [~] Google Cloud: iOS, Android debug/release และ `KeepSpace Android Play App Signing` clients สร้างแล้วใน `keepspace-production`; Play client ใช้ package `com.keepspace.app`, SHA-1 `A4:B3:55:E3:14:A9:92:4A:45:61:1E:D2:21:4F:E4:C5:8E:2A:40:4C` และ client ID `704189605605-b3vgj66l8t4led362u65sptmvfu227d1.apps.googleusercontent.com`. ยังต้องยืนยัน consent/app ownership และทดสอบ Drive API บนเครื่องจริง
 - [x] Microsoft Entra: app registration รองรับเฉพาะ Personal Microsoft accounts, public client, redirect URIs, scope `Files.ReadWrite.AppFolder`; ฝัง public client ID ใน build defaults และยัง override ผ่าน environment ได้
 - [x] OneDrive personal-only hardening: Entra audience เป็น Personal Microsoft accounts และ iOS/Android ใช้ OAuth authority `consumers`; Microsoft Partner Center publisher verification ไม่เป็น release gate จนกว่าจะเพิ่มบัญชีองค์กร
 - [ ] ทดสอบ connect/upload/refresh/revoke จริงทั้ง 2 providers บน iOS/Android production-signed build; quota/offline/kill-resume/Wi-Fi-only
@@ -221,7 +221,7 @@ Release gates ที่ต้องใช้เจ้าของบัญชี
 #### งานที่ต้องทำ (implement)
 - [~] **Store configuration:** สินค้า 3 แบบและข้อมูล privacy/data-safety ถูกตั้งค่าแล้ว; ยังต้องทดสอบซื้อจริงและผ่าน gate การปล่อยของแต่ละร้าน
   - [~] **App Store Connect (9 ต.ค. 2026):** build 4 (1.1.0), App Privacy, listing, screenshots และ KeepSpace Pro Yearly/Monthly/Lifetime ถูกส่งแล้ว แต่ Apple ตอบ **Rejected — Guideline 2.1, Information Needed**. ต้องแนบวิดีโอจาก iPhone จริงและตอบคำถามด้วย `store/APPLE_REVIEW_RESPONSE.md` ก่อน resubmit; จากนั้นทดสอบซื้อ/restore ใน sandbox
-  - [~] **Play Console (9 ต.ค. 2026, บัญชี ITSTON.COM):** AAB 4 อยู่ Internal testing, listing assets และสินค้าทั้ง 3 แบบเปิดใช้งานแล้ว. Setup เหลือ 1 รายการคือ AI-content declaration; production ยังติด Google OAuth client สำหรับ Play App Signing, pre-launch report และ closed test อย่างน้อย 12 คนต่อเนื่อง 14 วัน
+  - [~] **Play Console (9 ต.ค. 2026):** AAB 4 อยู่ Internal testing; listing, AI-content, Photos & Videos access, Advertising ID และสินค้าทั้ง 3 แบบตั้งค่าแล้ว. ส่ง Closed testing Alpha พร้อม Thailand และ tester lists 2 รายการเข้าตรวจสอบแล้ว; ยังต้องรอ Alpha พร้อมใช้งาน, ตรวจ pre-launch report, ยืนยันผู้ทดสอบ opt-in ที่ไม่ซ้ำอย่างน้อย 12 คนต่อเนื่อง 14 วัน และทดสอบซื้อ/restore จริง
 - [~] Entitlement layer — **pure logic + `MonetizationStore` เสร็จทั้งสองแพลตฟอร์ม พร้อม test (cache สิทธิ์ + grace 3 วัน)**; **ตัวต่อ StoreKit 2 (`ProStoreService`) และ Play Billing (`ProBillingService`) เขียนแล้ว เรียก `applyPurchases` ตอนเปิดแอป/กลับมา foreground** — ยังไม่ได้ทดสอบกับสินค้าจริง (ต้องสร้าง product ใน App Store Connect / Play Console ก่อน; iOS ทดสอบในเครื่องได้ด้วย `ios/StoreKit/KeepSpace.storekit` ผ่าน Xcode scheme) (ไม่มี backend, ไม่มีบัญชีผู้ใช้): iOS StoreKit 2 `Transaction.currentEntitlements` + `Transaction.updates` · Android Play Billing `queryPurchasesAsync` + acknowledge; cache สิทธิ์ในเครื่องให้ใช้ออฟไลน์ได้ (grace) ; `Entitlement` เป็น pure logic ใช้ร่วมกับ test
 - [x] `UsageLimits` — เสร็จ: ledger รายเดือน, gate ลบแบบ partial (ปลอดภัยสุดก่อน), โควตา backup/กฎ/บัญชี cloud; ต่อเข้า flow ลบแล้ว ยังไม่ต่อ backup (pure, มีคู่ Swift/Kotlin + unit test): โควตาลบต่อเดือน, โควตา backup, จำนวนกฎ — เก็บเป็นตัวเลขใน UserDefaults/SharedPreferences (ไม่เก็บรายการไฟล์)
 - [~] Paywall ตาม `store/PAYWALL_DESIGN.md` — **เสร็จแล้ว: full paywall + หน้า/แถว Subscription ใน Settings ทั้งสองแพลตฟอร์ม**; **quota gate sheet + ป้าย PRO เสร็จแล้ว** — ราคา/ทดลองฟรีดึงจาก store เท่านั้น
@@ -266,7 +266,7 @@ Release gates ที่ต้องใช้เจ้าของบัญชี
 - [ ] UI test ที่ใช้คลังรูปจริงสำหรับ onboarding → permission → scan → cleanup plan → review → system delete confirmation
 - [ ] iPad landscape: ทดสอบด้วยมือ (หมุน simulator จาก CLI ไม่ได้)
 - [x] Android repo release: target API 36 + AGP 8.10.1, env-based signing hook, upload keystore นอก repo, signed AAB, Play listing/Data safety draft, R8 App Bundle
-  - [ ] Play App Signing เปิดแล้ว; เหลือเพิ่ม app-signing SHA-1 ใน Google OAuth, เริ่ม closed testing, จบ AI-content declaration/pre-launch report และทดสอบ release บนเครื่องจริง
+  - [~] Play App Signing + Google OAuth app-signing client + AI/Photos & Videos/Advertising ID declarations เสร็จแล้ว; Closed testing Alpha ถูกส่งตรวจแล้ว เหลือรอผล, pre-launch report, 12 opted-in testers/14 วัน และทดสอบ release บนเครื่องจริง
 - [x] iOS repo release: listing/App Privacy/review notes, launch screen, privacy manifest, version/build และ Team `Anuwat Palasak` signing พร้อม; build 4 อัปโหลดและส่งตรวจแล้ว
   - [ ] แนบ physical-device recording + ตอบ Guideline 2.1 ตาม `store/APPLE_REVIEW_RESPONSE.md` แล้ว resubmit
 - [x] Privacy policy + Terms ที่ `https://keepspace.itston.com/`; ลิงก์ใน About และ paywall ทั้งสองแพลตฟอร์มใช้ production URLs เดียวกัน
@@ -277,8 +277,8 @@ Release gates ที่ต้องใช้เจ้าของบัญชี
 ## 4. ลำดับที่แนะนำ
 
 1. อัดวิดีโอ iPhone จริงตาม `store/APPLE_REVIEW_RESPONSE.md`, แนบคำตอบ Apple และ resubmit build 4
-2. ใช้บัญชี ITSTON.COM เพิ่ม/ยืนยัน OAuth client จาก Play App Signing SHA-1 ตาม `store/CLOUD_SETUP.md`
-3. จบ AI-content declaration, เปิด closed testing ให้ครบ 12 คนอย่างน้อย 14 วัน และตรวจ pre-launch report
-4. ทดสอบ Google Drive/OneDrive upload จริงและ Store purchase/restore ด้วย production clients/builds
+2. ยืนยัน Google consent/app ownership ใน `keepspace-production` (Play App Signing OAuth client สร้างแล้ว) และตรวจสถานะ Closed testing Alpha ที่ส่งเมื่อ 9 ต.ค. 2026
+3. เมื่อ Alpha พร้อมใช้งาน ให้ยืนยันผู้ทดสอบ opt-in ไม่ซ้ำอย่างน้อย 12 คน เริ่มนับ 14 วัน และตรวจ/แก้ทุก finding ใน pre-launch report
+4. เชื่อม iPhone 100 Pro Max และ Android จริง แล้วทดสอบ Google Drive/OneDrive upload กับ Store purchase/restore ด้วย production clients/builds
 5. รัน physical-device checklist: คลัง 10k+, Library/preview/video/Select All, permission/delete, offline/kill-resume/Wi-Fi-only และ accessibility
 6. เชื่อม rules เข้ากับ upload queue → v1.2 ครบ; Verification + safe delete → v1.3 ครบ

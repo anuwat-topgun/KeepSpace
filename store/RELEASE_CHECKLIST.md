@@ -18,6 +18,10 @@ Passing repository tests increase release confidence, but Apple and Google make 
 - [x] Play App Signing is enabled. Current app-signing certificate SHA-1 is `A4:B3:55:E3:14:A9:92:4A:45:61:1E:D2:21:4F:E4:C5:8E:2A:40:4C`.
 - [x] Play products are active: yearly subscription with trial offer, monthly subscription, and lifetime one-time purchase.
 - [x] Play internal-testing release 1.1.0 (4) is active.
+- [x] Google OAuth client `KeepSpace Android Play App Signing` exists in `keepspace-production` for package `com.keepspace.app` and the Play App Signing SHA-1.
+- [x] Play AI-content, Photos & Videos access, and Advertising ID declarations are complete. The submitted icon and feature graphic are labelled as AI-generated/modified; the app declares full-library photo/video access for its core cleanup/backup workflows and declares that it does not use Advertising ID.
+- [x] Closed-testing Alpha changes for 1.1.0 (4), Thailand, and the `IPTV Prime Testers` + `KeepSpace Testers` lists were submitted to Google for review on October 9, 2026.
+- [x] Play's automated pre-submission quick check completed without surfacing another blocker; Publishing Overview now shows the 13 changes under review.
 
 ## Blocking iOS release gates
 
@@ -28,10 +32,8 @@ Passing repository tests increase release confidence, but Apple and Google make 
 
 ## Blocking Android release gates
 
-- [ ] Play Console setup is 10/11. Complete the required store-listing AI-content declaration. Choose “do not label” only after the owner confirms the submitted graphic was not generated or materially altered with generative AI, then save.
-- [ ] Create/verify the Google OAuth Android client in the **KeepSpace Production** project for package `com.keepspace.app` and Play App Signing SHA-1 `A4:B3:55:E3:14:A9:92:4A:45:61:1E:D2:21:4F:E4:C5:8E:2A:40:4C`. The credentials page failed to load during this audit, so this is not verified.
-- [ ] Start closed testing, obtain at least 12 opted-in testers, and keep the test active for at least 14 continuous days before applying for production access.
-- [ ] Run Play pre-launch report and resolve every crash, ANR, accessibility, security, and compatibility finding.
+- [ ] Wait for Google to approve/publish the Alpha changes, then verify at least 12 distinct testers have opted in and keep the test active for at least 14 continuous days before applying for production access. Selecting two email lists does not by itself prove opt-in eligibility.
+- [ ] Wait for Play to generate the pre-launch report from the submitted closed-track artifact, then resolve every crash, ANR, accessibility, security, and compatibility finding. Immediately after submission, the report page still showed “upload an artifact”.
 - [ ] Test purchases, trial eligibility, cancellation/refund, restore, and upgrade/downgrade with Play license testers.
 
 ## Physical-device acceptance gates for both stores
@@ -48,6 +50,6 @@ Passing repository tests increase release confidence, but Apple and Google make 
 - **Repository technical gate:** pass.
 - **iOS submission gate:** not ready to resubmit until the physical-device video and reviewer response are attached.
 - **Android internal-testing gate:** pass.
-- **Android production gate:** not ready; OAuth, declaration, pre-launch report, and the 12-testers/14-days requirement remain.
+- **Android production gate:** not ready; the Alpha submission is under review, the pre-launch report has not generated, production cloud/purchase tests are pending, and the 12-testers/14-days requirement has not started with verified opt-ins.
 
 Confidence can reasonably exceed 85% only after every blocking gate above has recorded evidence. Store approval itself cannot be guaranteed.
