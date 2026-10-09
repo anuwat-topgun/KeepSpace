@@ -28,7 +28,7 @@
     "common.always_on_in_v1_1_cloud_backup_never_deletes_originals": "دائمًا في الإصدار 1.1. لا يؤدي النسخ الاحتياطي السحابي إلى حذف النسخ الأصلية أبدًا.",
     "common.amount": "المبلغ",
     "common.analyzing": "جارٍ التحليل…",
-    "memory_detail.and_d_more": "و%،د أكثر",
+    "memory_detail.and_d_more": "و%,d أكثر",
     "settings_detail_screens.android_asks_before_anything_is_removed_and_items_stay_i": "يسألك Android قبل إزالة أي شيء، وتظل العناصر في سلة المهملات لمدة 30 يومًا. لا يتم تحديد المفضلة والذكريات مسبقًا.",
     "about.apple_vision_photos_swiftui_and_swiftdata_all_part_of_io": "Apple Vision وPhotos وSwiftUI وSwiftData — كلها جزء من iOS. لا يتم تضمين مكتبات الطرف الثالث في هذا الإصدار.",
     "common.back": "العودة",

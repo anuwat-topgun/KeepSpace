@@ -16,8 +16,8 @@ struct PaywallView: View {
 
     private enum Message: Equatable { case pending, failed, restoredNothing, restoreFailed }
 
-    private let privacyURL = URL(string: "https://github.com/anuwat-topgun/KeepSpace/blob/main/legal/privacy-policy.md")!
-    private let termsURL = URL(string: "https://github.com/anuwat-topgun/KeepSpace/blob/main/legal/terms-of-use.md")!
+    private let privacyURL = URL(string: "https://keepspace.itston.com/privacy/")!
+    private let termsURL = URL(string: "https://keepspace.itston.com/terms/")!
 
     private var selectedOffer: ProOffer? {
         store.offers.first { $0.product == selected } ?? store.offers.first { $0.product == PaywallModel.defaultSelection(store.offers) }

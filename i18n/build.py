@@ -39,7 +39,18 @@ def apple_escape(value: str) -> str:
 
 
 def android_escape(value: str) -> str:
-    value = value.replace("%@", "%s")  # Apple's object placeholder → Java's string placeholder
+    # Android requires positional placeholders when a resource contains more than one
+    # substitution. Number every placeholder so translations stay safe if words move.
+    # Apple's `%@` maps to Java's `%s`; `%,d` keeps its grouping flag as `%1$,d`.
+    index = 0
+
+    def positional(match: re.Match[str]) -> str:
+        nonlocal index
+        index += 1
+        flags, kind = match.groups()
+        return f"%{index}${flags}{'s' if kind == '@' else kind}"
+
+    value = re.sub(r"%(?!%)(,?)([@ds])", positional, value)
     return (value.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
             .replace("'", "\\'").replace('"', '\\"').replace("\n", "\\n").replace("@", "\\@"))
 

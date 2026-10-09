@@ -2,8 +2,8 @@ import SwiftUI
 
 /// About: version and the open-source pieces KeepSpace is built on.
 struct AboutView: View {
-    private let privacyURL = URL(string: "https://github.com/anuwat-topgun/KeepSpace/blob/main/legal/privacy-policy.md")!
-    private let termsURL = URL(string: "https://github.com/anuwat-topgun/KeepSpace/blob/main/legal/terms-of-use.md")!
+    private let privacyURL = URL(string: "https://keepspace.itston.com/privacy/")!
+    private let termsURL = URL(string: "https://keepspace.itston.com/terms/")!
 
     private var version: String {
         let info = Bundle.main.infoDictionary

@@ -118,10 +118,10 @@ adb shell pm clear com.keepspace.app
 ```
 - Android ไม่มี debug launch arguments — นำทางด้วย `adb shell uiautomator dump` + `adb shell input tap x y`
   (node ที่อยู่นอกจอจะไม่อยู่ใน dump ต้อง scroll ก่อน)
-- Release App Bundle (R8): `./gradlew bundleRelease` → `app/build/outputs/bundle/release/app-release.aab`
+- Play-uploadable Release App Bundle (R8): `./build-signed-release.sh` → `app/build/outputs/bundle/release/app-release.aab`. The script loads the two passwords from macOS Keychain, builds, verifies the JAR signature, and rejects a certificate whose SHA-1 is not the expected upload certificate.
 - Release machine setup (29 ก.ย. 2026): upload keystore อยู่ที่ `/Users/topgun/.keepspace/credentials/keepspace-upload.jks`, alias `keepspace-upload`; store/key passwords อยู่ใน macOS Keychain services `com.keepspace.android.upload.keystore.password` และ `com.keepspace.android.upload.key.password`. ห้ามนำรหัสผ่านหรือ keystore เข้า repo.
 - Signed v1.1 AAB ถูก build/verify แล้ววันที่ 29 ก.ย. 2026; certificate SHA-1 `26:F7:E4:4A:BA:F2:4B:C4:F1:0A:29:4B:81:4C:3E:94:E8:86:AE:8D`.
-- ถ้าไม่ตั้งค่าด้านล่าง bundle จะ unsigned (เหมาะกับ CI artifact เท่านั้น) สำหรับไฟล์ที่จะอัปโหลด Play ให้ตั้ง secret ผ่าน environment โดยห้าม commit keystore/รหัสผ่าน:
+- `./gradlew bundleRelease` โดยไม่ตั้งค่าด้านล่างจะได้ unsigned bundle (เหมาะกับ CI artifact เท่านั้น) ห้ามนำไฟล์นั้นขึ้น Play. ทางเลือกสำหรับ build agent ที่ไม่มี macOS Keychain คือตั้ง secret ผ่าน environment โดยห้าม commit keystore/รหัสผ่าน:
 ```bash
 KEYSTORE_FILE=/absolute/path/keepspace-upload.jks \
 KEYSTORE_PASSWORD='…' KEY_ALIAS='…' KEY_PASSWORD='…' \

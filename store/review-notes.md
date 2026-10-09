@@ -1,5 +1,7 @@
 # Store review notes — KeepSpace 1.1 (with KeepSpace Pro)
 
+> Current iOS review: Guideline 2.1 Information Needed. Use `APPLE_REVIEW_RESPONSE.md` with the required physical-device recording for the Resolution Center reply; this file remains the general reviewer-path reference.
+
 ## Apple App Review
 
 KeepSpace analyzes the user's photo library entirely on-device and has no ads, analytics, or developer-operated backend. Optional Cloud Backup uses OAuth and sends only user-selected files directly to Google Drive or OneDrive. Grant full or limited photo access during onboarding. All deletion actions use the iOS system confirmation and send items to Recently Deleted.

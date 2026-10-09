@@ -94,8 +94,8 @@ import com.smartstorage.cleaner.ui.theme.SmartType
 import com.smartstorage.cleaner.ui.theme.Tint
 import kotlinx.coroutines.launch
 
-private const val PRIVACY_URL = "https://github.com/anuwat-topgun/KeepSpace/blob/main/legal/privacy-policy.md"
-private const val TERMS_URL = "https://github.com/anuwat-topgun/KeepSpace/blob/main/legal/terms-of-use.md"
+private const val PRIVACY_URL = "https://keepspace.itston.com/privacy/"
+private const val TERMS_URL = "https://keepspace.itston.com/terms/"
 
 private enum class PaywallMessage { Pending, Failed, RestoredNothing, RestoreFailed }
 

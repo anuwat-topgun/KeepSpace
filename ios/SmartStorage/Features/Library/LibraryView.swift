@@ -208,6 +208,7 @@ private struct LibraryTile: View {
             .contentShape(Rectangle())
             .clipped()
             .accessibilityLabel("\(item.fileName ?? "Photo".localizedUI), \(state.title.localizedUI)")
+            .accessibilityIdentifier("library.tile.\(item.id)")
         }
         .aspectRatio(1, contentMode: .fit)
         .clipped()
@@ -380,6 +381,7 @@ private struct LibraryPreview: View {
                                 .padding(.horizontal, 12)
                                 .padding(.vertical, 7)
                                 .background(.black.opacity(0.5), in: Capsule())
+                                .accessibilityIdentifier("library.preview.position")
                         }
                     }
                     .padding(.horizontal, 16)

@@ -149,7 +149,7 @@
 "Amount" = "المبلغ";
 "Analyzing on device · %d of %d items" = "جارٍ التحليل على الجهاز · %d من %d عنصرًا";
 "Analyzing…" = "جارٍ التحليل…";
-"and %,d more" = "و%،د أكثر";
+"and %,d more" = "و%,d أكثر";
 "and %@ more" = "و%@ أخرى";
 "Android asks before anything is removed, and items stay in Trash for 30 days. Favorites and memories are never preselected." = "يسألك Android قبل إزالة أي شيء، وتظل العناصر في سلة المهملات لمدة 30 يومًا. لا يتم تحديد المفضلة والذكريات مسبقًا.";
 "Apple Vision, Photos, SwiftUI and SwiftData — all part of iOS. No third-party libraries are included in this version." = "Apple Vision وPhotos وSwiftUI وSwiftData — كلها جزء من iOS. لا يتم تضمين مكتبات الطرف الثالث في هذا الإصدار.";

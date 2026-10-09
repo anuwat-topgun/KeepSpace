@@ -11,7 +11,7 @@
 | `01_Product_Technical_Spec_v1_to_v1_3.md`, `02_Design_Handoff_v1_to_v1_3.md` | สเปกและ design handoff ต้นฉบับจากทีมออกแบบ (ไม่ใช่เอกสารนี้ — ไม่ได้แก้) |
 | [`icons/README.md`](icons/README.md) | ที่มาของไอคอนและสคริปต์สร้างไอคอน |
 
-อัปเดตล่าสุด: 30 ก.ย. 2026 · เพิ่ม Library แบบ Photos, cloud status, 25 ภาษา และ Google Sign-In SDK บน iOS แล้ว
+อัปเดตล่าสุด: 9 ต.ค. 2026 · ตรวจ release รอบเต็มแล้ว; สถานะที่ใช้ตัดสินใจอยู่ใน `store/RELEASE_CHECKLIST.md`
 
 ---
 
@@ -35,9 +35,9 @@ v1.0 Core ครบทั้งสองแพลตฟอร์ม: Storage Ana
 Memories (ทริป/อีเวนต์), Safety Score, Clean X GB + Cleanup Plan, Insights/Forecast, Weekly Smart Clean (แจ้งเตือนรายสัปดาห์), Personalized AI Taste, Settings (Photo Access / Privacy / Notifications / AI Taste / About), ไอคอนครบทุกขนาด และ localization 25 ภาษาเหมือน IPTV Prime
 v1.2: Storage Rules + Rule Builder · v1.3 (ส่วนไม่ใช้ cloud): Receipt Filing (screenshot + ใบเสร็จกระดาษจากรูปกล้อง)
 
-**มีแล้วใน v1.1:** Google Drive/OneDrive auth, secure token storage, persistent upload queue, direct upload + remote-ID verification, Cloud/Back Up Now UI, retry/cancel/Wi-Fi-only, production OAuth clients ฝั่ง iOS/Microsoft, Google Android debug/release clients และ release/privacy docs. iOS ใช้ Google Sign-In SDK + reversed client-ID callback; OneDrive จำกัดเฉพาะบัญชี Microsoft ส่วนบุคคลทั้งใน Entra และ OAuth authority. Library แบบ Photos แสดง All/Photos/Videos/Backed Up, badge สถานะ cloud, preview รูปแบบ aspect-fit, ปัดซ้าย/ขวา, ปัดลงเพื่อปิด และเล่นวิดีโอ/fullscreen ได้ทั้งสองแพลตฟอร์ม. Select All เลือกชุดที่มองเห็นจริงและตัด ID เก่า/รายการที่ต้องเก็บออกแล้ว. Android upload keystore ถูกสร้างนอก repo, เก็บรหัสผ่านใน macOS Keychain และ build signed AAB ผ่านแล้ว. **ยังไม่มี:** Google Play App Signing OAuth client, end-to-end cloud sign-off ทุก provider/แพลตฟอร์ม, การเชื่อมกฎเข้าคิวอัปโหลด, safe delete (v1.3), Subscription/Monetization, Analytics
+**มีแล้วใน v1.1:** Google Drive/OneDrive auth, secure token storage, persistent upload queue, direct upload + remote-ID verification, Cloud/Back Up Now UI, retry/cancel/Wi-Fi-only, production OAuth clients ฝั่ง iOS/Microsoft และ release/privacy docs. iOS ใช้ Google Sign-In SDK + reversed client-ID callback; OneDrive จำกัดเฉพาะบัญชี Microsoft ส่วนบุคคลทั้งใน Entra และ OAuth authority. Library แบบ Photos แสดง All/Photos/Videos/Backed Up, badge สถานะ cloud, preview รูปแบบ aspect-fit, ปัดซ้าย/ขวา, ปัดลงเพื่อปิด, แชร์/ลบ และเล่นวิดีโอ/fullscreen ได้. Select All เลือกชุดที่มองเห็นจริงและตัด ID เก่า/รายการที่ต้องเก็บออกแล้ว. KeepSpace Pro/Subscription/Restore ทำแล้วทั้งสองแพลตฟอร์ม และสินค้าทั้ง 3 แบบเปิดใช้งานใน Store แล้ว. Android upload keystore อยู่ภายนอก repo และ build signed AAB ผ่านแล้ว. **ยังไม่ยืนยัน:** Google OAuth Android client สำหรับ Play App Signing SHA-1, cloud end-to-end ทุก provider/แพลตฟอร์ม, การเชื่อมกฎเข้าคิวอัปโหลด, safe delete (v1.3) และ Analytics
 
-Tests baseline ก่อน commit ชุดนี้: iOS 86 unit tests และ Android 77 unit tests + `assembleDebug` ผ่าน; i18n validator ผ่าน 25 locales × 390 keys; iOS มี UI smoke test ครอบเส้นทางหลักและหน้า Cloud, Android UI test compile ผ่าน. Signed iOS build ด้วย Team `Anuwat Palasak` (`82MGZU2HH4`) ติดตั้งและเปิดบน iPhone 100 Pro Max แล้ว. **ยังไม่ยืนยัน connect/upload จริงครบ Google Drive และ OneDrive บน production-signed builds**
+Tests baseline ณ 9 ต.ค. 2026: iOS 135 unit tests/36 suites และ UI 3/3 ผ่าน; Android unit tests + UI-test APK compile + `lintRelease` ผ่าน; i18n validator ผ่าน 25 locales × 598 keys; signed Android AAB ผ่าน `jarsigner`. Signed iOS build ด้วย Team `Anuwat Palasak` (`82MGZU2HH4`) ติดตั้งและเปิดบน iPhone 100 Pro Max แล้ว. **ยังไม่ยืนยัน connect/upload จริงครบ Google Drive และ OneDrive บน production-signed builds**
 
 ---
 
@@ -105,7 +105,7 @@ Android ไม่ต้องเปลี่ยน เพราะใช้ `Med
 - ขนาดแอป Android: Tesseract เพิ่ม ~7.5 MB native + 5.2 MB โมเดลต่อเครื่อง (APK รวมทุก ABI ~136 MB → ต้องปล่อยเป็น App Bundle)
 - release baseline ใน repo ทำแล้ว: privacy policy/terms URL, launch screen, Android themed icon, API 36, signing hook, Store copy/privacy drafts, smoke UI tests และ CI
 - Google Cloud Console ที่เปิดล่าสุดเป็นบัญชี Google อื่น ไม่ใช่บัญชี ITSTON.COM ที่ควรเป็นเจ้าของ/จัดการโครงการ `keepspace-production`; ต้องสลับบัญชีที่ถูกต้องก่อนยืนยัน consent screen, app ownership และทดสอบ Drive production OAuth
-- ยังต้องใช้เจ้าของบัญชี/เครื่องจริง: เปิด Play App Signing + เพิ่ม SHA-1 client, อัปโหลด TestFlight/Play closed testing, กรอก Store forms/screenshots และรัน physical-device gates ใน `store/RELEASE_CHECKLIST.md`
+- ยังต้องใช้เจ้าของบัญชี/เครื่องจริง: เพิ่ม Play app-signing SHA-1 client, ทำ closed testing 12 คน/14 วัน, ตอบ Apple พร้อมวิดีโอจาก iPhone จริง และรัน physical-device gates ใน `store/RELEASE_CHECKLIST.md`
 
 ---
 
@@ -123,11 +123,12 @@ Android ไม่ต้องเปลี่ยน เพราะใช้ `Med
 
 ## 8. ลำดับที่แนะนำต่อจากนี้
 
-1. สลับ Google Cloud เป็นบัญชี ITSTON.COM ที่ดูแล `keepspace-production`; ยืนยัน consent/app ownership และสร้าง Android OAuth client จาก Play App Signing SHA-1 ตาม `store/CLOUD_SETUP.md`
-2. อัปโหลด `1.1.0 (2)` เข้า TestFlight และ Play closed testing แล้วทดสอบ connect/upload/verify/relaunch ของ Google Drive + OneDrive บน production-signed builds
-3. ทดสอบคลังจริง 10k+ บน iPhone/iPad/Android phone/tablet รวม Library viewer, Select All, permission/delete, performance, battery และ accessibility
-4. เชื่อมกฎเข้าคิวอัปโหลด (v1.2) → backup verification + safe delete (v1.3)
-5. Monetization + analytics ก่อนปล่อยจริง
+1. อัดวิดีโอ iPhone จริงตาม `store/APPLE_REVIEW_RESPONSE.md`, แนบคำตอบ Guideline 2.1 และ resubmit `1.1.0 (4)`
+2. สลับ Google Cloud เป็นบัญชี ITSTON.COM ที่ดูแล `keepspace-production`; ยืนยัน consent/app ownership และสร้าง Android OAuth client จาก Play App Signing SHA-1 ตาม `store/CLOUD_SETUP.md`
+3. เริ่ม Play closed testing ให้ครบ 12 คนอย่างน้อย 14 วัน และทดสอบ connect/upload/verify/relaunch ของ Google Drive + OneDrive บน production-signed builds
+4. ทดสอบคลังจริง 10k+ บน iPhone/iPad/Android phone/tablet รวม Library viewer, Select All, permission/delete, performance, battery และ accessibility
+5. เชื่อมกฎเข้าคิวอัปโหลด (v1.2) → backup verification + safe delete (v1.3)
+6. ทดสอบ Store purchase/restore จริงและเพิ่ม analytics ที่เคารพ privacy ก่อนปล่อยจริง
 
 ---
 

@@ -213,8 +213,8 @@ fun AboutScreen(onBack: () -> Unit) {
     }
 }
 
-private const val PRIVACY_POLICY_URL = "https://github.com/anuwat-topgun/KeepSpace/blob/main/legal/privacy-policy.md"
-private const val TERMS_OF_USE_URL = "https://github.com/anuwat-topgun/KeepSpace/blob/main/legal/terms-of-use.md"
+private const val PRIVACY_POLICY_URL = "https://keepspace.itston.com/privacy/"
+private const val TERMS_OF_USE_URL = "https://keepspace.itston.com/terms/"
 
 /** Libraries shipped in the app. Keep in step with app/build.gradle.kts. */
 private val LICENSES = listOf(

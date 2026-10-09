@@ -2,6 +2,7 @@ package com.smartstorage.cleaner.ui.feature.library
 
 import com.smartstorage.cleaner.ui.i18n.localized
 import com.smartstorage.cleaner.ui.i18n.localizedCount
+import com.smartstorage.cleaner.ui.i18n.localizedFormat
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -130,7 +131,7 @@ private fun MemoryContent(memory: MemoryEvent, onOpenSimilar: () -> Unit, onRevi
         }
     }
     if (memory.assetUris.size > PREVIEW_LIMIT) {
-        Text("and %,d more".format(memory.assetUris.size - PREVIEW_LIMIT), style = SmartType.metadata, color = colors.textSecondary)
+        Text(localizedFormat("and %,d more", memory.assetUris.size - PREVIEW_LIMIT), style = SmartType.metadata, color = colors.textSecondary)
     }
 }
 

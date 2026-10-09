@@ -42,6 +42,26 @@ struct LibraryContent: Sendable {
 }
 
 extension LibraryContent {
+    /// Stable placeholder assets for the Photos-style Library in demo/screenshot and UI-test runs.
+    /// Their IDs intentionally do not resolve in Photos, so AssetImage renders its safe fallback art.
+    static let demoMediaItems: [MediaItem] = {
+        let now = Calendar.utcGregorian.date(from: DateComponents(year: 2026, month: 9, day: 28, hour: 12))!
+        return [
+            MediaItem(id: "demo-library-sunset", kind: .photo, creationDate: now,
+                      bytes: 3_800_000, pixelWidth: 4032, pixelHeight: 3024, duration: 0,
+                      isFavorite: true, fileName: "IMG_1203.HEIC"),
+            MediaItem(id: "demo-library-portrait", kind: .photo, creationDate: now.addingTimeInterval(-3_600),
+                      bytes: 3_200_000, pixelWidth: 3024, pixelHeight: 4032, duration: 0,
+                      isFavorite: false, fileName: "IMG_1202.HEIC"),
+            MediaItem(id: "demo-library-family", kind: .photo, creationDate: now.addingTimeInterval(-7_200),
+                      bytes: 4_100_000, pixelWidth: 4032, pixelHeight: 3024, duration: 0,
+                      isFavorite: false, fileName: "IMG_1201.HEIC"),
+            MediaItem(id: "demo-library-video", kind: .video, creationDate: now.addingTimeInterval(-10_800),
+                      bytes: 420_000_000, pixelWidth: 3840, pixelHeight: 2160, duration: 48,
+                      isFavorite: false, fileName: "IMG_1200.MOV"),
+        ]
+    }()
+
     /// Demo data matching the mockups (previews, screenshots, and the simulator without photos).
     static let demo = LibraryContent(
         storage: MockData.storage,
